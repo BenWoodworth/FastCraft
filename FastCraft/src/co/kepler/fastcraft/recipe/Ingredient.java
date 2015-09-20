@@ -1,6 +1,5 @@
 package co.kepler.fastcraft.recipe;
 
-import org.apache.commons.lang.WordUtils;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.MaterialData;
 
@@ -12,99 +11,92 @@ import co.kepler.fastcraft.FastCraft;
  * @author Kepler_
  */
 public class Ingredient {
-	private MaterialData material;
-	private int amount;
-
-	public Ingredient(MaterialData material, int amount) {
-		this.material = material;
-		this.amount = amount;
-	}
-
-	public Ingredient(MaterialData material) {
-		this(material, 1);
-	}
+	private ItemStack item;
 
 	public Ingredient(ItemStack item, int amount) {
-		this(item.getData(), amount);
+		this.item = item.clone();
+		this.item.setAmount(amount);
 	}
 
 	public Ingredient(ItemStack item) {
-		this(item.getData(), 1);
+		this(item, item.getAmount());
 	}
 
 	public Ingredient(Ingredient ingredient, int amount) {
-		this(ingredient.material, amount);
+		this(ingredient.item, amount);
 	}
 
 	public Ingredient(Ingredient ingredient) {
-		this(ingredient, ingredient.amount);
+		this(ingredient.item, ingredient.getAmount());
 	}
 
 	@SuppressWarnings("deprecation")
 	public boolean hasDataWildcard() {
-		return material.getData() == -1;
+		return item.getData().getData() == -1;
 	}
 
-	public MaterialData getMaterial() {
-		return material;
+	public ItemStack getItem() {
+		return item.clone();
 	}
-
-	public void setMaterial(MaterialData material) {
-		this.material = material;
+	
+	public MaterialData getMaterialData() {
+		return item.getData();
 	}
 
 	public int getAmount() {
-		return amount;
+		return item.getAmount();
 	}
 
 	public void setAmount(int amount) {
-		this.amount = amount;
+		item.setAmount(amount);
 	}
-
-	@SuppressWarnings("deprecation")
-	public ItemStack getItemStack(int amount) {
-		return new ItemStack(material.getItemType(), amount, material.getData());
-	}
-
-	@SuppressWarnings("deprecation")
+	
 	public boolean isSimilar(Ingredient i) {
-		if (material.getItemType() != i.material.getItemType()) {
-			return false;
+		// If neither data are wildcards, and the data aren't equal;
+		if (!hasDataWildcard() && !i.hasDataWildcard()) {
+			if (item.getDurability() != i.item.getDurability()) return false;
 		}
-		if (material.getData() != i.material.getData() && !(hasDataWildcard() || i.hasDataWildcard())) {
-			return false;
+		
+		// Check if item types are equal
+		if (item.getType() != i.item.getType()) return false;
+		
+		// Compare metadata
+		if (!item.getItemMeta().equals(i.item.getItemMeta())) return false;
+		
+		// Return true if passed all previous tests
+		return true;
+	}
+	
+	public boolean isSimilar(ItemStack is) {
+		// If neither data are wildcards, and the data aren't equal;
+		if (!hasDataWildcard()) {
+			if (item.getDurability() != is.getDurability()) return false;
 		}
+		
+		// Check if item types are equal
+		if (item.getType() != is.getType()) return false;
+		
+		// Compare metadata
+		if (!item.getItemMeta().equals(is.getItemMeta())) return false;
+		
+		// Return true if passed all previous tests
 		return true;
 	}
 
 	@Override
 	public boolean equals(Object o) {
-		if (o instanceof Ingredient) {
-			Ingredient i = (Ingredient) o;
-			if (!isSimilar(i)) {
-				return false;
-			}
-			if (amount != i.amount) {
-				return false;
-			}
-			return true;
-		}
-		return false;
+		if (o == null) return false;
+		if (!(o instanceof Ingredient)) return false;
+		
+		// Compare amounts
+		Ingredient i = (Ingredient) o;
+		if (item.getAmount() != i.item.getAmount()) return false;
+		
+		// Return true if is similar
+		return isSimilar(i);
 	}
 
-	@SuppressWarnings("deprecation")
 	public String getName() {
-		if (material == null) {
-			return null;
-		}
-		String result = FastCraft.configs().items.getItemName(material);
-		if (result == null) {
-			result = material.getItemType().toString();
-			if (material.getData() != -1 && material.getData() != 0) {
-				result += " (" + material.getData() + ")";
-			}
-			result = WordUtils.capitalizeFully(result.replace("_", " "));
-		}
-		return result;
+		return FastCraft.get().recipeUtil.getItemName(item);
 	}
 }

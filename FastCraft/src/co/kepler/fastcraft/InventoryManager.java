@@ -15,6 +15,7 @@ import org.bukkit.event.Event.Result;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -43,11 +44,16 @@ public class InventoryManager implements Listener {
 	public static final int
 	BUTTON_PREV_SLOT = 45,
 	BUTTON_NEXT_SLOT = 53,
-	BUTTON_HELP_SLOT = 48,
+	BUTTON_AMOUNT_SLOT = 48,
 	BUTTON_CRAFT_SLOT = 49,
 	BUTTON_REFRESH_SLOT = 50,
 	NUM_CRAFTING_ROWS = 5;
 
+	public static final int
+	CRAFT_CLICK = 0,
+	CRAFT_SHIFT = 1,
+	CRAFT_DROP = 2;
+	
 	private HashMap<String, FastCraftInv> inventories = new HashMap<String, FastCraftInv>();
 	private HashMap<String, Integer> tempDisabled = new HashMap<String, Integer>();
 
@@ -202,7 +208,7 @@ public class InventoryManager implements Listener {
 			// Clicked in top inventory
 			event.setResult(Result.DENY);
 			if (clickedItem != null && clickedItem.getType() != Material.AIR) {
-				boolean click = true;
+				boolean clickSound = true;
 				if (event.getSlot() == BUTTON_PREV_SLOT) {
 					inv.setPage(inv.getPage() - 1);
 					updateInv = true;
@@ -220,13 +226,16 @@ public class InventoryManager implements Listener {
 				} else if (event.getSlot() == BUTTON_REFRESH_SLOT) {
 					inv.resetCraftableItems();
 					updateInv = true;
-				} else if (event.getSlot() == BUTTON_HELP_SLOT) {
-					// Do nothing
+				} else if (event.getSlot() == BUTTON_AMOUNT_SLOT) {
+					if (event.getClick() == ClickType.LEFT) {
+						inv.increaseCraftAmount();
+						updateInv = true;
+					} else if (event.getClick() == ClickType.RIGHT) {
+						inv.decreaseCraftAmount();
+						updateInv = true;
+					}
 				} else {
-					click = false;
-					boolean removeIngredients = false;
-					boolean shiftAdd = false;
-
+					clickSound = false;
 					int index = inv.getPage() * NUM_CRAFTING_ROWS * 9 + event.getSlot();
 					FastRecipe curRecipe = null;
 					if (index < inv.getCraftableItems().size()) {
@@ -293,26 +302,18 @@ public class InventoryManager implements Listener {
 						case LEFT:
 						case RIGHT:
 						case DOUBLE_CLICK:
-							if (event.getCursor().getType() == Material.AIR) {
-								player.setItemOnCursor(recipeResult);
-								removeIngredients = true;
-							} else if (event.getCursor().isSimilar(recipeResult) && recipeResult.getAmount()
-									+ event.getCursor().getAmount() <= recipeResult.getMaxStackSize()) {
-								event.getCursor().setAmount(event.getCursor().getAmount() + recipeResult.getAmount());
-								removeIngredients = true;
-							}
+							craftItems(curRecipe, inv.getCraftAmount(), CRAFT_CLICK, event);
+							updateInv = true;
 							break;
 						case SHIFT_LEFT:
 						case SHIFT_RIGHT:
-							if (canShiftAddToInv(recipeResult, recipeResult.getAmount(), player.getInventory())) {
-								removeIngredients = true;
-								shiftAdd = true;
-							}
+							craftItems(curRecipe, inv.getCraftAmount(), CRAFT_SHIFT, event);
+							updateInv = true;
 							break;
 						case CONTROL_DROP:
 						case DROP:
-							removeIngredients = true;
-							event.getView().setItem(InventoryView.OUTSIDE, recipeResult);
+							craftItems(curRecipe, inv.getCraftAmount(), CRAFT_DROP, event);
+							updateInv = true;
 							break;
 						case MIDDLE:
 							if (player.getGameMode() == GameMode.CREATIVE
@@ -323,57 +324,12 @@ public class InventoryManager implements Listener {
 							}
 							break;
 						case NUMBER_KEY:
-							if (true) break; // TODO Implement
-							@SuppressWarnings("unused")
-							int addTo = event.getHotbarButton();
-							ItemStack replacing = bottomInv.getItem(addTo);
-							ItemStack cur = curRecipe.getResult().clone();
-							ItemStack toMove = null;
-							if (cur.isSimilar(replacing)) {
-								if (cur.getAmount() > cur.getMaxStackSize()) {
-									toMove = bottomInv.getItem(addTo);
-									bottomInv.setItem(addTo, cur);
-								} else {
-									int add = Math.max(0, cur.getMaxStackSize() - replacing.getAmount());
-									if (add > cur.getAmount()) {
-										add = cur.getAmount();
-									}
-									replacing.setAmount(replacing.getAmount() + add);
-									cur.setAmount(cur.getAmount() - add);
-									if (cur.getAmount() > 0) {
-										toMove = cur;
-									}
-								}
-							} else if (replacing == null) {
-								bottomInv.setItem(addTo, cur);
-							} else {
-								toMove = bottomInv.getItem(addTo);
-								bottomInv.setItem(addTo, cur);
-							}
-							event.getView().setItem(InventoryView.OUTSIDE, toMove);
-							removeIngredients = true;
-							break;
 						default:
 							break;
 						}
-						if (removeIngredients) {
-							if (event.getWhoClicked().getGameMode() != GameMode.CREATIVE ||
-									FastCraft.configs().config.removeItemsInCreative()) {
-								curRecipe.getIngredients().removeFromInv(event.getView());
-							}
-							updateInv = true;
-						}
-						if (shiftAdd) {
-							ItemStack notAdded = shiftAddToInv(recipeResult, recipeResult.getAmount(),
-									player.getInventory());
-							if (notAdded != null) {
-								event.getView().setItem(InventoryView.OUTSIDE, notAdded);
-							}
-							updateInv = true;
-						}
 					}
 				}
-				if (click) {
+				if (clickSound) {
 					player.playSound(player.getLocation(), Sound.CLICK, 1, 1);
 				}
 			}
@@ -557,11 +513,8 @@ public class InventoryManager implements Listener {
 		}
 	}
 
-	private ItemStack shiftAddToInv(ItemStack item, int amount, Inventory inv) {
-		if (amount == 0) {
-			return null;
-		}
-		int remaining = amount;
+	private ItemStack shiftAddToInv(ItemStack item, Inventory inv) {
+		int remaining = item.getAmount();
 		for (int i = 0; i <= 1; i++) {
 			for (int rawRow = inv.getSize() / 9; rawRow > 0; rawRow--) {
 				int row = (rawRow == inv.getSize() / 9) ? 0 : rawRow;
@@ -590,10 +543,57 @@ public class InventoryManager implements Listener {
 		return notAdded;
 	}
 
-	private boolean canShiftAddToInv(ItemStack item, int amount, Inventory inv) {
-		ItemStack newItem = new ItemStack(item);
-		Inventory newInv = Bukkit.createInventory(inv.getHolder(), inv.getSize());
-		newInv.setContents(inv.getContents());
-		return shiftAddToInv(newItem, amount, newInv) == null;
+	private void craftItems(FastRecipe recipe, int amount, int craftType, InventoryClickEvent e) {
+		if (amount == 0) amount = recipe.getResult().getAmount();
+		ItemStack result = recipe.getResult();
+		Inventory inv = e.getWhoClicked().getInventory();
+		if (amount == 0) amount = result.getAmount();
+		
+		// See how many items can be crafted
+		int maxCraftAmount = 0;
+		int maxStackSize = result.getMaxStackSize();
+		if (craftType == CRAFT_SHIFT) {
+			for (int i = 0; i < inv.getSize(); i++) {
+				ItemStack cur = inv.getItem(i);
+				if (cur == null) {
+					maxCraftAmount += maxStackSize;
+				} else if (result.isSimilar(cur) && cur.getAmount() < maxStackSize) {
+					maxCraftAmount += maxStackSize - cur.getAmount();
+				}
+			}
+		} else if (craftType == CRAFT_DROP) {
+			maxCraftAmount = amount;
+		} else if (craftType == CRAFT_CLICK) {
+			if (e.getCursor().getType() == Material.AIR) {
+				maxCraftAmount = result.getMaxStackSize();
+			} else if (result.isSimilar(e.getCursor())) {
+				maxCraftAmount = result.getMaxStackSize() - e.getCursor().getAmount();
+			}
+		}
+		if (maxCraftAmount <= 0) return;
+		maxCraftAmount /= recipe.getResult().getAmount();
+		maxCraftAmount = Math.min(maxCraftAmount, recipe.getMaxCraftAmount(inv));
+
+		// How many times the recipe will be crafted
+		int craftAmount = Math.min(maxCraftAmount, amount / recipe.getResult().getAmount());
+
+		// Remove ingredients from the player's inventory
+		recipe.getIngredients().removeFromInv(e.getView(), craftAmount);
+		
+		// Give player items
+		ItemStack crafted = recipe.getResult().clone();
+		crafted.setAmount(crafted.getAmount() * craftAmount);
+		if (craftType == CRAFT_SHIFT) {
+			shiftAddToInv(crafted, inv);
+		} else if (craftType == CRAFT_DROP) {
+			e.getView().setItem(InventoryView.OUTSIDE, crafted);
+		} else if (craftType == CRAFT_CLICK) {
+			if (e.getCursor().getType() == Material.AIR) {
+				e.getWhoClicked().setItemOnCursor(crafted);
+			} else {
+				int newAmount = e.getCursor().getAmount() + crafted.getAmount();
+				e.getCursor().setAmount(newAmount);
+			}
+		}
 	}
 }

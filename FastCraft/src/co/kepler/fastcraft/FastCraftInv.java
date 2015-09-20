@@ -26,12 +26,14 @@ public class FastCraftInv {
 	private IngredientList ingredients;
 	private List<FastRecipe> craftableItems;
 	private int page;
+	private int craftAmount;
 	private Inventory curInv;
 
 	public FastCraftInv() {
 		ingredients = new IngredientList();
 		craftableItems = new ArrayList<FastRecipe>();
 		page = 0;
+		craftAmount = 0;
 		curInv = null;
 	}
 
@@ -41,6 +43,32 @@ public class FastCraftInv {
 
 	public int getPage() {
 		return page;
+	}
+	
+	public int getCraftAmount() {
+		return craftAmount;
+	}
+	
+	public void decreaseCraftAmount() {
+		int increment = FastCraft.configs().config.craftAmount_increment();
+		int maximum = FastCraft.configs().config.craftAmount_maximum();
+		if (craftAmount == 0) {
+			craftAmount = maximum;
+		} else {
+			craftAmount = Math.max(0, craftAmount - increment);
+		}
+		if (craftAmount == 1) craftAmount = 0;
+	}
+	
+	public void increaseCraftAmount() {
+		int increment = FastCraft.configs().config.craftAmount_increment();
+		int maximum = FastCraft.configs().config.craftAmount_maximum();
+		if (craftAmount == maximum) {
+			craftAmount = 0;
+		} else {
+			craftAmount = Math.min(maximum, craftAmount + increment);
+		}
+		if (craftAmount == 1) craftAmount = 2;
 	}
 
 	public int getLastPage() {
@@ -91,7 +119,6 @@ public class FastCraftInv {
 		inv = Bukkit.createInventory(holder, 54,
 				FastCraft.configs().lang.invTitle());
 		updateCraftableItems();
-
 		PluginConfig config = FastCraft.configs().config;
 		if (page > 0) {
 			inv.setItem(InventoryManager.BUTTON_PREV_SLOT,
@@ -101,10 +128,9 @@ public class FastCraftInv {
 			inv.setItem(InventoryManager.BUTTON_NEXT_SLOT,
 					config.getInvButtonNextItem(page + 2, getLastPage() + 1));
 		}
-		inv.setItem(InventoryManager.BUTTON_HELP_SLOT, config.getInvButtonHelpItem());
+		inv.setItem(InventoryManager.BUTTON_AMOUNT_SLOT, config.getInvButtonAmountItem(craftAmount));
 		inv.setItem(InventoryManager.BUTTON_CRAFT_SLOT, config.getInvButtonCraftItem());
 		inv.setItem(InventoryManager.BUTTON_REFRESH_SLOT, config.getInvButtonRefreshItem());
-
 		int startIndex = getPage() * rows;
 		for (int i = startIndex; i < Math.min(startIndex + rows, craftableItems.size()); i++) {
 			FastRecipe curRecipe = craftableItems.get(i);
@@ -114,6 +140,7 @@ public class FastCraftInv {
 
 				List<String> lore = new ArrayList<String>();
 				for (Ingredient curIng : curRecipe.getIngredients().getList()) {
+					// TODO Throwing error:
 					lore.add(FastCraft.configs().lang.ingredientsFormat(curIng.getAmount(), curIng.getName()));
 				}
 				if (config.debug_showRecipeHashes()) {

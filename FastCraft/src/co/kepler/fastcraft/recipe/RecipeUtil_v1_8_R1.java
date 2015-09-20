@@ -2,6 +2,9 @@ package co.kepler.fastcraft.recipe;
 
 import java.util.HashSet;
 
+import org.bukkit.craftbukkit.v1_8_R1.inventory.CraftItemStack;
+import org.bukkit.inventory.ItemStack;
+
 import net.minecraft.server.v1_8_R1.CraftingManager;
 import net.minecraft.server.v1_8_R1.IRecipe;
 import net.minecraft.server.v1_8_R1.RecipeArmorDye;
@@ -31,5 +34,9 @@ public class RecipeUtil_v1_8_R1 extends RecipeUtil {
 				badHashes.add(new FastRecipe(r.toBukkitRecipe()).getHash());
 			}
 		}
+	}
+
+	public String getItemName(ItemStack is) {
+		return CraftItemStack.asNMSCopy(is).getName();
 	}
 }

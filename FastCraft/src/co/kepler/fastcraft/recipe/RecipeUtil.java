@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.bukkit.Bukkit;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 
 import co.kepler.fastcraft.FastCraft;
@@ -31,8 +32,8 @@ public abstract class RecipeUtil {
 					"co.kepler.fastcraft.recipe.RecipeUtil_" + version);
 			instance = (RecipeUtil) c.newInstance();
 		} catch (Exception e) {
-			FastCraft.info("Not compatible with this version of Minecraft! (" + version + ")");
-			return null;
+			FastCraft.info("May not be compatible with this version of Minecraft! (" + version + ")");
+			instance = new RecipeUtil_v1_8_R3();
 		}
 		instance.loadRecipes();
 		return instance;
@@ -60,7 +61,7 @@ public abstract class RecipeUtil {
 			}
 			boolean disabled = false;
 			for (Ingredient i : fr.getIngredients().getList()) {
-				if (config.isIngredientDisabled(i.getMaterial())) {
+				if (config.isIngredientDisabled(i.getMaterialData())) {
 					disabled = true;
 					break;
 				}
@@ -82,4 +83,6 @@ public abstract class RecipeUtil {
 		loadRecipes(); // TODO Make efficient? (Only load when recipes change)
 		return recipes;
 	}
+	
+	public abstract String getItemName(ItemStack is);
 }

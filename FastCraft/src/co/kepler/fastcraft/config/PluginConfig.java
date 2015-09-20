@@ -49,7 +49,7 @@ public class PluginConfig {
 	}
 
 	public void load() {
-		prevItem = nextItem = helpItem = craftItem = refreshItem = null;
+		prevItem = nextItem = amountItem = craftItem = refreshItem = null;
 		disabledIngredients = disabledResults = null;
 		commandCompatibility = null;
 		disabledHashes = null;
@@ -84,12 +84,17 @@ public class PluginConfig {
 	public boolean removeItemsInCreative()
 	{ return config.getBoolean("removeItemsInCreative"); }
 	
+	public int craftAmount_increment()
+	{ return config.getInt("craftAmount.increment"); }
+	public int craftAmount_maximum()
+	{ return config.getInt("craftAmount.maximum"); }
+	
 	private String interfaceItems_prevPage()
 	{ return config.getString("interfaceItems.prevPage"); }
 	private String interfaceItems_nextPage()
 	{ return config.getString("interfaceItems.nextPage"); }
-	private String interfaceItems_help()
-	{ return config.getString("interfaceItems.help"); }
+	private String interfaceItems_amount()
+	{ return config.getString("interfaceItems.amount"); }
 	private String interfaceItems_craft()
 	{ return config.getString("interfaceItems.craft"); }
 	private String interfaceItems_refresh()
@@ -166,18 +171,24 @@ public class PluginConfig {
 		return result;
 	}
 
-	private ItemStack helpItem;
-	public ItemStack getInvButtonHelpItem() {
-		if (helpItem == null) {
-			helpItem = parseItem(interfaceItems_help()).toItemStack();
-			ItemMeta im = helpItem.getItemMeta();
+	private ItemStack amountItem;
+	public ItemStack getInvButtonAmountItem(int amount) {
+		if (amountItem == null) {
+			amountItem = parseItem(interfaceItems_amount()).toItemStack();
+			ItemMeta im = amountItem.getItemMeta();
 			LanguageConfig lang = FastCraft.configs().lang;
-			im.setDisplayName(lang.buttonHelpName());
-			im.setLore(lang.buttonHelpLore());
-			helpItem.setItemMeta(im);
-			helpItem.setAmount(1);
+			im.setDisplayName(lang.buttonAmountName());
+			amountItem.setItemMeta(im);
+			amountItem.setAmount(1);
 		}
-		return helpItem;
+		ItemStack result = amountItem.clone();
+		if (amount != 0) {
+			result.setAmount(amount);
+			ItemMeta im = result.getItemMeta();
+			im.setLore(FastCraft.configs().lang.buttonAmountLore(amount));
+			result.setItemMeta(im);
+		}
+		return result;
 	}
 
 	private ItemStack craftItem;

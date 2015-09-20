@@ -15,7 +15,6 @@ import co.kepler.fastcraft.FastCraft;
  */
 public class ConfigManager {
 	public final PluginConfig config;
-	public final ItemsConfig items;
 	public final LanguageConfig lang;
 	public final PermissionsConfig permissions;
 	public final PlayersConfig players;
@@ -26,7 +25,6 @@ public class ConfigManager {
 	public ConfigManager() {
 		updateConfigs();
 		config = new PluginConfig();
-		items = new ItemsConfig();
 		lang = new LanguageConfig();
 		permissions = new PermissionsConfig();
 		players = new PlayersConfig();
@@ -38,7 +36,6 @@ public class ConfigManager {
 	public void loadConfigs() {
 		try {
 			config.load();
-			items.load();
 			lang.load(config.language());
 			permissions.load();
 			players.load();
@@ -91,6 +88,11 @@ public class ConfigManager {
 
 			rmList(config, "recipes.disabledResults", "358", "401");
 			rmList(config, "recipes.disabledIngredients", "358", "395", "403");
+		}
+		if (lastVersion <= 19) {
+			File itemsFile = new File(FastCraft.get().getDataFolder(), "items.yml");
+			FastCraft.info("Update: Deleting items.yml");
+			itemsFile.delete(); // TODO Check if exists?
 		}
 
 		// Save config, and version.yml with the current FastCraft version

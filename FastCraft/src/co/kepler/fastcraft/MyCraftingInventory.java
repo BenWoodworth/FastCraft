@@ -14,7 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 
 /**
- * Inventory to immitate a normal crafting inventory.
+ * Inventory to imitate a normal crafting inventory.
  * 
  * @author Kepler_
  */

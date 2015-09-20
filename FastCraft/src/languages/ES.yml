@@ -30,16 +30,8 @@ buttonPrevName: '&aPagina Anterior'
 buttonPrevLore: '&3Ir a la pagina &b%%0/%%1'
 buttonNextName: '&aPagina Siguiente'
 buttonNextLore: '&3Ir a la pagina &b%%0/%%1'
-buttonHelpName: '&aFastCraft Ayuda'
-buttonHelpLore:
-  |
-    &3Para crear un elemento de FastCraft, todo
-    &3lo que tienes que hacer es un clic en el
-    &3elemento que desea crear. Los materiales
-    &3necesarios para elaborar el tema se
-    &3eliminara automaticamente el tema artesanal.
-    &3Normalmente a las embarcaciones, haga clic
-    &3en el icono banco en la parte inferior.
+buttonAmountName: '&aCraft Cantidad'
+buttonAmountLore: '&3Craft %%0 Artículos'
 buttonCraftName: '&aManufacturacion'
 buttonCraftLore: '&3Mostrar la Cuadricula'
 buttonRefreshName: '&aActualizar'

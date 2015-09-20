@@ -1,5 +1,6 @@
 package co.kepler.fastcraft.recipe;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -118,8 +119,7 @@ public class FastRecipe {
 			if (i == il.size()) {
 				cur = result;
 			} else {
-				Ingredient ing = il.get(i);
-				cur = ing.getItemStack(ing.getAmount());
+				cur = il.get(i).getItem();
 			}
 			if (cur == null) {
 				sb.append("null!");
@@ -146,5 +146,57 @@ public class FastRecipe {
 	
 	public static boolean canBeFastRecipe(Recipe r) {
 		return r instanceof ShapedRecipe || r instanceof ShapelessRecipe;
+	}
+	
+	public int getMaxCraftAmount(Inventory inv) {
+		// Make a list of items in the inventory
+		List<Ingredient> available = new ArrayList<Ingredient>();
+		for (ItemStack is : inv) {
+			if (is == null) continue;
+			boolean added = false;
+			for (Ingredient i : available) {
+				if (i.isSimilar(is)) {
+					i.setAmount(i.getAmount() + is.getAmount());
+					added = true;
+					break;
+				}
+			}
+			if (!added) {
+				available.add(new Ingredient(is));
+			}
+		}
+		
+		// See how many times this recipe can be crafted
+		int result = 0;
+		boolean done = false;
+		while (true) {
+			for (Ingredient i : ingredients.getList()) {
+				if (i.hasDataWildcard()) continue;
+				done = !removeFromAvailable(available, i);
+			}
+			if (done) break;
+			for (Ingredient i : ingredients.getList()) {
+				if (!i.hasDataWildcard()) continue;
+				done = !removeFromAvailable(available, i);
+			}
+			if (done) break;
+			result++;
+		}
+		return result;
+	}
+	
+	private boolean removeFromAvailable(List<Ingredient> available, Ingredient ing) {
+		int toRemove = ing.getAmount();
+		for (Ingredient removeFrom : available) {
+			if (!removeFrom.isSimilar(ing)) continue;
+			if (removeFrom.getAmount() <= toRemove) {
+				toRemove -= removeFrom.getAmount();
+				removeFrom.setAmount(0);
+			} else {
+				removeFrom.setAmount(removeFrom.getAmount() - toRemove);
+				toRemove = 0;
+			}
+		}
+		return toRemove == 0;
 	}
 }

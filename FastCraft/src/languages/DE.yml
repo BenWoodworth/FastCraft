@@ -1,50 +1,38 @@
-# Translated using Google Translate. Probably not that accurate.
-
-errNoPerm: '&cSie haben keine Zugriffsberechtigung: %%0'
-errCmdUsage: '&cVerwendung: /FastCraft %%0'
-errCmdPlayerOnly: '&cSie mussen sich ein Spieler, um diesen Befehl verwenden zu konnen!'
+errNoPerm: '&cDu hast keine Berechtigung: %%0'
+errCmdUsage: 'Usage: /fastcraft %%0'
+errCmdPlayerOnly: '&cDu musst als Spieler angemeldet sein um dieses Kommando nutzen zu können!'
 errPlayerNotFound: '&cSpieler &4%%0&c nicht gefunden!'
 
-updateNotification: '&aEin FastCraft Update verfugbar! (%%0)'
+updateNotification: '&aFastCraft wurde aktualisiert!'
 
-outFcToggleOn: '&aJetzt mit FastCraft zum Basteln.'
-outFcToggleOff: '&aNicht mehr mit FastCraft zum Basteln.'
-outFcToggleOther: '&aErfolgreich umgeschaltet FastCraft fur %%0!'
-outFcToggleOnOther: '&a%%0 ist jetzt mit FastCraft zum Basteln.'
-outFcToggleOffOther: '&a%%0 wird nicht mehr mit FastCraft zum Basteln.'
+outFcToggleOn: '&aDu nutzt nun FastCraft zum Herstellen.'
+outFcToggleOff: '&aDu nutzt nun kein FastCraft mehr zum Herstellen.'
+outFcToggleOther: '&aFastCraft erfolgreich umgeschaltet für %%0!'
+outFcToggleOnOther: '&a%%0 verwendet nun FastCraft zur Herstellung.'
+outFcToggleOffOther: '&a%%0 verwendet nun nicht mehr FastCraft zur Herstellung.'
 
-outFcAdminReload: '&aReload komplett.'
+outFcAdminReload: '&aNeu laden abgeschlossen.'
 
-outFcAdminUpdate-Checking: '&aSuche nach Updates...'
-outFcAdminUpdate-ErrFetch: '&cFehler beim Abrufen der Update-Informationen!'
-outFcAdminUpdate-None: '&aEs gibt keine verfugbaren Aktualisierungen!'
-outFcAdminUpdate-Available: '&aEin Update ist verfugbar! (%%0)'
-outFcAdminUpdate-Downloading: '&aHerunterladen von Updates...'
-outFcAdminUpdate-DlErr: '&cFehler beim Herunterladen! (%%0)'
-outFcAdminUpdate-Complete: '&aUpdate erfolgreich heruntergeladen! (%%0)'
-outFcAdminUpdate-Downloaded: '&aEin Update bereits heruntergeladen! (%%0)'
+outFcAdminUpdate-Checking: '&aPrüfe auf Aktualisierungen...'
+outFcAdminUpdate-ErrFetch: '&cFehler beim Laden der Aktualisierungsinformationen!'
+outFcAdminUpdate-None: '&aKeine Aktualisierung gefunden!'
+outFcAdminUpdate-Available: '&aAktualisierung gefunden!'
+outFcAdminUpdate-Downloading: '&aAktualisierungen lade...'
+outFcAdminUpdate-DlErr: '&cFehler beim Herunterladen der Aktualisierung!'
+outFcAdminUpdate-Complete: '&aAktualisierung erfolgreich heruntergeladen!'
+outFcAdminUpdate-Downloaded: '&aEin ladeis bereits Aktualisierungen'
 
 invTitle: 'FastCraft'
 
 buttonPrevName: '&aVorherige Seite'
-buttonPrevLore: '&3Gehen Sie zu Seite &b%%0/%%1'
-buttonNextName: '&aFolgeseite'
-buttonNextLore: '&3Gehen Sie zu Seite &b%%0/%%1'
-buttonHelpName: '&aFastCraft Hilfe'
-buttonHelpLore:
-  |
-    &3Um einen Artikel mit FastCraft Kunsthandwerk,
-    &3ist alles was Sie tun mussen, klicken Sie auf
-    &3das Element, das Sie in Hand mochten. Die
-    &3Materialien erforderlich, um Handwerk wird
-    &3der Artikel automatisch aus dem Inventar
-    &3entfernt werden, und Sie werden die
-    &3handgefertigter Gegenstand gegeben werden.
-    &3Normal zu Kunsthandwerk, klicken Sie auf die
-    &3Workbench-Symbol auf der Unterseite.
-buttonCraftName: '&aCrafting'
-buttonCraftLore: '&3Show Crafting Gitter'
-buttonRefreshName: '&aErfrischen'
-buttonRefreshLore: '&3Artikel wieder Sortieren'
+buttonPrevLore: '&3Gehe zu Seite &b%%0/%%1'
+buttonNextName: '&aNächste Seite'
+buttonNextLore: '&3Gehe zu Seite &b%%0/%%1'
+buttonAmountName: '&aMachen Menge'
+buttonAmountLore: '&3Machen Sie %%0 Einzelteile'
+buttonCraftName: '&aHerstellung'
+buttonCraftLore: '&3Zeige Herstellungs Raster'
+buttonRefreshName: '&aAktualisieren'
+buttonRefreshLore: '&3Gegenstände neu sortieren'
 
 ingredientsFormat: '&a%%0x %%1'

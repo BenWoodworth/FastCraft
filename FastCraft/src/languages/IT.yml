@@ -1,0 +1,38 @@
+errNoPerm: '&cNon hai il permesso: %%0'
+errCmdUsage: '&cUso: /fastcraft %%0'
+errCmdPlayerOnly: '&cDevi essere un player per usare questo comando!'
+errPlayerNotFound: '&cPlayer $4%%0&c non trovato!'
+
+updateNotification: 'FastCraft è stato aggiornato!'
+
+outFcToggleOn: '&aOra utilizzerai FastCraft per il crafting'
+outFcToggleOff: '&aNon utilizzerai più FastCraft per il crafting'
+outFcToggleOther: '&aHai attivato con successo FastCraft per %%0!'
+outFcToggleOnOther: '&a%%0 ora utilizza FastCraft per il crafting.'
+outFcToggleOffOther: '&a%%0 non utilizza più FastCraft per il crafting.'
+
+outFcAdminReload: '&aReload completato'
+
+outFcAdminUpdate-Checking: '&aControllo aggiornamenti...'
+outFcAdminUpdate-ErrFetch: 'Errore nel cercare un update!'
+outFcAdminUpdate-None: '&aNessun aggiornamento trovato!'
+outFcAdminUpdate-Available: '&aAggiornamento trovato! (%%0)'
+outFcAdminUpdate-Downloading: '&aDownload in corso...'
+outFcAdminUpdate-DlErr: '&cErrore nel download!'
+outFcAdminUpdate-Complete: '&aAggiornamento scaricato con successo!'
+outFcAdminUpdate-Downloaded: '&aUn aggiornamento è già stato scaricato!'
+
+invTitle: 'FastCraft'
+
+buttonPrevName: '&aPagina precedente'
+buttonPrevLore: '&3Vai alla pagina &b%%0/%%1'
+buttonNextName: '&aProssima Pagina'
+buttonNextLore: '&3Vai alla pagina &b%%0/%%1'
+buttonAmountName: '&3Fai importo'
+buttonAmountLore: '&3Fai %%0 articoli'
+buttonCraftName: '&aCrafting'
+buttonCraftLore: '&3Mostra la griglia di crafting'
+buttonRefreshName: '&aAggiorna'
+buttonRefreshLore: '&3Ri-organizza items'
+
+ingredientsFormat: '&a%%0x %%1'

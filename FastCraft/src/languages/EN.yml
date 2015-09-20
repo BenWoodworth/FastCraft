@@ -28,16 +28,8 @@ buttonPrevName: '&aPrevious Page'
 buttonPrevLore: '&3Go to page &b%%0/%%1'
 buttonNextName: '&aNext Page'
 buttonNextLore: '&3Go to page &b%%0/%%1'
-buttonHelpName: '&aFastCraft Help'
-buttonHelpLore:
-  |
-    &3To craft an item with FastCraft, all you
-    &3need to do is click the item you want to
-    &3craft. The materials required to craft
-    &3the item will be automatically removed
-    &3from your inventory, and you will be
-    &3given the crafted item. To craft normally,
-    &3click the workbench icon on the bottom.
+buttonAmountName: '&aCraft Amount'
+buttonAmountLore: '&3Craft %%0 items'
 buttonCraftName: '&aCrafting'
 buttonCraftLore: '&3Show crafting grid'
 buttonRefreshName: '&aRefresh'

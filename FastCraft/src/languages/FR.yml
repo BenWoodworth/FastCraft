@@ -30,18 +30,8 @@ buttonPrevName: '&aPage precedente'
 buttonPrevLore: '&3Aller a la page &b%%0/%%1'
 buttonNextName: '&aPage suivante'
 buttonNextLore: '&3Aller a la page &b%%0/%%1'
-buttonHelpName: '&aFastCraft Aide'
-buttonHelpLore:
-  |
-    &3Pour les bateaux un objet avec FastCraft,
-    &3tout ce que vous devez faire est de cliquer
-    &3sur l'objet que vous souhaitez craft. Les
-    &3materiaux necessaires pour faconner le point
-    &3de l'ordre du jour sera automatiquement
-    &3supprime de votre inventaire, et il vous
-    &3sera donne l'objet malveillant. Pour les
-    &3bateaux normalement, cliquez sur l'icone
-    &3workbench sur le fond.
+buttonAmountName: '&aCraft Montant'
+buttonAmountLore: '&3Craft %%0 articles'
 buttonCraftName: '&aArtisanat'
 buttonCraftLore: '&3Montrer artisanat grille'
 buttonRefreshName: '&aActualiser'

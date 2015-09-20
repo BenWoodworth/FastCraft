@@ -121,10 +121,10 @@ public class LanguageConfig {
 	{ return getLang("buttonNextName", i(nextPage), i(totalPages)); }
 	public List<String> buttonNextLore(int nextPage, int totalPages)
 	{ return s(getLang("buttonNextLore", i(nextPage), i(totalPages))); }
-	public String buttonHelpName()
-	{ return getLang("buttonHelpName"); }
-	public List<String> buttonHelpLore()
-	{ return s(getLang("buttonHelpLore")); }
+	public String buttonAmountName() // TODO Update in language files, and add Italian
+	{ return getLang("buttonAmountName"); }
+	public List<String> buttonAmountLore(int amount)
+	{ return s(getLang("buttonAmountLore", i(amount))); }
 	public String buttonCraftName()
 	{ return getLang("buttonCraftName"); }
 	public List<String> buttonCraftLore()

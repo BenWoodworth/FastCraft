@@ -47,7 +47,7 @@ public class IngredientList {
 
 	public void add(Ingredient i) {
 		for (Ingredient ing : ingredients) {
-			if (i.getMaterial().equals(ing.getMaterial())) {
+			if (i.isSimilar(ing)) {
 				ing.setAmount(ing.getAmount() + i.getAmount());
 				return;
 			}
@@ -57,7 +57,7 @@ public class IngredientList {
 
 	public void add(Ingredient i, int amount) {
 		for (Ingredient ing : ingredients) {
-			if (i.getMaterial().equals(ing.getMaterial())) {
+			if (i.isSimilar(ing)) {
 				ing.setAmount(ing.getAmount() + amount);
 				return;
 			}
@@ -167,10 +167,10 @@ public class IngredientList {
 		return false;
 	}
 
-	public boolean removeFromInv(InventoryView view) {
+	public boolean removeFromInv(InventoryView view, int multiplier) {
 		List<Ingredient> remaining = new ArrayList<Ingredient>();
 		for (Ingredient i : ingredients) {
-			remaining.add(new Ingredient(i));
+			remaining.add(new Ingredient(i, i.getAmount() * multiplier));
 		}
 
 		int bucketsToAdd = 0;
@@ -207,9 +207,9 @@ public class IngredientList {
 						}
 						curRemove.setAmount(curRemove.getAmount() - removeAmount);
 
-						if (curRemove.getMaterial().getItemType() == Material.LAVA_BUCKET
-								|| curRemove.getMaterial().getItemType() == Material.WATER_BUCKET
-								|| curRemove.getMaterial().getItemType() == Material.MILK_BUCKET) {
+						if (curRemove.getMaterialData().getItemType() == Material.LAVA_BUCKET
+								|| curRemove.getMaterialData().getItemType() == Material.WATER_BUCKET
+								|| curRemove.getMaterialData().getItemType() == Material.MILK_BUCKET) {
 							bucketsToAdd += removeAmount;
 						}
 					}

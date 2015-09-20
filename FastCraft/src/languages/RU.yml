@@ -30,14 +30,8 @@ buttonPrevName: '&aПредыдущая страница'
 buttonPrevLore: '&3Перейти к странице &b%%0/%%1'
 buttonNextName: '&aСледующая страница'
 buttonNextLore: '&3Перейти к странице &b%%0/%%1'
-buttonHelpName: '&aFastCraft: Помощь'
-buttonHelpLore:
- |
-   &3Чтобы скрафтить предмет с FastCraft, всё
-    &3что тебе потребуется - это нажать на
-    &3нужный предмет и перетащить его к себе
-    &3в инвентарь. Чтобы использовать стандартный
-    &3верстак, нажми на его иконку внизу.
+buttonAmountName: '&aCделать количество'
+buttonAmountLore: '&3Сделать %%0 пунктов'
 buttonCraftName: '&aОбычный верстак'
 buttonCraftLore: '&3Показать сетку крафта'
 buttonRefreshName: '&aОбновить'

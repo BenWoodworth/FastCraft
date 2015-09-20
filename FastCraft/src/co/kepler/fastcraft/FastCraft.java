@@ -27,6 +27,8 @@ public class FastCraft extends JavaPlugin {
 	private ConfigManager configManager;
 	private PluginUpdater pluginUpdater;
 	private int version;
+	
+	public RecipeUtil recipeUtil;
 
 	@Override
 	public void onEnable() {
@@ -43,9 +45,7 @@ public class FastCraft extends JavaPlugin {
 		MetricsStarter.start(this);
 
 		pluginUpdater = new PluginUpdater(getFile());
-		if (RecipeUtil.setup() == null) {
-			return;
-		}
+		recipeUtil = RecipeUtil.setup();
 
 		setupAchievements();
 

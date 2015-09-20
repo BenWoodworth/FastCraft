@@ -22,8 +22,7 @@ public class CommandFcCraft extends SubCommand {
 		} else if (!FastCraft.configs().permissions.playerHas(sender, perm)){
 			sender.sendMessage(FastCraft.configs().lang.errNoPerm(perm));
 		} else {
-			Player p = (Player) sender;
-			p.openWorkbench(null, false);
+			((Player) sender).openWorkbench(null, true);
 		}
 		return true;
 	}
