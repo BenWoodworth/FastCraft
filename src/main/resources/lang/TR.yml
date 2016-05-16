@@ -53,12 +53,14 @@ gui:
     refresh:
       title: '&aYenile'
       description:
-      - '&bÖğeleri yeniden sırala'
+      - '&bArayüzü yenile'
 
     multiplier:
-      title: '&aÇoklu Üretme (<mult>x)' # Değişkenler: mult
+      title: '&aÇoklu Üretim (<mult>x)' # Değişkenler: mult
       description: # Değişkenler: mult
-      - '&bBir seferde birden fazla üret'
+      - '&bSol/sağ tıklayarak artır/azalt'
+      - '&b1 artırmak için shifte basarak tıklayın'
+      - '&bSıfırlamak için farenin orta tuşuna tıkla'
 
     workbench:
       title: '&aKlasik Üretim'
