@@ -7,44 +7,41 @@ package net.benwoodworth.fastcraft.core.dependencies.inventory
  */
 interface FcItem<TBase> {
 
-    /** The Minecraft item type ID. */
-    val typeId: String
+    /** The base item. */
+    val baseItem: TBase
 
     /** The amount of items in this stack. */
-    val amount: Int
+    var amount: Int
 
     /** The display name of this item. */
-    val displayName: String?
+    var displayName: String?
+
+    /** The item's lore */
+    var lore: List<String?>
 
     /** The maximum size of this stack. */
     val maxStackSize: Int
-
-    /**
-     * Get a mutable copy of this item.
-     *
-     * @return a mutable copy
-     */
-    fun getMutableItem(): FcItemMutable<TBase>
-
-    /**
-     * Clone the base item being adapted.
-     *
-     * @return a clone of the base item
-     */
-    fun cloneBaseItem(): TBase
-
-    /**
-     * Get the item's lore.
-     *
-     * @return the item's lore
-     */
-    fun getLore(): List<String?>
 
     /**
      * Whether this item, as an ingredient, matches any
      * item of the same type, regardless of data.
      */
     val hasWildCardData: Boolean
+
+    /**
+     * Clone this item.
+     *
+     * @return a clone of this item
+     */
+    fun clone(): FcItem<TBase>
+
+    /**
+     * Add an enchantment to the item.
+     *
+     * @param enchantmentId the Minecraft enchantment ID
+     * @param level         the enchantment level
+     */
+    fun addEnchantment(enchantmentId: String, level: Int, ignoreLevelRestriction: Boolean = false)
 
     /**
      * Compare equality of this base item to another, ignoring amount.
@@ -68,9 +65,7 @@ interface FcItem<TBase> {
      *
      * @return `true` if the items are equal
      */
-    fun equals(other: FcItem<TBase>): Boolean {
-        return amount == other.amount && isSimilar(other)
-    }
+    override fun equals(other: Any?): Boolean
 
     /**
      * A hash code for this item.

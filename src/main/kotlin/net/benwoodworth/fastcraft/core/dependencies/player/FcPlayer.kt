@@ -19,7 +19,7 @@ interface FcPlayer<TItem : FcItem<*>> {
     var displayName: String?
 
     /** The player's UUID. */
-    var uuid: UUID
+    val uuid: UUID
 
     /**
      * Send a message to the player.
