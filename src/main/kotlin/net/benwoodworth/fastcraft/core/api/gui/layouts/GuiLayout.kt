@@ -9,9 +9,9 @@ import net.benwoodworth.fastcraft.core.dependencies.inventory.FcItem
  * The layout of a GUI.
  * Layouts are composite, so they're made up of other layouts.
  *
- * @param TFcItem The item type.
+ * @param TItem The item type.
  */
-open class GuiLayout<TFcItem : FcItem<*>>(
+open class GuiLayout<TItem : FcItem<*>>(
 
         /** The width of this [GuiLayout]. */
         open val width: Int,
@@ -24,14 +24,14 @@ open class GuiLayout<TFcItem : FcItem<*>>(
     val layoutChangeListener = EventListener<EventGuiLayoutChange>()
 
     /** The layouts that compose this layout. */
-    private val childLayouts = ArrayList<LayoutPosition<TFcItem>>()
+    private val childLayouts = ArrayList<LayoutPosition<TItem>>()
 
     /**
      * Add a child layout or button at the specified location.
      *
      * @param layout the layout to add
      */
-    fun addLayout(layout: GuiLayout<TFcItem>, x: Int, y: Int) {
+    fun addLayout(layout: GuiLayout<TItem>, x: Int, y: Int) {
         childLayouts += LayoutPosition(layout, x, y)
         layout.layoutChangeListener.addHandler(layoutChangeListener::notifyHandlers)
     }
@@ -39,7 +39,7 @@ open class GuiLayout<TFcItem : FcItem<*>>(
     /**
      * Remove a child layout or button.
      */
-    fun removeLayout(layout: GuiLayout<TFcItem>) {
+    fun removeLayout(layout: GuiLayout<TItem>) {
         val layoutPosition = childLayouts.find { it.layout === layout } ?: return
         childLayouts.remove(layoutPosition)
         layout.layoutChangeListener.removeHandler(layoutChangeListener::notifyHandlers)
@@ -52,9 +52,9 @@ open class GuiLayout<TFcItem : FcItem<*>>(
      * @param y the y-coordinate of the button
      * @return the button ath the specified position, or null if there is none
      */
-    fun getButton(x: Int, y: Int): GuiButton<TFcItem>? {
+    fun getButton(x: Int, y: Int): GuiButton<TItem>? {
         val layout = childLayoutAtPoint(x, y).layout
-        return if (layout is GuiButton<TFcItem>) layout else null
+        return if (layout is GuiButton<TItem>) layout else null
     }
 
     /**
@@ -65,7 +65,7 @@ open class GuiLayout<TFcItem : FcItem<*>>(
      * @return the layout at the specified point, and the coordinates
      *         within that layout that these coordinates point to
      */
-    private fun childLayoutAtPoint(x: Int, y: Int): LayoutPosition<TFcItem> {
+    private fun childLayoutAtPoint(x: Int, y: Int): LayoutPosition<TItem> {
         for (layoutPosition in childLayouts) {
             val xRange = (layoutPosition.x)..(layoutPosition.x + layoutPosition.layout.width)
             val yRange = (layoutPosition.y)..(layoutPosition.y + layoutPosition.layout.height)
@@ -84,9 +84,9 @@ open class GuiLayout<TFcItem : FcItem<*>>(
     /**
      * Contains a layout, and a coordinate pair.
      */
-    private class LayoutPosition<TFcItem : FcItem<*>>(
+    private class LayoutPosition<TItem : FcItem<*>>(
             /** The layout. */
-            val layout: GuiLayout<TFcItem>,
+            val layout: GuiLayout<TItem>,
 
             /** The x-coordinate */
             val x: Int,

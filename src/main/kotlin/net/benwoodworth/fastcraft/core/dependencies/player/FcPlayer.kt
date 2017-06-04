@@ -8,9 +8,9 @@ import java.util.*
 /**
  * A Minecraft player.
  *
- * @param TFcItem The type of item the player carries.
+ * @param TItem The type of item the player carries.
  */
-interface FcPlayer<TFcItem : FcItem<*>> {
+interface FcPlayer<TItem : FcItem<*>> {
 
     /** The player's username. */
     val username: String
@@ -40,5 +40,5 @@ interface FcPlayer<TFcItem : FcItem<*>> {
      *
      * @param inventory The inventory to open.
      */
-    fun openInventory(inventory: FcInventory<TFcItem>)
+    fun openInventory(inventory: FcInventory<TItem>)
 }

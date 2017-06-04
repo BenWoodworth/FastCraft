@@ -6,9 +6,9 @@ import net.benwoodworth.fastcraft.core.dependencies.inventory.FcItem
 /**
  * A Dagger component for injecting FastCraft dependencies.
  */
-interface FastCraftComponent<TFcItem : FcItem<*>> {
+interface FastCraftComponent<TItem : FcItem<*>> {
 
-    fun getFastCraft(): FastCraft<TFcItem>
+    fun getFastCraft(): FastCraft<TItem>
 
-    fun eventListeners(): EventListenerRegistry<TFcItem>
+    fun eventListeners(): EventListenerRegistry<TItem>
 }

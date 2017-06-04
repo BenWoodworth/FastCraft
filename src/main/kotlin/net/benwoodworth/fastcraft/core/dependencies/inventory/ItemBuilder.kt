@@ -4,21 +4,21 @@ package net.benwoodworth.fastcraft.core.dependencies.inventory
 /**
  * A builder that creates Minecraft items.
  */
-interface ItemBuilder<TFcItem> {
+interface ItemBuilder<TItem> {
 
     /**
      * Builds a new instance the item.
      *
      * @Return A new instance of the item
      */
-    fun build(): TFcItem
+    fun build(): TItem
 
     /**
      * Resets this builder and uses the values from this item.
      *
      * @Return This builder, for chaining
      */
-    fun from(item: TFcItem): ItemBuilder<TFcItem>
+    fun from(item: TItem): ItemBuilder<TItem>
 
     /**
      * Set the item type.
@@ -26,7 +26,7 @@ interface ItemBuilder<TFcItem> {
      * @param typeId The Minecraft item type ID
      * @Return This builder, for chaining
      */
-    fun setType(typeId: String): ItemBuilder<TFcItem>
+    fun setType(typeId: String): ItemBuilder<TItem>
 
     /**
      * Set the item amount.
@@ -34,7 +34,7 @@ interface ItemBuilder<TFcItem> {
      * @param amount The item amount
      * @Return This builder, for chaining
      */
-    fun setAmount(amount: Int): ItemBuilder<TFcItem>
+    fun setAmount(amount: Int): ItemBuilder<TItem>
 
     /**
      * Set the item's display name.
@@ -42,7 +42,7 @@ interface ItemBuilder<TFcItem> {
      * @param displayName The display name
      * @Return This builder, for chaining
      */
-    fun setDisplayName(displayName: String?): ItemBuilder<TFcItem>
+    fun setDisplayName(displayName: String?): ItemBuilder<TItem>
 
     /**
      * Set the item's lore.
@@ -50,7 +50,7 @@ interface ItemBuilder<TFcItem> {
      * @param lore The lore
      * @Return This builder, for chaining
      */
-    fun setLore(vararg lore: List<String?>?): ItemBuilder<TFcItem>
+    fun setLore(vararg lore: List<String?>?): ItemBuilder<TItem>
 
     /**
      * Add an enchantment.
@@ -59,5 +59,5 @@ interface ItemBuilder<TFcItem> {
      * @param level         The enchantment level
      * @Return This builder, for chaining
      */
-    fun addEnchantment(enchantmentId: String, level: Int): ItemBuilder<TFcItem>
+    fun addEnchantment(enchantmentId: String, level: Int): ItemBuilder<TItem>
 }

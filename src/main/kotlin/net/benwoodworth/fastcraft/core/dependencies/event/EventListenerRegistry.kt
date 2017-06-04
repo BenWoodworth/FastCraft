@@ -7,9 +7,9 @@ import net.benwoodworth.fastcraft.core.dependencies.inventory.FcItem
 /**
  * A registry of event listeners.
  */
-interface EventListenerRegistry<TFcItem : FcItem<*>> {
+interface EventListenerRegistry<TItem : FcItem<*>> {
 
     val serverStart: EventListener<EventServerStart>
 
-    val playerJoin: EventListener<EventPlayerJoin<TFcItem>>
+    val playerJoin: EventListener<EventPlayerJoin<TItem>>
 }

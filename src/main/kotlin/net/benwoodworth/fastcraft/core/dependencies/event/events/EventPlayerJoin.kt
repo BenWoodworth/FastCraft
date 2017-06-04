@@ -7,10 +7,10 @@ import net.benwoodworth.fastcraft.core.dependencies.player.FcPlayer
 /**
  * An event for players joining the server.
  *
- * @param TFcItem the item type
+ * @param TItem the item type
  */
-interface EventPlayerJoin<TFcItem : FcItem<*>> : Event {
+interface EventPlayerJoin<TItem : FcItem<*>> : Event {
 
     /** The player who joined. */
-    val player: FcPlayer<TFcItem>
+    val player: FcPlayer<TItem>
 }

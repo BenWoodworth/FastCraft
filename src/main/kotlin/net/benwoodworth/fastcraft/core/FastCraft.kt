@@ -7,9 +7,9 @@ import javax.inject.Inject
 /**
  * The core class of FastCraft.
  *
- * @param TFcItem The item type
+ * @param TItem The item type
  */
-class FastCraft<TFcItem> @Inject constructor(
+class FastCraft<TItem> @Inject constructor(
         serverStartEventListener: EventListener<EventServerStart>
 ) {
 

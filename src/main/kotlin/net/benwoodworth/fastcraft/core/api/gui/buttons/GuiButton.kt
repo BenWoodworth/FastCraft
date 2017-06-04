@@ -8,14 +8,14 @@ import net.benwoodworth.fastcraft.core.dependencies.inventory.FcItem
 /**
  * A button in a GUI.
  *
- * @param TFcItem the item type
+ * @param TItem the item type
  */
-class GuiButton<TFcItem : FcItem<*>>(
+class GuiButton<TItem : FcItem<*>>(
 
         /** The item representing this button */
-        val buttonItem: TFcItem? = null
-) : GuiLayout<TFcItem>(1, 1) {
+        val buttonItem: TItem? = null
+) : GuiLayout<TItem>(1, 1) {
 
     /** This button's click listener */
-    val clickListener = EventListener<EventGuiButtonClick<TFcItem>>()
+    val clickListener = EventListener<EventGuiButtonClick<TItem>>()
 }

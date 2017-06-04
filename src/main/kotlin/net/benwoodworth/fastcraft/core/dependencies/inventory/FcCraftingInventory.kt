@@ -5,16 +5,16 @@ import net.benwoodworth.fastcraft.core.dependencies.recipes.FcRecipe
 /**
  * A Minecraft crafting inventory.
  *
- * @param TFcItem the item type
+ * @param TItem the item type
  */
-interface FcCraftingInventory<TFcItem : FcItem<*>> {
+interface FcCraftingInventory<TItem : FcItem<*>> {
 
     /** The crafting inventory's crafting matrix */
-    val matrix: ItemGrid<FcItem<TFcItem>>
+    val matrix: ItemGrid<FcItem<TItem>>
 
     /** The item in the result slot of the crafting inventory */
-    val result: FcItem<TFcItem>
+    val result: FcItem<TItem>
 
     /** The current recipe in the crafting inventory */
-    val recipe: FcRecipe<TFcItem>
+    val recipe: FcRecipe<TItem>
 }

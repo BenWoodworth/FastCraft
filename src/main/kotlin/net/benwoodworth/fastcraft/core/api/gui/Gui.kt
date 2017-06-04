@@ -7,11 +7,11 @@ import net.benwoodworth.fastcraft.core.dependencies.inventory.FcItem
 /**
  * A user interface for in-game players.
  *
- * @param TFcItem the item type
+ * @param TItem the item type
  */
-class Gui<TFcItem : FcItem<*>>(
-        private val inventory: FcChestInventory<TFcItem>
-) : GuiLayout<TFcItem>(inventory.width, inventory.height) {
+class Gui<TItem : FcItem<*>>(
+        private val inventory: FcChestInventory<TItem>
+) : GuiLayout<TItem>(inventory.width, inventory.height) {
 
     /**
      * Update the inventory to reflect the GUI.

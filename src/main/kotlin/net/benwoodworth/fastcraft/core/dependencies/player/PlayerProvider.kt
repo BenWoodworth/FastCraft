@@ -6,16 +6,16 @@ import java.util.*
 /**
  * Provides player for the plugin.
  *
- * @param TFcItem The item type the player carries in their inventory.
+ * @param TItem The item type the player carries in their inventory.
  */
-interface PlayerProvider<TFcItem : FcItem<*>> {
+interface PlayerProvider<TItem : FcItem<*>> {
 
     /**
      * Get a list of online player.
      *
      * @return A list of online players
      */
-    fun getOnlinePlayers(): List<FcPlayer<TFcItem>>
+    fun getOnlinePlayers(): List<FcPlayer<TItem>>
 
     /**
      * Get an online player given a UUID.
@@ -23,5 +23,5 @@ interface PlayerProvider<TFcItem : FcItem<*>> {
      * @param uuid The player's UUID
      * @return The player with the given UUID, or null if none exists
      */
-    fun getOnlinePlayer(uuid: UUID): FcPlayer<TFcItem>
+    fun getOnlinePlayer(uuid: UUID): FcPlayer<TItem>
 }

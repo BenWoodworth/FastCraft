@@ -7,11 +7,11 @@ import javax.inject.Inject
 /**
  * A FastCraft API for use by other plugins.
  *
- * @param TFcItem the item type
+ * @param TItem the item type
  */
-class FastCraftApi<TFcItem : FcItem<*>> @Inject constructor(
+class FastCraftApi<TItem : FcItem<*>> @Inject constructor(
         /** The instance of FastCraft. */
-        val fastCraft: FastCraft<TFcItem>
+        val fastCraft: FastCraft<TItem>
 ) {
 
 //    /** TODO
