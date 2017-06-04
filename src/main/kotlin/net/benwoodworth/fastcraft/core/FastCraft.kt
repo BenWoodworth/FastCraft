@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.core
 
 import net.benwoodworth.fastcraft.core.dependencies.event.EventListener
-import net.benwoodworth.fastcraft.core.dependencies.server.EventServerStart
+import net.benwoodworth.fastcraft.core.dependencies.event.events.EventServerStart
 import javax.inject.Inject
 
 /**
