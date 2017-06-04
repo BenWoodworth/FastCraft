@@ -15,7 +15,7 @@ import javax.inject.Singleton
  */
 class BukkitFastCraft {
 
-    @Component(modules = arrayOf(BukkitFastCraftModule::class))
+    @Singleton @Component(modules = arrayOf(BukkitFastCraftModule::class))
     interface BukkitFastCraftComponent : FastCraftComponent<BukkitItem>
 
     @Module

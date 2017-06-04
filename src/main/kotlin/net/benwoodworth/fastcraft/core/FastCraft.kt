@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.core
 
-import net.benwoodworth.fastcraft.core.dependencies.event.EventListener
-import net.benwoodworth.fastcraft.core.dependencies.event.events.EventServerStart
+import net.benwoodworth.fastcraft.core.dependencies.event.EventListenerRegistry
+import net.benwoodworth.fastcraft.core.dependencies.inventory.FcItem
 import javax.inject.Inject
 
 /**
@@ -9,8 +9,8 @@ import javax.inject.Inject
  *
  * @param TItem The item type
  */
-class FastCraft<TItem> @Inject constructor(
-        serverStartEventListener: EventListener<EventServerStart>
+class FastCraft<TItem : FcItem<*>> @Inject constructor(
+        eventListeners: EventListenerRegistry<TItem>
 ) {
 
 
