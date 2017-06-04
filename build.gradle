@@ -11,14 +11,14 @@ apply plugin: "kotlin"
 
 buildscript {
     ext {
-        version_kotlin = "1.1.0"
+        version_kotlin = "1.1.2"
         version_bukkit = "1.10.2-R0.1-SNAPSHOT"
         version_sponge = "4.0.3"
         version_spongegradle = "0.8.1"
         version_dagger = "2.9"
         version_jsr250 = "1.0"
         version_javax_inject = "1"
-        version_junit = "4.12"
+        version_spek = "1.1.2"
         version_mockito = "2.2.20"
     }
 
@@ -37,6 +37,7 @@ repositories {
     mavenCentral()
     maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
     maven { url "http://repo.spongepowered.org/maven" }
+    maven { url "http://dl.bintray.com/jetbrains/spek" }
 }
 
 dependencies {
@@ -51,7 +52,8 @@ dependencies {
     compile "com.google.dagger:dagger:$version_dagger"
     kapt "com.google.dagger:dagger-compiler:$version_dagger"
 
-    testCompile "junit:junit:$version_junit"
+    testCompile "org.jetbrains.spek:spek-api:$version_spek"
+    testRuntime "org.jetbrains.spek:spek-junit-platform-engine:$version_spek"
     testCompile "org.mockito:mockito-core:$version_mockito"
 }
 
