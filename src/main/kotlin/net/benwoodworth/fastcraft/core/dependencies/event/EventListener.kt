@@ -31,11 +31,29 @@ class EventListener<TEvent : Event> {
     }
 
     /**
+     * Add an event handler to this listener.
+     *
+     * @param handler the event handler to add to this event
+     */
+    operator fun plusAssign(handler: (event: TEvent) -> Unit) {
+        addHandler(handler)
+    }
+
+    /**
      * Remove an event handler from this listener.
      *
      * @param handler the event handler to remove from this listener
      */
     fun removeHandler(handler: (event: TEvent) -> Unit) {
         handlers -= handler
+    }
+
+    /**
+     * Remove an event handler from this listener.
+     *
+     * @param handler the event handler to remove from this listener
+     */
+    operator fun minusAssign(handler: (event: TEvent) -> Unit) {
+        removeHandler(handler)
     }
 }

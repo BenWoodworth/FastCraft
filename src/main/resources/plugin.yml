@@ -1,0 +1,7 @@
+name: ${plugin_name}
+author: ${plugin_author}
+version: ${plugin_version}
+
+description: ${plugin_description}
+
+main: net.benwoodworth.fastcraft.bukkit.BukkitFastCraft
