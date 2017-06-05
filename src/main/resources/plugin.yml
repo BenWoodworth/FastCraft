@@ -1,6 +1,7 @@
 name: ${plugin_name}
 author: ${plugin_author}
 version: ${plugin_version}
+website: ${plugin_website}
 
 description: ${plugin_description}
 
