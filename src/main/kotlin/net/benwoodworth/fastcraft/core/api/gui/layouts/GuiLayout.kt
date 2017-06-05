@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.core.api.gui.layouts
 
 import net.benwoodworth.fastcraft.core.api.gui.buttons.GuiButton
 import net.benwoodworth.fastcraft.core.api.gui.events.EventGuiLayoutChange
-import net.benwoodworth.fastcraft.core.dependencies.event.EventListener
+import net.benwoodworth.fastcraft.core.dependencies.event.FcEventListener
 import net.benwoodworth.fastcraft.core.dependencies.inventory.FcItem
 
 /**
@@ -21,7 +21,7 @@ open class GuiLayout<TItem : FcItem<*>>(
 ) {
 
     /** A listener for layout changes. */
-    val layoutChangeListener = EventListener<EventGuiLayoutChange>()
+    val layoutChangeListener = FcEventListener<EventGuiLayoutChange>()
 
     /** The layouts that compose this layout. */
     private val childLayouts = ArrayList<LayoutPosition<TItem>>()

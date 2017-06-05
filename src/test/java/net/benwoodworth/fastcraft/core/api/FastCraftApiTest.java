@@ -28,19 +28,19 @@ public class FastCraftApiTest {
 //        when(nonGuiInvAdapter.getCarrier()).thenReturn(null);
 //
 //        // Mock an inventory provider
-//        InventoryFactory<ItemT, InvT> invProvider = mock(InventoryFactory.class);
+//        FcInventoryFactory<ItemT, InvT> invProvider = mock(FcInventoryFactory.class);
 //        when(invProvider.adaptInventory(guiInventory)).thenReturn(guiInvAdapter);
 //        when(invProvider.adaptInventory(nonGuiInventory)).thenReturn(nonGuiInvAdapter);
 //
 //        // Mock dependencies
 //        Dependencies<ItemT, InvT> dependencies = new Dependencies<>(
 //                invProvider,
-//                mock(PlayerProvider.class),
-//                mock(RecipeService.class),
-//                mock(PermissionService.class),
-//                mock(ConfigFactory.class),
-//                mock(TaskScheduler.class),
-//                mock(FileProvider.class)
+//                mock(FcPlayerProvider.class),
+//                mock(FcRecipeProvider.class),
+//                mock(FcPermissionService.class),
+//                mock(FcConfigFactory.class),
+//                mock(FcTaskScheduler.class),
+//                mock(FcFileProvider.class)
 //        );
 //
 //        // Create FastCraft instance

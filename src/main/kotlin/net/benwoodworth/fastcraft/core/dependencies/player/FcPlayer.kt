@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.core.dependencies.player
 
 import net.benwoodworth.fastcraft.core.dependencies.inventory.FcInventory
 import net.benwoodworth.fastcraft.core.dependencies.inventory.FcItem
-import net.benwoodworth.fastcraft.core.dependencies.permissions.Permission
+import net.benwoodworth.fastcraft.core.dependencies.permissions.FcPermission
 import java.util.*
 
 /**
@@ -33,7 +33,7 @@ interface FcPlayer<TItem : FcItem<*>> {
      *
      * @param permission The permission to check.
      */
-    fun hasPermission(permission: Permission): Boolean
+    fun hasPermission(permission: FcPermission): Boolean
 
     /**
      * Open an inventory.

@@ -1,9 +1,9 @@
 package net.benwoodworth.fastcraft.core
 
 import net.benwoodworth.fastcraft.core.dependencies.event.EventListenerRegistry
-import net.benwoodworth.fastcraft.core.dependencies.event.events.EventPlayerJoin
-import net.benwoodworth.fastcraft.core.dependencies.event.events.EventPluginDisable
-import net.benwoodworth.fastcraft.core.dependencies.event.events.EventPluginEnable
+import net.benwoodworth.fastcraft.core.dependencies.event.events.FcEventPlayerJoin
+import net.benwoodworth.fastcraft.core.dependencies.event.events.FcEventPluginDisable
+import net.benwoodworth.fastcraft.core.dependencies.event.events.FcEventPluginEnable
 import net.benwoodworth.fastcraft.core.dependencies.inventory.FcItem
 import javax.inject.Inject
 
@@ -22,15 +22,15 @@ class FastCraft<TItem : FcItem<*>> @Inject constructor(
         eventListeners.playerJoin += this::onPlayerJoin
     }
 
-    fun onPluginEnable(event: EventPluginEnable) {
+    fun onPluginEnable(event: FcEventPluginEnable) {
         println("FastCraft core enabled")
     }
 
-    fun onPluginDisable(event: EventPluginDisable) {
+    fun onPluginDisable(event: FcEventPluginDisable) {
         println("FastCraft core disabled")
     }
 
-    fun onPlayerJoin(event: EventPlayerJoin<TItem>) {
+    fun onPlayerJoin(event: FcEventPlayerJoin<TItem>) {
         event.player.sendMessage("Welcome to the server!")
     }
 

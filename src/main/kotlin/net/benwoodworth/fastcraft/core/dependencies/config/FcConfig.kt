@@ -6,7 +6,7 @@ import java.io.IOException
 /**
  * A configuration.
  */
-interface Config : ConfigSection {
+interface FcConfig : FcConfigSection {
 
     /** The config header comment. */
     val header: String?
@@ -20,7 +20,7 @@ interface Config : ConfigSection {
     fun load(file: File)
 
     /**
-     * Save this [Config] to a file.
+     * Save this [FcConfig] to a file.
      *
      * @param file the [File] to save to
      * @throws IOException if there was a problem saving the config

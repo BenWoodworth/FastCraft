@@ -7,7 +7,7 @@ import java.util.*
  *
  * @param TEvent the type of event being listened for
  */
-class EventListener<TEvent : Event> {
+class FcEventListener<TEvent : FcEvent> {
 
     /** This listener's event handlers. */
     private val handlers = HashSet<(event: TEvent) -> Unit>()

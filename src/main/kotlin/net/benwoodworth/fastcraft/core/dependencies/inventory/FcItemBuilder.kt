@@ -4,7 +4,7 @@ package net.benwoodworth.fastcraft.core.dependencies.inventory
 /**
  * A builder that creates Minecraft items.
  */
-interface ItemBuilder<TItem> {
+interface FcItemBuilder<TItem> {
 
     /**
      * Builds a new instance the item.
@@ -18,7 +18,7 @@ interface ItemBuilder<TItem> {
      *
      * @Return This builder, for chaining
      */
-    fun from(item: TItem): ItemBuilder<TItem>
+    fun from(item: TItem): FcItemBuilder<TItem>
 
     /**
      * Set the item type.
@@ -26,7 +26,7 @@ interface ItemBuilder<TItem> {
      * @param typeId The Minecraft item type ID
      * @Return This builder, for chaining
      */
-    fun setType(typeId: String): ItemBuilder<TItem>
+    fun setType(typeId: String): FcItemBuilder<TItem>
 
     /**
      * Set the item amount.
@@ -34,7 +34,7 @@ interface ItemBuilder<TItem> {
      * @param amount The item amount
      * @Return This builder, for chaining
      */
-    fun setAmount(amount: Int): ItemBuilder<TItem>
+    fun setAmount(amount: Int): FcItemBuilder<TItem>
 
     /**
      * Set the item's display name.
@@ -42,7 +42,7 @@ interface ItemBuilder<TItem> {
      * @param displayName The display name
      * @Return This builder, for chaining
      */
-    fun setDisplayName(displayName: String?): ItemBuilder<TItem>
+    fun setDisplayName(displayName: String?): FcItemBuilder<TItem>
 
     /**
      * Set the item's lore.
@@ -50,7 +50,7 @@ interface ItemBuilder<TItem> {
      * @param lore The lore
      * @Return This builder, for chaining
      */
-    fun setLore(vararg lore: List<String?>?): ItemBuilder<TItem>
+    fun setLore(vararg lore: List<String?>?): FcItemBuilder<TItem>
 
     /**
      * Add an enchantment.
@@ -59,5 +59,5 @@ interface ItemBuilder<TItem> {
      * @param level         The enchantment level
      * @Return This builder, for chaining
      */
-    fun addEnchantment(enchantmentId: String, level: Int): ItemBuilder<TItem>
+    fun addEnchantment(enchantmentId: String, level: Int): FcItemBuilder<TItem>
 }

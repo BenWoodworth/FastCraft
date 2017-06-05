@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.core.dependencies.event.events
 
-import net.benwoodworth.fastcraft.core.dependencies.event.Event
+import net.benwoodworth.fastcraft.core.dependencies.event.FcEvent
 import net.benwoodworth.fastcraft.core.dependencies.inventory.FcItem
 import net.benwoodworth.fastcraft.core.dependencies.player.FcPlayer
 
@@ -9,7 +9,7 @@ import net.benwoodworth.fastcraft.core.dependencies.player.FcPlayer
  *
  * @param TItem the item type
  */
-interface EventPlayerJoin<TItem : FcItem<*>> : Event {
+interface FcEventPlayerJoin<TItem : FcItem<*>> : FcEvent {
 
     /** The player who joined. */
     val player: FcPlayer<TItem>

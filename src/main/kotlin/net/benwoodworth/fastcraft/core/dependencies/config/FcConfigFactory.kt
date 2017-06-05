@@ -3,12 +3,12 @@ package net.benwoodworth.fastcraft.core.dependencies.config
 /**
  * Provides new configs.
  */
-interface ConfigFactory {
+interface FcConfigFactory {
 
     /**
      * Create a new empty config.
      *
      * @return a new empty config
      */
-    fun createEmptyConfig(): Config
+    fun createEmptyConfig(): FcConfig
 }

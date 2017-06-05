@@ -5,7 +5,7 @@ package net.benwoodworth.fastcraft.core.dependencies.inventory
  *
  * @param T the type of item in the grid
  */
-interface ItemGrid<T> {
+interface FcItemGrid<T> {
 
     /** The width of the item grid. */
     val width: Int

@@ -7,7 +7,7 @@ import net.benwoodworth.fastcraft.core.dependencies.inventory.FcItem
  *
  * @param TItem the item type
  */
-interface RecipeSource<TItem : FcItem<*>> {
+interface FcRecipeSource<TItem : FcItem<*>> {
 
     /**
      * Get this recipe source's crafting recipes.

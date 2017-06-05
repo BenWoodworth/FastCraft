@@ -2,8 +2,8 @@ package net.benwoodworth.fastcraft.core.api.gui.events
 
 import net.benwoodworth.fastcraft.core.api.gui.Gui
 import net.benwoodworth.fastcraft.core.api.gui.buttons.GuiButton
-import net.benwoodworth.fastcraft.core.dependencies.event.Cancellable
-import net.benwoodworth.fastcraft.core.dependencies.event.Event
+import net.benwoodworth.fastcraft.core.dependencies.event.FcCancellable
+import net.benwoodworth.fastcraft.core.dependencies.event.FcEvent
 import net.benwoodworth.fastcraft.core.dependencies.inventory.FcItem
 import net.benwoodworth.fastcraft.core.dependencies.player.FcPlayer
 
@@ -21,7 +21,7 @@ class EventGuiButtonClick<TItem : FcItem<*>>(
 
         /** The [FcPlayer] who clicked the button. */
         val player: FcPlayer<TItem>
-) : Event, Cancellable {
+) : FcEvent, FcCancellable {
 
     override var cancelled = false
 }

@@ -1,8 +1,8 @@
 package net.benwoodworth.fastcraft.core.dependencies.event
 
-import net.benwoodworth.fastcraft.core.dependencies.event.events.EventPlayerJoin
-import net.benwoodworth.fastcraft.core.dependencies.event.events.EventPluginDisable
-import net.benwoodworth.fastcraft.core.dependencies.event.events.EventPluginEnable
+import net.benwoodworth.fastcraft.core.dependencies.event.events.FcEventPlayerJoin
+import net.benwoodworth.fastcraft.core.dependencies.event.events.FcEventPluginDisable
+import net.benwoodworth.fastcraft.core.dependencies.event.events.FcEventPluginEnable
 import net.benwoodworth.fastcraft.core.dependencies.inventory.FcItem
 
 /**
@@ -10,7 +10,7 @@ import net.benwoodworth.fastcraft.core.dependencies.inventory.FcItem
  */
 interface EventListenerRegistry<TItem : FcItem<*>> {
 
-    val pluginEnable: EventListener<EventPluginEnable>
-    val pluginDisable: EventListener<EventPluginDisable>
-    val playerJoin: EventListener<EventPlayerJoin<TItem>>
+    val pluginEnable: FcEventListener<FcEventPluginEnable>
+    val pluginDisable: FcEventListener<FcEventPluginDisable>
+    val playerJoin: FcEventListener<FcEventPlayerJoin<TItem>>
 }

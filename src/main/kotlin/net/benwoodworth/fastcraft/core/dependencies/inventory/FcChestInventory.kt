@@ -5,7 +5,7 @@ package net.benwoodworth.fastcraft.core.dependencies.inventory
  *
  * @param TItem the item type
  */
-interface FcChestInventory<TItem : FcItem<*>> : FcInventory<TItem>, ItemGrid<TItem> {
+interface FcChestInventory<TItem : FcItem<*>> : FcInventory<TItem>, FcItemGrid<TItem> {
 
     /**
      * Add items to the inventory.

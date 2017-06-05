@@ -8,7 +8,7 @@ import java.util.*
  *
  * @param TItem The item type the player carries in their inventory.
  */
-interface PlayerProvider<TItem : FcItem<*>> {
+interface FcPlayerProvider<TItem : FcItem<*>> {
 
     /**
      * Get a list of online player.

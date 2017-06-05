@@ -7,14 +7,14 @@ import net.benwoodworth.fastcraft.core.dependencies.inventory.FcItem
  *
  * @param TItem the item type
  */
-interface RecipeService<TItem : FcItem<*>> {
+interface FcRecipeProvider<TItem : FcItem<*>> {
 
     /**
      * Get recipe sources.
      *
      * @return the recipe sources
      */
-    fun getRecipeSources(): List<RecipeSource<TItem>>
+    fun getRecipeSources(): List<FcRecipeSource<TItem>>
 
     /**
      * Get the recipes provided by the native server.

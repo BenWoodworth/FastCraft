@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.bukkit.dependencies.player
 
 import net.benwoodworth.fastcraft.bukkit.dependencies.inventory.BukkitItem
 import net.benwoodworth.fastcraft.core.dependencies.inventory.FcInventory
-import net.benwoodworth.fastcraft.core.dependencies.permissions.Permission
+import net.benwoodworth.fastcraft.core.dependencies.permissions.FcPermission
 import net.benwoodworth.fastcraft.core.dependencies.player.FcPlayer
 import org.bukkit.entity.Player
 import java.util.*
@@ -28,7 +28,7 @@ class BukkitPlayer(private val basePlayer: Player): FcPlayer<BukkitItem> {
         basePlayer.sendMessage(message)
     }
 
-    override fun hasPermission(permission: Permission): Boolean {
+    override fun hasPermission(permission: FcPermission): Boolean {
         return basePlayer.hasPermission(permission.permissionString)
     }
 

@@ -5,7 +5,7 @@ package net.benwoodworth.fastcraft.core.dependencies.inventory
  *
  * @param TItem the item type
  */
-interface InventoryFactory<TItem : FcItem<*>> {
+interface FcInventoryFactory<TItem : FcItem<*>> {
 
     /**
      * Create a new chest inventory.

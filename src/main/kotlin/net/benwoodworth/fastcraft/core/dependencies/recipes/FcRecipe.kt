@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.core.dependencies.recipes
 
 import net.benwoodworth.fastcraft.core.dependencies.inventory.FcItem
-import net.benwoodworth.fastcraft.core.dependencies.permissions.Permission
+import net.benwoodworth.fastcraft.core.dependencies.permissions.FcPermission
 import net.benwoodworth.fastcraft.core.dependencies.player.FcPlayer
 
 /**
@@ -18,7 +18,7 @@ interface FcRecipe<TItem : FcItem<*>> {
     val results: List<FcItem<TItem>>
 
     /** The permissions required to craft the recipe. */
-    val permissions: List<Permission>
+    val permissions: List<FcPermission>
 
     /**
      * Prepare the recipe, allowing other plugins to change it before it is crafted.
