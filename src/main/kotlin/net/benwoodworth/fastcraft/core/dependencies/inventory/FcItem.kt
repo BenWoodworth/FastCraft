@@ -8,7 +8,7 @@ package net.benwoodworth.fastcraft.core.dependencies.inventory
 interface FcItem<TBase> {
 
     /** The base item. */
-    val baseItem: TBase
+    val base: TBase
 
     /** The amount of items in this stack. */
     var amount: Int

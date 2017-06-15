@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.core
 
-import net.benwoodworth.fastcraft.core.dependencies.event.EventListenerRegistry
+import net.benwoodworth.fastcraft.core.dependencies.event.FcEventListenerRegistry
 import net.benwoodworth.fastcraft.core.dependencies.event.events.FcEventPlayerJoin
 import net.benwoodworth.fastcraft.core.dependencies.event.events.FcEventPluginDisable
 import net.benwoodworth.fastcraft.core.dependencies.event.events.FcEventPluginEnable
@@ -13,7 +13,7 @@ import javax.inject.Inject
  * @param TItem The item type
  */
 class FastCraft<TItem : FcItem<*>> @Inject constructor(
-        eventListeners: EventListenerRegistry<TItem>
+        eventListeners: FcEventListenerRegistry<TItem>
 ) {
 
     init {

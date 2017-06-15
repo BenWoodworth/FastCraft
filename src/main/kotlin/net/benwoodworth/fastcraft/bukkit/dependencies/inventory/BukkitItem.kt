@@ -7,68 +7,68 @@ import org.bukkit.inventory.ItemStack
 /**
  * Wrapper for Bukkit `ItemStack`s.
  */
-class BukkitItem(override val baseItem: ItemStack) : FcItem<ItemStack> {
+class BukkitItem(override val base: ItemStack) : FcItem<ItemStack> {
 
     override var amount: Int
-        get() = baseItem.amount
+        get() = base.amount
         set(value) {
-            baseItem.amount = value
+            base.amount = value
         }
 
     override var displayName: String?
-        get() = baseItem.itemMeta.displayName
+        get() = base.itemMeta.displayName
         set(value) {
-            val meta = baseItem.itemMeta
+            val meta = base.itemMeta
             meta.displayName = value
-            baseItem.itemMeta = meta
+            base.itemMeta = meta
         }
 
     override var lore: List<String?>
-        get() = baseItem.itemMeta.lore.toList()
+        get() = base.itemMeta.lore.toList()
         set(value) {
-            val meta = baseItem.itemMeta
+            val meta = base.itemMeta
             meta.lore = value
-            baseItem.itemMeta = meta
+            base.itemMeta = meta
         }
 
     override val maxStackSize: Int
-        get() = baseItem.maxStackSize
+        get() = base.maxStackSize
 
     override val hasWildCardData: Boolean
-        get() = baseItem.durability == Short.MAX_VALUE
+        get() = base.durability == Short.MAX_VALUE
 
     override fun clone(): FcItem<ItemStack> {
-        return BukkitItem(baseItem.clone())
+        return BukkitItem(base.clone())
     }
 
     override fun addEnchantment(enchantmentId: String, level: Int, ignoreLevelRestriction: Boolean) {
-        val meta = baseItem.itemMeta
+        val meta = base.itemMeta
         val enchant = Enchantment.getByName(enchantmentId)
         meta.addEnchant(enchant, level, ignoreLevelRestriction)
-        baseItem.itemMeta = meta
+        base.itemMeta = meta
     }
 
     override fun isSimilar(item: FcItem<ItemStack>): Boolean {
-        return baseItem.isSimilar(item.baseItem)
+        return base.isSimilar(item.base)
     }
 
     override fun matchesIngredient(ingredient: FcItem<ItemStack>): Boolean {
-        var compare = ingredient.baseItem
+        var compare = ingredient.base
         if (ingredient.hasWildCardData) {
             compare = compare.clone()
-            compare.durability = baseItem.durability
+            compare.durability = base.durability
         }
-        return baseItem.isSimilar(compare)
+        return base.isSimilar(compare)
     }
 
     override fun equals(other: Any?) = false
 
     fun equals(other: FcItem<ItemStack>): Boolean {
-        return baseItem == other.baseItem
+        return base == other.base
     }
 
     override fun hashCode(): Int {
-        return baseItem.hashCode()
+        return base.hashCode()
     }
 
 }

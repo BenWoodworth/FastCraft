@@ -8,9 +8,9 @@ import net.benwoodworth.fastcraft.core.dependencies.inventory.FcItem
 /**
  * A registry of event listeners.
  */
-interface EventListenerRegistry<TItem : FcItem<*>> {
+abstract class FcEventListenerRegistry<TItem : FcItem<*>> {
 
-    val pluginEnable: FcEventListener<FcEventPluginEnable>
-    val pluginDisable: FcEventListener<FcEventPluginDisable>
-    val playerJoin: FcEventListener<FcEventPlayerJoin<TItem>>
+    val pluginEnable = FcEventListener<FcEventPluginEnable>()
+    val pluginDisable = FcEventListener<FcEventPluginDisable>()
+    val playerJoin = FcEventListener<FcEventPlayerJoin<TItem>>()
 }

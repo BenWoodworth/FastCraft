@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.core
 
-import net.benwoodworth.fastcraft.core.dependencies.event.EventListenerRegistry
+import net.benwoodworth.fastcraft.core.dependencies.event.FcEventListenerRegistry
 import net.benwoodworth.fastcraft.core.dependencies.inventory.FcItem
 
 /**
@@ -8,5 +8,5 @@ import net.benwoodworth.fastcraft.core.dependencies.inventory.FcItem
  */
 interface FastCraftModule<TItem : FcItem<*>> {
 
-    fun eventListeners(): EventListenerRegistry<TItem>
+    fun eventListeners(): FcEventListenerRegistry<TItem>
 }
