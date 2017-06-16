@@ -2,7 +2,6 @@ package net.benwoodworth.fastcraft.bukkit.dependencies.event
 
 import net.benwoodworth.fastcraft.bukkit.BukkitFastCraft
 import net.benwoodworth.fastcraft.bukkit.dependencies.event.events.BukkitEventPlayerJoin
-import net.benwoodworth.fastcraft.bukkit.dependencies.inventory.BukkitItem
 import net.benwoodworth.fastcraft.core.dependencies.event.FcEventListenerRegistry
 import net.benwoodworth.fastcraft.core.dependencies.event.events.FcEventPluginDisable
 import net.benwoodworth.fastcraft.core.dependencies.event.events.FcEventPluginEnable
@@ -19,7 +18,7 @@ import javax.inject.Inject
  */
 class BukkitEventListenerRegistry @Inject constructor(
         fastCraft: BukkitFastCraft
-) : FcEventListenerRegistry<BukkitItem>(), Listener {
+) : FcEventListenerRegistry(), Listener {
 
     init {
         println("Registering events")

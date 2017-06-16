@@ -2,10 +2,8 @@ package net.benwoodworth.fastcraft.core.dependencies.inventory
 
 /**
  * Provides inventories and items for the plugin.
- *
- * @param TItem the item type
  */
-interface FcInventoryFactory<TItem : FcItem<*>> {
+interface FcInventoryFactory {
 
     /**
      * Create a new chest inventory.
@@ -15,8 +13,5 @@ interface FcInventoryFactory<TItem : FcItem<*>> {
      * @param carrier the carrier of the inventory
      * @return a chest inventory with the specified height and title
      */
-    fun createChestInventory(height: Int, title: String? = null, carrier: Any? = null): FcChestInventory<TItem>
-
-
-
+    fun createChestInventory(height: Int, title: String? = null, carrier: Any? = null): ChestInventoryAdapter
 }

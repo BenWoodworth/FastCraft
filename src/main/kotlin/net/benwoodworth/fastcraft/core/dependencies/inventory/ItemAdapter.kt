@@ -1,39 +1,36 @@
 package net.benwoodworth.fastcraft.core.dependencies.inventory
 
+import net.benwoodworth.fastcraft.core.dependencies.Adapter
+
 /**
  * A Minecraft item.
- *
- * @param TBase the item type
  */
-interface FcItem<TBase> {
-
-    /** The base item. */
-    val base: TBase
+abstract class ItemAdapter(baseItem: Any) : Adapter(baseItem) {
 
     /** The amount of items in this stack. */
-    var amount: Int
+    abstract var amount: Int
 
     /** The display name of this item. */
-    var displayName: String?
+    abstract var displayName: String?
 
     /** The item's lore */
-    var lore: List<String?>
+    abstract var lore: List<String?>
 
     /** The maximum size of this stack. */
-    val maxStackSize: Int
+    abstract val maxStackSize: Int
 
     /**
      * Whether this item, as an ingredient, matches any
      * item of the same type, regardless of data.
      */
-    val hasWildCardData: Boolean
+    abstract val hasWildCardData: Boolean
 
     /**
      * Clone this item.
      *
      * @return a clone of this item
      */
-    fun clone(): FcItem<TBase>
+    abstract fun clone(): ItemAdapter
 
     /**
      * Add an enchantment to the item.
@@ -41,15 +38,15 @@ interface FcItem<TBase> {
      * @param enchantmentId the Minecraft enchantment ID
      * @param level         the enchantment level
      */
-    fun addEnchantment(enchantmentId: String, level: Int, ignoreLevelRestriction: Boolean = false)
+    abstract fun addEnchantment(enchantmentId: String, level: Int, ignoreLevelRestriction: Boolean = false)
 
     /**
      * Compare equality of this base item to another, ignoring amount.
      *
-     * @param item the [FcItem] to compare to
+     * @param item the [ItemAdapter] to compare to
      * @return `true` if the items are similar
      */
-    fun isSimilar(item: FcItem<TBase>): Boolean
+    abstract fun isSimilar(item: ItemAdapter): Boolean
 
     /**
      * Checks if this item can be used as an ingredient in a recipe.
@@ -58,14 +55,14 @@ interface FcItem<TBase> {
      * @param ingredient the ingredient of a recipe
      * @return `true` if this item can be used as the ingredient
      */
-    fun matchesIngredient(ingredient: FcItem<TBase>): Boolean
+    abstract fun matchesIngredient(ingredient: ItemAdapter): Boolean
 
     /**
      * Checks if the items are similar, and have the same amount.
      *
      * @return `true` if the items are equal
      */
-    override fun equals(other: Any?): Boolean
+    abstract override fun equals(other: Any?): Boolean
 
     /**
      * A hash code for this item.
@@ -74,5 +71,5 @@ interface FcItem<TBase> {
      *
      * @return the item's hash code
      */
-    override fun hashCode(): Int
+    abstract override fun hashCode(): Int
 }

@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.core
 /**
  * Created by ben on 6/15/17.
  */
-interface FastCraftImplementation<out TInstance : FastCraft<*>> {
+interface FastCraftImplementation {
 
-    val instance: TInstance
+    val instance: FastCraft
 }

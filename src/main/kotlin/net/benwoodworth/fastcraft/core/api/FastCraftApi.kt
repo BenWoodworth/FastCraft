@@ -1,17 +1,14 @@
 package net.benwoodworth.fastcraft.core.api
 
 import net.benwoodworth.fastcraft.core.FastCraft
-import net.benwoodworth.fastcraft.core.dependencies.inventory.FcItem
 import javax.inject.Inject
 
 /**
  * A FastCraft API for use by other plugins.
- *
- * @param TItem the item type
  */
-class FastCraftApi<TItem : FcItem<*>> @Inject constructor(
+class FastCraftApi @Inject constructor(
         /** The instance of FastCraft. */
-        val fastCraft: FastCraft<TItem>
+        val fastCraft: FastCraft
 ) {
 
 //    /** TODO

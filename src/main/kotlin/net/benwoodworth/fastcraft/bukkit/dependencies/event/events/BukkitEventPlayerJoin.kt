@@ -1,9 +1,8 @@
 package net.benwoodworth.fastcraft.bukkit.dependencies.event.events
 
-import net.benwoodworth.fastcraft.bukkit.dependencies.inventory.BukkitItem
-import net.benwoodworth.fastcraft.bukkit.dependencies.player.BukkitPlayer
+import net.benwoodworth.fastcraft.bukkit.dependencies.player.BukkitPlayerAdapter
 import net.benwoodworth.fastcraft.core.dependencies.event.events.FcEventPlayerJoin
-import net.benwoodworth.fastcraft.core.dependencies.player.FcPlayer
+import net.benwoodworth.fastcraft.core.dependencies.player.PlayerAdapter
 import org.bukkit.event.player.PlayerJoinEvent
 
 /**
@@ -11,8 +10,8 @@ import org.bukkit.event.player.PlayerJoinEvent
  */
 class BukkitEventPlayerJoin(
         private val base: PlayerJoinEvent
-) : FcEventPlayerJoin<BukkitItem> {
+) : FcEventPlayerJoin {
 
-    override val player: FcPlayer<BukkitItem>
-        get() = BukkitPlayer(base.player)
+    override val player: PlayerAdapter
+        get() = BukkitPlayerAdapter(base.player)
 }

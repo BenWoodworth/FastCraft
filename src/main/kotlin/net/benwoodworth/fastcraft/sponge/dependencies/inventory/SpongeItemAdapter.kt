@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.sponge.dependencies.inventory
 
-import net.benwoodworth.fastcraft.core.dependencies.inventory.FcItem
+import net.benwoodworth.fastcraft.core.dependencies.inventory.ItemAdapter
 import org.spongepowered.api.data.key.Keys
 import org.spongepowered.api.item.inventory.ItemStack
 import org.spongepowered.api.text.serializer.TextSerializers
@@ -8,19 +8,19 @@ import org.spongepowered.api.text.serializer.TextSerializers
 /**
  * Created by ben on 6/5/17.
  */
-class SpongeItem(
-        override val base: ItemStack
-) : FcItem<ItemStack> {
+class SpongeItemAdapter(
+        private val baseItem: ItemStack
+) : ItemAdapter(baseItem) {
 
     override var amount: Int
-        get() = base.quantity
+        get() = baseItem.quantity
         set(value) {
-            base.quantity = value
+            baseItem.quantity = value
         }
 
     override var displayName: String?
         get() {
-            val displayName = base.get(Keys.DISPLAY_NAME)
+            val displayName = baseItem.get(Keys.DISPLAY_NAME)
             if (!displayName.isPresent) {
                 return null
             }
@@ -29,7 +29,7 @@ class SpongeItem(
                     .serialize(displayName.get())
         }
         set(value) {
-            base.offer(Keys.DISPLAY_NAME,
+            baseItem.offer(Keys.DISPLAY_NAME,
                     if (value == null) {
                         null
                     } else {
@@ -42,7 +42,7 @@ class SpongeItem(
 
     override var lore: List<String?> // TODO Don't use legacy formatting.
         get() {
-            return base
+            return baseItem
                     .get(Keys.ITEM_LORE)
                     .orElse(emptyList())
                     .map {
@@ -52,7 +52,7 @@ class SpongeItem(
                     }
         }
         set(value) {
-            base.offer(
+            baseItem.offer(
                     Keys.ITEM_LORE,
                     value.map {
                         if (it == null) {
@@ -67,36 +67,36 @@ class SpongeItem(
         }
 
     override val maxStackSize: Int
-        get() = base.maxStackQuantity
+        get() = baseItem.maxStackQuantity
 
     override val hasWildCardData: Boolean
         get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
 
-    override fun clone(): FcItem<ItemStack> {
-        return SpongeItem(base.copy())
+    override fun clone(): ItemAdapter {
+        return SpongeItemAdapter(baseItem.copy())
     }
 
     override fun addEnchantment(enchantmentId: String, level: Int, ignoreLevelRestriction: Boolean) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun isSimilar(item: FcItem<ItemStack>): Boolean {
-        var other = item.base
-        if (other.quantity != base.quantity) {
+    override fun isSimilar(item: ItemAdapter): Boolean {
+        var other = item.unwrap<ItemStack>()
+        if (other.quantity != baseItem.quantity) {
             other = other.copy()
-            other.quantity = base.quantity
+            other.quantity = baseItem.quantity
         }
-        return base.equalTo(other)
+        return baseItem.equalTo(other)
     }
 
-    override fun matchesIngredient(ingredient: FcItem<ItemStack>): Boolean {
+    override fun matchesIngredient(ingredient: ItemAdapter): Boolean {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun equals(other: Any?) = false
 
-    fun equals(other: FcItem<ItemStack>) = base == other.base
+    fun equals(other: SpongeItemAdapter) = baseItem == other.baseItem
 
-    override fun hashCode() = base.hashCode()
+    override fun hashCode() = baseItem.hashCode()
 
 }

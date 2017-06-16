@@ -2,16 +2,15 @@ package net.benwoodworth.fastcraft.sponge
 
 import net.benwoodworth.fastcraft.core.FastCraft
 import net.benwoodworth.fastcraft.core.FastCraftImplementation
-import net.benwoodworth.fastcraft.sponge.dependencies.inventory.SpongeItem
 import org.spongepowered.api.event.Listener
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent
 
 /**
- * Created by ben on 6/5/17.
+ * Sponge implementation of FastCraft.
  */
-class SpongeFastCraft : FastCraftImplementation<FastCraft<SpongeItem>> {
+class SpongeFastCraft : FastCraftImplementation {
 
-    lateinit override var instance: FastCraft<SpongeItem>
+    lateinit override var instance: FastCraft
         private set
 
     @Listener

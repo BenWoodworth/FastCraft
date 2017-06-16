@@ -4,10 +4,9 @@ import net.benwoodworth.fastcraft.core.dependencies.event.FcEventListenerRegistr
 import net.benwoodworth.fastcraft.core.dependencies.event.events.FcEventPlayerJoin
 import net.benwoodworth.fastcraft.core.dependencies.event.events.FcEventPluginDisable
 import net.benwoodworth.fastcraft.core.dependencies.event.events.FcEventPluginEnable
-import net.benwoodworth.fastcraft.core.dependencies.player.FcPlayer
+import net.benwoodworth.fastcraft.core.dependencies.player.PlayerAdapter
 import net.benwoodworth.fastcraft.sponge.SpongeFastCraft
-import net.benwoodworth.fastcraft.sponge.dependencies.inventory.SpongeItem
-import net.benwoodworth.fastcraft.sponge.dependencies.player.SpongePlayer
+import net.benwoodworth.fastcraft.sponge.dependencies.player.SpongePlayerAdapter
 import org.spongepowered.api.Sponge
 import org.spongepowered.api.event.Listener
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent
@@ -20,7 +19,7 @@ import javax.inject.Inject
  */
 class SpongeEventListenerRegistry @Inject constructor(
         fastCraft: SpongeFastCraft
-) : FcEventListenerRegistry<SpongeItem>() {
+) : FcEventListenerRegistry() {
 
     init {
         Sponge.getEventManager().registerListeners(fastCraft, this)
@@ -38,10 +37,10 @@ class SpongeEventListenerRegistry @Inject constructor(
 
     @Listener
     fun onPlayerJoin(event: ClientConnectionEvent.Join) {
-        playerJoin.notifyHandlers(object : FcEventPlayerJoin<SpongeItem> { // TODO Create object
+        playerJoin.notifyHandlers(object : FcEventPlayerJoin { // TODO Create class
 
-            override val player: FcPlayer<SpongeItem>
-                get() = SpongePlayer(event.targetEntity)
+            override val player: PlayerAdapter
+                get() = SpongePlayerAdapter(event.targetEntity)
         })
     }
 }

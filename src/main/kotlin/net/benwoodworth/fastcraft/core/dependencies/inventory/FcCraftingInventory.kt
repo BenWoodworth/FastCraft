@@ -1,20 +1,21 @@
 package net.benwoodworth.fastcraft.core.dependencies.inventory
 
-import net.benwoodworth.fastcraft.core.dependencies.recipes.FcRecipe
+import net.benwoodworth.fastcraft.core.dependencies.Adapter
+import net.benwoodworth.fastcraft.core.dependencies.recipes.RecipeAdapter
 
 /**
  * A Minecraft crafting inventory.
- *
- * @param TItem the item type
  */
-interface FcCraftingInventory<TItem : FcItem<*>> {
+abstract class CraftingInventoryAdapter(
+        baseInventory: Any
+) : Adapter(baseInventory) {
 
     /** The crafting inventory's crafting matrix */
-    val matrix: FcItemGrid<FcItem<TItem>>
+    abstract val matrix: ItemGrid
 
     /** The item in the result slot of the crafting inventory */
-    val result: FcItem<TItem>
+    abstract val result: ItemAdapter
 
     /** The current recipe in the crafting inventory */
-    val recipe: FcRecipe<TItem>
+    abstract val recipe: RecipeAdapter
 }

@@ -5,7 +5,6 @@ import dagger.Provides
 import net.benwoodworth.fastcraft.core.FastCraftModule
 import net.benwoodworth.fastcraft.core.dependencies.event.FcEventListenerRegistry
 import net.benwoodworth.fastcraft.sponge.dependencies.event.SpongeEventListenerRegistry
-import net.benwoodworth.fastcraft.sponge.dependencies.inventory.SpongeItem
 import javax.inject.Singleton
 
 /**
@@ -14,7 +13,7 @@ import javax.inject.Singleton
 @Module
 class SpongeFastCraftModule(
         private val fastCraft: SpongeFastCraft
-) : FastCraftModule<SpongeItem> {
+) : FastCraftModule {
 
     @Provides @Singleton
     fun fastCraft(): SpongeFastCraft {
@@ -22,7 +21,7 @@ class SpongeFastCraftModule(
     }
 
     @Provides @Singleton
-    override fun eventListeners(): FcEventListenerRegistry<SpongeItem> {
+    override fun eventListeners(): FcEventListenerRegistry {
         return SpongeEventListenerRegistry(fastCraft)
     }
 }

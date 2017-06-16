@@ -1,24 +1,21 @@
 package net.benwoodworth.fastcraft.core.dependencies.recipes
 
-import net.benwoodworth.fastcraft.core.dependencies.inventory.FcItem
-import net.benwoodworth.fastcraft.core.dependencies.permissions.FcPermission
-import net.benwoodworth.fastcraft.core.dependencies.player.FcPlayer
+import net.benwoodworth.fastcraft.core.dependencies.inventory.ItemAdapter
+import net.benwoodworth.fastcraft.core.dependencies.permissions.PermissionAdapter
 
 /**
  * Adapts a recipe from the native implementation.
- *
- * @param TItem the item type
  */
-interface FcRecipe<TItem : FcItem<*>> {
+interface RecipeAdapter {
 
     /** The ingredients in the recipe. */
-    val ingredients: List<FcItem<TItem>>
+    val ingredients: List<ItemAdapter>
 
     /** The results of the recipe. */
-    val results: List<FcItem<TItem>>
+    val results: List<ItemAdapter>
 
     /** The permissions required to craft the recipe. */
-    val permissions: List<FcPermission>
+    val permissions: List<PermissionAdapter>
 
     /**
      * Prepare the recipe, allowing other plugins to change it before it is crafted.
@@ -28,7 +25,7 @@ interface FcRecipe<TItem : FcItem<*>> {
     /**
      * Simulate the crafting of this item with this recipe.
      *
-     * @param player the [FcPlayer] crafting the recipe
+     * @param player the player crafting the recipe
      * @return the resulting crafting event
      */
     //fun craft(player: FcPlayer<TItem>): FcItemCraftEvent<TItem>

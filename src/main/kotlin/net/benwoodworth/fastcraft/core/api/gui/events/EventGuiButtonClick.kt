@@ -4,23 +4,20 @@ import net.benwoodworth.fastcraft.core.api.gui.Gui
 import net.benwoodworth.fastcraft.core.api.gui.buttons.GuiButton
 import net.benwoodworth.fastcraft.core.dependencies.event.FcCancellable
 import net.benwoodworth.fastcraft.core.dependencies.event.FcEvent
-import net.benwoodworth.fastcraft.core.dependencies.inventory.FcItem
-import net.benwoodworth.fastcraft.core.dependencies.player.FcPlayer
+import net.benwoodworth.fastcraft.core.dependencies.player.PlayerAdapter
 
 /**
  * An event triggered when a [GuiButton] is clicked.
- *
- * @param TItem the item type
  */
-class EventGuiButtonClick<TItem : FcItem<*>>(
+class EventGuiButtonClick(
         /** The [Gui] in which the button was clicked. */
-        val gui: Gui<TItem>,
+        val gui: Gui,
 
         /** The [GuiButton] that was clicked. */
-        val button: GuiButton<TItem>,
+        val button: GuiButton,
 
         /** The [FcPlayer] who clicked the button. */
-        val player: FcPlayer<TItem>
+        val player: PlayerAdapter
 ) : FcEvent, FcCancellable {
 
     override var cancelled = false

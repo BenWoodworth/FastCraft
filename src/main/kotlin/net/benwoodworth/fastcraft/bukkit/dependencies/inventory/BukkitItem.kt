@@ -1,74 +1,76 @@
 package net.benwoodworth.fastcraft.bukkit.dependencies.inventory
 
-import net.benwoodworth.fastcraft.core.dependencies.inventory.FcItem
+import net.benwoodworth.fastcraft.core.dependencies.inventory.ItemAdapter
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.inventory.ItemStack
 
 /**
- * Wrapper for Bukkit `ItemStack`s.
+ * Adapter for Bukkit `ItemStack`s.
  */
-class BukkitItem(override val base: ItemStack) : FcItem<ItemStack> {
+class BukkitItemAdapter(
+        val baseItem: ItemStack
+) : ItemAdapter(baseItem) {
 
     override var amount: Int
-        get() = base.amount
+        get() = baseItem.amount
         set(value) {
-            base.amount = value
+            baseItem.amount = value
         }
 
     override var displayName: String?
-        get() = base.itemMeta.displayName
+        get() = baseItem.itemMeta.displayName
         set(value) {
-            val meta = base.itemMeta
+            val meta = baseItem.itemMeta
             meta.displayName = value
-            base.itemMeta = meta
+            baseItem.itemMeta = meta
         }
 
     override var lore: List<String?>
-        get() = base.itemMeta.lore.toList()
+        get() = baseItem.itemMeta.lore.toList()
         set(value) {
-            val meta = base.itemMeta
+            val meta = baseItem.itemMeta
             meta.lore = value
-            base.itemMeta = meta
+            baseItem.itemMeta = meta
         }
 
     override val maxStackSize: Int
-        get() = base.maxStackSize
+        get() = baseItem.maxStackSize
 
     override val hasWildCardData: Boolean
-        get() = base.durability == Short.MAX_VALUE
+        get() = baseItem.durability == Short.MAX_VALUE
 
-    override fun clone(): FcItem<ItemStack> {
-        return BukkitItem(base.clone())
+    override fun clone(): ItemAdapter {
+        return BukkitItemAdapter(baseItem.clone())
     }
 
     override fun addEnchantment(enchantmentId: String, level: Int, ignoreLevelRestriction: Boolean) {
-        val meta = base.itemMeta
+        val meta = baseItem.itemMeta
         val enchant = Enchantment.getByName(enchantmentId)
         meta.addEnchant(enchant, level, ignoreLevelRestriction)
-        base.itemMeta = meta
+        baseItem.itemMeta = meta
     }
 
-    override fun isSimilar(item: FcItem<ItemStack>): Boolean {
-        return base.isSimilar(item.base)
+    override fun isSimilar(item: ItemAdapter): Boolean {
+        return baseItem.isSimilar(item.unwrap())
     }
 
-    override fun matchesIngredient(ingredient: FcItem<ItemStack>): Boolean {
-        var compare = ingredient.base
+    override fun matchesIngredient(ingredient: ItemAdapter): Boolean {
+        var compare = ingredient.unwrap<ItemStack>()
         if (ingredient.hasWildCardData) {
             compare = compare.clone()
-            compare.durability = base.durability
+            compare.durability = baseItem.durability
         }
-        return base.isSimilar(compare)
+        return baseItem.isSimilar(compare)
     }
 
     override fun equals(other: Any?) = false
 
-    fun equals(other: FcItem<ItemStack>): Boolean {
-        return base == other.base
+    fun equals(other: BukkitItemAdapter): Boolean {
+        return baseItem == other.baseItem
     }
 
     override fun hashCode(): Int {
-        return base.hashCode()
+        return baseItem.hashCode()
     }
 
 }
