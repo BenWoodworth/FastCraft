@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/BenWoodworth/FastCraft.svg)](https://travis-ci.org/BenWoodworth/FastCraft)
 [![Downloads](https://img.shields.io/github/downloads/BenWoodworth/FastCraft/total.svg)](https://github.com/BenWoodworth/FastCraft/releases)
 
-# FastCraft+ v0
+# FastCraft+ v0.*
 Looking for FastCraft+ v0? [Click here!](https://github.com/BenWoodworth/FastCraft/tree/FastCraftv0)
 
 # FastCraft v1
