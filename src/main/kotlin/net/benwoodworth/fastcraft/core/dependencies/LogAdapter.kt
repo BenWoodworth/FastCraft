@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.core.dependencies
 /**
  * Logs messages to the server console.
  */
-abstract class ConsoleAdapter(baseConsole: Any) : Adapter(baseConsole) {
+abstract class LogAdapter(baseConsole: Any) : Adapter(baseConsole) {
 
     /**
      * Log an error to the console.

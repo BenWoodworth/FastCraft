@@ -28,5 +28,4 @@ class FastCraft @Inject constructor(
     fun onPlayerJoin(event: PlayerJoinEventAdapter) {
         event.player.sendMessage("Welcome to the server!")
     }
-
 }
