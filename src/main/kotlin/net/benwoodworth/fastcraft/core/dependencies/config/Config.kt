@@ -6,10 +6,10 @@ import java.io.IOException
 /**
  * A configuration.
  */
-abstract class ConfigAdapter(baseConfig: Any) : ConfigSectionAdapter(baseConfig) {
+interface Config {
 
     /** The config header comment. */
-    abstract val header: String?
+    val header: String?
 
     /**
      * Load a config from a file.
@@ -17,13 +17,13 @@ abstract class ConfigAdapter(baseConfig: Any) : ConfigSectionAdapter(baseConfig)
      * @param file the [File] to load
      * @throws IOException if there was a problem loading the config
      */
-    abstract fun load(file: File)
+    fun load(file: File)
 
     /**
-     * Save this [ConfigAdapter] to a file.
+     * Save this [Config] to a file.
      *
      * @param file the [File] to save to
      * @throws IOException if there was a problem saving the config
      */
-    abstract fun save(file: File)
+    fun save(file: File)
 }

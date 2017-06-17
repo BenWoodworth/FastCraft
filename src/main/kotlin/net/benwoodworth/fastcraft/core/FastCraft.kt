@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.core
 
 import net.benwoodworth.fastcraft.core.dependencies.event.EventListenerRegistry
-import net.benwoodworth.fastcraft.core.dependencies.event.events.PlayerJoinEventAdapter
+import net.benwoodworth.fastcraft.core.dependencies.event.events.PlayerJoinEvent
 import javax.inject.Inject
 
 /**
@@ -25,7 +25,7 @@ class FastCraft @Inject constructor(
         println("FastCraft core disabled")
     }
 
-    fun onPlayerJoin(event: PlayerJoinEventAdapter) {
+    fun onPlayerJoin(event: PlayerJoinEvent) {
         event.player.sendMessage("Welcome to the server!")
     }
 }

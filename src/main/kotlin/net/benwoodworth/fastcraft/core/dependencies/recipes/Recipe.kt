@@ -1,21 +1,21 @@
 package net.benwoodworth.fastcraft.core.dependencies.recipes
 
-import net.benwoodworth.fastcraft.core.dependencies.inventory.ItemAdapter
-import net.benwoodworth.fastcraft.core.dependencies.permissions.PermissionAdapter
+import net.benwoodworth.fastcraft.core.dependencies.inventory.Item
+import net.benwoodworth.fastcraft.core.dependencies.permissions.Permissions
 
 /**
- * Adapts a recipe from the native implementation.
+ * A Minecraft crafting recipe.
  */
-interface RecipeAdapter {
+interface Recipe {
 
     /** The ingredients in the recipe. */
-    val ingredients: List<ItemAdapter>
+    val ingredients: List<Item>
 
     /** The results of the recipe. */
-    val results: List<ItemAdapter>
+    val results: List<Item>
 
     /** The permissions required to craft the recipe. */
-    val permissions: List<PermissionAdapter>
+    val permissions: List<Permissions>
 
     /**
      * Prepare the recipe, allowing other plugins to change it before it is crafted.

@@ -17,5 +17,5 @@ interface RecipeProvider {
      *
      * @return the server crafting recipes
      */
-    fun getServerCraftingRecipes(): List<RecipeAdapter>
+    fun getServerCraftingRecipes(): List<Recipe>
 }

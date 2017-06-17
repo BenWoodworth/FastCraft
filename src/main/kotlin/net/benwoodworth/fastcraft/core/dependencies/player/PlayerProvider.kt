@@ -12,7 +12,7 @@ interface PlayerProvider {
      *
      * @return A list of online players
      */
-    fun getOnlinePlayers(): List<PlayerAdapter>
+    fun getOnlinePlayers(): List<Player>
 
     /**
      * Get an online player given a UUID.
@@ -20,5 +20,5 @@ interface PlayerProvider {
      * @param uuid The player's UUID
      * @return The player with the given UUID, or null if none exists
      */
-    fun getOnlinePlayer(uuid: UUID): PlayerAdapter
+    fun getOnlinePlayer(uuid: UUID): Player
 }

@@ -10,14 +10,14 @@ interface ItemBuilder {
      *
      * @Return A new instance of the item
      */
-    fun build(): ItemAdapter
+    fun build(): Item
 
     /**
      * Resets this builder and uses the values from this item.
      *
      * @Return This builder, for chaining
      */
-    fun from(item: ItemAdapter): ItemBuilder
+    fun from(item: Item): ItemBuilder
 
     /**
      * Set the item type.

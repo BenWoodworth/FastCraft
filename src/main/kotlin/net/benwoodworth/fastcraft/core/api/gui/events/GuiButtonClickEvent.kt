@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.core.api.gui.events
 import net.benwoodworth.fastcraft.core.api.gui.Gui
 import net.benwoodworth.fastcraft.core.api.gui.buttons.GuiButton
 import net.benwoodworth.fastcraft.core.dependencies.event.Cancellable
-import net.benwoodworth.fastcraft.core.dependencies.player.PlayerAdapter
+import net.benwoodworth.fastcraft.core.dependencies.player.Player
 
 /**
  * An event triggered when a [GuiButton] is clicked.
@@ -16,7 +16,7 @@ class GuiButtonClickEvent(
         val button: GuiButton,
 
         /** The player who clicked the button. */
-        val player: PlayerAdapter
+        val player: Player
 ) : Cancellable {
 
     override var cancelled = false

@@ -18,7 +18,7 @@ interface ItemGrid {
      * @param y the y-coordinate within the grid, where 0 is the top row
      * @return the item at the specified coordinates
      */
-    fun getItem(x: Int, y: Int): ItemAdapter
+    fun getItem(x: Int, y: Int): Item
 
     /**
      * Set an item in the item grid.
@@ -27,5 +27,5 @@ interface ItemGrid {
      * @param y the y-coordinate within the grid, where 0 is the top row
      * @param item the item to set at the specified coordinates
      */
-    fun setItem(x: Int, y: Int, item: ItemAdapter)
+    fun setItem(x: Int, y: Int, item: Item)
 }

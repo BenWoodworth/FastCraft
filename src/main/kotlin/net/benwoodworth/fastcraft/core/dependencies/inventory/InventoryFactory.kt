@@ -13,5 +13,5 @@ interface InventoryFactory {
      * @param carrier the carrier of the inventory
      * @return a chest inventory with the specified height and title
      */
-    fun createChestInventory(height: Int, title: String? = null, carrier: Any? = null): ChestInventoryAdapter
+    fun createChestInventory(height: Int, title: String? = null, carrier: Any? = null): ChestInventory
 }

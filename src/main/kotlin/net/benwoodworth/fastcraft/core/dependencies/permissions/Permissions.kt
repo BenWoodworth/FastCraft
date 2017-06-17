@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.core.dependencies.permissions
 /**
  * A plugin permission.
  */
-enum class PermissionAdapter(
+enum class Permissions(
         /** The permission [String]. */
         val permissionString: String
 ) {

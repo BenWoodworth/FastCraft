@@ -10,5 +10,5 @@ interface ConfigFactory {
      *
      * @return a new empty config
      */
-    fun createEmptyConfig(): ConfigAdapter
+    fun createEmptyConfig(): Config
 }

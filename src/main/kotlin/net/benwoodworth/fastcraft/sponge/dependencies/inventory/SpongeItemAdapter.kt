@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.sponge.dependencies.inventory
 
-import net.benwoodworth.fastcraft.core.dependencies.inventory.ItemAdapter
+import net.benwoodworth.fastcraft.core.dependencies.inventory.Item
+import net.benwoodworth.fastcraft.core.dependencies.util.Adapter
 import org.spongepowered.api.data.key.Keys
 import org.spongepowered.api.item.inventory.ItemStack
 import org.spongepowered.api.text.serializer.TextSerializers
@@ -11,7 +12,7 @@ import org.spongepowered.api.text.serializer.TextSerializers
 @Suppress("DEPRECATION") // TODO Don't use legacy formatting.
 class SpongeItemAdapter(
         private val baseItem: ItemStack
-) : ItemAdapter(baseItem) {
+) : Item, Adapter<ItemStack>(baseItem) {
 
     override var amount: Int
         get() = baseItem.quantity
@@ -73,7 +74,7 @@ class SpongeItemAdapter(
     override val hasWildCardData: Boolean
         get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
 
-    override fun clone(): ItemAdapter {
+    override fun clone(): Item {
         return SpongeItemAdapter(baseItem.copy())
     }
 
@@ -81,8 +82,12 @@ class SpongeItemAdapter(
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun isSimilar(item: ItemAdapter): Boolean {
-        var other = item.unwrap<ItemStack>()
+    override fun isSimilar(item: Item): Boolean {
+        if (item !is SpongeItemAdapter) {
+            return false
+        }
+
+        var other = item.baseItem
         if (other.quantity != baseItem.quantity) {
             other = other.copy()
             other.quantity = baseItem.quantity
@@ -90,7 +95,7 @@ class SpongeItemAdapter(
         return baseItem.equalTo(other)
     }
 
-    override fun matchesIngredient(ingredient: ItemAdapter): Boolean {
+    override fun matchesIngredient(ingredient: Item): Boolean {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

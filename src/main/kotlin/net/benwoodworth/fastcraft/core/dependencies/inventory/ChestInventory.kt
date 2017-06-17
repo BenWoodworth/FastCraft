@@ -3,9 +3,7 @@ package net.benwoodworth.fastcraft.core.dependencies.inventory
 /**
  * A Minecraft chest inventory.
  */
-abstract class ChestInventoryAdapter(
-        baseInventory: Any
-) : InventoryAdapter(baseInventory), ItemGrid {
+interface ChestInventory : ItemGrid {
 
     /**
      * Add items to the inventory.
@@ -13,7 +11,7 @@ abstract class ChestInventoryAdapter(
      * @param items the items to add
      * @return items that could not be added to the inventory
      */
-    abstract fun addItems(items: Collection<ItemAdapter>): List<ItemAdapter>
+    fun addItems(items: Collection<Item>): List<Item>
 
     /**
      * Remove items from the inventory.
@@ -21,5 +19,5 @@ abstract class ChestInventoryAdapter(
      * @param items the items to remove
      * @return items that could not be removed from the inventory
      */
-    abstract fun removeItems(items: Collection<ItemAdapter>): List<ItemAdapter>
+    fun removeItems(items: Collection<Item>): List<Item>
 }

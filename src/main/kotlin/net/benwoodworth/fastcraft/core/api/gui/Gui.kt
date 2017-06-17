@@ -1,13 +1,13 @@
 package net.benwoodworth.fastcraft.core.api.gui
 
 import net.benwoodworth.fastcraft.core.api.gui.layouts.GuiLayout
-import net.benwoodworth.fastcraft.core.dependencies.inventory.ChestInventoryAdapter
+import net.benwoodworth.fastcraft.core.dependencies.inventory.ChestInventory
 
 /**
  * A user interface for in-game players.
  */
 class Gui(
-        private val inventory: ChestInventoryAdapter
+        private val inventory: ChestInventory
 ) : GuiLayout(inventory.width, inventory.height) {
 
     /**

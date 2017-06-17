@@ -1,11 +1,9 @@
 package net.benwoodworth.fastcraft.core.dependencies.config
 
-import net.benwoodworth.fastcraft.core.dependencies.util.Adapter
-
 /**
  * A section of a configuration, providing access to keys/values, and other sub-sections.
  */
-abstract class ConfigSectionAdapter(baseConfig: Any) : Adapter(baseConfig) {
+interface ConfigSection {
 
     /**
      * Get a config section.
@@ -13,7 +11,7 @@ abstract class ConfigSectionAdapter(baseConfig: Any) : Adapter(baseConfig) {
      * @param name the section name
      * @return the section with the given name, or `null` if it doesn't exist
      */
-    abstract fun getSection(name: String): ConfigSectionAdapter?
+    fun getSection(name: String): ConfigSection?
 
     /**
      * Create a new config section.
@@ -21,7 +19,7 @@ abstract class ConfigSectionAdapter(baseConfig: Any) : Adapter(baseConfig) {
      * @param name the name of the new section
      * @return the new config section
      */
-    abstract fun createSection(name: String): ConfigSectionAdapter
+    fun createSection(name: String): ConfigSection
 
     /**
      * Set a value at a given key.
@@ -30,7 +28,7 @@ abstract class ConfigSectionAdapter(baseConfig: Any) : Adapter(baseConfig) {
      * @param value the value to set
      * @param T the value type
      */
-    abstract fun <T> setValue(key: String, value: T?)
+    fun <T> setValue(key: String, value: T?)
 
     /**
      * Get a value, given a key.
@@ -39,5 +37,5 @@ abstract class ConfigSectionAdapter(baseConfig: Any) : Adapter(baseConfig) {
      * @param T the value type
      * @return the value at the given key, or null if the key does not exist
      */
-    abstract fun <T> getValue(key: String): T?
+    fun <T> getValue(key: String): T?
 }

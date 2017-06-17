@@ -10,5 +10,5 @@ interface RecipeSource {
      *
      * @return the crafting recipes
      */
-    fun getCraftingRecipes(): List<ModifiedRecipeAdapter>
+    fun getCraftingRecipes(): List<ModifiedRecipe>
 }
