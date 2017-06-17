@@ -39,5 +39,4 @@ class SpongePlayerAdapter(
     fun openInventory(inventory: SpongeInventoryAdapter) {
         base.openInventory(inventory.base, null) // TODO Don't use null cause
     }
-
 }
