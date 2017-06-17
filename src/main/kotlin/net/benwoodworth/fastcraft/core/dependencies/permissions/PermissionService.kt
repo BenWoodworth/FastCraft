@@ -3,4 +3,4 @@ package net.benwoodworth.fastcraft.core.dependencies.permissions
 /**
  * Server permissions.
  */
-interface FcPermissionService // TODO
+interface PermissionService // TODO
