@@ -1,7 +1,6 @@
 package net.benwoodworth.fastcraft.core
 
 import net.benwoodworth.fastcraft.core.dependencies.event.EventListenerRegistry
-import net.benwoodworth.fastcraft.core.dependencies.event.events.PlayerJoinEvent
 import javax.inject.Inject
 
 /**
