@@ -8,8 +8,8 @@ interface InventoryFactory {
     /**
      * Create a new chest inventory.
      *
-     * @param height  the height of the inventory
-     * @param title   the title of the inventory
+     * @param height the height of the inventory
+     * @param title the title of the inventory
      * @param carrier the carrier of the inventory
      * @return a chest inventory with the specified height and title
      */

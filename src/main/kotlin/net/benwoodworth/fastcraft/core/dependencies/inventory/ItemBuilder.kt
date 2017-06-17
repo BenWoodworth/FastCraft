@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft.core.dependencies.inventory
 
-
 /**
  * A builder that creates Minecraft items.
  */
@@ -56,7 +55,7 @@ interface ItemBuilder {
      * Add an enchantment.
      *
      * @param enchantmentId The Minecraft enchantment type ID
-     * @param level         The enchantment level
+     * @param level The enchantment level
      * @Return This builder, for chaining
      */
     fun addEnchantment(enchantmentId: String, level: Int): ItemBuilder

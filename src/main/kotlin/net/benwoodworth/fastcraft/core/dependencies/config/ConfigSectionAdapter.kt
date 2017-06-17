@@ -26,9 +26,9 @@ abstract class ConfigSectionAdapter(baseConfig: Any) : Adapter(baseConfig) {
     /**
      * Set a value at a given key.
      *
-     * @param key   the key
+     * @param key the key
      * @param value the value to set
-     * @param T   the value type
+     * @param T the value type
      */
     abstract fun <T> setValue(key: String, value: T?)
 

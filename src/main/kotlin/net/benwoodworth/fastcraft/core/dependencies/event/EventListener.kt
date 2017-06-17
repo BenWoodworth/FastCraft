@@ -1,7 +1,5 @@
 package net.benwoodworth.fastcraft.core.dependencies.event
 
-import java.util.*
-
 /**
  * Listens to events, and notifies event handlers when events occur.
  *

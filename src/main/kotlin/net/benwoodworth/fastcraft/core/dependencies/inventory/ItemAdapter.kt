@@ -36,7 +36,7 @@ abstract class ItemAdapter(baseItem: Any) : Adapter(baseItem) {
      * Add an enchantment to the item.
      *
      * @param enchantmentId the Minecraft enchantment ID
-     * @param level         the enchantment level
+     * @param level the enchantment level
      */
     abstract fun addEnchantment(enchantmentId: String, level: Int, ignoreLevelRestriction: Boolean = false)
 

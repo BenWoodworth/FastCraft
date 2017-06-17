@@ -11,16 +11,16 @@ package net.benwoodworth.fastcraft.core.lang
 interface Lang {
     companion object {
         val localizations = hashMapOf(
-                "cs"    to LangCs(),
-                "de"    to LangDe(),
                 "en-us" to LangEnUs(),
-                "nl"    to LangNl(),
-                "pl"    to LangPl(),
-                "ru"    to LangRu(),
-                "tr"    to LangTr(),
-                "vi"    to LangVi(),
                 "zh-cn" to LangZhCn(),
-                "zh-tw" to LangZhTw()
+                "zh-tw" to LangZhTw(),
+                "cs" to LangCs(),
+                "de" to LangDe(),
+                "nl" to LangNl(),
+                "pl" to LangPl(),
+                "ru" to LangRu(),
+                "tr" to LangTr(),
+                "vi" to LangVi()
         )
     }
 

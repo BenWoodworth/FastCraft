@@ -10,11 +10,12 @@ import org.spongepowered.api.event.game.state.GamePreInitializationEvent
  */
 class SpongeFastCraft : FastCraftImplementation {
 
-    lateinit override var instance: FastCraft
+    override lateinit var instance: FastCraft
         private set
 
     @Listener
-    fun onPreInit(event: GamePreInitializationEvent) {
+    @Suppress("UNUSED_PARAMETER")
+    fun onPreInit(unused: GamePreInitializationEvent) {
         instance = DaggerSpongeFastCraftComponent.builder()
                 .spongeFastCraftModule(SpongeFastCraftModule(this))
                 .build()

@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.core.dependencies.player
 import net.benwoodworth.fastcraft.core.dependencies.Adapter
 import net.benwoodworth.fastcraft.core.dependencies.inventory.InventoryAdapter
 import net.benwoodworth.fastcraft.core.dependencies.permissions.PermissionAdapter
-import java.util.*
+import java.util.UUID
 
 /**
  * An adapter for Minecraft players.

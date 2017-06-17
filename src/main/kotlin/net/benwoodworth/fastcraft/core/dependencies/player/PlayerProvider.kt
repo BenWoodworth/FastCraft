@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.core.dependencies.player
 
-import java.util.*
+import java.util.UUID
 
 /**
  * Provides player for the plugin.
