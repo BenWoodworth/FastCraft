@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.core.dependencies.inventory
 
 import net.benwoodworth.fastcraft.core.dependencies.player.Player
+import net.benwoodworth.fastcraft.core.dependencies.text.Text
 
 /**
  * A Minecraft inventory.
@@ -8,7 +9,7 @@ import net.benwoodworth.fastcraft.core.dependencies.player.Player
 interface Inventory {
 
     /** The title of the inventory. */
-    val title: String?
+    val title: Text?
 
     /** The players viewing the inventory. */
     val viewers: List<Player>

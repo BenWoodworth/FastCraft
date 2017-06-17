@@ -1,10 +1,9 @@
 package net.benwoodworth.fastcraft.sponge.dependencies.inventory
 
 import net.benwoodworth.fastcraft.core.dependencies.inventory.Item
+import net.benwoodworth.fastcraft.core.dependencies.text.Text
 import net.benwoodworth.fastcraft.core.dependencies.util.Adapter
-import org.spongepowered.api.data.key.Keys
 import org.spongepowered.api.item.inventory.ItemStack
-import org.spongepowered.api.text.serializer.TextSerializers
 
 /**
  * Adapts Sponge items.
@@ -20,53 +19,13 @@ class SpongeItemAdapter(
             baseItem.quantity = value
         }
 
-    override var displayName: String?
-        get() {
-            val displayName = baseItem.get(Keys.DISPLAY_NAME)
-            if (!displayName.isPresent) {
-                return null
-            }
-            return TextSerializers
-                    .LEGACY_FORMATTING_CODE
-                    .serialize(displayName.get())
-        }
-        set(value) {
-            baseItem.offer(Keys.DISPLAY_NAME,
-                    if (value == null) {
-                        null
-                    } else {
-                        TextSerializers
-                                .LEGACY_FORMATTING_CODE
-                                .deserialize(value)
-                    }
-            )
-        }
+    override var displayName: Text?
+        get() = TODO()
+        set(value) = TODO()
 
-    override var lore: List<String?>
-        get() {
-            return baseItem
-                    .get(Keys.ITEM_LORE)
-                    .orElse(emptyList())
-                    .map {
-                        TextSerializers
-                                .LEGACY_FORMATTING_CODE
-                                .serialize(it)
-                    }
-        }
-        set(value) {
-            baseItem.offer(
-                    Keys.ITEM_LORE,
-                    value.map {
-                        if (it == null) {
-                            null
-                        } else {
-                            TextSerializers
-                                    .LEGACY_FORMATTING_CODE
-                                    .deserialize(it)
-                        }
-                    }
-            )
-        }
+    override var lore: List<Text?>
+        get() = TODO()
+        set(value) = TODO()
 
     override val maxStackSize: Int
         get() = baseItem.maxStackQuantity

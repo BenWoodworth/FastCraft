@@ -25,7 +25,7 @@ class FastCraft @Inject constructor(
         println("FastCraft core disabled")
     }
 
-    fun onPlayerJoin(event: PlayerJoinEvent) {
-        event.player.sendMessage("Welcome to the server!")
+    fun onPlayerJoin() {
+        //event.player.sendMessage("Welcome to the server!")
     }
 }

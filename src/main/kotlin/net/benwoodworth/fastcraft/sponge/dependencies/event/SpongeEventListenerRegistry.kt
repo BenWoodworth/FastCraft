@@ -17,6 +17,7 @@ import javax.inject.Inject
 /**
  * Bukkit implementation of `EventListenerRegistry`.
  */
+@Suppress("UNUSED_PARAMETER")
 class SpongeEventListenerRegistry @Inject constructor(
         fastCraft: SpongeFastCraft
 ) : EventListenerRegistry() {

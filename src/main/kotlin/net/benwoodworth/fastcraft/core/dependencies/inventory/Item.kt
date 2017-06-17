@@ -1,5 +1,7 @@
 package net.benwoodworth.fastcraft.core.dependencies.inventory
 
+import net.benwoodworth.fastcraft.core.dependencies.text.Text
+
 /**
  * A Minecraft item.
  */
@@ -9,10 +11,10 @@ interface Item {
     var amount: Int
 
     /** The display name of this item. */
-    var displayName: String?
+    var displayName: Text?
 
     /** The item's lore */
-    var lore: List<String?>
+    var lore: List<Text?>
 
     /** The maximum size of this stack. */
     val maxStackSize: Int
