@@ -3,12 +3,12 @@ package net.benwoodworth.fastcraft.sponge
 import dagger.Module
 import dagger.Provides
 import net.benwoodworth.fastcraft.core.FastCraftModule
-import net.benwoodworth.fastcraft.core.dependencies.event.FcEventListenerRegistry
+import net.benwoodworth.fastcraft.core.dependencies.event.EventListenerRegistry
 import net.benwoodworth.fastcraft.sponge.dependencies.event.SpongeEventListenerRegistry
 import javax.inject.Singleton
 
 /**
- * Created by ben on 6/5/17.
+ * Provides Sponge dependencies.
  */
 @Module
 class SpongeFastCraftModule(
@@ -21,7 +21,7 @@ class SpongeFastCraftModule(
     }
 
     @Provides @Singleton
-    override fun eventListeners(): FcEventListenerRegistry {
+    override fun eventListeners(): EventListenerRegistry {
         return SpongeEventListenerRegistry(fastCraft)
     }
 }

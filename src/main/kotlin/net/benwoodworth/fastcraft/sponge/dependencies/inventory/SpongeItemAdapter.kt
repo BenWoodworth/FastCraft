@@ -6,8 +6,9 @@ import org.spongepowered.api.item.inventory.ItemStack
 import org.spongepowered.api.text.serializer.TextSerializers
 
 /**
- * Created by ben on 6/5/17.
+ * Adapts Sponge items.
  */
+@Suppress("DEPRECATION") // TODO Don't use legacy formatting.
 class SpongeItemAdapter(
         private val baseItem: ItemStack
 ) : ItemAdapter(baseItem) {
@@ -40,7 +41,7 @@ class SpongeItemAdapter(
             )
         }
 
-    override var lore: List<String?> // TODO Don't use legacy formatting.
+    override var lore: List<String?>
         get() {
             return baseItem
                     .get(Keys.ITEM_LORE)

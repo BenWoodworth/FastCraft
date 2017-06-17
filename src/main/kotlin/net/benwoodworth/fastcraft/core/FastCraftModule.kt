@@ -1,11 +1,11 @@
 package net.benwoodworth.fastcraft.core
 
-import net.benwoodworth.fastcraft.core.dependencies.event.FcEventListenerRegistry
+import net.benwoodworth.fastcraft.core.dependencies.event.EventListenerRegistry
 
 /**
- * Created by ben on 6/4/17.
+ * An interface for providing dependencies.
  */
 interface FastCraftModule {
 
-    fun eventListeners(): FcEventListenerRegistry
+    fun eventListeners(): EventListenerRegistry
 }

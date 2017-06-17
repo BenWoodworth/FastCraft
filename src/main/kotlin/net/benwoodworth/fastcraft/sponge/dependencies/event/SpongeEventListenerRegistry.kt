@@ -1,9 +1,9 @@
 package net.benwoodworth.fastcraft.sponge.dependencies.event
 
-import net.benwoodworth.fastcraft.core.dependencies.event.FcEventListenerRegistry
-import net.benwoodworth.fastcraft.core.dependencies.event.events.FcEventPlayerJoin
-import net.benwoodworth.fastcraft.core.dependencies.event.events.FcEventPluginDisable
-import net.benwoodworth.fastcraft.core.dependencies.event.events.FcEventPluginEnable
+import net.benwoodworth.fastcraft.core.dependencies.event.EventListenerRegistry
+import net.benwoodworth.fastcraft.core.dependencies.event.events.PlayerJoinEventAdapter
+import net.benwoodworth.fastcraft.core.dependencies.event.events.PluginDisableEventAdapter
+import net.benwoodworth.fastcraft.core.dependencies.event.events.PluginEnableEventAdapter
 import net.benwoodworth.fastcraft.core.dependencies.player.PlayerAdapter
 import net.benwoodworth.fastcraft.sponge.SpongeFastCraft
 import net.benwoodworth.fastcraft.sponge.dependencies.player.SpongePlayerAdapter
@@ -15,11 +15,11 @@ import org.spongepowered.api.event.network.ClientConnectionEvent
 import javax.inject.Inject
 
 /**
- * Bukkit implementation of `FcEventListenerRegistry`.
+ * Bukkit implementation of `EventListenerRegistry`.
  */
 class SpongeEventListenerRegistry @Inject constructor(
         fastCraft: SpongeFastCraft
-) : FcEventListenerRegistry() {
+) : EventListenerRegistry() {
 
     init {
         Sponge.getEventManager().registerListeners(fastCraft, this)
@@ -27,17 +27,17 @@ class SpongeEventListenerRegistry @Inject constructor(
 
     @Listener
     fun onPluginEnable(event: GamePreInitializationEvent) {
-        pluginEnable.notifyHandlers(object : FcEventPluginEnable {})
+        pluginEnable.notifyHandlers(object : PluginEnableEventAdapter(event) {})
     }
 
     @Listener
     fun onPluginDisable(event: GameStoppingEvent) {
-        pluginDisable.notifyHandlers(object : FcEventPluginDisable {})
+        pluginDisable.notifyHandlers(object : PluginDisableEventAdapter(event) {})
     }
 
     @Listener
     fun onPlayerJoin(event: ClientConnectionEvent.Join) {
-        playerJoin.notifyHandlers(object : FcEventPlayerJoin { // TODO Create class
+        playerJoin.notifyHandlers(object : PlayerJoinEventAdapter(event) { // TODO Create class
 
             override val player: PlayerAdapter
                 get() = SpongePlayerAdapter(event.targetEntity)

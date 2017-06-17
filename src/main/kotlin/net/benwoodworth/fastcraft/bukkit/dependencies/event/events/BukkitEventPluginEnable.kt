@@ -1,6 +1,6 @@
 //package net.benwoodworth.fastcraft.bukkit.dependencies.event.events
 //
-//import net.benwoodworth.fastcraft.core.dependencies.event.events.FcEventPluginEnable
+//import net.benwoodworth.fastcraft.core.dependencies.event.events.PluginEnableEventAdapter
 //import org.bukkit.event.server.PluginEnableEvent
 //
 ///**
@@ -8,4 +8,4 @@
 // */
 //class BukkitEventPluginEnable(
 //        private val base: PluginEnableEvent
-//) : FcEventPluginEnable
+//) : PluginEnableEventAdapter

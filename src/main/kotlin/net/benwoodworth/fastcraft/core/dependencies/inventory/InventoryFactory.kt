@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.core.dependencies.inventory
 /**
  * Provides inventories and items for the plugin.
  */
-interface FcInventoryFactory {
+interface InventoryFactory {
 
     /**
      * Create a new chest inventory.

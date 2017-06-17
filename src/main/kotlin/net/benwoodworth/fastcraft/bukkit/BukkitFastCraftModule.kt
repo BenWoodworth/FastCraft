@@ -2,7 +2,7 @@
 //
 //import net.benwoodworth.fastcraft.bukkit.dependencies.event.BukkitEventListenerRegistry
 //import net.benwoodworth.fastcraft.core.FastCraftModule
-//import net.benwoodworth.fastcraft.core.dependencies.event.FcEventListenerRegistry
+//import net.benwoodworth.fastcraft.core.dependencies.event.EventListenerRegistry
 //
 ///**
 // * Created by ben on 6/4/17.
@@ -18,7 +18,7 @@
 //    }
 //
 //    //@Provides @Singleton
-//    override fun eventListeners(): FcEventListenerRegistry {
+//    override fun eventListeners(): EventListenerRegistry {
 //        return BukkitEventListenerRegistry(fastCraft)
 //    }
 //}
