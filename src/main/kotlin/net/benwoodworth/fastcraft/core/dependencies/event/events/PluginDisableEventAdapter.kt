@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.core.dependencies.event.events
 
-import net.benwoodworth.fastcraft.core.dependencies.Adapter
+import net.benwoodworth.fastcraft.core.dependencies.util.Adapter
 
 /**
  * A server start event.

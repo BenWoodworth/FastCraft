@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.core.dependencies.config
 
-import net.benwoodworth.fastcraft.core.dependencies.Adapter
+import net.benwoodworth.fastcraft.core.dependencies.util.Adapter
 
 /**
  * A section of a configuration, providing access to keys/values, and other sub-sections.

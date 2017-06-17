@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.core.dependencies
+package net.benwoodworth.fastcraft.core.dependencies.util
 
 /**
  * Used to adapt native implementations for use by FastCraft.

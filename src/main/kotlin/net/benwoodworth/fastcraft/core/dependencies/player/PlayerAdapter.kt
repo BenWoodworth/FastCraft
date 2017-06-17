@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.core.dependencies.player
 
-import net.benwoodworth.fastcraft.core.dependencies.Adapter
+import net.benwoodworth.fastcraft.core.dependencies.util.Adapter
 import net.benwoodworth.fastcraft.core.dependencies.inventory.InventoryAdapter
 import net.benwoodworth.fastcraft.core.dependencies.permissions.PermissionAdapter
 import java.util.UUID

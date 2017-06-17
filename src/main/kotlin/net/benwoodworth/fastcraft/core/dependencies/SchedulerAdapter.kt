@@ -1,9 +1,11 @@
 package net.benwoodworth.fastcraft.core.dependencies
 
+import net.benwoodworth.fastcraft.core.dependencies.util.Adapter
+
 /**
  * Executes server tasks.
  */
-abstract class TaskSchedulerAdapter(baseScheduler: Any) : Adapter(baseScheduler) {
+abstract class SchedulerAdapter(baseScheduler: Any) : Adapter(baseScheduler) {
 
     /**
      * Schedule a task to be run on the main server thread.
