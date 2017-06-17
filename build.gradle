@@ -67,6 +67,12 @@ dependencies {
     testCompile "org.mockito:mockito-core:$version_mockito"
 }
 
+compileKotlin {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    kotlinOptions.jvmTarget = "1.8"
+}
+
 task ktlint(type: JavaExec) {
     main = "com.github.shyiko.ktlint.Main"
     classpath = configurations.ktlint
