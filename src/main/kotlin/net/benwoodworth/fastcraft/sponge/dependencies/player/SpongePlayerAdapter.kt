@@ -6,6 +6,7 @@ import net.benwoodworth.fastcraft.core.dependencies.player.Player
 import net.benwoodworth.fastcraft.core.dependencies.text.Text
 import net.benwoodworth.fastcraft.core.dependencies.util.Adapter
 import net.benwoodworth.fastcraft.sponge.dependencies.inventory.SpongeInventoryAdapter
+import net.benwoodworth.fastcraft.sponge.dependencies.text.SpongeTextAdapter
 import org.spongepowered.api.entity.living.player.Player as SpongePlayer
 import org.spongepowered.api.text.Text as SpongeText
 import java.util.UUID
@@ -21,14 +22,20 @@ class SpongePlayerAdapter(
         get() = base.name
 
     override var displayName: Text?
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-        set(value) {}
+        get() = SpongeTextAdapter(base.displayNameData.displayName().get())
+        set(value) {
+            base.displayNameData.displayName().set(
+                    (value as SpongeTextAdapter).base
+            )
+        }
 
     override val uuid: UUID
         get() = base.uniqueId
 
     override fun sendMessage(message: Text) {
-        base.sendMessage(SpongeText.of(message)) // TODO Use sponge text adapter
+        base.sendMessage(
+                (message as SpongeTextAdapter).base
+        )
     }
 
     override fun hasPermission(permission: Permissions): Boolean {
