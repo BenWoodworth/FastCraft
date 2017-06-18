@@ -6,6 +6,13 @@ package net.benwoodworth.fastcraft.core.dependencies.text
 interface TextBuilder {
 
     /**
+     * Build a [Text] object.
+     *
+     * @return the built [Text] object.
+     */
+    fun build(): Text
+
+    /**
      * Set the text.
      *
      * @return fluid interface
