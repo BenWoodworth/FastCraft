@@ -24,7 +24,7 @@ interface TextBuilder {
      *
      * @return fluid interface
      */
-    fun extra(vararg extra: Text): TextBuilder
+    fun addExtra(vararg extra: Text): TextBuilder
 
     /**
      * Set the text color.

@@ -10,13 +10,13 @@ import org.spongepowered.api.item.inventory.ItemStack
  */
 @Suppress("DEPRECATION") // TODO Don't use legacy formatting.
 class SpongeItemAdapter(
-        private val baseItem: ItemStack
+        baseItem: ItemStack
 ) : Item, Adapter<ItemStack>(baseItem) {
 
     override var amount: Int
-        get() = baseItem.quantity
+        get() = base.quantity
         set(value) {
-            baseItem.quantity = value
+            base.quantity = value
         }
 
     override var displayName: Text?
@@ -28,13 +28,13 @@ class SpongeItemAdapter(
         set(value) = TODO()
 
     override val maxStackSize: Int
-        get() = baseItem.maxStackQuantity
+        get() = base.maxStackQuantity
 
     override val hasWildCardData: Boolean
         get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
 
     override fun clone(): Item {
-        return SpongeItemAdapter(baseItem.copy())
+        return SpongeItemAdapter(base.copy())
     }
 
     override fun addEnchantment(enchantmentId: String, level: Int, ignoreLevelRestriction: Boolean) {
@@ -46,22 +46,25 @@ class SpongeItemAdapter(
             return false
         }
 
-        var other = item.baseItem
-        if (other.quantity != baseItem.quantity) {
+        var other = item.base
+        if (other.quantity != base.quantity) {
             other = other.copy()
-            other.quantity = baseItem.quantity
+            other.quantity = base.quantity
         }
-        return baseItem.equalTo(other)
+        return base.equalTo(other)
     }
 
     override fun matchesIngredient(ingredient: Item): Boolean {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun equals(other: Any?) = false
+    override fun equals(other: Any?): Boolean {
+        if (other is SpongeItemAdapter) {
+            return base == other.base
+        }
+        return false
+    }
 
-    fun equals(other: SpongeItemAdapter) = baseItem == other.baseItem
-
-    override fun hashCode() = baseItem.hashCode()
+    override fun hashCode() = base.hashCode()
 
 }
