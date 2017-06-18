@@ -7,7 +7,7 @@ import net.benwoodworth.fastcraft.core.dependencies.util.Adapter
 import org.spongepowered.api.text.LiteralText as SpongeLiteralText
 
 /**
- * Sponge implementation of [TextBuilder].
+ * Adapts the Sponge LiteralText builder.
  */
 class SpongeTextBuilderAdapter(
         baseBuilder: SpongeLiteralText.Builder
