@@ -3,12 +3,13 @@ package net.benwoodworth.fastcraft.sponge.dependencies.inventory
 import net.benwoodworth.fastcraft.core.dependencies.inventory.Item
 import net.benwoodworth.fastcraft.core.dependencies.text.Text
 import net.benwoodworth.fastcraft.core.dependencies.util.Adapter
+import net.benwoodworth.fastcraft.sponge.dependencies.text.SpongeTextAdapter
+import org.spongepowered.api.data.key.Keys
 import org.spongepowered.api.item.inventory.ItemStack
 
 /**
  * Adapts Sponge items.
  */
-@Suppress("DEPRECATION") // TODO Don't use legacy formatting.
 class SpongeItemAdapter(
         baseItem: ItemStack
 ) : Item, Adapter<ItemStack>(baseItem) {
@@ -20,12 +21,26 @@ class SpongeItemAdapter(
         }
 
     override var displayName: Text?
-        get() = TODO()
-        set(value) = TODO()
+        get() {
+            val displayName = base.get(Keys.DISPLAY_NAME).orElse(null)
+            return SpongeTextAdapter(displayName)
+        }
+        set(value) {
+            base.offer(Keys.DISPLAY_NAME, (value as SpongeTextAdapter).base)
+        }
 
-    override var lore: List<Text?>
-        get() = TODO()
-        set(value) = TODO()
+    override var lore: List<Text?>?
+        get() {
+            val lore = base.get(Keys.ITEM_LORE).orElse(null)
+            return lore?.map {
+                it?.run { SpongeTextAdapter(it) }
+            }
+        }
+        set(value) {
+            base.offer(Keys.ITEM_LORE, value?.map {
+                it?.run { (this as SpongeTextAdapter).base }
+            })
+        }
 
     override val maxStackSize: Int
         get() = base.maxStackQuantity

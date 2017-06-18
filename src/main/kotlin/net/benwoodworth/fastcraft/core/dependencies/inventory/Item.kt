@@ -14,7 +14,7 @@ interface Item {
     var displayName: Text?
 
     /** The item's lore */
-    var lore: List<Text?>
+    var lore: List<Text?>?
 
     /** The maximum size of this stack. */
     val maxStackSize: Int

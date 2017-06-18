@@ -8,7 +8,6 @@ import net.benwoodworth.fastcraft.core.dependencies.util.Adapter
 import net.benwoodworth.fastcraft.sponge.dependencies.inventory.SpongeInventoryAdapter
 import net.benwoodworth.fastcraft.sponge.dependencies.text.SpongeTextAdapter
 import org.spongepowered.api.entity.living.player.Player as SpongePlayer
-import org.spongepowered.api.text.Text as SpongeText
 import java.util.UUID
 
 /**
