@@ -9,6 +9,7 @@ import org.spongepowered.api.text.format.TextColors as SpongeTextColors
 class SpongeTextColorRegistry : TextColorRegistry {
 
     override val none = SpongeTextColorAdapter(SpongeTextColors.NONE)
+    override val reset = SpongeTextColorAdapter(SpongeTextColors.RESET)
     override val black = SpongeTextColorAdapter(SpongeTextColors.BLACK)
     override val darkBlue = SpongeTextColorAdapter(SpongeTextColors.DARK_BLUE)
     override val darkGreen = SpongeTextColorAdapter(SpongeTextColors.DARK_GREEN)

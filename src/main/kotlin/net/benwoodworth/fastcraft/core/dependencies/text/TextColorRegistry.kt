@@ -5,8 +5,11 @@ package net.benwoodworth.fastcraft.core.dependencies.text
  */
 interface TextColorRegistry {
 
-    /** Get the absence of text color. */
+    /** Leaves the color unset. */
     val none: TextColor
+
+    /** Cancels out the effects of colors used by parent objects. */
+    val reset: TextColor
 
     /** Get the text color black. */
     val black: TextColor
