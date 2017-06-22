@@ -12,7 +12,7 @@ apply plugin: "org.spongepowered.plugin"
 
 buildscript {
     ext {
-        version_kotlin = "1.1.2-2"
+        version_kotlin = "1.1.2-5"
         version_spongegradle = "0.8.1"
 
         version_bukkit = "1.12-R0.1-SNAPSHOT"
