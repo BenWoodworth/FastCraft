@@ -56,20 +56,4 @@ interface Item {
      * @return `true` if this item can be used as the ingredient
      */
     fun matchesIngredient(ingredient: Item): Boolean
-
-    /**
-     * Checks if the items are similar, and have the same amount.
-     *
-     * @return `true` if the items are equal
-     */
-    override fun equals(other: Any?): Boolean
-
-    /**
-     * A hash code for this item.
-     *
-     * The hash code should remain the same between starts.
-     *
-     * @return the item's hash code
-     */
-    override fun hashCode(): Int
 }

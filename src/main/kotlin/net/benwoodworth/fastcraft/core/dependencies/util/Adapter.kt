@@ -5,16 +5,9 @@ package net.benwoodworth.fastcraft.core.dependencies.util
  */
 abstract class Adapter<out TBase>(
         val base: TBase
-)
-//{
-//
-//    /**
-//     * Unwrap the object being adapted.
-//     *
-//     * @param T the base item's type
-//     * @return the item being adapted
-//     * @exception ClassCastException if base item type isn't the type `TBase`
-//     */
-//    @Suppress("UNCHECKED_CAST")
-//    fun unwrap() = base as T
-//}
+) {
+
+    abstract override fun equals(other: Any?): Boolean
+
+    abstract override fun hashCode(): Int
+}

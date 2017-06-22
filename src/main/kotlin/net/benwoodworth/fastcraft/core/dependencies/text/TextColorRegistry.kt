@@ -8,7 +8,7 @@ interface TextColorRegistry {
     /** Leaves the color unset. */
     val none: TextColor
 
-    /** Cancels out the effects of colors used by parent objects. */
+    /** Resets the color. Does not reset formatting. */
     val reset: TextColor
 
     /** Get the text color black. */

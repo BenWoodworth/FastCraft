@@ -41,9 +41,15 @@ class SpongePlayerAdapter(
         return base.hasPermission(permission.permissionString)
     }
 
-    override fun openInventory(inventory: Inventory) = throw Exception()
+    override fun openInventory(inventory: Inventory) {
+        base.openInventory((inventory as SpongeInventoryAdapter).base, null) // TODO Don't use null cause
+    }
 
-    fun openInventory(inventory: SpongeInventoryAdapter) {
-        base.openInventory(inventory.base, null) // TODO Don't use null cause
+    override fun equals(other: Any?): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun hashCode(): Int {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

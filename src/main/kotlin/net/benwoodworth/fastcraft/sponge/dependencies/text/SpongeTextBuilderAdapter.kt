@@ -58,4 +58,12 @@ class SpongeTextBuilderAdapter(
         base.style.obfuscated(obfuscated)
         return this
     }
+
+    override fun equals(other: Any?): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun hashCode(): Int {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }

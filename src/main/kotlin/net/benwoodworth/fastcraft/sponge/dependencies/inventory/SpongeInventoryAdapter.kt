@@ -21,4 +21,12 @@ class SpongeInventoryAdapter(
 
     override val carrier: Any?
         get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+
+    override fun equals(other: Any?): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun hashCode(): Int {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }
