@@ -1,11 +1,11 @@
 package net.benwoodworth.fastcraft.sponge.dependencies.player
 
-import net.benwoodworth.fastcraft.core.dependencies.inventory.Inventory
+import net.benwoodworth.fastcraft.core.dependencies.item.inventory.Inventory
 import net.benwoodworth.fastcraft.core.dependencies.permissions.Permissions
 import net.benwoodworth.fastcraft.core.dependencies.player.Player
 import net.benwoodworth.fastcraft.core.dependencies.text.Text
 import net.benwoodworth.fastcraft.core.dependencies.util.Adapter
-import net.benwoodworth.fastcraft.sponge.dependencies.inventory.SpongeInventoryAdapter
+import net.benwoodworth.fastcraft.sponge.dependencies.item.inventory.SpongeInventoryAdapter
 import net.benwoodworth.fastcraft.sponge.dependencies.text.SpongeTextAdapter
 import org.spongepowered.api.entity.living.player.Player as SpongePlayer
 import java.util.UUID

@@ -1,6 +1,6 @@
-package net.benwoodworth.fastcraft.sponge.dependencies.inventory
+package net.benwoodworth.fastcraft.sponge.dependencies.item
 
-import net.benwoodworth.fastcraft.core.dependencies.inventory.Item
+import net.benwoodworth.fastcraft.core.dependencies.item.Item
 import net.benwoodworth.fastcraft.core.dependencies.text.Text
 import net.benwoodworth.fastcraft.core.dependencies.util.Adapter
 import net.benwoodworth.fastcraft.sponge.dependencies.text.SpongeTextAdapter

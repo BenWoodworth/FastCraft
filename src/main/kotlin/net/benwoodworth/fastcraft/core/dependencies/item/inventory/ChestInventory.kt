@@ -1,9 +1,11 @@
-package net.benwoodworth.fastcraft.core.dependencies.inventory
+package net.benwoodworth.fastcraft.core.dependencies.item.inventory
+
+import org.bukkit.entity.Item
 
 /**
  * A Minecraft chest inventory.
  */
-interface ChestInventory : ItemGrid {
+interface ChestInventory : net.benwoodworth.fastcraft.core.dependencies.item.ItemGrid {
 
     /**
      * Add items to the inventory.

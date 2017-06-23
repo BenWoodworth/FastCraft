@@ -1,6 +1,8 @@
-package net.benwoodworth.fastcraft.core.dependencies.inventory
+package net.benwoodworth.fastcraft.core.dependencies.item.inventory
 
+import net.benwoodworth.fastcraft.core.dependencies.item.ItemGrid
 import net.benwoodworth.fastcraft.core.dependencies.recipes.Recipe
+import org.bukkit.entity.Item
 
 /**
  * A Minecraft crafting inventory.

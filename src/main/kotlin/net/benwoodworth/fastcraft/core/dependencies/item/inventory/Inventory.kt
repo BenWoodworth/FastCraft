@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.core.dependencies.inventory
+package net.benwoodworth.fastcraft.core.dependencies.item.inventory
 
 import net.benwoodworth.fastcraft.core.dependencies.player.Player
 import net.benwoodworth.fastcraft.core.dependencies.text.Text

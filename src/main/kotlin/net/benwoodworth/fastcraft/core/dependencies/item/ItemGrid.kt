@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.core.dependencies.inventory
+package net.benwoodworth.fastcraft.core.dependencies.item
 
 /**
  * A grid of items.
