@@ -11,11 +11,7 @@ class SpongeTextAdapter(
         baseText: SpongeText
 ) : Text, Adapter<SpongeText>(baseText) {
 
-    override fun equals(other: Any?): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun equals(other: Any?) = base == other
 
-    override fun hashCode(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun hashCode() = base.hashCode()
 }
