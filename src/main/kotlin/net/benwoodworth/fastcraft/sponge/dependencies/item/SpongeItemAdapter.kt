@@ -48,10 +48,6 @@ class SpongeItemAdapter(
     override val hasWildCardData: Boolean
         get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
 
-    override fun copy(): Item {
-        return SpongeItemAdapter(base.copy())
-    }
-
     override fun addEnchantment(enchantmentId: String, level: Int, ignoreLevelRestriction: Boolean) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
