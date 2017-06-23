@@ -20,7 +20,7 @@ interface Recipe {
      * Get the results of this recipe.
      *
      * @param itemGrid the grid of items used to craft the recipe
-     * @param player   the player crafting the recipe
+     * @param player the player crafting the recipe
      * @return the results of the recipe, or an empty list if invalid
      */
     fun getResults(itemGrid: ItemGrid, player: Player): List<Item>
