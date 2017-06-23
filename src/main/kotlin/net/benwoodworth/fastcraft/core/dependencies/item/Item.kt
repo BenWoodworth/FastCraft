@@ -10,6 +10,9 @@ interface Item {
     /** The amount of items in this stack. */
     var amount: Int
 
+    /** The name of this item. */
+    val name: Text
+
     /** The display name of this item. */
     var displayName: Text?
 
