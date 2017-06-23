@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.core.dependencies.recipes
+package net.benwoodworth.fastcraft.core.dependencies.item.recipe
 
 /**
  * Provides recipe from the server.

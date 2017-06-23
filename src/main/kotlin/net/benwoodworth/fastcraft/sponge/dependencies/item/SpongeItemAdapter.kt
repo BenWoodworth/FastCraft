@@ -48,7 +48,7 @@ class SpongeItemAdapter(
     override val hasWildCardData: Boolean
         get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
 
-    override fun clone(): Item {
+    override fun copy(): Item {
         return SpongeItemAdapter(base.copy())
     }
 

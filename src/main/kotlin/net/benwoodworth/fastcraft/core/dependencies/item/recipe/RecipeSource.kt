@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.core.dependencies.recipes
+package net.benwoodworth.fastcraft.core.dependencies.item.recipe
 
 /**
  * A source of recipes. (e.g. from plugins that register custom recipes)
@@ -10,5 +10,5 @@ interface RecipeSource {
      *
      * @return the crafting recipes
      */
-    fun getCraftingRecipes(): List<ModifiedRecipe>
+    fun getCraftingRecipes(): List<Recipe>
 }

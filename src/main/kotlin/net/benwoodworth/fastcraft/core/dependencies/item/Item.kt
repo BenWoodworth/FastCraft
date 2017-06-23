@@ -26,11 +26,11 @@ interface Item {
     val hasWildCardData: Boolean
 
     /**
-     * Clone this item.
+     * Create a copy of this item.
      *
-     * @return a clone of this item
+     * @return a copy of this item
      */
-    fun clone(): Item
+    fun copy(): Item
 
     /**
      * Add an enchantment to the item.
