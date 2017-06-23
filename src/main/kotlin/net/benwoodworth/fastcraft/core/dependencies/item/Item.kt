@@ -26,13 +26,6 @@ interface Item {
     val hasWildCardData: Boolean
 
     /**
-     * Create a copy of this item.
-     *
-     * @return a copy of this item
-     */
-    fun copy(): Item
-
-    /**
      * Add an enchantment to the item.
      *
      * @param enchantmentId the Minecraft enchantment ID

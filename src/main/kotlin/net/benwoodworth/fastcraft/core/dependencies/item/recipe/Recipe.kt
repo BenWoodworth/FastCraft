@@ -34,13 +34,6 @@ interface Recipe {
     fun craft(player: Player): ItemCraftEvent
 
     /**
-     * Create a copy of this recipe.
-     *
-     * @return a copy of this recipe
-     */
-    fun copy(): Recipe
-
-    /**
      * Check if this recipe is equal to an object.
      *
      * @param other the object to compare to
