@@ -9,11 +9,4 @@ import org.spongepowered.api.text.Text as SpongeText
  */
 class SpongeTextAdapter(
         baseText: SpongeText
-) : Text, Adapter<SpongeText>(baseText) {
-
-    override fun equals(other: Any?): Boolean {
-        return base == (other as? SpongeTextAdapter)?.base
-    }
-
-    override fun hashCode() = base.hashCode()
-}
+) : Text, Adapter<SpongeText>(baseText)

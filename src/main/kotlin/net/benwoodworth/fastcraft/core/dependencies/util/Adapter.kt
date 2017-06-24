@@ -1,5 +1,7 @@
 package net.benwoodworth.fastcraft.core.dependencies.util
 
+import net.benwoodworth.fastcraft.sponge.dependencies.text.SpongeTextAdapter
+
 /**
  * Used to adapt native implementations for use by FastCraft.
  */
@@ -7,7 +9,9 @@ abstract class Adapter<out TBase>(
         val base: TBase
 ) {
 
-    abstract override fun equals(other: Any?): Boolean
+    override fun equals(other: Any?): Boolean {
+        return other is Adapter<*> && base == other.base
+    }
 
-    abstract override fun hashCode(): Int
+    override fun hashCode() = base?.hashCode() ?: 0
 }

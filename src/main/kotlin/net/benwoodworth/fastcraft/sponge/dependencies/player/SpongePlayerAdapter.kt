@@ -44,12 +44,4 @@ class SpongePlayerAdapter(
     override fun openInventory(inventory: Inventory) {
         base.openInventory((inventory as SpongeInventoryAdapter).base, null) // TODO Don't use null cause
     }
-
-    override fun equals(other: Any?): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun hashCode(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 }

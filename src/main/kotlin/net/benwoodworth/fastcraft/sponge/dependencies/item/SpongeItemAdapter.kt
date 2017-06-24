@@ -61,13 +61,4 @@ class SpongeItemAdapter(
         }
         return base.equalTo(other)
     }
-
-    override fun equals(other: Any?): Boolean {
-        if (other is SpongeItemAdapter) {
-            return base == other.base
-        }
-        return false
-    }
-
-    override fun hashCode() = base.hashCode()
 }
