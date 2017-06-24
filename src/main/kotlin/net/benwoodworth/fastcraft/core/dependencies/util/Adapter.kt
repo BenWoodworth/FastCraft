@@ -8,7 +8,7 @@ abstract class Adapter<out TBase : Any>(
 ) {
 
     override fun equals(other: Any?): Boolean {
-        return base == (other as? Adapter<TBase>)?.base
+        return base == (other as? Adapter<*>)?.base
     }
 
     override fun hashCode() = base.hashCode()
