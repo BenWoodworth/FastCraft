@@ -11,5 +11,5 @@ interface Permission {
     val id: String
 
     /** The description of what this permission is for */
-    val description: Text
+    val description: String
 }
