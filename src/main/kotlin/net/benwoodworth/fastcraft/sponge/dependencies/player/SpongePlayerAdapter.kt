@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.sponge.dependencies.player
 
 import net.benwoodworth.fastcraft.core.dependencies.item.inventory.Inventory
-import net.benwoodworth.fastcraft.core.dependencies.permission.Permissions
+import net.benwoodworth.fastcraft.core.dependencies.permission.Permission
 import net.benwoodworth.fastcraft.core.dependencies.player.Player
 import net.benwoodworth.fastcraft.core.dependencies.text.Text
 import net.benwoodworth.fastcraft.core.dependencies.util.Adapter
@@ -37,8 +37,8 @@ class SpongePlayerAdapter(
         )
     }
 
-    override fun hasPermission(permission: Permissions): Boolean {
-        return base.hasPermission(permission.permissionString)
+    override fun hasPermission(permission: Permission): Boolean {
+        return base.hasPermission(permission.id)
     }
 
     override fun openInventory(inventory: Inventory) {

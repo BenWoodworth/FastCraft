@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.core.dependencies.player
 
 import net.benwoodworth.fastcraft.core.dependencies.item.inventory.Inventory
-import net.benwoodworth.fastcraft.core.dependencies.permission.Permissions
+import net.benwoodworth.fastcraft.core.dependencies.permission.Permission
 import net.benwoodworth.fastcraft.core.dependencies.text.Text
 import java.util.UUID
 
@@ -31,7 +31,7 @@ interface Player {
      *
      * @param permission The permission to check.
      */
-    fun hasPermission(permission: Permissions): Boolean
+    fun hasPermission(permission: Permission): Boolean
 
     /**
      * Open an inventory.
