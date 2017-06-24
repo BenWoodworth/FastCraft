@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.core.dependencies.util
 /**
  * Used to adapt native implementations for use by FastCraft.
  */
-abstract class Adapter<out TBase>(
+abstract class Adapter<out TBase : Any>(
         val base: TBase
 ) {
 
@@ -11,5 +11,5 @@ abstract class Adapter<out TBase>(
         return other is Adapter<*> && base == other.base
     }
 
-    override fun hashCode() = base?.hashCode() ?: 0
+    override fun hashCode() = base.hashCode()
 }
