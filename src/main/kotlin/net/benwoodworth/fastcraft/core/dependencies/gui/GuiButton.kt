@@ -1,7 +1,7 @@
-package net.benwoodworth.fastcraft.core.dependencies.gui.buttons
+package net.benwoodworth.fastcraft.core.dependencies.gui
 
-import net.benwoodworth.fastcraft.core.dependencies.gui.events.GuiButtonClickEvent
-import net.benwoodworth.fastcraft.core.dependencies.gui.layouts.GuiLayout
+import net.benwoodworth.fastcraft.core.dependencies.gui.GuiButtonClickEvent
+import net.benwoodworth.fastcraft.core.dependencies.gui.GuiLayout
 import net.benwoodworth.fastcraft.core.dependencies.event.EventListener
 import net.benwoodworth.fastcraft.core.dependencies.item.Item
 

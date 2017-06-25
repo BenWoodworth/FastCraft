@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft.core.dependencies.gui
 
-import net.benwoodworth.fastcraft.core.dependencies.gui.layouts.GuiLayout
 import net.benwoodworth.fastcraft.core.dependencies.item.inventory.ChestInventory
 
 /**
