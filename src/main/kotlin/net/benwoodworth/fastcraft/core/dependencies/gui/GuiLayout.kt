@@ -15,7 +15,7 @@ open class GuiLayout(
 ) {
 
     /** A listener for layout changes. */
-    val layoutChangeListener = EventListener<EventGuiLayoutChange>()
+    val layoutChangeListener = EventListener<GuiLayoutChangeEvent>()
 
     /** The layouts that compose this layout. */
     private val childLayouts = ArrayList<LayoutPosition>()
