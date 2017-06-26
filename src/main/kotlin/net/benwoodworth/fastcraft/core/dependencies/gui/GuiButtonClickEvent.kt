@@ -13,7 +13,7 @@ class GuiButtonClickEvent(
         /** The [GuiButton] that was clicked. */
         val button: GuiButton,
 
-        /** The player who clicked the button. */
+        /** The [Player] who clicked the button. */
         val player: Player
 ) : Cancellable {
 

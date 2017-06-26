@@ -1,16 +1,11 @@
 package net.benwoodworth.fastcraft.core.dependencies.text
 
+import net.benwoodworth.fastcraft.core.dependencies.util.Builder
+
 /**
  * Builds an instance of [Text].
  */
-interface TextBuilder {
-
-    /**
-     * Build a [Text] object.
-     *
-     * @return the built [Text] object.
-     */
-    fun build(): Text
+interface TextBuilder : Builder<Text> {
 
     /**
      * Set the text.

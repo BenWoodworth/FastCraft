@@ -61,4 +61,6 @@ class SpongeItemAdapter(
         }
         return base.equalTo(other)
     }
+
+    override fun copy() = SpongeItemAdapter(base.copy())
 }

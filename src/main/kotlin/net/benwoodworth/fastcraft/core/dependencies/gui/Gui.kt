@@ -1,23 +1,33 @@
 package net.benwoodworth.fastcraft.core.dependencies.gui
 
-import net.benwoodworth.fastcraft.core.dependencies.item.inventory.ChestInventory
+import net.benwoodworth.fastcraft.core.dependencies.player.Player
+import javax.xml.soap.Text
 
 /**
  * A user interface for in-game players.
  */
-class Gui(
-        /*private val*/ inventory: ChestInventory
-) : GuiLayout(inventory.width, inventory.height) {
+interface Gui {
+
+    /** The title of this [Gui]. */
+    val title: Text
+
+    /** The layout of this [Gui]. */
+    var layout: GuiLayout
 
     /**
-     * Update the inventory to reflect the GUI.
+     * Open this [Gui] for the given players.
      */
-    private fun updateInventory() {
-        for (x in 0 until width) {
-            for (y in 0 until height) {
-                // TODO Fix
-                // inventory.setItem(x, y, getButton(x, y)?.buttonItem)
-            }
-        }
-    }
+    fun open(vararg player: Player)
+
+    /**
+     * Close this [Gui] for the given players.
+     */
+    fun close(vararg player: Player)
+
+    /**
+     * Get the players viewing this [Gui].
+     *
+     * @return a list of players viewing this [Gui]
+     */
+    fun getViewers(): List<Player>
 }

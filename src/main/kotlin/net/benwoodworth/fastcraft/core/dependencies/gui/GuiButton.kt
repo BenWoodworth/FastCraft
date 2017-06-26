@@ -1,18 +1,33 @@
 package net.benwoodworth.fastcraft.core.dependencies.gui
 
-import net.benwoodworth.fastcraft.core.dependencies.gui.GuiButtonClickEvent
-import net.benwoodworth.fastcraft.core.dependencies.gui.GuiLayout
 import net.benwoodworth.fastcraft.core.dependencies.event.EventListener
 import net.benwoodworth.fastcraft.core.dependencies.item.Item
 
 /**
  * A button in a GUI.
  */
-class GuiButton(
-        /** The item representing this button */
-        val buttonItem: Item? = null
-) : GuiLayout(1, 1) {
+class GuiButton : GuiLayout {
 
-    /** This button's click listener */
+    override val width = 1
+    override val height = 1
+
+    override val changeListener = EventListener<EventGuiLayoutChange>()
+
+    /** The item representing this button. */
+    var item: Item? = null
+        get() = field?.copy()
+        set(value) {
+            field = value?.copy()
+        }
+
+    /** A listener for button clicks. */
     val clickListener = EventListener<GuiButtonClickEvent>()
+
+    override fun getButton(x: Int, y: Int): GuiButton? {
+        return if (x == 0 && y == 0) this else null
+    }
+
+    override fun setButton(x: Int, y: Int, button: GuiButton) {
+        throw UnsupportedOperationException()
+    }
 }

@@ -1,16 +1,11 @@
 package net.benwoodworth.fastcraft.core.dependencies.item
 
+import net.benwoodworth.fastcraft.core.dependencies.util.Builder
+
 /**
  * A builder that creates Minecraft items.
  */
-interface ItemBuilder {
-
-    /**
-     * Builds a new instance the item.
-     *
-     * @Return A new instance of the item
-     */
-    fun build(): Item
+interface ItemBuilder : Builder<Item> {
 
     /**
      * Resets this builder and uses the values from this item.
