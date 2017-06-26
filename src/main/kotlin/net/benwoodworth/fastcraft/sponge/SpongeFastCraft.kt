@@ -19,8 +19,6 @@ class SpongeFastCraft : FastCraftImplementation {
     @Suppress("UNUSED_PARAMETER")
     fun onPreInit(event: GamePreInitializationEvent) {
         instance = DaggerSpongeFastCraftComponent.builder()
-                .spongeFastCraftModule(SpongeFastCraftModule(this))
-                .build()
-                .getFastCraft()
+                .build().getFastCraft()
     }
 }
