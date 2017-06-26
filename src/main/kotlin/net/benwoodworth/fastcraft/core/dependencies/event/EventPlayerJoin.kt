@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.core.dependencies.event.events
+package net.benwoodworth.fastcraft.core.dependencies.event
 
 import net.benwoodworth.fastcraft.core.dependencies.player.Player
 

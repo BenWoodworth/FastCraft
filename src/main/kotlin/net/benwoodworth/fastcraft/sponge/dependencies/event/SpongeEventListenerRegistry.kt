@@ -1,9 +1,8 @@
 package net.benwoodworth.fastcraft.sponge.dependencies.event
 
-import net.benwoodworth.fastcraft.core.dependencies.event.EventListenerRegistry
-import net.benwoodworth.fastcraft.core.dependencies.event.events.EventPlayerJoin
-import net.benwoodworth.fastcraft.core.dependencies.event.events.EventPluginDisable
-import net.benwoodworth.fastcraft.core.dependencies.event.events.EventPluginEnable
+import net.benwoodworth.fastcraft.core.dependencies.event.EventPlayerJoin
+import net.benwoodworth.fastcraft.core.dependencies.event.EventPluginDisable
+import net.benwoodworth.fastcraft.core.dependencies.event.EventPluginEnable
 import net.benwoodworth.fastcraft.core.dependencies.player.Player
 import net.benwoodworth.fastcraft.sponge.SpongeFastCraft
 import net.benwoodworth.fastcraft.sponge.dependencies.player.SpongePlayerAdapter

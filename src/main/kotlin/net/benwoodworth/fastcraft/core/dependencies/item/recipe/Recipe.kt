@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.core.dependencies.item.recipe
 
-import net.benwoodworth.fastcraft.core.dependencies.event.events.EventItemCraft
+import net.benwoodworth.fastcraft.core.dependencies.event.EventItemCraft
 import net.benwoodworth.fastcraft.core.dependencies.item.Item
 import net.benwoodworth.fastcraft.core.dependencies.item.ItemGrid
 import net.benwoodworth.fastcraft.core.dependencies.player.Player
