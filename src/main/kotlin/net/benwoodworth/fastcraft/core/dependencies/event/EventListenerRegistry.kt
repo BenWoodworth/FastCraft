@@ -1,15 +1,15 @@
 package net.benwoodworth.fastcraft.core.dependencies.event
 
-import net.benwoodworth.fastcraft.core.dependencies.event.events.PlayerJoinEvent
-import net.benwoodworth.fastcraft.core.dependencies.event.events.PluginDisableEvent
-import net.benwoodworth.fastcraft.core.dependencies.event.events.PluginEnableEvent
+import net.benwoodworth.fastcraft.core.dependencies.event.events.EventPlayerJoin
+import net.benwoodworth.fastcraft.core.dependencies.event.events.EventPluginDisable
+import net.benwoodworth.fastcraft.core.dependencies.event.events.EventPluginEnable
 
 /**
  * A registry of event listeners.
  */
 abstract class EventListenerRegistry {
 
-    val pluginEnable = EventListener<PluginEnableEvent>()
-    val pluginDisable = EventListener<PluginDisableEvent>()
-    val playerJoin = EventListener<PlayerJoinEvent>()
+    val pluginEnable = EventListener<EventPluginEnable>()
+    val pluginDisable = EventListener<EventPluginDisable>()
+    val playerJoin = EventListener<EventPlayerJoin>()
 }

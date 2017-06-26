@@ -1,6 +1,8 @@
 package net.benwoodworth.fastcraft.core.dependencies.gui
 
 import net.benwoodworth.fastcraft.core.dependencies.event.EventListener
+import net.benwoodworth.fastcraft.core.dependencies.event.events.EventGuiButtonClick
+import net.benwoodworth.fastcraft.core.dependencies.event.events.EventGuiLayoutChange
 import net.benwoodworth.fastcraft.core.dependencies.item.Item
 
 /**
@@ -21,7 +23,7 @@ class GuiButton : GuiLayout {
         }
 
     /** A listener for button clicks. */
-    val clickListener = EventListener<GuiButtonClickEvent>()
+    val clickListener = EventListener<EventGuiButtonClick>()
 
     override fun getButton(x: Int, y: Int): GuiButton? {
         return if (x == 0 && y == 0) this else null

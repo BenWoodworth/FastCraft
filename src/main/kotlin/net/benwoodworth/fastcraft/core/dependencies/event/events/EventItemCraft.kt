@@ -5,4 +5,4 @@ import net.benwoodworth.fastcraft.core.dependencies.event.Cancellable
 /**
  * An event for players crafting items.
  */
-interface ItemCraftEvent : Cancellable
+interface EventItemCraft : Cancellable

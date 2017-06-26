@@ -1,9 +1,9 @@
 package net.benwoodworth.fastcraft.sponge.dependencies.event
 
 import net.benwoodworth.fastcraft.core.dependencies.event.EventListenerRegistry
-import net.benwoodworth.fastcraft.core.dependencies.event.events.PlayerJoinEvent
-import net.benwoodworth.fastcraft.core.dependencies.event.events.PluginDisableEvent
-import net.benwoodworth.fastcraft.core.dependencies.event.events.PluginEnableEvent
+import net.benwoodworth.fastcraft.core.dependencies.event.events.EventPlayerJoin
+import net.benwoodworth.fastcraft.core.dependencies.event.events.EventPluginDisable
+import net.benwoodworth.fastcraft.core.dependencies.event.events.EventPluginEnable
 import net.benwoodworth.fastcraft.core.dependencies.player.Player
 import net.benwoodworth.fastcraft.sponge.SpongeFastCraft
 import net.benwoodworth.fastcraft.sponge.dependencies.player.SpongePlayerAdapter
@@ -28,17 +28,17 @@ class SpongeEventListenerRegistry @Inject constructor(
 
     @Listener
     fun onPluginEnable(event: GamePreInitializationEvent) {
-        pluginEnable.notifyHandlers(object : PluginEnableEvent {})
+        pluginEnable.notifyHandlers(object : EventPluginEnable {})
     }
 
     @Listener
     fun onPluginDisable(event: GameStoppingEvent) {
-        pluginDisable.notifyHandlers(object : PluginDisableEvent {})
+        pluginDisable.notifyHandlers(object : EventPluginDisable {})
     }
 
     @Listener
     fun onPlayerJoin(event: ClientConnectionEvent.Join) {
-        playerJoin.notifyHandlers(object : PlayerJoinEvent { // TODO Create class
+        playerJoin.notifyHandlers(object : EventPlayerJoin { // TODO Create class
 
             override val player: Player
                 get() = SpongePlayerAdapter(event.targetEntity)

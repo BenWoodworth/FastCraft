@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.core.dependencies.gui
 
 import net.benwoodworth.fastcraft.core.dependencies.event.EventListener
+import net.benwoodworth.fastcraft.core.dependencies.event.events.EventGuiLayoutChange
 
 /**
  * A composite [GuiLayout].

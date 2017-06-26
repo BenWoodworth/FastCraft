@@ -21,6 +21,4 @@ interface GuiBuilder : Builder<Gui> {
      * @return fluent interface
      */
     fun setTitle(title: Text): GuiBuilder
-
-
 }
