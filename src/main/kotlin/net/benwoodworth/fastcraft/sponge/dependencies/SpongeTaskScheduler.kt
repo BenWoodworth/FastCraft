@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.sponge.dependencies
 
-import net.benwoodworth.fastcraft.core.dependencies.TaskScheduler
+import net.benwoodworth.fastcraft.core.dependencies.server.TaskScheduler
 import org.spongepowered.api.scheduler.Task
 
 /**

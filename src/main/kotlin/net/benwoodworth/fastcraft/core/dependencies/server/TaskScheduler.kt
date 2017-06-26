@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.core.dependencies
+package net.benwoodworth.fastcraft.core.dependencies.server
 
 /**
  * Executes server tasks.

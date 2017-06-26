@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.core.dependencies
+package net.benwoodworth.fastcraft.core.dependencies.server
 
 import net.benwoodworth.fastcraft.core.dependencies.text.Text
 

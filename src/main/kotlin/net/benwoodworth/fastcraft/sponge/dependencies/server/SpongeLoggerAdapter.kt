@@ -1,6 +1,6 @@
-package net.benwoodworth.fastcraft.sponge.dependencies
+package net.benwoodworth.fastcraft.sponge.dependencies.server
 
-import net.benwoodworth.fastcraft.core.dependencies.Logger
+import net.benwoodworth.fastcraft.core.dependencies.server.Logger
 import net.benwoodworth.fastcraft.core.dependencies.util.Adapter
 import org.slf4j.Logger as SpongeLogger
 
