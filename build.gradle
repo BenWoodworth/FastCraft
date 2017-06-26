@@ -73,8 +73,6 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile.class).all {
     kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
 }
 
-check.dependsOn ktlint
-
 task ktlint(type: JavaExec) {
     main = "com.github.shyiko.ktlint.Main"
     classpath = configurations.ktlint
@@ -85,6 +83,10 @@ task ktlintFormat(type: JavaExec) {
     main = "com.github.shyiko.ktlint.Main"
     classpath = configurations.ktlint
     args = ["-F", "src/**/*.kt"]
+}
+
+check {
+    dependsOn ktlint
 }
 
 processResources {
