@@ -11,7 +11,7 @@ interface Scheduler {
      * @param task the task to run
      * @param delay the number of server ticks before the task is run. (20 ticks per second
      */
-    fun scheduleSync(task: Runnable, delay: Long)
+    fun scheduleSync(delay: Long, task: () -> Unit)
 
     /**
      * Schedule a task to be run asynchronously.
@@ -19,19 +19,19 @@ interface Scheduler {
      * @param task the task to run
      * @param delay the number of server ticks before the task is run. (20 ticks per second
      */
-    fun scheduleAsync(task: Runnable, delay: Long)
+    fun scheduleAsync(delay: Long, task: () -> Unit)
 
     /**
      * Run a task on the main server thread.
      *
      * @param task the task to run
      */
-    fun runSync(task: Runnable)
+    fun runSync(task: () -> Unit)
 
     /**
      * Run a task asynchronously.
      *
      * @param task the task to run
      */
-    fun runAsync(task: Runnable)
+    fun runAsync(task: () -> Unit)
 }
