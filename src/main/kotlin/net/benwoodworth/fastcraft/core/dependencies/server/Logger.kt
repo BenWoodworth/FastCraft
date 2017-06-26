@@ -1,7 +1,5 @@
 package net.benwoodworth.fastcraft.core.dependencies.server
 
-import net.benwoodworth.fastcraft.core.dependencies.text.Text
-
 /**
  * Logs messages to the server console.
  */
