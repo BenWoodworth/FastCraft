@@ -1,16 +1,10 @@
-IMPORTANT:  
-Fill out the required ■ lines, and remove these top lines.  
-The ■ character should not appear in this issue once filled out.
-
 ## Description
-■ Describe the issue here.
+DESCRIBE ISSUE HERE
 
-## Debug Output
-<details><summary>Show **/fcadmin debug** output</summary><pre><code>
-■ Run the command "fcadmin debug", and copy the output here.
-</code></pre></details>
+## Reproduction
+STEP-BY-STEP ISSUE REPRODUCTION
 
-## Stack Trace
-<details><summary>Show stack trace</summary><pre><code>
-■ Copy console errors here. If there is none, remove this section entirely.
-</code></pre></details>
+## Details
+- FastCraft Version: #.#.#
+- Server Version: Bukkit/Spigot/Sponge #.#.#
+- Stack Trace: https://gist.github.com/
