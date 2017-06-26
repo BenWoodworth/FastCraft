@@ -33,16 +33,19 @@ class GuiLayoutComposite(
      */
     fun addLayout(x: Int, y: Int, layout: GuiLayout) {
         childLayouts += LayoutPosition(x, y, this)
-        layout.changeListener.addHandler(changeListener::notifyHandlers)
+        layout.changeListener += changeListener::notifyHandlers
     }
 
     /**
      * Remove a child layout or button.
      */
     fun removeLayout(layout: GuiLayout) {
-        val layoutPosition = childLayouts.find { it.layout === layout } ?: return
-        childLayouts.remove(layoutPosition)
-        layout.changeListener.removeHandler(changeListener::notifyHandlers)
+        childLayouts.filter {
+            layout === it.layout
+        }.forEach {
+            childLayouts.remove(it)
+            it.layout.changeListener -= changeListener::notifyHandlers
+        }
     }
 
     /**

@@ -65,7 +65,7 @@ class EventListener<TEvent> {
      * @param handler the event handler to remove from this listener
      */
     fun removeHandler(handler: (event: TEvent) -> Unit) {
-        handlersParam -= handler
+        handlersParam -= handler // TODO Removes based on handler address, or .equals()?
     }
 
     /**
