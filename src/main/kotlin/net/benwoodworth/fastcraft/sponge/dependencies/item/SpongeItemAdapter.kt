@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.sponge.dependencies.item
 
 import net.benwoodworth.fastcraft.core.dependencies.item.Item
 import net.benwoodworth.fastcraft.core.dependencies.text.Text
-import net.benwoodworth.fastcraft.core.dependencies.util.Adapter
+import net.benwoodworth.fastcraft.core.util.Adapter
 import net.benwoodworth.fastcraft.sponge.dependencies.text.SpongeTextAdapter
 import org.spongepowered.api.data.key.Keys
 import org.spongepowered.api.item.inventory.ItemStack

@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.sponge.dependencies.server
 
 import net.benwoodworth.fastcraft.core.dependencies.server.Logger
 import net.benwoodworth.fastcraft.core.dependencies.server.Plugin
-import net.benwoodworth.fastcraft.core.dependencies.util.Adapter
+import net.benwoodworth.fastcraft.core.util.Adapter
 import org.spongepowered.api.plugin.PluginContainer
 import java.nio.file.Path
 

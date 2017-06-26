@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.core.dependencies.item
 
-import net.benwoodworth.fastcraft.core.dependencies.util.Builder
+import net.benwoodworth.fastcraft.core.util.Builder
 
 /**
  * A builder that creates Minecraft items.

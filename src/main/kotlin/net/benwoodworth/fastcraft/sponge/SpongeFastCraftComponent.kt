@@ -5,7 +5,9 @@ import net.benwoodworth.fastcraft.core.FastCraftComponent
 import javax.inject.Singleton
 
 /**
- * Created by ben on 6/5/17.
+ * Dagger component for Sponge FastCraft implementation.
  */
-@Singleton @Component(modules = arrayOf(SpongeFastCraftModule::class))
+@Singleton @Component(modules = arrayOf(
+        //SpongeFastCraftModule::class
+))
 interface SpongeFastCraftComponent : FastCraftComponent

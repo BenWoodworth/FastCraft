@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.core.dependencies.text
 
-import net.benwoodworth.fastcraft.core.dependencies.util.Builder
+import net.benwoodworth.fastcraft.core.util.Builder
 
 /**
  * Builds an instance of [Text].

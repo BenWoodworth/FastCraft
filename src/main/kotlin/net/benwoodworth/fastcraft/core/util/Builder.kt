@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.core.dependencies.util
+package net.benwoodworth.fastcraft.core.util
 
 /**
  * An interface for builders.
