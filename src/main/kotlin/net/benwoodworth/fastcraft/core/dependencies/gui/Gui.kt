@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.core.dependencies.gui
 
 import net.benwoodworth.fastcraft.core.dependencies.player.Player
-import javax.xml.soap.Text
+import net.benwoodworth.fastcraft.core.dependencies.text.Text
 
 /**
  * A user interface for in-game players.
