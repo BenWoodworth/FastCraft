@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.sponge.dependencies
+package net.benwoodworth.fastcraft.sponge.dependencies.server
 
 import net.benwoodworth.fastcraft.core.dependencies.server.TaskScheduler
 import org.spongepowered.api.scheduler.Task
@@ -9,25 +9,25 @@ import org.spongepowered.api.scheduler.Task
 class SpongeTaskScheduler : TaskScheduler {
 
     override fun scheduleSync(delayTicks: Long, task: () -> Unit) {
-        Task.builder() // TODO Still throwing warning?
+        Task.builder()
                 .delayTicks(delayTicks)
                 .execute(task)
     }
 
     override fun scheduleAsync(delayTicks: Long, task: () -> Unit) {
-        Task.builder() // TODO Still throwing warning?
+        Task.builder()
                 .delayTicks(delayTicks)
                 .async()
                 .execute(task)
     }
 
     override fun runSync(task: () -> Unit) {
-        Task.builder() // TODO Still throwing warning?
+        Task.builder()
                 .execute(task)
     }
 
     override fun runAsync(task: () -> Unit) {
-        Task.builder() // TODO Still throwing warning?
+        Task.builder()
                 .async()
                 .execute(task)
     }
