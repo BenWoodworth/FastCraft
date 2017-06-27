@@ -5,6 +5,8 @@ import dagger.Provides
 import net.benwoodworth.fastcraft.core.dependencies.text.ModuleText
 import net.benwoodworth.fastcraft.core.dependencies.text.TextBuilder
 import net.benwoodworth.fastcraft.core.dependencies.text.TextColorRegistry
+import javax.inject.Singleton
+import org.spongepowered.api.text.Text as SpongeText
 
 /**
  * Sponge implementation of [ModuleText].
@@ -14,11 +16,11 @@ class SpongeModuleText : ModuleText {
 
     @Provides
     override fun textBuilder(): TextBuilder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return SpongeTextBuilderAdapter(SpongeText.builder(""))
     }
 
-    @Provides
+    @Provides @Singleton
     override fun textColorRegistry(): TextColorRegistry {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return SpongeTextColorRegistry()
     }
 }

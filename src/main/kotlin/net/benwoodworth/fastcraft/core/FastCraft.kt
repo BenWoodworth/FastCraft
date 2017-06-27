@@ -3,7 +3,6 @@ package net.benwoodworth.fastcraft.core
 import net.benwoodworth.fastcraft.core.dependencies.event.EventPlayerJoin
 import net.benwoodworth.fastcraft.core.dependencies.event.EventPluginDisable
 import net.benwoodworth.fastcraft.core.dependencies.event.EventPluginEnable
-import net.benwoodworth.fastcraft.core.dependencies.server.Logger
 import net.benwoodworth.fastcraft.core.util.EventListener
 import javax.inject.Inject
 
@@ -13,9 +12,9 @@ import javax.inject.Inject
 class FastCraft @Inject constructor(
         listenerPluginEnable: EventListener<EventPluginEnable>,
         listenerPluginDisable: EventListener<EventPluginDisable>,
-        listenerPlayerJoin: EventListener<EventPlayerJoin>,
+        listenerPlayerJoin: EventListener<EventPlayerJoin>
 
-        private val logger: Logger
+        //private val logger: Logger
 ) {
 
     init {
@@ -25,11 +24,11 @@ class FastCraft @Inject constructor(
     }
 
     fun onPluginEnable() {
-        logger.logInfo("FastCraft core enabled")
+        //logger.info("FastCraft core enabled")
     }
 
     fun onPluginDisable() {
-        logger.logInfo("FastCraft core disabled")
+        //logger.info("FastCraft core disabled")
     }
 
     fun onPlayerJoin() {
