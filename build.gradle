@@ -85,6 +85,10 @@ task ktlintFormat(type: JavaExec) {
     args = ["-F", "src/**/*.kt"]
 }
 
+build {
+    dependsOn ktlint
+}
+
 check {
     dependsOn ktlint
 }
