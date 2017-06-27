@@ -7,8 +7,6 @@ import net.benwoodworth.fastcraft.core.util.EventListener
  */
 interface ModuleEvent {
 
-    fun listenerItemCraft(): EventListener<EventItemCraft>
-
     fun listenerPlayerJoin(): EventListener<EventPlayerJoin>
 
     fun listenerPluginDisable(): EventListener<EventPluginDisable>

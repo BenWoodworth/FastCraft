@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft.core.dependencies.item.recipe
 
-import net.benwoodworth.fastcraft.core.dependencies.event.EventItemCraft
 import net.benwoodworth.fastcraft.core.dependencies.item.Item
 import net.benwoodworth.fastcraft.core.dependencies.item.ItemGrid
 import net.benwoodworth.fastcraft.core.dependencies.player.Player
@@ -31,7 +30,7 @@ interface Recipe {
      * @param player the player crafting the recipe
      * @return the resulting crafting event
      */
-    fun craft(player: Player): EventItemCraft
+    fun craft(player: Player)
 
     /**
      * Check if this recipe is equal to an object.
