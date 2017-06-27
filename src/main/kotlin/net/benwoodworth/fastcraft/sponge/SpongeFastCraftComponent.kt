@@ -3,6 +3,7 @@ package net.benwoodworth.fastcraft.sponge
 import dagger.Component
 import net.benwoodworth.fastcraft.core.FastCraftComponent
 import net.benwoodworth.fastcraft.sponge.dependencies.event.SpongeModuleEvent
+import net.benwoodworth.fastcraft.sponge.dependencies.fastcraft.SpongeModuleFastCraft
 import net.benwoodworth.fastcraft.sponge.dependencies.item.SpongeModuleItem
 import net.benwoodworth.fastcraft.sponge.dependencies.player.SpongeModulePlayer
 import net.benwoodworth.fastcraft.sponge.dependencies.server.SpongeModuleServer
@@ -15,6 +16,7 @@ import javax.inject.Singleton
 @Singleton @Component(modules = arrayOf(
         //SpongeModuleConfig::class,
         SpongeModuleEvent::class,
+        SpongeModuleFastCraft::class,
         //SpongeModuleGui::class,
         SpongeModuleItem::class,
         //SpongeModulePermission::class,

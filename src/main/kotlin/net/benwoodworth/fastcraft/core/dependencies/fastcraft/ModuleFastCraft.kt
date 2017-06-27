@@ -1,9 +1,11 @@
 package net.benwoodworth.fastcraft.core.dependencies.fastcraft
 
+import net.benwoodworth.fastcraft.core.dependencies.server.Plugin
+
 /**
- * Created by ben on 6/26/17.
+ * Dagger module for FastCraft dependencies.
  */
 interface ModuleFastCraft {
 
-    fun pluginFastCraft(): PluginFastCraft
+    fun pluginFastCraft(): Plugin
 }
