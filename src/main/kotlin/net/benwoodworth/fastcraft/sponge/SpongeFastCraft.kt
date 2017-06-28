@@ -9,7 +9,7 @@ import org.spongepowered.api.plugin.Plugin
 /**
  * Sponge implementation of FastCraft.
  */
-@Plugin(id="fastcraft")
+@Plugin(id = "fastcraft")
 class SpongeFastCraft : FastCraftImplementation {
 
     override lateinit var instance: FastCraft

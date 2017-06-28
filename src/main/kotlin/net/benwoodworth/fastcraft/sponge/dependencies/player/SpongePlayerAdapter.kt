@@ -5,8 +5,8 @@ import net.benwoodworth.fastcraft.core.dependencies.player.Player
 import net.benwoodworth.fastcraft.core.dependencies.text.Text
 import net.benwoodworth.fastcraft.core.util.Adapter
 import net.benwoodworth.fastcraft.sponge.dependencies.text.SpongeTextAdapter
-import org.spongepowered.api.entity.living.player.Player as SpongePlayer
 import java.util.UUID
+import org.spongepowered.api.entity.living.player.Player as SpongePlayer
 
 /**
  * Adapter for Sponge players.
