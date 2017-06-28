@@ -12,6 +12,8 @@ apply plugin: "org.spongepowered.plugin"
 
 buildscript {
     ext {
+        version_java = JavaVersion.VERSION_1_8
+
         version_kotlin = "1.1.3"
         version_spongegradle = "0.8.1"
 
@@ -67,10 +69,11 @@ dependencies {
     testCompile "org.mockito:mockito-core:$version_mockito"
 }
 
+sourceCompatibility = version_java
+targetCompatibility = version_java
+
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile.class).all {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+    kotlinOptions.jvmTarget = version_java
 }
 
 task ktlint(type: JavaExec) {
