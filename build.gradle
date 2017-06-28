@@ -1,36 +1,35 @@
-group "net.benwoodworth"
-version "1.0"
+group 'net.benwoodworth'
+version '1.0'
 
-def plugin_name = "FastCraft"
-def plugin_author = "Kepler_"
-def plugin_description = "Redefines crafting in Minecraft"
+def plugin_name = 'FastCraft'
+def plugin_author = 'Kepler_'
+def plugin_description = 'Redefines crafting in Minecraft'
 def plugin_version = version
-def plugin_website = "https://github.com/BenWoodworth/FastCraft"
+def plugin_website = 'https://github.com/BenWoodworth/FastCraft'
 
-apply plugin: "kotlin"
-apply plugin: "org.spongepowered.plugin"
+apply plugin: 'kotlin'
+apply plugin: 'org.spongepowered.plugin'
 
 buildscript {
     ext {
-        version_java = JavaVersion.VERSION_1_8
+        version_java = '1.8'
+        version_kotlin = '1.1.3'
+        version_spongegradle = '0.8.1'
 
-        version_kotlin = "1.1.3"
-        version_spongegradle = "0.8.1"
+        version_bukkit = '1.12-R0.1-SNAPSHOT'
+        version_sponge = '7.0.0-20170624.211431-17'
 
-        version_bukkit = "1.12-R0.1-SNAPSHOT"
-        version_sponge = "7.0.0-20170624.211431-17"
+        version_dagger = '2.11'
+        version_jsr250 = '1.0'
+        version_javax_inject = '1'
 
-        version_dagger = "2.11"
-        version_jsr250 = "1.0"
-        version_javax_inject = "1"
-
-        version_spek = "1.1.2"
-        version_mockito = "2.8.47"
+        version_spek = '1.1.2'
+        version_mockito = '2.8.47'
     }
 
     repositories {
         mavenCentral()
-        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url 'https://plugins.gradle.org/m2/' }
     }
 
     dependencies {
@@ -41,9 +40,9 @@ buildscript {
 
 repositories {
     mavenCentral()
-    maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
-    maven { url "http://repo.spongepowered.org/maven" }
-    maven { url "http://dl.bintray.com/jetbrains/spek" }
+    maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url 'http://repo.spongepowered.org/maven' }
+    maven { url 'http://dl.bintray.com/jetbrains/spek' }
 }
 
 configurations {
@@ -77,15 +76,15 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile.class).all {
 }
 
 task ktlint(type: JavaExec) {
-    main = "com.github.shyiko.ktlint.Main"
+    main = 'com.github.shyiko.ktlint.Main'
     classpath = configurations.ktlint
-    args = ["src/**/*.kt"]
+    args = ['src/**/*.kt']
 }
 
 task ktlintFormat(type: JavaExec) {
-    main = "com.github.shyiko.ktlint.Main"
+    main = 'com.github.shyiko.ktlint.Main'
     classpath = configurations.ktlint
-    args = ["-F", "src/**/*.kt"]
+    args = ['-F', 'src/**/*.kt']
 }
 
 check {
@@ -100,7 +99,7 @@ processResources {
                 plugin_version: plugin_version,
                 plugin_website: plugin_website
 
-        include "plugin.yml"
+        include 'plugin.yml'
     }
 }
 
