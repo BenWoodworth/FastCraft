@@ -9,10 +9,11 @@ def plugin_website = 'https://github.com/BenWoodworth/FastCraft'
 
 apply plugin: 'kotlin'
 apply plugin: 'org.spongepowered.plugin'
+apply plugin: 'org.junit.platform.gradle.plugin'
 
 buildscript {
     ext {
-        target_java = '1.8'
+        java_target = '1.8'
 
         version_kotlin = '1.1.3'
         version_spongegradle = '0.8.1'
@@ -24,8 +25,10 @@ buildscript {
         version_jsr250 = '1.0'
         version_javax_inject = '1'
 
-        version_spek = '1.1.2'
-        version_mockito = '2.8.47'
+        version_junit4 = '4.12'
+        version_junit5 = '5.0.0-M4'
+        version_junit_vintage_engine = '4.12.0-M4'
+        version_junit_runner = '1.0.0-M4'
     }
 
     repositories {
@@ -36,6 +39,7 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin"
         classpath "gradle.plugin.org.spongepowered:spongegradle:$version_spongegradle"
+        classpath "org.junit.platform:junit-platform-gradle-plugin:$version_junit_runner"
     }
 }
 
@@ -64,28 +68,30 @@ dependencies {
     compile "com.google.dagger:dagger:$version_dagger"
     kapt "com.google.dagger:dagger-compiler:$version_dagger"
 
-    testCompile "org.jetbrains.spek:spek-api:$version_spek"
-    testRuntime "org.jetbrains.spek:spek-junit-platform-engine:$version_spek"
-    testCompile "org.mockito:mockito-core:$version_mockito"
+    testCompile("junit:junit:$version_junit4")
+    testRuntime("org.junit.vintage:junit-vintage-engine:$version_junit_vintage_engine")
+    testCompile("org.junit.jupiter:junit-jupiter-api:$version_junit5")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:$version_junit5")
+    testCompile("org.junit.platform:junit-platform-runner:$version_junit_runner")
 }
 
-sourceCompatibility = target_java
-targetCompatibility = target_java
+sourceCompatibility = java_target
+targetCompatibility = java_target
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile.class).all {
-    kotlinOptions.jvmTarget = target_java
+    kotlinOptions.jvmTarget = java_target
 }
 
 task ktlint(type: JavaExec) {
     main = 'com.github.shyiko.ktlint.Main'
     classpath = configurations.ktlint
-    args = ['src/**/*.kt']
+    args = ['src/main/**/*.kt']
 }
 
 task ktlintFormat(type: JavaExec) {
     main = 'com.github.shyiko.ktlint.Main'
     classpath = configurations.ktlint
-    args = ['-F', 'src/**/*.kt']
+    args = ['-F', 'src/main/**/*.kt']
 }
 
 check {
@@ -112,9 +118,16 @@ sponge.plugin.meta {
     url = plugin_website
 }
 
-// Generate Dagger 2 classes, and include them in the java source set
-sourceSets.main.java.srcDirs += "$buildDir/generated/source/kapt/main"
-kapt.generateStubs = true
+sourceSets {
+    main.java.srcDirs += "src/main/kotlin"
+    main.java.srcDirs += "$buildDir/generated/source/kapt/main"
+
+    test.java.srcDirs += "src/test/kotlin"
+}
+
+kapt {
+    generateStubs = true
+}
 
 jar {
     baseName(plugin_name)
