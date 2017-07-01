@@ -1,0 +1,19 @@
+# This is the Bukkit config header!
+
+nested:
+  values:
+      foo: 'bar'
+
+string: "I'm a String"
+
+int: 1234
+
+string_list:
+- "first"
+- "second"
+- "third"
+
+int_list:
+- 0
+- 1
+- 2
