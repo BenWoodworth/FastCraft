@@ -1,8 +1,10 @@
-# This is the Bukkit config header!
+# This is the config header!
 
 nested:
   values:
       foo: 'bar'
+
+'key.with.periods': "Value"
 
 string: "I'm a String"
 

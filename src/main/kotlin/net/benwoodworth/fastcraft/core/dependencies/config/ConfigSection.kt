@@ -6,20 +6,12 @@ package net.benwoodworth.fastcraft.core.dependencies.config
 interface ConfigSection {
 
     /**
-     * Get a config section.
+     * Get a config section, or create a new one if it does not exist.
      *
      * @param name the section name
-     * @return the section with the given name, or `null` if it doesn't exist
+     * @return the section with the given name
      */
-    fun getSection(name: String): ConfigSection?
-
-    /**
-     * Create a new config section.
-     *
-     * @param name the name of the new section
-     * @return the new config section
-     */
-    fun createSection(name: String): ConfigSection
+    fun getSection(name: String): ConfigSection
 
     /**
      * Set a value at a given key.
@@ -28,7 +20,7 @@ interface ConfigSection {
      * @param value the value to set
      * @param T the value type
      */
-    fun <T> setValue(key: String, value: T?)
+    fun <T> set(key: String, value: T?)
 
     /**
      * Get a value, given a key.
@@ -37,5 +29,5 @@ interface ConfigSection {
      * @param T the value type
      * @return the value at the given key, or null if the key does not exist
      */
-    fun <T> getValue(key: String): T?
+    fun <T> get(key: String): T?
 }

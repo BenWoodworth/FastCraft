@@ -1,29 +1,29 @@
 package net.benwoodworth.fastcraft.core.dependencies.config
 
-import java.io.File
 import java.io.IOException
+import java.nio.file.Path
 
 /**
  * A configuration.
  */
-interface Config {
+interface Config : ConfigSection {
 
     /** The config header comment. */
-    val header: String?
+    var header: String?
 
     /**
      * Load a config from a file.
      *
-     * @param file the [File] to load
+     * @param path the [Path] to load
      * @throws IOException if there was a problem loading the config
      */
-    fun load(file: File)
+    fun load(path: Path)
 
     /**
      * Save this [Config] to a file.
      *
-     * @param file the [File] to save to
+     * @param path the [Path] to save to
      * @throws IOException if there was a problem saving the config
      */
-    fun save(file: File)
+    fun save(path: Path)
 }
