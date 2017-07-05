@@ -6,28 +6,41 @@ package net.benwoodworth.fastcraft.core.dependencies.config
 interface ConfigSection {
 
     /**
-     * Get a config section, or create a new one if it does not exist.
+     * Get a config section at the given key, or create a new one if it does not exist.
      *
-     * @param name the section name
-     * @return the section with the given name
+     * @param key the section key
+     * @return the config section at the given key
      */
-    fun getSection(name: String): ConfigSection
+    fun getSection(key: String): ConfigSection
 
     /**
-     * Set a value at a given key.
+     * Get a config section at the given key, or create a new one if it does not exist.
+     *
+     * @param key the section key
+     * @return the config section at the given key
+     */
+    operator fun get(key: String) = getSection(key)
+
+    /**
+     * Remove a value or config section at the given key.
+     *
+     * @param key the key to remove
+     */
+    fun remove(key: String)
+
+    /**
+     * Get a [String] at the given key.
+     *
+     * @param key the key
+     * @return the value at the given key, or null if the key does not exist
+     */
+    fun getString(key: String): String?
+
+    /**
+     * Set a [String] at a given key.
      *
      * @param key the key
      * @param value the value to set
-     * @param T the value type
      */
-    fun <T> set(key: String, value: T?)
-
-    /**
-     * Get a value, given a key.
-     *
-     * @param key the key
-     * @param T the value type
-     * @return the value at the given key, or null if the key does not exist
-     */
-    fun <T> get(key: String): T?
+    fun setString(key: String, value: String)
 }

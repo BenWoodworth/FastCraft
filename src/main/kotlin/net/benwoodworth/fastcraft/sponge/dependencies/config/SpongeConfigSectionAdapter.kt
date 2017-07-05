@@ -3,6 +3,7 @@ package net.benwoodworth.fastcraft.sponge.dependencies.config
 import net.benwoodworth.fastcraft.core.dependencies.config.ConfigSection
 import net.benwoodworth.fastcraft.core.util.Adapter
 import ninja.leaping.configurate.ConfigurationNode
+import org.spongepowered.api.util.TypeTokens
 
 /**
  * Sponge implementation of [ConfigSection].
@@ -11,16 +12,19 @@ class SpongeConfigSectionAdapter(
         baseNode: ConfigurationNode
 ) : ConfigSection, Adapter<ConfigurationNode>(baseNode) {
 
-    override fun getSection(name: String): ConfigSection {
-        return SpongeConfigSectionAdapter(base.getNode())
+    override fun getSection(key: String): ConfigSection {
+        return SpongeConfigSectionAdapter(base.getNode(key))
     }
 
-    override fun <T> set(key: String, value: T?) {
-        base.getNode(key).value = value
+    override fun remove(key: String) {
+        base.removeChild(key)
     }
 
-    @Suppress("UNCHECKED_CAST")
-    override fun <T> get(key: String): T? {
-        return base.getNode(key).value as T?
+    override fun getString(key: String): String? {
+        return base.getNode(key).string
+    }
+
+    override fun setString(key: String, value: String) {
+        base.getNode(key).setValue(TypeTokens.STRING_TOKEN, value)
     }
 }
