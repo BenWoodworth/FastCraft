@@ -7,10 +7,21 @@ import org.junit.jupiter.api.BeforeEach
  *
  * @param T The abstract dependency type being tested.
  */
-abstract class ImplementationTests<out T : Any> {
+abstract class ImplementationTests<T : Any> {
+
+    /**
+     * An instance reset before each test.
+     */
+    lateinit var testInstance: T
+        private set
 
     /**
      * Create a new instance of [T].
      */
-    abstract fun newTestInstance(): T
+    abstract fun createInstance(): T
+
+    @BeforeEach
+    fun beforeEach() {
+        testInstance = createInstance()
+    }
 }

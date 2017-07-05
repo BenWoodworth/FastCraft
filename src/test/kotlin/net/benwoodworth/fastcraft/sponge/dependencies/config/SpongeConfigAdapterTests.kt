@@ -15,7 +15,7 @@ class SpongeConfigAdapterTests : ConfigTests() {
     override val configFile: Path
         get() = Paths.get(javaClass.classLoader.getResource("config-sponge.conf").toURI())
 
-    override fun newTestInstance(): Config {
+    override fun createInstance(): Config {
         val config = HoconConfigurationLoader.builder().build().createEmptyNode()
         return SpongeConfigAdapter(config)
     }

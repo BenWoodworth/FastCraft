@@ -68,7 +68,6 @@ dependencies {
     compile "com.google.dagger:dagger:$version_dagger"
     kapt "com.google.dagger:dagger-compiler:$version_dagger"
 
-    testCompile("junit:junit:$version_junit4")
     testRuntime("org.junit.vintage:junit-vintage-engine:$version_junit_vintage_engine")
     testCompile("org.junit.jupiter:junit-jupiter-api:$version_junit5")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:$version_junit5")
