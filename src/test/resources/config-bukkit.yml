@@ -3,20 +3,17 @@
 
 nested:
   values:
-      foo: 'bar'
+    foo: "bar"
 
-'key.with.periods': "Value"
+"key.with.periods": "Value"
 
 string: "I'm a String"
-
-int: 1234
 
 string_list:
 - "first"
 - "second"
 - "third"
 
-int_list:
-- 0
-- 1
-- 2
+int: 1234
+
+int_list: [0, 1, 2]
