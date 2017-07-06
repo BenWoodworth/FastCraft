@@ -4,7 +4,6 @@ import net.benwoodworth.fastcraft.ImplementationTests
 import org.junit.Assert.*
 import org.junit.jupiter.api.Test
 import java.nio.file.Path
-import java.util.regex.Matcher
 
 /**
  * Tests for [Config].
@@ -26,7 +25,7 @@ abstract class ConfigTests : ImplementationTests<Config>() {
         )) {
             testInstance.header = expected
             val actual = testInstance.header
-            assertTrue(expected == actual)
+            assertEquals(expected, actual)
         }
     }
 }

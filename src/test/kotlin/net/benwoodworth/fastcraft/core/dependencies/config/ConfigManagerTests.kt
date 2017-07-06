@@ -25,10 +25,9 @@ abstract class ConfigManagerTests : ImplementationTests<ConfigManager>() {
                 config.getString("key.with.periods")
         )
 
-        val nested = config.getSection("nested").getSection("values")
         assertEquals("Should load correct nested values",
                 "bar",
-                nested.getString("foo")
+                config["nested"]["values"].getString("foo")
         )
 
         assertEquals("should load correct String",
