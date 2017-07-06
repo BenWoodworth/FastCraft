@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft.sponge.dependencies.config
 
-import com.google.common.reflect.TypeToken
 import net.benwoodworth.fastcraft.core.dependencies.config.ConfigSection
 import net.benwoodworth.fastcraft.core.util.Adapter
 import ninja.leaping.configurate.ConfigurationNode
@@ -34,7 +33,12 @@ class SpongeConfigSectionAdapter(
     }
 
     override fun getStringList(key: String): List<String>? {
-        return base.getNode(key).getList(TypeTokens.STRING_TOKEN)
+        val node = base.getNode(key)
+        return if (node.isVirtual) {
+            null
+        } else {
+            node.getList(TypeTokens.STRING_TOKEN)
+        }
     }
 
     override fun setStringList(key: String, value: List<String>) {
@@ -42,7 +46,12 @@ class SpongeConfigSectionAdapter(
     }
 
     override fun getInt(key: String): Int? {
-        return base.getNode(key).int
+        val node = base.getNode(key)
+        return if (node.isVirtual) {
+            null
+        } else {
+            node.int
+        }
     }
 
     override fun setInt(key: String, value: Int) {
@@ -50,7 +59,12 @@ class SpongeConfigSectionAdapter(
     }
 
     override fun getIntList(key: String): List<Int>? {
-        return base.getNode(key).getList(TypeTokens.INTEGER_TOKEN)
+        val node = base.getNode(key)
+        return if (node.isVirtual) {
+            null
+        } else {
+            node.getList(TypeTokens.INTEGER_TOKEN)
+        }
     }
 
     override fun setIntList(key: String, value: List<Int>) {
@@ -58,7 +72,12 @@ class SpongeConfigSectionAdapter(
     }
 
     override fun getBoolean(key: String): Boolean? {
-        return base.getNode(key).boolean
+        val node = base.getNode(key)
+        return if (node.isVirtual) {
+            null
+        } else {
+            node.boolean
+        }
     }
 
     override fun setBoolean(key: String, value: Boolean) {
