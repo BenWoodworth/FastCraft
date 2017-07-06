@@ -11,6 +11,7 @@ import net.benwoodworth.fastcraft.core.util.EventListener
 class GuiButton : GuiLayout {
 
     override val width = 1
+
     override val height = 1
 
     override val changeListener = EventListener<EventGuiLayoutChange>()
@@ -20,6 +21,7 @@ class GuiButton : GuiLayout {
         get() = field?.copy()
         set(value) {
             field = value?.copy()
+            changeListener.notifyHandlers(EventGuiLayoutChange())
         }
 
     /** A listener for button clicks. */
