@@ -30,7 +30,7 @@ abstract class ConfigSectionTests : ImplementationTests<ConfigSection>() {
     }
 
     @Test
-    fun `getString() and setString() should set and return the correct Strings`() {
+    fun `when getting and setting strings, should store and retrieve correctly`() {
         for (expected in listOf(
                 "",
                 "This test string has one line",
@@ -46,7 +46,7 @@ abstract class ConfigSectionTests : ImplementationTests<ConfigSection>() {
     }
 
     @Test
-    fun `getStringList() and setStringList() should get and return the correct values`() {
+    fun `when getting and setting string lists, should store and retrieve correctly`() {
         for (expected in listOf(
                 emptyList(),
                 listOf("first", "second", "third"),
@@ -61,7 +61,7 @@ abstract class ConfigSectionTests : ImplementationTests<ConfigSection>() {
     }
 
     @Test
-    fun `getInt() and setInt() should set and return the correct Ints`() {
+    fun `when getting and setting ints, should store and retrieve correctly`() {
         for (expected in -1000..1000) {
             val testInstance = createInstance()
             testInstance.setInt("key", expected)
@@ -72,7 +72,7 @@ abstract class ConfigSectionTests : ImplementationTests<ConfigSection>() {
     }
 
     @Test
-    fun `getIntList() and setIntList() should get and return the correct values`() {
+    fun `when getting and setting int lists, should store and retrieve correctly`() {
         for (expected in listOf(
                 emptyList(),
                 (-10..10).toList(),
@@ -87,7 +87,7 @@ abstract class ConfigSectionTests : ImplementationTests<ConfigSection>() {
     }
 
     @Test
-    fun `getBoolean() and setBoolean() should set and return the correct Booleans`() {
+    fun `when getting and setting booleans, should store and retrieve correctly`() {
         for (expected in listOf(true, false)) {
             val testInstance = createInstance()
             testInstance.setBoolean("key", expected)
