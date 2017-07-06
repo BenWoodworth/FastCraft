@@ -30,7 +30,8 @@ class SpongeItemAdapter(
             return SpongeTextAdapter(displayName)
         }
         set(value) {
-            base.offer(Keys.DISPLAY_NAME, (value as SpongeTextAdapter).base)
+            value as SpongeTextAdapter
+            base.offer(Keys.DISPLAY_NAME, value.base)
         }
 
     override var lore: List<Text?>?

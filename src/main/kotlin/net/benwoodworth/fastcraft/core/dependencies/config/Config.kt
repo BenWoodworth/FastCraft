@@ -6,5 +6,5 @@ package net.benwoodworth.fastcraft.core.dependencies.config
 interface Config : ConfigSection {
 
     /** The config header comment. */
-    var header: String?
+    var header: List<String>
 }

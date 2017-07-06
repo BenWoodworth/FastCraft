@@ -4,6 +4,7 @@ import net.benwoodworth.fastcraft.ImplementationTests
 import org.junit.Assert.*
 import org.junit.jupiter.api.Test
 import java.nio.file.Path
+import java.util.regex.Matcher
 
 /**
  * Tests for [Config].
@@ -15,20 +16,17 @@ abstract class ConfigTests : ImplementationTests<Config>() {
 
     @Test
     fun `after setting the header, getting the header should be the same`() {
-        val headerBuilder = StringBuilder()
-        for (ch in 0..255) {
-            headerBuilder.append(ch.toChar())
+        for (expected in listOf(
+                emptyList(),
+                listOf(""),
+                listOf("", ""),
+                listOf("This test string has one line"),
+                listOf(" This header begins with a space"),
+                listOf("This is a test string!", "It has two lines :D")
+        )) {
+            testInstance.header = expected
+            val actual = testInstance.header
+            assertTrue(expected == actual)
         }
-
-        val expectedHeader = headerBuilder.toString()
-
-        testInstance.header = expectedHeader
-        assertEquals(expectedHeader, testInstance.header)
-    }
-
-    @Test
-    fun `after setting header to null, the header should be null`() {
-        testInstance.header = null
-        assertNull(testInstance.header)
     }
 }

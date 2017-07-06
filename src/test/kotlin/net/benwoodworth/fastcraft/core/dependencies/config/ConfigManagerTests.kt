@@ -16,13 +16,13 @@ abstract class ConfigManagerTests : ImplementationTests<ConfigManager>() {
 
     private fun verifyConfigValues(config: Config) {
         assertEquals("should load correct header",
-                "This is the config header!",
+                listOf("This is the config header!", "It has more than one line!"),
                 config.header
         )
 
         assertEquals("should load key with periods",
                 "Value",
-                config.getString("I'm a String")
+                config.getString("key.with.periods")
         )
 
         val nested = config.getSection("nested").getSection("values")
@@ -36,14 +36,14 @@ abstract class ConfigManagerTests : ImplementationTests<ConfigManager>() {
                 config.getString("string")
         )
 
-        assertEquals("should load correct Int",
-                1234,
-                config.getString("int")
-        )
-
         assertEquals("should load correct String list",
                 listOf("first", "second", "third"),
                 config.getStringList("string_list")
+        )
+
+        assertEquals("should load correct Int",
+                1234,
+                config.getInt("int")
         )
 
         assertEquals("should load correct Int list",

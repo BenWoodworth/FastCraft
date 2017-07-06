@@ -3,6 +3,7 @@ package net.benwoodworth.fastcraft.sponge.dependencies.config
 import net.benwoodworth.fastcraft.core.dependencies.config.Config
 import net.benwoodworth.fastcraft.core.dependencies.config.ConfigSection
 import net.benwoodworth.fastcraft.core.util.Adapter
+import ninja.leaping.configurate.ConfigurationOptions
 import ninja.leaping.configurate.commented.CommentedConfigurationNode
 
 /**
@@ -13,9 +14,26 @@ class SpongeConfigAdapter(baseNode: CommentedConfigurationNode) :
         Adapter<CommentedConfigurationNode>(baseNode),
         Config {
 
-    override var header: String?
-        get() = base.comment.orElse(null)
+    var configOptions = base.options
+        private set
+
+    override var header: List<String>
+        get() {
+            val lines = configOptions.header?.split('\n') ?: emptyList()
+
+            return lines.map {
+                if (it.isNotEmpty() && it[0] == ' ') {
+                    it.substring(1)
+                } else {
+                    it
+                }
+            }
+        }
         set(value) {
-            base.setComment(value)
+            configOptions = configOptions.setHeader(if (value.isEmpty()) {
+                null
+            } else {
+                value.map { " $it" }.joinToString("\n")
+            })
         }
 }

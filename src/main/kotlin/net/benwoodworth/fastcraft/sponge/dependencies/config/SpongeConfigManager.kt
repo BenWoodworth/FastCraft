@@ -24,10 +24,13 @@ class SpongeConfigManager : ConfigManager {
     }
 
     override fun saveConfig(path: Path, config: Config) {
+        config as SpongeConfigAdapter
+
         val loader = HoconConfigurationLoader.builder()
+                .setDefaultOptions(config.configOptions)
                 .setPath(path)
                 .build()
 
-        loader.save((config as SpongeConfigAdapter).base)
+        loader.save(config.base)
     }
 }
