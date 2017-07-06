@@ -11,32 +11,69 @@ abstract class ConfigSectionTests : ImplementationTests<ConfigSection>() {
 
     @Test
     fun `getString() and setString() should set and return the correct Strings`() {
-        for (testValue in listOf(
+        for (expected in listOf(
+                "",
                 "This test string has one line",
                 "This is a test string!\nIt has two lines :D",
                 "This one has special characters \r\n\t"
         )) {
             val testInstance = createInstance()
-            testInstance.setString("key", testValue)
-            assertEquals(testValue, testInstance.getString("key"))
+            testInstance.setString("key", expected)
+
+            val actual = testInstance.getString("key")
+            assertEquals(expected, actual)
+        }
+    }
+
+    @Test
+    fun `getStringList() and setStringList() should get and return the correct values`() {
+        for (expected in listOf(
+                emptyList(),
+                listOf("first", "second", "third"),
+                listOf("this is", "a list", "of", "string values")
+        )) {
+            val testInstance = createInstance()
+            testInstance.setStringList("key", expected)
+
+            val actual = testInstance.getStringList("key")
+            assertEquals(expected, actual)
         }
     }
 
     @Test
     fun `getInt() and setInt() should set and return the correct Ints`() {
-        for (testValue in -1000..1000) {
+        for (expected in -1000..1000) {
             val testInstance = createInstance()
-            testInstance.setInt("key", testValue)
-            assertEquals(testValue, testInstance.getInt("key"))
+            testInstance.setInt("key", expected)
+
+            val actual = testInstance.getInt("key")
+            assertEquals(expected, actual)
+        }
+    }
+
+    @Test
+    fun `getIntList() and setIntList() should get and return the correct values`() {
+        for (expected in listOf(
+                emptyList(),
+                (-10..10).toList(),
+                (-1000..1000).step(17).toList()
+        )) {
+            val testInstance = createInstance()
+            testInstance.setIntList("key", expected)
+
+            val actual = testInstance.getIntList("key")
+            assertEquals(expected, actual)
         }
     }
 
     @Test
     fun `getBoolean() and setBoolean() should set and return the correct Booleans`() {
-        for (testValue in listOf(true, false)) {
+        for (expected in listOf(true, false)) {
             val testInstance = createInstance()
-            testInstance.setBoolean("key", testValue)
-            assertEquals(testValue, testInstance.getBoolean("key"))
+            testInstance.setBoolean("key", expected)
+
+            val actual = testInstance.getBoolean("key")
+            assertEquals(expected, actual)
         }
     }
 }

@@ -25,7 +25,6 @@ buildscript {
         version_jsr250 = '1.0'
         version_javax_inject = '1'
 
-        version_junit4 = '4.12'
         version_junit5 = '5.0.0-M4'
         version_junit_vintage_engine = '4.12.0-M4'
         version_junit_runner = '1.0.0-M4'
@@ -47,7 +46,6 @@ repositories {
     mavenCentral()
     maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
     maven { url 'http://repo.spongepowered.org/maven' }
-    maven { url 'http://dl.bintray.com/jetbrains/spek' }
 }
 
 configurations {
@@ -68,7 +66,6 @@ dependencies {
     compile "com.google.dagger:dagger:$version_dagger"
     kapt "com.google.dagger:dagger-compiler:$version_dagger"
 
-    testRuntime("org.junit.vintage:junit-vintage-engine:$version_junit_vintage_engine")
     testCompile("org.junit.jupiter:junit-jupiter-api:$version_junit5")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:$version_junit5")
     testCompile("org.junit.platform:junit-platform-runner:$version_junit_runner")

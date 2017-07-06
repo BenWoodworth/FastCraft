@@ -52,6 +52,22 @@ interface ConfigSection {
     fun setString(key: String, value: String)
 
     /**
+     * Get a [List] of [String]s at the given key.
+     *
+     * @param key the key
+     * @return the value at the given key, or null if the key does not exist
+     */
+    fun getStringList(key: String): List<String>?
+
+    /**
+     * Set a [List] of [String]s at a given key.
+     *
+     * @param key the key
+     * @param value the value to set
+     */
+    fun setStringList(key: String, value: List<String>)
+
+    /**
      * Get an [Int] at the given key.
      *
      * @param key the key
@@ -60,12 +76,28 @@ interface ConfigSection {
     fun getInt(key: String): Int?
 
     /**
-     * Set a [String] at a given key.
+     * Set an [Int] at a given key.
      *
      * @param key the key
      * @param value the value to set
      */
     fun setInt(key: String, value: Int)
+
+    /**
+     * Get a [List] of [Int]s at the given key.
+     *
+     * @param key the key
+     * @return the value at the given key, or null if the key does not exist
+     */
+    fun getIntList(key: String): List<Int>?
+
+    /**
+     * Set a [List] of [Int]s at a given key.
+     *
+     * @param key the key
+     * @param value the value to set
+     */
+    fun setIntList(key: String, value: List<Int>)
 
     /**
      * Get a [Boolean] at the given key.

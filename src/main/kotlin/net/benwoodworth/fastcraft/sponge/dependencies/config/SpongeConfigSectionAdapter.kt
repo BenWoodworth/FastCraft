@@ -1,5 +1,6 @@
 package net.benwoodworth.fastcraft.sponge.dependencies.config
 
+import com.google.common.reflect.TypeToken
 import net.benwoodworth.fastcraft.core.dependencies.config.ConfigSection
 import net.benwoodworth.fastcraft.core.util.Adapter
 import ninja.leaping.configurate.ConfigurationNode
@@ -29,7 +30,15 @@ class SpongeConfigSectionAdapter(
     }
 
     override fun setString(key: String, value: String) {
-        base.getNode(key).setValue(TypeTokens.STRING_TOKEN, value)
+        base.getNode(key).value = value
+    }
+
+    override fun getStringList(key: String): List<String>? {
+        return base.getNode(key).getList(TypeTokens.STRING_TOKEN)
+    }
+
+    override fun setStringList(key: String, value: List<String>) {
+        base.getNode(key).value = value
     }
 
     override fun getInt(key: String): Int? {
@@ -40,11 +49,19 @@ class SpongeConfigSectionAdapter(
         base.getNode(key).setValue(TypeTokens.INTEGER_TOKEN, value)
     }
 
+    override fun getIntList(key: String): List<Int>? {
+        return base.getNode(key).getList(TypeTokens.INTEGER_TOKEN)
+    }
+
+    override fun setIntList(key: String, value: List<Int>) {
+        base.getNode(key).value = value
+    }
+
     override fun getBoolean(key: String): Boolean? {
         return base.getNode(key).boolean
     }
 
     override fun setBoolean(key: String, value: Boolean) {
-        base.getNode(key).setValue(TypeTokens.BOOLEAN_TOKEN, value)
+        base.getNode(key).value = value
     }
 }
