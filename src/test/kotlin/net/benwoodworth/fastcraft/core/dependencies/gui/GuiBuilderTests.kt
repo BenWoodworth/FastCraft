@@ -19,7 +19,7 @@ abstract class GuiBuilderTests : ImplementationTests<GuiBuilder>() {
                     .setHeight(expected)
                     .build()
 
-            val actual = gui.layout.height
+            val actual = gui.height
             assertEquals(expected, actual)
         }
     }
@@ -39,6 +39,18 @@ abstract class GuiBuilderTests : ImplementationTests<GuiBuilder>() {
                 .build()
 
         val actual = gui.title
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `when setting the layout, the built gui should have that layout`() {
+        val expected = GuiLayoutComposite(10, 20)
+
+        val gui = createInstance()
+                .setLayout(expected)
+                .build()
+
+        val actual = gui.layout
         assertEquals(expected, actual)
     }
 }

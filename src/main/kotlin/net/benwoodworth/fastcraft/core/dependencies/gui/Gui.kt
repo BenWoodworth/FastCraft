@@ -8,10 +8,16 @@ import net.benwoodworth.fastcraft.core.dependencies.text.Text
  */
 interface Gui {
 
+    /** The width of this [Gui]. */
+    val width: Int
+
+    /** The height of this [Gui]. */
+    val height: Int
+
     /** The title of this [Gui]. */
     val title: Text
 
-    /** The layout of this [Gui]. */
+    /** The layout of this [Gui], positioned at the top left. */
     var layout: GuiLayout
 
     /**

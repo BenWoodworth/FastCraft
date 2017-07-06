@@ -9,7 +9,7 @@ import net.benwoodworth.fastcraft.core.util.Builder
 interface GuiBuilder : Builder<Gui> {
 
     /**
-     * Set the [Gui] title.
+     * Set the [Gui] height.
      *
      * @return fluent interface
      */
@@ -21,4 +21,11 @@ interface GuiBuilder : Builder<Gui> {
      * @return fluent interface
      */
     fun setTitle(title: Text): GuiBuilder
+
+    /**
+     * Set the [Gui] layout.
+     *
+     * @return fluent interface
+     */
+    fun setLayout(layout: GuiLayout): GuiBuilder
 }
