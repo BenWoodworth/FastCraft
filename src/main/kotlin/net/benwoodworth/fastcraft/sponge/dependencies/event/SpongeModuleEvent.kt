@@ -27,7 +27,7 @@ class SpongeModuleEvent(
 
         Sponge.getEventManager().registerListener(plugin,
                 ClientConnectionEvent.Join::class.java,
-                { listener.notifyHandlers(SpongeEventPlayerJoinAdapter(it)) }
+                { listener.notifyHandlers(SpongeEventPlayerJoin(it)) }
         )
 
         return listener
@@ -39,7 +39,7 @@ class SpongeModuleEvent(
 
         Sponge.getEventManager().registerListener(plugin,
                 GameStoppingEvent::class.java,
-                { listener.notifyHandlers(SpongeEventPluginDisableAdapter(it)) }
+                { listener.notifyHandlers(SpongeEventPluginDisable(it)) }
         )
 
         return listener
@@ -51,7 +51,7 @@ class SpongeModuleEvent(
 
         Sponge.getEventManager().registerListener(plugin,
                 GamePreInitializationEvent::class.java,
-                { listener.notifyHandlers(SpongeEventPluginEnableAdapter(it)) }
+                { listener.notifyHandlers(SpongeEventPluginEnable(it)) }
         )
 
         return listener

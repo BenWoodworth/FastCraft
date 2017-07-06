@@ -4,14 +4,14 @@ import net.benwoodworth.fastcraft.core.dependencies.permission.Permission
 import net.benwoodworth.fastcraft.core.dependencies.player.Player
 import net.benwoodworth.fastcraft.core.dependencies.text.Text
 import net.benwoodworth.fastcraft.core.util.Adapter
-import net.benwoodworth.fastcraft.sponge.dependencies.text.SpongeTextAdapter
+import net.benwoodworth.fastcraft.sponge.dependencies.text.SpongeText
 import java.util.UUID
 import org.spongepowered.api.entity.living.player.Player as SpongePlayer
 
 /**
  * Adapter for Sponge players.
  */
-class SpongePlayerAdapter(
+class SpongePlayer(
         basePlayer: SpongePlayer
 ) : Player, Adapter<SpongePlayer>(basePlayer) {
 
@@ -19,10 +19,10 @@ class SpongePlayerAdapter(
         get() = base.name
 
     override var displayName: Text?
-        get() = SpongeTextAdapter(base.displayNameData.displayName().get())
+        get() = SpongeText(base.displayNameData.displayName().get())
         set(value) {
             base.displayNameData.displayName().set(
-                    (value as SpongeTextAdapter).base
+                    (value as SpongeText).base
             )
         }
 
@@ -31,7 +31,7 @@ class SpongePlayerAdapter(
 
     override fun sendMessage(message: Text) {
         base.sendMessage(
-                (message as SpongeTextAdapter).base
+                (message as SpongeText).base
         )
     }
 

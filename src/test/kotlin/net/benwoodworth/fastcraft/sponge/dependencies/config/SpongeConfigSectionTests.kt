@@ -5,12 +5,12 @@ import net.benwoodworth.fastcraft.core.dependencies.config.ConfigSectionTests
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader
 
 /**
- * Tests for [SpongeConfigSectionAdapter].
+ * Tests for [SpongeConfigSection].
  */
-class SpongeConfigSectionAdapterTests : ConfigSectionTests() {
+class SpongeConfigSectionTests : ConfigSectionTests() {
 
     override fun createInstance(): ConfigSection {
         val config = HoconConfigurationLoader.builder().build().createEmptyNode()
-        return SpongeConfigSectionAdapter(config)
+        return SpongeConfigSection(config)
     }
 }

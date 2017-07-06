@@ -7,7 +7,7 @@ import org.slf4j.Logger as SpongeLogger
 /**
  * An adapter for Sponge loggers.
  */
-class SpongeLoggerAdapter(
+class SpongeLogger(
         logger: SpongeLogger
 ) : Logger, Adapter<SpongeLogger>(logger) {
 

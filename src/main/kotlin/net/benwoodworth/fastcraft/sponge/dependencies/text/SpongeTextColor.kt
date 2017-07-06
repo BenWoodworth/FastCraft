@@ -7,6 +7,6 @@ import org.spongepowered.api.text.format.TextColor as SpongeTextColor
 /**
  * Adapts Sponge text colors.
  */
-class SpongeTextColorAdapter(
+class SpongeTextColor(
         baseTextColor: SpongeTextColor
 ) : TextColor, Adapter<SpongeTextColor>(baseTextColor)

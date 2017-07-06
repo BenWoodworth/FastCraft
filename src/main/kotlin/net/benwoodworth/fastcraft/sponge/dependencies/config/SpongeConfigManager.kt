@@ -12,7 +12,7 @@ class SpongeConfigManager : ConfigManager {
 
     override fun getEmptyConfig(): Config {
         val loader = HoconConfigurationLoader.builder().build()
-        return SpongeConfigAdapter(loader.load())
+        return SpongeConfig(loader.load())
     }
 
     override fun loadConfig(path: Path): Config {
@@ -20,11 +20,11 @@ class SpongeConfigManager : ConfigManager {
                 .setPath(path)
                 .build()
 
-        return SpongeConfigAdapter(loader.load())
+        return SpongeConfig(loader.load())
     }
 
     override fun saveConfig(path: Path, config: Config) {
-        config as SpongeConfigAdapter
+        config as SpongeConfig
 
         val loader = HoconConfigurationLoader.builder()
                 .setDefaultOptions(config.configOptions)

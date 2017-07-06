@@ -7,6 +7,6 @@ import org.spongepowered.api.event.game.state.GameStoppingEvent
 /**
  * Adapts Sponge player join events.
  */
-class SpongeEventPluginDisableAdapter(
+class SpongeEventPluginDisable(
         baseEvent: GameStoppingEvent
 ) : EventPluginDisable, Adapter<GameStoppingEvent>(baseEvent)

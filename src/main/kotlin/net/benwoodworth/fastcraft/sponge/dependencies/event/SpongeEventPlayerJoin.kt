@@ -8,7 +8,7 @@ import org.spongepowered.api.event.network.ClientConnectionEvent
 /**
  * Adapts Sponge player join events.
  */
-class SpongeEventPlayerJoinAdapter(
+class SpongeEventPlayerJoin(
         baseEvent: ClientConnectionEvent.Join
 ) : EventPlayerJoin, Adapter<ClientConnectionEvent.Join>(baseEvent) {
 

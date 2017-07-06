@@ -9,12 +9,12 @@ import java.nio.file.Path
 /**
  * An adapter for Sponge plugins.
  */
-class SpongePluginAdapter(
+class SpongePlugin(
         plugin: PluginContainer
 ) : Plugin, Adapter<PluginContainer>(plugin) {
 
     override val logger: Logger
-        get() = SpongeLoggerAdapter(base.logger)
+        get() = SpongeLogger(base.logger)
 
     override val pluginDirectory: Path
         get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.

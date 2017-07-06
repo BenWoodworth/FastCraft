@@ -9,12 +9,12 @@ import org.spongepowered.api.text.LiteralText as SpongeLiteralText
 /**
  * Adapts the Sponge LiteralText builder.
  */
-class SpongeTextBuilderAdapter(
+class SpongeTextBuilder(
         baseBuilder: SpongeLiteralText.Builder
 ) : TextBuilder, Adapter<SpongeLiteralText.Builder>(baseBuilder) {
 
     override fun build(): Text {
-        return SpongeTextAdapter(base.build())
+        return SpongeText(base.build())
     }
 
     override fun text(text: String): TextBuilder {
@@ -24,13 +24,13 @@ class SpongeTextBuilderAdapter(
 
     override fun addExtra(vararg extra: Text): TextBuilder {
         base.append(extra.map {
-            (it as SpongeTextAdapter).base
+            (it as SpongeText).base
         })
         return this
     }
 
     override fun color(color: TextColor?): TextBuilder {
-        base.color((color as SpongeTextColorAdapter).base)
+        base.color((color as SpongeTextColor).base)
         return this
     }
 

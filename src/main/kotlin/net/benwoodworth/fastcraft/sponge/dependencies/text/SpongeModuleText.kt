@@ -16,7 +16,7 @@ class SpongeModuleText : ModuleText {
 
     @Provides
     override fun textBuilder(): TextBuilder {
-        return SpongeTextBuilderAdapter(SpongeText.builder(""))
+        return SpongeTextBuilder(SpongeText.builder(""))
     }
 
     @Provides @Singleton

@@ -3,7 +3,6 @@ package net.benwoodworth.fastcraft.sponge.dependencies.item
 import net.benwoodworth.fastcraft.core.dependencies.item.Item
 import net.benwoodworth.fastcraft.core.dependencies.text.Text
 import net.benwoodworth.fastcraft.core.util.Adapter
-import net.benwoodworth.fastcraft.sponge.dependencies.text.SpongeTextAdapter
 import org.spongepowered.api.data.key.Keys
 import org.spongepowered.api.item.inventory.ItemStack
 import org.spongepowered.api.text.Text as SpongeText
@@ -11,7 +10,7 @@ import org.spongepowered.api.text.Text as SpongeText
 /**
  * Adapts Sponge items.
  */
-class SpongeItemAdapter(
+class SpongeItem(
         baseItem: ItemStack
 ) : Item, Adapter<ItemStack>(baseItem) {
 
@@ -22,15 +21,15 @@ class SpongeItemAdapter(
         }
 
     override val name: Text
-        get() = SpongeTextAdapter(SpongeText.of(base))
+        get() = net.benwoodworth.fastcraft.sponge.dependencies.text.SpongeText(SpongeText.of(base))
 
     override var displayName: Text?
         get() {
             val displayName = base.get(Keys.DISPLAY_NAME).orElse(null)
-            return SpongeTextAdapter(displayName)
+            return net.benwoodworth.fastcraft.sponge.dependencies.text.SpongeText(displayName)
         }
         set(value) {
-            value as SpongeTextAdapter
+            value as net.benwoodworth.fastcraft.sponge.dependencies.text.SpongeText
             base.offer(Keys.DISPLAY_NAME, value.base)
         }
 
@@ -38,12 +37,12 @@ class SpongeItemAdapter(
         get() {
             val lore = base.get(Keys.ITEM_LORE).orElse(null)
             return lore?.map {
-                it?.run { SpongeTextAdapter(it) }
+                it?.run { net.benwoodworth.fastcraft.sponge.dependencies.text.SpongeText(it) }
             }
         }
         set(value) {
             base.offer(Keys.ITEM_LORE, value?.map {
-                it?.run { (this as SpongeTextAdapter).base }
+                it?.run { (this as net.benwoodworth.fastcraft.sponge.dependencies.text.SpongeText).base }
             })
         }
 
@@ -51,7 +50,7 @@ class SpongeItemAdapter(
         get() = base.maxStackQuantity
 
     override fun isSimilar(item: Item): Boolean {
-        if (item !is SpongeItemAdapter) {
+        if (item !is SpongeItem) {
             return false
         }
 
@@ -63,5 +62,5 @@ class SpongeItemAdapter(
         return base.equalTo(other)
     }
 
-    override fun copy() = SpongeItemAdapter(base.copy())
+    override fun copy() = SpongeItem(base.copy())
 }

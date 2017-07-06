@@ -8,12 +8,12 @@ import org.spongepowered.api.util.TypeTokens
 /**
  * Sponge implementation of [ConfigSection].
  */
-class SpongeConfigSectionAdapter(
+class SpongeConfigSection(
         baseNode: ConfigurationNode
 ) : ConfigSection, Adapter<ConfigurationNode>(baseNode) {
 
     override fun getSection(key: String): ConfigSection {
-        return SpongeConfigSectionAdapter(base.getNode(key))
+        return SpongeConfigSection(base.getNode(key))
     }
 
     override fun removeSection(key: String) {

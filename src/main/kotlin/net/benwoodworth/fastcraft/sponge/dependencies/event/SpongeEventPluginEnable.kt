@@ -7,6 +7,6 @@ import org.spongepowered.api.event.game.state.GamePreInitializationEvent
 /**
  * Adapts Sponge plugin enable events.
  */
-class SpongeEventPluginEnableAdapter(
+class SpongeEventPluginEnable(
         baseEvent: GamePreInitializationEvent
 ) : EventPluginEnable, Adapter<GamePreInitializationEvent>(baseEvent)

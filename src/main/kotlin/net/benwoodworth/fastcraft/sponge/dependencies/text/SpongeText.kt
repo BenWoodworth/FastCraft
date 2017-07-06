@@ -7,6 +7,6 @@ import org.spongepowered.api.text.Text as SpongeText
 /**
  * Adapts Sponge text.
  */
-class SpongeTextAdapter(
+class SpongeText(
         baseText: SpongeText
 ) : Text, Adapter<SpongeText>(baseText)
