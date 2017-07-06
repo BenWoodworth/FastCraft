@@ -10,6 +10,17 @@ import org.junit.jupiter.api.Test
 abstract class ConfigSectionTests : ImplementationTests<ConfigSection>() {
 
     @Test
+    fun `when getting a non-existent key, null should be returned`() {
+        val key = "key"
+
+        assertNull(testInstance.getString(key))
+        assertNull(testInstance.getStringList(key))
+        assertNull(testInstance.getInt(key))
+        assertNull(testInstance.getIntList(key))
+        assertNull(testInstance.getBoolean(key))
+    }
+
+    @Test
     fun `getString() and setString() should set and return the correct Strings`() {
         for (expected in listOf(
                 "",
