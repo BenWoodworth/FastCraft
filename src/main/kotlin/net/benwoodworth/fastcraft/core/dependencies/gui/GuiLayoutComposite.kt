@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft.core.dependencies.gui
 
 import net.benwoodworth.fastcraft.core.dependencies.gui.events.EventGuiLayoutChange
 import net.benwoodworth.fastcraft.core.util.EventListener
+import java.util.LinkedList
 
 /**
  * A composite [GuiLayout].
@@ -14,20 +15,27 @@ class GuiLayoutComposite(
     override val changeListener = EventListener<EventGuiLayoutChange>()
 
     /** The layouts that compose this layout. */
-    private val childLayouts = ArrayList<LayoutPosition>()
+    private val childLayouts = LinkedList<LayoutPosition>()
+
+    /** The buttons within this layout */
+    private val buttons = mutableMapOf<Pair<Int, Int>, GuiButton>()
 
     override fun getButton(x: Int, y: Int): GuiButton? {
-        return childLayoutAtPoint(x, y)?.let {
+        return buttons[Pair(x, y)] ?: childLayoutAtPoint(x, y)?.let {
             it.layout.getButton(it.x, it.y)
         }
     }
 
     override fun setButton(x: Int, y: Int, button: GuiButton) {
-        addLayout(x, y, button)
+        buttons.put(Pair(x, y), button)?.let {
+            changeListener -= it.changeListener::notifyHandlers
+        }
+        changeListener += button.changeListener::notifyHandlers
     }
 
     /**
      * Add a child layout or button at the specified location.
+     *
      *
      * @param layout the layout to add
      */
