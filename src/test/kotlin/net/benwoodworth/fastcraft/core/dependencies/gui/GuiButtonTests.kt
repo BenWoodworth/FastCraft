@@ -1,9 +1,7 @@
 package net.benwoodworth.fastcraft.core.dependencies.gui
 
-import net.benwoodworth.fastcraft.core.dependencies.item.Item
 import org.junit.Assert.*
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito.*
 
 /**
  * Tests for [GuiButton].
