@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.core.dependencies.gui
 
 import net.benwoodworth.fastcraft.core.dependencies.gui.events.EventGuiLayoutChange
 import net.benwoodworth.fastcraft.core.util.EventListener
-import java.util.LinkedList
+import java.util.*
 
 /**
  * A composite [GuiLayout].
@@ -26,16 +26,25 @@ class GuiLayoutComposite(
         }
     }
 
+    /**
+     * Remove a button without notifying the change listener.
+     */
+    private fun removeButtonNoNotify(x: Int, y: Int) {
+        buttons.remove(Pair(x, y))?.let {
+            it.changeListener -= changeListener::notifyHandlers
+        }
+    }
+
     override fun setButton(x: Int, y: Int, button: GuiButton) {
-        removeButton(x, y)
+        removeButtonNoNotify(x, y)
         buttons[Pair(x, y)] = button
-        changeListener += button.changeListener::notifyHandlers
+        button.changeListener += changeListener::notifyHandlers
+        changeListener.notifyHandlers(EventGuiLayoutChange())
     }
 
     override fun removeButton(x: Int, y: Int) {
-        buttons.remove(Pair(x, y))?.let {
-            changeListener -= it.changeListener::notifyHandlers
-        }
+        removeButtonNoNotify(x, y)
+        changeListener.notifyHandlers(EventGuiLayoutChange())
     }
 
     /**
