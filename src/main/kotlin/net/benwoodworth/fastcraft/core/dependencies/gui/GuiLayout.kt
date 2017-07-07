@@ -32,14 +32,16 @@ interface GuiLayout {
      * @param x the x-coordinate of the button
      * @param y the y-coordinate of the button
      * @param button the button to add
+     * @return the button that was replaced, or `null` if there was none
      */
-    fun setButton(x: Int, y: Int, button: GuiButton)
+    fun setButton(x: Int, y: Int, button: GuiButton): GuiButton?
 
     /**
      * Remove a button from the specified position in the layout.
      *
      * @param x the x-coordinate of the button
      * @param y the y-coordinate of the button
+     * @return the button that was removed, or `null` if there was none
      */
-    fun removeButton(x: Int, y: Int)
+    fun removeButton(x: Int, y: Int): GuiButton?
 }

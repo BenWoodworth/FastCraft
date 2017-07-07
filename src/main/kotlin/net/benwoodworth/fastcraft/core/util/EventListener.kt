@@ -8,10 +8,10 @@ package net.benwoodworth.fastcraft.core.util
 class EventListener<TEvent> {
 
     /** Event handlers with an event parameter. */
-    private val handlersParam = HashSet<(event: TEvent) -> Unit>()
+    private val handlersParam = mutableListOf<(event: TEvent) -> Unit>()
 
     /** Event handlers without an event parameter. */
-    private val handlersNoParam = HashSet<() -> Unit>()
+    private val handlersNoParam = mutableListOf<() -> Unit>()
 
     /**
      * Raise an event.

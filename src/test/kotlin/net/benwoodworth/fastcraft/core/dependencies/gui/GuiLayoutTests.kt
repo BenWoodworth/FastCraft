@@ -1,11 +1,8 @@
 package net.benwoodworth.fastcraft.core.dependencies.gui
 
 import net.benwoodworth.fastcraft.ImplementationTests
-import net.benwoodworth.fastcraft.core.dependencies.item.Item
-import net.benwoodworth.fastcraft.core.util.Memento
 import org.junit.Assert.*
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito.*
 
 /**
  * Tests for [GuiLayout].
@@ -33,7 +30,7 @@ abstract class GuiLayoutTests : ImplementationTests<GuiLayout>() {
 
         testInstance.setButton(0, 0, GuiButton())
 
-        assertEquals(layoutNotifyCount, 1)
+        assertEquals(1, layoutNotifyCount)
     }
 
     @Test
@@ -45,7 +42,7 @@ abstract class GuiLayoutTests : ImplementationTests<GuiLayout>() {
 
         testInstance.removeButton(0, 0)
 
-        assertEquals(layoutNotifyCount, 1)
+        assertEquals(1, layoutNotifyCount)
     }
 
     @Test
@@ -57,7 +54,7 @@ abstract class GuiLayoutTests : ImplementationTests<GuiLayout>() {
 
         testInstance.removeButton(0, 0)
 
-        assertEquals(layoutNotifyCount, 0)
+        assertEquals(0, layoutNotifyCount)
     }
 
     @Test
@@ -69,10 +66,7 @@ abstract class GuiLayoutTests : ImplementationTests<GuiLayout>() {
         var layoutNotified = false
         testInstance.changeListener += { -> layoutNotified = true }
 
-        @Suppress("UNCHECKED_CAST")
-        val item = mock(Memento::class.java) as Memento<Item>
-
-        button.item = item
+        button.item = null
 
         assertTrue(layoutNotified)
     }
@@ -97,10 +91,7 @@ abstract class GuiLayoutTests : ImplementationTests<GuiLayout>() {
         var layoutNotified = false
         testInstance.changeListener += { -> layoutNotified = true }
 
-        @Suppress("UNCHECKED_CAST")
-        val item = mock(Memento::class.java) as Memento<Item>
-
-        button.item = item
+        button.item = null
 
         assertFalse(layoutNotified)
     }
@@ -115,11 +106,52 @@ abstract class GuiLayoutTests : ImplementationTests<GuiLayout>() {
         var layoutNotified = false
         testInstance.changeListener += { -> layoutNotified = true }
 
-        @Suppress("UNCHECKED_CAST")
-        val item = mock(Memento::class.java) as Memento<Item>
-
-        button.item = item
+        button.item = null
 
         assertFalse(layoutNotified)
+    }
+
+    @Test
+    fun `when a button is on a layout twice, change listener should be notified twice`() {
+        val button = GuiButton()
+
+        testInstance.setButton(0, 0, button)
+        testInstance.setButton(1, 0, button)
+
+        var layoutNotifyCount = 0
+        testInstance.changeListener += { -> layoutNotifyCount++ }
+
+        button.item = null
+
+        assertEquals(2, layoutNotifyCount)
+    }
+
+    @Test
+    fun `when adding a button twice, and removing one, should still listen only to the other`() {
+        val button = GuiButton()
+
+        testInstance.setButton(0, 0, button)
+        testInstance.setButton(1, 0, button)
+
+        testInstance.removeButton(1, 0)
+
+        var layoutNotifyCount = 0
+        testInstance.changeListener += { -> layoutNotifyCount++ }
+
+        button.item = null
+
+        assertEquals(1, layoutNotifyCount)
+    }
+
+    @Test
+    fun `when adding a button, should be able to add inside and outside of bounds`() {
+        for (x in -3..testInstance.width + 3) {
+            for (y in -3..testInstance.height + 3) {
+                val button = GuiButton()
+                testInstance.setButton(x, y, button)
+
+                assertTrue(button === testInstance.getButton(x, y))
+            }
+        }
     }
 }
