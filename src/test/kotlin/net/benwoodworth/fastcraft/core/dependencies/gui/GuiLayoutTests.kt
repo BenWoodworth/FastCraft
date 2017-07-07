@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.core.dependencies.item.Item
 import net.benwoodworth.fastcraft.core.util.Memento
 import org.junit.Assert.*
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito.mock
+import org.mockito.Mockito.*
 
 /**
  * Tests for [GuiLayout].
