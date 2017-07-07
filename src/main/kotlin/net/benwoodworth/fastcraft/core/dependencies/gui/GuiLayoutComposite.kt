@@ -1,53 +1,22 @@
 package net.benwoodworth.fastcraft.core.dependencies.gui
 
-import net.benwoodworth.fastcraft.core.dependencies.gui.events.EventGuiLayoutChange
-import net.benwoodworth.fastcraft.core.util.EventListener
 import java.util.LinkedList
 
 /**
  * A composite [GuiLayout].
  */
-class GuiLayoutComposite(
-        override val width: Int,
-        override val height: Int
-) : GuiLayout {
+class GuiLayoutComposite private constructor(
+        private val delegate: GuiLayout
+) : GuiLayout by delegate {
 
-    override val changeListener = EventListener<EventGuiLayoutChange>()
+    constructor(width: Int, height: Int) : this(GuiLayout.Impl(width, height))
 
     /** The layouts that compose this layout. */
     private val childLayouts = LinkedList<LayoutPosition>()
 
-    /** The buttons within this layout */
-    private val buttons = mutableMapOf<Pair<Int, Int>, GuiButton>()
-
     override fun getButton(x: Int, y: Int): GuiButton? {
-        return buttons[Pair(x, y)] ?: childLayoutAtPoint(x, y)?.let {
+        return delegate.getButton(x, y) ?: childLayoutAtPoint(x, y)?.let {
             it.layout.getButton(it.x, it.y)
-        }
-    }
-
-    /**
-     * Remove a button without notifying the change listener.
-     *
-     * @return the removed button, or `null` if there was none
-     */
-    private fun removeButtonNoNotify(x: Int, y: Int): GuiButton? {
-        return buttons.remove(Pair(x, y))?.also {
-            it.changeListener -= changeListener::notifyHandlers
-        }
-    }
-
-    override fun setButton(x: Int, y: Int, button: GuiButton): GuiButton? {
-        return removeButtonNoNotify(x, y).also {
-            buttons[Pair(x, y)] = button
-            button.changeListener += changeListener::notifyHandlers
-            changeListener.notifyHandlers(EventGuiLayoutChange())
-        }
-    }
-
-    override fun removeButton(x: Int, y: Int): GuiButton? {
-        return removeButtonNoNotify(x, y)?.also {
-            changeListener.notifyHandlers(EventGuiLayoutChange())
         }
     }
 

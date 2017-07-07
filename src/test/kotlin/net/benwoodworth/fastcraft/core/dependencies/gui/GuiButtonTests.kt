@@ -10,7 +10,7 @@ class GuiButtonTests {
 
     @Test
     fun `when changing the button's item, the change listener should be notified`() {
-        val button = GuiButton()
+        val button = GuiButton.Impl()
 
         var notified = false
         button.changeListener += { -> notified = true }
