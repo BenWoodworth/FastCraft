@@ -4,6 +4,7 @@ import net.benwoodworth.fastcraft.core.dependencies.gui.events.EventGuiButtonCli
 import net.benwoodworth.fastcraft.core.dependencies.gui.events.EventGuiLayoutChange
 import net.benwoodworth.fastcraft.core.dependencies.item.Item
 import net.benwoodworth.fastcraft.core.util.EventListener
+import net.benwoodworth.fastcraft.core.util.Memento
 
 /**
  * A button in a GUI.
@@ -13,10 +14,9 @@ class GuiButton {
     val changeListener = EventListener<EventGuiLayoutChange>()
 
     /** The item representing this button. */
-    var item: Item? = null
-        get() = field?.copy()
+    var item: Memento<Item>? = null
         set(value) {
-            field = value?.copy()
+            field = value
             changeListener.notifyHandlers(EventGuiLayoutChange())
         }
 

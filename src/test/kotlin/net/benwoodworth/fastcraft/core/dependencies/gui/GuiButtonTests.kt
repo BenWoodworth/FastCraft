@@ -20,20 +20,4 @@ class GuiButtonTests {
         button.item = null
         assertTrue(notified)
     }
-
-    @Test
-    fun `when getting or setting the button's item, should use a copy`() {
-        val item = mock(Item::class.java)
-        val itemCopy = mock(Item::class.java)
-
-        `when`(item.copy()).thenReturn(itemCopy)
-
-        val button = GuiButton()
-
-        button.item = item
-        verify(item).copy()
-
-        button.item
-        verify(itemCopy).copy()
-    }
 }

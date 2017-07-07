@@ -27,10 +27,15 @@ class GuiLayoutComposite(
     }
 
     override fun setButton(x: Int, y: Int, button: GuiButton) {
-        buttons.put(Pair(x, y), button)?.let {
+        removeButton(x, y)
+        buttons[Pair(x, y)] = button
+        changeListener += button.changeListener::notifyHandlers
+    }
+
+    override fun removeButton(x: Int, y: Int) {
+        buttons.remove(Pair(x, y))?.let {
             changeListener -= it.changeListener::notifyHandlers
         }
-        changeListener += button.changeListener::notifyHandlers
     }
 
     /**
