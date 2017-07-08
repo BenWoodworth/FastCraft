@@ -23,19 +23,19 @@ import org.spongepowered.api.text.Text as Sponge_Text
  * Sponge implementation of [Gui].
  */
 class SpongeGui(
-        fastCraft_: SpongeFastCraft,
-        height_: Int,
-        title_: Sponge_Text,
-        layout_: GuiLayout
+        fastCraft: SpongeFastCraft,
+        height: Int,
+        title: Sponge_Text,
+        layout: GuiLayout
 ) : Gui, Carrier {
 
     /** The inventory representing this GUI. */
     private val inventory: GridInventory = Inventory.builder()
                 .of(InventoryArchetypes.CHEST)
-                .property(InventoryDimension.PROPERTY_NAME, InventoryDimension(6, height_))
-                .property(InventoryTitle.PROPERTY_NAME, InventoryTitle(title_))
+                .property(InventoryDimension.PROPERTY_NAME, InventoryDimension(6, height))
+                .property(InventoryTitle.PROPERTY_NAME, InventoryTitle(title))
                 .withCarrier(this)
-                .build(fastCraft_) as GridInventory
+                .build(fastCraft) as GridInventory
 
     @Suppress("UNCHECKED_CAST")
     override fun getInventory() = inventory as CarriedInventory<SpongeGui>
@@ -48,7 +48,7 @@ class SpongeGui(
             .getProperty(InventoryTitle::class.java)
             .get().value?.let { SpongeText(it) }
 
-    override var layout: GuiLayout = layout_
+    override var layout: GuiLayout = layout
         set(value) {
             field.changeListener -= this::layoutChangeHandler
             value.changeListener += this::layoutChangeHandler
@@ -58,8 +58,7 @@ class SpongeGui(
         }
 
     override fun open(vararg players: Player) {
-        val cause: Cause? = null // TODO
-
+        val cause = Cause.source(this).build()
         for (player in players) {
             (player as SpongePlayer).base.openInventory(inventory, cause)
         }
