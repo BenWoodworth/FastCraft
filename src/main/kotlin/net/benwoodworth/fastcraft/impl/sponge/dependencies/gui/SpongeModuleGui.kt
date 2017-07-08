@@ -4,15 +4,18 @@ import dagger.Module
 import dagger.Provides
 import net.benwoodworth.fastcraft.core.dependencies.gui.GuiBuilder
 import net.benwoodworth.fastcraft.core.dependencies.gui.ModuleGui
+import net.benwoodworth.fastcraft.impl.sponge.SpongeFastCraft
 
 /**
  * Sponge implementation of [ModuleGui].
  */
 @Module
-class SpongeModuleGui : ModuleGui {
+class SpongeModuleGui(
+        private val fastCraft: SpongeFastCraft
+) : ModuleGui {
 
     @Provides
     override fun guiBuilder(): GuiBuilder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return SpongeGuiBuilder(fastCraft)
     }
 }

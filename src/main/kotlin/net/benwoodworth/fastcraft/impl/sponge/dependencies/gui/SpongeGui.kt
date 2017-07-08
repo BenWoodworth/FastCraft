@@ -25,7 +25,7 @@ import org.spongepowered.api.text.Text as Sponge_Text
 class SpongeGui(
         fastCraft: SpongeFastCraft,
         height: Int,
-        title: Sponge_Text,
+        title: Sponge_Text?,
         layout: GuiLayout
 ) : Gui, Carrier {
 
