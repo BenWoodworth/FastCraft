@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.core.util
 /**
  * An interface for objects that can be copied.
  */
-interface Copyable<out T> {
+interface Copyable<out T : Any> {
 
     /**
      * Create a copy of this object.

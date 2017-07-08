@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.core.util
 /**
  * An immutable copy of an object.
  */
-class Memento<out T : Copyable<T>?> (instance: T) {
+class Memento<out T : Copyable<T>> (instance: T?) {
 
     /** The snapshot of the instance. */
     private val state = instance?.copy()
