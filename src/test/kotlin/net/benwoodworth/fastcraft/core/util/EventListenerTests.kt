@@ -12,6 +12,18 @@ class EventListenerTests : ImplementationTests<EventListener<Any?>>() {
     override fun createInstance() = EventListener<Any?>()
 
     @Test
+    fun `when adding a handler, it should be notified`() {
+        var notifyCount = 0
+        val listener: () -> Unit = { notifyCount++ }
+
+        testInstance += listener
+
+        testInstance.notifyHandlers(null)
+
+        assertEquals(1, notifyCount)
+    }
+
+    @Test
     fun `when adding a handler twice, should be notified twice`() {
         var notifyCount = 0
         val listener: () -> Unit = { notifyCount++ }
