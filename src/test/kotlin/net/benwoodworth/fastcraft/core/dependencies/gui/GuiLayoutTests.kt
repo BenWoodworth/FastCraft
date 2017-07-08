@@ -10,6 +10,26 @@ import org.junit.jupiter.api.Test
 abstract class GuiLayoutTests : ImplementationTests<GuiLayout>() {
 
     @Test
+    fun `when a layout's width changes, should notify change listener`() {
+        var layoutNotifyCount = 0
+        testInstance.changeListener += { -> layoutNotifyCount++ }
+
+        testInstance.width++
+
+        assertEquals(1, layoutNotifyCount)
+    }
+
+    @Test
+    fun `when a layout's height changes, should notify change listener`() {
+        var layoutNotifyCount = 0
+        testInstance.changeListener += { -> layoutNotifyCount++ }
+
+        testInstance.height++
+
+        assertEquals(1, layoutNotifyCount)
+    }
+
+    @Test
     fun `when replacing a button, should notify change listener once`() {
         testInstance.setButton(0, 0, GuiButton.Impl())
 

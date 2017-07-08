@@ -6,7 +6,7 @@ import net.benwoodworth.fastcraft.core.dependencies.text.ModuleText
 import net.benwoodworth.fastcraft.core.dependencies.text.TextBuilder
 import net.benwoodworth.fastcraft.core.dependencies.text.TextColorRegistry
 import javax.inject.Singleton
-import org.spongepowered.api.text.Text as SpongeText
+import org.spongepowered.api.text.Text as Sponge_Text
 
 /**
  * Sponge implementation of [ModuleText].
@@ -16,7 +16,7 @@ class SpongeModuleText : ModuleText {
 
     @Provides
     override fun textBuilder(): TextBuilder {
-        return SpongeTextBuilder(SpongeText.builder(""))
+        return SpongeTextBuilder(Sponge_Text.builder(""))
     }
 
     @Provides @Singleton

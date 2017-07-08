@@ -6,14 +6,14 @@ import net.benwoodworth.fastcraft.core.dependencies.text.Text
 import net.benwoodworth.fastcraft.core.util.Adapter
 import net.benwoodworth.fastcraft.sponge.dependencies.text.SpongeText
 import java.util.UUID
-import org.spongepowered.api.entity.living.player.Player as SpongePlayer
+import org.spongepowered.api.entity.living.player.Player as Sponge_Player
 
 /**
  * Adapter for Sponge players.
  */
 class SpongePlayer(
-        basePlayer: SpongePlayer
-) : Player, Adapter<SpongePlayer>(basePlayer) {
+        basePlayer: Sponge_Player
+) : Player, Adapter<Sponge_Player>(basePlayer) {
 
     override val username: String
         get() = base.name

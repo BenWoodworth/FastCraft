@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.core.dependencies.text.Text
 import net.benwoodworth.fastcraft.core.util.Adapter
 import org.spongepowered.api.data.key.Keys
 import org.spongepowered.api.item.inventory.ItemStack
-import org.spongepowered.api.text.Text as SpongeText
+import org.spongepowered.api.text.Text as Sponge_Text
 
 /**
  * Adapts Sponge items.
@@ -21,7 +21,7 @@ class SpongeItem(
         }
 
     override val name: Text
-        get() = net.benwoodworth.fastcraft.sponge.dependencies.text.SpongeText(SpongeText.of(base))
+        get() = net.benwoodworth.fastcraft.sponge.dependencies.text.SpongeText(Sponge_Text.of(base))
 
     override var displayName: Text?
         get() {

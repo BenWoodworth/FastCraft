@@ -15,7 +15,7 @@ interface Gui {
     val height: Int
 
     /** The title of this [Gui]. */
-    val title: Text
+    val title: Text?
 
     /** The layout of this [Gui], positioned at the top left. */
     var layout: GuiLayout
@@ -23,12 +23,7 @@ interface Gui {
     /**
      * Open this [Gui] for the given players.
      */
-    fun open(vararg player: Player)
-
-    /**
-     * Close this [Gui] for the given players.
-     */
-    fun close(vararg player: Player)
+    fun open(vararg players: Player)
 
     /**
      * Get the players viewing this [Gui].

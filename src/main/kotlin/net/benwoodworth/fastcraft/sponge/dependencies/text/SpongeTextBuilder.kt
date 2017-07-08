@@ -4,14 +4,14 @@ import net.benwoodworth.fastcraft.core.dependencies.text.Text
 import net.benwoodworth.fastcraft.core.dependencies.text.TextBuilder
 import net.benwoodworth.fastcraft.core.dependencies.text.TextColor
 import net.benwoodworth.fastcraft.core.util.Adapter
-import org.spongepowered.api.text.LiteralText as SpongeLiteralText
+import org.spongepowered.api.text.LiteralText
 
 /**
  * Adapts the Sponge LiteralText builder.
  */
 class SpongeTextBuilder(
-        baseBuilder: SpongeLiteralText.Builder
-) : TextBuilder, Adapter<SpongeLiteralText.Builder>(baseBuilder) {
+        baseBuilder: LiteralText.Builder
+) : TextBuilder, Adapter<LiteralText.Builder>(baseBuilder) {
 
     override fun build(): Text {
         return SpongeText(base.build())
