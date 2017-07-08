@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.core.dependencies.event
 
-import net.benwoodworth.fastcraft.core.util.EventListener
+import net.benwoodworth.fastcraft.util.EventListener
 
 /**
  * Dagger module for event dependencies.

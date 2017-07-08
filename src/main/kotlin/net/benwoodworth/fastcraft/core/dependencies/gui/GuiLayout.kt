@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.core.dependencies.gui
 
 import net.benwoodworth.fastcraft.core.dependencies.gui.events.EventGuiLayoutChange
-import net.benwoodworth.fastcraft.core.util.EventListener
+import net.benwoodworth.fastcraft.util.EventListener
 
 /**
  * The button layout of a GUI.

@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.core.dependencies.gui
 
 import net.benwoodworth.fastcraft.core.dependencies.text.Text
-import net.benwoodworth.fastcraft.core.util.Builder
+import net.benwoodworth.fastcraft.util.Builder
 
 /**
  * A builder for [Gui]'s.

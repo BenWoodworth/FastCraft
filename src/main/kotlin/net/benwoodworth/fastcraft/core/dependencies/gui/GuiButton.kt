@@ -3,8 +3,8 @@ package net.benwoodworth.fastcraft.core.dependencies.gui
 import net.benwoodworth.fastcraft.core.dependencies.gui.events.EventGuiButtonClick
 import net.benwoodworth.fastcraft.core.dependencies.gui.events.EventGuiLayoutChange
 import net.benwoodworth.fastcraft.core.dependencies.item.Item
-import net.benwoodworth.fastcraft.core.util.EventListener
-import net.benwoodworth.fastcraft.core.util.Memento
+import net.benwoodworth.fastcraft.util.EventListener
+import net.benwoodworth.fastcraft.util.Memento
 
 /**
  * A button in a GUI.

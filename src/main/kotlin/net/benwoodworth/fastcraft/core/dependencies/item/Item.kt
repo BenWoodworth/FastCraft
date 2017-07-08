@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.core.dependencies.item
 
 import net.benwoodworth.fastcraft.core.dependencies.text.Text
-import net.benwoodworth.fastcraft.core.util.Copyable
+import net.benwoodworth.fastcraft.util.Copyable
 
 /**
  * A Minecraft item.
