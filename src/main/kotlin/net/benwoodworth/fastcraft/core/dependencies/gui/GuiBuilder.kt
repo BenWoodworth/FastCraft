@@ -21,11 +21,4 @@ interface GuiBuilder : Builder<Gui> {
      * @return fluent interface
      */
     fun setTitle(title: Text): GuiBuilder
-
-    /**
-     * Set the [Gui] layout.
-     *
-     * @return fluent interface
-     */
-    fun setLayout(layout: GuiLayout): GuiBuilder
 }

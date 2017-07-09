@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.impl.sponge.dependencies.gui
 
 import net.benwoodworth.fastcraft.core.dependencies.gui.Gui
-import net.benwoodworth.fastcraft.core.dependencies.gui.GuiLayout
+import net.benwoodworth.fastcraft.core.dependencies.gui.GuiLayoutComposite
 import net.benwoodworth.fastcraft.core.dependencies.player.Player
 import net.benwoodworth.fastcraft.impl.sponge.SpongeFastCraft
 import net.benwoodworth.fastcraft.impl.sponge.dependencies.item.SpongeItem
@@ -16,7 +16,6 @@ import org.spongepowered.api.item.inventory.property.InventoryDimension
 import org.spongepowered.api.item.inventory.property.InventoryTitle
 import org.spongepowered.api.item.inventory.type.CarriedInventory
 import org.spongepowered.api.item.inventory.type.GridInventory
-import org.spongepowered.api.entity.living.player.Player as Sponge_Player
 import org.spongepowered.api.text.Text as Sponge_Text
 
 /**
@@ -25,9 +24,12 @@ import org.spongepowered.api.text.Text as Sponge_Text
 class SpongeGui(
         fastCraft: SpongeFastCraft,
         height: Int,
-        title: Sponge_Text?,
-        layout: GuiLayout
-) : Gui, Carrier {
+        title: Sponge_Text?
+) : Gui, Carrier, GuiLayoutComposite by GuiLayoutComposite.Impl(0, 0) {
+
+    init {
+        changeListener += this::updateLayout
+    }
 
     /** The inventory representing this GUI. */
     private val inventory: GridInventory = Inventory.builder()
@@ -48,15 +50,6 @@ class SpongeGui(
             .getProperty(InventoryTitle::class.java)
             .get().value?.let { SpongeText(it) }
 
-    override var layout: GuiLayout = layout
-        set(value) {
-            field.changeListener -= this::layoutChangeHandler
-            value.changeListener += this::layoutChangeHandler
-
-            field = value
-            layoutChangeHandler()
-        }
-
     override fun open(vararg players: Player) {
         val cause = Cause.source(this).build()
         for (player in players) {
@@ -71,12 +64,11 @@ class SpongeGui(
                 .toList()
     }
 
-    fun layoutChangeHandler() {
-        for (x in 0 until inventory.columns) {
-            for (y in 0 until inventory.rows) {
-                val button = layout.getButton(x, y)
-                val item = button?.item?.get() as SpongeItem
-                inventory.set(x, y, item.base)
+    override fun updateLayout() {
+        for (x in 0 until width) {
+            for (y in 0 until height) {
+                val item = getButton(x, y)?.item?.get()
+                inventory.set(x, y, (item as SpongeItem).base)
             }
         }
     }

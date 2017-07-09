@@ -6,19 +6,10 @@ import net.benwoodworth.fastcraft.core.dependencies.text.Text
 /**
  * A user interface for in-game players.
  */
-interface Gui {
-
-    /** The width of this [Gui]. */
-    val width: Int
-
-    /** The height of this [Gui]. */
-    val height: Int
+interface Gui : GuiLayoutComposite {
 
     /** The title of this [Gui]. */
     val title: Text?
-
-    /** The layout of this [Gui], positioned at the top left. */
-    var layout: GuiLayout
 
     /**
      * Open this [Gui] for the given players.
@@ -31,4 +22,9 @@ interface Gui {
      * @return a list of players viewing this [Gui]
      */
     fun getViewers(): List<Player>
+
+    /**
+     * Update the Gui's layout.
+     */
+    fun updateLayout()
 }

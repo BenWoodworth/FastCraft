@@ -12,8 +12,14 @@ abstract class GuiBuilderTests : ImplementationTests<GuiBuilder>() {
 
     abstract fun createTextBuilder(): TextBuilder
 
+    fun applyDefaults() {
+        testInstance.setHeight(1)
+    }
+
     @Test
     fun `when setting the height, the built gui should have that height`() {
+        applyDefaults()
+
         for (expected in 1..6) {
             val gui = createInstance()
                     .setHeight(expected)
@@ -26,6 +32,8 @@ abstract class GuiBuilderTests : ImplementationTests<GuiBuilder>() {
 
     @Test
     fun `when setting the title, the built gui should have that title`() {
+        applyDefaults()
+
         val expected = createTextBuilder()
                 .text("This is the expected text")
                 .bold(true)
@@ -39,18 +47,6 @@ abstract class GuiBuilderTests : ImplementationTests<GuiBuilder>() {
                 .build()
 
         val actual = gui.title
-        assertEquals(expected, actual)
-    }
-
-    @Test
-    fun `when setting the layout, the built gui should have that layout`() {
-        val expected = GuiLayoutComposite(10, 20)
-
-        val gui = createInstance()
-                .setLayout(expected)
-                .build()
-
-        val actual = gui.layout
         assertEquals(expected, actual)
     }
 }

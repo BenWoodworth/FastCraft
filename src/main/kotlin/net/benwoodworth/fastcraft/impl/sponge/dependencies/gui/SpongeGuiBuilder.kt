@@ -23,8 +23,7 @@ class SpongeGuiBuilder (
         return SpongeGui(
                 fastCraft,
                 height!!,
-                title,
-                layout!!
+                title
         )
     }
 
@@ -35,11 +34,6 @@ class SpongeGuiBuilder (
 
     override fun setTitle(title: Text): GuiBuilder {
         this.title = (title as SpongeText).base
-        return this
-    }
-
-    override fun setLayout(layout: GuiLayout): GuiBuilder {
-        this.layout = layout
         return this
     }
 }
