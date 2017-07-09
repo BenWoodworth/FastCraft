@@ -42,9 +42,13 @@ class SpongeGui(
     @Suppress("UNCHECKED_CAST")
     override fun getInventory() = inventory as CarriedInventory<SpongeGui>
 
-    override val width get() = inventory.columns
+    override var width
+        get() = inventory.columns
+        set(value) = throw UnsupportedOperationException()
 
-    override val height get() = inventory.rows
+    override var height
+        get() = inventory.rows
+        set(value) = throw UnsupportedOperationException()
 
     override val title get() = inventory.archetype
             .getProperty(InventoryTitle::class.java)
