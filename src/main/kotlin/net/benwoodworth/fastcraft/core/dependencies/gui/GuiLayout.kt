@@ -9,10 +9,10 @@ import net.benwoodworth.fastcraft.util.EventListener
 interface GuiLayout {
 
     /** The width of the layout. */
-    val width: Int
+    var width: Int
 
     /** The height of the layout. */
-    val height: Int
+    var height: Int
 
     /** A listener for layout changes. */
     val changeListener: EventListener<EventGuiLayoutChange>
@@ -48,10 +48,19 @@ interface GuiLayout {
     /**
      * Implementation of [GuiLayout].
      */
-    class Impl(
-            override val width: Int,
-            override val height: Int
-    ) : GuiLayout {
+    class Impl(width: Int, height: Int) : GuiLayout {
+
+        override var width = width
+            set(value) {
+                field = value
+                changeListener.notifyHandlers(EventGuiLayoutChange())
+            }
+
+        override var height = height
+            set(value) {
+                field = value
+                changeListener.notifyHandlers(EventGuiLayoutChange())
+            }
 
         override val changeListener = EventListener<EventGuiLayoutChange>()
 
