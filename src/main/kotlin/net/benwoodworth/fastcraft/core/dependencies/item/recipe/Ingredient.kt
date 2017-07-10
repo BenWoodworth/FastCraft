@@ -17,8 +17,4 @@ interface Ingredient {
      * @return `true` if the item matches
      */
     fun matchesItem(item: Item): Boolean
-
-    override fun equals(other: Any?): Boolean
-
-    override fun hashCode(): Int
 }
