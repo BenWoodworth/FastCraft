@@ -24,5 +24,5 @@ deploy:
   secret_access_key: "${AWS_SECRET_ACCESS_KEY}"
   bucket: fastcraft
   skip_cleanup: true
-  local_dir: $HOME/build/libs
-  upload_dir: $TRAVIS_BUILD_NUMBER/
+  local_dir: build/libs
+  upload_dir: $TRAVIS_BRANCH
