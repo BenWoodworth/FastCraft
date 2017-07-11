@@ -15,9 +15,10 @@ cache:
 
 addons:
   artifacts:
-    s3_region: "us-east-1"
-    paths: $HOME/build/FastCraft*.jar
     debug: true
+    s3_region: "us-east-1"
+    paths:
+    - "$HOME/build/libs/FastCraft*.jar"
 
 deploy:
   provider: s3
