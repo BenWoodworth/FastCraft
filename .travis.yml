@@ -21,4 +21,4 @@ deploy:
   region: us-east-1
   skip_cleanup: true
   local_dir: build/libs
-  upload_dir: builds/$TRAVIS_BRANCH/Build $TRAVIS_BUILD_NUMBER
+  upload_dir: builds/$TRAVIS_BRANCH/build-$TRAVIS_BUILD_NUMBER
