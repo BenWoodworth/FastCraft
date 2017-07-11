@@ -22,3 +22,4 @@ deploy:
   skip_cleanup: true
   local_dir: "build/libs"
   upload_dir: "builds/$TRAVIS_BRANCH/$TRAVIS_BUILD_NUMBER"
+  acl: public_read
