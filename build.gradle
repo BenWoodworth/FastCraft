@@ -3,9 +3,7 @@ version '1.0-ALPHA'
 
 def env = System.getenv()
 if (env.containsKey('TRAVIS')) {
-    version += "-${env['TRAVIS_COMMIT'].substring(0, 7)}"
-} else {
-    version += '-CUSTOM'
+    version += "-${env['TRAVIS_COMMIT'].substring(0, 8)}"
 }
 
 def plugin_name = 'FastCraft'
