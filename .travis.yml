@@ -12,3 +12,16 @@ cache:
   directories:
   - $HOME/.gradle/caches/
   - $HOME/.gradle/wrapper/
+
+addons:
+  artifacts:
+    s3_region: "us-east-1"
+    paths: $HOME/build/FastCraft*.jar
+    debug: true
+
+deploy:
+  provider: s3
+  access_key_id: "${AWS_ACCESS_KEY}"
+  secret_access_key: "${AWS_SECRET_ACCESS_KEY}"
+  bucket: "fastcraft"
+  skip_cleanup: true
