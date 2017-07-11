@@ -1,24 +1,24 @@
 language: java
 jdk: oraclejdk8
 
-before_install: chmod +x gradlew
-install: ./gradlew jar
+before_install: "chmod +x gradlew"
+install: "./gradlew jar"
 
 before_cache:
-- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+- rm -f  "$HOME/.gradle/caches/modules-2/modules-2.lock"
+- rm -fr "$HOME/.gradle/caches/*/plugin-resolution/"
 
 cache:
   directories:
-  - $HOME/.gradle/caches/
-  - $HOME/.gradle/wrapper/
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
 
 deploy:
-  provider: s3
+  provider: "s3"
   access_key_id: "${AWS_ACCESS_KEY}"
   secret_access_key: "${AWS_SECRET_ACCESS_KEY}"
-  bucket: fastcraft
-  region: us-east-1
+  bucket: "fastcraft"
+  region: "us-east-1"
   skip_cleanup: true
-  local_dir: build/libs
-  upload_dir: builds/$TRAVIS_BRANCH/$TRAVIS_BUILD_NUMBER
+  local_dir: "build/libs"
+  upload_dir: "builds/$TRAVIS_BRANCH/$TRAVIS_BUILD_NUMBER"
