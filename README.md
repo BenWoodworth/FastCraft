@@ -5,6 +5,9 @@
 Looking for FastCraft+ v0? [Click here!](https://github.com/BenWoodworth/FastCraft/tree/FastCraftv0)
 
 # FastCraft v1
+Alpha builds can be found [here!](http://benwoodworth.net/projects/fastcraft/builds.html) (They don't work... yet...)
+
+
 FastCraft+ is coming out of beta as FastCraft v1!
 
 FastCraft v1 is being developed from the ground up in
