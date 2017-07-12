@@ -25,30 +25,28 @@ class SpongeGui(
         fastCraft: SpongeFastCraft,
         height: Int,
         title: Sponge_Text?
-) : Gui, Carrier, GuiLayoutComposite by GuiLayoutComposite.Impl(0, 0) {
+) : Gui, Carrier, GuiLayoutComposite by GuiLayoutComposite.Impl(6, height) {
 
     init {
         changeListener += this::updateLayout
     }
 
     /** The inventory representing this GUI. */
-    private val inventory: GridInventory = Inventory.builder()
+    private val inventory = Inventory.builder()
                 .of(InventoryArchetypes.CHEST)
-                .property(InventoryDimension.PROPERTY_NAME, InventoryDimension(6, height))
-                .property(InventoryTitle.PROPERTY_NAME, InventoryTitle(title))
+                .property(
+                        InventoryDimension.PROPERTY_NAME,
+                        InventoryDimension(width, height)
+                )
+                .property(
+                        InventoryTitle.PROPERTY_NAME,
+                        InventoryTitle(title)
+                )
                 .withCarrier(this)
                 .build(fastCraft) as GridInventory
 
     @Suppress("UNCHECKED_CAST")
     override fun getInventory() = inventory as CarriedInventory<SpongeGui>
-
-    override var width
-        get() = inventory.columns
-        set(value) = throw UnsupportedOperationException()
-
-    override var height
-        get() = inventory.rows
-        set(value) = throw UnsupportedOperationException()
 
     override val title get() = inventory.archetype
             .getProperty(InventoryTitle::class.java)

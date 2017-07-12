@@ -8,12 +8,6 @@ import net.benwoodworth.fastcraft.core.dependencies.text.Text
  */
 interface Gui : GuiLayoutComposite {
 
-    override var width: Int
-        @Deprecated("Cannot change GUI size") set
-
-    override var height: Int
-        @Deprecated("Cannot change GUI size") set
-
     /** The title of this [Gui]. */
     val title: Text?
 
