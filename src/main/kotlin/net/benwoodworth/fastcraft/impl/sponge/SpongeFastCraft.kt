@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft.impl.sponge
 
 import net.benwoodworth.fastcraft.core.FastCraft
 import net.benwoodworth.fastcraft.core.FastCraftImplementation
+import net.benwoodworth.fastcraft.impl.sponge.dependencies.event.SpongeModuleEvent
 import org.spongepowered.api.event.Listener
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent
 import org.spongepowered.api.plugin.Plugin
@@ -19,6 +20,8 @@ class SpongeFastCraft : FastCraftImplementation {
     @Suppress("UNUSED_PARAMETER")
     fun onPreInit(event: GamePreInitializationEvent) {
         instance = DaggerSpongeFastCraftComponent.builder()
-                .build().getFastCraft()
+                .spongeModuleEvent(SpongeModuleEvent(this))
+                .build()
+                .getFastCraft()
     }
 }
