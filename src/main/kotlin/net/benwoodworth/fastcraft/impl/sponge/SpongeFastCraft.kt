@@ -2,7 +2,15 @@ package net.benwoodworth.fastcraft.impl.sponge
 
 import net.benwoodworth.fastcraft.core.FastCraft
 import net.benwoodworth.fastcraft.core.FastCraftImplementation
+import net.benwoodworth.fastcraft.impl.sponge.dependencies.config.SpongeModuleConfig
 import net.benwoodworth.fastcraft.impl.sponge.dependencies.event.SpongeModuleEvent
+import net.benwoodworth.fastcraft.impl.sponge.dependencies.fastcraft.SpongeModuleFastCraft
+import net.benwoodworth.fastcraft.impl.sponge.dependencies.gui.SpongeModuleGui
+import net.benwoodworth.fastcraft.impl.sponge.dependencies.item.SpongeModuleItem
+import net.benwoodworth.fastcraft.impl.sponge.dependencies.permission.SpongeModulePermission
+import net.benwoodworth.fastcraft.impl.sponge.dependencies.player.SpongeModulePlayer
+import net.benwoodworth.fastcraft.impl.sponge.dependencies.server.SpongeModuleServer
+import net.benwoodworth.fastcraft.impl.sponge.dependencies.text.SpongeModuleText
 import org.spongepowered.api.event.Listener
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent
 import org.spongepowered.api.plugin.Plugin
@@ -17,11 +25,18 @@ class SpongeFastCraft : FastCraftImplementation {
         private set
 
     @Listener
-    @Suppress("UNUSED_PARAMETER")
+    @Suppress("UNUSED_PARAMETER", "DEPRECATION") // TODO Don't suppress deprecation
     fun onPreInit(event: GamePreInitializationEvent) {
         instance = DaggerSpongeFastCraftComponent.builder()
+                .spongeModuleConfig(SpongeModuleConfig())
                 .spongeModuleEvent(SpongeModuleEvent(this))
-                .build()
-                .getFastCraft()
+                .spongeModuleFastCraft(SpongeModuleFastCraft())
+                .spongeModuleGui(SpongeModuleGui(this))
+                .spongeModuleItem(SpongeModuleItem())
+                .spongeModulePermission(SpongeModulePermission())
+                .spongeModulePlayer(SpongeModulePlayer())
+                .spongeModuleServer(SpongeModuleServer())
+                .spongeModuleText(SpongeModuleText())
+                .build().getFastCraft()
     }
 }
