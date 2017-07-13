@@ -33,7 +33,7 @@ class SpongeFastCraft : FastCraftImplementation {
                 .spongeModuleItem(SpongeModuleItem())
                 .spongeModulePermission(SpongeModulePermission())
                 .spongeModulePlayer(SpongeModulePlayer())
-                .spongeModuleServer(SpongeModuleServer())
+                .spongeModuleServer(SpongeModuleServer(this))
                 .spongeModuleText(SpongeModuleText())
                 .build().getFastCraft()
     }

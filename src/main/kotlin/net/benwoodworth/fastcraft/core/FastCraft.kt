@@ -51,7 +51,7 @@ class FastCraft @Inject constructor(
                 .build()
         )
 
-        //taskScheduler.sync(40L) {
+        taskScheduler.sync(60L) {
             event.player.sendMessage(textBuilderProvider.get()
                     .text("Opening GUI...")
                     .build()
@@ -76,6 +76,6 @@ class FastCraft @Inject constructor(
             gui.setButton(1, 1, button)
 
             gui.open(event.player)
-        //}
+        }
     }
 }
