@@ -8,27 +8,16 @@ import org.spongepowered.api.scheduler.Task
  */
 class SpongeTaskScheduler : TaskScheduler {
 
-    override fun scheduleSync(delayTicks: Long, task: () -> Unit) {
+    override fun sync(delayTicks: Long, task: () -> Unit) {
         Task.builder()
                 .delayTicks(delayTicks)
                 .execute(task)
     }
 
-    override fun scheduleAsync(delayTicks: Long, task: () -> Unit) {
+    override fun async(delayTicks: Long, task: () -> Unit) {
         Task.builder()
+                .async()
                 .delayTicks(delayTicks)
-                .async()
-                .execute(task)
-    }
-
-    override fun runSync(task: () -> Unit) {
-        Task.builder()
-                .execute(task)
-    }
-
-    override fun runAsync(task: () -> Unit) {
-        Task.builder()
-                .async()
                 .execute(task)
     }
 }
