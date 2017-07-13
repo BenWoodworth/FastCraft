@@ -4,7 +4,6 @@ import net.benwoodworth.fastcraft.core.FastCraft
 import net.benwoodworth.fastcraft.core.FastCraftImplementation
 import net.benwoodworth.fastcraft.impl.sponge.dependencies.config.SpongeModuleConfig
 import net.benwoodworth.fastcraft.impl.sponge.dependencies.event.SpongeModuleEvent
-import net.benwoodworth.fastcraft.impl.sponge.dependencies.fastcraft.SpongeModuleFastCraft
 import net.benwoodworth.fastcraft.impl.sponge.dependencies.gui.SpongeModuleGui
 import net.benwoodworth.fastcraft.impl.sponge.dependencies.item.SpongeModuleItem
 import net.benwoodworth.fastcraft.impl.sponge.dependencies.permission.SpongeModulePermission
@@ -30,7 +29,6 @@ class SpongeFastCraft : FastCraftImplementation {
         instance = DaggerSpongeFastCraftComponent.builder()
                 .spongeModuleConfig(SpongeModuleConfig())
                 .spongeModuleEvent(SpongeModuleEvent(this))
-                .spongeModuleFastCraft(SpongeModuleFastCraft())
                 .spongeModuleGui(SpongeModuleGui(this))
                 .spongeModuleItem(SpongeModuleItem())
                 .spongeModulePermission(SpongeModulePermission())
