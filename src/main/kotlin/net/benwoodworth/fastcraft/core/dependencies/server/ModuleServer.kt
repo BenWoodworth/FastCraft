@@ -5,5 +5,5 @@ package net.benwoodworth.fastcraft.core.dependencies.server
  */
 interface ModuleServer {
 
-    fun taskScheduler(): TaskScheduler
+    fun taskBuilder(): TaskBuilder
 }

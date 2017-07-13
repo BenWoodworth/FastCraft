@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.core.dependencies.event.EventPluginDisable
 import net.benwoodworth.fastcraft.core.dependencies.event.EventPluginEnable
 import net.benwoodworth.fastcraft.core.dependencies.gui.GuiBuilder
 import net.benwoodworth.fastcraft.core.dependencies.gui.GuiButton
-import net.benwoodworth.fastcraft.core.dependencies.server.TaskScheduler
+import net.benwoodworth.fastcraft.core.dependencies.server.TaskBuilder
 import net.benwoodworth.fastcraft.core.dependencies.text.TextBuilder
 import net.benwoodworth.fastcraft.core.dependencies.text.TextColorRegistry
 import net.benwoodworth.fastcraft.impl.sponge.dependencies.item.SpongeItem
@@ -25,7 +25,7 @@ class FastCraft @Inject constructor(
         listenerPlayerJoin: EventListener<EventPlayerJoin>,
 
         //private val logger: Logger,
-        private val taskScheduler: TaskScheduler,
+        private val taskSchedulerProvider: Provider<TaskBuilder>,
         private val guiBuilderProvider: Provider<GuiBuilder>,
         private val textBuilderProvider: Provider<TextBuilder>,
         private val textColorRegistry: TextColorRegistry
@@ -51,7 +51,7 @@ class FastCraft @Inject constructor(
                 .build()
         )
 
-        taskScheduler.sync(60L) {
+        taskSchedulerProvider.get().delay(60L).run {
             event.player.sendMessage(textBuilderProvider.get()
                     .text("Opening GUI...")
                     .build()
