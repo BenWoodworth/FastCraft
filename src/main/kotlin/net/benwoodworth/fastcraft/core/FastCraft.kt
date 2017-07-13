@@ -4,9 +4,15 @@ import net.benwoodworth.fastcraft.core.dependencies.event.EventPlayerJoin
 import net.benwoodworth.fastcraft.core.dependencies.event.EventPluginDisable
 import net.benwoodworth.fastcraft.core.dependencies.event.EventPluginEnable
 import net.benwoodworth.fastcraft.core.dependencies.gui.GuiBuilder
+import net.benwoodworth.fastcraft.core.dependencies.gui.GuiButton
+import net.benwoodworth.fastcraft.core.dependencies.server.TaskScheduler
 import net.benwoodworth.fastcraft.core.dependencies.text.TextBuilder
 import net.benwoodworth.fastcraft.core.dependencies.text.TextColorRegistry
+import net.benwoodworth.fastcraft.impl.sponge.dependencies.item.SpongeItem
 import net.benwoodworth.fastcraft.util.EventListener
+import net.benwoodworth.fastcraft.util.Memento
+import org.spongepowered.api.item.ItemTypes
+import org.spongepowered.api.item.inventory.ItemStack
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -19,6 +25,7 @@ class FastCraft @Inject constructor(
         listenerPlayerJoin: EventListener<EventPlayerJoin>,
 
         //private val logger: Logger,
+        private val taskScheduler: TaskScheduler,
         private val guiBuilderProvider: Provider<GuiBuilder>,
         private val textBuilderProvider: Provider<TextBuilder>,
         private val textColorRegistry: TextColorRegistry
@@ -39,19 +46,36 @@ class FastCraft @Inject constructor(
     }
 
     fun onPlayerJoin(event: EventPlayerJoin) {
-        //event.player.sendMessage("Welcome to the server!")
-
-        val titleText = textBuilderProvider.get()
-                .text("Hello, ${event.player.username}!")
-                .color(textColorRegistry.gold)
-                .bold(true)
+        event.player.sendMessage(textBuilderProvider.get()
+                .text("Welcome to the server!")
                 .build()
+        )
 
-        val gui = guiBuilderProvider.get()
-                .setHeight(5)
-                .setTitle(titleText)
-                .build()
+        //taskScheduler.sync(40L) {
+            event.player.sendMessage(textBuilderProvider.get()
+                    .text("Opening GUI...")
+                    .build()
+            )
 
-        gui.open(event.player)
+            val titleText = textBuilderProvider.get()
+                    .text("Hello, ${event.player.username}!")
+                    .color(textColorRegistry.gold)
+                    .bold(true)
+                    .build()
+
+            val gui = guiBuilderProvider.get()
+                    .setHeight(5)
+                    .setTitle(titleText)
+                    .build()
+
+            val button = GuiButton.Impl()
+            val buttonItem = ItemStack.builder()
+                    .itemType(ItemTypes.CRAFTING_TABLE)
+                    .build()
+            button.item = Memento(SpongeItem(buttonItem))
+            gui.setButton(1, 1, button)
+
+            gui.open(event.player)
+        //}
     }
 }

@@ -25,28 +25,28 @@ class SpongeGui(
         fastCraft: SpongeFastCraft,
         height: Int,
         title: Sponge_Text?
-) : Gui, Carrier, GuiLayoutComposite by GuiLayoutComposite.Impl(6, height) {
+) : Gui, Carrier, GuiLayoutComposite by GuiLayoutComposite.Impl(9, height) {
 
     init {
         changeListener += this::updateLayout
     }
 
     /** The inventory representing this GUI. */
-    private val inventory = Inventory.builder()
-                .of(InventoryArchetypes.CHEST)
-                .property(
-                        InventoryDimension.PROPERTY_NAME,
-                        InventoryDimension(width, height)
-                )
-                .property(
-                        InventoryTitle.PROPERTY_NAME,
-                        InventoryTitle(title)
-                )
-                .withCarrier(this)
-                .build(fastCraft) as GridInventory
-
     @Suppress("UNCHECKED_CAST")
-    override fun getInventory() = inventory as CarriedInventory<SpongeGui>
+    private val inventory = Inventory.builder()
+            .of(InventoryArchetypes.CHEST)
+            .property(
+                    InventoryDimension.PROPERTY_NAME,
+                    InventoryDimension(width, height)
+            )
+            .property(
+                    InventoryTitle.PROPERTY_NAME,
+                    InventoryTitle(title)
+            )
+            .withCarrier(this)
+            .build(fastCraft) as CarriedInventory<SpongeGui>
+
+    override fun getInventory() = inventory
 
     override val title get() = inventory.archetype
             .getProperty(InventoryTitle::class.java)
@@ -67,10 +67,11 @@ class SpongeGui(
     }
 
     override fun updateLayout() {
+        val gridInv = inventory.query<GridInventory>(GridInventory::class.java)
         for (x in 0 until width) {
             for (y in 0 until height) {
-                val item = getButton(x, y)?.item?.get()
-                inventory.set(x, y, (item as SpongeItem).base)
+                val spongeItem = getButton(x, y)?.item?.get() as SpongeItem?
+                gridInv.set(x, y, spongeItem?.base)
             }
         }
     }

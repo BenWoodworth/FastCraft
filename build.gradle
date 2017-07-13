@@ -24,7 +24,7 @@ buildscript {
         version_spongegradle = '0.8.1'
 
         version_bukkit = '1.12-R0.1-SNAPSHOT'
-        version_sponge = '7.0.0-20170624.211431-17'
+        version_sponge = '7.0.0-20170709.110018-21'
 
         version_dagger = '2.11'
         version_jsr250 = '1.0'
