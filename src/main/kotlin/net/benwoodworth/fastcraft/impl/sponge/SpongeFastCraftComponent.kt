@@ -1,15 +1,15 @@
 package net.benwoodworth.fastcraft.impl.sponge
 
 import dagger.Component
-import net.benwoodworth.fastcraft.core.FastCraftComponent
-import net.benwoodworth.fastcraft.impl.sponge.dependencies.config.SpongeModuleConfig
-import net.benwoodworth.fastcraft.impl.sponge.dependencies.event.SpongeModuleEvent
-import net.benwoodworth.fastcraft.impl.sponge.dependencies.gui.SpongeModuleGui
-import net.benwoodworth.fastcraft.impl.sponge.dependencies.item.SpongeModuleItem
-import net.benwoodworth.fastcraft.impl.sponge.dependencies.permission.SpongeModulePermission
-import net.benwoodworth.fastcraft.impl.sponge.dependencies.player.SpongeModulePlayer
-import net.benwoodworth.fastcraft.impl.sponge.dependencies.server.SpongeModuleServer
-import net.benwoodworth.fastcraft.impl.sponge.dependencies.text.SpongeModuleText
+import net.benwoodworth.fastcraft.dependencies.FastCraftComponent
+import net.benwoodworth.fastcraft.impl.sponge.config.SpongeModuleConfig
+import net.benwoodworth.fastcraft.impl.sponge.event.SpongeModuleEvent
+import net.benwoodworth.fastcraft.impl.sponge.gui.SpongeModuleGui
+import net.benwoodworth.fastcraft.impl.sponge.item.SpongeModuleItem
+import net.benwoodworth.fastcraft.impl.sponge.permission.SpongeModulePermission
+import net.benwoodworth.fastcraft.impl.sponge.player.SpongeModulePlayer
+import net.benwoodworth.fastcraft.impl.sponge.server.SpongeModuleServer
+import net.benwoodworth.fastcraft.impl.sponge.text.SpongeModuleText
 import javax.inject.Singleton
 
 /**

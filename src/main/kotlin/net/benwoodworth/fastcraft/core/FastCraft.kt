@@ -1,14 +1,14 @@
 package net.benwoodworth.fastcraft.core
 
-import net.benwoodworth.fastcraft.core.dependencies.event.EventPlayerJoin
-import net.benwoodworth.fastcraft.core.dependencies.event.EventPluginDisable
-import net.benwoodworth.fastcraft.core.dependencies.event.EventPluginEnable
-import net.benwoodworth.fastcraft.core.dependencies.gui.GuiBuilder
-import net.benwoodworth.fastcraft.core.dependencies.gui.GuiButton
-import net.benwoodworth.fastcraft.core.dependencies.server.TaskBuilder
-import net.benwoodworth.fastcraft.core.dependencies.text.TextBuilder
-import net.benwoodworth.fastcraft.core.dependencies.text.TextColorRegistry
-import net.benwoodworth.fastcraft.impl.sponge.dependencies.item.SpongeItem
+import net.benwoodworth.fastcraft.dependencies.event.EventPlayerJoin
+import net.benwoodworth.fastcraft.dependencies.event.EventPluginDisable
+import net.benwoodworth.fastcraft.dependencies.event.EventPluginEnable
+import net.benwoodworth.fastcraft.dependencies.gui.GuiBuilder
+import net.benwoodworth.fastcraft.dependencies.gui.GuiButton
+import net.benwoodworth.fastcraft.dependencies.server.TaskBuilder
+import net.benwoodworth.fastcraft.dependencies.text.TextBuilder
+import net.benwoodworth.fastcraft.dependencies.text.TextColorRegistry
+import net.benwoodworth.fastcraft.impl.sponge.item.SpongeItem
 import net.benwoodworth.fastcraft.util.EventListener
 import net.benwoodworth.fastcraft.util.Memento
 import org.spongepowered.api.item.ItemTypes

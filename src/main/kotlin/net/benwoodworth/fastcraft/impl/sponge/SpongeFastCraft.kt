@@ -1,15 +1,15 @@
 package net.benwoodworth.fastcraft.impl.sponge
 
 import net.benwoodworth.fastcraft.core.FastCraft
-import net.benwoodworth.fastcraft.core.FastCraftImplementation
-import net.benwoodworth.fastcraft.impl.sponge.dependencies.config.SpongeModuleConfig
-import net.benwoodworth.fastcraft.impl.sponge.dependencies.event.SpongeModuleEvent
-import net.benwoodworth.fastcraft.impl.sponge.dependencies.gui.SpongeModuleGui
-import net.benwoodworth.fastcraft.impl.sponge.dependencies.item.SpongeModuleItem
-import net.benwoodworth.fastcraft.impl.sponge.dependencies.permission.SpongeModulePermission
-import net.benwoodworth.fastcraft.impl.sponge.dependencies.player.SpongeModulePlayer
-import net.benwoodworth.fastcraft.impl.sponge.dependencies.server.SpongeModuleServer
-import net.benwoodworth.fastcraft.impl.sponge.dependencies.text.SpongeModuleText
+import net.benwoodworth.fastcraft.dependencies.FastCraftImplementation
+import net.benwoodworth.fastcraft.impl.sponge.config.SpongeModuleConfig
+import net.benwoodworth.fastcraft.impl.sponge.event.SpongeModuleEvent
+import net.benwoodworth.fastcraft.impl.sponge.gui.SpongeModuleGui
+import net.benwoodworth.fastcraft.impl.sponge.item.SpongeModuleItem
+import net.benwoodworth.fastcraft.impl.sponge.permission.SpongeModulePermission
+import net.benwoodworth.fastcraft.impl.sponge.player.SpongeModulePlayer
+import net.benwoodworth.fastcraft.impl.sponge.server.SpongeModuleServer
+import net.benwoodworth.fastcraft.impl.sponge.text.SpongeModuleText
 import org.spongepowered.api.event.Listener
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent
 import org.spongepowered.api.plugin.Plugin
