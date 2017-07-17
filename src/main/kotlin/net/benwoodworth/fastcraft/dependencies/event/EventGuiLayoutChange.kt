@@ -5,5 +5,8 @@ package net.benwoodworth.fastcraft.dependencies.event
  */
 interface EventGuiLayoutChange {
 
+    /**
+     * Implementation of [EventGuiLayoutChange].
+     */
     class Impl : EventGuiLayoutChange
 }
