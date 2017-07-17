@@ -51,7 +51,7 @@ class FastCraft @Inject constructor(
                 .build()
         )
 
-        taskSchedulerProvider.get().delay(60L).run {
+        taskSchedulerProvider.get().delay(20L).run {
             event.player.sendMessage(textBuilderProvider.get()
                     .text("Opening GUI...")
                     .build()
@@ -73,6 +73,10 @@ class FastCraft @Inject constructor(
                     .itemType(ItemTypes.CRAFTING_TABLE)
                     .build()
             button.item = Memento(SpongeItem(buttonItem))
+            button.clickListener += { ->
+                println("The button was pressed!!")
+            }
+
             gui.setButton(1, 1, button)
 
             gui.open(event.player)
