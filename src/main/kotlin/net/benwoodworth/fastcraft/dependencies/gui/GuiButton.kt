@@ -32,7 +32,7 @@ interface GuiButton {
         override var item: Memento<Item>? = null
             set(value) {
                 field = value
-                changeListener.notifyHandlers(EventGuiLayoutChange())
+                changeListener.notifyHandlers(EventGuiLayoutChange.Impl())
             }
     }
 }

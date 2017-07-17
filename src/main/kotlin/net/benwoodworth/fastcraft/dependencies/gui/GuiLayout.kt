@@ -75,13 +75,13 @@ interface GuiLayout {
             return removeButtonNoNotify(x, y).also {
                 buttons[Pair(x, y)] = button
                 button.changeListener += changeListener::notifyHandlers
-                changeListener.notifyHandlers(EventGuiLayoutChange())
+                changeListener.notifyHandlers(EventGuiLayoutChange.Impl())
             }
         }
 
         override fun removeButton(x: Int, y: Int): GuiButton? {
             return removeButtonNoNotify(x, y)?.also {
-                changeListener.notifyHandlers(EventGuiLayoutChange())
+                changeListener.notifyHandlers(EventGuiLayoutChange.Impl())
             }
         }
     }
