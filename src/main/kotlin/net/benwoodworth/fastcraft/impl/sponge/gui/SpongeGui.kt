@@ -9,6 +9,7 @@ import net.benwoodworth.fastcraft.impl.sponge.player.SpongePlayer
 import net.benwoodworth.fastcraft.impl.sponge.text.SpongeText
 import org.spongepowered.api.Sponge
 import org.spongepowered.api.event.cause.Cause
+import org.spongepowered.api.event.item.inventory.InteractInventoryEvent
 import org.spongepowered.api.item.inventory.Carrier
 import org.spongepowered.api.item.inventory.Inventory
 import org.spongepowered.api.item.inventory.InventoryArchetypes
@@ -44,7 +45,10 @@ class SpongeGui(
                     InventoryTitle(title)
             )
             .withCarrier(this)
+            .listener(InteractInventoryEvent::class.java, this::onInteractInventory)
             .build(fastCraft) as CarriedInventory<SpongeGui>
+
+    private val gridInventory = inventory.query<GridInventory>(GridInventory::class.java)
 
     override fun getInventory() = inventory
 
@@ -67,12 +71,26 @@ class SpongeGui(
     }
 
     override fun updateLayout() {
-        val gridInv = inventory.query<GridInventory>(GridInventory::class.java)
         for (x in 0 until width) {
             for (y in 0 until height) {
                 val spongeItem = getButton(x, y)?.item?.get() as SpongeItem?
-                gridInv.set(x, y, spongeItem?.base)
+                gridInventory.set(x, y, spongeItem?.base)
             }
         }
+    }
+
+    /**
+     * Handle inventory interactions, preventing modifications
+     * to this [Gui]'s inventory.
+     */
+    private fun onInteractInventory(event: InteractInventoryEvent) {
+        if (event is InteractInventoryEvent.Open || event is InteractInventoryEvent.Close) {
+            return
+        }
+        println(event)
+
+        event.cursorTransaction
+
+//        event.isCancelled = true
     }
 }

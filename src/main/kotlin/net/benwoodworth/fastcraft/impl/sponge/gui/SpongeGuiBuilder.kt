@@ -2,7 +2,6 @@ package net.benwoodworth.fastcraft.impl.sponge.gui
 
 import net.benwoodworth.fastcraft.dependencies.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.gui.GuiBuilder
-import net.benwoodworth.fastcraft.dependencies.gui.GuiLayout
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.impl.sponge.SpongeFastCraft
 import net.benwoodworth.fastcraft.impl.sponge.text.SpongeText
@@ -17,7 +16,6 @@ class SpongeGuiBuilder (
 
     private var height: Int? = null
     private var title: Sponge_Text? = null
-    private var layout: GuiLayout? = null
 
     override fun build(): Gui {
         return SpongeGui(
