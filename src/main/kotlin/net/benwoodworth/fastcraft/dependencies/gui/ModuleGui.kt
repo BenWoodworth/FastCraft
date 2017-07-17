@@ -5,5 +5,5 @@ package net.benwoodworth.fastcraft.dependencies.gui
  */
 interface ModuleGui {
 
-    fun guiBuilder(): GuiBuilder
+    fun guiBuilder(): Gui.Builder
 }

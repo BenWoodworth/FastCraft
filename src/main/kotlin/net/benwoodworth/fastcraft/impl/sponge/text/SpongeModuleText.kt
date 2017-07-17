@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.impl.sponge.text
 import dagger.Module
 import dagger.Provides
 import net.benwoodworth.fastcraft.dependencies.text.ModuleText
-import net.benwoodworth.fastcraft.dependencies.text.TextBuilder
+import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.dependencies.text.TextColorRegistry
 import javax.inject.Singleton
 import org.spongepowered.api.text.Text as Sponge_Text
@@ -15,8 +15,8 @@ import org.spongepowered.api.text.Text as Sponge_Text
 class SpongeModuleText : ModuleText {
 
     @Provides
-    override fun textBuilder(): TextBuilder {
-        return SpongeTextBuilder(Sponge_Text.builder(""))
+    override fun textBuilder(): Text.Builder {
+        return SpongeText.Builder(Sponge_Text.builder(""))
     }
 
     @Provides @Singleton

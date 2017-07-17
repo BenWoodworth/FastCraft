@@ -27,4 +27,31 @@ interface Gui : GuiLayoutComposite {
      * Update the Gui's layout.
      */
     fun updateLayout()
+
+    /**
+     * A builder for [Gui]'s.
+     */
+    interface Builder {
+
+        /**
+         * Build the [Gui]
+         *
+         * @return the built [Gui]
+         */
+        fun build(): Gui
+
+        /**
+         * Set the [Gui] height.
+         *
+         * @return fluent interface
+         */
+        fun setHeight(height: Int): Gui.Builder
+
+        /**
+         * Set the [Gui] title.
+         *
+         * @return fluent interface
+         */
+        fun setTitle(title: Text): Gui.Builder
+    }
 }

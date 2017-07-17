@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.impl.sponge.permission
 import dagger.Module
 import dagger.Provides
 import net.benwoodworth.fastcraft.dependencies.permission.ModulePermission
-import net.benwoodworth.fastcraft.dependencies.permission.PermissionBuilder
+import net.benwoodworth.fastcraft.dependencies.permission.Permission
 
 /**
  * Sponge implementation of [ModulePermission].
@@ -12,7 +12,7 @@ import net.benwoodworth.fastcraft.dependencies.permission.PermissionBuilder
 class SpongeModulePermission : ModulePermission {
 
     @Provides
-    override fun permissionBuilder(): PermissionBuilder {
+    override fun permissionBuilder(): Permission.Builder {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

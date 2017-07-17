@@ -5,7 +5,7 @@ package net.benwoodworth.fastcraft.dependencies.text
  */
 interface ModuleText {
 
-    fun textBuilder(): TextBuilder
+    fun textBuilder(): Text.Builder
 
     fun textColorRegistry(): TextColorRegistry
 }

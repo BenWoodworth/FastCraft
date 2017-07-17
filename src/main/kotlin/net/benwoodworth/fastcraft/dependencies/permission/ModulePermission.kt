@@ -5,5 +5,5 @@ package net.benwoodworth.fastcraft.dependencies.permission
  */
 interface ModulePermission {
 
-    fun permissionBuilder(): PermissionBuilder
+    fun permissionBuilder(): Permission.Builder
 }

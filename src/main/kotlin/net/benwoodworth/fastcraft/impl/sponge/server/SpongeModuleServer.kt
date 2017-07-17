@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.impl.sponge.server
 import dagger.Module
 import dagger.Provides
 import net.benwoodworth.fastcraft.dependencies.server.ModuleServer
-import net.benwoodworth.fastcraft.dependencies.server.TaskBuilder
+import net.benwoodworth.fastcraft.dependencies.server.Task
 import net.benwoodworth.fastcraft.impl.sponge.SpongeFastCraft
 import org.spongepowered.api.scheduler.Task as Sponge_Task
 
@@ -16,7 +16,7 @@ class SpongeModuleServer(
 ) : ModuleServer {
 
     @Provides
-    override fun taskBuilder(): TaskBuilder {
-        return SpongeTaskBuilder(Sponge_Task.builder(), fastCraft)
+    override fun taskBuilder(): Task.Builder {
+        return SpongeTask.Builder(Sponge_Task.builder(), fastCraft)
     }
 }

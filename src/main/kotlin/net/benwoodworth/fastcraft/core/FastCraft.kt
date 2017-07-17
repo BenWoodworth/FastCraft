@@ -3,10 +3,10 @@ package net.benwoodworth.fastcraft.core
 import net.benwoodworth.fastcraft.dependencies.event.EventPlayerJoin
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginDisable
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginEnable
-import net.benwoodworth.fastcraft.dependencies.gui.GuiBuilder
+import net.benwoodworth.fastcraft.dependencies.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.gui.GuiButton
-import net.benwoodworth.fastcraft.dependencies.server.TaskBuilder
-import net.benwoodworth.fastcraft.dependencies.text.TextBuilder
+import net.benwoodworth.fastcraft.dependencies.server.Task
+import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.dependencies.text.TextColorRegistry
 import net.benwoodworth.fastcraft.impl.sponge.item.SpongeItem
 import net.benwoodworth.fastcraft.util.EventListener
@@ -25,9 +25,9 @@ class FastCraft @Inject constructor(
         listenerPlayerJoin: EventListener<EventPlayerJoin>,
 
         //private val logger: Logger,
-        private val taskSchedulerProvider: Provider<TaskBuilder>,
-        private val guiBuilderProvider: Provider<GuiBuilder>,
-        private val textBuilderProvider: Provider<TextBuilder>,
+        private val taskSchedulerProvider: Provider<Task.Builder>,
+        private val guiBuilderProvider: Provider<Gui.Builder>,
+        private val textBuilderProvider: Provider<Text.Builder>,
         private val textColorRegistry: TextColorRegistry
 ) {
 
