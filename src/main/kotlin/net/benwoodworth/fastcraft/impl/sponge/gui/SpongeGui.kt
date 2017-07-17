@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.impl.sponge.gui
 
 import net.benwoodworth.fastcraft.dependencies.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.gui.GuiLayoutComposite
-import net.benwoodworth.fastcraft.dependencies.gui.events.EventGuiButtonClick
+import net.benwoodworth.fastcraft.dependencies.event.EventGuiButtonClick
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.impl.sponge.SpongeFastCraft
@@ -10,6 +10,7 @@ import net.benwoodworth.fastcraft.impl.sponge.item.SpongeItem
 import net.benwoodworth.fastcraft.impl.sponge.player.SpongePlayer
 import net.benwoodworth.fastcraft.impl.sponge.text.SpongeText
 import org.spongepowered.api.Sponge
+import org.spongepowered.api.entity.living.player.Player as Sponge_Player
 import org.spongepowered.api.event.Listener
 import org.spongepowered.api.event.Order
 import org.spongepowered.api.event.cause.Cause
@@ -120,7 +121,11 @@ class SpongeGui(
                     .forEach { it.isValid = false }
         }
 
+        /**
+         * Forwards inventory clicks to buttons.
+         */
         @Listener(order = Order.BEFORE_POST)
+        @Suppress("UNUSED")
         fun onClick(event: ClickInventoryEvent) {
             if (event.transactions.size != 1) {
                 return
@@ -131,20 +136,38 @@ class SpongeGui(
                 return
             }
 
-            val clickEventBuilder: EventGuiButtonClick
+            val carriedInv = slot.parent() as CarriedInventory<*>
+            val gui = carriedInv.carrier.get() as SpongeGui
 
-            when (event) {
-                is ClickInventoryEvent.Drag -> {}
-                //is
-            }
+            val slotIndex = slot.getProperty(SlotIndex::class.java, "slotindex")
+                    .map(SlotIndex::getValue).get()
 
+            val button = gui.getButton(
+                    slotIndex.rem(gui.width),
+                    slotIndex / gui.width
+            ) ?: return
+
+            val player = event.cause.root() as? Sponge_Player
+
+            val clickEvent = EventGuiButtonClick.Impl(
+                    gui,
+                    button,
+                    player?.let(::SpongePlayer),
+                    event is ClickInventoryEvent.Primary,
+                    event is ClickInventoryEvent.Secondary,
+                    event is ClickInventoryEvent.Middle,
+                    event is ClickInventoryEvent.Double,
+                    (event as? ClickInventoryEvent.NumberPress)?.number
+            )
+
+            button.clickListener.notifyHandlers(clickEvent)
         }
     }
 
     /**
      * Sponge implementation of [Gui.Builder].
      */
-    class Builder (
+    class Builder(
             private val fastCraft: SpongeFastCraft
     ) : Gui.Builder {
 
