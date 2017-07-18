@@ -8,13 +8,13 @@ import net.benwoodworth.fastcraft.dependencies.item.Item
 interface Recipe {
 
     /**
-     * Get [PreparedRecipe]s that are possible to craft with
+     * Get [RecipePrepared]s that are possible to craft with
      * the given items.
      *
      * @param availableItems the items available to craft with
      * @return a list of possible recipes
      */
-    fun prepareRecipes(availableItems: Collection<Item>): List<PreparedRecipe>
+    fun prepareRecipes(availableItems: Collection<Item>): List<RecipePrepared>
 
     /**
      * Check if this recipe is equal to an object.

@@ -7,7 +7,7 @@ import net.benwoodworth.fastcraft.util.Memento
 /**
  * A recipe with specific ingredients and results.
  */
-interface PreparedRecipe {
+interface RecipePrepared {
 
     /**
      * The ingredients required to craft this recipe,
