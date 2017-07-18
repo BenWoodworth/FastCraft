@@ -14,6 +14,7 @@ import org.spongepowered.api.entity.living.player.Player as Sponge_Player
 import org.spongepowered.api.event.Listener
 import org.spongepowered.api.event.Order
 import org.spongepowered.api.event.cause.Cause
+import org.spongepowered.api.event.filter.cause.First
 import org.spongepowered.api.event.item.inventory.AffectSlotEvent
 import org.spongepowered.api.event.item.inventory.ClickInventoryEvent
 import org.spongepowered.api.item.inventory.Carrier
@@ -126,7 +127,7 @@ class SpongeGui(
          */
         @Listener(order = Order.BEFORE_POST)
         @Suppress("UNUSED")
-        fun onClick(event: ClickInventoryEvent) {
+        fun onClick(event: ClickInventoryEvent, @First player: Sponge_Player?) {
             if (event.transactions.size != 1) {
                 return
             }
@@ -146,8 +147,6 @@ class SpongeGui(
                     slotIndex.rem(gui.width),
                     slotIndex / gui.width
             ) ?: return
-
-            val player = event.cause.root() as? Sponge_Player
 
             val clickEvent = EventGuiButtonClick.Impl(
                     gui,
