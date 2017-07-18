@@ -6,8 +6,6 @@ import net.benwoodworth.fastcraft.dependencies.server.ModuleServer
 import net.benwoodworth.fastcraft.dependencies.server.Plugin
 import net.benwoodworth.fastcraft.dependencies.server.Task
 import net.benwoodworth.fastcraft.impl.sponge.SpongeFastCraft
-import org.spongepowered.api.Sponge
-import javax.inject.Named
 import javax.inject.Singleton
 import org.spongepowered.api.scheduler.Task as Sponge_Task
 
