@@ -5,6 +5,8 @@ package net.benwoodworth.fastcraft.util
  */
 interface Cancellable {
 
-    /** Whether this action is cancelled. */
+    /**
+     * Whether this action is cancelled.
+     */
     var cancelled: Boolean
 }

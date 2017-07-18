@@ -9,13 +9,19 @@ import java.util.UUID
  */
 interface Player {
 
-    /** The player's username. */
+    /**
+     * The player's username.
+     */
     val username: String
 
-    /** The player's display name. */
+    /**
+     * The player's display name.
+     */
     var displayName: Text?
 
-    /** The player's UUID. */
+    /**
+     * The player's UUID.
+     */
     val uuid: UUID
 
     /**

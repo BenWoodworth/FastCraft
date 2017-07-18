@@ -7,13 +7,19 @@ import java.nio.file.Path
  */
 interface Plugin {
 
-    /** This plugin's [Logger]. */
+    /**
+     * This plugin's [Logger].
+     */
     val logger: Logger
 
-    /** The directory in which this plugin's files are stored. */
+    /**
+     * The directory in which this plugin's files are stored.
+     */
     val pluginDirectory: Path
 
-    /** The FastCraft configuration file. */
+    /**
+     * The FastCraft configuration file.
+     */
     val configFile: Path
 
     /**

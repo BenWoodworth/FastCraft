@@ -28,7 +28,9 @@ interface GuiLayoutComposite : GuiLayout {
 
         constructor(width: Int, height: Int) : this(GuiLayout.Impl(width, height))
 
-        /** The layouts that compose this layout. */
+        /**
+         * The layouts that compose this layout.
+         */
         private val childLayouts = LinkedList<LayoutPosition>()
 
         override fun getButton(x: Int, y: Int): GuiButton? {
@@ -82,13 +84,19 @@ interface GuiLayoutComposite : GuiLayout {
          * Contains a layout, and a coordinate pair.
          */
         private class LayoutPosition(
-                /** The x-coordinate within the layout. */
+                /**
+                 * The x-coordinate within the layout.
+                 */
                 val x: Int,
 
-                /** The y-coordinate within the layout. */
+                /**
+                 * The y-coordinate within the layout.
+                 */
                 val y: Int,
 
-                /** The layout. */
+                /**
+                 * The layout.
+                 */
                 val layout: GuiLayout
         )
     }

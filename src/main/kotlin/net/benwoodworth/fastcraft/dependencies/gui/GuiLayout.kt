@@ -8,13 +8,19 @@ import net.benwoodworth.fastcraft.util.EventListener
  */
 interface GuiLayout {
 
-    /** The width of the layout. */
+    /**
+     * The width of the layout.
+     */
     val width: Int
 
-    /** The height of the layout. */
+    /**
+     * The height of the layout.
+     */
     val height: Int
 
-    /** A listener for layout changes. */
+    /**
+     * A listener for layout changes.
+     */
     val changeListener: EventListener<EventGuiLayoutChange>
 
     /**
@@ -55,7 +61,9 @@ interface GuiLayout {
 
         override val changeListener = EventListener<EventGuiLayoutChange>()
 
-        /** The buttons within this layout */
+        /**
+         * The buttons within this layout.
+         */
         private val buttons = mutableMapOf<Pair<Int, Int>, GuiButton>()
 
         override fun getButton(x: Int, y: Int) = buttons[Pair(x, y)]

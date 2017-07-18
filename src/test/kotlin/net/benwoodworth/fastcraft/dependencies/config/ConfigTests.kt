@@ -10,7 +10,9 @@ import java.nio.file.Path
  */
 abstract class ConfigTests : ImplementationTests<Config>() {
 
-    /** The path to the config file. */
+    /**
+     * The path to the config file.
+     */
     abstract val configFile: Path
 
     @Test

@@ -41,7 +41,9 @@ class SpongeGui(
         changeListener += this::updateLayout
     }
 
-    /** The inventory representing this GUI. */
+    /**
+     * The inventory representing this GUI.
+     */
     @Suppress("UNCHECKED_CAST")
     private val inventory = Inventory.builder()
             .of(InventoryArchetypes.CHEST)

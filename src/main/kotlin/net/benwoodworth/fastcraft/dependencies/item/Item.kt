@@ -8,19 +8,29 @@ import net.benwoodworth.fastcraft.util.Copyable
  */
 interface Item : Copyable<Item> {
 
-    /** The amount of items in this stack. */
+    /**
+     * The amount of items in this stack.
+     */
     var amount: Int
 
-    /** The name of this item. */
+    /**
+     * The name of this item.
+     */
     val name: Text
 
-    /** The display name of this item. */
+    /**
+     * The display name of this item.
+     */
     var displayName: Text?
 
-    /** The item's lore */
+    /**
+     * The item's lore.
+     */
     var lore: List<Text?>?
 
-    /** The maximum size of this stack. */
+    /**
+     * The maximum size of this stack.
+     */
     val maxStackSize: Int
 
     /**

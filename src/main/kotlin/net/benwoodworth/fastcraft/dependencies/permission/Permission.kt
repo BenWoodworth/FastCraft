@@ -5,10 +5,14 @@ package net.benwoodworth.fastcraft.dependencies.permission
  */
 interface Permission {
 
-    /** The ID of this permission. */
+    /**
+     * The ID of this permission.
+     */
     val id: String
 
-    /** The description of what this permission is for */
+    /**
+     * The description of what this permission is for.
+     */
     val description: String
 
     /**

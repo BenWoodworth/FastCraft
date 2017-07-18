@@ -8,7 +8,9 @@ import net.benwoodworth.fastcraft.dependencies.text.Text
  */
 interface Gui : GuiLayoutComposite {
 
-    /** The title of this [Gui]. */
+    /**
+     * The title of this [Gui].
+     */
     val title: Text?
 
     /**

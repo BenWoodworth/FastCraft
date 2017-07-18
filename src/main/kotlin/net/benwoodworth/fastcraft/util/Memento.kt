@@ -5,7 +5,9 @@ package net.benwoodworth.fastcraft.util
  */
 class Memento<out T : Copyable<T>> (instance: T?) {
 
-    /** The snapshot of the instance. */
+    /**
+     * The snapshot of the instance.
+     */
     private val state = instance?.copy()
 
     /**

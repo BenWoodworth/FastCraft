@@ -7,7 +7,9 @@ import javax.inject.Inject
  * A FastCraft API for use by other plugins.
  */
 class FastCraftApi @Inject constructor(
-        /** The instance of FastCraft. */
+        /**
+         * The instance of FastCraft.
+         */
         val fastCraft: FastCraft
 ) {
 

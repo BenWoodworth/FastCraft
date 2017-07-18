@@ -5,6 +5,8 @@ package net.benwoodworth.fastcraft.dependencies.config
  */
 interface Config : ConfigSection {
 
-    /** The config header comment. */
+    /**
+     * The config header comment.
+     */
     var header: List<String>
 }

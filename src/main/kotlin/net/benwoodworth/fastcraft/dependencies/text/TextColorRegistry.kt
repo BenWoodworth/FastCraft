@@ -5,57 +5,93 @@ package net.benwoodworth.fastcraft.dependencies.text
  */
 interface TextColorRegistry {
 
-    /** Leaves the color unset. */
+    /**
+     * Leaves the color unset.
+     */
     val none: TextColor
 
-    /** Resets the color. Does not reset formatting. */
+    /**
+     * Resets the color. Does not reset formatting.
+     */
     val reset: TextColor
 
-    /** Get the text color black. */
+    /**
+     * Get the text color black.
+     */
     val black: TextColor
 
-    /** Get the text color dark blue. */
+    /**
+     * Get the text color dark blue.
+     */
     val darkBlue: TextColor
 
-    /** Get the text color dark green. */
+    /**
+     * Get the text color dark green.
+     */
     val darkGreen: TextColor
 
-    /** Get the text color dark aqua. */
+    /**
+     * Get the text color dark aqua.
+     */
     val darkAqua: TextColor
 
-    /** Get the text color dark red. */
+    /**
+     * Get the text color dark red.
+     */
     val darkRed: TextColor
 
-    /** Get the text color dark purple. */
+    /**
+     * Get the text color dark purple.
+     */
     val darkPurple: TextColor
 
-    /** Get the text color gold. */
+    /**
+     * Get the text color gold.
+     */
     val gold: TextColor
 
-    /** Get the text color gray. */
+    /**
+     * Get the text color gray.
+     */
     val gray: TextColor
 
-    /** Get the text color dark gray. */
+    /**
+     * Get the text color dark gray.
+     */
     val darkGray: TextColor
 
-    /** Get the text color blue. */
+    /**
+     * Get the text color blue.
+     */
     val blue: TextColor
 
-    /** Get the text color green. */
+    /**
+     * Get the text color green.
+     */
     val green: TextColor
 
-    /** Get the text color aqua. */
+    /**
+     * Get the text color aqua.
+     */
     val aqua: TextColor
 
-    /** Get the text color red. */
+    /**
+     * Get the text color red.
+     */
     val red: TextColor
 
-    /** Get the text color light purple. */
+    /**
+     * Get the text color light purple.
+     */
     val lightPurple: TextColor
 
-    /** Get the text color yellow. */
+    /**
+     * Get the text color yellow.
+     */
     val yellow: TextColor
 
-    /** Get the text color white. */
+    /**
+     * Get the text color white.
+     */
     val white: TextColor
 }

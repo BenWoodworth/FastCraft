@@ -11,7 +11,9 @@ import java.nio.file.Path
  */
 abstract class ConfigManagerTests : ImplementationTests<ConfigManager>() {
 
-    /** The path to the test config. */
+    /**
+     * The path to the test config.
+     */
     abstract val testConfigPath: Path
 
     private fun verifyConfigValues(config: Config) {

@@ -7,10 +7,14 @@ package net.benwoodworth.fastcraft.util
  */
 class EventListener<TEvent> {
 
-    /** Event handlers with an event parameter. */
+    /**
+     * Event handlers with an event parameter.
+     */
     private val handlersParam = mutableListOf<(event: TEvent) -> Unit>()
 
-    /** Event handlers without an event parameter. */
+    /**
+     * Event handlers without an event parameter.
+     */
     private val handlersNoParam = mutableListOf<() -> Unit>()
 
     /**

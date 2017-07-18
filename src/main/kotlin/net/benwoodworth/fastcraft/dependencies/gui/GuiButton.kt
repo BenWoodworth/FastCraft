@@ -11,13 +11,19 @@ import net.benwoodworth.fastcraft.util.Memento
  */
 interface GuiButton {
 
-    /** A listener for layout changes. */
+    /**
+     * A listener for layout changes.
+     */
     val changeListener: EventListener<EventGuiLayoutChange>
 
-    /** A listener for button clicks. */
+    /**
+     * A listener for button clicks.
+     */
     val clickListener: EventListener<EventGuiButtonClick>
 
-    /** The item representing this button. */
+    /**
+     * The item representing this button.
+     */
     var item: Memento<Item>?
 
     /**

@@ -8,7 +8,9 @@ import net.benwoodworth.fastcraft.dependencies.text.Text
  */
 interface Ingredient {
 
-    /** The name of this ingredient */
+    /**
+     * The name of this ingredient.
+     */
     val name: Text
 
     /**

@@ -7,6 +7,8 @@ import net.benwoodworth.fastcraft.dependencies.player.Player
  */
 interface EventPlayerJoin {
 
-    /** The player who joined. */
+    /**
+     * The player who joined.
+     */
     val player: Player
 }
