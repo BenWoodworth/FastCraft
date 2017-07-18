@@ -24,7 +24,6 @@ class FastCraft @Inject constructor(
         listenerPluginDisable: EventListener<EventPluginDisable>,
         listenerPlayerJoin: EventListener<EventPlayerJoin>,
 
-        //private val logger: Logger,
         private val taskSchedulerProvider: Provider<Task.Builder>,
         private val guiBuilderProvider: Provider<Gui.Builder>,
         private val textBuilderProvider: Provider<Text.Builder>,
@@ -51,7 +50,7 @@ class FastCraft @Inject constructor(
                 .build()
         )
 
-//        taskSchedulerProvider.get().delay(20L).run {
+        taskSchedulerProvider.get().delay(20L).run {
             event.player.sendMessage(textBuilderProvider.get()
                     .text("Opening GUI...")
                     .build()
@@ -73,13 +72,18 @@ class FastCraft @Inject constructor(
                     .itemType(ItemTypes.CRAFTING_TABLE)
                     .build()
             button.item = Memento(SpongeItem(buttonItem))
-            button.clickListener += { ->
-                println("The button was pressed!!")
+            button.clickListener += { e ->
+                e.player?.sendMessage(
+                        textBuilderProvider.get()
+                                .text("You clicked the button!")
+                                .bold(true)
+                                .build()
+                )
             }
 
             gui.setButton(1, 1, button)
 
             gui.open(event.player)
-//        }
+        }
     }
 }
