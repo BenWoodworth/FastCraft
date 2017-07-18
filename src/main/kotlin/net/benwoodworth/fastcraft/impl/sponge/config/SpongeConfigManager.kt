@@ -33,4 +33,6 @@ class SpongeConfigManager : ConfigManager {
 
         loader.save(config.base)
     }
+
+    override fun getFileExtension() = ".conf"
 }

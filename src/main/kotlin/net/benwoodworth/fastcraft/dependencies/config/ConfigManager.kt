@@ -29,4 +29,12 @@ interface ConfigManager {
      * @param config the [Config] to save.
      */
     fun saveConfig(path: Path, config: Config)
+
+    /**
+     * Get the file extension for this config
+     * format, including the period.
+     *
+     * @return the file extension
+     */
+    fun getFileExtension(): String
 }
