@@ -15,4 +15,17 @@ interface Plugin {
 
     /** The FastCraft configuration file. */
     val configFile: Path
+
+    /**
+     * Provides plugins.
+     */
+    interface Provider {
+
+        /**
+         * Get the plugin with the given name.
+         *
+         * @return the plugin, or null if it does not exist.
+         */
+        fun getPlugin(name: String): Plugin?
+    }
 }
