@@ -9,11 +9,6 @@ import net.benwoodworth.fastcraft.dependencies.text.Text
 interface Ingredient {
 
     /**
-     * The name of this ingredient.
-     */
-    val name: Text
-
-    /**
      * Check if an item matches this ingredient.
      *
      * @return `true` if the item matches this ingredient

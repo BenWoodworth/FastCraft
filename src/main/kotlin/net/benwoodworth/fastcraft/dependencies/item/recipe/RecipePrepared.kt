@@ -10,10 +10,10 @@ import net.benwoodworth.fastcraft.util.Memento
 interface RecipePrepared {
 
     /**
-     * The ingredients required to craft this recipe,
+     * The items required to craft this recipe,
      * and the amount of the ingredients required.
      */
-    val ingredients: Map<Ingredient, Int>
+    val ingredients: List<Memento<Item>>
 
     /**
      * The results of the recipe.
