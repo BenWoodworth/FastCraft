@@ -1,7 +1,6 @@
 package net.benwoodworth.fastcraft.dependencies.item.recipe
 
 import net.benwoodworth.fastcraft.dependencies.item.Item
-import net.benwoodworth.fastcraft.dependencies.text.Text
 
 /**
  * An ingredient of a recipe.

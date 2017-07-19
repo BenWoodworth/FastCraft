@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.dependencies.item.recipe
 
 import net.benwoodworth.fastcraft.dependencies.item.Item
+import net.benwoodworth.fastcraft.dependencies.player.Player
 
 /**
  * A Minecraft crafting recipe.
@@ -11,10 +12,10 @@ interface Recipe {
      * Get [RecipePrepared]s that are possible to craft with
      * the given items.
      *
-     * @param availableItems the items available to craft with
+     * @param items the items available to craft with
      * @return a list of possible recipes
      */
-    fun prepareRecipes(availableItems: Collection<Item>): List<RecipePrepared>
+    fun prepare(player: Player, vararg items: Item): List<RecipePrepared>
 
     /**
      * Check if this recipe is equal to an object.
