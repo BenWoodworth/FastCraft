@@ -15,5 +15,5 @@ class Memento<out T : Copyable<T>> (instance: T?) {
      *
      * @return a copy of the memento
      */
-    fun get() = state?.copy()
+    fun get() = state?.copy() as T
 }

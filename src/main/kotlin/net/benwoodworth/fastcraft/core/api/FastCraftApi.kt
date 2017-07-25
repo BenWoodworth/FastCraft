@@ -17,7 +17,7 @@ class FastCraftApi @Inject constructor(
 //     * Checks to see if an inventory is a GUI.
 //     *
 //     * @param inventory the inventory to check
-//     * @return `true` if the inventory is a GUI
+//     * @return `true` iff the inventory is a GUI
 //     */
 //    fun isGuiInventory(inventory: TInventory): Boolean {
 //        val fcInv = fastCraft.dependencies.inventoryProvider.adaptInventory(inventory)

@@ -37,7 +37,7 @@ interface Item : Copyable<Item> {
      * Compare equality of this base item to another, ignoring amount.
      *
      * @param item the [Item] to compare to
-     * @return `true` if the items are similar
+     * @return `true` iff the items are similar
      */
     fun isSimilar(item: Item): Boolean
 
