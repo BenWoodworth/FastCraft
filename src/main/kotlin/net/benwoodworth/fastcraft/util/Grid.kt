@@ -20,10 +20,15 @@ class Grid<T>(
          * The initializer for the grid's values.
          */
         init: (x: Int, y: Int) -> T
+) : Copyable<Grid<T>>, Iterable<T> {
 
-) : Copyable<Grid<T>>, MutableList<T> by MutableList(width * height, {
-    init(it.rem(width), it / width)
-}) {
+    /**
+     * The contents of the [Grid].
+     */
+    @Suppress("UNCHECKED_CAST")
+    private val contents: Array<T> = Array<Any?>(width * height) {
+        init(it.rem(width), it / width)
+    } as Array<T>
 
     /**
      * Set a value in the [Grid].
@@ -32,10 +37,7 @@ class Grid<T>(
      * @param y the y-coordinate
      * @return the value at the given coordinates
      */
-    @Suppress("UNCHECKED_CAST")
-    operator fun get(x: Int, y: Int): T {
-        return this[x + y * width]
-    }
+    operator fun get(x: Int, y: Int) = contents[x + y * width]
 
     /**
      * Get a value in the [Grid].
@@ -44,9 +46,8 @@ class Grid<T>(
      * @param y the y-coordinate
      * @param value the value to set
      */
-    @Suppress("UNCHECKED_CAST")
     operator fun set(x: Int, y: Int, value: T) {
-        this[x + y * width] = value
+        contents[x + y * width] = value
     }
 
     /**
@@ -54,8 +55,13 @@ class Grid<T>(
      *
      * @return a copy of the grid
      */
-    @Suppress("UNCHECKED_CAST")
-    override fun copy(): Grid<T> {
-        return Grid<Any?>(width, height, { x, y -> this[x, y] }) as Grid<T>
-    }
+    override fun copy() = Grid(width, height, { x, y -> this[x, y] })
+
+    /**
+     * Creates an iterator that iterates through each row left
+     * to right, starting from the top row going down.
+     *
+     * @return an iterator
+     */
+    override fun iterator() = contents.iterator()
 }
