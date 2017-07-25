@@ -29,6 +29,6 @@ class MementoTests {
         val memento = Memento(MockCopyable())
         val get = memento.get()
 
-        assertEquals(2, get?.generation)
+        assertEquals(2, get.generation)
     }
 }

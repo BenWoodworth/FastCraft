@@ -9,7 +9,7 @@ import net.benwoodworth.fastcraft.dependencies.server.Task
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.dependencies.text.TextColorRegistry
 import net.benwoodworth.fastcraft.impl.sponge.item.SpongeItem
-import net.benwoodworth.fastcraft.util.EventListener
+import net.benwoodworth.fastcraft.dependencies.event.Listener
 import net.benwoodworth.fastcraft.util.Memento
 import org.spongepowered.api.item.ItemTypes
 import org.spongepowered.api.item.inventory.ItemStack
@@ -20,9 +20,9 @@ import javax.inject.Provider
  * The core class of FastCraft.
  */
 class FastCraft @Inject constructor(
-        listenerPluginEnable: EventListener<EventPluginEnable>,
-        listenerPluginDisable: EventListener<EventPluginDisable>,
-        listenerPlayerJoin: EventListener<EventPlayerJoin>,
+        listenerPluginEnable: Listener<EventPluginEnable>,
+        listenerPluginDisable: Listener<EventPluginDisable>,
+        listenerPlayerJoin: Listener<EventPlayerJoin>,
 
         private val taskSchedulerProvider: Provider<Task.Builder>,
         private val guiBuilderProvider: Provider<Gui.Builder>,

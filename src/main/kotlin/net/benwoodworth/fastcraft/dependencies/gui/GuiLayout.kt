@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.dependencies.gui
 
 import net.benwoodworth.fastcraft.dependencies.event.EventGuiLayoutChange
-import net.benwoodworth.fastcraft.util.EventListener
+import net.benwoodworth.fastcraft.dependencies.event.Listener
 
 /**
  * The button layout of a GUI.
@@ -21,7 +21,7 @@ interface GuiLayout {
     /**
      * A listener for layout changes.
      */
-    val changeListener: EventListener<EventGuiLayoutChange>
+    val changeListener: Listener<EventGuiLayoutChange>
 
     /**
      * Get a button at the specified position in the layout.
@@ -59,7 +59,7 @@ interface GuiLayout {
             override val height: Int
     ) : GuiLayout {
 
-        override val changeListener = EventListener<EventGuiLayoutChange>()
+        override val changeListener = Listener.Impl<EventGuiLayoutChange>()
 
         /**
          * The buttons within this layout.

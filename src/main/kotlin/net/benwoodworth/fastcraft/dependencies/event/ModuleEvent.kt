@@ -1,15 +1,13 @@
 package net.benwoodworth.fastcraft.dependencies.event
 
-import net.benwoodworth.fastcraft.util.EventListener
-
 /**
  * Dagger module for event dependencies.
  */
 interface ModuleEvent {
 
-    fun listenerPlayerJoin(): EventListener<EventPlayerJoin>
+    fun listenerPlayerJoin(): Listener<EventPlayerJoin>
 
-    fun listenerPluginDisable(): EventListener<EventPluginDisable>
+    fun listenerPluginDisable(): Listener<EventPluginDisable>
 
-    fun listenerPluginEnable(): EventListener<EventPluginEnable>
+    fun listenerPluginEnable(): Listener<EventPluginEnable>
 }

@@ -1,15 +1,16 @@
 package net.benwoodworth.fastcraft.util
 
 import net.benwoodworth.fastcraft.ImplementationTests
+import net.benwoodworth.fastcraft.dependencies.event.Listener
 import org.junit.Assert.*
 import org.junit.jupiter.api.Test
 
 /**
- * Tests for [EventListener].
+ * Tests for [Listener].
  */
-class EventListenerTests : ImplementationTests<EventListener<Any?>>() {
+class ListenerTests : ImplementationTests<Listener<Any?>>() {
 
-    override fun createInstance() = EventListener<Any?>()
+    override fun createInstance() = Listener.Impl<Any?>()
 
     @Test
     fun `when adding a handler, it should be notified`() {
