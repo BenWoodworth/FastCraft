@@ -27,7 +27,7 @@ abstract class SpongeRecipe private constructor(
      */
     class Shaped(recipe: ShapedCraftingRecipe) : SpongeRecipe(
             recipe,
-            Grid<Ingredient>(recipe.width, recipe.height) { x, y ->
+            Grid.Impl<Ingredient>(recipe.width, recipe.height) { x, y ->
                 recipe.getIngredient(x, y)
             }
     )
@@ -37,7 +37,7 @@ abstract class SpongeRecipe private constructor(
      */
     class Shapeless(recipe: ShapelessCraftingRecipe) : SpongeRecipe(
             recipe,
-            Grid<Ingredient>(recipe.ingredientPredicates.size, 1) { x, _ ->
+            Grid.Impl<Ingredient>(recipe.ingredientPredicates.size, 1) { x, _ ->
                 recipe.ingredientPredicates[x]
             }
     )

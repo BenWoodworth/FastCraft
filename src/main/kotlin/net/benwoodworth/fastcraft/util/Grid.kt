@@ -5,30 +5,17 @@ package net.benwoodworth.fastcraft.util
  *
  * @param T the type of object contained in the [Grid]
  */
-class Grid<T>(
-        /**
-         * The width of the [Grid].
-         */
-        val width: Int,
-
-        /**
-         * The height of the [Grid].
-         */
-        val height: Int,
-
-        /**
-         * The initializer for the grid's values.
-         */
-        init: (x: Int, y: Int) -> T
-) : Copyable<Grid<T>>, Iterable<T> {
+interface Grid<T> : Copyable<Grid<T>>, Iterable<T> {
 
     /**
-     * The contents of the [Grid].
+     * The width of the [Grid].
      */
-    @Suppress("UNCHECKED_CAST")
-    private val contents: Array<T> = Array<Any?>(width * height) {
-        init(it.rem(width), it / width)
-    } as Array<T>
+    val width: Int
+
+    /**
+     * The height of the [Grid].
+     */
+    val height: Int
 
     /**
      * Set a value in the [Grid].
@@ -37,7 +24,7 @@ class Grid<T>(
      * @param y the y-coordinate
      * @return the value at the given coordinates
      */
-    operator fun get(x: Int, y: Int) = contents[x + y * width]
+    operator fun get(x: Int, y: Int): T
 
     /**
      * Get a value in the [Grid].
@@ -46,16 +33,14 @@ class Grid<T>(
      * @param y the y-coordinate
      * @param value the value to set
      */
-    operator fun set(x: Int, y: Int, value: T) {
-        contents[x + y * width] = value
-    }
+    operator fun set(x: Int, y: Int, value: T)
 
     /**
      * Makes a shallow copy of the [Grid].
      *
      * @return a copy of the grid
      */
-    override fun copy() = Grid(width, height, { x, y -> this[x, y] })
+    override fun copy(): Grid<T>
 
     /**
      * Creates an iterator that iterates through each row left
@@ -63,5 +48,37 @@ class Grid<T>(
      *
      * @return an iterator
      */
-    override fun iterator() = contents.iterator()
+    override fun iterator(): Iterator<T>
+
+    /**
+     * Implementation of [Grid].
+     *
+     * @param width the width of the [Grid]
+     * @param height the height of the [Grid]
+     * @param init the initializer for the [Grid]'s values
+     */
+    class Impl<T>(
+            override val width: Int,
+            override val height: Int,
+            init: (x: Int, y: Int) -> T
+    ) : Grid<T> {
+
+        /**
+         * The contents of the [Grid].
+         */
+        @Suppress("UNCHECKED_CAST")
+        private val contents: Array<T> = Array<Any?>(width * height) {
+            init(it.rem(width), it / width)
+        } as Array<T>
+
+        override operator fun get(x: Int, y: Int) = contents[x + y * width]
+
+        override operator fun set(x: Int, y: Int, value: T) {
+            contents[x + y * width] = value
+        }
+
+        override fun copy() = Grid.Impl(width, height, { x, y -> this[x, y] })
+
+        override fun iterator() = contents.iterator()
+    }
 }
