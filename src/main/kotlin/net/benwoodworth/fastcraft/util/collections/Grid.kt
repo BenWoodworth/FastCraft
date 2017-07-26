@@ -1,13 +1,13 @@
 package net.benwoodworth.fastcraft.util.collections
 
-import net.benwoodworth.fastcraft.util.Copyable
+import net.benwoodworth.fastcraft.util.TransMutable
 
 /**
  * An immutable grid of values.
  *
  * @param T the type of object contained in the [Grid]
  */
-interface Grid<out T> : Iterable<T> {
+interface Grid<T> : TransMutable<Grid<T>, Grid.Mutable<T>>, Iterable<T> {
 
     /**
      * The width of the [Grid].
@@ -27,20 +27,6 @@ interface Grid<out T> : Iterable<T> {
      * @return the value at the given coordinates
      */
     operator fun get(x: Int, y: Int): T
-
-    /**
-     * Get a mutable copy of this [Grid].
-     *
-     * @return a mutable copy
-     */
-    fun toMutable(): Grid.Mutable<out T>
-
-    /**
-     * Get an immutable copy of this [Grid].
-     *
-     * @return an immutable copy
-     */
-    fun toImmutable(): Grid<T>
 
     /**
      * Create a new grid, with the contents mapped according
@@ -65,7 +51,7 @@ interface Grid<out T> : Iterable<T> {
      * @param height the height of the [Grid]
      * @param init the initializer for the [Grid]'s values
      */
-    class Impl<out T>(
+    class Impl<T>(
             width: Int,
             height: Int,
             init: (x: Int, y: Int) -> T
@@ -108,16 +94,16 @@ interface Grid<out T> : Iterable<T> {
                 contents[x + y * width] = value
             }
 
-            override fun toMutable(): Mutable<out T> {
+            override fun <R> map(transform: (T) -> R): Grid<R> {
+                return Impl(width, height, { x, y -> transform(this[x, y]) })
+            }
+
+            override fun toMutable(): Mutable<T> {
                 return Grid.Mutable.Impl(width, height) { x, y -> this[x, y] }
             }
 
             override fun toImmutable(): Grid<T> {
                 return Grid.Impl(width, height) { x, y -> this[x, y] }
-            }
-
-            override fun <R> map(transform: (T) -> R): Grid<R> {
-                return Impl(width, height, { x, y -> transform(this[x, y]) })
             }
 
             override fun iterator() = contents.iterator()

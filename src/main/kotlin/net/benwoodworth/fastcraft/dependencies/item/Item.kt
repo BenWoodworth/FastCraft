@@ -2,16 +2,17 @@ package net.benwoodworth.fastcraft.dependencies.item
 
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.util.Copyable
+import net.benwoodworth.fastcraft.util.TransMutable
 
 /**
- * A Minecraft item.
+ * An immutable Minecraft item.
  */
-interface Item : Copyable<Item> {
+interface Item : TransMutable<Item, Item.Mutable>, Copyable<Item> {
 
     /**
      * The amount of items in this stack.
      */
-    var amount: Int
+    val amount: Int
 
     /**
      * The name of this item.
@@ -21,12 +22,12 @@ interface Item : Copyable<Item> {
     /**
      * The display name of this item.
      */
-    var displayName: Text?
+    val displayName: Text?
 
     /**
      * The item's lore.
      */
-    var lore: List<Text?>?
+    val lore: List<Text?>?
 
     /**
      * The maximum size of this stack.
@@ -40,6 +41,18 @@ interface Item : Copyable<Item> {
      * @return `true` iff the items are similar
      */
     fun isSimilar(item: Item): Boolean
+
+    /**
+     * A mutable [Item].
+     */
+    interface Mutable : Item {
+
+        override var amount: Int
+
+        override var displayName: Text?
+
+        override var lore: List<Text?>?
+    }
 
     /**
      * A builder that creates Minecraft items.
