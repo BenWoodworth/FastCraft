@@ -2,8 +2,7 @@ package net.benwoodworth.fastcraft.dependencies.item.recipe
 
 import net.benwoodworth.fastcraft.dependencies.item.Item
 import net.benwoodworth.fastcraft.dependencies.player.Player
-import net.benwoodworth.fastcraft.util.collections.Grid
-import net.benwoodworth.fastcraft.util.Memento
+import net.benwoodworth.fastcraft.util.Grid
 
 /**
  * A Minecraft crafting recipe.

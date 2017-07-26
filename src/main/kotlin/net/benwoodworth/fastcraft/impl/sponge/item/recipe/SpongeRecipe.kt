@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.dependencies.item.recipe.Recipe
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.impl.sponge.item.SpongeItem
 import net.benwoodworth.fastcraft.util.Adapter
-import net.benwoodworth.fastcraft.util.collections.Grid
+import net.benwoodworth.fastcraft.util.Grid
 import net.benwoodworth.fastcraft.util.Memento
 import org.spongepowered.api.item.inventory.ItemStack
 import org.spongepowered.api.item.inventory.ItemStackSnapshot

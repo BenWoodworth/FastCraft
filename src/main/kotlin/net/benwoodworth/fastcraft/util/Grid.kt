@@ -1,6 +1,4 @@
-package net.benwoodworth.fastcraft.util.collections
-
-import net.benwoodworth.fastcraft.util.TransMutable
+package net.benwoodworth.fastcraft.util
 
 /**
  * An immutable grid of values.
@@ -55,7 +53,7 @@ interface Grid<T> : TransMutable<Grid<T>, Grid.Mutable<T>>, Iterable<T> {
             width: Int,
             height: Int,
             init: (x: Int, y: Int) -> T
-    ) : Grid<T> by Grid.Mutable.Impl(width, height, init) {
+    ) : Grid<T> by Mutable.Impl(width, height, init) {
 
         override fun toImmutable(): Grid<T> = this
     }
@@ -78,7 +76,7 @@ interface Grid<T> : TransMutable<Grid<T>, Grid.Mutable<T>>, Iterable<T> {
                 override val width: Int,
                 override val height: Int,
                 init: (x: Int, y: Int) -> T
-        ) : Grid.Mutable<T> {
+        ) : Mutable<T> {
 
             /**
              * The contents of the [Grid].
@@ -99,7 +97,7 @@ interface Grid<T> : TransMutable<Grid<T>, Grid.Mutable<T>>, Iterable<T> {
             }
 
             override fun toMutable(): Mutable<T> {
-                return Grid.Mutable.Impl(width, height) { x, y -> this[x, y] }
+                return Impl(width, height) { x, y -> this[x, y] }
             }
 
             override fun toImmutable(): Grid<T> {
