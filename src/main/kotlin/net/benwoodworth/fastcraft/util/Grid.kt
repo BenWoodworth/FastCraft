@@ -43,6 +43,14 @@ interface Grid<T> : Copyable<Grid<T>>, Iterable<T> {
     override fun copy(): Grid<T>
 
     /**
+     * Create a new grid, with the contents mapped according
+     * to the transform function.
+     *
+     * @param transform the transformation function
+     */
+    fun <R> map(transform: (T) -> R): Grid<R>
+
+    /**
      * Creates an iterator that iterates through each row left
      * to right, starting from the top row going down.
      *
@@ -75,6 +83,10 @@ interface Grid<T> : Copyable<Grid<T>>, Iterable<T> {
 
         override operator fun set(x: Int, y: Int, value: T) {
             contents[x + y * width] = value
+        }
+
+        override fun <R> map(transform: (T) -> R): Grid<R> {
+            return Grid.Impl(width, height, { x, y -> transform(this[x, y]) })
         }
 
         override fun copy() = Grid.Impl(width, height, { x, y -> this[x, y] })
