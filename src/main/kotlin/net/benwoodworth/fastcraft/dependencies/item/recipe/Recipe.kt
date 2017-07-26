@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.dependencies.item.recipe
 
 import net.benwoodworth.fastcraft.dependencies.item.Item
 import net.benwoodworth.fastcraft.dependencies.player.Player
-import net.benwoodworth.fastcraft.util.Grid
+import net.benwoodworth.fastcraft.util.collections.Grid
 import net.benwoodworth.fastcraft.util.Memento
 
 /**
@@ -13,7 +13,7 @@ interface Recipe {
     /**
      * The ingredients required to craft this recipe.
      */
-    val ingredients: Memento<Grid<Ingredient>>
+    val ingredients: Grid<Ingredient>
 
     /**
      * Get the preview results, before actually crafting the recipe.
