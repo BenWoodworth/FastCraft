@@ -7,7 +7,7 @@ import net.benwoodworth.fastcraft.util.Grid
 /**
  * A Minecraft crafting recipe.
  */
-interface Recipe {
+interface CraftingRecipe {
 
     /**
      * The ingredients required to craft this recipe.

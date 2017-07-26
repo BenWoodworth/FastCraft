@@ -6,9 +6,9 @@ package net.benwoodworth.fastcraft.dependencies.item.recipe
 interface RecipeProvider {
 
     /**
-     * Get all the recipes on the server.
+     * Get all the server's crafting recipes.
      *
-     * @return a list of the server's recipes
+     * @return a list of recipes
      */
-    fun getServerRecipes(): List<Recipe>
+    fun getCraftingRecipes(): List<CraftingRecipe>
 }

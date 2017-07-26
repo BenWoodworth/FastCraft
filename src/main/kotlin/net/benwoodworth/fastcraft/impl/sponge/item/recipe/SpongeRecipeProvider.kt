@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.impl.sponge.item.recipe
 
-import net.benwoodworth.fastcraft.dependencies.item.recipe.Recipe
+import net.benwoodworth.fastcraft.dependencies.item.recipe.CraftingRecipe
 import net.benwoodworth.fastcraft.dependencies.item.recipe.RecipeProvider
 import org.spongepowered.api.Sponge
 import org.spongepowered.api.item.recipe.crafting.ShapedCraftingRecipe
@@ -11,20 +11,20 @@ import org.spongepowered.api.item.recipe.crafting.ShapelessCraftingRecipe
  */
 class SpongeRecipeProvider : RecipeProvider {
 
-    override fun getServerRecipes(): List<Recipe> {
+    override fun getCraftingRecipes(): List<CraftingRecipe> {
         val serverRecipes = Sponge.getRegistry().craftingRecipeRegistry.recipes
-        val results = mutableListOf<Recipe>()
+        val results = mutableListOf<CraftingRecipe>()
 
         results.addAll(
             serverRecipes
                     .filterIsInstance<ShapedCraftingRecipe>()
-                    .map(SpongeRecipe::Shaped)
+                    .map(SpongeCraftingRecipe::Shaped)
         )
 
         results.addAll(
                 serverRecipes
                         .filterIsInstance<ShapelessCraftingRecipe>()
-                        .map(SpongeRecipe::Shapeless)
+                        .map(SpongeCraftingRecipe::Shapeless)
         )
 
         return results
