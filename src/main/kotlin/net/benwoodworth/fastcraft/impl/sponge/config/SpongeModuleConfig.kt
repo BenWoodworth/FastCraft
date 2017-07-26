@@ -14,6 +14,6 @@ class SpongeModuleConfig : ModuleConfig {
 
     @Provides @Singleton
     override fun configService(): ConfigManager {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented")
     }
 }

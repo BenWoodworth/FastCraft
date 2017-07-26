@@ -12,10 +12,10 @@ import net.benwoodworth.fastcraft.dependencies.item.recipe.RecipeProvider
 class SpongeModuleItem : ModuleItem {
 
     override fun itemBuilder(): Item.Builder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented")
     }
 
     override fun recipeProvider(): RecipeProvider {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented")
     }
 }

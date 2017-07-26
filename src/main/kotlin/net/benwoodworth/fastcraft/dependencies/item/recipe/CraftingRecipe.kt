@@ -3,6 +3,7 @@ package net.benwoodworth.fastcraft.dependencies.item.recipe
 import net.benwoodworth.fastcraft.dependencies.item.Item
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.util.Grid
+import org.spongepowered.api.item.recipe.Recipe
 
 /**
  * A Minecraft crafting recipe.
@@ -19,18 +20,9 @@ interface CraftingRecipe {
      *
      * @param player the player preparing the recipe
      * @param items the grid of items used to prepare the recipe
-     * @return the resulting items, or empty if unable to prepare
+     * @return the prepared recipe, or `null` if unable to prepare
      */
-    fun prepare(player: Player, items: Grid<Item>): List<Item>
-
-    /**
-     * Simulate the crafting of the recipe.
-     *
-     * @param player the player preparing the recipe
-     * @param items the grid of items used to craft the recipe
-     * @return the resulting items, or empty if unable to craft
-     */
-    fun craft(player: Player, items: Grid<Item>): List<Item>
+    fun prepare(player: Player, items: Grid<Item>): CraftingRecipe.Prepared?
 
     /**
      * Check if this recipe is equal to an object.
@@ -46,5 +38,38 @@ interface CraftingRecipe {
      * @return the hash code
      */
     override fun hashCode(): Int
+
+    /**
+     * A prepared recipe.
+     */
+    interface Prepared {
+
+        /**
+         * The player the recipe was prepared for.
+         */
+        val player: Player
+
+        /**
+         * The recipe being prepared.
+         */
+        val recipe: CraftingRecipe
+
+        /**
+         * The prepared items.
+         */
+        val items: Grid<Item>
+
+        /**
+         * The prepared results.
+         */
+        val results: List<Item>
+
+        /**
+         * Craft the prepared recipe.
+         *
+         * @return the crafted items, or null if unable to craft
+         */
+        fun craft(): List<Item>?
+    }
 }
 
