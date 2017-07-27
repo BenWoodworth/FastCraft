@@ -5,7 +5,6 @@ import net.benwoodworth.fastcraft.dependencies.gui.GuiLayoutComposite
 import net.benwoodworth.fastcraft.dependencies.event.EventGuiButtonClick
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.dependencies.text.Text
-import net.benwoodworth.fastcraft.impl.sponge.SpongeFastCraft
 import net.benwoodworth.fastcraft.impl.sponge.item.SpongeItem
 import net.benwoodworth.fastcraft.impl.sponge.player.SpongePlayer
 import net.benwoodworth.fastcraft.impl.sponge.text.SpongeText
@@ -32,9 +31,9 @@ import org.spongepowered.api.text.Text as Sponge_Text
  * Sponge implementation of [Gui].
  */
 class SpongeGui(
-        fastCraft: SpongeFastCraft,
         height: Int,
-        title: Sponge_Text?
+        title: Sponge_Text?,
+        plugin: Any
 ) : Gui, Carrier, GuiLayoutComposite by GuiLayoutComposite.Impl(9, height) {
 
     init {
@@ -56,7 +55,7 @@ class SpongeGui(
                     InventoryTitle(title)
             )
             .withCarrier(this)
-            .build(fastCraft) as CarriedInventory<SpongeGui>
+            .build(plugin) as CarriedInventory<SpongeGui>
 
     private val gridInventory = inventory.query<GridInventory>(GridInventory::class.java)
 
@@ -83,7 +82,7 @@ class SpongeGui(
     override fun updateLayout() {
         for (x in 0 until width) {
             for (y in 0 until height) {
-                val spongeItem = getButton(x, y)?.item?.get() as SpongeItem?
+                val spongeItem = getButton(x, y)?.item?.toMutable() as SpongeItem.Mutable?
                 gridInventory.set(x, y, spongeItem?.base)
             }
         }
@@ -169,7 +168,7 @@ class SpongeGui(
      * Sponge implementation of [Gui.Builder].
      */
     class Builder(
-            private val fastCraft: SpongeFastCraft
+            private val plugin: Any
     ) : Gui.Builder {
 
         private var height: Int? = null
@@ -177,9 +176,9 @@ class SpongeGui(
 
         override fun build(): Gui {
             return SpongeGui(
-                    fastCraft,
                     height!!,
-                    title
+                    title,
+                    plugin
             )
         }
 

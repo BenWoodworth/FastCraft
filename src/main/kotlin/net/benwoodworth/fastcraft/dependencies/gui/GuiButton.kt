@@ -4,7 +4,6 @@ import net.benwoodworth.fastcraft.dependencies.event.EventGuiButtonClick
 import net.benwoodworth.fastcraft.dependencies.event.EventGuiLayoutChange
 import net.benwoodworth.fastcraft.dependencies.item.Item
 import net.benwoodworth.fastcraft.dependencies.event.Listener
-import net.benwoodworth.fastcraft.util.Memento
 
 /**
  * A button in a GUI.
@@ -24,7 +23,7 @@ interface GuiButton {
     /**
      * The item representing this button.
      */
-    var item: Memento<Item>?
+    var item: Item?
 
     /**
      * Implementation of [GuiButton].
@@ -35,7 +34,7 @@ interface GuiButton {
 
         override val clickListener = Listener.Impl<EventGuiButtonClick>()
 
-        override var item: Memento<Item>? = null
+        override var item: Item? = null
             set(value) {
                 field = value
                 changeListener.notifyHandlers(EventGuiLayoutChange.Impl())

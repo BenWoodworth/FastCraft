@@ -1,7 +1,6 @@
 package net.benwoodworth.fastcraft.impl.sponge.server
 
 import net.benwoodworth.fastcraft.dependencies.server.Task
-import net.benwoodworth.fastcraft.impl.sponge.SpongeFastCraft
 import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.scheduler.Task as Sponge_Task
 
@@ -21,12 +20,12 @@ class SpongeTask(
      */
     class Builder(
             taskBuilder: Sponge_Task.Builder,
-            private val fastCraft: SpongeFastCraft
+            private val plugin: Any
     ) : Task.Builder, Adapter<Sponge_Task.Builder>(taskBuilder) {
 
         override fun run(executable: (Task) -> Unit): Task {
             base.execute({ task -> executable(SpongeTask(task)) })
-            return SpongeTask(base.submit(fastCraft))
+            return SpongeTask(base.submit(plugin))
         }
 
         override fun async(): Task.Builder {

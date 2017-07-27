@@ -2,65 +2,80 @@ package net.benwoodworth.fastcraft.impl.sponge.item
 
 import net.benwoodworth.fastcraft.dependencies.item.Item
 import net.benwoodworth.fastcraft.dependencies.text.Text
+import net.benwoodworth.fastcraft.impl.sponge.text.SpongeText
 import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.data.key.Keys
 import org.spongepowered.api.item.inventory.ItemStack
 import org.spongepowered.api.text.Text as Sponge_Text
 
 /**
- * Adapts Sponge items.
+ * Sponge implementation of [Item].
  */
 class SpongeItem(
-        baseItem: ItemStack
-) : Item, Adapter<ItemStack>(baseItem) {
+        /**
+         * The item being adapted. Should not be modified.
+         */
+        private val baseItem: ItemStack
+) : Item by SpongeItem.Mutable(baseItem) {
 
-    override var amount: Int
-        get() = base.quantity
-        set(value) {
-            base.quantity = value
-        }
+    class Mutable(
+            baseItem: ItemStack
+    ) : Item.Mutable, Adapter<ItemStack>(baseItem) {
 
-    override val name: Text
-        get() = net.benwoodworth.fastcraft.impl.sponge.text.SpongeText(Sponge_Text.of(base))
-
-    override var displayName: Text?
-        get() {
-            val displayName = base.get(Keys.DISPLAY_NAME).orElse(null)
-            return net.benwoodworth.fastcraft.impl.sponge.text.SpongeText(displayName)
-        }
-        set(value) {
-            value as net.benwoodworth.fastcraft.impl.sponge.text.SpongeText
-            base.offer(Keys.DISPLAY_NAME, value.base)
-        }
-
-    override var lore: List<Text?>?
-        get() {
-            val lore = base.get(Keys.ITEM_LORE).orElse(null)
-            return lore?.map {
-                it?.run { net.benwoodworth.fastcraft.impl.sponge.text.SpongeText(it) }
+        override var amount: Int
+            get() = base.quantity
+            set(value) {
+                base.quantity = value
             }
-        }
-        set(value) {
-            base.offer(Keys.ITEM_LORE, value?.map {
-                it?.run { (this as net.benwoodworth.fastcraft.impl.sponge.text.SpongeText).base }
-            })
+
+        override val name: Text
+            get() = SpongeText(Sponge_Text.of(base))
+
+        override var displayName: Text?
+            get() {
+                val displayName = base.get(Keys.DISPLAY_NAME).orElse(null)
+                return SpongeText(displayName)
+            }
+            set(value) {
+                value as SpongeText
+                base.offer(Keys.DISPLAY_NAME, value.base)
+            }
+
+        override var lore: List<Text?>?
+            get() {
+                val lore = base.get(Keys.ITEM_LORE).orElse(null)
+                return lore?.map {
+                    it?.run { SpongeText(it) }
+                }
+            }
+            set(value) {
+                base.offer(Keys.ITEM_LORE, value?.map {
+                    it?.let { (it as SpongeText).base }
+                })
+            }
+
+        override val maxStackSize: Int
+            get() = base.maxStackQuantity
+
+        override fun isSimilar(item: Item): Boolean {
+            if (item !is SpongeItem) {
+                return false
+            }
+
+            var other = item.baseItem
+            if (other.quantity != base.quantity) {
+                other = other.copy()
+                other.quantity = base.quantity
+            }
+            return base.equalTo(other)
         }
 
-    override val maxStackSize: Int
-        get() = base.maxStackQuantity
-
-    override fun isSimilar(item: Item): Boolean {
-        if (item !is SpongeItem) {
-            return false
+        override fun toMutable(): Item.Mutable {
+            return SpongeItem.Mutable(base.copy())
         }
 
-        var other = item.base
-        if (other.quantity != base.quantity) {
-            other = other.copy()
-            other.quantity = base.quantity
+        override fun toImmutable(): Item {
+            return SpongeItem(base.copy())
         }
-        return base.equalTo(other)
     }
-
-    override fun copy() = SpongeItem(base.copy())
 }

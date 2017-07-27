@@ -1,13 +1,12 @@
 package net.benwoodworth.fastcraft.dependencies.item
 
 import net.benwoodworth.fastcraft.dependencies.text.Text
-import net.benwoodworth.fastcraft.util.Copyable
 import net.benwoodworth.fastcraft.util.TransMutable
 
 /**
  * An immutable Minecraft item.
  */
-interface Item : TransMutable<Item, Item.Mutable>, Copyable<Item> {
+interface Item : TransMutable<Item, Item.Mutable> {
 
     /**
      * The amount of items in this stack.

@@ -5,7 +5,6 @@ import dagger.Provides
 import net.benwoodworth.fastcraft.dependencies.server.ModuleServer
 import net.benwoodworth.fastcraft.dependencies.server.Plugin
 import net.benwoodworth.fastcraft.dependencies.server.Task
-import net.benwoodworth.fastcraft.impl.sponge.SpongeFastCraft
 import javax.inject.Singleton
 import org.spongepowered.api.scheduler.Task as Sponge_Task
 
@@ -14,12 +13,12 @@ import org.spongepowered.api.scheduler.Task as Sponge_Task
  */
 @Module
 class SpongeModuleServer(
-        private val fastCraft: SpongeFastCraft
+        private val plugin: Any
 ) : ModuleServer {
 
     @Provides
     override fun taskBuilder(): Task.Builder {
-        return SpongeTask.Builder(Sponge_Task.builder(), fastCraft)
+        return SpongeTask.Builder(Sponge_Task.builder(), plugin)
     }
 
     @Provides @Singleton

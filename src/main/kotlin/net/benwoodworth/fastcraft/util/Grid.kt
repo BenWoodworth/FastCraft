@@ -60,10 +60,7 @@ interface Grid<T> : TransMutable<Grid<T>, Grid.Mutable<T>>, Iterable<T> {
             width: Int,
             height: Int,
             init: (x: Int, y: Int) -> T
-    ) : Grid<T> by Mutable.Impl(width, height, init) {
-
-        override fun toImmutable(): Grid<T> = this
-    }
+    ) : Grid<T> by Mutable.Impl(width, height, init)
 
     /**
      * A mutable [Grid].

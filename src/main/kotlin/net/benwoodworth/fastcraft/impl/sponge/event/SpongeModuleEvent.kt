@@ -6,7 +6,6 @@ import net.benwoodworth.fastcraft.dependencies.event.EventPlayerJoin
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginDisable
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginEnable
 import net.benwoodworth.fastcraft.dependencies.event.ModuleEvent
-import net.benwoodworth.fastcraft.impl.sponge.SpongeFastCraft
 import net.benwoodworth.fastcraft.dependencies.event.Listener
 import org.spongepowered.api.Sponge
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent
@@ -19,14 +18,14 @@ import javax.inject.Singleton
  */
 @Module
 class SpongeModuleEvent(
-        private val fastCraft: SpongeFastCraft
+        private val plugin: Any
 ) : ModuleEvent {
 
     @Provides @Singleton
     override fun listenerPlayerJoin(): Listener<EventPlayerJoin> {
         val listener = Listener.Impl<EventPlayerJoin>()
 
-        Sponge.getEventManager().registerListener(fastCraft,
+        Sponge.getEventManager().registerListener(plugin,
                 ClientConnectionEvent.Join::class.java,
                 { listener.notifyHandlers(SpongeEventPlayerJoin(it)) }
         )
@@ -38,7 +37,7 @@ class SpongeModuleEvent(
     override fun listenerPluginDisable(): Listener<EventPluginDisable> {
         val listener = Listener.Impl<EventPluginDisable>()
 
-        Sponge.getEventManager().registerListener(fastCraft,
+        Sponge.getEventManager().registerListener(plugin,
                 GameStoppingEvent::class.java,
                 { listener.notifyHandlers(SpongeEventPluginDisable(it)) }
         )
@@ -50,7 +49,7 @@ class SpongeModuleEvent(
     override fun listenerPluginEnable(): Listener<EventPluginEnable> {
         val listener = Listener.Impl<EventPluginEnable>()
 
-        Sponge.getEventManager().registerListener(fastCraft,
+        Sponge.getEventManager().registerListener(plugin,
                 GamePreInitializationEvent::class.java,
                 { listener.notifyHandlers(SpongeEventPluginEnable(it)) }
         )
