@@ -5,12 +5,10 @@ import net.benwoodworth.fastcraft.dependencies.item.recipe.CraftingRecipe
 import net.benwoodworth.fastcraft.dependencies.item.recipe.Ingredient
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.impl.sponge.item.SpongeItem
+import net.benwoodworth.fastcraft.impl.sponge.player.SpongePlayer
 import net.benwoodworth.fastcraft.util.Adapter
 import net.benwoodworth.fastcraft.util.Grid
-import org.spongepowered.api.item.inventory.Inventory
-import org.spongepowered.api.item.inventory.InventoryArchetypes
-import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory
-import org.spongepowered.api.item.inventory.property.InventoryDimension
+import org.spongepowered.api.item.inventory.ItemStack
 import org.spongepowered.api.item.recipe.crafting.ShapedCraftingRecipe
 import org.spongepowered.api.item.recipe.crafting.ShapelessCraftingRecipe
 import org.spongepowered.api.item.recipe.crafting.CraftingRecipe as Sponge_CraftingRecipe
@@ -23,8 +21,29 @@ abstract class SpongeCraftingRecipe private constructor(
         private val plugin: Any
 ) : CraftingRecipe, Adapter<Sponge_CraftingRecipe>(baseRecipe) {
 
-    override fun prepare(player: Player, items: Grid<Item>): CraftingRecipe.Prepared {
-        TODO("not implemented")
+    override fun prepare(player: Player, items: Grid<Item>): CraftingRecipe.Prepared? {
+        val grid = CustomCraftingInventory(
+                items.map { (it.toMutable() as SpongeItem.Mutable).base },
+                plugin
+        )
+
+        val world = (player as SpongePlayer).base.world
+
+        val result = base.getResult(grid, world).orElse(null)
+
+        return result?.let {
+            val results = mutableListOf<ItemStack>()
+            results.add(it.result.createStack())
+            results.addAll(it.remainingItems.map { it.createStack() })
+
+            SpongeCraftingRecipe.Prepared(
+                    player,
+                    this,
+                    items,
+                    results.map(::SpongeItem),
+                    plugin
+            )
+        }
     }
 
     private class Prepared(
@@ -36,19 +55,12 @@ abstract class SpongeCraftingRecipe private constructor(
     ) : CraftingRecipe.Prepared {
 
         override fun craft(): List<Item>? {
-            val inv = Inventory.builder()
-                    .of(InventoryArchetypes.WORKBENCH)
-                    .property(
-                            InventoryDimension.PROPERTY_NAME,
-                            InventoryDimension(items.width, items.height)
-                    )
-                    .build(plugin) as CraftingGridInventory
+            val inv = CustomCraftingInventory(
+                    items.map { (it.toMutable() as SpongeItem.Mutable).base },
+                    plugin
+            )
 
-            items.forEach { item, x, y ->
-                inv.set(x, y, (item.toMutable() as SpongeItem.Mutable).base)
-            }
-
-            TODO("not implemented")
+            TODO()
         }
     }
 
