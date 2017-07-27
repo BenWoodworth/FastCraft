@@ -40,8 +40,7 @@ abstract class SpongeCraftingRecipe private constructor(
                     player,
                     this,
                     items,
-                    results.map(::SpongeItem),
-                    plugin
+                    results.map(::SpongeItem)
             )
         }
     }
@@ -50,17 +49,12 @@ abstract class SpongeCraftingRecipe private constructor(
             override val player: Player,
             override val recipe: CraftingRecipe,
             override val items: Grid<Item>,
-            override val results: List<Item>,
-            private val plugin: Any
+            override val results: List<Item>
     ) : CraftingRecipe.Prepared {
 
         override fun craft(): List<Item>? {
-            val inv = CustomCraftingInventory(
-                    items.map { (it.toMutable() as SpongeItem.Mutable).base },
-                    plugin
-            )
-
-            TODO()
+            // TODO Use click event so other plugins can cancel this crafting.
+            return results
         }
     }
 

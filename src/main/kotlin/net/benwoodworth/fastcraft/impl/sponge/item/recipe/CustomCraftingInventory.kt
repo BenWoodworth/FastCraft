@@ -28,7 +28,7 @@ internal class CustomCraftingInventory(
                 InventoryDimension(items.width, items.height))
         .build(plugin)
         .query<GridInventory>(GridInventory::class.java)
-         {
+{
 
     /**
      * The result slot.
