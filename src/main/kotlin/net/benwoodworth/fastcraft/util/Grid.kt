@@ -27,6 +27,13 @@ interface Grid<T> : TransMutable<Grid<T>, Grid.Mutable<T>>, Iterable<T> {
     operator fun get(x: Int, y: Int): T
 
     /**
+     * Iterate through the grid's entries.
+     *
+     * @param action the action to take on each element
+     */
+    fun forEach(action: ((T), x: Int, y: Int) -> Unit)
+
+    /**
      * Create a new grid, with the contents mapped according
      * to the transform function.
      *
@@ -90,6 +97,14 @@ interface Grid<T> : TransMutable<Grid<T>, Grid.Mutable<T>>, Iterable<T> {
 
             override operator fun set(x: Int, y: Int, value: T) {
                 contents[x + y * width] = value
+            }
+
+            override fun forEach(action: ((T), x: Int, y: Int) -> Unit) {
+                for (y in 0..width) {
+                    for (x in 0..width) {
+                        action(this[x, y], x, y)
+                    }
+                }
             }
 
             override fun <R> map(transform: (T) -> R): Grid<R> {
