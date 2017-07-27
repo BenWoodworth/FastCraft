@@ -32,13 +32,11 @@ class SpongeFastCraft : FastCraftImplementation {
                 .spongeModuleConfig(SpongeModuleConfig())
                 .spongeModuleEvent(SpongeModuleEvent(this))
                 .spongeModuleGui(SpongeModuleGui(this))
-                .spongeModuleItem(SpongeModuleItem())
+                .spongeModuleItem(SpongeModuleItem(this))
                 .spongeModulePermission(SpongeModulePermission())
                 .spongeModulePlayer(SpongeModulePlayer())
                 .spongeModuleServer(SpongeModuleServer(this))
                 .spongeModuleText(SpongeModuleText())
                 .build().getFastCraft()
-
-        Sponge.getEventManager().registerListeners(this, SpongeGui.Listeners())
     }
 }

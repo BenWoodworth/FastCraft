@@ -94,7 +94,7 @@ interface Item : TransMutable<Item, Item.Mutable> {
          * @param displayName The display name
          * @Return This builder, for chaining
          */
-        fun setDisplayName(displayName: String?): Item.Builder
+        fun setDisplayName(displayName: Text?): Item.Builder
 
         /**
          * Set the item's lore.
@@ -102,15 +102,15 @@ interface Item : TransMutable<Item, Item.Mutable> {
          * @param lore The lore
          * @Return This builder, for chaining
          */
-        fun setLore(vararg lore: List<String?>?): Item.Builder
+        fun setLore(vararg lore: Text?): Item.Builder
 
         /**
          * Add an enchantment.
          *
-         * @param enchantmentId The Minecraft enchantment type ID
+         * @param typeId The Minecraft enchantment type ID
          * @param level The enchantment level
          * @Return This builder, for chaining
          */
-        fun addEnchantment(enchantmentId: String, level: Int): Item.Builder
+        fun addEnchantment(typeId: String, level: Int): Item.Builder
     }
 }

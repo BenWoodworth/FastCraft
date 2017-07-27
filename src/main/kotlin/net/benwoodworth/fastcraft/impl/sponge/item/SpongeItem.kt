@@ -4,7 +4,11 @@ import net.benwoodworth.fastcraft.dependencies.item.Item
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.impl.sponge.text.SpongeText
 import net.benwoodworth.fastcraft.util.Adapter
+import org.spongepowered.api.Sponge
 import org.spongepowered.api.data.key.Keys
+import org.spongepowered.api.data.meta.ItemEnchantment
+import org.spongepowered.api.item.Enchantment
+import org.spongepowered.api.item.ItemType
 import org.spongepowered.api.item.inventory.ItemStack
 import org.spongepowered.api.text.Text as Sponge_Text
 
@@ -76,6 +80,67 @@ class SpongeItem(
 
         override fun toImmutable(): Item {
             return SpongeItem(base.copy())
+        }
+    }
+
+    class Builder : Item.Builder {
+
+        private val builder = ItemStack.builder()
+
+        private val postChanges = mutableListOf<(item: ItemStack) -> Unit>()
+
+        override fun build(): Item {
+            val result = builder.build()
+            postChanges.forEach { it(result) }
+            return SpongeItem(result)
+        }
+
+        override fun from(item: Item): Item.Builder {
+            builder.fromItemStack(
+                    (item.toMutable() as SpongeItem.Mutable).base
+            )
+            return this
+        }
+
+        override fun setType(typeId: String): Item.Builder {
+            val itemType = Sponge.getRegistry().getType(ItemType::class.java, typeId)
+
+            builder.itemType(itemType.get())
+            return this
+        }
+
+        override fun setAmount(amount: Int): Item.Builder {
+            builder.quantity(amount)
+            return this
+        }
+
+        override fun setDisplayName(displayName: Text?): Item.Builder {
+            postChanges += { item ->
+                item.transform(Keys.DISPLAY_NAME) {
+                    (displayName as SpongeText?)?.base
+                }
+            }
+            return this
+        }
+
+        override fun setLore(vararg lore: Text?): Item.Builder {
+            postChanges += { item ->
+                item.transform(Keys.ITEM_LORE) {
+                    lore.map { (it as SpongeText?)?.base }
+                }
+            }
+            return this
+        }
+
+        override fun addEnchantment(typeId: String, level: Int): Item.Builder {
+            val type = Sponge.getRegistry().getType(Enchantment::class.java, typeId).get()
+
+            postChanges += { item ->
+                item.transform(Keys.ITEM_ENCHANTMENTS) {
+                    it.apply { add(ItemEnchantment(type, level)) }
+                }
+            }
+            return this
         }
     }
 }

@@ -107,7 +107,7 @@ interface Listener<TEvent> {
         }
 
         override fun removeHandler(handler: (event: TEvent) -> Unit) {
-            handlersParam -= handler // TODO Removes based on handler address, or .equals()?
+            handlersParam -= handler
         }
 
         override fun removeHandler(handler: () -> Unit) {
