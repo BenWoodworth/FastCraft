@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.impl.sponge.item
 
 import dagger.Module
+import dagger.Provides
 import net.benwoodworth.fastcraft.dependencies.item.Item
 import net.benwoodworth.fastcraft.dependencies.item.ModuleItem
 import net.benwoodworth.fastcraft.dependencies.item.recipe.RecipeProvider
@@ -14,10 +15,12 @@ class SpongeModuleItem(
         private val plugin: Any
 ) : ModuleItem {
 
+    @Provides
     override fun itemBuilder(): Item.Builder {
-        TODO("not implemented")
+        return SpongeItem.Builder()
     }
 
+    @Provides
     override fun recipeProvider(): RecipeProvider {
         return SpongeRecipeProvider(plugin)
     }
