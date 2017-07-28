@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft.impl.sponge.player
 
-import net.benwoodworth.fastcraft.dependencies.permission.Permission
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.impl.sponge.text.SpongeText
@@ -35,7 +34,7 @@ class SpongePlayer(
         )
     }
 
-    override fun hasPermission(permission: Permission): Boolean {
-        return base.hasPermission(permission.id)
+    override fun hasPermission(permission: String): Boolean {
+        return base.hasPermission(permission)
     }
 }

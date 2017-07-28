@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft.dependencies.player
 
-import net.benwoodworth.fastcraft.dependencies.permission.Permission
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import java.util.UUID
 
@@ -36,5 +35,5 @@ interface Player {
      *
      * @param permission The permission to check.
      */
-    fun hasPermission(permission: Permission): Boolean
+    fun hasPermission(permission: String): Boolean
 }

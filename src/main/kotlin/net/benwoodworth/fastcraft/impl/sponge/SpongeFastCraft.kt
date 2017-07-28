@@ -6,7 +6,6 @@ import net.benwoodworth.fastcraft.impl.sponge.config.SpongeModuleConfig
 import net.benwoodworth.fastcraft.impl.sponge.event.SpongeModuleEvent
 import net.benwoodworth.fastcraft.impl.sponge.gui.SpongeModuleGui
 import net.benwoodworth.fastcraft.impl.sponge.item.SpongeModuleItem
-import net.benwoodworth.fastcraft.impl.sponge.permission.SpongeModulePermission
 import net.benwoodworth.fastcraft.impl.sponge.player.SpongeModulePlayer
 import net.benwoodworth.fastcraft.impl.sponge.server.SpongeModuleServer
 import net.benwoodworth.fastcraft.impl.sponge.text.SpongeModuleText
@@ -31,7 +30,6 @@ class SpongeFastCraft : FastCraftImplementation {
                 .spongeModuleEvent(SpongeModuleEvent(this))
                 .spongeModuleGui(SpongeModuleGui(this))
                 .spongeModuleItem(SpongeModuleItem(this))
-                .spongeModulePermission(SpongeModulePermission())
                 .spongeModulePlayer(SpongeModulePlayer())
                 .spongeModuleServer(SpongeModuleServer(this))
                 .spongeModuleText(SpongeModuleText())
