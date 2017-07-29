@@ -1,11 +1,13 @@
 package net.benwoodworth.fastcraft.impl.sponge.text
 
 import net.benwoodworth.fastcraft.dependencies.text.Text
-import net.benwoodworth.fastcraft.dependencies.text.TextColor
+import net.benwoodworth.fastcraft.dependencies.text.TextStyle
 import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.text.LiteralText
-import org.spongepowered.api.text.format.TextColors
+import org.spongepowered.api.text.format.TextFormat
 import org.spongepowered.api.text.Text as Sponge_Text
+import org.spongepowered.api.text.format.TextColors as Sponge_TextColors
+import org.spongepowered.api.text.format.TextStyle as Sponge_TextStyle
 
 /**
  * Adapts Sponge text.
@@ -14,30 +16,6 @@ class SpongeText(
         baseText: Sponge_Text
 ) : Text, Adapter<Sponge_Text>(baseText) {
 
-    override val text: String
-        get() = base.toPlainSingle()
-
-    override val extra: List<Text>
-        get() = base.children.map(::SpongeText)
-
-    override val color: TextColor?
-        get() = SpongeTextColor(base.color)
-
-    override val bold: Boolean?
-        get() = base.style.isBold.orElse(null)
-
-    override val italic: Boolean?
-        get() = base.style.isItalic.orElse(null)
-
-    override val underlined: Boolean?
-        get() = base.style.hasUnderline().orElse(null)
-
-    override val strikeThrough: Boolean?
-        get() = base.style.hasStrikethrough().orElse(null)
-
-    override val obfuscate: Boolean?
-        get() = base.style.isObfuscated.orElse(null)
-
     /**
      * Adapts the Sponge LiteralText builder.
      */
@@ -45,51 +23,37 @@ class SpongeText(
             baseBuilder: LiteralText.Builder
     ) : Text.Builder, Adapter<LiteralText.Builder>(baseBuilder) {
 
+        private var style = TextStyle(
+                SpongeTextColor(Sponge_TextColors.RESET)
+        )
+
         override fun build(): Text {
+            base.format(TextFormat.of(
+                    (style.color as SpongeTextColor).base,
+                    Sponge_TextStyle(
+                            style.bold,
+                            style.italic,
+                            style.underlined,
+                            style.strikeThrough,
+                            style.obfuscated
+                    )
+            ))
+
             return SpongeText(base.build())
         }
 
-        override fun text(text: String): Text.Builder {
+        override fun text(text: String) = also {
             base.content(text)
-            return this
         }
 
-        override fun addExtra(vararg extra: Text): Text.Builder {
+        override fun addExtra(vararg extra: Text) = also {
             base.append(extra.map {
                 (it as SpongeText).base
             })
-            return this
         }
 
-        override fun color(color: TextColor): Text.Builder {
-            val spongeColor = (color as SpongeTextColor?)?.base
-            base.color(spongeColor ?: TextColors.NONE)
-            return this
-        }
-
-        override fun bold(bold: Boolean): Text.Builder {
-            base.style.bold(bold)
-            return this
-        }
-
-        override fun italic(italic: Boolean): Text.Builder {
-            base.style.italic(italic)
-            return this
-        }
-
-        override fun underlined(underlined: Boolean): Text.Builder {
-            base.style.underline(underlined)
-            return this
-        }
-
-        override fun strikeThrough(strikeThrough: Boolean): Text.Builder {
-            base.style.strikethrough(strikeThrough)
-            return this
-        }
-
-        override fun obfuscated(obfuscated: Boolean): Text.Builder {
-            base.style.obfuscated(obfuscated)
-            return this
+        override fun textStyle(style: TextStyle) = also {
+            this.style = style
         }
     }
 }

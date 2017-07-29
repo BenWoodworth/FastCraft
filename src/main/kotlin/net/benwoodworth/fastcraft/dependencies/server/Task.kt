@@ -25,7 +25,7 @@ interface Task {
         /**
          * Whether the task should be executed off the main server thread.
          *
-         * @return fluid interface
+         * @return fluent interface
          */
         fun async(): Task.Builder
 
@@ -33,14 +33,14 @@ interface Task {
          * The delay until the task is run for the first time.
          *
          * @param ticks the number ticks
-         * @return fluid interface
+         * @return fluent interface
          */
         fun delay(ticks: Long): Task.Builder
 
         /**
          * The time between each execution. Should be `0` if the task should not repeat.
          *
-         * @return fluid interface
+         * @return fluent interface
          */
         fun interval(ticks: Long): Task.Builder
     }

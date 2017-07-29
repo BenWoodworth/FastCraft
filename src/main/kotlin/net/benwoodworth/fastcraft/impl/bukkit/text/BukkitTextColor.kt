@@ -6,12 +6,7 @@ import net.benwoodworth.fastcraft.dependencies.text.TextColor
  * Bukkit implementation of [TextColor].
  */
 class BukkitTextColor(
-        /**
-         * The Minecraft formatting code character.
-         *
-         * [https://minecraft.gamepedia.com/Formatting_codes]
-         */
-        val codeChar: Char
+        codeChar: Char
 ) : TextColor {
 
     /**

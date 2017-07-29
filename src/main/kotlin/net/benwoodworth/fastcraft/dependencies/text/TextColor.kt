@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.dependencies.text
 
 /**
- * A Minecraft text color.
+ * The color of [Text].
  */
 interface TextColor
