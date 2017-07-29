@@ -3,7 +3,6 @@ package net.benwoodworth.fastcraft.impl.bukkit.item.recipe
 import net.benwoodworth.fastcraft.dependencies.item.Item
 import net.benwoodworth.fastcraft.dependencies.item.recipe.Ingredient
 import net.benwoodworth.fastcraft.impl.bukkit.item.BukkitItem
-import net.benwoodworth.fastcraft.util.Adapter
 import org.bukkit.inventory.ItemStack
 
 /**
