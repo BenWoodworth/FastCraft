@@ -17,40 +17,15 @@ class BukkitText(
         override val obfuscate: Boolean?
 ) : Text {
 
-    /*
-     * Formatting code details:
-     *
-     * Reset: r
-     * Colors: 0-9,a-f
-     * Formatting:
-     * - k: Obfuscate
-     * - l: Bold
-     * - m: Strikethrough
-     * - n: Underline
-     * - o: Italic
-     *
-     * Multiple formatting codes can be used
-     * Color codes reset formatting
-     * Reset resets color and formatting
-     */
-
-    /*
-     * JSON text details:
-     *
-     * Extra: Inherits text color & formatting
-     */
-
     /**
-     * Generate the formatted text String.
+     * The formatted text String.
      */
-    fun getText(): String {
-        return StringBuilder()
-                .let { getText(null, it) }
-                .toString()
-    }
+    val formattedText: String = StringBuilder()
+            .also { getText(null, it) }
+            .toString()
 
     private fun getText(parentText: Text?, stringBuilder: StringBuilder) {
-        stringBuilder.append("\u00A7r")
+        stringBuilder.append("\u00A7r") // Reset
 
         (color ?: parentText?.color)
                 ?.let { it as BukkitTextColor }
@@ -77,7 +52,8 @@ class BukkitText(
                 ?.let { stringBuilder.append("\u00A7o") }
 
         extra.forEach {
-            stringBuilder.append((it as BukkitText).getText(this, stringBuilder))
+            it as BukkitText
+            stringBuilder.append(it.getText(this, stringBuilder))
         }
     }
 
@@ -86,44 +62,33 @@ class BukkitText(
      */
     class Builder : Text.Builder {
 
-        val formattingChars = mutableSetOf<Char>()
+        private var text: String = ""
+        private var extra = mutableListOf<Text>()
+        private var color: TextColor? = null
+        private var bold: Boolean? = null
+        private var italic: Boolean? = null
+        private var underlined: Boolean? = null
+        private var strikeThrough: Boolean? = null
+        private var obfuscated: Boolean? = null
 
-        val color: Char? = null
+        override fun build() = BukkitText(
+                text = text,
+                extra = extra,
+                color = color,
+                bold = bold,
+                italic = italic,
+                underlined = underlined,
+                strikeThrough = strikeThrough,
+                obfuscate = obfuscated
+        )
 
-        override fun build(): Text {
-            TODO("not implemented")
-        }
-
-        override fun text(text: String): Text.Builder {
-            TODO("not implemented")
-        }
-
-        override fun addExtra(vararg extra: Text): Text.Builder {
-            TODO("not implemented")
-        }
-
-        override fun color(color: TextColor?): Text.Builder {
-            TODO("not implemented")
-        }
-
-        override fun bold(bold: Boolean): Text.Builder {
-            TODO("not implemented")
-        }
-
-        override fun italic(italic: Boolean): Text.Builder {
-            TODO("not implemented")
-        }
-
-        override fun underlined(underlined: Boolean): Text.Builder {
-            TODO("not implemented")
-        }
-
-        override fun strikeThrough(strikeThrough: Boolean): Text.Builder {
-            TODO("not implemented")
-        }
-
-        override fun obfuscated(obfuscated: Boolean): Text.Builder {
-            TODO("not implemented")
-        }
+        override fun text(text: String) = also { this.text = text }
+        override fun addExtra(vararg extra: Text) = also { this.extra.addAll(extra) }
+        override fun color(color: TextColor) = also { this.color = color }
+        override fun bold(bold: Boolean) = also { this.bold = bold }
+        override fun italic(italic: Boolean) = also { this.italic = italic }
+        override fun underlined(underlined: Boolean) = also { this.underlined = underlined }
+        override fun strikeThrough(strikeThrough: Boolean) = also { this.strikeThrough = strikeThrough }
+        override fun obfuscated(obfuscated: Boolean) = also { this.obfuscated = obfuscated }
     }
 }

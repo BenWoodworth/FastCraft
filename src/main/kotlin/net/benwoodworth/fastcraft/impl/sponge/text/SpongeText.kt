@@ -61,7 +61,7 @@ class SpongeText(
             return this
         }
 
-        override fun color(color: TextColor?): Text.Builder {
+        override fun color(color: TextColor): Text.Builder {
             val spongeColor = (color as SpongeTextColor?)?.base
             base.color(spongeColor ?: TextColors.NONE)
             return this

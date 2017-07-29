@@ -78,7 +78,7 @@ interface Text {
          *
          * @return fluid interface
          */
-        fun color(color: TextColor?): Text.Builder
+        fun color(color: TextColor): Text.Builder
 
         /**
          * Set whether the text is bold.
