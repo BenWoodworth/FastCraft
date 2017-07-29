@@ -8,7 +8,7 @@ import java.util.UUID
 import org.spongepowered.api.entity.living.player.Player as Sponge_Player
 
 /**
- * Adapter for Sponge players.
+ * Sponge implementation of [Player].
  */
 class SpongePlayer(
         basePlayer: Sponge_Player
