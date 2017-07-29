@@ -23,22 +23,7 @@ class SpongeText(
             baseBuilder: LiteralText.Builder
     ) : Text.Builder, Adapter<LiteralText.Builder>(baseBuilder) {
 
-        private var style = TextStyle(
-                SpongeTextColor(Sponge_TextColors.RESET)
-        )
-
         override fun build(): Text {
-            base.format(TextFormat.of(
-                    (style.color as SpongeTextColor).base,
-                    Sponge_TextStyle(
-                            style.bold,
-                            style.italic,
-                            style.underlined,
-                            style.strikeThrough,
-                            style.obfuscated
-                    )
-            ))
-
             return SpongeText(base.build())
         }
 
@@ -53,7 +38,16 @@ class SpongeText(
         }
 
         override fun textStyle(style: TextStyle) = also {
-            this.style = style
+            base.format(TextFormat.of(
+                    (style.color as SpongeTextColor).base,
+                    Sponge_TextStyle(
+                            style.bold,
+                            style.italic,
+                            style.underlined,
+                            style.strikeThrough,
+                            style.obfuscated
+                    )
+            ))
         }
     }
 }

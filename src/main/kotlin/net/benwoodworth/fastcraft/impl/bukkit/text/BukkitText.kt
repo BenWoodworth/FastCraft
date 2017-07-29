@@ -20,28 +20,28 @@ class BukkitText(
 
         private var text: String = ""
         private var extra = mutableListOf<Text>()
-        private var style = TextStyle(
-                BukkitTextColor('r') // Reset
-        )
+        private var style: TextStyle? = null
 
         override fun build(): Text {
-            val stringBuilder = StringBuilder().apply {
-                append((style.color as BukkitTextColor).code)
+            val builder = StringBuilder()
 
-                takeIf { style.obfuscated }?.append("\u00A7k")
-                takeIf { style.bold }?.append("\u00A7l")
-                takeIf { style.strikeThrough }?.append("\u00A7m")
-                takeIf { style.underlined }?.append("\u00A7n")
-                takeIf { style.italic }?.append("\u00A7o")
+            style?.run {
+                builder.append((color as BukkitTextColor).code)
 
-                append(text)
-
-                extra.forEach {
-                    append((it as BukkitText).text)
-                }
+                builder.takeIf { obfuscated }?.append("\u00A7k")
+                builder.takeIf { bold }?.append("\u00A7l")
+                builder.takeIf { strikeThrough }?.append("\u00A7m")
+                builder.takeIf { underlined }?.append("\u00A7n")
+                builder.takeIf { italic }?.append("\u00A7o")
             }
 
-            return BukkitText(stringBuilder.toString())
+            builder.append(text)
+
+            extra.forEach {
+                builder.append((it as BukkitText).text)
+            }
+
+            return BukkitText(builder.toString())
         }
 
         override fun text(text: String) = also { this.text = text }
