@@ -4,6 +4,7 @@ import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.dependencies.text.TextColor
 import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.text.LiteralText
+import org.spongepowered.api.text.format.TextColors
 import org.spongepowered.api.text.Text as Sponge_Text
 
 /**
@@ -12,6 +13,30 @@ import org.spongepowered.api.text.Text as Sponge_Text
 class SpongeText(
         baseText: Sponge_Text
 ) : Text, Adapter<Sponge_Text>(baseText) {
+
+    override val text: String
+        get() = base.toPlainSingle()
+
+    override val extra: List<Text>
+        get() = base.children.map(::SpongeText)
+
+    override val color: TextColor?
+        get() = SpongeTextColor(base.color)
+
+    override val bold: Boolean?
+        get() = base.style.isBold.orElse(null)
+
+    override val italic: Boolean?
+        get() = base.style.isItalic.orElse(null)
+
+    override val underlined: Boolean?
+        get() = base.style.hasUnderline().orElse(null)
+
+    override val strikeThrough: Boolean?
+        get() = base.style.hasStrikethrough().orElse(null)
+
+    override val obfuscate: Boolean?
+        get() = base.style.isObfuscated.orElse(null)
 
     /**
      * Adapts the Sponge LiteralText builder.
@@ -37,7 +62,8 @@ class SpongeText(
         }
 
         override fun color(color: TextColor?): Text.Builder {
-            base.color((color as SpongeTextColor).base)
+            val spongeColor = (color as SpongeTextColor?)?.base
+            base.color(spongeColor ?: TextColors.NONE)
             return this
         }
 

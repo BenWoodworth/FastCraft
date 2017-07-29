@@ -8,6 +8,46 @@ package net.benwoodworth.fastcraft.dependencies.text
 interface Text {
 
     /**
+     * The text.
+     */
+    val text: String
+
+    /**
+     * Extra text.
+     */
+    val extra: List<Text>
+
+    /**
+     * The text color.
+     */
+    val color: TextColor?
+
+    /**
+     * Whether the text is bold, or `null` if unset.
+     */
+    val bold: Boolean?
+
+    /**
+     * Whether the text is italicized, or `null` if unset.
+     */
+    val italic: Boolean?
+
+    /**
+     * Whether the text is underlined, or `null` if unset.
+     */
+    val underlined: Boolean?
+
+    /**
+     * Whether the text has a strike through, or `null` if unset.
+     */
+    val strikeThrough: Boolean?
+
+    /**
+     * Whether the text is obfuscated, or `null` if unset.
+     */
+    val obfuscate: Boolean?
+
+    /**
      * Builds an instance of [Text].
      */
     interface Builder {

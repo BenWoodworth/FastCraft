@@ -6,11 +6,6 @@ package net.benwoodworth.fastcraft.dependencies.text
 interface TextColorRegistry {
 
     /**
-     * Leaves the color unset.
-     */
-    val none: TextColor
-
-    /**
      * Resets the color. Does not reset formatting.
      */
     val reset: TextColor
