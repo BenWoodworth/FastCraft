@@ -6,7 +6,6 @@ import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.text.LiteralText
 import org.spongepowered.api.text.format.TextFormat
 import org.spongepowered.api.text.Text as Sponge_Text
-import org.spongepowered.api.text.format.TextColors as Sponge_TextColors
 import org.spongepowered.api.text.format.TextStyle as Sponge_TextStyle
 
 /**
