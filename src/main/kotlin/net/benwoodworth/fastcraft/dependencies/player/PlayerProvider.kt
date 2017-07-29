@@ -21,12 +21,4 @@ interface PlayerProvider {
      * @return The player with the given UUID, or null if none exists
      */
     fun getOnlinePlayer(uuid: UUID): Player?
-
-    /**
-     * Get an online player given a name.
-     *
-     * @param name The player's name
-     * @return The player with the given UUID, or null if none exists
-     */
-    fun getOnlinePlayer(name: String): Player?
 }

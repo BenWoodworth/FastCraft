@@ -13,17 +13,10 @@ class SpongePlayerProvider : PlayerProvider {
     override fun getOnlinePlayers(): List<Player> {
         return Sponge.getServer().onlinePlayers
                 .map(::SpongePlayer)
-                .toList()
     }
 
     override fun getOnlinePlayer(uuid: UUID): Player? {
         return Sponge.getServer().getPlayer(uuid)
-                .map(::SpongePlayer)
-                .orElse(null)
-    }
-
-    override fun getOnlinePlayer(name: String): Player? {
-        return Sponge.getServer().getPlayer(name)
                 .map(::SpongePlayer)
                 .orElse(null)
     }
