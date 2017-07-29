@@ -62,11 +62,7 @@ class SpongeItem(
             get() = base.maxStackQuantity
 
         override fun isSimilar(item: Item): Boolean {
-            if (item !is SpongeItem) {
-                return false
-            }
-
-            var other = item.baseItem
+            var other = (item as SpongeItem).baseItem
             if (other.quantity != base.quantity) {
                 other = other.copy()
                 other.quantity = base.quantity
