@@ -18,7 +18,16 @@ interface Grid<T> : TransMutable<Grid<T>, Grid.Mutable<T>>, Iterable<T> {
     val height: Int
 
     /**
-     * Set a value in the [Grid].
+     * Get a value in the [Grid].
+     *
+     * @param i the index of the item, going through each row left
+     *          to right, starting from the top row going down.
+     * @return the value at the given coordinates.
+     */
+    operator fun get(i: Int): T
+
+    /**
+     * Get a value in the [Grid].
      *
      * @param x the x-coordinate
      * @param y the y-coordinate
@@ -68,6 +77,15 @@ interface Grid<T> : TransMutable<Grid<T>, Grid.Mutable<T>>, Iterable<T> {
     interface Mutable<T> : Grid<T> {
 
         /**
+         * Set a value in the [Grid].
+         *
+         * @param i the index of the item, going through each row left
+         *          to right, starting from the top row going down.
+         * @param value the value to set
+         */
+        operator fun set(i: Int, value: T)
+
+        /**
          * Get a value in the [Grid].
          *
          * @param x the x-coordinate
@@ -90,7 +108,13 @@ interface Grid<T> : TransMutable<Grid<T>, Grid.Mutable<T>>, Iterable<T> {
                 init(it.rem(width), it / width)
             } as Array<T>
 
+            override operator fun get(i: Int) = contents[i]
+
             override operator fun get(x: Int, y: Int) = contents[x + y * width]
+
+            override operator fun set(i: Int, value: T) {
+                contents[i] = value
+            }
 
             override operator fun set(x: Int, y: Int, value: T) {
                 contents[x + y * width] = value
