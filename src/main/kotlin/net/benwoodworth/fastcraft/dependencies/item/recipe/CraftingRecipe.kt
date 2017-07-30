@@ -10,6 +10,11 @@ import net.benwoodworth.fastcraft.util.Grid
 interface CraftingRecipe {
 
     /**
+     * An ID unique to this recipe. `namespace:id`
+     */
+    val id: String
+
+    /**
      * The ingredients required to craft this recipe.
      */
     val ingredients: Grid<Ingredient>

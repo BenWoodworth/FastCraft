@@ -49,20 +49,25 @@ abstract class BukkitCraftingRecipe private constructor(
             return null
         }
 
-        val results = mutableListOf(BukkitItem(result))
+        // Find results
+        val results = mutableListOf<ItemStack>()
+        results.add(inventory.getItem(0).clone())
+        for (i in 1..9) {
+            val item = inventory.getItem(i).clone()
+            if (item.amount <= 0) {
+                continue
+            }
 
-        // Add bucket ingredients to result as empty buckets
-        for (item in items) {
-            ((item.toMutable() as BukkitItem.Mutable).base).let {
-                if (it.type == Material.LAVA_BUCKET
-                        || it.type == Material.MILK_BUCKET
-                        || it.type == Material.WATER_BUCKET) {
+            // Filled buckets result in empty buckets (with data stripped)
+            if (item.type == Material.WATER_BUCKET
+                    || item.type == Material.MILK_BUCKET
+                    || item.type == Material.LAVA_BUCKET) {
 
-                    results += it
-                            .apply { amount = 1 }
-                            .apply { type = Material.BUCKET }
-                            .let(::BukkitItem)
-                }
+                results.add(ItemStack(Material.BUCKET, 1))
+            }
+
+            if (--item.amount > 0) {
+                results.add(item)
             }
         }
 
@@ -72,7 +77,7 @@ abstract class BukkitCraftingRecipe private constructor(
                     player,
                     this,
                     items,
-                    results.toList()
+                    results.map(::BukkitItem).toList()
             )
         }
     }
@@ -93,6 +98,9 @@ abstract class BukkitCraftingRecipe private constructor(
             private val baseRecipe: ShapedRecipe
     ) : BukkitCraftingRecipe(baseRecipe) {
 
+        override val id: String
+            get() = baseRecipe.key.toString()
+
         override val ingredients: Grid.Impl<Ingredient> = Grid.Impl(
                 3,
                 3,
@@ -110,6 +118,9 @@ abstract class BukkitCraftingRecipe private constructor(
     class Shapeless(
             private val baseRecipe: ShapelessRecipe
     ) : BukkitCraftingRecipe(baseRecipe) {
+
+        override val id: String
+            get() = baseRecipe.key.toString()
 
         override val ingredients: Grid<Ingredient> = run {
             val ingredients = baseRecipe.ingredientList

@@ -62,9 +62,12 @@ abstract class SpongeCraftingRecipe private constructor(
      * A shaped [SpongeCraftingRecipe].
      */
     class Shaped(
-            baseRecipe: ShapedCraftingRecipe,
+            private val baseRecipe: ShapedCraftingRecipe,
             plugin: Any
     ) : SpongeCraftingRecipe(baseRecipe, plugin) {
+
+        override val id: String
+            get() = baseRecipe.id
 
         override val ingredients = Grid.Impl<Ingredient>(
                 baseRecipe.width,
@@ -77,9 +80,12 @@ abstract class SpongeCraftingRecipe private constructor(
      * A shapeless [SpongeCraftingRecipe].
      */
     class Shapeless(
-            baseRecipe: ShapelessCraftingRecipe,
+            private val baseRecipe: ShapelessCraftingRecipe,
             plugin: Any
     ) : SpongeCraftingRecipe(baseRecipe, plugin) {
+
+        override val id: String
+            get() = baseRecipe.id
 
         override val ingredients = run {
             val predicates = baseRecipe.ingredientPredicates
