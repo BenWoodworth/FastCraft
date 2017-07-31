@@ -10,6 +10,10 @@ import net.benwoodworth.fastcraft.util.Adapter
 import net.benwoodworth.fastcraft.util.Grid
 import org.bukkit.Bukkit
 import org.bukkit.Material
+import org.bukkit.event.inventory.ClickType
+import org.bukkit.event.inventory.CraftItemEvent
+import org.bukkit.event.inventory.InventoryAction
+import org.bukkit.event.inventory.InventoryType
 import org.bukkit.event.inventory.PrepareItemCraftEvent
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.ShapedRecipe
@@ -31,9 +35,7 @@ abstract class BukkitCraftingRecipe private constructor(
 
         inventory.matrix = Array(
                 items.width * items.height,
-                {
-                    (items[it].toMutable() as BukkitItem.Mutable).base
-                }
+                { (items[it].toMutable() as BukkitItem.Mutable).base }
         )
 
         val prepareEvent = PrepareItemCraftEvent(
@@ -49,40 +51,26 @@ abstract class BukkitCraftingRecipe private constructor(
             return null
         }
 
-        // Find results
-        val results = mutableListOf<ItemStack>()
-        results.add(inventory.getItem(0).clone())
-        for (i in 1..9) {
-            val item = inventory.getItem(i).clone()
-            if (item.amount <= 0) {
-                continue
-            }
-
-            // Filled buckets result in empty buckets (with data stripped)
-            if (item.type == Material.WATER_BUCKET
-                    || item.type == Material.MILK_BUCKET
-                    || item.type == Material.LAVA_BUCKET) {
-
-                results.add(ItemStack(Material.BUCKET, 1))
-            }
-
-            if (--item.amount > 0) {
-                results.add(item)
-            }
-        }
+        val contents = Array(
+                inventory.contents.size,
+                { inventory.contents[it]?.clone() }
+        )
 
         // Create Prepared recipe
         return inventory.result?.let {
             BukkitCraftingRecipe.Prepared(
+                    contents,
                     player,
                     this,
                     items,
-                    results.map(::BukkitItem).toList()
+                    inventory.getResults()
+                            .map(::BukkitItem)
             )
         }
     }
 
     private class Prepared(
+            private val invContents: Array<ItemStack?>,
             override val player: Player,
             override val recipe: CraftingRecipe,
             override val items: Grid<Item>,
@@ -90,7 +78,36 @@ abstract class BukkitCraftingRecipe private constructor(
     ) : CraftingRecipe.Prepared {
 
         override fun craft(): List<Item>? {
-            TODO("not implemented")
+            val bukkitPlayer = (player as BukkitPlayer).base
+            val bukkitRecipe = (recipe as BukkitCraftingRecipe).base
+
+            val inventory = CustomCraftingInventory(
+                    bukkitPlayer,
+                    bukkitRecipe
+            )
+
+            inventory.contents = Array(
+                    invContents.size,
+                    { invContents[it]?.clone() }
+            )
+
+            val craftEvent = CraftItemEvent(
+                    bukkitRecipe,
+                    inventory.View(),
+                    InventoryType.SlotType.RESULT,
+                    0,
+                    ClickType.SHIFT_LEFT,
+                    InventoryAction.MOVE_TO_OTHER_INVENTORY
+            )
+
+            Bukkit.getPluginManager().callEvent(craftEvent)
+
+            if (craftEvent.isCancelled) {
+                return null
+            }
+
+            return inventory.getResults()
+                    .map(::BukkitItem)
         }
     }
 

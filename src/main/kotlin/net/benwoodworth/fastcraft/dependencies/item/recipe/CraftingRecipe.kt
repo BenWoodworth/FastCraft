@@ -44,7 +44,9 @@ interface CraftingRecipe {
     override fun hashCode(): Int
 
     /**
-     * A prepared recipe.
+     * A prepared recipe. Represents a recipe that has been put
+     * into a crafting table, with crafting grid items and results
+     * given an opportunity to be modified by other plugins.
      */
     interface Prepared {
 
@@ -59,7 +61,7 @@ interface CraftingRecipe {
         val recipe: CraftingRecipe
 
         /**
-         * The prepared items.
+         * The prepared item grid.
          */
         val items: Grid<Item>
 
@@ -69,7 +71,8 @@ interface CraftingRecipe {
         val results: List<Item>
 
         /**
-         * Craft the prepared recipe.
+         * Craft the prepared recipe. Simulates crafting as if shift
+         * clicking the result slot of the crafting inventory.
          *
          * @return the crafted items, or null if unable to craft
          */

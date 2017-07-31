@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.impl.bukkit.item.recipe
 
 import org.bukkit.Bukkit
+import org.bukkit.Material
 import org.bukkit.entity.HumanEntity
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryType
@@ -22,6 +23,38 @@ internal class CustomCraftingInventory(
         player,
         InventoryType.WORKBENCH
 ) {
+
+    /**
+     * Get the crafting results given the items in the inventory
+     * after the recipe is prepared, and before items are removed
+     * from the recipe being crafted.
+     *
+     * @return the recipe results
+     */
+    fun getResults(): List<ItemStack> {
+        val results = mutableListOf<ItemStack>()
+        results.add(getItem(0).clone())
+        for (i in 1..9) {
+            val item = getItem(i).clone()
+            if (item.amount <= 0) {
+                continue
+            }
+
+            // Filled buckets result in empty buckets (with data stripped)
+            if (item.type == Material.WATER_BUCKET
+                    || item.type == Material.MILK_BUCKET
+                    || item.type == Material.LAVA_BUCKET) {
+
+                results.add(ItemStack(Material.BUCKET, 1))
+            }
+
+            if (--item.amount > 0) {
+                results.add(item)
+            }
+        }
+
+        return results.toList()
+    }
 
     override fun getMatrix(): Array<ItemStack> {
         return Array(9) { getItem(it + 1) }
