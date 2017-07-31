@@ -70,11 +70,11 @@ class SpongeItem(
             return base.equalTo(other)
         }
 
-        override fun toMutable(): Item.Mutable {
+        override fun mutableCopy(): Item.Mutable {
             return SpongeItem.Mutable(base.copy())
         }
 
-        override fun toImmutable(): Item {
+        override fun immutableCopy(): Item {
             return SpongeItem(base.copy())
         }
     }
@@ -93,7 +93,7 @@ class SpongeItem(
 
         override fun from(item: Item): Item.Builder {
             builder.fromItemStack(
-                    (item.toMutable() as SpongeItem.Mutable).base
+                    (item.mutableCopy() as SpongeItem.Mutable).base
             )
             return this
         }

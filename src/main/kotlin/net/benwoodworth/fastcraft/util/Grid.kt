@@ -132,11 +132,11 @@ interface Grid<T> : TransMutable<Grid<T>, Grid.Mutable<T>>, Iterable<T> {
                 return Impl(width, height, { x, y -> transform(this[x, y]) })
             }
 
-            override fun toMutable(): Mutable<T> {
+            override fun mutableCopy(): Mutable<T> {
                 return Impl(width, height) { x, y -> this[x, y] }
             }
 
-            override fun toImmutable(): Grid<T> {
+            override fun immutableCopy(): Grid<T> {
                 return Grid.Impl(width, height) { x, y -> this[x, y] }
             }
 

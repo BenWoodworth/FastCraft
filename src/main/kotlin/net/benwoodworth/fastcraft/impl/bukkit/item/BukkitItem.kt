@@ -54,11 +54,11 @@ class BukkitItem(
             return base.isSimilar((item as BukkitItem).baseItem)
         }
 
-        override fun toMutable(): Item.Mutable {
+        override fun mutableCopy(): Item.Mutable {
             return BukkitItem.Mutable(base.clone())
         }
 
-        override fun toImmutable(): Item {
+        override fun immutableCopy(): Item {
             return BukkitItem(base.clone())
         }
     }

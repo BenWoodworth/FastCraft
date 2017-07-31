@@ -23,7 +23,7 @@ abstract class SpongeCraftingRecipe private constructor(
 
     override fun prepare(player: Player, items: Grid<Item>): CraftingRecipe.Prepared? {
         val grid = CustomCraftingInventory(
-                items.map { (it.toMutable() as SpongeItem.Mutable).base },
+                items.map { (it.mutableCopy() as SpongeItem.Mutable).base },
                 plugin
         )
 

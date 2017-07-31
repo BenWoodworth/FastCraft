@@ -35,7 +35,7 @@ abstract class BukkitCraftingRecipe private constructor(
 
         inventory.matrix = Array(
                 items.width * items.height,
-                { (items[it].toMutable() as BukkitItem.Mutable).base }
+                { (items[it].mutableCopy() as BukkitItem.Mutable).base }
         )
 
         val prepareEvent = PrepareItemCraftEvent(

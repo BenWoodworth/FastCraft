@@ -13,12 +13,12 @@ interface TransMutable<out TI, out TM : TI> {
      *
      * @return a mutable copy
      */
-    fun toMutable(): TM
+    fun mutableCopy(): TM
 
     /**
      * Create an immutable copy of this object.
      *
      * @return an immutable copy
      */
-    fun toImmutable(): TI
+    fun immutableCopy(): TI
 }

@@ -14,6 +14,6 @@ class SpongeIngredient(
 ) : Ingredient, Adapter<Sponge_Ingredient>(baseIngredient) {
 
     override fun matches(item: Item): Boolean {
-        return base.test((item.toMutable() as SpongeItem.Mutable).base)
+        return base.test((item.mutableCopy() as SpongeItem.Mutable).base)
     }
 }

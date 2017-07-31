@@ -82,7 +82,7 @@ class SpongeGui(
     override fun updateLayout() {
         for (x in 0 until width) {
             for (y in 0 until height) {
-                val spongeItem = getButton(x, y)?.item?.toMutable() as SpongeItem.Mutable?
+                val spongeItem = getButton(x, y)?.item?.mutableCopy() as SpongeItem.Mutable?
                 gridInventory.set(x, y, spongeItem?.base)
             }
         }
