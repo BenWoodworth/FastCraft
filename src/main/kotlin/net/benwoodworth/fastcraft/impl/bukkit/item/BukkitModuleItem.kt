@@ -5,6 +5,7 @@ import dagger.Provides
 import net.benwoodworth.fastcraft.dependencies.item.Item
 import net.benwoodworth.fastcraft.dependencies.item.ModuleItem
 import net.benwoodworth.fastcraft.dependencies.item.recipe.RecipeProvider
+import net.benwoodworth.fastcraft.impl.bukkit.item.recipe.BukkitRecipeProvider
 
 /**
  * Bukkit implementation of [ModuleItem].
@@ -14,11 +15,11 @@ class BukkitModuleItem : ModuleItem {
 
     @Provides
     override fun itemBuilder(): Item.Builder {
-        TODO("not implemented")
+        return BukkitItem.Builder()
     }
 
     @Provides
     override fun recipeProvider(): RecipeProvider {
-        TODO("not implemented")
+        return BukkitRecipeProvider()
     }
 }
