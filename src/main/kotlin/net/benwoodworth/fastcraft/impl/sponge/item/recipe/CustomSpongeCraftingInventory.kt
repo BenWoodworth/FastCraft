@@ -1,10 +1,8 @@
 package net.benwoodworth.fastcraft.impl.sponge.item.recipe
 
-import net.benwoodworth.fastcraft.util.Grid
 import org.spongepowered.api.Sponge
 import org.spongepowered.api.item.inventory.Inventory
 import org.spongepowered.api.item.inventory.InventoryArchetypes
-import org.spongepowered.api.item.inventory.ItemStack
 import org.spongepowered.api.item.inventory.Slot
 import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory
 import org.spongepowered.api.item.inventory.crafting.CraftingInventory

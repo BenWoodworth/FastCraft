@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.util.Adapter
 import org.slf4j.Logger as Sponge_Logger
 
 /**
- * An adapter for Sponge loggers.
+ * Sponge implementation of [Logger].
  */
 class SpongeLogger(
         logger: Sponge_Logger
@@ -16,6 +16,4 @@ class SpongeLogger(
     override fun info(message: String) = base.info(message)
 
     override fun warn(message: String) = base.warn(message)
-
-    override fun debug(message: String) = base.debug(message)
 }

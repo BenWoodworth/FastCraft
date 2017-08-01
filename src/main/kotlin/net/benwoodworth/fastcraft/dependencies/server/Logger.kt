@@ -25,11 +25,4 @@ interface Logger {
      * @param message the warning to log
      */
     fun warn(message: String)
-
-    /**
-     * Log a debug message to the console, only if debug output is enabled.
-     *
-     * @param message the debug message to log
-     */
-    fun debug(message: String)
 }
