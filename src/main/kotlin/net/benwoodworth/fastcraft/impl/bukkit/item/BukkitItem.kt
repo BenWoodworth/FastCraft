@@ -86,7 +86,7 @@ class BukkitItem(
 
         override fun displayName(displayName: Text?) = also {
             result.itemMeta = result.itemMeta.apply {
-                setDisplayName((displayName as BukkitText).text)
+                setDisplayName((displayName as BukkitText?)?.text)
             }
         }
 
