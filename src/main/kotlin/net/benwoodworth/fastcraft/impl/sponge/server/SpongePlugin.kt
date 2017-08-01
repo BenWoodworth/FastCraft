@@ -24,7 +24,7 @@ class SpongePlugin(
         get() = Sponge.getConfigManager().getPluginConfig(base.instance.get()).configPath
 
     /**
-     * Implementation of [Plugin.Provider].
+     * Sponge implementation of [Plugin.Provider].
      */
     class Provider : Plugin.Provider {
 

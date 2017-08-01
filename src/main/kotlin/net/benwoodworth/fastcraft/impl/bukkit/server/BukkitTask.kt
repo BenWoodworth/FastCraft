@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.impl.bukkit.server
 
 import net.benwoodworth.fastcraft.dependencies.server.Task
 import net.benwoodworth.fastcraft.util.Adapter
-import org.bukkit.plugin.java.JavaPlugin
+import org.bukkit.plugin.Plugin as Bukkit_Plugin
 import org.bukkit.scheduler.BukkitRunnable
 import org.bukkit.scheduler.BukkitTask as Bukkit_Task
 
@@ -16,7 +16,7 @@ class BukkitTask(
     override fun cancel() = base.cancel()
 
     class Builder(
-            private val plugin: JavaPlugin
+            private val plugin: Bukkit_Plugin
     ) : Task.Builder {
 
         private var async = false

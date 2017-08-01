@@ -27,7 +27,7 @@ class BukkitFastCraft : FastCraftImplementation, JavaPlugin() {
             bukkitModuleGui(BukkitModuleGui())
             bukkitModuleItem(BukkitModuleItem())
             bukkitModulePlayer(BukkitModulePlayer())
-            bukkitModuleServer(BukkitModuleServer())
+            bukkitModuleServer(BukkitModuleServer(this@BukkitFastCraft))
             bukkitModuleText(BukkitModuleText())
         }.build().getFastCraft()
     }

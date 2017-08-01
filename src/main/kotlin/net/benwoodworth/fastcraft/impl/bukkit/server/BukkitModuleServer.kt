@@ -5,21 +5,24 @@ import dagger.Provides
 import net.benwoodworth.fastcraft.dependencies.server.ModuleServer
 import net.benwoodworth.fastcraft.dependencies.server.Plugin
 import net.benwoodworth.fastcraft.dependencies.server.Task
+import org.bukkit.plugin.Plugin as Bukkit_Plugin
 import javax.inject.Singleton
 
 /**
  * Bukkit implementation of [ModuleServer].
  */
 @Module
-class BukkitModuleServer : ModuleServer {
+class BukkitModuleServer(
+        private val plugin: Bukkit_Plugin
+) : ModuleServer {
 
     @Provides
     override fun taskBuilder(): Task.Builder {
-        TODO("not implemented")
+        return BukkitTask.Builder(plugin)
     }
 
     @Provides @Singleton
     override fun pluginProvider(): Plugin.Provider {
-        TODO("not implemented")
+        return BukkitPlugin.Provider()
     }
 }
