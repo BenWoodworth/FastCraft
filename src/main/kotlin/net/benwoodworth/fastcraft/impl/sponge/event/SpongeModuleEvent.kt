@@ -23,37 +23,31 @@ class SpongeModuleEvent(
 
     @Provides @Singleton
     override fun listenerPlayerJoin(): Listener<EventPlayerJoin> {
-        val listener = Listener.Impl<EventPlayerJoin>()
-
-        Sponge.getEventManager().registerListener(plugin,
-                ClientConnectionEvent.Join::class.java,
-                { listener.notifyHandlers(SpongeEventPlayerJoin(it)) }
-        )
-
-        return listener
+        return Listener.Impl<EventPlayerJoin>().also { listener ->
+            Sponge.getEventManager().registerListener(plugin,
+                    ClientConnectionEvent.Join::class.java,
+                    { listener.notifyHandlers(SpongeEventPlayerJoin(it)) }
+            )
+        }
     }
 
     @Provides @Singleton
     override fun listenerPluginDisable(): Listener<EventPluginDisable> {
-        val listener = Listener.Impl<EventPluginDisable>()
-
-        Sponge.getEventManager().registerListener(plugin,
-                GameStoppingEvent::class.java,
-                { listener.notifyHandlers(SpongeEventPluginDisable(it)) }
-        )
-
-        return listener
+        return Listener.Impl<EventPluginDisable>().also { listener ->
+            Sponge.getEventManager().registerListener(plugin,
+                    GameStoppingEvent::class.java,
+                    { listener.notifyHandlers(SpongeEventPluginDisable(it)) }
+            )
+        }
     }
 
     @Provides @Singleton
     override fun listenerPluginEnable(): Listener<EventPluginEnable> {
-        val listener = Listener.Impl<EventPluginEnable>()
-
-        Sponge.getEventManager().registerListener(plugin,
-                GamePreInitializationEvent::class.java,
-                { listener.notifyHandlers(SpongeEventPluginEnable(it)) }
-        )
-
-        return listener
+        return Listener.Impl<EventPluginEnable>().also { listener ->
+            Sponge.getEventManager().registerListener(plugin,
+                    GamePreInitializationEvent::class.java,
+                    { listener.notifyHandlers(SpongeEventPluginEnable(it)) }
+            )
+        }
     }
 }
