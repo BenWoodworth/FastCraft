@@ -19,13 +19,6 @@ interface Gui : GuiLayoutComposite {
     fun open(vararg players: Player)
 
     /**
-     * Get the players viewing this [Gui].
-     *
-     * @return a list of players viewing this [Gui]
-     */
-    fun getViewers(): List<Player>
-
-    /**
      * Update the Gui's layout.
      */
     fun updateLayout()
@@ -47,13 +40,13 @@ interface Gui : GuiLayoutComposite {
          *
          * @return fluent interface
          */
-        fun setHeight(height: Int): Gui.Builder
+        fun height(height: Int): Gui.Builder
 
         /**
          * Set the [Gui] title.
          *
          * @return fluent interface
          */
-        fun setTitle(title: Text): Gui.Builder
+        fun title(title: Text): Gui.Builder
     }
 }

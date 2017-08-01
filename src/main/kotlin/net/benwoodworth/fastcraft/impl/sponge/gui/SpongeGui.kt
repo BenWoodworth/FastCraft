@@ -61,7 +61,7 @@ class SpongeGui(
 
     override fun getInventory() = inventory
 
-    override val title get() = inventory.archetype
+    override val title get() = inventory.archetype // TODO Correct?
             .getProperty(InventoryTitle::class.java)
             .get().value?.let { SpongeText(it) }
 
@@ -72,18 +72,11 @@ class SpongeGui(
         }
     }
 
-    override fun getViewers(): List<Player> {
-        return Sponge.getServer().onlinePlayers
-                .filter { it.openInventory == inventory }
-                .map { SpongePlayer(it) }
-                .toList()
-    }
-
     override fun updateLayout() {
         for (x in 0 until width) {
             for (y in 0 until height) {
-                val spongeItem = getButton(x, y)?.item?.mutableCopy() as SpongeItem.Mutable?
-                gridInventory.set(x, y, spongeItem?.base)
+                val item = getButton(x, y)?.item?.mutableCopy() as SpongeItem.Mutable?
+                gridInventory.set(x, y, item?.base)
             }
         }
     }
@@ -182,12 +175,12 @@ class SpongeGui(
             )
         }
 
-        override fun setHeight(height: Int): Gui.Builder {
+        override fun height(height: Int): Gui.Builder {
             this.height = height
             return this
         }
 
-        override fun setTitle(title: Text): Gui.Builder {
+        override fun title(title: Text): Gui.Builder {
             this.title = (title as SpongeText).base
             return this
         }
