@@ -12,7 +12,7 @@ import net.benwoodworth.fastcraft.impl.sponge.text.SpongeModuleText
 import javax.inject.Singleton
 
 /**
- * Dagger component for FastCraft's Sponge implementation.
+ * Sponge implementation of [FastCraftComponent].
  */
 @Singleton @Component(modules = arrayOf(
         SpongeModuleConfig::class,
