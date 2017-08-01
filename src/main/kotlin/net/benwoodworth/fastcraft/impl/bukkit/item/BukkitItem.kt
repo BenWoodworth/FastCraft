@@ -92,10 +92,7 @@ class BukkitItem(
 
         override fun lore(vararg lore: Text?) = also {
             result.itemMeta = result.itemMeta.apply {
-                this.lore = when (lore.isEmpty()) {
-                    true -> null
-                    else -> lore.map { (it as BukkitText?)?.text }
-                }
+                this.lore = lore.map { (it as BukkitText?)?.text }
             }
         }
     }

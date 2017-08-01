@@ -11,7 +11,6 @@ import net.benwoodworth.fastcraft.impl.bukkit.text.BukkitText
 import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
-import org.bukkit.event.inventory.InventoryType
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.InventoryHolder
 import org.bukkit.event.inventory.InventoryDragEvent
@@ -34,7 +33,7 @@ class BukkitGui(
 
     private val inventory: Inventory = Bukkit.createInventory(
             this,
-            InventoryType.CHEST,
+            width * height,
             title
     )
 
@@ -52,8 +51,8 @@ class BukkitGui(
     override fun updateLayout() {
         for (x in 0 until width) {
             for (y in 0 until height) {
-                val item = getButton(x, y)?.item?.mutableCopy() as BukkitItem.Mutable
-                inventory.setItem(x + y * width, item.base)
+                val item = getButton(x, y)?.item?.mutableCopy() as BukkitItem.Mutable?
+                inventory.setItem(x + y * width, item?.base)
             }
         }
     }

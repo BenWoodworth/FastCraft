@@ -7,6 +7,7 @@ import net.benwoodworth.fastcraft.dependencies.event.Listener
 import net.benwoodworth.fastcraft.dependencies.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.gui.GuiButton
 import net.benwoodworth.fastcraft.dependencies.item.Item
+import net.benwoodworth.fastcraft.dependencies.server.Task
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.dependencies.text.TextColorRegistry
 import net.benwoodworth.fastcraft.dependencies.text.TextStyle
@@ -24,7 +25,8 @@ class FastCraft @Inject constructor(
         private val textBuilderProvider: Provider<Text.Builder>,
         private val guiBuilderProvider: Provider<Gui.Builder>,
         private val itemBuilderProvider: Provider<Item.Builder>,
-        private val textColorRegistry: TextColorRegistry
+        private val textColorRegistry: TextColorRegistry,
+        private val taskBuilderProvider: Provider<Task.Builder>
 ) {
 
     init {
@@ -58,26 +60,34 @@ class FastCraft @Inject constructor(
 
         val buttonItemText = textBuilderProvider.get()
                 .text("This is a demo!")
-                .textStyle(TextStyle(textColorRegistry.blue, true))
+                .textStyle(TextStyle(textColorRegistry.aqua, true))
+                .build()
+
+        val buttonItemLore = textBuilderProvider.get()
+                .text("How does it look?")
+                .textStyle(TextStyle(textColorRegistry.green, italic = true))
                 .build()
 
         val buttonItem = itemBuilderProvider.get()
+                .type("minecraft:diamond")
                 .amount(42)
                 .displayName(buttonItemText)
+                .lore(buttonItemLore)
                 .build()
 
         val button = GuiButton.Impl()
         button.item = buttonItem
-
-        gui.setButton(1, 1, button)
-        gui.open(event.player)
-
         button.clickListener += { clickEvent ->
             val message = textBuilderProvider.get()
                     .text("You clicked a button in the GUI!!")
                     .build()
 
             clickEvent.player?.sendMessage(message)
+        }
+
+        gui.setButton(1, 1, button)
+        taskBuilderProvider.get().run {
+            gui.open(event.player)
         }
     }
 }

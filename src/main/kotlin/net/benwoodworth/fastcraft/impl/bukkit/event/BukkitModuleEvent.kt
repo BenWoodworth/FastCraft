@@ -45,7 +45,7 @@ class BukkitModuleEvent(
             Bukkit.getPluginManager().registerEvents(
                     object : Bukkit_Listener {
                         @EventHandler
-                        fun onPlayerJoin(event: PluginDisableEvent) {
+                        fun onPluginDisable(event: PluginDisableEvent) {
                             listener.notifyHandlers(BukkitEventPluginDisable(event))
                         }
                     },
@@ -60,7 +60,7 @@ class BukkitModuleEvent(
             Bukkit.getPluginManager().registerEvents(
                     object : Bukkit_Listener {
                         @EventHandler
-                        fun onPlayerJoin(event: PluginEnableEvent) {
+                        fun onPluginEnable(event: PluginEnableEvent) {
                             listener.notifyHandlers(BukkitEventPluginEnable(event))
                         }
                     },
