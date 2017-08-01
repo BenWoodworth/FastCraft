@@ -17,15 +17,17 @@ class SpongeRecipeProvider(
         val serverRecipes = Sponge.getRegistry().craftingRecipeRegistry.recipes
         val results = mutableListOf<CraftingRecipe>()
 
-        results.addAll(serverRecipes
-                .filterIsInstance<ShapedCraftingRecipe>()
-                .map { SpongeCraftingRecipe.Shaped(it, plugin) }
-        )
+        serverRecipes.forEach { recipe ->
+            when (recipe) {
+                is ShapedCraftingRecipe ->
+                    SpongeCraftingRecipe.Shaped(recipe, plugin)
 
-        results.addAll(serverRecipes
-                .filterIsInstance<ShapelessCraftingRecipe>()
-                .map { SpongeCraftingRecipe.Shapeless(it, plugin) }
-        )
+                is ShapelessCraftingRecipe ->
+                    SpongeCraftingRecipe.Shapeless(recipe, plugin)
+
+                else -> null
+            }?.let(results::add)
+        }
 
         return results
     }
