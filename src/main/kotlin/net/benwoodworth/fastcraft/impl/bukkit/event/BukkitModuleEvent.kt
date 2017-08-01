@@ -7,26 +7,67 @@ import net.benwoodworth.fastcraft.dependencies.event.EventPluginDisable
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginEnable
 import net.benwoodworth.fastcraft.dependencies.event.Listener
 import net.benwoodworth.fastcraft.dependencies.event.ModuleEvent
+import org.bukkit.Bukkit
+import org.bukkit.entity.Player
+import org.bukkit.event.EventHandler
+import org.bukkit.event.EventPriority
+import org.bukkit.event.player.PlayerJoinEvent
+import org.bukkit.event.server.PluginDisableEvent
+import org.bukkit.event.server.PluginEnableEvent
+import org.bukkit.plugin.Plugin as Bukkit_Plugin
+import org.bukkit.event.Listener as Bukkit_Listener
 import javax.inject.Singleton
 
 /**
  * Bukkit implementation of [ModuleEvent]
  */
 @Module
-class BukkitModuleEvent : ModuleEvent {
+class BukkitModuleEvent(
+        private var plugin: Bukkit_Plugin
+) : ModuleEvent, Bukkit_Listener {
 
     @Provides @Singleton
     override fun listenerPlayerJoin(): Listener<EventPlayerJoin> {
-        TODO("not implemented")
+        return Listener.Impl<EventPlayerJoin>().also { listener ->
+            Bukkit.getPluginManager().registerEvents(
+                    object : Bukkit_Listener {
+                        @EventHandler
+                        fun onPlayerJoin(event: PlayerJoinEvent) {
+                            listener.notifyHandlers(BukkitEventPlayerJoin(event))
+                        }
+                    },
+                    plugin
+            )
+        }
     }
 
     @Provides @Singleton
     override fun listenerPluginDisable(): Listener<EventPluginDisable> {
-        TODO("not implemented")
+        return Listener.Impl<EventPluginDisable>().also { listener ->
+            Bukkit.getPluginManager().registerEvents(
+                    object : Bukkit_Listener {
+                        @EventHandler
+                        fun onPlayerJoin(event: PluginDisableEvent) {
+                            listener.notifyHandlers(BukkitEventPluginDisable(event))
+                        }
+                    },
+                    plugin
+            )
+        }
     }
 
     @Provides @Singleton
     override fun listenerPluginEnable(): Listener<EventPluginEnable> {
-        TODO("not implemented")
+        return Listener.Impl<EventPluginEnable>().also { listener ->
+            Bukkit.getPluginManager().registerEvents(
+                    object : Bukkit_Listener {
+                        @EventHandler
+                        fun onPlayerJoin(event: PluginEnableEvent) {
+                            listener.notifyHandlers(BukkitEventPluginEnable(event))
+                        }
+                    },
+                    plugin
+            )
+        }
     }
 }

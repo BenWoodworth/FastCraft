@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent
 
 /**
- * Adapts Sponge plugin enable events.
+ * Sponge implementation of [EventPluginEnable].
  */
 class SpongeEventPluginEnable(
         baseEvent: GamePreInitializationEvent

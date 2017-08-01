@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.event.game.state.GameStoppingEvent
 
 /**
- * Adapts Sponge player join events.
+ * Sponge implementation of [EventPluginDisable].
  */
 class SpongeEventPluginDisable(
         baseEvent: GameStoppingEvent

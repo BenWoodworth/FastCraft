@@ -7,12 +7,12 @@ import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.event.network.ClientConnectionEvent
 
 /**
- * Adapts Sponge player join events.
+ * Sponge implementation of [EventPlayerJoin].
  */
 class SpongeEventPlayerJoin(
-        private val baseEvent: ClientConnectionEvent.Join
+        baseEvent: ClientConnectionEvent.Join
 ) : EventPlayerJoin, Adapter<ClientConnectionEvent.Join>(baseEvent) {
 
     override val player: Player
-        get() = SpongePlayer(baseEvent.targetEntity)
+        get() = SpongePlayer(base.targetEntity)
 }
