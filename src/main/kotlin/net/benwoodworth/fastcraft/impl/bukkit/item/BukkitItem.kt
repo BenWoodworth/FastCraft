@@ -75,22 +75,22 @@ class BukkitItem(
             result = (item.mutableCopy() as BukkitItem.Mutable).base
         }
 
-        override fun setType(typeId: String) = also {
+        override fun type(typeId: String) = also {
             @Suppress("DEPRECATION")
             result.type = Bukkit.getUnsafe().getMaterialFromInternalName(typeId)
         }
 
-        override fun setAmount(amount: Int) = also {
+        override fun amount(amount: Int) = also {
             result.amount = amount
         }
 
-        override fun setDisplayName(displayName: Text?) = also {
+        override fun displayName(displayName: Text?) = also {
             result.itemMeta = result.itemMeta.apply {
                 setDisplayName((displayName as BukkitText).text)
             }
         }
 
-        override fun setLore(vararg lore: Text?) = also {
+        override fun lore(vararg lore: Text?) = also {
             result.itemMeta = result.itemMeta.apply {
                 this.lore = when (lore.isEmpty()) {
                     true -> null

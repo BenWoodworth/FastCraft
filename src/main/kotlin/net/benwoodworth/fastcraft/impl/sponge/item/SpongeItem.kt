@@ -96,19 +96,19 @@ class SpongeItem(
             return this
         }
 
-        override fun setType(typeId: String): Item.Builder {
+        override fun type(typeId: String): Item.Builder {
             val itemType = Sponge.getRegistry().getType(ItemType::class.java, typeId)
 
             builder.itemType(itemType.get())
             return this
         }
 
-        override fun setAmount(amount: Int): Item.Builder {
+        override fun amount(amount: Int): Item.Builder {
             builder.quantity(amount)
             return this
         }
 
-        override fun setDisplayName(displayName: Text?): Item.Builder {
+        override fun displayName(displayName: Text?): Item.Builder {
             postChanges += { item ->
                 item.transform(Keys.DISPLAY_NAME) {
                     (displayName as SpongeText?)?.base
@@ -117,7 +117,7 @@ class SpongeItem(
             return this
         }
 
-        override fun setLore(vararg lore: Text?): Item.Builder {
+        override fun lore(vararg lore: Text?): Item.Builder {
             postChanges += { item ->
                 item.transform(Keys.ITEM_LORE) {
                     lore.map { (it as SpongeText?)?.base }
