@@ -14,6 +14,6 @@ class BukkitModulePlayer : ModulePlayer {
 
     @Provides @Singleton
     override fun playerProvider(): PlayerProvider {
-        TODO("not implemented")
+        return BukkitPlayerProvider()
     }
 }
