@@ -13,6 +13,6 @@ class BukkitModuleGui : ModuleGui {
 
     @Provides
     override fun guiBuilder(): Gui.Builder {
-        TODO("not implemented")
+        return BukkitGui.Builder()
     }
 }
