@@ -15,11 +15,11 @@ class BukkitModuleText : ModuleText {
 
     @Provides
     override fun textBuilder(): Text.Builder {
-        TODO("not implemented")
+        return BukkitText.Builder()
     }
 
     @Provides @Singleton
     override fun textColorRegistry(): TextColorRegistry {
-        TODO("not implemented")
+        return BukkitTextColorRegistry()
     }
 }
