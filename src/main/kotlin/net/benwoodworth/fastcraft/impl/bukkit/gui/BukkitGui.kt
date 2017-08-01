@@ -91,7 +91,6 @@ class BukkitGui(
                     ClickType.WINDOW_BORDER_RIGHT,
                     ClickType.MIDDLE,
                     ClickType.NUMBER_KEY,
-                    ClickType.DOUBLE_CLICK,
                     ClickType.DROP,
                     ClickType.CONTROL_DROP,
                     ClickType.CREATIVE -> {} // Click is allowed
@@ -106,9 +105,8 @@ class BukkitGui(
             event.inventory.holder as? Gui ?: return
 
             // Cancel if dragged into GUI.
-            val view = event.view
             for (i in event.rawSlots) {
-                if (i == view.convertSlot(i)) {
+                if (i == event.view.convertSlot(i)) {
                     event.isCancelled = true
                     return
                 }
