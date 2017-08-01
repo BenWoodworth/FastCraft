@@ -23,7 +23,7 @@ class BukkitFastCraft : FastCraftImplementation, JavaPlugin() {
     override fun onEnable() {
         val fastCraftBuilder = DaggerBukkitFastCraftComponent.builder()
                 .bukkitModuleConfig(BukkitModuleConfig())
-                .bukkitModuleEvent(BukkitModuleEvent())
+                .bukkitModuleEvent(BukkitModuleEvent(this))
                 .bukkitModuleGui(BukkitModuleGui())
                 .bukkitModuleItem(BukkitModuleItem())
                 .bukkitModulePlayer(BukkitModulePlayer())

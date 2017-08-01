@@ -8,9 +8,7 @@ import net.benwoodworth.fastcraft.dependencies.event.EventPluginEnable
 import net.benwoodworth.fastcraft.dependencies.event.Listener
 import net.benwoodworth.fastcraft.dependencies.event.ModuleEvent
 import org.bukkit.Bukkit
-import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
-import org.bukkit.event.EventPriority
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.server.PluginDisableEvent
 import org.bukkit.event.server.PluginEnableEvent
