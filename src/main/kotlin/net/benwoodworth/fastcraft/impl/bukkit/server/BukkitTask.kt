@@ -20,8 +20,8 @@ class BukkitTask(
     ) : Task.Builder {
 
         private var async = false
-        private var delay = 0L
-        private var interval = 0L
+        private var delay = -1L
+        private var interval = -1L
 
         override fun run(executable: (Task) -> Unit): Task {
             val runnable = object : BukkitRunnable() {
@@ -30,23 +30,8 @@ class BukkitTask(
             }
 
             val task = when {
-                async && interval > 0 ->
-                    runnable.runTaskTimerAsynchronously(plugin, delay, interval)
-
-                async && delay > 0 ->
-                    runnable.runTaskLaterAsynchronously(plugin, delay)
-
-                async ->
-                    runnable.runTaskAsynchronously(plugin)
-
-                interval > 0 ->
-                    runnable.runTaskTimer(plugin, delay, interval)
-
-                delay > 0 ->
-                    runnable.runTaskLater(plugin, delay)
-
-                else ->
-                    runnable.runTask(plugin)
+                async -> runnable.runTaskTimerAsynchronously(plugin, delay, interval)
+                else -> runnable.runTaskTimer(plugin, delay, interval)
             }
 
             runnable.bukkitTask = BukkitTask(task)
