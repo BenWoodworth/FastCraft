@@ -27,11 +27,11 @@ class SpongeFastCraft : FastCraftImplementation {
     fun onPreInit(event: GamePreInitializationEvent) {
         instance = DaggerSpongeFastCraftComponent.builder().apply {
             spongeModuleConfig(SpongeModuleConfig())
-            spongeModuleEvent(SpongeModuleEvent(this))
-            spongeModuleGui(SpongeModuleGui(this))
-            spongeModuleItem(SpongeModuleItem(this))
+            spongeModuleEvent(SpongeModuleEvent(this@SpongeFastCraft))
+            spongeModuleGui(SpongeModuleGui(this@SpongeFastCraft))
+            spongeModuleItem(SpongeModuleItem(this@SpongeFastCraft))
             spongeModulePlayer(SpongeModulePlayer())
-            spongeModuleServer(SpongeModuleServer(this))
+            spongeModuleServer(SpongeModuleServer(this@SpongeFastCraft))
             spongeModuleText(SpongeModuleText())
         }.build().getFastCraft()
     }
