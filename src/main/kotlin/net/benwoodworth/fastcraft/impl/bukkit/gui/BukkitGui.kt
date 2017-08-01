@@ -17,11 +17,8 @@ import org.bukkit.inventory.InventoryHolder
 import org.bukkit.event.inventory.InventoryDragEvent
 import org.bukkit.event.EventPriority
 import org.bukkit.event.inventory.ClickType
-import org.bukkit.event.inventory.InventoryAction
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.entity.Player as Bukkit_Player
-
-
 
 /**
  * Bukkit implementation of [Gui].

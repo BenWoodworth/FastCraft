@@ -8,7 +8,6 @@ import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.impl.sponge.item.SpongeItem
 import net.benwoodworth.fastcraft.impl.sponge.player.SpongePlayer
 import net.benwoodworth.fastcraft.impl.sponge.text.SpongeText
-import org.spongepowered.api.Sponge
 import org.spongepowered.api.entity.living.player.Player as Sponge_Player
 import org.spongepowered.api.event.Listener
 import org.spongepowered.api.event.Order
