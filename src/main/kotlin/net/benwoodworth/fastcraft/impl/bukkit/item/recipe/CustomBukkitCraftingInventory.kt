@@ -16,7 +16,7 @@ import org.bukkit.inventory.Recipe
  *
  * Simulates a [CraftingInventory] shown to a single player.
  */
-internal class CustomCraftingInventory(
+internal class CustomBukkitCraftingInventory(
         private val player: Player,
         private val recipe: Recipe?
 ) : CraftingInventory, Inventory by Bukkit.createInventory(
@@ -85,19 +85,19 @@ internal class CustomCraftingInventory(
     inner class View : InventoryView() {
 
         override fun getPlayer(): HumanEntity {
-            return this@CustomCraftingInventory.player
+            return this@CustomBukkitCraftingInventory.player
         }
 
         override fun getType(): InventoryType {
-            return this@CustomCraftingInventory.type
+            return this@CustomBukkitCraftingInventory.type
         }
 
         override fun getBottomInventory(): Inventory {
-            return this@CustomCraftingInventory.player.inventory
+            return this@CustomBukkitCraftingInventory.player.inventory
         }
 
         override fun getTopInventory(): Inventory {
-            return this@CustomCraftingInventory
+            return this@CustomBukkitCraftingInventory
         }
     }
 }

@@ -28,7 +28,7 @@ abstract class BukkitCraftingRecipe private constructor(
 ) : CraftingRecipe, Adapter<Bukkit_Recipe>(baseRecipe) {
 
     override fun prepare(player: Player, items: Grid<Item>): CraftingRecipe.Prepared? {
-        val inventory = CustomCraftingInventory(
+        val inventory = CustomBukkitCraftingInventory(
                 (player as BukkitPlayer).base,
                 base
         )
@@ -81,7 +81,7 @@ abstract class BukkitCraftingRecipe private constructor(
             val bukkitPlayer = (player as BukkitPlayer).base
             val bukkitRecipe = (recipe as BukkitCraftingRecipe).base
 
-            val inventory = CustomCraftingInventory(
+            val inventory = CustomBukkitCraftingInventory(
                     bukkitPlayer,
                     bukkitRecipe
             )

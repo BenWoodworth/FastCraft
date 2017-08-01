@@ -12,6 +12,7 @@ import org.spongepowered.api.item.inventory.ItemStack
 import org.spongepowered.api.item.recipe.crafting.ShapedCraftingRecipe
 import org.spongepowered.api.item.recipe.crafting.ShapelessCraftingRecipe
 import org.spongepowered.api.item.recipe.crafting.CraftingRecipe as Sponge_CraftingRecipe
+import org.spongepowered.api.item.recipe.crafting.Ingredient as Sponge_Ingredient
 
 /**
  * Sponge implementation of [CraftingRecipe].
@@ -22,13 +23,8 @@ abstract class SpongeCraftingRecipe private constructor(
 ) : CraftingRecipe, Adapter<Sponge_CraftingRecipe>(baseRecipe) {
 
     override fun prepare(player: Player, items: Grid<Item>): CraftingRecipe.Prepared? {
-        val grid = CustomCraftingInventory(
-                items.map { (it.mutableCopy() as SpongeItem.Mutable).base },
-                plugin
-        )
-
+        val grid = CustomSpongeCraftingInventory(plugin)
         val world = (player as SpongePlayer).base.world
-
         val result = base.getResult(grid, world).orElse(null)
 
         return result?.let {
@@ -53,7 +49,10 @@ abstract class SpongeCraftingRecipe private constructor(
     ) : CraftingRecipe.Prepared {
 
         override fun craft(): List<Item>? {
-            // TODO Use click event so other plugins can cancel this crafting.
+            /*
+             * TODO Use click event so other plugins can cancel this crafting.
+             * May require https://github.com/SpongePowered/SpongeCommon/pull/1221
+             */
             return results
         }
     }
@@ -88,12 +87,16 @@ abstract class SpongeCraftingRecipe private constructor(
             get() = baseRecipe.id
 
         override val ingredients = run {
-            val predicates = baseRecipe.ingredientPredicates
+            val predicates = baseRecipe.ingredientPredicates.iterator()
 
             Grid.Impl<Ingredient>(
-                    predicates.size,
-                    1,
-                    { x, _ -> SpongeIngredient(predicates[x]) }
+                    3,
+                    3,
+                    { _, _ ->
+                        predicates.takeIf { it.hasNext() }
+                                ?.let { SpongeIngredient(it.next()) }
+                                ?: SpongeIngredient(Sponge_Ingredient.NONE)
+                    }
             )
         }
     }

@@ -18,14 +18,14 @@ import java.util.Optional
 /**
  * A custom implementation of [CraftingInventory].
  */
-internal class CustomCraftingInventory(
-        items: Grid<ItemStack>,
+internal class CustomSpongeCraftingInventory(
         plugin: Any
 ) : CraftingGridInventory, CraftingInventory, GridInventory by Inventory.builder()
         .of(InventoryArchetypes.WORKBENCH)
         .property(
                 InventoryDimension.PROPERTY_NAME,
-                InventoryDimension(items.width, items.height))
+                InventoryDimension(3, 3)
+        )
         .build(plugin)
         .query<GridInventory>(GridInventory::class.java)
 {
