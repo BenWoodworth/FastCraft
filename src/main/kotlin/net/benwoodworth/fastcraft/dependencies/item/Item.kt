@@ -103,14 +103,5 @@ interface Item : TransMutable<Item, Item.Mutable> {
          * @Return This builder, for chaining
          */
         fun setLore(vararg lore: Text?): Item.Builder
-
-        /**
-         * Add an enchantment.
-         *
-         * @param typeId The Minecraft enchantment type ID
-         * @param level The enchantment level
-         * @Return This builder, for chaining
-         */
-        fun addEnchantment(typeId: String, level: Int): Item.Builder
     }
 }

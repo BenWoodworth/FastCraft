@@ -6,8 +6,6 @@ import net.benwoodworth.fastcraft.impl.sponge.text.SpongeText
 import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.Sponge
 import org.spongepowered.api.data.key.Keys
-import org.spongepowered.api.data.meta.ItemEnchantment
-import org.spongepowered.api.item.Enchantment
 import org.spongepowered.api.item.ItemType
 import org.spongepowered.api.item.inventory.ItemStack
 import org.spongepowered.api.text.Text as Sponge_Text
@@ -123,17 +121,6 @@ class SpongeItem(
             postChanges += { item ->
                 item.transform(Keys.ITEM_LORE) {
                     lore.map { (it as SpongeText?)?.base }
-                }
-            }
-            return this
-        }
-
-        override fun addEnchantment(typeId: String, level: Int): Item.Builder {
-            val type = Sponge.getRegistry().getType(Enchantment::class.java, typeId).get()
-
-            postChanges += { item ->
-                item.transform(Keys.ITEM_ENCHANTMENTS) {
-                    it.apply { add(ItemEnchantment(type, level)) }
                 }
             }
             return this
