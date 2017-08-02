@@ -15,8 +15,17 @@ interface Gui : GuiLayoutComposite {
 
     /**
      * Open this [Gui] for the given players.
+     *
+     * @param players the players to open the inventory for
      */
     fun open(vararg players: Player)
+
+    /**
+     * Get the players viewing the inventory.
+     *
+     * @return the players viewing the inventory
+     */
+    fun getViewers(): List<Player>
 
     /**
      * Update the Gui's layout.

@@ -48,6 +48,12 @@ class BukkitGui(
         }
     }
 
+    override fun getViewers(): List<Player> {
+        return inventory.viewers
+                .filterIsInstance<Bukkit_Player>()
+                .map(::BukkitPlayer)
+    }
+
     override fun updateLayout() {
         for (x in 0 until width) {
             for (y in 0 until height) {
