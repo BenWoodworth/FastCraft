@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.core
+package net.benwoodworth.fastcraft.core.util
 
 /**
  * A FastCraft version.
@@ -6,9 +6,9 @@ package net.benwoodworth.fastcraft.core
 class FastCraftVersion(
         val major: Int,
         val minor: Int,
-        val patch: Int,
-        val label: String?,
-        val build: Int?
+        val patch: Int = 0,
+        val label: String? = null,
+        val build: Int? = null
 ) : Comparable<FastCraftVersion> {
 
     companion object {
