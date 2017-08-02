@@ -13,7 +13,7 @@ import javax.inject.Singleton
 class SpongeModuleConfig : ModuleConfig {
 
     @Provides @Singleton
-    override fun configService(): ConfigManager {
+    override fun configManager(): ConfigManager {
         TODO("not implemented")
     }
 }

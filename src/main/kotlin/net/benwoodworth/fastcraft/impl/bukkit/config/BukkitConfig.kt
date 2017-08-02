@@ -1,24 +1,21 @@
-package net.benwoodworth.fastcraft.impl.sponge.config
+package net.benwoodworth.fastcraft.impl.bukkit.config
 
 import net.benwoodworth.fastcraft.dependencies.config.Config
 import net.benwoodworth.fastcraft.dependencies.config.ConfigSection
 import net.benwoodworth.fastcraft.util.Adapter
-import ninja.leaping.configurate.commented.CommentedConfigurationNode
+import org.bukkit.configuration.file.YamlConfiguration
 
 /**
- * Sponge implementation of [Config].
+ * Bukkit implementation of [Config].
  */
-class SpongeConfig(baseNode: CommentedConfigurationNode) :
-        ConfigSection by SpongeConfigSection(baseNode),
-        Adapter<CommentedConfigurationNode>(baseNode),
+class BukkitConfig(baseSection: YamlConfiguration) :
+        ConfigSection by BukkitConfigSection(baseSection),
+        Adapter<YamlConfiguration>(baseSection),
         Config {
-
-    var configOptions = base.options
-        private set
 
     override var header: List<String>
         get() {
-            val lines = configOptions.header?.split('\n') ?: emptyList()
+            val lines = base.options().header()?.split('\n') ?: emptyList()
 
             return lines.map {
                 when {
@@ -28,7 +25,7 @@ class SpongeConfig(baseNode: CommentedConfigurationNode) :
             }
         }
         set(value) {
-            configOptions = configOptions.setHeader(value
+            base.options().header(value
                     .takeIf { it.isEmpty() }
                     ?.map { " $it" }
                     ?.joinToString("\n")

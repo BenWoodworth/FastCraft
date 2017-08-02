@@ -13,7 +13,7 @@ import javax.inject.Singleton
 class BukkitModuleConfig : ModuleConfig {
 
     @Provides @Singleton
-    override fun configService(): ConfigManager {
-        TODO("not implemented")
+    override fun configManager(): ConfigManager {
+        return BukkitConfigManager()
     }
 }

@@ -5,5 +5,5 @@ package net.benwoodworth.fastcraft.dependencies.config
  */
 interface ModuleConfig {
 
-    fun configService(): ConfigManager
+    fun configManager(): ConfigManager
 }
