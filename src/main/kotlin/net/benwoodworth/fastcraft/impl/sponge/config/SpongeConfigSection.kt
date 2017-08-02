@@ -12,6 +12,10 @@ class SpongeConfigSection(
         baseNode: ConfigurationNode
 ) : ConfigSection, Adapter<ConfigurationNode>(baseNode) {
 
+    override fun hasKey(key: String): Boolean {
+        return !base.getNode(key).isVirtual
+    }
+
     override fun getSection(key: String): ConfigSection {
         return SpongeConfigSection(base.getNode(key))
     }

@@ -11,6 +11,10 @@ class BukkitConfigSection(
         baseSection: ConfigurationSection
 ) : ConfigSection, Adapter<ConfigurationSection>(baseSection) {
 
+    override fun hasKey(key: String): Boolean {
+        return base.getKeys(false).contains(key)
+    }
+
     override fun getSection(key: String): ConfigSection {
         return BukkitConfigSection(base.getConfigurationSection(key))
     }
@@ -24,7 +28,7 @@ class BukkitConfigSection(
     }
 
     override fun getString(key: String): String? {
-        return base.getString(key)
+        return base.getString(key, null)
     }
 
     override fun setString(key: String, value: String) {
@@ -32,7 +36,7 @@ class BukkitConfigSection(
     }
 
     override fun getStringList(key: String): List<String>? {
-        return base.getStringList(key).toList()
+        return base.takeIf { hasKey(key) }?.getStringList(key)
     }
 
     override fun setStringList(key: String, value: List<String>) {
@@ -40,7 +44,7 @@ class BukkitConfigSection(
     }
 
     override fun getInt(key: String): Int? {
-        return base.getInt(key)
+        return base.takeIf { hasKey(key) }?.getInt(key)
     }
 
     override fun setInt(key: String, value: Int) {
@@ -48,7 +52,7 @@ class BukkitConfigSection(
     }
 
     override fun getIntList(key: String): List<Int>? {
-        return base.getIntegerList(key).toList()
+        return base.takeIf { hasKey(key) }?.getIntegerList(key)?.toList()
     }
 
     override fun setIntList(key: String, value: List<Int>) {
@@ -56,7 +60,7 @@ class BukkitConfigSection(
     }
 
     override fun getBoolean(key: String): Boolean? {
-        return base.getBoolean(key)
+        return base.takeIf { hasKey(key) }?.getBoolean(key)
     }
 
     override fun setBoolean(key: String, value: Boolean) {

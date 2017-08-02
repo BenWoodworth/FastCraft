@@ -12,6 +12,7 @@ abstract class ConfigSectionTests : ImplementationTests<ConfigSection>() {
     @Test
     fun `when getting a non-existent key, null should be returned`() {
         val key = "key"
+        assertFalse(testInstance.hasKey(key))
 
         val string = testInstance.getString(key)
         assertNull(string)

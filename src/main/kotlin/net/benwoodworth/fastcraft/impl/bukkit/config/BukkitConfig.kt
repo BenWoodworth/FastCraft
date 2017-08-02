@@ -15,7 +15,11 @@ class BukkitConfig(baseSection: YamlConfiguration) :
 
     override var header: List<String>
         get() {
-            val lines = base.options().header()?.split('\n') ?: emptyList()
+            var lines = base.options().header()?.split('\n') ?: emptyList()
+
+            if (lines.takeIf { it.isNotEmpty() }?.last() == "") {
+                lines = lines.take(lines.size - 1)
+            }
 
             return lines.map {
                 when {

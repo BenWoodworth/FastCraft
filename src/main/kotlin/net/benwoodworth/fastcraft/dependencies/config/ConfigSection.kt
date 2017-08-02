@@ -6,6 +6,14 @@ package net.benwoodworth.fastcraft.dependencies.config
 interface ConfigSection {
 
     /**
+     * See if this [ConfigSection] has a key.
+     *
+     * @param key the key to check
+     * @return true iff the key exists
+     */
+    fun hasKey(key: String): Boolean
+
+    /**
      * Get a config section at the given key, or create a new one if it does not exist.
      *
      * @param key the section key

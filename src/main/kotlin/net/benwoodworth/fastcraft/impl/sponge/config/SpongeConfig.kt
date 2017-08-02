@@ -19,7 +19,6 @@ class SpongeConfig(baseNode: CommentedConfigurationNode) :
     override var header: List<String>
         get() {
             val lines = configOptions.header?.split('\n') ?: emptyList()
-
             return lines.map {
                 when {
                     it.isNotEmpty() && it[0] == ' ' -> it.substring(1)
