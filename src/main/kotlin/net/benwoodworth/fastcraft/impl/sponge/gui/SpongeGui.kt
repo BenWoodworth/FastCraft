@@ -3,6 +3,8 @@ package net.benwoodworth.fastcraft.impl.sponge.gui
 import net.benwoodworth.fastcraft.dependencies.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.gui.GuiLayoutComposite
 import net.benwoodworth.fastcraft.dependencies.event.EventGuiButtonClick
+import net.benwoodworth.fastcraft.dependencies.event.EventGuiClose
+import net.benwoodworth.fastcraft.dependencies.event.Listener
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.impl.sponge.item.SpongeItem
@@ -10,12 +12,13 @@ import net.benwoodworth.fastcraft.impl.sponge.player.SpongePlayer
 import net.benwoodworth.fastcraft.impl.sponge.text.SpongeText
 import org.spongepowered.api.Sponge
 import org.spongepowered.api.entity.living.player.Player as Sponge_Player
-import org.spongepowered.api.event.Listener
+import org.spongepowered.api.event.Listener as Sponge_Listener
 import org.spongepowered.api.event.Order
 import org.spongepowered.api.event.cause.Cause
 import org.spongepowered.api.event.filter.cause.First
 import org.spongepowered.api.event.item.inventory.AffectSlotEvent
 import org.spongepowered.api.event.item.inventory.ClickInventoryEvent
+import org.spongepowered.api.event.item.inventory.InteractInventoryEvent
 import org.spongepowered.api.item.inventory.Carrier
 import org.spongepowered.api.item.inventory.Inventory
 import org.spongepowered.api.item.inventory.InventoryArchetypes
@@ -39,6 +42,8 @@ class SpongeGui(
     init {
         changeListener += this::updateLayout
     }
+
+    override val closeListener = Listener.Impl<EventGuiClose>()
 
     /**
      * The inventory representing this GUI.
@@ -91,6 +96,7 @@ class SpongeGui(
      * Listens for inventory events, in order to prevent modification
      * of the [Gui]'s inventory, and handling button clicks.
      */
+    @Suppress("UNUSED")
     class Listeners {
 
         /**
@@ -114,8 +120,7 @@ class SpongeGui(
          *
          * @param event the [AffectSlotEvent]
          */
-        @Listener(order = Order.EARLY)
-        @Suppress("UNUSED")
+        @Sponge_Listener(order = Order.EARLY)
         fun onAffectSlot(event: AffectSlotEvent) {
             event.transactions
                     .filter { isGuiSlot(it.slot) }
@@ -125,8 +130,7 @@ class SpongeGui(
         /**
          * Forwards inventory clicks to buttons.
          */
-        @Listener(order = Order.BEFORE_POST)
-        @Suppress("UNUSED")
+        @Sponge_Listener(order = Order.BEFORE_POST)
         fun onClick(event: ClickInventoryEvent, @First player: Sponge_Player?) {
             if (event.transactions.size != 1) {
                 return
@@ -160,6 +164,20 @@ class SpongeGui(
             )
 
             button.clickListener.notifyHandlers(clickEvent)
+        }
+
+        @Sponge_Listener(order = Order.LAST)
+        fun onClose(event: InteractInventoryEvent.Close, @First player: Sponge_Player?) {
+            if (event.isCancelled) {
+                return
+            }
+
+            val carriedInv = event.targetInventory as? CarriedInventory<*> ?: return
+            val gui = carriedInv.carrier as? Gui ?: return
+
+            gui.closeListener.notifyHandlers(
+                    EventGuiClose.Impl(gui, player?.let(::SpongePlayer))
+            )
         }
     }
 
