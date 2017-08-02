@@ -29,7 +29,7 @@ class SpongeConfig(baseNode: CommentedConfigurationNode) :
         }
         set(value) {
             configOptions = configOptions.setHeader(value
-                    .takeIf { it.isEmpty() }
+                    .takeUnless { it.isEmpty() }
                     ?.map { " $it" }
                     ?.joinToString("\n")
             )

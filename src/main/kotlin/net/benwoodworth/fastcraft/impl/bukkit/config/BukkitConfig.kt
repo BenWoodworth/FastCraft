@@ -26,7 +26,7 @@ class BukkitConfig(baseSection: YamlConfiguration) :
         }
         set(value) {
             base.options().header(value
-                    .takeIf { it.isEmpty() }
+                    .takeUnless { it.isEmpty() }
                     ?.map { " $it" }
                     ?.joinToString("\n")
             )
