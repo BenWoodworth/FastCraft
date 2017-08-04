@@ -34,7 +34,8 @@ class FastCraftVersion : Comparable<FastCraftVersion> {
      * @param version the version string
      */
     constructor(version: String) {
-        val regex = Regex("^(\\d+)\\.(\\d+)(?:\\.(\\d+))?(?:-([a-zA-Z]+))?(?:-(\\d+))?\$")
+        // [v]<MAJOR>.<MINOR>[.<PATCH>][-<LABEL>][-<BUILD>]
+        val regex = Regex("^[v]?(\\d+)\\.(\\d+)(?:\\.(\\d+))?(?:-([a-zA-Z]+))?(?:-(\\d+))?\$")
 
         val matches = regex.find(version) ?: throw IllegalArgumentException("Invalid FastCraft version: $version")
 
