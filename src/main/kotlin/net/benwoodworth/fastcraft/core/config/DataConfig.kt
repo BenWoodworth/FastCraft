@@ -17,10 +17,10 @@ class DataConfig(
     fun getPlayerPrefs(player: Player) = PlayerPrefs(player)
 
     inner class PlayerPrefs(player: Player) {
-        private val prefs = config[player.uuid.toString()]
+        private val prefs = config["player-data"][player.uuid.toString()]
 
-        var fastCraftEnabled: Boolean
-            get() = prefs.getBoolean("fastcraft-enabled")!!
+        var fastCraftEnabled: Boolean?
+            get() = prefs.getBoolean("fastcraft-enabled")
             set(value) = prefs.setBoolean("fastcraft-enabled", value)
     }
 }
