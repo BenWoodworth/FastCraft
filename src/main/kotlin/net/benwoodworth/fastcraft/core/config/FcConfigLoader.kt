@@ -8,7 +8,7 @@ import javax.inject.Inject
 /**
  * Updates FastCraft's config files.
  */
-class ConfigLoader @Inject constructor(
+class FcConfigLoader @Inject constructor(
         pluginProvider: Plugin.Provider,
         private val configManager: ConfigManager
 ) {
@@ -16,45 +16,45 @@ class ConfigLoader @Inject constructor(
     /**
      * The FastCraft plugin config.
      */
-    lateinit var pluginConfig: PluginConfig
+    lateinit var fcPluginConfig: FcPluginConfig
         private set
 
     /**
      * The FastCraft data config.
      */
-    lateinit var dataConfig: DataConfig
+    lateinit var fcDataConfig: FcDataConfig
         private set
 
     /**
      * The directory containing FastCraft configs.
      */
-    private val pluginConfigDir: Path
+    private val fcPluginConfigDir: Path
 
     /**
      * The FastCraft config file.
      */
-    private val pluginConfigFile: Path
+    private val fcPluginConfigFile: Path
 
     /**
      * The FastCraft data config file.
      */
-    private val dataConfigFile: Path
+    private val fcDataConfigFile: Path
 
     init {
         val fastCraftPlugin = pluginProvider.getPlugin("fastcraft")!!
         val fileExt = configManager.getFileExtension()
 
-        pluginConfigDir = fastCraftPlugin.pluginDirectory
-        pluginConfigFile = pluginConfigDir.resolve(fastCraftPlugin.configFileName)
-        dataConfigFile = pluginConfigDir.resolve("data$fileExt")
+        fcPluginConfigDir = fastCraftPlugin.pluginDirectory
+        fcPluginConfigFile = fcPluginConfigDir.resolve(fastCraftPlugin.configFileName)
+        fcDataConfigFile = fcPluginConfigDir.resolve("data$fileExt")
     }
 
     /**
      * Load the configs.
      */
     fun load() {
-        pluginConfig = PluginConfig(configManager.loadConfig(pluginConfigFile))
-        dataConfig = DataConfig(configManager.loadConfig(pluginConfigFile))
+        fcPluginConfig = FcPluginConfig(configManager.loadConfig(fcPluginConfigFile))
+        fcDataConfig = FcDataConfig(configManager.loadConfig(fcPluginConfigFile))
 
         update()
         save()
@@ -64,15 +64,15 @@ class ConfigLoader @Inject constructor(
      * Save the configs.
      */
     fun save() {
-        configManager.saveConfig(pluginConfig.config, pluginConfigFile)
-        configManager.saveConfig(dataConfig.config, dataConfigFile)
+        configManager.saveConfig(fcPluginConfig.config, fcPluginConfigFile)
+        configManager.saveConfig(fcDataConfig.config, fcDataConfigFile)
     }
 
     /**
      * Update the configs.
      */
     private fun update() {
-        pluginConfig.config.header = listOf(
+        fcPluginConfig.config.header = listOf(
                 "FastCraft, developed by Kepler_",
                 "https://github.com/BenWoodworth/FastCraft",
                 "",
@@ -87,15 +87,15 @@ class ConfigLoader @Inject constructor(
                 "    FastCraft UI. Recipe ID's are listed under the list of ingredients."
         )
 
-        dataConfig.config.header = listOf(
+        fcDataConfig.config.header = listOf(
                 "This file is by FastCraft to store",
                 "data, and should not be edited."
         )
 
         for ((revision, updater) in updaters.toSortedMap()) {
-            if (revision > dataConfig.revision ?: -1) {
+            if (revision > fcDataConfig.revision ?: -1) {
                 updater()
-                dataConfig.revision = revision
+                fcDataConfig.revision = revision
             }
         }
     }
@@ -105,12 +105,12 @@ class ConfigLoader @Inject constructor(
      */
     val updaters = mapOf(
             0 to {
-                with(pluginConfig) {
+                with(fcPluginConfig) {
                     language = "EN"
                     hiddenRecipes = emptyList()
                 }
 
-                with(dataConfig) {
+                with(fcDataConfig) {
                 }
             }
     )

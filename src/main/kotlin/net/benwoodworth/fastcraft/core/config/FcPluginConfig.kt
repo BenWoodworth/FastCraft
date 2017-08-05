@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.dependencies.config.Config
 /**
  * A wrapper for the plugin config.
  */
-class PluginConfig(
+class FcPluginConfig(
         override var config: Config
 ) : ConfigWrapper {
 

@@ -6,7 +6,7 @@ import net.benwoodworth.fastcraft.dependencies.player.Player
 /**
  * Manages the data config.
  */
-class DataConfig(
+class FcDataConfig(
         override var config: Config
 ) : ConfigWrapper {
 
