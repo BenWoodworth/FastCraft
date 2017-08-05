@@ -7,5 +7,8 @@ import net.benwoodworth.fastcraft.dependencies.config.Config
  */
 interface ConfigWrapper {
 
+    /**
+     * The wrapped config.
+     */
     var config: Config
 }

@@ -13,14 +13,31 @@ class ConfigLoader @Inject constructor(
         private val configManager: ConfigManager
 ) {
 
+    /**
+     * The FastCraft plugin config.
+     */
     lateinit var pluginConfig: PluginConfig
         private set
 
+    /**
+     * The FastCraft data config.
+     */
     lateinit var dataConfig: DataConfig
         private set
 
+    /**
+     * The directory containing FastCraft configs.
+     */
     private val pluginConfigDir: Path
+
+    /**
+     * The FastCraft config file.
+     */
     private val pluginConfigFile: Path
+
+    /**
+     * The FastCraft data config file.
+     */
     private val dataConfigFile: Path
 
     init {
@@ -32,6 +49,9 @@ class ConfigLoader @Inject constructor(
         dataConfigFile = pluginConfigDir.resolve("data$fileExt")
     }
 
+    /**
+     * Load the configs.
+     */
     fun load() {
         pluginConfig = PluginConfig(configManager.loadConfig(pluginConfigFile))
         dataConfig = DataConfig(configManager.loadConfig(pluginConfigFile))
@@ -40,11 +60,17 @@ class ConfigLoader @Inject constructor(
         save()
     }
 
+    /**
+     * Save the configs.
+     */
     fun save() {
         configManager.saveConfig(pluginConfig.config, pluginConfigFile)
         configManager.saveConfig(dataConfig.config, dataConfigFile)
     }
 
+    /**
+     * Update the configs.
+     */
     private fun update() {
         pluginConfig.config.header = listOf(
                 "FastCraft, developed by Kepler_",
@@ -74,6 +100,9 @@ class ConfigLoader @Inject constructor(
         }
     }
 
+    /**
+     * The updaters that update to a specific revision.
+     */
     val updaters = mapOf(
             0 to {
                 with(pluginConfig) {
