@@ -10,8 +10,8 @@ class DataConfig(
         override var config: Config
 ) : ConfigWrapper {
 
-    var revision: Int
-        get() = config.getInt("config-revision") ?: 0
+    var revision: Int?
+        get() = config.getInt("config-revision")
         set(value) = config.setInt("config-revision", value)
 
     fun getPlayerPrefs(player: Player) = PlayerPrefs(player)

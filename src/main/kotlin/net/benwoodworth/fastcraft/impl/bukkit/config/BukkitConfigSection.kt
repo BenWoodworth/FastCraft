@@ -31,7 +31,7 @@ class BukkitConfigSection(
         return base.getString(key, null)
     }
 
-    override fun setString(key: String, value: String) {
+    override fun setString(key: String, value: String?) {
         base.set(key, value)
     }
 
@@ -39,7 +39,7 @@ class BukkitConfigSection(
         return base.takeIf { hasKey(key) }?.getStringList(key)
     }
 
-    override fun setStringList(key: String, value: List<String>) {
+    override fun setStringList(key: String, value: List<String>?) {
         base.set(key, value)
     }
 
@@ -47,7 +47,7 @@ class BukkitConfigSection(
         return base.takeIf { hasKey(key) }?.getInt(key)
     }
 
-    override fun setInt(key: String, value: Int) {
+    override fun setInt(key: String, value: Int?) {
         base.set(key, value)
     }
 
@@ -55,7 +55,7 @@ class BukkitConfigSection(
         return base.takeIf { hasKey(key) }?.getIntegerList(key)?.toList()
     }
 
-    override fun setIntList(key: String, value: List<Int>) {
+    override fun setIntList(key: String, value: List<Int>?) {
         base.set(key, value)
     }
 
@@ -63,7 +63,7 @@ class BukkitConfigSection(
         return base.takeIf { hasKey(key) }?.getBoolean(key)
     }
 
-    override fun setBoolean(key: String, value: Boolean) {
+    override fun setBoolean(key: String, value: Boolean?) {
         base.set(key, value)
     }
 }

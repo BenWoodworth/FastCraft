@@ -46,7 +46,7 @@ class ConfigLoader @Inject constructor(
     }
 
     private fun update() {
-        dataConfig.config.header = listOf(
+        pluginConfig.config.header = listOf(
                 "FastCraft, developed by Kepler_",
                 "https://github.com/BenWoodworth/FastCraft",
                 "",
@@ -61,8 +61,13 @@ class ConfigLoader @Inject constructor(
                 "    FastCraft UI. Recipe ID's are listed under the list of ingredients."
         )
 
+        dataConfig.config.header = listOf(
+                "This file is by FastCraft to store",
+                "data, and should not be edited."
+        )
+
         for ((revision, updater) in updaters.toSortedMap()) {
-            if (dataConfig.revision < revision) {
+            if (revision > dataConfig.revision ?: -1) {
                 updater()
                 dataConfig.revision = revision
             }

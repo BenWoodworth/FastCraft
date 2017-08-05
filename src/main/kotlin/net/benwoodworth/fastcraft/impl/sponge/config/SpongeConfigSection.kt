@@ -32,7 +32,7 @@ class SpongeConfigSection(
         return base.getNode(key).string
     }
 
-    override fun setString(key: String, value: String) {
+    override fun setString(key: String, value: String?) {
         base.getNode(key).value = value
     }
 
@@ -45,7 +45,7 @@ class SpongeConfigSection(
         }
     }
 
-    override fun setStringList(key: String, value: List<String>) {
+    override fun setStringList(key: String, value: List<String>?) {
         base.getNode(key).value = value
     }
 
@@ -58,7 +58,7 @@ class SpongeConfigSection(
         }
     }
 
-    override fun setInt(key: String, value: Int) {
+    override fun setInt(key: String, value: Int?) {
         base.getNode(key).setValue(TypeTokens.INTEGER_TOKEN, value)
     }
 
@@ -71,7 +71,7 @@ class SpongeConfigSection(
         }
     }
 
-    override fun setIntList(key: String, value: List<Int>) {
+    override fun setIntList(key: String, value: List<Int>?) {
         base.getNode(key).value = value
     }
 
@@ -84,7 +84,7 @@ class SpongeConfigSection(
         }
     }
 
-    override fun setBoolean(key: String, value: Boolean) {
+    override fun setBoolean(key: String, value: Boolean?) {
         base.getNode(key).value = value
     }
 }

@@ -57,7 +57,7 @@ interface ConfigSection {
      * @param key the key
      * @param value the value to set
      */
-    fun setString(key: String, value: String)
+    fun setString(key: String, value: String?)
 
     /**
      * Get a [List] of [String]s at the given key.
@@ -73,7 +73,7 @@ interface ConfigSection {
      * @param key the key
      * @param value the value to set
      */
-    fun setStringList(key: String, value: List<String>)
+    fun setStringList(key: String, value: List<String>?)
 
     /**
      * Get an [Int] at the given key.
@@ -89,7 +89,7 @@ interface ConfigSection {
      * @param key the key
      * @param value the value to set
      */
-    fun setInt(key: String, value: Int)
+    fun setInt(key: String, value: Int?)
 
     /**
      * Get a [List] of [Int]s at the given key.
@@ -105,7 +105,7 @@ interface ConfigSection {
      * @param key the key
      * @param value the value to set
      */
-    fun setIntList(key: String, value: List<Int>)
+    fun setIntList(key: String, value: List<Int>?)
 
     /**
      * Get a [Boolean] at the given key.
@@ -121,5 +121,5 @@ interface ConfigSection {
      * @param key the key
      * @param value the value to set
      */
-    fun setBoolean(key: String, value: Boolean)
+    fun setBoolean(key: String, value: Boolean?)
 }

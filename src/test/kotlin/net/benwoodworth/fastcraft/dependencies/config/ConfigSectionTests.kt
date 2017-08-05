@@ -31,6 +31,29 @@ abstract class ConfigSectionTests : ImplementationTests<ConfigSection>() {
     }
 
     @Test
+    fun `when setting a value to null, value should be null`() {
+        testInstance.setString("string", "test")
+        testInstance.setString("string", null)
+        assertNull(testInstance.getString("string"))
+
+        testInstance.setStringList("stringList", listOf("hi"))
+        testInstance.setStringList("stringList", null)
+        assertNull(testInstance.getStringList("string"))
+
+        testInstance.setInt("int", 5)
+        testInstance.setInt("int", null)
+        assertNull(testInstance.getInt("int"))
+
+        testInstance.setIntList("intList", listOf(1, 2, 3))
+        testInstance.setIntList("intList", null)
+        assertNull(testInstance.getIntList("intList"))
+
+        testInstance.setBoolean("boolean", true)
+        testInstance.setBoolean("boolean", null)
+        assertNull(testInstance.getBoolean("boolean"))
+    }
+
+    @Test
     fun `when getting and setting strings, should store and retrieve correctly`() {
         for (expected in listOf(
                 "",
