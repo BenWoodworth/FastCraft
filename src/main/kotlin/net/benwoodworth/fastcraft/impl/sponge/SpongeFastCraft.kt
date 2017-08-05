@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.impl.sponge
 
 import net.benwoodworth.fastcraft.core.FastCraft
-import net.benwoodworth.fastcraft.dependencies.FastCraftImplementation
+import net.benwoodworth.fastcraft.core.FastCraftImplementation
 import net.benwoodworth.fastcraft.impl.sponge.config.SpongeModuleConfig
 import net.benwoodworth.fastcraft.impl.sponge.event.SpongeModuleEvent
 import net.benwoodworth.fastcraft.impl.sponge.gui.SpongeModuleGui

@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.impl.bukkit
 
 import net.benwoodworth.fastcraft.core.FastCraft
-import net.benwoodworth.fastcraft.dependencies.FastCraftImplementation
+import net.benwoodworth.fastcraft.core.FastCraftImplementation
 import net.benwoodworth.fastcraft.impl.bukkit.config.BukkitModuleConfig
 import net.benwoodworth.fastcraft.impl.bukkit.event.BukkitModuleEvent
 import net.benwoodworth.fastcraft.impl.bukkit.gui.BukkitModuleGui

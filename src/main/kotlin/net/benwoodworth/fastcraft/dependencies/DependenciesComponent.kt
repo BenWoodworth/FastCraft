@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.core.FastCraft
 /**
  * A Dagger component for injecting FastCraft dependencies.
  */
-interface FastCraftComponent {
+interface DependenciesComponent {
 
     fun getFastCraft(): FastCraft
 }

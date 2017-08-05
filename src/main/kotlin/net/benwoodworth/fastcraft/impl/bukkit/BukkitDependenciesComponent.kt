@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.impl.bukkit
 
 import dagger.Component
-import net.benwoodworth.fastcraft.dependencies.FastCraftComponent
+import net.benwoodworth.fastcraft.dependencies.DependenciesComponent
 import net.benwoodworth.fastcraft.impl.bukkit.config.BukkitModuleConfig
 import net.benwoodworth.fastcraft.impl.bukkit.event.BukkitModuleEvent
 import net.benwoodworth.fastcraft.impl.bukkit.gui.BukkitModuleGui
@@ -12,7 +12,7 @@ import net.benwoodworth.fastcraft.impl.bukkit.text.BukkitModuleText
 import javax.inject.Singleton
 
 /**
- * Bukkit implementation of [FastCraftComponent].
+ * Bukkit implementation of [DependenciesComponent].
  */
 @Singleton @Component(modules = arrayOf(
         BukkitModuleConfig::class,
@@ -23,4 +23,4 @@ import javax.inject.Singleton
         BukkitModuleServer::class,
         BukkitModuleText::class
 ))
-interface BukkitFastCraftComponent : FastCraftComponent
+interface BukkitDependenciesComponent : DependenciesComponent
