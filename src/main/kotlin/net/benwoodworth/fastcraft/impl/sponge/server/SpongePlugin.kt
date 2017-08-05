@@ -20,8 +20,8 @@ class SpongePlugin(
     override val pluginDirectory: Path
         get() = Sponge.getConfigManager().getPluginConfig(base.instance.get()).directory
 
-    override val configFile: Path
-        get() = Sponge.getConfigManager().getPluginConfig(base.instance.get()).configPath
+    override val configFileName: String
+        get() = Sponge.getConfigManager().getPluginConfig(base.instance.get()).configPath.fileName.toString()
 
     /**
      * Sponge implementation of [Plugin.Provider].

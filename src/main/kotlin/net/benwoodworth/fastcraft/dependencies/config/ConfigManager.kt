@@ -28,7 +28,7 @@ interface ConfigManager {
      * @param path the location to save the [Config] to
      * @param config the [Config] to save.
      */
-    fun saveConfig(path: Path, config: Config)
+    fun saveConfig(config: Config, path: Path)
 
     /**
      * Get the file extension for this config

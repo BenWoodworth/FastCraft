@@ -18,7 +18,7 @@ class BukkitConfigManager : ConfigManager {
         return BukkitConfig(YamlConfiguration.loadConfiguration(path.toFile()))
     }
 
-    override fun saveConfig(path: Path, config: Config) {
+    override fun saveConfig(config: Config, path: Path) {
         (config as BukkitConfig).base.save(path.toFile())
     }
 

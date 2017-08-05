@@ -18,9 +18,9 @@ interface Plugin {
     val pluginDirectory: Path
 
     /**
-     * The FastCraft configuration file.
+     * The plugin's configuration file.
      */
-    val configFile: Path
+    val configFileName: String
 
     /**
      * Provides plugins.

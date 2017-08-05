@@ -23,7 +23,7 @@ class SpongeConfigManager : ConfigManager {
         return SpongeConfig(loader.load())
     }
 
-    override fun saveConfig(path: Path, config: Config) {
+    override fun saveConfig(config: Config, path: Path) {
         config as SpongeConfig
 
         val loader = HoconConfigurationLoader.builder()

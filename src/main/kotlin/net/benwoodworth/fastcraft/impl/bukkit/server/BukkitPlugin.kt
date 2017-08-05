@@ -6,7 +6,6 @@ import net.benwoodworth.fastcraft.util.Adapter
 import org.bukkit.Bukkit
 import org.bukkit.plugin.Plugin as Bukkit_Plugin
 import java.nio.file.Path
-import java.nio.file.Paths
 
 /**
  * Bukkit implementation of [Plugin].
@@ -21,8 +20,7 @@ class BukkitPlugin(
     override val pluginDirectory: Path
         get() = base.dataFolder.toPath()
 
-    override val configFile: Path
-        get() = Paths.get(base.dataFolder.absolutePath, "config.yml")
+    override val configFileName = "config.yml"
 
     /**
      * Bukkit implementation of [Plugin.Provider].

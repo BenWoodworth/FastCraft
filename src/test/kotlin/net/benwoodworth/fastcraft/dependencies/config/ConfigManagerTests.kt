@@ -64,7 +64,7 @@ abstract class ConfigManagerTests : ImplementationTests<ConfigManager>() {
         val config = testInstance.loadConfig(testConfigPath)
 
         val tempConfig = Files.createTempFile(null, null)
-        testInstance.saveConfig(tempConfig, config)
+        testInstance.saveConfig(config, tempConfig)
         val testConfig = testInstance.loadConfig(tempConfig)
         Files.deleteIfExists(tempConfig)
 
