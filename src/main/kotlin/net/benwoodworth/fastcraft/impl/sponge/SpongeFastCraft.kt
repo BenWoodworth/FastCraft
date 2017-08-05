@@ -25,7 +25,7 @@ class SpongeFastCraft : FastCraftImplementation {
     @Listener
     @Suppress("UNUSED_PARAMETER", "DEPRECATION") // TODO Don't suppress deprecation
     fun onPreInit(event: GamePreInitializationEvent) {
-        val fastCraftBuilder = DaggerSpongeFastCraftComponent.builder()
+        val fastCraftBuilder = DaggerSpongeDependenciesComponent.builder()
                 .spongeModuleConfig(SpongeModuleConfig())
                 .spongeModuleEvent(SpongeModuleEvent(this))
                 .spongeModuleGui(SpongeModuleGui(this))

@@ -21,7 +21,7 @@ class BukkitFastCraft : FastCraftImplementation, JavaPlugin() {
 
     @Suppress("DEPRECATION") // TODO Don't suppress deprecation
     override fun onEnable() {
-        val fastCraftBuilder = DaggerBukkitFastCraftComponent.builder()
+        val fastCraftBuilder = DaggerBukkitDependenciesComponent.builder()
                 .bukkitModuleConfig(BukkitModuleConfig())
                 .bukkitModuleEvent(BukkitModuleEvent(this))
                 .bukkitModuleGui(BukkitModuleGui(this))
