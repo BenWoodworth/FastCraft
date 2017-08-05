@@ -20,6 +20,6 @@ class FcPluginConfig(
      * ID's for recipes that should be disabled.
      */
     var hiddenRecipes: List<String>
-        get() = config.getStringList("hidden-recipes")!!
-        set(value) = config.setStringList("hidden-recipes", value)
+        get() = config.getStringList("disabled-recipes")!!
+        set(value) = config.setStringList("disabled-recipes", value)
 }

@@ -1,5 +1,6 @@
 package net.benwoodworth.fastcraft.core
 
+import net.benwoodworth.fastcraft.core.config.FcConfigLoader
 import net.benwoodworth.fastcraft.dependencies.event.EventPlayerJoin
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginDisable
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginEnable
@@ -13,14 +14,18 @@ import net.benwoodworth.fastcraft.dependencies.text.TextColorRegistry
 import net.benwoodworth.fastcraft.dependencies.text.TextStyle
 import javax.inject.Inject
 import javax.inject.Provider
+import javax.inject.Singleton
 
 /**
  * The core class of FastCraft.
  */
+@Singleton
 class FastCraft @Inject constructor(
         listenerPluginEnable: Listener<EventPluginEnable>,
         listenerPluginDisable: Listener<EventPluginDisable>,
         listenerPlayerJoin: Listener<EventPlayerJoin>,
+
+        private val fcConfigLoader: Provider<FcConfigLoader>,
 
         private val textBuilderProvider: Provider<Text.Builder>,
         private val guiBuilderProvider: Provider<Gui.Builder>,
@@ -36,11 +41,11 @@ class FastCraft @Inject constructor(
     }
 
     fun onPluginEnable() {
-        //logger.info("FastCraft core enabled")
+        println("FASTCRAFT ENABLED")
     }
 
     fun onPluginDisable() {
-        //logger.info("FastCraft core disabled")
+        println("FASTCRAFT DISABLED")
     }
 
     fun onPlayerJoin(event: EventPlayerJoin) {

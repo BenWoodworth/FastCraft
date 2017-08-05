@@ -8,7 +8,7 @@ import net.benwoodworth.fastcraft.dependencies.event.EventPluginEnable
 import net.benwoodworth.fastcraft.dependencies.event.ModuleEvent
 import net.benwoodworth.fastcraft.dependencies.event.Listener
 import org.spongepowered.api.Sponge
-import org.spongepowered.api.event.game.state.GamePreInitializationEvent
+import org.spongepowered.api.event.game.state.GameInitializationEvent
 import org.spongepowered.api.event.game.state.GameStoppingEvent
 import org.spongepowered.api.event.network.ClientConnectionEvent
 import javax.inject.Singleton
@@ -45,7 +45,7 @@ class SpongeModuleEvent(
     override fun listenerPluginEnable(): Listener<EventPluginEnable> {
         return Listener.Impl<EventPluginEnable>().also { listener ->
             Sponge.getEventManager().registerListener(plugin,
-                    GamePreInitializationEvent::class.java,
+                    GameInitializationEvent::class.java,
                     { listener.notifyHandlers(SpongeEventPluginEnable(it)) }
             )
         }

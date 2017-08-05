@@ -4,10 +4,12 @@ import net.benwoodworth.fastcraft.dependencies.config.ConfigManager
 import net.benwoodworth.fastcraft.dependencies.server.Plugin
 import java.nio.file.Path
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Updates FastCraft's config files.
  */
+@Singleton
 class FcConfigLoader @Inject constructor(
         pluginProvider: Plugin.Provider,
         private val configManager: ConfigManager
@@ -82,7 +84,7 @@ class FcConfigLoader @Inject constructor(
                 "    TR (Türkçe),  NL (Nederlands), VI (Tiếng Việt),   PL (Polskie),",
                 "    ZH-CN (中文),  ZH-TW (台語)",
                 "",
-                "hidden-recipes:",
+                "disabled-recipes:",
                 "    A list of recipe ID's for recipes that should be hidden from the",
                 "    FastCraft UI. Recipe ID's are listed under the list of ingredients."
         )

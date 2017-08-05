@@ -14,6 +14,6 @@ class SpongeModuleConfig : ModuleConfig {
 
     @Provides @Singleton
     override fun configManager(): ConfigManager {
-        TODO("not implemented")
+        return SpongeConfigManager()
     }
 }
