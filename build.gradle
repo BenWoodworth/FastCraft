@@ -65,7 +65,7 @@ dependencies {
     ktlint 'com.github.shyiko:ktlint:0.8.1'
 
     compile "org.jetbrains.kotlin:kotlin-runtime:$version_kotlin"
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$version_kotlin"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$version_kotlin"
 
     compile "org.bukkit:bukkit:$version_bukkit"
     compile "org.spongepowered:spongeapi:$version_sponge"
@@ -139,8 +139,10 @@ kapt {
 // and create it with 'shadowJar' instead.
 jar {
     dependsOn shadowJar
-} << {
-    throw new StopExecutionException()
+    enabled = false
+
+    baseName(plugin_name)
+    classifier('nolib')
 }
 
 shadowJar {
