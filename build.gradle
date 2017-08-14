@@ -15,6 +15,7 @@ def plugin_website = 'https://github.com/BenWoodworth/FastCraft'
 apply plugin: 'kotlin'
 apply plugin: 'org.spongepowered.plugin'
 apply plugin: 'org.junit.platform.gradle.plugin'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 buildscript {
     ext {
@@ -22,6 +23,7 @@ buildscript {
 
         version_kotlin = '1.1.3-2'
         version_spongegradle = '0.8.1'
+        version_shadow = '2.0.1'
 
         version_bukkit = '1.12.1-R0.1-SNAPSHOT'
         version_sponge = '7.0.0-20170804.185017-26'
@@ -45,6 +47,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin"
         classpath "gradle.plugin.org.spongepowered:spongegradle:$version_spongegradle"
         classpath "org.junit.platform:junit-platform-gradle-plugin:$version_junit_runner"
+        classpath "com.github.jengelman.gradle.plugins:shadow:$version_shadow"
     }
 }
 
@@ -132,20 +135,29 @@ kapt {
     generateStubs = true
 }
 
+// Don't create a .jar file with the 'jar' task,
+// and create it with 'shadowJar' instead.
 jar {
-    name
+    dependsOn shadowJar
+} << {
+    throw new StopExecutionException()
+}
+
+shadowJar {
     baseName(plugin_name)
+    classifier(null)
 
-    from {
-        String[] includeInJar = [
-                "kotlin-runtime-${version_kotlin}.jar",
-                "kotlin-stdlib-${version_kotlin}.jar",
-                "dagger-${version_dagger}.jar",
-                "javax.inject-${version_javax_inject}.jar"
-        ]
+    dependencies {
+        exclude '__gen'
 
-        configurations.compile
-                .findAll({ includeInJar.contains(it.name) })
-                .collect({ it.isDirectory() ? it : zipTree(it) })
+        include dependency("org.jetbrains.kotlin:kotlin-runtime:$version_kotlin")
+        include dependency("org.jetbrains.kotlin:kotlin-stdlib:$version_kotlin")
+        include dependency("com.google.dagger:dagger:$version_dagger")
+        include dependency("javax.inject:javax.inject:$version_javax_inject")
     }
+
+    def libs = 'net.benwoodworth.fastcraft.libs'
+    relocate('kotlin', "${libs}.kotlin")
+    relocate('dagger', "${libs}.dagger")
+    relocate('javax', "${libs}.javax")
 }
