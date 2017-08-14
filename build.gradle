@@ -26,7 +26,7 @@ buildscript {
         version_shadow = '2.0.1'
 
         version_bukkit = '1.12.1-R0.1-SNAPSHOT'
-        version_sponge = '7.0.0-20170804.185017-26'
+        version_sponge = '7.0.0-20170810.213602-30'
 
         version_dagger = '2.11'
         version_jsr250 = '1.0'
