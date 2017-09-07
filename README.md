@@ -2,7 +2,7 @@
 [![Downloads](https://img.shields.io/github/downloads/BenWoodworth/FastCraft/total.svg)](https://github.com/BenWoodworth/FastCraft/releases)
 
 # FastCraft+ v0.*
-Looking for FastCraft+ v0? [Click here!](https://github.com/BenWoodworth/FastCraft/tree/FastCraftv0)
+Looking for FastCraft+ v0? [Click here!](https://github.com/BenWoodworth/FastCraft/tree/v0/dev)
 
 # FastCraft v1
 Alpha builds can be found [here!](http://benwoodworth.net/projects/fastcraft/builds.html) (They don't work... yet...)
