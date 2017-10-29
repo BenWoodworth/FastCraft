@@ -1,5 +1,5 @@
 group 'net.benwoodworth'
-version '1.0-ALPHA'
+version '2.0-ALPHA'
 
 def env = System.getenv()
 if (env.containsKey('TRAVIS')) {
