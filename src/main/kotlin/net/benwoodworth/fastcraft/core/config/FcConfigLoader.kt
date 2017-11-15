@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.core.config
 
-import net.benwoodworth.fastcraft.dependencies.config.ConfigManager
-import net.benwoodworth.fastcraft.dependencies.server.Plugin
+import net.benwoodworth.fastcraft.dependencies.abstractions.config.ConfigManager
+import net.benwoodworth.fastcraft.dependencies.abstractions.server.Plugin
 import java.nio.file.Path
 import javax.inject.Inject
 import javax.inject.Singleton

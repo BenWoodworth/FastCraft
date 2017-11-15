@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.core.config
 
-import net.benwoodworth.fastcraft.dependencies.config.Config
+import net.benwoodworth.fastcraft.dependencies.abstractions.config.Config
 
 /**
  * A wrapper for the plugin config.
