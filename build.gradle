@@ -1,9 +1,13 @@
 group 'net.benwoodworth'
-version '2.0-ALPHA'
+version '2.x'
 
 def env = System.getenv()
 if (env.containsKey('TRAVIS')) {
-    version += "-${env['TRAVIS_BUILD_NUMBER']}"
+    if (env.containsKey('TRAVIS_TAG')) {
+        version = env['TRAVIS_TAG']
+    } else {
+        version = ['TRAVIS_COMMIT']
+    }
 }
 
 def plugin_name = 'FastCraft'
@@ -140,7 +144,6 @@ kapt {
 // Don't create a .jar file with the 'jar' task,
 // and create it with 'shadowJar' instead.
 jar {
-    dependsOn shadowJar
     enabled = false
 
     baseName(plugin_name)
@@ -148,7 +151,6 @@ jar {
 }
 
 shadowJar {
-    baseName(plugin_name)
     classifier(null)
 
     dependencies {
