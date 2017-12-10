@@ -1,7 +1,6 @@
 package net.benwoodworth.fastcraft.dependencies.abstractions.gui
 
 import net.benwoodworth.fastcraft.dependencies.abstractions.event.EventGuiLayoutChange
-import java.util.LinkedList
 
 /**
  * A composite [GuiLayout].

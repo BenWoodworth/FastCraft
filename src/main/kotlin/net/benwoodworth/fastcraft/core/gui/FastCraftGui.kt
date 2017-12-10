@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft.core.gui
 
-import net.benwoodworth.fastcraft.dependencies.abstractions.event.EventGuiButtonClick
 import net.benwoodworth.fastcraft.dependencies.abstractions.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.abstractions.gui.GuiButton
 import net.benwoodworth.fastcraft.dependencies.abstractions.gui.GuiLayout
@@ -11,98 +10,117 @@ import net.benwoodworth.fastcraft.dependencies.abstractions.text.Text
 import javax.inject.Inject
 import javax.inject.Provider
 
-class FastCraftGui @Inject constructor(
+class FastCraftGui private constructor(
         private val textBuilder: Provider<Text.Builder>,
-        private val itemBuilder: Provider<Item.Builder>,
+        itemBuilder: Provider<Item.Builder>,
+        guiBuilder: Provider<Gui.Builder>,
 
-        guiBuilder: Provider<Gui.Builder>
+        val player: Player
 ) {
 
-    private val gui: Gui
-
-    private val layoutRecipes: GuiLayoutComposite
-    private val layoutSidebar: GuiLayout
-
-    private val buttonPage: GuiButton
-    private val buttonWorkbench: GuiButton
-    private val buttonMultiplier: GuiButton
-    private val buttonRefresh: GuiButton
-
-    init {
-        buttonPage = GuiButton().apply {
-            item = itemBuilder.get()
-                    .type("minecraft:iron_sword")
-                    .amount(1)
-                    .displayName(textBuilder.get()
-                            .text("Page")
-                            .build()
-                    )
-                    .build()
-        }
-
-        buttonWorkbench = GuiButton().apply {
-            item = itemBuilder.get()
-                    .type("minecraft:crafting_table")
-                    .amount(1)
-                    .displayName(textBuilder.get()
-                            .text("Open Crafting Grid") // TODO Localize
-                            .build()
-                    )
-                    .build()
-        }
-
-        buttonMultiplier = GuiButton().apply {
-            item = itemBuilder.get()
-                    .type("minecraft:anvil")
-                    .amount(1)
-                    .displayName(textBuilder.get()
-                            .text("Multiplier") // TODO Localize
-                            .build()
-                    )
-                    .build()
-        }
-
-        buttonRefresh = GuiButton().apply {
-            item = itemBuilder.get()
-                    .type("minecraft:nether_star")
-                    .amount(1)
-                    .displayName(textBuilder.get()
-                            .text("Refresh") // TODO Localize
-                            .build()
-                    )
-                    .build()
-        }
-
-        layoutSidebar = GuiLayout(1, 6).apply {
-            setButton(0, 0, buttonWorkbench)
-            setButton(0, 2, buttonMultiplier)
-            setButton(0, 3, buttonRefresh)
-            setButton(0, 5, buttonPage)
-        }
-
-        layoutRecipes = GuiLayoutComposite(7, 6)
-
-        gui = guiBuilder.get()
-                .height(6)
-                .title(textBuilder.get()
-                        .text("FastCraft") // TODO Localize
+    /**
+     * Button for changing pages.
+     */
+    private val buttonPage: GuiButton = GuiButton().apply {
+        item = itemBuilder.get()
+                .type("minecraft:iron_sword")
+                .amount(1)
+                .displayName(textBuilder.get()
+                        .text("Page")
                         .build()
                 )
                 .build()
 
-//      gui.addLayout(0, 0, layoutRecipes)
-        gui.addLayout(8, 0, layoutSidebar)
-
-        buttonPage.clickListener += this::onClickButtonPage
-        buttonWorkbench.clickListener += this::onClickButtonWorkbench
-        buttonMultiplier.clickListener += this::onClickButtonMultiplier
-        buttonRefresh.clickListener += this::onClickButtonRefresh
+        clickListener += ::onClickButtonPage
     }
 
-    private fun onClickButtonPage(event: EventGuiButtonClick) {
+    /**
+     * Button to open the vanilla crafting grid.
+     */
+    private val buttonWorkbench = GuiButton().apply {
+        item = itemBuilder.get()
+                .type("minecraft:crafting_table")
+                .amount(1)
+                .displayName(textBuilder.get()
+                        .text("Open Crafting Grid") // TODO Localize
+                        .build()
+                )
+                .build()
+
+        clickListener += ::onClickButtonWorkbench
+    }
+
+    /**
+     * Button to change the crafting multiplier.
+     */
+    private val buttonMultiplier = GuiButton().apply {
+        item = itemBuilder.get()
+                .type("minecraft:anvil")
+                .amount(1)
+                .displayName(textBuilder.get()
+                        .text("Multiplier") // TODO Localize
+                        .build()
+                )
+                .build()
+
+        clickListener += ::onClickButtonMultiplier
+    }
+
+    /**
+     * Button to refresh the recipes.
+     */
+    private val buttonRefresh = GuiButton().apply {
+        item = itemBuilder.get()
+                .type("minecraft:nether_star")
+                .amount(1)
+                .displayName(textBuilder.get()
+                        .text("Refresh") // TODO Localize
+                        .build()
+                )
+                .build()
+
+        clickListener += ::onClickButtonRefresh
+    }
+
+    /**
+     * The [Gui] for the FastCraft interface.
+     */
+    private val gui = guiBuilder.get()
+            .height(6)
+            .title(textBuilder.get()
+                    .text("FastCraft") // TODO Localize
+                    .build()
+            )
+            .build().apply {
+
+        addLayout(0, 0, layoutRecipes)
+        addLayout(8, 0, layoutSidebar)
+    }
+
+    /**
+     * The layout containing the recipes.
+     */
+    private val layoutRecipes = GuiLayoutComposite(7, 6)
+
+    /**
+     * The layout containing the sidebar buttons.
+     */
+    private val layoutSidebar = GuiLayout(1, 6).apply {
+        setButton(0, 0, buttonWorkbench)
+        setButton(0, 2, buttonMultiplier)
+        setButton(0, 3, buttonRefresh)
+        setButton(0, 5, buttonPage)
+    }
+
+    /**
+     * Open the FastCraft GUI.
+     */
+    fun open() = gui.open(player)
+
+    private fun onClickButtonPage() {
         // TODO REMOVE DEBUG CODE
 
-        event.player?.sendMessage(textBuilder.get()
+        player.sendMessage(textBuilder.get()
                 .text("You clicked the page button!!")
                 .build()
         )
@@ -120,5 +138,17 @@ class FastCraftGui @Inject constructor(
 
     }
 
-    fun open(player: Player) = gui.open(player)
+    class Factory @Inject constructor(
+            private val textBuilder: Provider<Text.Builder>,
+            private val itemBuilder: Provider<Item.Builder>,
+            private val guiBuilder: Provider<Gui.Builder>
+    ) {
+
+        fun create(player: Player) = FastCraftGui(
+                textBuilder,
+                itemBuilder,
+                guiBuilder,
+                player
+        )
+    }
 }
