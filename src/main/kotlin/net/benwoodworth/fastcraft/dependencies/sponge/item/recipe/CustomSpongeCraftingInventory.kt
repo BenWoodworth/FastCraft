@@ -25,7 +25,7 @@ internal class CustomSpongeCraftingInventory(
                 InventoryDimension(3, 3)
         )
         .build(plugin)
-        .query<GridInventory>(GridInventory::class.java)
+        .query(GridInventory::class.java)
 {
 
     /**

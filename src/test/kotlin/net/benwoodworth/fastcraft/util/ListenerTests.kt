@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
  */
 class ListenerTests : ImplementationTests<Listener<Any?>>() {
 
-    override fun createInstance() = Listener.Impl<Any?>()
+    override fun createInstance() = Listener<Any?>()
 
     @Test
     fun `when adding a handler, it should be notified`() {

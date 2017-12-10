@@ -23,7 +23,7 @@ class SpongeModuleEvent(
 
     @Provides @Singleton
     override fun listenerPlayerJoin(): Listener<EventPlayerJoin> {
-        return Listener.Impl<EventPlayerJoin>().also { listener ->
+        return Listener<EventPlayerJoin>().also { listener ->
             Sponge.getEventManager().registerListener(plugin,
                     ClientConnectionEvent.Join::class.java,
                     { listener.notifyHandlers(SpongeEventPlayerJoin(it)) }
@@ -33,7 +33,7 @@ class SpongeModuleEvent(
 
     @Provides @Singleton
     override fun listenerPluginDisable(): Listener<EventPluginDisable> {
-        return Listener.Impl<EventPluginDisable>().also { listener ->
+        return Listener<EventPluginDisable>().also { listener ->
             Sponge.getEventManager().registerListener(plugin,
                     GameStoppingEvent::class.java,
                     { listener.notifyHandlers(SpongeEventPluginDisable(it)) }
@@ -43,7 +43,7 @@ class SpongeModuleEvent(
 
     @Provides @Singleton
     override fun listenerPluginEnable(): Listener<EventPluginEnable> {
-        return Listener.Impl<EventPluginEnable>().also { listener ->
+        return Listener<EventPluginEnable>().also { listener ->
             Sponge.getEventManager().registerListener(plugin,
                     GameInitializationEvent::class.java,
                     { listener.notifyHandlers(SpongeEventPluginEnable(it)) }

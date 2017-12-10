@@ -28,13 +28,11 @@ import org.bukkit.entity.Player as Bukkit_Player
 class BukkitGui(
         height: Int,
         title: String?
-) : Gui, InventoryHolder, GuiLayoutComposite by GuiLayoutComposite.Impl(9, height) {
+) : Gui(height), InventoryHolder {
 
     init {
         changeListener += this::updateLayout
     }
-
-    override val closeListener = Listener.Impl<EventGuiClose>()
 
     private val inventory: Inventory = Bukkit.createInventory(
             this,

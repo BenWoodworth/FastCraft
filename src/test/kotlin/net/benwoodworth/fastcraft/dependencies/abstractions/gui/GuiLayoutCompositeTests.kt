@@ -5,5 +5,5 @@ package net.benwoodworth.fastcraft.dependencies.abstractions.gui
  */
 class GuiLayoutCompositeTests : GuiLayoutTests() {
 
-    override fun createInstance() = GuiLayoutComposite.Impl(2, 2)
+    override fun createInstance() = GuiLayoutComposite(2, 2)
 }

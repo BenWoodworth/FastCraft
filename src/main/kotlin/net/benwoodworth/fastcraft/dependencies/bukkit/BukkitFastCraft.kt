@@ -19,7 +19,7 @@ class BukkitFastCraft : FastCraftImplementation, JavaPlugin() {
     override lateinit var instance: FastCraft
         private set
 
-    //@Suppress("DEPRECATION") // TODO Don't suppress deprecation
+    @Suppress("DEPRECATION") // TODO Don't suppress deprecation
     override fun onEnable() {
         val fastCraftBuilder = DaggerBukkitDependenciesComponent.builder()
                 .bukkitModuleConfig(BukkitModuleConfig())

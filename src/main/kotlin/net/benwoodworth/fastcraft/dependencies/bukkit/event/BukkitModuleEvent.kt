@@ -26,7 +26,7 @@ class BukkitModuleEvent(
 
     @Provides @Singleton
     override fun listenerPlayerJoin(): Listener<EventPlayerJoin> {
-        return Listener.Impl<EventPlayerJoin>().also { listener ->
+        return Listener<EventPlayerJoin>().also { listener ->
             Bukkit.getPluginManager().registerEvents(
                     object : Bukkit_Listener {
                         @EventHandler
@@ -41,7 +41,7 @@ class BukkitModuleEvent(
 
     @Provides @Singleton
     override fun listenerPluginDisable(): Listener<EventPluginDisable> {
-        return Listener.Impl<EventPluginDisable>().also { listener ->
+        return Listener<EventPluginDisable>().also { listener ->
             Bukkit.getPluginManager().registerEvents(
                     object : Bukkit_Listener {
                         @EventHandler
@@ -56,7 +56,7 @@ class BukkitModuleEvent(
 
     @Provides @Singleton
     override fun listenerPluginEnable(): Listener<EventPluginEnable> {
-        return Listener.Impl<EventPluginEnable>().also { listener ->
+        return Listener<EventPluginEnable>().also { listener ->
             Bukkit.getPluginManager().registerEvents(
                     object : Bukkit_Listener {
                         @EventHandler

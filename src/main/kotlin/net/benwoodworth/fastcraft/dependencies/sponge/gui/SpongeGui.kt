@@ -37,13 +37,11 @@ class SpongeGui(
         height: Int,
         title: Sponge_Text?,
         plugin: Any
-) : Gui, Carrier, GuiLayoutComposite by GuiLayoutComposite.Impl(9, height) {
+) : Gui(height), Carrier {
 
     init {
         changeListener += this::updateLayout
     }
-
-    override val closeListener = Listener.Impl<EventGuiClose>()
 
     /**
      * The inventory representing this GUI.
@@ -71,9 +69,8 @@ class SpongeGui(
             .get().value?.let { SpongeText(it) }
 
     override fun open(vararg players: Player) {
-        val cause = Cause.source(this).build()
         for (player in players) {
-            (player as SpongePlayer).base.openInventory(inventory, cause)
+            (player as SpongePlayer).base.openInventory(inventory)
         }
     }
 

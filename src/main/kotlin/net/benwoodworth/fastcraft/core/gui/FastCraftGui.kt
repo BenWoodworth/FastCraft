@@ -29,7 +29,7 @@ class FastCraftGui @Inject constructor(
     private val buttonRefresh: GuiButton
 
     init {
-        buttonPage = GuiButton.Impl().apply {
+        buttonPage = GuiButton().apply {
             item = itemBuilder.get()
                     .type("minecraft:iron_sword")
                     .amount(1)
@@ -40,7 +40,7 @@ class FastCraftGui @Inject constructor(
                     .build()
         }
 
-        buttonWorkbench = GuiButton.Impl().apply {
+        buttonWorkbench = GuiButton().apply {
             item = itemBuilder.get()
                     .type("minecraft:crafting_table")
                     .amount(1)
@@ -51,7 +51,7 @@ class FastCraftGui @Inject constructor(
                     .build()
         }
 
-        buttonMultiplier = GuiButton.Impl().apply {
+        buttonMultiplier = GuiButton().apply {
             item = itemBuilder.get()
                     .type("minecraft:anvil")
                     .amount(1)
@@ -62,7 +62,7 @@ class FastCraftGui @Inject constructor(
                     .build()
         }
 
-        buttonRefresh = GuiButton.Impl().apply {
+        buttonRefresh = GuiButton().apply {
             item = itemBuilder.get()
                     .type("minecraft:nether_star")
                     .amount(1)
@@ -73,14 +73,14 @@ class FastCraftGui @Inject constructor(
                     .build()
         }
 
-        layoutSidebar = GuiLayout.Impl(1, 6).apply {
+        layoutSidebar = GuiLayout(1, 6).apply {
             setButton(0, 0, buttonWorkbench)
             setButton(0, 2, buttonWorkbench)
             setButton(0, 3, buttonWorkbench)
             setButton(0, 5, buttonPage)
         }
 
-        layoutRecipes = GuiLayoutComposite.Impl(7, 6)
+        layoutRecipes = GuiLayoutComposite(7, 6)
 
         gui = guiBuilder.get()
                 .height(6)
@@ -108,15 +108,15 @@ class FastCraftGui @Inject constructor(
         )
     }
 
-    private fun onClickButtonWorkbench(event: EventGuiButtonClick) {
+    private fun onClickButtonWorkbench() {
 
     }
 
-    private fun onClickButtonMultiplier(event: EventGuiButtonClick) {
+    private fun onClickButtonMultiplier() {
 
     }
 
-    private fun onClickButtonRefresh(event: EventGuiButtonClick) {
+    private fun onClickButtonRefresh() {
 
     }
 
