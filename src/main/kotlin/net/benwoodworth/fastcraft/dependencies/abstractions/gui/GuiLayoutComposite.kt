@@ -1,5 +1,6 @@
 package net.benwoodworth.fastcraft.dependencies.abstractions.gui
 
+import net.benwoodworth.fastcraft.dependencies.abstractions.event.EventGuiLayoutChange
 import java.util.LinkedList
 
 /**
@@ -42,6 +43,7 @@ interface GuiLayoutComposite : GuiLayout {
         override fun addLayout(x: Int, y: Int, layout: GuiLayout) {
             childLayouts += LayoutPosition(x, y, this)
             layout.changeListener += changeListener::notifyHandlers
+            changeListener.notifyHandlers(EventGuiLayoutChange.Impl())
         }
 
         /**
@@ -54,6 +56,7 @@ interface GuiLayoutComposite : GuiLayout {
                 childLayouts.remove(it)
                 it.layout.changeListener -= changeListener::notifyHandlers
             }
+            changeListener.notifyHandlers(EventGuiLayoutChange.Impl())
         }
 
         /**

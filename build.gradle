@@ -18,6 +18,7 @@ def plugin_version = version
 def plugin_website = 'https://github.com/BenWoodworth/FastCraft'
 
 apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'org.spongepowered.plugin'
 apply plugin: 'org.junit.platform.gradle.plugin'
 apply plugin: 'com.github.johnrengelman.shadow'
@@ -28,11 +29,11 @@ buildscript {
 
         version_gradle = '4.2.1'
 
-        version_kotlin = '1.1.3-2'
+        version_kotlin = '1.2.0'
         version_spongegradle = '0.8.1'
         version_shadow = '2.0.1'
 
-        version_bukkit = '1.12.1-R0.1-SNAPSHOT'
+        version_bukkit = '1.12-pre5-SNAPSHOT'
         version_sponge = '7.0.0-20170810.213602-30'
 
         version_dagger = '2.11'
@@ -136,10 +137,6 @@ sourceSets {
     main.java.srcDirs += "$buildDir/generated/source/kapt/main"
 
     test.java.srcDirs += "src/test/kotlin"
-}
-
-kapt {
-    generateStubs = true
 }
 
 // Don't create a .jar file with the 'jar' task,
