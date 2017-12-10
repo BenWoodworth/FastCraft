@@ -59,6 +59,12 @@ class SpongeItem(
         override val maxStackSize: Int
             get() = base.maxStackQuantity
 
+        override var durability: Int
+            get() = base.get(Keys.ITEM_DURABILITY).orElse(0)
+            set(value) {
+                base.offer(Keys.ITEM_DURABILITY, value)
+            }
+
         override fun isSimilar(item: Item): Boolean {
             var other = (item as SpongeItem).baseItem
             if (other.quantity != base.quantity) {
@@ -109,8 +115,8 @@ class SpongeItem(
         }
 
         override fun displayName(displayName: Text?): Item.Builder {
-            postChanges += { item ->
-                item.transform(Keys.DISPLAY_NAME) {
+            postChanges += {
+                it.transform(Keys.DISPLAY_NAME) {
                     (displayName as SpongeText?)?.base
                 }
             }
@@ -118,12 +124,18 @@ class SpongeItem(
         }
 
         override fun lore(vararg lore: Text?): Item.Builder {
-            postChanges += { item ->
-                item.transform(Keys.ITEM_LORE) {
+            postChanges += {
+                it.transform(Keys.ITEM_LORE) {
                     lore.map { (it as SpongeText?)?.base }
                 }
             }
             return this
+        }
+
+        override fun durability(durability: Int) {
+            postChanges += {
+                it.offer(Keys.ITEM_DURABILITY, durability)
+            }
         }
     }
 }

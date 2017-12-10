@@ -52,6 +52,12 @@ class BukkitItem(
         override val maxStackSize: Int
             get() = base.maxStackSize
 
+        override var durability: Int
+            get() = base.durability.toInt()
+            set(value) {
+                base.durability = value.toShort()
+            }
+
         override fun isSimilar(item: Item): Boolean {
             return base.isSimilar((item as BukkitItem).baseItem)
         }
@@ -94,6 +100,10 @@ class BukkitItem(
             result.itemMeta = result.itemMeta.apply {
                 this.lore = lore.map { (it as BukkitText?)?.text }
             }
+        }
+
+        override fun durability(durability: Int) {
+            result.durability = durability.toShort()
         }
     }
 }

@@ -20,7 +20,7 @@ class FastCraft @Inject constructor(
         listenerPlayerJoin: Listener<EventPlayerJoin>,
 
         private val taskBuilder: Provider<Task.Builder>,
-        private val fastCraftGui: Provider<FastCraftGui>
+        private val fastCraftGui: FastCraftGui.Factory
 ) {
 
     init {
@@ -40,7 +40,7 @@ class FastCraft @Inject constructor(
     private fun onPlayerJoin(event: EventPlayerJoin) {
         taskBuilder.get()
                 .delay(1).execute {
-            fastCraftGui.get().open(event.player)
+            fastCraftGui.create(event.player).open()
         }
     }
 }
