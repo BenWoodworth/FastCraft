@@ -11,11 +11,11 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class FastCraftGui private constructor(
+        val player: Player,
+
         private val textBuilder: Provider<Text.Builder>,
         itemBuilder: Provider<Item.Builder>,
-        guiBuilder: Provider<Gui.Builder>,
-
-        val player: Player
+        guiBuilder: Provider<Gui.Builder>
 ) {
 
     /**
@@ -145,10 +145,10 @@ class FastCraftGui private constructor(
     ) {
 
         fun create(player: Player) = FastCraftGui(
+                player,
                 textBuilder,
                 itemBuilder,
-                guiBuilder,
-                player
+                guiBuilder
         )
     }
 }
