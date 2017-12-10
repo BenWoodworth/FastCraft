@@ -2,9 +2,7 @@ package net.benwoodworth.fastcraft.dependencies.bukkit.gui
 
 import net.benwoodworth.fastcraft.dependencies.abstractions.event.EventGuiButtonClick
 import net.benwoodworth.fastcraft.dependencies.abstractions.event.EventGuiClose
-import net.benwoodworth.fastcraft.dependencies.abstractions.event.Listener
 import net.benwoodworth.fastcraft.dependencies.abstractions.gui.Gui
-import net.benwoodworth.fastcraft.dependencies.abstractions.gui.GuiLayoutComposite
 import net.benwoodworth.fastcraft.dependencies.abstractions.player.Player
 import net.benwoodworth.fastcraft.dependencies.abstractions.text.Text
 import net.benwoodworth.fastcraft.dependencies.bukkit.item.BukkitItem

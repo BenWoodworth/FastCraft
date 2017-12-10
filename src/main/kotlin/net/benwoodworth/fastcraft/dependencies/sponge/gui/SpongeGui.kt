@@ -1,10 +1,8 @@
 package net.benwoodworth.fastcraft.dependencies.sponge.gui
 
 import net.benwoodworth.fastcraft.dependencies.abstractions.gui.Gui
-import net.benwoodworth.fastcraft.dependencies.abstractions.gui.GuiLayoutComposite
 import net.benwoodworth.fastcraft.dependencies.abstractions.event.EventGuiButtonClick
 import net.benwoodworth.fastcraft.dependencies.abstractions.event.EventGuiClose
-import net.benwoodworth.fastcraft.dependencies.abstractions.event.Listener
 import net.benwoodworth.fastcraft.dependencies.abstractions.player.Player
 import net.benwoodworth.fastcraft.dependencies.abstractions.text.Text
 import net.benwoodworth.fastcraft.dependencies.sponge.item.SpongeItem
@@ -14,7 +12,6 @@ import org.spongepowered.api.Sponge
 import org.spongepowered.api.entity.living.player.Player as Sponge_Player
 import org.spongepowered.api.event.Listener as Sponge_Listener
 import org.spongepowered.api.event.Order
-import org.spongepowered.api.event.cause.Cause
 import org.spongepowered.api.event.filter.cause.First
 import org.spongepowered.api.event.item.inventory.AffectSlotEvent
 import org.spongepowered.api.event.item.inventory.ClickInventoryEvent
