@@ -14,7 +14,7 @@ open class GuiLayoutComposite(
     /**
      * The layouts that compose this layout.
      */
-    private val childLayouts = LinkedList<LayoutPosition>()
+    private val childLayouts = mutableListOf<LayoutPosition>()
 
     /**
      * Add a child layout or button at the specified location.
@@ -22,7 +22,7 @@ open class GuiLayoutComposite(
      * @param layout the layout to add
      */
     fun addLayout(x: Int, y: Int, layout: GuiLayout) {
-        childLayouts += LayoutPosition(x, y, this)
+        childLayouts += LayoutPosition(x, y, layout)
         layout.changeListener += changeListener::notifyHandlers
         changeListener.notifyHandlers(EventGuiLayoutChange.Impl())
     }
@@ -49,14 +49,14 @@ open class GuiLayoutComposite(
      *         within that layout that these coordinates point to
      */
     private fun childLayoutAtPoint(x: Int, y: Int): LayoutPosition? {
-        for (layoutPosition in childLayouts) {
-            val xRange = (layoutPosition.x)..(layoutPosition.x + layoutPosition.layout.width)
-            val yRange = (layoutPosition.y)..(layoutPosition.y + layoutPosition.layout.height)
+        for (lp in childLayouts) {
+            val xRange = (lp.x) until (lp.x + lp.layout.width)
+            val yRange = (lp.y) until (lp.y + lp.layout.height)
 
             if (x in xRange && y in yRange) {
-                val newX = x - layoutPosition.layout.width
-                val newY = y - layoutPosition.layout.height
-                return LayoutPosition(newX, newY, layoutPosition.layout)
+                val newX = x - lp.x
+                val newY = y - lp.y
+                return LayoutPosition(newX, newY, lp.layout)
             }
         }
 
