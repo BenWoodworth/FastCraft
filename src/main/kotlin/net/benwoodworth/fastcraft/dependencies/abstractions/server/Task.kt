@@ -20,7 +20,7 @@ interface Task {
          *
          * @return the built and executed task
          */
-        fun run(executable: (Task) -> Unit): Task
+        fun execute(executable: (Task) -> Unit): Task
 
         /**
          * Whether the task should be executed off the main server thread.
@@ -30,7 +30,7 @@ interface Task {
         fun async(): Task.Builder
 
         /**
-         * The delay until the task is run for the first time.
+         * The delay until the task is execute for the first time.
          *
          * @param ticks the number ticks
          * @return fluent interface

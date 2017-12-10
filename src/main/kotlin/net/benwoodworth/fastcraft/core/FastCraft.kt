@@ -39,8 +39,7 @@ class FastCraft @Inject constructor(
 
     private fun onPlayerJoin(event: EventPlayerJoin) {
         taskBuilder.get()
-                .delay(1)
-                .run {
+                .delay(1).execute {
             fastCraftGui.get().open(event.player)
         }
     }

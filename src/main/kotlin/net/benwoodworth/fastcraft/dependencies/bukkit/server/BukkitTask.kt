@@ -23,7 +23,7 @@ class BukkitTask(
         private var delay = -1L
         private var interval = -1L
 
-        override fun run(executable: (Task) -> Unit): Task {
+        override fun execute(executable: (Task) -> Unit): Task {
             val runnable = object : BukkitRunnable() {
                 lateinit var bukkitTask: BukkitTask
                 override fun run() = executable(bukkitTask)
