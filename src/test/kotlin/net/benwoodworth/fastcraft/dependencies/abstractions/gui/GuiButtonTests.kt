@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.dependencies.abstractions.gui
 
-import org.junit.Assert.*
+import net.benwoodworth.fastcraft.dependencies.gui.GuiButton
+import org.junit.Assert.assertTrue
 import org.junit.jupiter.api.Test
 
 /**

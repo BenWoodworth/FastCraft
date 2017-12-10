@@ -1,7 +1,8 @@
 package net.benwoodworth.fastcraft.dependencies.abstractions.config
 
 import net.benwoodworth.fastcraft.ImplementationTests
-import org.junit.Assert.*
+import net.benwoodworth.fastcraft.dependencies.config.Config
+import org.junit.Assert.assertEquals
 import org.junit.jupiter.api.Test
 import java.nio.file.Path
 

@@ -1,11 +1,11 @@
 package net.benwoodworth.fastcraft.core
 
 import net.benwoodworth.fastcraft.core.gui.FastCraftGui
-import net.benwoodworth.fastcraft.dependencies.abstractions.event.EventPlayerJoin
-import net.benwoodworth.fastcraft.dependencies.abstractions.event.EventPluginDisable
-import net.benwoodworth.fastcraft.dependencies.abstractions.event.EventPluginEnable
-import net.benwoodworth.fastcraft.dependencies.abstractions.event.Listener
-import net.benwoodworth.fastcraft.dependencies.abstractions.server.Task
+import net.benwoodworth.fastcraft.dependencies.event.EventPlayerJoin
+import net.benwoodworth.fastcraft.dependencies.event.EventPluginDisable
+import net.benwoodworth.fastcraft.dependencies.event.EventPluginEnable
+import net.benwoodworth.fastcraft.dependencies.event.Listener
+import net.benwoodworth.fastcraft.dependencies.server.Task
 import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton

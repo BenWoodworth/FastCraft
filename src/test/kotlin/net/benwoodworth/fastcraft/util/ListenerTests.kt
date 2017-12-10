@@ -1,8 +1,8 @@
 package net.benwoodworth.fastcraft.util
 
 import net.benwoodworth.fastcraft.ImplementationTests
-import net.benwoodworth.fastcraft.dependencies.abstractions.event.Listener
-import org.junit.Assert.*
+import net.benwoodworth.fastcraft.dependencies.event.Listener
+import org.junit.Assert.assertEquals
 import org.junit.jupiter.api.Test
 
 /**

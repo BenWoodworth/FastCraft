@@ -1,12 +1,12 @@
 package net.benwoodworth.fastcraft.core.gui
 
-import net.benwoodworth.fastcraft.dependencies.abstractions.gui.Gui
-import net.benwoodworth.fastcraft.dependencies.abstractions.gui.GuiButton
-import net.benwoodworth.fastcraft.dependencies.abstractions.gui.GuiLayout
-import net.benwoodworth.fastcraft.dependencies.abstractions.gui.GuiLayoutComposite
-import net.benwoodworth.fastcraft.dependencies.abstractions.item.Item
-import net.benwoodworth.fastcraft.dependencies.abstractions.player.Player
-import net.benwoodworth.fastcraft.dependencies.abstractions.text.Text
+import net.benwoodworth.fastcraft.dependencies.gui.Gui
+import net.benwoodworth.fastcraft.dependencies.gui.GuiButton
+import net.benwoodworth.fastcraft.dependencies.gui.GuiLayout
+import net.benwoodworth.fastcraft.dependencies.gui.GuiLayoutComposite
+import net.benwoodworth.fastcraft.dependencies.item.Item
+import net.benwoodworth.fastcraft.dependencies.player.Player
+import net.benwoodworth.fastcraft.dependencies.text.Text
 import javax.inject.Inject
 import javax.inject.Provider
 
