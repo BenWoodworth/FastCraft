@@ -28,10 +28,6 @@ class BukkitGui(
         title: String?
 ) : Gui(height), InventoryHolder {
 
-    init {
-        changeListener += this::updateLayout
-    }
-
     private val inventory: Inventory = Bukkit.createInventory(
             this,
             width * height,

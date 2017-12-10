@@ -36,10 +36,6 @@ class SpongeGui(
         plugin: Any
 ) : Gui(height), Carrier {
 
-    init {
-        changeListener += this::updateLayout
-    }
-
     /**
      * The inventory representing this GUI.
      */

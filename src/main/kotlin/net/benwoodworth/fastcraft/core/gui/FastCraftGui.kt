@@ -75,8 +75,8 @@ class FastCraftGui @Inject constructor(
 
         layoutSidebar = GuiLayout(1, 6).apply {
             setButton(0, 0, buttonWorkbench)
-            setButton(0, 2, buttonWorkbench)
-            setButton(0, 3, buttonWorkbench)
+            setButton(0, 2, buttonMultiplier)
+            setButton(0, 3, buttonRefresh)
             setButton(0, 5, buttonPage)
         }
 
@@ -90,7 +90,7 @@ class FastCraftGui @Inject constructor(
                 )
                 .build()
 
-        gui.addLayout(0, 0, layoutRecipes)
+//      gui.addLayout(0, 0, layoutRecipes)
         gui.addLayout(8, 0, layoutSidebar)
 
         buttonPage.clickListener += this::onClickButtonPage
