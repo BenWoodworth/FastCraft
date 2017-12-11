@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.util
 
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotEquals
 import org.junit.jupiter.api.Test
 
 /**
