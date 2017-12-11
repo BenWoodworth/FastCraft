@@ -1,0 +1,50 @@
+{
+  "localization": {
+    "language": "Dutch",
+    "translator": {
+      "name": "funzo88",
+      "from": "spigotmc.org"
+    }
+  },
+  "gui": {
+    "title": "FastCraft",
+    "ingredients": {
+      "label": "<green>Ingrediënten:",
+      "item": "<green> <amount>x <item>"
+    },
+    "results": {
+      "label": "<green>Results:",
+      "item": "<green> <amount>x <item>"
+    },
+    "toolbar": {
+      "page": {
+        "title": "<green>Page <page>/<total>",
+        "description": [
+          "<aqua>Left click: next page",
+          "<aqua>Right click: previous page",
+          "<aqua>Middle click: first page"
+        ]
+      },
+      "refresh": {
+        "title": "<green>Ververs",
+        "description": [
+          "<aqua>Ververs de FastCraft interface"
+        ]
+      },
+      "multiplier": {
+        "title": "<green>Crafting Multiplier (<multiplier>x)",
+        "description": [
+          "<aqua>Linker/rechter muisklik om te toenemen/afnemen",
+          "<aqua>Shift klik om toe te nemen met 1",
+          "<aqua>Middrl muisklik om te resetten naar 1x"
+        ]
+      },
+      "workbench": {
+        "title": "<green>Werkbank",
+        "description": [
+          "<aqua>Open een 3x3 werkbank"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "localization": {
+    "language": "German",
+    "translator": {
+      "name": "CloudeLecaw",
+      "from": "spigotmc.org"
+    }
+  },
+  "gui": {
+    "title": "FastCraft",
+    "ingredients": {
+      "label": "<green>Zutaten:",
+      "item": "<aqua> <amount>x <item>"
+    },
+    "results": {
+      "label": "<green>Ergebnisse:",
+      "item": "<aqua> <amount>x <item>"
+    },
+    "toolbar": {
+      "page": {
+        "title": "<green>Page <page>/<total>",
+        "description": [
+          "<aqua>Left click: next page",
+          "<aqua>Right click: previous page",
+          "<aqua>Middle click: first page"
+        ]
+      },
+      "refresh": {
+        "title": "<green>aktualisieren",
+        "description": [
+          "<aqua>Neusoritierung der Gegenstände"
+        ]
+      },
+      "multiplier": {
+        "title": "<green>Multiplikator (<multiplier>x)",
+        "description": [
+          "<aqua>Links/Rechtsklick - erhöhen/vermindern",
+          "<aqua>SHIFT-klick - um 1 erhöhen",
+          "<aqua>Mittelklick - auf 1x zurückzusetzen"
+        ]
+      },
+      "workbench": {
+        "title": "<green>Werkbank",
+        "description": [
+          "<aqua>normale 3x3 Werkbank",
+          "<aqua>/fc toggle zum deaktivieren."
+        ]
+      }
+    }
+  }
+}

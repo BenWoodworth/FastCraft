@@ -1,0 +1,50 @@
+{
+  "localization": {
+    "language": "Turkish",
+    "translator": {
+      "name": "ByBartuzen",
+      "from": "spigotmc.org"
+    }
+  },
+  "gui": {
+    "title": "FastCraft",
+    "ingredients": {
+      "label": "<green>Gerekenler:",
+      "item": "<green> <amount>x <item>"
+    },
+    "results": {
+      "label": "<green>Sonuç:",
+      "item": "<green> <amount>x <item>"
+    },
+    "toolbar": {
+      "page": {
+        "title": "<green>Page <page>/<total>",
+        "description": [
+          "<aqua>Left click: next page",
+          "<aqua>Right click: previous page",
+          "<aqua>Middle click: first page"
+        ]
+      },
+      "refresh": {
+        "title": "<green>Yenile",
+        "description": [
+          "<aqua>Arayüzü yenile"
+        ]
+      },
+      "multiplier": {
+        "title": "<green>Çoklu Üretim (<multiplier>x)",
+        "description": [
+          "<aqua>Sol/sağ tıklayarak artır/azalt",
+          "<aqua>1 artırmak için shifte basarak tıklayın",
+          "<aqua>Sıfırlamak için farenin orta tuşuna tıkla"
+        ]
+      },
+      "workbench": {
+        "title": "<green>Klasik Üretim",
+        "description": [
+          "<aqua>Klasik üretim masasını aç"
+        ]
+      }
+    }
+  }
+}

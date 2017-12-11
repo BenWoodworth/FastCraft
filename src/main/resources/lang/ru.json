@@ -1,0 +1,46 @@
+{
+  "localization": {
+    "language": "Russian",
+    "translator": {
+      "name": "RusIK",
+      "from": "spigotmc.org"
+    }
+  },
+  "gui": {
+    "title": "FastCraft",
+    "ingredients": {
+      "label": "<green>Ингредиенты:",
+      "item": "<green> <amount>x <item>"
+    },
+    "toolbar": {
+      "page": {
+        "title": "<green>Page <page>/<total>",
+        "description": [
+          "<aqua>Left click: next page",
+          "<aqua>Right click: previous page",
+          "<aqua>Middle click: first page"
+        ]
+      },
+      "refresh": {
+        "title": "<green>Обновить",
+        "description": [
+          "<aqua>Обновить интерфейс FastCraft"
+        ]
+      },
+      "multiplier": {
+        "title": "<green>Создание нескольких вещей (<multiplier>x)",
+        "description": [
+          "<aqua>Правый/левый клик для увеличения/уменьшения",
+          "<aqua>Нажми Shift для увеличения на 1",
+          "<aqua>Нажми на колёсико мыши для сброса до 1"
+        ]
+      },
+      "workbench": {
+        "title": "<green>Стандартный верстак",
+        "description": [
+          "<aqua>Открыть сетку крафта 3x3"
+        ]
+      }
+    }
+  }
+}

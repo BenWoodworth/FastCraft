@@ -20,7 +20,7 @@ class FastCraftLangFile @Inject constructor(
     /*
      * https://github.com/BenWoodworth/FastCraft/tree/v1/dev/src/main/resources/lang
      * https://www.json2yaml.com/
-     * https://jsfiddle.net/BenWoodworth/m13rp1mf/3/
+     * https://jsfiddle.net/BenWoodworth/m13rp1mf/5/
      */
 
     private val globalPlaceholders = mapOf(

@@ -1,12 +1,19 @@
 {
+  "localization": {
+    "language": "Chinese (China)",
+    "translator": {
+      "name": "Mars",
+      "from": "ISOTOPE Studio"
+    }
+  },
   "gui": {
     "title": "FastCraft",
     "ingredients": {
-      "label": "<green>Ingredients:",
+      "label": "<green>配方:",
       "item": "<green> <amount>x <item>"
     },
     "results": {
-      "label": "<green>Results:",
+      "label": "<green>获得:",
       "item": "<green> <amount>x <item>"
     },
     "toolbar": {
@@ -19,24 +26,24 @@
         ]
       },
       "refresh": {
-        "title": "<green>Refresh",
+        "title": "<green>刷新",
         "description": [
-          "<aqua>Refresh the FastCraft interface"
+          "<aqua>刷新 快速合成+"
         ]
       },
       "multiplier": {
-        "title": "<green>Crafting Multiplier (<multiplier>x)",
+        "title": "<green>合成份数: (<multiplier>x)",
         "description": [
-          "<aqua>Left/right click to increase/decrease",
-          "<aqua>Shift click to increment by 1",
-          "<aqua>Middle click to reset to 1x"
+          "<aqua>左键来增加/右键来减少",
+          "<aqua>按住Shift增加1",
+          "<aqua>中键回到1x"
         ]
       },
       "workbench": {
-        "title": "<green>Crafting Grid",
+        "title": "<green>合成台",
         "description": [
-          "<aqua>Open a 3x3 crafting grid",
-          "<aqua>Use <green>/fc toggle<aqua> to disable FastCraft"
+          "<aqua>打开 3x3 合成台",
+          "<aqua>使用 <green>/fc toggle<aqua> 来关闭快速合成+"
         ]
       }
     }
