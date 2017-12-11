@@ -1,7 +1,10 @@
 {
   "localization": {
     "language": "English (US)",
-    "translator": null
+    "translator": {
+      "name": "Ben Woodworth",
+      "from": "benwoodworth.net"
+    }
   },
   "gui": {
     "title": "FastCraft",
