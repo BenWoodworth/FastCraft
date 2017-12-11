@@ -1,8 +1,21 @@
 package net.benwoodworth.fastcraft.core.lang
 
+import com.beust.klaxon.JsonObject
+import com.beust.klaxon.array
+import com.beust.klaxon.obj
+import com.beust.klaxon.string
+import net.benwoodworth.fastcraft.dependencies.text.Text
+import java.io.InputStreamReader
+import java.nio.charset.StandardCharsets
+import java.nio.file.Files
 import java.nio.file.Path
+import javax.inject.Inject
+import javax.inject.Provider
+import com.beust.klaxon.Parser as JsonParser
 
-class FastCraftLangFile: FastCraftLang {
+class FastCraftLangFile @Inject constructor(
+        val textBuilder: Provider<Text.Builder>
+) : FastCraftLang {
 
     private val globalPlaceholders = mapOf(
             "l" to "<",
@@ -33,77 +46,160 @@ class FastCraftLangFile: FastCraftLang {
             "reset" to "§r"
     )
 
-    private
+    private lateinit var json: JsonObject
 
     fun load(file: Path) {
-
-    }
-
-    private fun substitute(string: String, placeholders: Map<String, String>): String {
-        return string.replace(Regex("<([^<]*)>")) {
-            placeholders[it.value]
-                    ?: globalPlaceholders[it.value]
-                    ?: "<${it.value}>"
+        InputStreamReader(
+                Files.newInputStream(file),
+                StandardCharsets.UTF_8
+        ).use {
+            json = JsonParser().parse(it) as JsonObject
         }
     }
 
-    private fun getString(key: String, placeholders: Map<String, String>): String {
-        TODO()
+    private fun String.substitute(vararg placeholders: Pair<String, String>): Text {
+        return replace(Regex("<([^<>]*)>")) { value ->
+            placeholders
+                    .firstOrNull { it.first == value.value }?.second
+                    ?: globalPlaceholders[value.value]
+                    ?: "<${value.value}>"
+        }.let {
+            textBuilder.get()
+                    .text(it)
+                    .build()
+        }
     }
 
-    private fun getList(key: String, placeholders: Map<String, String>): List<String> {
-        TODO()
+    private fun List<String>.substitute(vararg placeholders: Pair<String, String>): List<Text> {
+        return this.map {
+            it.substitute(*placeholders)
+        }
     }
 
-    override fun guiTitle(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun guiTitle(): Text {
+        return json
+                .obj("gui")!!
+                .string("title")!!
+                .substitute()
     }
 
-    override fun guiIngredientsLabel(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun guiIngredientsLabel(): Text {
+        return json
+                .obj("gui")!!
+                .obj("ingredients")!!
+                .string("label")!!
+                .substitute()
     }
 
-    override fun guiIngredientsItem(item: String, amount: String): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun guiIngredientsItem(item: String, amount: Int): Text {
+        return json
+                .obj("gui")!!
+                .obj("ingredients")!!
+                .string("item")!!
+                .substitute(
+                        "item" to item,
+                        "amount" to amount.toString()
+                )
     }
 
-    override fun guiResultsLabel(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun guiResultsLabel(): Text {
+        return json
+                .obj("gui")!!
+                .obj("results")!!
+                .string("label")!!
+                .substitute()
     }
 
-    override fun guiResultsItem(item: String, amount: String): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun guiResultsItem(item: String, amount: Int): Text {
+        return json
+                .obj("gui")!!
+                .obj("results")!!
+                .string("item")!!
+                .substitute(
+                        "item" to item,
+                        "amount" to amount.toString()
+                )
     }
 
-    override fun guiToolbarPageTitle(page: Int, total: Int): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun guiToolbarPageTitle(page: Int, prev: Int, next: Int, total: Int): Text {
+        return json
+                .obj("gui")!!
+                .obj("toolbar")!!
+                .obj("page")!!
+                .string("title")!!
+                .substitute(
+                        "page" to page.toString(),
+                        "prev" to prev.toString(),
+                        "next" to next.toString(),
+                        "total" to total.toString()
+                )
     }
 
-    override fun guiToolbarPageLore(page: Int, total: Int): List<String> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun guiToolbarPageLore(page: Int, prev: Int, next: Int, total: Int): List<Text> {
+        return json
+                .obj("gui")!!
+                .obj("toolbar")!!
+                .obj("page")!!
+                .array<String>("lore")!!
+                .substitute(
+                        "page" to page.toString(),
+                        "prev" to prev.toString(),
+                        "next" to next.toString(),
+                        "total" to total.toString()
+                )
     }
 
-    override fun guiToolbarWorkbenchTitle(page: Int, total: Int): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun guiToolbarWorkbenchTitle(): Text {
+        return json
+                .obj("gui")!!
+                .obj("toolbar")!!
+                .obj("workbench")!!
+                .string("title")!!
+                .substitute()
     }
 
-    override fun guiToolbarWorkbenchLore(page: Int, total: Int): List<String> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun guiToolbarWorkbenchLore(): List<Text> {
+        return json
+                .obj("gui")!!
+                .obj("toolbar")!!
+                .obj("workbench")!!
+                .array<String>("lore")!!
+                .substitute()
     }
 
-    override fun guiToolbarMultiplierTitle(page: Int, total: Int): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun guiToolbarMultiplierTitle(multiplier: Int): Text {
+        return json
+                .obj("gui")!!
+                .obj("toolbar")!!
+                .obj("multiplier")!!
+                .string("title")!!
+                .substitute()
     }
 
-    override fun guiToolbarMultiplierLore(page: Int, total: Int): List<String> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun guiToolbarMultiplierLore(multiplier: Int): List<Text> {
+        return json
+                .obj("gui")!!
+                .obj("toolbar")!!
+                .obj("multiplier")!!
+                .array<String>("lore")!!
+                .substitute()
     }
 
-    override fun guiToolbarRefreshTitle(page: Int, total: Int): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun guiToolbarRefreshTitle(): Text {
+        return json
+                .obj("gui")!!
+                .obj("toolbar")!!
+                .obj("refresh")!!
+                .string("title")!!
+                .substitute()
     }
 
-    override fun guiToolbarRefreshLore(page: Int, total: Int): List<String> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun guiToolbarRefreshLore(): List<Text> {
+        return json
+                .obj("gui")!!
+                .obj("toolbar")!!
+                .obj("refresh")!!
+                .array<String>("lore")!!
+                .substitute()
     }
 }
