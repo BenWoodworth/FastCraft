@@ -36,6 +36,8 @@ buildscript {
         version_bukkit = '1.12-pre5-SNAPSHOT'
         version_sponge = '7.0.0-20171207.130015-65'
 
+        version_klaxon = '0.30'
+
         version_dagger = '2.11'
         version_jsr250 = '1.0'
         version_javax_inject = '1'
@@ -63,11 +65,13 @@ repositories {
     mavenCentral()
     maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
     maven { url 'http://repo.spongepowered.org/maven' }
+    jcenter()
 }
 
 configurations {
     ktlint
 }
+
 
 dependencies {
     ktlint 'com.github.shyiko:ktlint:0.8.1'
@@ -83,12 +87,13 @@ dependencies {
     compile "com.google.dagger:dagger:$version_dagger"
     kapt "com.google.dagger:dagger-compiler:$version_dagger"
 
+    compile "com.beust:klaxon:$version_klaxon"
+
     testCompile "org.junit.jupiter:junit-jupiter-api:$version_junit5"
     testRuntime "org.junit.jupiter:junit-jupiter-engine:$version_junit5"
     testCompile "org.junit.platform:junit-platform-runner:$version_junit_runner"
     testCompile "org.mockito:mockito-core:$version_mockito"
 }
-
 sourceCompatibility = java_target
 targetCompatibility = java_target
 
@@ -158,10 +163,12 @@ shadowJar {
         include dependency("org.jetbrains.kotlin:kotlin-stdlib:$version_kotlin")
         include dependency("com.google.dagger:dagger:$version_dagger")
         include dependency("javax.inject:javax.inject:$version_javax_inject")
+        include dependency("com.beust:klaxon:$version_klaxon")
     }
 
     def libs = 'net.benwoodworth.fastcraft.libs'
     relocate('kotlin', "${libs}.kotlin")
     relocate('dagger', "${libs}.dagger")
     relocate('javax', "${libs}.javax")
+    relocate('com.beust.klaxon', "${libs}.klaxon")
 }
