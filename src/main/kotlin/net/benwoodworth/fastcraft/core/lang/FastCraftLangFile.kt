@@ -14,8 +14,14 @@ import javax.inject.Provider
 import com.beust.klaxon.Parser as JsonParser
 
 class FastCraftLangFile @Inject constructor(
-        val textBuilder: Provider<Text.Builder>
+        private val textBuilder: Provider<Text.Builder>
 ) : FastCraftLang {
+
+    /*
+     * https://github.com/BenWoodworth/FastCraft/tree/v1/dev/src/main/resources/lang
+     * https://www.json2yaml.com/
+     * https://jsfiddle.net/BenWoodworth/m13rp1mf/3/
+     */
 
     private val globalPlaceholders = mapOf(
             "l" to "<",
@@ -121,7 +127,7 @@ class FastCraftLangFile @Inject constructor(
                 )
     }
 
-    override fun guiToolbarPageTitle(page: Int, prev: Int, next: Int, total: Int): Text {
+    override fun guiToolbarPageTitle(page: Int, total: Int): Text {
         return json
                 .obj("gui")!!
                 .obj("toolbar")!!
@@ -129,13 +135,11 @@ class FastCraftLangFile @Inject constructor(
                 .string("title")!!
                 .substitute(
                         "page" to page.toString(),
-                        "prev" to prev.toString(),
-                        "next" to next.toString(),
                         "total" to total.toString()
                 )
     }
 
-    override fun guiToolbarPageLore(page: Int, prev: Int, next: Int, total: Int): List<Text> {
+    override fun guiToolbarPageLore(page: Int, total: Int): List<Text> {
         return json
                 .obj("gui")!!
                 .obj("toolbar")!!
@@ -143,8 +147,6 @@ class FastCraftLangFile @Inject constructor(
                 .array<String>("lore")!!
                 .substitute(
                         "page" to page.toString(),
-                        "prev" to prev.toString(),
-                        "next" to next.toString(),
                         "total" to total.toString()
                 )
     }
