@@ -139,12 +139,12 @@ class FastCraftLangFile @Inject constructor(
                 )
     }
 
-    override fun guiToolbarPageLore(page: Int, total: Int): List<Text> {
+    override fun guiToolbarPageDescription(page: Int, total: Int): List<Text> {
         return json
                 .obj("gui")!!
                 .obj("toolbar")!!
                 .obj("page")!!
-                .array<String>("lore")!!
+                .array<String>("description")!!
                 .substitute(
                         "page" to page.toString(),
                         "total" to total.toString()
@@ -160,12 +160,12 @@ class FastCraftLangFile @Inject constructor(
                 .substitute()
     }
 
-    override fun guiToolbarWorkbenchLore(): List<Text> {
+    override fun guiToolbarWorkbenchDescription(): List<Text> {
         return json
                 .obj("gui")!!
                 .obj("toolbar")!!
                 .obj("workbench")!!
-                .array<String>("lore")!!
+                .array<String>("description")!!
                 .substitute()
     }
 
@@ -178,12 +178,12 @@ class FastCraftLangFile @Inject constructor(
                 .substitute()
     }
 
-    override fun guiToolbarMultiplierLore(multiplier: Int): List<Text> {
+    override fun guiToolbarMultiplierDescription(multiplier: Int): List<Text> {
         return json
                 .obj("gui")!!
                 .obj("toolbar")!!
                 .obj("multiplier")!!
-                .array<String>("lore")!!
+                .array<String>("description")!!
                 .substitute()
     }
 
@@ -196,12 +196,12 @@ class FastCraftLangFile @Inject constructor(
                 .substitute()
     }
 
-    override fun guiToolbarRefreshLore(): List<Text> {
+    override fun guiToolbarRefreshDescription(): List<Text> {
         return json
                 .obj("gui")!!
                 .obj("toolbar")!!
                 .obj("refresh")!!
-                .array<String>("lore")!!
+                .array<String>("description")!!
                 .substitute()
     }
 }

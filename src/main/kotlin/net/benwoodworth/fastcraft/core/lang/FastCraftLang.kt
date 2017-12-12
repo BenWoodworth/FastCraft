@@ -10,11 +10,11 @@ interface FastCraftLang {
     fun guiResultsLabel(): Text
     fun guiResultsItem(item: String, amount: Int): Text
     fun guiToolbarPageTitle(page: Int, total: Int): Text
-    fun guiToolbarPageLore(page: Int, total: Int): List<Text>
+    fun guiToolbarPageDescription(page: Int, total: Int): List<Text>
     fun guiToolbarWorkbenchTitle(): Text
-    fun guiToolbarWorkbenchLore(): List<Text>
+    fun guiToolbarWorkbenchDescription(): List<Text>
     fun guiToolbarMultiplierTitle(multiplier: Int): Text
-    fun guiToolbarMultiplierLore(multiplier: Int): List<Text>
+    fun guiToolbarMultiplierDescription(multiplier: Int): List<Text>
     fun guiToolbarRefreshTitle(): Text
-    fun guiToolbarRefreshLore(): List<Text>
+    fun guiToolbarRefreshDescription(): List<Text>
 }
