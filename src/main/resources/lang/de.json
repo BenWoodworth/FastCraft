@@ -18,11 +18,11 @@
     },
     "toolbar": {
       "page": {
-        "title": "<green>Page <page>/<total>",
+        "title": "<green>Seite <page>/<total>",
         "description": [
-          "<aqua>Left click: next page",
-          "<aqua>Right click: previous page",
-          "<aqua>Middle click: first page"
+          "<aqua>Linksklick: nächste Seite",
+          "<aqua>Rechtsklick: vorherige Seite",
+          "<aqua>Mittelklick: erste Seite"
         ]
       },
       "refresh": {

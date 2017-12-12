@@ -1,6 +1,6 @@
 {
   "localization": {
-    "language": "Chinese (Taiwan)",
+    "language": "Chinese (Traditional)",
     "translator": {
       "name": "HappyAreaBean",
       "from": "LavaApple Studio"
@@ -18,17 +18,17 @@
     },
     "toolbar": {
       "page": {
-        "title": "<green>Page <page>/<total>",
+        "title": "<green>第 <page>/<total> 頁",
         "description": [
-          "<aqua>Left click: next page",
-          "<aqua>Right click: previous page",
-          "<aqua>Middle click: first page"
+          "<aqua>左鍵單擊: 下一頁",
+          "<aqua>右鍵點擊: 上一頁",
+          "<aqua>中間點擊: 第一頁"
         ]
       },
       "refresh": {
         "title": "<green>刷新",
         "description": [
-          "<aqua>刷新 快速合成+"
+          "<aqua>刷新 FastCraft"
         ]
       },
       "multiplier": {

@@ -18,11 +18,11 @@
     },
     "toolbar": {
       "page": {
-        "title": "<green>Page <page>/<total>",
+        "title": "<green>Strana <page>/<total>",
         "description": [
-          "<aqua>Left click: next page",
-          "<aqua>Right click: previous page",
-          "<aqua>Middle click: first page"
+          "<aqua>Levé kliknutí: další strana",
+          "<aqua>Prave kliknutí: předchozí stránka",
+          "<aqua>Střední kliknutí: první strana"
         ]
       },
       "refresh": {

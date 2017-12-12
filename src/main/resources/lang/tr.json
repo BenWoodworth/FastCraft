@@ -18,11 +18,11 @@
     },
     "toolbar": {
       "page": {
-        "title": "<green>Page <page>/<total>",
+        "title": "<green>Sayfa <page>/<total>",
         "description": [
-          "<aqua>Left click: next page",
-          "<aqua>Right click: previous page",
-          "<aqua>Middle click: first page"
+          "<aqua>Sol tıklama: bir sonraki sayfa",
+          "<aqua>Sağ tıklayın: önceki sayfa",
+          "<aqua>Orta tıklama: ilk sayfa"
         ]
       },
       "refresh": {

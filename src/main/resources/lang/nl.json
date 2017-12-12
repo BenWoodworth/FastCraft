@@ -18,11 +18,11 @@
     },
     "toolbar": {
       "page": {
-        "title": "<green>Page <page>/<total>",
+        "title": "<green>Pagina <page>/<total>",
         "description": [
-          "<aqua>Left click: next page",
-          "<aqua>Right click: previous page",
-          "<aqua>Middle click: first page"
+          "<aqua>Linker muisklik: volgende bladzijde",
+          "<aqua>Rechter muisklik: vorige bladzijde",
+          "<aqua>Middrl muisklik: eerste pagina"
         ]
       },
       "refresh": {
@@ -35,7 +35,7 @@
         "title": "<green>Crafting Multiplier (<multiplier>x)",
         "description": [
           "<aqua>Linker/rechter muisklik om te toenemen/afnemen",
-          "<aqua>Shift klik om toe te nemen met 1",
+          "<aqua>Shift muisklik om toe te nemen met 1",
           "<aqua>Middrl muisklik om te resetten naar 1x"
         ]
       },

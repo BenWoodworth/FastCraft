@@ -18,11 +18,11 @@
     },
     "toolbar": {
       "page": {
-        "title": "<green>Page <page>/<total>",
+        "title": "<green>Trang <page>/<total>",
         "description": [
-          "<aqua>Left click: next page",
-          "<aqua>Right click: previous page",
-          "<aqua>Middle click: first page"
+          "<aqua>Nhấp chuột trái: trang tiếp theo",
+          "<aqua>Nhấp chuột phải: trang trước",
+          "<aqua>Nhấp chuột giữa: trang đầu tiên"
         ]
       },
       "refresh": {

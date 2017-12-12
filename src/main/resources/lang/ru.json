@@ -14,11 +14,11 @@
     },
     "toolbar": {
       "page": {
-        "title": "<green>Page <page>/<total>",
+        "title": "<green>Страница <page>/<total>",
         "description": [
-          "<aqua>Left click: next page",
-          "<aqua>Right click: previous page",
-          "<aqua>Middle click: first page"
+          "<aqua>Оставил клик: следущая страница",
+          "<aqua>Правый клик: предыдущая страница",
+          "<aqua>Центр клик: первая страница"
         ]
       },
       "refresh": {

@@ -1,6 +1,6 @@
 {
   "localization": {
-    "language": "Chinese (China)",
+    "language": "Chinese (Simplified)",
     "translator": {
       "name": "Mars",
       "from": "ISOTOPE Studio"
@@ -18,17 +18,17 @@
     },
     "toolbar": {
       "page": {
-        "title": "<green>Page <page>/<total>",
+        "title": "<green>第 <page>/<total> 页",
         "description": [
-          "<aqua>Left click: next page",
-          "<aqua>Right click: previous page",
-          "<aqua>Middle click: first page"
+          "<aqua>左键单击: 下一页",
+          "<aqua>右键点击: 上一页",
+          "<aqua>中间点击: 第一页"
         ]
       },
       "refresh": {
         "title": "<green>刷新",
         "description": [
-          "<aqua>刷新 快速合成+"
+          "<aqua>刷新 FastCraft"
         ]
       },
       "multiplier": {
@@ -43,7 +43,7 @@
         "title": "<green>合成台",
         "description": [
           "<aqua>打开 3x3 合成台",
-          "<aqua>使用 <green>/fc toggle<aqua> 来关闭快速合成+"
+          "<aqua>使用 <green>/fc toggle<aqua> 来关闭 FastCraft"
         ]
       }
     }
