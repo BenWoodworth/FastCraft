@@ -8,13 +8,16 @@
   },
   "gui": {
     "title": "FastCraft",
-    "ingredients": {
-      "label": "<green>Gerekenler:",
-      "item": "<green> <amount>x <item>"
-    },
-    "results": {
-      "label": "<green>Sonuç:",
-      "item": "<green> <amount>x <item>"
+    "recipe": {
+      "ingredients": {
+        "label": "<green>Gerekenler:",
+        "item": "<green> <amount>x <item>"
+      },
+      "results": {
+        "label": "<green>Sonuç:",
+        "item": "<green> <amount>x <item>"
+      },
+      "id": "<dark_gray>ID: <id>"
     },
     "toolbar": {
       "page": {

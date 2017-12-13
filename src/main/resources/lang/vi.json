@@ -8,13 +8,16 @@
   },
   "gui": {
     "title": "FastCraft",
-    "ingredients": {
-      "label": "<green>Các thành phần:",
-      "item": "<green> <amount>x <item>"
-    },
-    "results": {
-      "label": "<green>Các kết quả:",
-      "item": "<green> <amount>x <item>"
+    "recipe": {
+      "ingredients": {
+        "label": "<green>Các thành phần:",
+        "item": "<green> <amount>x <item>"
+      },
+      "results": {
+        "label": "<green>Các kết quả:",
+        "item": "<green> <amount>x <item>"
+      },
+      "id": "<dark_gray>ID: <id>"
     },
     "toolbar": {
       "page": {

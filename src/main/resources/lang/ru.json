@@ -8,9 +8,16 @@
   },
   "gui": {
     "title": "FastCraft",
-    "ingredients": {
-      "label": "<green>Ингредиенты:",
-      "item": "<green> <amount>x <item>"
+    "recipe": {
+      "ingredients": {
+        "label": "<green>Ингредиенты:",
+        "item": "<green> <amount>x <item>"
+      },
+      "results": {
+        "label": "<green>Результаты:",
+        "item": "<green> <amount>x <item>"
+      },
+      "id": "<dark_gray>ID: <id>"
     },
     "toolbar": {
       "page": {

@@ -8,13 +8,16 @@
   },
   "gui": {
     "title": "FastCraft",
-    "ingredients": {
-      "label": "<green>Zutaten:",
-      "item": "<aqua> <amount>x <item>"
-    },
-    "results": {
-      "label": "<green>Ergebnisse:",
-      "item": "<aqua> <amount>x <item>"
+    "recipe": {
+      "ingredients": {
+        "label": "<green>Zutaten:",
+        "item": "<aqua> <amount>x <item>"
+      },
+      "results": {
+        "label": "<green>Ergebnisse:",
+        "item": "<aqua> <amount>x <item>"
+      },
+      "id": "<dark_gray>ID: <id>"
     },
     "toolbar": {
       "page": {

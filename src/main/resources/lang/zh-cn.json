@@ -8,13 +8,16 @@
   },
   "gui": {
     "title": "FastCraft",
-    "ingredients": {
-      "label": "<green>配方:",
-      "item": "<green> <amount>x <item>"
-    },
-    "results": {
-      "label": "<green>获得:",
-      "item": "<green> <amount>x <item>"
+    "recipe": {
+      "ingredients": {
+        "label": "<green>配方:",
+        "item": "<green> <amount>x <item>"
+      },
+      "results": {
+        "label": "<green>获得:",
+        "item": "<green> <amount>x <item>"
+      },
+      "id": "<dark_gray>ID: <id>"
     },
     "toolbar": {
       "page": {

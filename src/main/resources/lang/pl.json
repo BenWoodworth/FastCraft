@@ -8,13 +8,16 @@
   },
   "gui": {
     "title": "FastCraft",
-    "ingredients": {
-      "label": "<green>Skladniki:",
-      "item": "<green> <amount>x <item>"
-    },
-    "results": {
-      "label": "<green>Produkty:",
-      "item": "<green> <amount>x <item>"
+    "recipe": {
+      "ingredients": {
+        "label": "<green>Skladniki:",
+        "item": "<green> <amount>x <item>"
+      },
+      "results": {
+        "label": "<green>Produkty:",
+        "item": "<green> <amount>x <item>"
+      },
+      "id": "<dark_gray>ID: <id>"
     },
     "toolbar": {
       "page": {
