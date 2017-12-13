@@ -163,7 +163,7 @@ class SpongeGui(
             }
 
             val carriedInv = event.targetInventory as? CarriedInventory<*> ?: return
-            val gui = carriedInv.carrier as? Gui ?: return
+            val gui = carriedInv.carrier.orElse(null) as? Gui ?: return
 
             gui.closeListener.notifyHandlers(
                     EventGuiClose.Impl(gui, player?.let(::SpongePlayer))
