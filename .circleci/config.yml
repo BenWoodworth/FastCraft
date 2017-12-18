@@ -1,4 +1,10 @@
 version: 2
+
+general:
+  artifacts:
+#  - ~/repo/build/libs/
+  - libs/
+
 jobs:
   build:
     docker:
