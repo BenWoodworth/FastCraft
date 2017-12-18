@@ -10,8 +10,8 @@ jobs:
     - run: gradle clean build test
     - store_artifacts:
         path: build/libs
-    - run: ls build/libs
-#
+        destination: libs
+
 #  deploy:
 #      docker:
 #      - image: circleci/openjdk:8-jdk
