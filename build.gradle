@@ -1,5 +1,5 @@
 group 'net.benwoodworth'
-version '3.x'
+version 'v3.x'
 
 def env = System.getenv()
 if (env.containsKey('CIRCLECI')) {
@@ -7,7 +7,7 @@ if (env.containsKey('CIRCLECI')) {
         version = env['CIRCLE_TAG']
     } else {
         def hash = env['CIRCLE_COMMIT'].substring(0, 7)
-        version = "dev-$hash"
+        version += "-$hash"
     }
 }
 

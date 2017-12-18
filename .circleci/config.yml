@@ -16,23 +16,18 @@ jobs:
     - run: gradle test
     - run: gradle jar
 
-  deploy-job:
+  deploy:
       docker:
       - image: circleci/openjdk:8-jdk
       working_directory: ~/repo
       steps:
-      - run: aws s3 sync jekyll/_site/docs s3://circle-production-static-site/docs/ --delete
+      - run: aws s3 sync build/libs s3://fastcraft/circle-ci/${CIRCLE_BUILD} --delete
 
 workflows:
   version: 2
   build-deploy:
     jobs:
-    - build-job
-    - deploy-job:
+    - build
+    - deploy:
         requires:
-        - build-job
-        filters:
-          branches:
-            only:
-            - v2/stable
-            - v3/stable
+        - build
