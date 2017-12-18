@@ -2,11 +2,11 @@ group 'net.benwoodworth'
 version '3.x'
 
 def env = System.getenv()
-if (env.containsKey('TRAVIS')) {
-    if (env.containsKey('TRAVIS_TAG')) {
-        version = env['TRAVIS_TAG']
+if (env.containsKey('CIRCLECI')) {
+    if (env.containsKey('CIRCLE_TAG')) {
+        version = env['CIRCLE_TAG']
     } else {
-        def hash = env['TRAVIS_COMMIT'].substring(0, 7)
+        def hash = env['CIRCLE_COMMIT'].substring(0, 7)
         version = "dev-$hash"
     }
 }
