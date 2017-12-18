@@ -8,16 +8,16 @@ jobs:
     steps:
     - checkout
     - run:
-        description: Build
+        name: Build
         command: gradle clean build
     - run:
-        description: Test
+        name: Test
         command: gradle test
     - store_artifacts:
         path: build/libs
         destination: artifacts
     - run:
-        description: Deploy
+        name: Deploy
         command: |
           sudo apt-get update &&
           sudo apt-get install -qq -y python-pip libpython-dev &&
