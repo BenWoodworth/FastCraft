@@ -138,13 +138,10 @@ sourceSets {
     test.java.srcDirs += "src/test/kotlin"
 }
 
-// Don't create a .jar file with the 'jar' task,
-// and create it with 'shadowJar' instead.
+// Use shadowJar instead of jar
 jar {
     enabled = false
-
-    baseName(plugin_name)
-    classifier('nolib')
+    dependsOn shadowJar
 }
 
 shadowJar {
