@@ -18,8 +18,10 @@ jobs:
         destination: artifacts
     - run:
         description: Deploy
-        command: >
-          sudo apt-get update && sudo apt-get install -qq -y python-pip libpython-dev
-          curl -O https://bootstrap.pypa.io/get-pip.py && sudo python get-pip.py
-          sudo pip install -q awscli --upgrade
+        command: |
+          sudo apt-get update &&
+          sudo apt-get install -qq -y python-pip libpython-dev &&
+          curl -O https://bootstrap.pypa.io/get-pip.py &&
+          sudo python get-pip.py &&
+          sudo pip install -q awscli --upgrade &&
           aws s3 sync build/libs s3://fastcraft/circleci/${CIRCLE_BUILD_NUM} --delete --acl public-read
