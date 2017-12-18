@@ -7,10 +7,12 @@ jobs:
     steps:
     - checkout
     - restore_cache:
-        keys: v1-dependencies-{{ checksum "build.gradle" }}
+        keys:
+        - v1-dependencies-{{ checksum "build.gradle" }}
+        - v1-dependencies-
     - run: gradle dependencies
     - save_cache:
-        paths: ~/.m2
+        paths: ~/.gradle
         key: v1-dependencies-{{ checksum "build.gradle" }}
     - run: gradle clean build
     - run: gradle test
@@ -21,7 +23,7 @@ jobs:
       - image: circleci/openjdk:8-jdk
       working_directory: ~/repo
       steps:
-      - run: aws s3 sync build/libs s3://fastcraft/circle-ci/${CIRCLE_BUILD} --delete
+      - run: aws s3 sync build/libs s3://fastcraft/circleci/${CIRCLE_BUILD} --delete
 
 workflows:
   version: 2

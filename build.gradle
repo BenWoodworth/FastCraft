@@ -6,8 +6,7 @@ if (env.containsKey('CIRCLECI')) {
     if (env.containsKey('CIRCLE_TAG')) {
         version = env['CIRCLE_TAG']
     } else {
-        def hash = env['CIRCLE_COMMIT'].substring(0, 7)
-        version += "-$hash"
+        version += "-" + env['CIRCLE_SHA1'].substring(0, 7)
     }
 }
 
