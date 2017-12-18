@@ -1,9 +1,5 @@
 version: 2
 
-general:
-  artifacts:
-  - ~/repo/build/libs/
-
 jobs:
   build:
     docker:
@@ -11,17 +7,9 @@ jobs:
     working_directory: ~/repo
     steps:
     - checkout
-    - restore_cache:
-        keys:
-        - v1-dependencies-{{ checksum "build.gradle" }}
-        - v1-dependencies-
-    - run: gradle dependencies
-    - save_cache:
-        paths: ~/.gradle
-        key: v1-dependencies-{{ checksum "build.gradle" }}
-    - run: gradle clean build
-    - run: gradle test
-    - run: gradle jar
+    - run: gradle clean build test
+    - store_artifacts:
+        path: build/libs/*
 #
 #  deploy:
 #      docker:
