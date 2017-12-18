@@ -11,6 +11,8 @@ jobs:
     - store_artifacts:
         path: build/libs
         destination: libs
+    - run: exit 123
+    - run: Hi!
 
 #  deploy:
 #      docker:
