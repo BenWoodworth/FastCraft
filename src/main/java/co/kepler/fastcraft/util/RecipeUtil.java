@@ -29,7 +29,8 @@ public class RecipeUtil {
             315219687, 313670400, // Dyed leather armor
             434711233, 432506854, // Banners
             461434721, // Book cloning
-            408495308 // Fireworks
+            408495308, // Fireworks
+            314686177 // Cap repair
     ));
 
     // Achievements associated with different items
@@ -280,11 +281,22 @@ public class RecipeUtil {
      * @param toClone The recipe to clone.
      * @return Returns the cloned recipe, or null if unable to clone.
      */
+    @SuppressWarnings("deprecation")
     public static Recipe cloneRecipe(Recipe toClone) {
         if (toClone == null) return null;
         if (toClone instanceof ShapedRecipe) {
             ShapedRecipe recipe = (ShapedRecipe) toClone;
-            ShapedRecipe result = new ShapedRecipe(recipe.getResult().clone());
+            ShapedRecipe result;
+
+            try {
+                result = new ShapedRecipe(
+                        ((ShapedRecipe) toClone).getKey(),
+                        recipe.getResult().clone()
+                );
+            } catch (NoSuchMethodError e) {
+                // Fallback
+                result = new ShapedRecipe(recipe.getResult().clone());
+            }
 
             // Copy recipe shape
             String[] shape = recipe.getShape();
