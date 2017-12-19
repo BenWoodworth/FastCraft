@@ -4,7 +4,12 @@ version '2.x'
 def env = System.getenv()
 if (env.containsKey('CIRCLECI')) {
     if (env.containsKey('CIRCLE_TAG')) {
-        version = env['CIRCLE_TAG']
+        def tag = env['CIRCLE_TAG']
+        if (tag.startsWith("v")) {
+            version = tag.substring(1)
+        } else {
+            version += "-$tag"
+        }
     } else {
         version += "-" + env['CIRCLE_SHA1'].substring(0, 7)
     }
