@@ -1,7 +1,7 @@
 version: 2
 
 jobs:
-  build:
+  build-test-deploy:
     docker:
     - image: circleci/openjdk:8-jdk
     working_directory: ~/repo
@@ -25,3 +25,12 @@ jobs:
           sudo python get-pip.py &&
           sudo pip install -q awscli --upgrade &&
           aws s3 sync build/libs s3://fastcraft/circleci/${CIRCLE_BUILD_NUM} --delete --acl public-read
+
+workflows:
+  version: 2
+  build-test-deploy:
+    jobs:
+    - build-test-deploy:
+        filters:
+          tags:
+            only: /.*/
