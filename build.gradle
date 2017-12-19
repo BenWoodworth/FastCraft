@@ -1,5 +1,5 @@
 group 'net.benwoodworth'
-version 'v3.x'
+version '3.x'
 
 def env = System.getenv()
 if (env.containsKey('CIRCLECI')) {
