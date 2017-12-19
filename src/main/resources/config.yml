@@ -4,9 +4,9 @@ $a0: '# If the language specified does not exist, a new language file will'
 $a1: '# be added to the lang folder in the FastCraft plugin directory.'
 $a2: '# Available languages:'
 $a3: '# English (EN), Deutsch (DE),'
-$a4: 'Русский язык (RU), Čeština (CS),'
+$a4: '# Русский язык (RU), Čeština (CS),'
 $a5: '# Türkçe (TR), Nederlands (NL),'
-$a6: '中文 (ZH-CN), 台語 (ZH-TW),'
+$a6: '# 中文 (ZH-CN), 台語 (ZH-TW),'
 $a7: '# Tiếng Việt (VI), Polskie (PL)'
 language: EN
 
