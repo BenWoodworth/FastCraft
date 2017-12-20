@@ -1,0 +1,98 @@
+# Traducción realizada por C4BR3R4
+# http://c4br3r4.es/index.php?topic=534
+# Usa el símbolo (&) para usar el formato de color de Minecraft.
+# Información sobre códigos de formato:
+# http://minecraft.gamepedia.com/Formatting_codes
+
+gui:
+  title: 'FastCraft'
+
+  # Leave blank to keep item names unchanged.
+  item-name: # Variables: name
+
+  hashcode: # Variables: hash
+  - '&7CódigoHash:'
+  - '&7 <hash>'
+
+  ingredients:
+    label: '&aIngredientes:'
+    item: '&a <amount>x <item>' # Variables: amount, item
+
+  results:
+    label: '&aResultados:'
+    item: '&a <amount>x <item>' # Variables: amount, item
+
+  toolbar:
+    page-prev:
+      title: '&aPágina Anterior'
+      description: # Variables: prev, total, cur
+      - '&bVolver a la página <prev>/<total>'
+
+    page-next:
+      title: '&aPágina Siguiente'
+      description: # Variables: prev, total, cur
+      - '&bIr a la página <next>/<total>'
+
+    craft-items:
+      title: '&aFabricar Objetos'
+      description:
+      - '&bFabricar Objetos'
+
+    craft-armor:
+      title: '&aFabricar Armadura'
+      description:
+      - '&bFabricar Armadura artesana'
+
+    craft-fireworks:
+      title: '&aFabricar Cohetes'
+      description:
+      - '&bFabricar fuegos artificiales y formas'
+
+    refresh:
+      title: '&aActualizar'
+      description:
+      - '&bActualizar la interfaz de FastCraft'
+
+    multiplier:
+      title: '&aMultiplicador (<mult>x)' # Variables: mult
+      description: # Variables: mult
+      - '&bClic Izquierdo Aumentar / Clic Derecho Disminuir'
+      - '&bShift + Clic incrementar de 1 en 1'
+      - '&bClic Central restablecer valor en 1x'
+
+    workbench:
+      title: '&aBanco de trabajo'
+      description:
+      - '&bAbre un banco de trabajo de 3x3'
+      - '&bUsa &a/fc toggle&b para desactivar FastCraft'
+
+commands:
+  usage: '&cUsar el comando: <usage>' # Variables: usage
+  no-perm: '&cNo tienes el permiso necesario para usar este comando: <perm>' # Variables: perm
+  player-only: '&cDebes ser un jugador para usar este comando.'
+  console-only: '&cEste comando solo puede ser usado en consola'
+  unknown-player: '&cJugador desconocido: <player>' # Variables: player
+
+  fastcraft toggle:
+    output:
+      on-self:   '&aInterfaz de FastCraft Activada.'
+      off-self:  '&aInterfaz de FastCraft Desactivada.'
+      on-other:  '&aActivar la interfaz de FastCraft a <player>.'  # Variables: player
+      off-other: '&aDesactivar la interfaz de FastCraft a <player>.' # Variables: player
+
+  fastcraftadmin reload:
+    output: '&aLos archivos de configuración de FastCraft se han recargado.'
+
+# The localized names of items.
+# d: Default item name.
+# number: Name for specific item data.
+items:
+#  'minecraft:diamond': 'Diamond'
+#  'minecraft:planks':
+#    d: 'Wood Planks'
+#    0: 'Oak Wood Planks'
+#    1: 'Spruce Wood Planks'
+#    2: 'Birch Wood Planks'
+#    3: 'Jungle Wood Planks'
+#    4: 'Acacia Wood Planks'
+#    5: 'Dark Oak Wood Planks'
