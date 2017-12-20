@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.dependencies.player
 
 import net.benwoodworth.fastcraft.dependencies.text.Text
-import java.util.UUID
+import java.util.*
 
 /**
  * An interface for Minecraft players.

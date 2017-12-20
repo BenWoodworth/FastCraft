@@ -20,28 +20,28 @@ interface Task {
          *
          * @return the built and executed task
          */
-        fun run(executable: (Task) -> Unit): Task
+        fun execute(executable: (Task) -> Unit): Task
 
         /**
          * Whether the task should be executed off the main server thread.
          *
          * @return fluent interface
          */
-        fun async(): Task.Builder
+        fun async(): Builder
 
         /**
-         * The delay until the task is run for the first time.
+         * The delay until the task is execute for the first time.
          *
          * @param ticks the number ticks
          * @return fluent interface
          */
-        fun delay(ticks: Long): Task.Builder
+        fun delay(ticks: Long): Builder
 
         /**
          * The time between each execution. Should be `0` if the task should not repeat.
          *
          * @return fluent interface
          */
-        fun interval(ticks: Long): Task.Builder
+        fun interval(ticks: Long): Builder
     }
 }

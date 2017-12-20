@@ -1,0 +1,54 @@
+{
+  "localization": {
+    "language": "English (US)",
+    "translator": {
+      "name": "Ben Woodworth",
+      "from": "benwoodworth.net"
+    }
+  },
+  "gui": {
+    "title": "FastCraft",
+    "recipe": {
+      "ingredients": {
+        "label": "<green>Ingredients:",
+        "item": "<green> <amount>x <item>"
+      },
+      "results": {
+        "label": "<green>Results:",
+        "item": "<green> <amount>x <item>"
+      },
+      "id": "<dark_gray>ID: <id>"
+    },
+    "toolbar": {
+      "page": {
+        "title": "<green>Page <page>/<total>",
+        "description": [
+          "<aqua>Left click: next page",
+          "<aqua>Right click: previous page",
+          "<aqua>Middle click: first page"
+        ]
+      },
+      "refresh": {
+        "title": "<green>Refresh",
+        "description": [
+          "<aqua>Refresh the FastCraft interface"
+        ]
+      },
+      "multiplier": {
+        "title": "<green>Crafting Multiplier (<multiplier>x)",
+        "description": [
+          "<aqua>Left/right click to increase/decrease",
+          "<aqua>Shift click to increment by 1",
+          "<aqua>Middle click to reset to 1x"
+        ]
+      },
+      "workbench": {
+        "title": "<green>Crafting Grid",
+        "description": [
+          "<aqua>Open a 3x3 crafting grid",
+          "<aqua>Use <green>/fc toggle<aqua> to disable FastCraft"
+        ]
+      }
+    }
+  }
+}

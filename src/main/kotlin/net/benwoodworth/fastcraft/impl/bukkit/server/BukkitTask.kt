@@ -2,8 +2,8 @@ package net.benwoodworth.fastcraft.impl.bukkit.server
 
 import net.benwoodworth.fastcraft.dependencies.server.Task
 import net.benwoodworth.fastcraft.util.Adapter
-import org.bukkit.plugin.Plugin as Bukkit_Plugin
 import org.bukkit.scheduler.BukkitRunnable
+import org.bukkit.plugin.Plugin as Bukkit_Plugin
 import org.bukkit.scheduler.BukkitTask as Bukkit_Task
 
 /**
@@ -23,7 +23,7 @@ class BukkitTask(
         private var delay = -1L
         private var interval = -1L
 
-        override fun run(executable: (Task) -> Unit): Task {
+        override fun execute(executable: (Task) -> Unit): Task {
             val runnable = object : BukkitRunnable() {
                 lateinit var bukkitTask: BukkitTask
                 override fun run() = executable(bukkitTask)

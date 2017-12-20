@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft
 import org.junit.jupiter.api.BeforeEach
 
 /**
- * Contains tests for dependency implementations.
+ * Contains tests for dependency impl.
  *
  * @param T The abstract dependency type being tested.
  */

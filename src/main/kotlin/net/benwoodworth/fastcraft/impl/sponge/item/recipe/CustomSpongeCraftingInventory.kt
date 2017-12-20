@@ -11,7 +11,7 @@ import org.spongepowered.api.item.inventory.property.InventoryDimension
 import org.spongepowered.api.item.inventory.type.GridInventory
 import org.spongepowered.api.item.recipe.crafting.CraftingRecipe
 import org.spongepowered.api.world.World
-import java.util.Optional
+import java.util.*
 
 /**
  * A custom implementation of [CraftingInventory].
@@ -25,7 +25,7 @@ internal class CustomSpongeCraftingInventory(
                 InventoryDimension(3, 3)
         )
         .build(plugin)
-        .query<GridInventory>(GridInventory::class.java)
+        .query(GridInventory::class.java)
 {
 
     /**

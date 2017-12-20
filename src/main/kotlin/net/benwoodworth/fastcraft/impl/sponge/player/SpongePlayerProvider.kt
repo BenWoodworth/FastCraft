@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.impl.sponge.player
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.dependencies.player.PlayerProvider
 import org.spongepowered.api.Sponge
-import java.util.UUID
+import java.util.*
 
 /**
  * Sponge implementation of [PlayerProvider].

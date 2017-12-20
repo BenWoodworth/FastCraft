@@ -1,20 +1,15 @@
 package net.benwoodworth.fastcraft.impl.sponge.gui
 
-import net.benwoodworth.fastcraft.dependencies.gui.Gui
-import net.benwoodworth.fastcraft.dependencies.gui.GuiLayoutComposite
 import net.benwoodworth.fastcraft.dependencies.event.EventGuiButtonClick
 import net.benwoodworth.fastcraft.dependencies.event.EventGuiClose
-import net.benwoodworth.fastcraft.dependencies.event.Listener
+import net.benwoodworth.fastcraft.dependencies.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.impl.sponge.item.SpongeItem
 import net.benwoodworth.fastcraft.impl.sponge.player.SpongePlayer
 import net.benwoodworth.fastcraft.impl.sponge.text.SpongeText
 import org.spongepowered.api.Sponge
-import org.spongepowered.api.entity.living.player.Player as Sponge_Player
-import org.spongepowered.api.event.Listener as Sponge_Listener
 import org.spongepowered.api.event.Order
-import org.spongepowered.api.event.cause.Cause
 import org.spongepowered.api.event.filter.cause.First
 import org.spongepowered.api.event.item.inventory.AffectSlotEvent
 import org.spongepowered.api.event.item.inventory.ClickInventoryEvent
@@ -28,6 +23,8 @@ import org.spongepowered.api.item.inventory.property.InventoryTitle
 import org.spongepowered.api.item.inventory.property.SlotIndex
 import org.spongepowered.api.item.inventory.type.CarriedInventory
 import org.spongepowered.api.item.inventory.type.GridInventory
+import org.spongepowered.api.entity.living.player.Player as Sponge_Player
+import org.spongepowered.api.event.Listener as Sponge_Listener
 import org.spongepowered.api.text.Text as Sponge_Text
 
 /**
@@ -37,13 +34,7 @@ class SpongeGui(
         height: Int,
         title: Sponge_Text?,
         plugin: Any
-) : Gui, Carrier, GuiLayoutComposite by GuiLayoutComposite.Impl(9, height) {
-
-    init {
-        changeListener += this::updateLayout
-    }
-
-    override val closeListener = Listener.Impl<EventGuiClose>()
+) : Gui(height), Carrier {
 
     /**
      * The inventory representing this GUI.
@@ -71,9 +62,8 @@ class SpongeGui(
             .get().value?.let { SpongeText(it) }
 
     override fun open(vararg players: Player) {
-        val cause = Cause.source(this).build()
         for (player in players) {
-            (player as SpongePlayer).base.openInventory(inventory, cause)
+            (player as SpongePlayer).base.openInventory(inventory)
         }
     }
 
@@ -173,7 +163,7 @@ class SpongeGui(
             }
 
             val carriedInv = event.targetInventory as? CarriedInventory<*> ?: return
-            val gui = carriedInv.carrier as? Gui ?: return
+            val gui = carriedInv.carrier.orElse(null) as? Gui ?: return
 
             gui.closeListener.notifyHandlers(
                     EventGuiClose.Impl(gui, player?.let(::SpongePlayer))

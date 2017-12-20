@@ -1,0 +1,53 @@
+{
+  "localization": {
+    "language": "Czech",
+    "translator": {
+      "name": "MachisCZ",
+      "from": "spigotmc.org"
+    }
+  },
+  "gui": {
+    "title": "FastCraft",
+    "recipe": {
+      "ingredients": {
+        "label": "<green>Ingredience:",
+        "item": "<green> <amount>x <item>"
+      },
+      "results": {
+        "label": "<green>Výsledky:",
+        "item": "<green> <amount>x <item>"
+      },
+      "id": "<dark_gray>ID: <id>"
+    },
+    "toolbar": {
+      "page": {
+        "title": "<green>Strana <page>/<total>",
+        "description": [
+          "<aqua>Levé kliknutí: další strana",
+          "<aqua>Prave kliknutí: předchozí stránka",
+          "<aqua>Střední kliknutí: první strana"
+        ]
+      },
+      "refresh": {
+        "title": "<green>Znovunacist",
+        "description": [
+          "<aqua>Znovu nacte predmety v menu."
+        ]
+      },
+      "multiplier": {
+        "title": "<green>Vyrabeci nasobic (<multiplier>x)",
+        "description": [
+          "<aqua>Leve/prave kliknuti zvysuje/snizuje nasobic",
+          "<aqua>Shift klik zvyuje nasobic o 1",
+          "<aqua>Kliknuti kolecka vyresetuje nasobic na 1"
+        ]
+      },
+      "workbench": {
+        "title": "<green>Pracovni stul",
+        "description": [
+          "<aqua>Otevre klasicky 3x3 stul"
+        ]
+      }
+    }
+  }
+}

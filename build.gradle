@@ -1,9 +1,18 @@
 group 'net.benwoodworth'
-version '1.0-ALPHA'
+version '3.x'
 
 def env = System.getenv()
-if (env.containsKey('TRAVIS')) {
-    version += "-${env['TRAVIS_BUILD_NUMBER']}"
+if (env.containsKey('CIRCLECI')) {
+    if (env.containsKey('CIRCLE_TAG')) {
+        def tag = env['CIRCLE_TAG']
+        if (tag.startsWith("v")) {
+            version = tag.substring(1)
+        } else {
+            version += "-$tag"
+        }
+    } else {
+        version += "-" + env['CIRCLE_SHA1'].substring(0, 7)
+    }
 }
 
 def plugin_name = 'FastCraft'
@@ -13,6 +22,7 @@ def plugin_version = version
 def plugin_website = 'https://github.com/BenWoodworth/FastCraft'
 
 apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'org.spongepowered.plugin'
 apply plugin: 'org.junit.platform.gradle.plugin'
 apply plugin: 'com.github.johnrengelman.shadow'
@@ -21,12 +31,16 @@ buildscript {
     ext {
         java_target = '1.8'
 
-        version_kotlin = '1.1.3-2'
+        version_gradle = '4.2.1'
+
+        version_kotlin = '1.2.0'
         version_spongegradle = '0.8.1'
         version_shadow = '2.0.1'
 
-        version_bukkit = '1.12.1-R0.1-SNAPSHOT'
-        version_sponge = '7.0.0-20170810.213602-30'
+        version_bukkit = '1.12-pre5-SNAPSHOT'
+        version_sponge = '7.0.0-20171207.130015-65'
+
+        version_klaxon = '0.30'
 
         version_dagger = '2.11'
         version_jsr250 = '1.0'
@@ -55,6 +69,7 @@ repositories {
     mavenCentral()
     maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
     maven { url 'http://repo.spongepowered.org/maven' }
+    jcenter()
 }
 
 configurations {
@@ -75,12 +90,13 @@ dependencies {
     compile "com.google.dagger:dagger:$version_dagger"
     kapt "com.google.dagger:dagger-compiler:$version_dagger"
 
+    compile "com.beust:klaxon:$version_klaxon"
+
     testCompile "org.junit.jupiter:junit-jupiter-api:$version_junit5"
     testRuntime "org.junit.jupiter:junit-jupiter-engine:$version_junit5"
     testCompile "org.junit.platform:junit-platform-runner:$version_junit_runner"
     testCompile "org.mockito:mockito-core:$version_mockito"
 }
-
 sourceCompatibility = java_target
 targetCompatibility = java_target
 
@@ -98,10 +114,6 @@ task ktlintFormat(type: JavaExec) {
     main = 'com.github.shyiko.ktlint.Main'
     classpath = configurations.ktlint
     args = ['-F', 'src/main/**/*.kt']
-}
-
-check {
-    dependsOn ktlint
 }
 
 processResources {
@@ -131,22 +143,13 @@ sourceSets {
     test.java.srcDirs += "src/test/kotlin"
 }
 
-kapt {
-    generateStubs = true
-}
-
-// Don't create a .jar file with the 'jar' task,
-// and create it with 'shadowJar' instead.
+// Use shadowJar instead of jar
 jar {
-    dependsOn shadowJar
     enabled = false
-
-    baseName(plugin_name)
-    classifier('nolib')
+    dependsOn shadowJar
 }
 
 shadowJar {
-    baseName(plugin_name)
     classifier(null)
 
     dependencies {
@@ -156,10 +159,12 @@ shadowJar {
         include dependency("org.jetbrains.kotlin:kotlin-stdlib:$version_kotlin")
         include dependency("com.google.dagger:dagger:$version_dagger")
         include dependency("javax.inject:javax.inject:$version_javax_inject")
+        include dependency("com.beust:klaxon:$version_klaxon")
     }
 
     def libs = 'net.benwoodworth.fastcraft.libs'
     relocate('kotlin', "${libs}.kotlin")
     relocate('dagger', "${libs}.dagger")
     relocate('javax', "${libs}.javax")
+    relocate('com.beust.klaxon', "${libs}.klaxon")
 }

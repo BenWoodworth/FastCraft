@@ -1,0 +1,54 @@
+{
+  "localization": {
+    "language": "Polish",
+    "translator": {
+      "name": "TheoMarque",
+      "from": "github.com"
+    }
+  },
+  "gui": {
+    "title": "FastCraft",
+    "recipe": {
+      "ingredients": {
+        "label": "<green>Skladniki:",
+        "item": "<green> <amount>x <item>"
+      },
+      "results": {
+        "label": "<green>Produkty:",
+        "item": "<green> <amount>x <item>"
+      },
+      "id": "<dark_gray>ID: <id>"
+    },
+    "toolbar": {
+      "page": {
+        "title": "<green>Strona <page>/<total>",
+        "description": [
+          "<aqua>Lewe kliknięcie: następna strona",
+          "<aqua>Prawe kliknięcie: poprzednia strona",
+          "<aqua>Środkowe kliknięcie: pierwsza strona"
+        ]
+      },
+      "refresh": {
+        "title": "<green>Odswiez",
+        "description": [
+          "<aqua>Odswiez interfejs FastCraft"
+        ]
+      },
+      "multiplier": {
+        "title": "<green>Mnoznik tworzenia (<multiplier>x)",
+        "description": [
+          "<aqua>Lewy/prawy przycisk myszy by zwiekszyc/zmniejszyc",
+          "<aqua>Z SHIFT rosnie o 1",
+          "<aqua>Srodkowy mnozy o 1"
+        ]
+      },
+      "workbench": {
+        "title": "<green>Stol rzemieslniczy",
+        "description": [
+          "<aqua>Otworz zwykly stol rzemieslniczy (3x3)",
+          "<aqua>Uzyj <green>/fc toggle<aqua> by wylaczyc FastCraft"
+        ]
+      }
+    }
+  }
+}

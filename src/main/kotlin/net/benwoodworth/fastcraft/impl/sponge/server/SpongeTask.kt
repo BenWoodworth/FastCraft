@@ -23,7 +23,7 @@ class SpongeTask(
             private val plugin: Any
     ) : Task.Builder, Adapter<Sponge_Task.Builder>(taskBuilder) {
 
-        override fun run(executable: (Task) -> Unit): Task {
+        override fun execute(executable: (Task) -> Unit): Task {
             base.execute({ task -> executable(SpongeTask(task)) })
             return SpongeTask(base.submit(plugin))
         }

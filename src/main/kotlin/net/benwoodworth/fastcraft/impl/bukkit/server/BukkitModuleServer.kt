@@ -5,8 +5,8 @@ import dagger.Provides
 import net.benwoodworth.fastcraft.dependencies.server.ModuleServer
 import net.benwoodworth.fastcraft.dependencies.server.Plugin
 import net.benwoodworth.fastcraft.dependencies.server.Task
-import org.bukkit.plugin.Plugin as Bukkit_Plugin
 import javax.inject.Singleton
+import org.bukkit.plugin.Plugin as Bukkit_Plugin
 
 /**
  * Bukkit implementation of [ModuleServer].

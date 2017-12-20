@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.impl.bukkit.config
 
+import net.benwoodworth.fastcraft.dependencies.abstractions.config.ConfigTests
 import net.benwoodworth.fastcraft.dependencies.config.Config
-import net.benwoodworth.fastcraft.dependencies.config.ConfigTests
 import org.bukkit.configuration.file.YamlConfiguration
 import java.nio.file.Path
 import java.nio.file.Paths

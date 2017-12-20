@@ -4,8 +4,8 @@ import net.benwoodworth.fastcraft.dependencies.server.Logger
 import net.benwoodworth.fastcraft.dependencies.server.Plugin
 import net.benwoodworth.fastcraft.util.Adapter
 import org.bukkit.Bukkit
-import org.bukkit.plugin.Plugin as Bukkit_Plugin
 import java.nio.file.Path
+import org.bukkit.plugin.Plugin as Bukkit_Plugin
 
 /**
  * Bukkit implementation of [Plugin].

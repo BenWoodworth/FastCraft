@@ -26,7 +26,7 @@ interface CraftingRecipe {
      * @param items the grid of items used to prepare the recipe
      * @return the prepared recipe, or `null` if unable to prepare
      */
-    fun prepare(player: Player, items: Grid<Item>): CraftingRecipe.Prepared?
+    fun prepare(player: Player, items: Grid<Item>): Prepared?
 
     /**
      * Check if this recipe is equal to an object.

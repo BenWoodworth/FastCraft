@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.impl.bukkit.config
 
-import net.benwoodworth.fastcraft.dependencies.config.ConfigManagerTests
+import net.benwoodworth.fastcraft.dependencies.abstractions.config.ConfigManagerTests
 import java.nio.file.Path
 import java.nio.file.Paths
 

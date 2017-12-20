@@ -8,36 +8,42 @@ import net.benwoodworth.fastcraft.dependencies.text.Text
 /**
  * A user interface for in-game players.
  */
-interface Gui : GuiLayoutComposite {
+abstract class Gui(
+        height: Int
+) : GuiLayoutComposite(9, height) {
+
+    init {
+        changeListener += ::updateLayout
+    }
 
     /**
      * A listener for the inventory closing.
      */
-    val closeListener: Listener<EventGuiClose>
+    val closeListener = Listener<EventGuiClose>()
 
     /**
      * The title of this [Gui].
      */
-    val title: Text?
+    abstract val title: Text?
 
     /**
      * Open this [Gui] for the given players.
      *
      * @param players the players to open the inventory for
      */
-    fun open(vararg players: Player)
+    abstract fun open(vararg players: Player)
 
     /**
      * Get the players viewing the inventory.
      *
      * @return the players viewing the inventory
      */
-    fun getViewers(): List<Player>
+    abstract fun getViewers(): List<Player>
 
     /**
      * Update the Gui's layout.
      */
-    fun updateLayout()
+    abstract fun updateLayout()
 
     /**
      * A builder for [Gui]'s.
@@ -56,13 +62,13 @@ interface Gui : GuiLayoutComposite {
          *
          * @return fluent interface
          */
-        fun height(height: Int): Gui.Builder
+        fun height(height: Int): Builder
 
         /**
          * Set the [Gui] title.
          *
          * @return fluent interface
          */
-        fun title(title: Text): Gui.Builder
+        fun title(title: Text): Builder
     }
 }

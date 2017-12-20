@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.util
 
 /**
- * An interface for implementations with mutable and immutable parts.
+ * An interface for implementations with mutable and immutable variants.
  *
  * @param TI the immutable type
  * @param TM the mutable type

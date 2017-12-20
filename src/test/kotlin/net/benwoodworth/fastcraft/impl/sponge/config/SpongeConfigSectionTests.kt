@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.impl.sponge.config
 
+import net.benwoodworth.fastcraft.dependencies.abstractions.config.ConfigSectionTests
 import net.benwoodworth.fastcraft.dependencies.config.ConfigSection
-import net.benwoodworth.fastcraft.dependencies.config.ConfigSectionTests
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader
 
 /**

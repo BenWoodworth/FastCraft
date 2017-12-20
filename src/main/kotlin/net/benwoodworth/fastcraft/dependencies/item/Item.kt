@@ -34,6 +34,11 @@ interface Item : TransMutable<Item, Item.Mutable> {
     val maxStackSize: Int
 
     /**
+     * The item's durability.
+     */
+    val durability: Int
+
+    /**
      * Compare equality of this base item to another, ignoring amount.
      *
      * @param item the [Item] to compare to
@@ -51,6 +56,8 @@ interface Item : TransMutable<Item, Item.Mutable> {
         override var displayName: Text?
 
         override var lore: List<Text?>?
+
+        override var durability: Int
     }
 
     /**
@@ -68,40 +75,48 @@ interface Item : TransMutable<Item, Item.Mutable> {
         /**
          * Resets this builder and uses the values from this item.
          *
-         * @Return This builder, for chaining
+         * @return this builder, for chaining
          */
-        fun from(item: Item): Item.Builder
+        fun from(item: Item): Builder
 
         /**
          * Set the item type.
          *
-         * @param typeId The Minecraft item type ID
-         * @Return This builder, for chaining
+         * @param typeId the Minecraft item type ID
+         * @return this builder, for chaining
          */
-        fun type(typeId: String): Item.Builder
+        fun type(typeId: String): Builder
 
         /**
          * Set the item amount.
          *
-         * @param amount The item amount
-         * @Return This builder, for chaining
+         * @param amount the item amount
+         * @return this builder, for chaining
          */
-        fun amount(amount: Int): Item.Builder
+        fun amount(amount: Int): Builder
 
         /**
          * Set the item's display name.
          *
-         * @param displayName The display name
-         * @Return This builder, for chaining
+         * @param displayName the display name
+         * @return this builder, for chaining
          */
-        fun displayName(displayName: Text?): Item.Builder
+        fun displayName(displayName: Text?): Builder
 
         /**
          * Set the item's lore.
          *
-         * @param lore The lore
-         * @Return This builder, for chaining
+         * @param lore the lore
+         * @return this builder, for chaining
          */
-        fun lore(vararg lore: Text?): Item.Builder
+        fun lore(vararg lore: Text?): Builder
+
+        /**
+         * Set the item's durability.
+         *
+         * @param durability the durability
+         * @return this builder, for chaining
+         */
+        fun durability(durability: Int)
     }
 }

@@ -1,0 +1,54 @@
+{
+  "localization": {
+    "language": "Vietnamese",
+    "translator": {
+      "name": "AnhCraft",
+      "from": "spigotmc.org"
+    }
+  },
+  "gui": {
+    "title": "FastCraft",
+    "recipe": {
+      "ingredients": {
+        "label": "<green>Các thành phần:",
+        "item": "<green> <amount>x <item>"
+      },
+      "results": {
+        "label": "<green>Các kết quả:",
+        "item": "<green> <amount>x <item>"
+      },
+      "id": "<dark_gray>ID: <id>"
+    },
+    "toolbar": {
+      "page": {
+        "title": "<green>Trang <page>/<total>",
+        "description": [
+          "<aqua>Nhấp chuột trái: trang tiếp theo",
+          "<aqua>Nhấp chuột phải: trang trước",
+          "<aqua>Nhấp chuột giữa: trang đầu tiên"
+        ]
+      },
+      "refresh": {
+        "title": "<green>Làm mới",
+        "description": [
+          "<aqua>Làm mới giao diện FastCraft"
+        ]
+      },
+      "multiplier": {
+        "title": "<green>Chế tạo nhiều (<multiplier>x)",
+        "description": [
+          "<aqua>Chuột trái/phải để tăng/giảm",
+          "<aqua>Giữ Shift để tăng 1",
+          "<aqua>Chuột giữa để trở về 1x"
+        ]
+      },
+      "workbench": {
+        "title": "<green>Bàn chế tạo",
+        "description": [
+          "<aqua>Mở bàn chế tạo 3x3",
+          "<aqua>Dùng <green>/fc toggle<aqua> để tắt FastCraft"
+        ]
+      }
+    }
+  }
+}

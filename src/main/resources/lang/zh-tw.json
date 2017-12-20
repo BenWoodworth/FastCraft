@@ -1,0 +1,54 @@
+{
+  "localization": {
+    "language": "Chinese (Traditional)",
+    "translator": {
+      "name": "HappyAreaBean",
+      "from": "LavaApple Studio"
+    }
+  },
+  "gui": {
+    "title": "FastCraft",
+    "recipe": {
+      "ingredients": {
+        "label": "<green>配方:",
+        "item": "<green> <amount>x <item>"
+      },
+      "results": {
+        "label": "<green>獲得:",
+        "item": "<green> <amount>x <item>"
+      },
+      "id": "<dark_gray>ID: <id>"
+    },
+    "toolbar": {
+      "page": {
+        "title": "<green>第 <page>/<total> 頁",
+        "description": [
+          "<aqua>左鍵單擊: 下一頁",
+          "<aqua>右鍵點擊: 上一頁",
+          "<aqua>中間點擊: 第一頁"
+        ]
+      },
+      "refresh": {
+        "title": "<green>刷新",
+        "description": [
+          "<aqua>刷新 FastCraft"
+        ]
+      },
+      "multiplier": {
+        "title": "<green>合成數量 (倍): (<multiplier>x)",
+        "description": [
+          "&左鍵來增加/右鍵來減少",
+          "<aqua>按住Shift增加1",
+          "<aqua>中鍵回到1x"
+        ]
+      },
+      "workbench": {
+        "title": "<green>合成台",
+        "description": [
+          "<aqua>打開 3x3 合成台",
+          "<aqua>使用 <green>/fc toggle <aqua> 來關閉 FastCraft"
+        ]
+      }
+    }
+  }
+}

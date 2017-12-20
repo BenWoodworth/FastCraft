@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.impl.bukkit.player
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.dependencies.player.PlayerProvider
 import org.bukkit.Bukkit
-import java.util.UUID
+import java.util.*
 
 /**
  * Bukkit implementation of [PlayerProvider].

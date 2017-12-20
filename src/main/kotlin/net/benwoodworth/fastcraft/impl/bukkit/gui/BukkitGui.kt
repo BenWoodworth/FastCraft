@@ -2,9 +2,7 @@ package net.benwoodworth.fastcraft.impl.bukkit.gui
 
 import net.benwoodworth.fastcraft.dependencies.event.EventGuiButtonClick
 import net.benwoodworth.fastcraft.dependencies.event.EventGuiClose
-import net.benwoodworth.fastcraft.dependencies.event.Listener
 import net.benwoodworth.fastcraft.dependencies.gui.Gui
-import net.benwoodworth.fastcraft.dependencies.gui.GuiLayoutComposite
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.impl.bukkit.item.BukkitItem
@@ -12,15 +10,15 @@ import net.benwoodworth.fastcraft.impl.bukkit.player.BukkitPlayer
 import net.benwoodworth.fastcraft.impl.bukkit.text.BukkitText
 import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
-import org.bukkit.event.Listener as Bukkit_Listener
-import org.bukkit.inventory.Inventory
-import org.bukkit.inventory.InventoryHolder
-import org.bukkit.event.inventory.InventoryDragEvent
 import org.bukkit.event.EventPriority
 import org.bukkit.event.inventory.ClickType
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
+import org.bukkit.event.inventory.InventoryDragEvent
+import org.bukkit.inventory.Inventory
+import org.bukkit.inventory.InventoryHolder
 import org.bukkit.entity.Player as Bukkit_Player
+import org.bukkit.event.Listener as Bukkit_Listener
 
 /**
  * Bukkit implementation of [Gui].
@@ -28,13 +26,7 @@ import org.bukkit.entity.Player as Bukkit_Player
 class BukkitGui(
         height: Int,
         title: String?
-) : Gui, InventoryHolder, GuiLayoutComposite by GuiLayoutComposite.Impl(9, height) {
-
-    init {
-        changeListener += this::updateLayout
-    }
-
-    override val closeListener = Listener.Impl<EventGuiClose>()
+) : Gui(height), InventoryHolder {
 
     private val inventory: Inventory = Bukkit.createInventory(
             this,

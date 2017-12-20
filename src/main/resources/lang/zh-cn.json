@@ -1,0 +1,54 @@
+{
+  "localization": {
+    "language": "Chinese (Simplified)",
+    "translator": {
+      "name": "Mars",
+      "from": "ISOTOPE Studio"
+    }
+  },
+  "gui": {
+    "title": "FastCraft",
+    "recipe": {
+      "ingredients": {
+        "label": "<green>配方:",
+        "item": "<green> <amount>x <item>"
+      },
+      "results": {
+        "label": "<green>获得:",
+        "item": "<green> <amount>x <item>"
+      },
+      "id": "<dark_gray>ID: <id>"
+    },
+    "toolbar": {
+      "page": {
+        "title": "<green>第 <page>/<total> 页",
+        "description": [
+          "<aqua>左键单击: 下一页",
+          "<aqua>右键点击: 上一页",
+          "<aqua>中间点击: 第一页"
+        ]
+      },
+      "refresh": {
+        "title": "<green>刷新",
+        "description": [
+          "<aqua>刷新 FastCraft"
+        ]
+      },
+      "multiplier": {
+        "title": "<green>合成份数: (<multiplier>x)",
+        "description": [
+          "<aqua>左键来增加/右键来减少",
+          "<aqua>按住Shift增加1",
+          "<aqua>中键回到1x"
+        ]
+      },
+      "workbench": {
+        "title": "<green>合成台",
+        "description": [
+          "<aqua>打开 3x3 合成台",
+          "<aqua>使用 <green>/fc toggle<aqua> 来关闭 FastCraft"
+        ]
+      }
+    }
+  }
+}

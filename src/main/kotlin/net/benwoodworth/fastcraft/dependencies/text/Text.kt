@@ -24,20 +24,20 @@ interface Text {
          *
          * @return fluent interface
          */
-        fun text(text: String): Text.Builder
+        fun text(text: String): Builder
 
         /**
          * Set the extra text.
          *
          * @return fluent interface
          */
-        fun addExtra(vararg extra: Text): Text.Builder
+        fun addExtra(vararg extra: Text): Builder
 
         /**
          * Set the text style.
          *
          * @return fluent interface
          */
-        fun textStyle(style: TextStyle): Text.Builder
+        fun textStyle(style: TextStyle): Builder
     }
 }

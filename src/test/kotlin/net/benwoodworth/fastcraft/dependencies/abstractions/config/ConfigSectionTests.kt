@@ -1,6 +1,7 @@
-package net.benwoodworth.fastcraft.dependencies.config
+package net.benwoodworth.fastcraft.dependencies.abstractions.config
 
 import net.benwoodworth.fastcraft.ImplementationTests
+import net.benwoodworth.fastcraft.dependencies.config.ConfigSection
 import org.junit.Assert.*
 import org.junit.jupiter.api.Test
 

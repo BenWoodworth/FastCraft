@@ -2,19 +2,15 @@ package net.benwoodworth.fastcraft.impl.bukkit.event
 
 import dagger.Module
 import dagger.Provides
-import net.benwoodworth.fastcraft.dependencies.event.EventPlayerJoin
-import net.benwoodworth.fastcraft.dependencies.event.EventPluginDisable
-import net.benwoodworth.fastcraft.dependencies.event.EventPluginEnable
-import net.benwoodworth.fastcraft.dependencies.event.Listener
-import net.benwoodworth.fastcraft.dependencies.event.ModuleEvent
+import net.benwoodworth.fastcraft.dependencies.event.*
 import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.server.PluginDisableEvent
 import org.bukkit.event.server.PluginEnableEvent
-import org.bukkit.plugin.Plugin as Bukkit_Plugin
-import org.bukkit.event.Listener as Bukkit_Listener
 import javax.inject.Singleton
+import org.bukkit.event.Listener as Bukkit_Listener
+import org.bukkit.plugin.Plugin as Bukkit_Plugin
 
 /**
  * Bukkit implementation of [ModuleEvent]
@@ -26,7 +22,7 @@ class BukkitModuleEvent(
 
     @Provides @Singleton
     override fun listenerPlayerJoin(): Listener<EventPlayerJoin> {
-        return Listener.Impl<EventPlayerJoin>().also { listener ->
+        return Listener<EventPlayerJoin>().also { listener ->
             Bukkit.getPluginManager().registerEvents(
                     object : Bukkit_Listener {
                         @EventHandler
@@ -41,7 +37,7 @@ class BukkitModuleEvent(
 
     @Provides @Singleton
     override fun listenerPluginDisable(): Listener<EventPluginDisable> {
-        return Listener.Impl<EventPluginDisable>().also { listener ->
+        return Listener<EventPluginDisable>().also { listener ->
             Bukkit.getPluginManager().registerEvents(
                     object : Bukkit_Listener {
                         @EventHandler
@@ -56,7 +52,7 @@ class BukkitModuleEvent(
 
     @Provides @Singleton
     override fun listenerPluginEnable(): Listener<EventPluginEnable> {
-        return Listener.Impl<EventPluginEnable>().also { listener ->
+        return Listener<EventPluginEnable>().also { listener ->
             Bukkit.getPluginManager().registerEvents(
                     object : Bukkit_Listener {
                         @EventHandler

@@ -4,7 +4,7 @@ import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.impl.bukkit.text.BukkitText
 import net.benwoodworth.fastcraft.util.Adapter
-import java.util.UUID
+import java.util.*
 import org.bukkit.entity.Player as Bukkit_Player
 
 /**
