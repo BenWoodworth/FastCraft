@@ -1,0 +1,51 @@
+{
+  "localization": {
+    "language": "Español",
+    "translator": {
+      "name": "C4BR3R4",
+      "from": "c4br3r4.es/index.php?topic=534"
+    }
+  },
+  "gui": {
+    "title": "FastCraft",
+    "ingredients": {
+      "label": "<green>Ingredientes:",
+      "item": "<green> <amount>x <item>"
+    },
+    "results": {
+      "label": "<green>Resultados:",
+      "item": "<green> <amount>x <item>"
+    },
+    "toolbar": {
+      "page": {
+        "title": "<green>Página <page>/<total>",
+        "description": [
+          "<aqua>Clic izquierdo: siguiente página",
+          "<aqua>Clic derecho: pagina anterior",
+          "<aqua>Clic central: primera página"
+        ]
+      },
+      "refresh": {
+        "title": "<green>Actualizar",
+        "description": [
+          "<aqua>Actualizar la interfaz de FastCraft"
+        ]
+      },
+      "multiplier": {
+        "title": "<green>Multiplicador (<multiplier>x)",
+        "description": [
+          "<aqua>Clic Izquierdo Aumentar / Clic Derecho Disminuir",
+          "<aqua>Shift + Clic incrementar de 1 en 1",
+          "<aqua>Clic Central restablecer valor en 1x"
+        ]
+      },
+      "workbench": {
+        "title": "<green>Banco de trabajo",
+        "description": [
+          "<aqua>Abre un banco de trabajo de 3x3",
+          "<aqua>Usa <green>/fc toggle<aqua> para desactivar FastCraft"
+        ]
+      }
+    }
+  }
+}
