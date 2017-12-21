@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft.impl.bukkit.server
 
 import dagger.Module
 import dagger.Provides
+import net.benwoodworth.fastcraft.dependencies.server.Metrics
 import net.benwoodworth.fastcraft.dependencies.server.ModuleServer
 import net.benwoodworth.fastcraft.dependencies.server.Plugin
 import net.benwoodworth.fastcraft.dependencies.server.Task
@@ -21,8 +22,15 @@ class BukkitModuleServer(
         return BukkitTask.Builder(plugin)
     }
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     override fun pluginProvider(): Plugin.Provider {
         return BukkitPlugin.Provider()
+    }
+
+    @Provides
+    @Singleton
+    override fun metrics(): Metrics {
+        return BukkitMetrics()
     }
 }

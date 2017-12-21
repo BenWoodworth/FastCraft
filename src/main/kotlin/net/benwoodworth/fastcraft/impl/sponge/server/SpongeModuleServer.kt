@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft.impl.sponge.server
 
 import dagger.Module
 import dagger.Provides
+import net.benwoodworth.fastcraft.dependencies.server.Metrics
 import net.benwoodworth.fastcraft.dependencies.server.ModuleServer
 import net.benwoodworth.fastcraft.dependencies.server.Plugin
 import net.benwoodworth.fastcraft.dependencies.server.Task
@@ -21,8 +22,15 @@ class SpongeModuleServer(
         return SpongeTask.Builder(Sponge_Task.builder(), plugin)
     }
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     override fun pluginProvider(): Plugin.Provider {
         return SpongePlugin.Provider()
+    }
+
+    @Provides
+    @Singleton
+    override fun metrics(): Metrics {
+        return SpongeMetrics()
     }
 }
