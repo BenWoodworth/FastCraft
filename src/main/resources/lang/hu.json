@@ -1,0 +1,54 @@
+{
+  "localization": {
+    "language": "Hungarian (HU)",
+    "translator": {
+      "name": "Ben Woodworth",
+      "from": "benwoodworth.net"
+    }
+  },
+  "gui": {
+    "title": "FastCraft",
+    "recipe": {
+      "ingredients": {
+        "label": "<green>Hozzávalók:",
+        "item": "<green> <amount>x <item>"
+      },
+      "results": {
+        "label": "<green>Eredmények:",
+        "item": "<green> <amount>x <item>"
+      },
+      "id": "<dark_gray>ID: <id>"
+    },
+    "toolbar": {
+      "page": {
+        "title": "<green>Oldal <page>/<total>",
+        "description": [
+          "<aqua>Bal egérgomb: következő oldal",
+          "<aqua>Jobb egérgomb: előző oldal",
+          "<aqua>Középső kattintás: első oldal"
+        ]
+      },
+      "refresh": {
+        "title": "<green>Frissítés",
+        "description": [
+          "<aqua>Frissítse a FastCraft interfészt"
+        ]
+      },
+      "multiplier": {
+        "title": "<green>Barkács szorzó (<multiplier>x)",
+        "description": [
+          "<aqua>Bal jobb kattintással növelheti/csökkentheti",
+          "<aqua>A léptetéshez nyomja meg az 1-et 1",
+          "<aqua>A középső kattintással visszaállíthatja 1x-re"
+        ]
+      },
+      "workbench": {
+        "title": "<green>Barkács rács",
+        "description": [
+          "<aqua>Nyisson meg egy 3x3-as varróhálót",
+          "<aqua>Használd <green>/fc toggle<aqua> a FastCraft letiltásához"
+        ]
+      }
+    }
+  }
+}
