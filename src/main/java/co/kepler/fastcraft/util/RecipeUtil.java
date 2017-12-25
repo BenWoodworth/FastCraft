@@ -279,7 +279,7 @@ public class RecipeUtil {
      * Clone a recipe.
      *
      * @param toClone The recipe to clone.
-     * @return Returns the cloned recipe, or null if unable to clone.
+     * @return Returns the cloned recipe.
      */
     @SuppressWarnings("deprecation")
     public static Recipe cloneRecipe(Recipe toClone) {
@@ -293,8 +293,7 @@ public class RecipeUtil {
                         ((ShapedRecipe) toClone).getKey(),
                         recipe.getResult().clone()
                 );
-            } catch (NoSuchMethodError e) {
-                // Fallback
+            } catch (NoSuchMethodError e) { // Fallback
                 result = new ShapedRecipe(recipe.getResult().clone());
             }
 
@@ -312,7 +311,16 @@ public class RecipeUtil {
             return result;
         } else if (toClone instanceof ShapelessRecipe) {
             ShapelessRecipe recipe = (ShapelessRecipe) toClone;
-            ShapelessRecipe result = new ShapelessRecipe(recipe.getResult().clone());
+            ShapelessRecipe result;
+
+            try {
+                result = new ShapelessRecipe(
+                        ((ShapelessRecipe) toClone).getKey(),
+                        recipe.getResult().clone()
+                );
+            } catch (NoSuchMethodError e) { // Fallback
+                result = new ShapelessRecipe(recipe.getResult().clone());
+            }
 
             // Copy ingredients
             for (ItemStack ingredient : recipe.getIngredientList()) {
@@ -323,7 +331,10 @@ public class RecipeUtil {
             FurnaceRecipe recipe = (FurnaceRecipe) toClone;
             return new FurnaceRecipe(recipe.getResult().clone(), recipe.getInput().getData());
         }
-        return null;
+
+        throw new UnsupportedOperationException(
+                "Unable to clone recipes of type " + toClone.getClass().getName()
+        );
     }
 
     public static ComparableRecipe comparable(Recipe recipe) {
