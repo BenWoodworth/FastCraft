@@ -39,7 +39,7 @@ class SpongeGui(
     /**
      * The inventory representing this GUI.
      */
-    @Suppress("UNCHECKED_CAST")
+    @Suppress("UNCHECKED_CAST", "NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
     private val inventory = Inventory.builder()
             .of(InventoryArchetypes.CHEST)
             .property(
@@ -73,6 +73,7 @@ class SpongeGui(
                 .map(::SpongePlayer)
     }
 
+    @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
     override fun updateLayout() {
         for (x in 0 until width) {
             for (y in 0 until height) {

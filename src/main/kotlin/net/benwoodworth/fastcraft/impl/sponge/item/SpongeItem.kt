@@ -43,6 +43,7 @@ class SpongeItem(
                 base.offer(Keys.DISPLAY_NAME, value.base)
             }
 
+        @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
         override var lore: List<Text?>?
             get() {
                 val lore = base.get(Keys.ITEM_LORE).orElse(null)

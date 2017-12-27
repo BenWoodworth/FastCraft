@@ -15,6 +15,7 @@ if (env.containsKey('CIRCLECI')) {
     }
 }
 
+def plugin_id = 'fastcraft'
 def plugin_name = 'FastCraft'
 def plugin_author = 'Kepler_'
 def plugin_description = 'Redefines crafting in Minecraft'
@@ -35,10 +36,13 @@ buildscript {
 
         version_kotlin = '1.2.10'
         version_spongegradle = '0.8.1'
-        version_shadow = '2.0.1'
+        version_shadow = '2.0.2'
 
         version_bukkit = '1.12-pre5-SNAPSHOT'
         version_sponge = '7.0.0-20171207.130015-65'
+
+        version_bstats_bukkit = '1.2'
+        version_bstats_sponge = '1.2'
 
         version_klaxon = '0.30'
 
@@ -68,6 +72,7 @@ buildscript {
 repositories {
     mavenCentral()
     maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url 'http://repo.bstats.org/content/repositories/releases/' }
     maven { url 'http://repo.spongepowered.org/maven' }
     jcenter()
 }
@@ -84,6 +89,9 @@ dependencies {
 
     compile "org.bukkit:bukkit:$version_bukkit"
     compile "org.spongepowered:spongeapi:$version_sponge"
+
+    compile "org.bstats:bstats-bukkit:$version_bstats_bukkit"
+    compile "org.bstats:bstats-sponge:$version_bstats_sponge"
 
     compile "javax.annotation:jsr250-api:$version_jsr250"
     compile "javax.inject:javax.inject:$version_javax_inject"
@@ -128,12 +136,17 @@ processResources {
     }
 }
 
-sponge.plugin.meta {
-    name = plugin_name
-    authors = [plugin_author]
-    version = plugin_version
-    description = plugin_description
-    url = plugin_website
+sponge {
+    plugin {
+        id = plugin_id
+        meta {
+            name = plugin_name
+            authors = [plugin_author]
+            version = plugin_version
+            description = plugin_description
+            url = plugin_website
+        }
+    }
 }
 
 sourceSets {
@@ -160,6 +173,8 @@ shadowJar {
         include dependency("com.google.dagger:dagger:$version_dagger")
         include dependency("javax.inject:javax.inject:$version_javax_inject")
         include dependency("com.beust:klaxon:$version_klaxon")
+        include dependency("org.bstats:bstats-bukkit:$version_bstats_bukkit")
+        include dependency("org.bstats:bstats-sponge:$version_bstats_sponge")
     }
 
     def libs = 'net.benwoodworth.fastcraft.libs'
@@ -167,4 +182,5 @@ shadowJar {
     relocate('dagger', "${libs}.dagger")
     relocate('javax', "${libs}.javax")
     relocate('com.beust.klaxon', "${libs}.klaxon")
+    relocate('org.bstats', "${libs}.bstats")
 }

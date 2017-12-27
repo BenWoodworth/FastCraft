@@ -33,7 +33,7 @@ internal class CustomSpongeCraftingInventory(
      */
     private val resultSlot = CustomCraftingOutput(plugin)
 
-    override fun getRecipe(world: World?): Optional<CraftingRecipe> {
+    override fun getRecipe(world: World): Optional<CraftingRecipe> {
         return Sponge.getRegistry().craftingRecipeRegistry.findMatchingRecipe(this, world)
     }
 

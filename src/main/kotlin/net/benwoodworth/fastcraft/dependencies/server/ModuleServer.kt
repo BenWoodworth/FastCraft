@@ -8,6 +8,4 @@ interface ModuleServer {
     fun taskBuilder(): Task.Builder
 
     fun pluginProvider(): Plugin.Provider
-
-    fun metrics(): Metrics
 }

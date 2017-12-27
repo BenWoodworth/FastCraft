@@ -9,6 +9,7 @@ import net.benwoodworth.fastcraft.impl.bukkit.item.BukkitModuleItem
 import net.benwoodworth.fastcraft.impl.bukkit.player.BukkitModulePlayer
 import net.benwoodworth.fastcraft.impl.bukkit.server.BukkitModuleServer
 import net.benwoodworth.fastcraft.impl.bukkit.text.BukkitModuleText
+import org.bstats.bukkit.Metrics as BukkitBstatsMetrics
 import org.bukkit.plugin.java.JavaPlugin
 
 /**
@@ -31,5 +32,7 @@ class BukkitFastCraft : FastCraftImplementation, JavaPlugin() {
                 .bukkitModuleText(BukkitModuleText())
 
         instance = fastCraftBuilder.build().getFastCraft()
+
+        BukkitBstatsMetrics(this)
     }
 }
