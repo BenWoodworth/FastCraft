@@ -6,20 +6,26 @@ import net.benwoodworth.fastcraft.dependencies.item.Item
 /**
  * A button in a GUI.
  */
-interface GuiButton {
+class GuiButtonBasic(
+        item: Item? = null
+) : GuiButton {
 
     /**
      * A listener for layout changes.
      */
-    val changeListener: Listener<EventGuiLayoutChange>
+    override val changeListener = Listener<EventGuiLayoutChange>()
 
     /**
      * A listener for button clicks.
      */
-    val clickListener: Listener<EventGuiButtonClick>
+    override val clickListener = Listener<EventGuiButtonClick>()
 
     /**
      * The item representing this button.
      */
-    val item: Item?
+    override var item: Item? = item
+        set(value) {
+            field = value
+            changeListener.notifyHandlers(EventGuiLayoutChange())
+        }
 }

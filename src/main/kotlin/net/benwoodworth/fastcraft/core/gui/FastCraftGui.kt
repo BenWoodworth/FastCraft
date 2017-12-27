@@ -1,9 +1,6 @@
 package net.benwoodworth.fastcraft.core.gui
 
-import net.benwoodworth.fastcraft.dependencies.gui.Gui
-import net.benwoodworth.fastcraft.dependencies.gui.GuiButton
-import net.benwoodworth.fastcraft.dependencies.gui.GuiLayout
-import net.benwoodworth.fastcraft.dependencies.gui.GuiLayoutComposite
+import net.benwoodworth.fastcraft.dependencies.gui.*
 import net.benwoodworth.fastcraft.dependencies.item.Item
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.dependencies.text.Text
@@ -21,7 +18,7 @@ class FastCraftGui private constructor(
     /**
      * Button for changing pages.
      */
-    private val buttonPage: GuiButton = GuiButton().apply {
+    private val buttonPage: GuiButton = GuiButtonBasic().apply {
         item = itemBuilder.get()
                 .type("minecraft:iron_sword")
                 .amount(1)
@@ -37,7 +34,7 @@ class FastCraftGui private constructor(
     /**
      * Button to open the vanilla crafting grid.
      */
-    private val buttonWorkbench = GuiButton().apply {
+    private val buttonWorkbench = GuiButtonBasic().apply {
         item = itemBuilder.get()
                 .type("minecraft:crafting_table")
                 .amount(1)
@@ -53,7 +50,7 @@ class FastCraftGui private constructor(
     /**
      * Button to change the crafting multiplier.
      */
-    private val buttonMultiplier = GuiButton().apply {
+    private val buttonMultiplier = GuiButtonBasic().apply {
         item = itemBuilder.get()
                 .type("minecraft:anvil")
                 .amount(1)
@@ -69,7 +66,7 @@ class FastCraftGui private constructor(
     /**
      * Button to refresh the recipes.
      */
-    private val buttonRefresh = GuiButton().apply {
+    private val buttonRefresh = GuiButtonBasic().apply {
         item = itemBuilder.get()
                 .type("minecraft:nether_star")
                 .amount(1)

@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft.dependencies.gui
 
-import net.benwoodworth.fastcraft.dependencies.event.EventGuiClose
 import net.benwoodworth.fastcraft.dependencies.event.Listener
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.dependencies.text.Text

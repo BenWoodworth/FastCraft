@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft.dependencies.gui
 
-import net.benwoodworth.fastcraft.dependencies.event.EventGuiLayoutChange
 import net.benwoodworth.fastcraft.dependencies.event.Listener
 
 /**
@@ -48,7 +47,7 @@ open class GuiLayout(
         return removeButtonNoNotify(x, y).also {
             buttons[Pair(x, y)] = button
             button.changeListener += changeListener::notifyHandlers
-            changeListener.notifyHandlers(EventGuiLayoutChange.Impl())
+            changeListener.notifyHandlers(EventGuiLayoutChange())
         }
     }
 
@@ -61,7 +60,7 @@ open class GuiLayout(
      */
     fun removeButton(x: Int, y: Int): GuiButton? {
         return removeButtonNoNotify(x, y)?.also {
-            changeListener.notifyHandlers(EventGuiLayoutChange.Impl())
+            changeListener.notifyHandlers(EventGuiLayoutChange())
         }
     }
 

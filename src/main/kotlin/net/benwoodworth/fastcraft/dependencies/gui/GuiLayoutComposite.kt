@@ -1,7 +1,5 @@
 package net.benwoodworth.fastcraft.dependencies.gui
 
-import net.benwoodworth.fastcraft.dependencies.event.EventGuiLayoutChange
-
 /**
  * A composite [GuiLayout].
  */
@@ -23,7 +21,7 @@ open class GuiLayoutComposite(
     fun addLayout(x: Int, y: Int, layout: GuiLayout) {
         childLayouts += LayoutPosition(x, y, layout)
         layout.changeListener += changeListener::notifyHandlers
-        changeListener.notifyHandlers(EventGuiLayoutChange.Impl())
+        changeListener.notifyHandlers(EventGuiLayoutChange())
     }
 
     /**
@@ -36,7 +34,7 @@ open class GuiLayoutComposite(
             childLayouts.remove(it)
             it.layout.changeListener -= changeListener::notifyHandlers
         }
-        changeListener.notifyHandlers(EventGuiLayoutChange.Impl())
+        changeListener.notifyHandlers(EventGuiLayoutChange())
     }
 
     /**
