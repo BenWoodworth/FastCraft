@@ -5,4 +5,4 @@ website: ${plugin_website}
 
 description: ${plugin_description}
 
-main: net.benwoodworth.fastcraft.impl.bukkit.BukkitFastCraft
+main: net.benwoodworth.fastcraft.implementations.bukkit.BukkitFastCraft
