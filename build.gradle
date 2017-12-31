@@ -136,6 +136,22 @@ processResources {
     }
 }
 
+compileKotlin {
+    dependsOn generateMetadata
+}
+
+kapt {
+    processors += 'org.spongepowered.plugin.processor.PluginProcessor'
+    arguments {
+        arg 'extraMetadataFiles', generateMetadata.target
+        arg 'metadataOutputFile', generateMetadata.target
+    }
+}
+
+afterEvaluate {
+    tasks.kaptKotlin.outputs.upToDateWhen { false }
+}
+
 sponge {
     plugin {
         id = plugin_id
