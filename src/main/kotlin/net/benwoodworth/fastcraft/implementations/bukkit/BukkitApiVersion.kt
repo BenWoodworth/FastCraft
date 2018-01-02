@@ -9,7 +9,8 @@ data class BukkitApiVersion( // TODO Test
         private val patch: Int,
         private val rMajor: Int?,
         private val rMinor: Int?,
-        private val pre: Int?
+        private val pre: Int?,
+        private val snapshot: Boolean
 ) : Comparable<BukkitApiVersion> {
 
     companion object {
@@ -21,11 +22,13 @@ data class BukkitApiVersion( // TODO Test
          * @return the parsed Bukkit version, or null if invalid
          */
         fun parse(version: String): BukkitApiVersion? {
-            // [major].[minor?].[patch?]-[revision?]-[pre?]-SNAPSHOT
-            val regex = Regex("""^(\d+)(?:\.(\d+))?(?:\.(\d+))?(?:-R(\d+)\.(\d+))?(?:-pre(\d+))?-SNAPSHOT$""")
+            // [major].[minor?].[patch?]-[revision?]-[pre?]-[snapshot?]
+            val regex = Regex(
+                    """^(\d+)(?:\.(\d+))?(?:\.(\d+))?(?:-R(\d+)\.(\d+))?(?:-pre(\d+))?(?:-(SNAPSHOT))?$"""
+            )
 
             val match = regex.matchEntire(version) ?: return null
-            val (major, minor, patch, rMajor, rMinor, pre) = match.destructured
+            val (major, minor, patch, rMajor, rMinor, pre, snapshot) = match.destructured
 
             return BukkitApiVersion(
                     major.toIntOrNull() ?: 0,
@@ -33,7 +36,8 @@ data class BukkitApiVersion( // TODO Test
                     patch.toIntOrNull() ?: 0,
                     rMajor.toIntOrNull(),
                     rMinor.toIntOrNull(),
-                    pre.toIntOrNull()
+                    pre.toIntOrNull(),
+                    snapshot == "SNAPSHOT"
             )
         }
     }
@@ -47,21 +51,26 @@ data class BukkitApiVersion( // TODO Test
         patch != other.patch -> patch - other.patch
 
         rMajor != other.rMajor -> when {
-            rMajor == null -> 1 // released after
-            other.rMajor == null -> -1 // released before
+            rMajor == null -> 1 // Released after
+            other.rMajor == null -> -1 // Released before
             else -> rMajor - other.rMajor
         }
 
         rMinor != other.rMinor -> when {
-            rMinor == null -> 1 // released after
-            other.rMinor == null -> -1 // released before
+            rMinor == null -> 1 // Released after
+            other.rMinor == null -> -1 // Released before
             else -> rMinor - other.rMinor
         }
 
         pre != other.pre -> when {
-            pre == null -> 1 // released after
-            other.pre == null -> -1 // released before
+            pre == null -> 1 // Released after
+            other.pre == null -> -1 // Released before
             else -> pre - other.pre
+        }
+
+        snapshot != other.snapshot -> when {
+            snapshot -> -1 // Released before
+            else -> 1 // Released after
         }
 
         else -> 0
@@ -79,6 +88,8 @@ data class BukkitApiVersion( // TODO Test
 
         if (pre != null) result += "-pre$pre"
 
-        return "$result-SNAPSHOT"
+        if (snapshot) result += "-SNAPSHOT"
+
+        return result
     }
 }
