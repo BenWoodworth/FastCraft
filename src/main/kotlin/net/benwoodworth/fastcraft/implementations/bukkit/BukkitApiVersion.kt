@@ -4,12 +4,12 @@ package net.benwoodworth.fastcraft.implementations.bukkit
  * A Bukkit API version.
  */
 data class BukkitApiVersion( // TODO Test
-        val major: Int,
-        val minor: Int,
-        val patch: Int,
-        val rMajor: Int?,
-        val rMinor: Int?,
-        val pre: Int?
+        private val major: Int,
+        private val minor: Int,
+        private val patch: Int,
+        private val rMajor: Int?,
+        private val rMinor: Int?,
+        private val pre: Int?
 ) : Comparable<BukkitApiVersion> {
 
     companion object {
@@ -38,6 +38,9 @@ data class BukkitApiVersion( // TODO Test
         }
     }
 
+    /**
+     * Compares the release order of this version with another.
+     */
     override operator fun compareTo(other: BukkitApiVersion) = when {
         major != other.major -> major - other.major
         minor != other.minor -> minor - other.minor
@@ -62,5 +65,20 @@ data class BukkitApiVersion( // TODO Test
         }
 
         else -> 0
+    }
+
+    override fun toString(): String {
+        var result = "$major.$minor"
+        if (patch != 0) result += ".$minor"
+
+        if (rMajor != null || rMinor != null) {
+            result += "-R"
+            if (rMajor != null) result += rMajor
+            if (rMinor != null) result += ".$rMinor"
+        }
+
+        if (pre != null) result += "-pre$pre"
+
+        return "$result-SNAPSHOT"
     }
 }
