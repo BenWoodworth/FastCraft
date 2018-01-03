@@ -4,8 +4,6 @@ import net.benwoodworth.fastcraft.dependencies.item.Item
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitText
 import net.benwoodworth.fastcraft.util.Adapter
-import org.bukkit.Bukkit
-import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 
 /**
@@ -68,42 +66,6 @@ class BukkitItem(
 
         override fun immutableCopy(): Item {
             return BukkitItem(base.clone())
-        }
-    }
-
-    class Builder : Item.Builder {
-
-        private var result = ItemStack(Material.AIR)
-
-        override fun build() = BukkitItem(result.clone())
-
-        override fun from(item: Item) = also {
-            result = (item.mutableCopy() as BukkitItem.Mutable).base
-        }
-
-        override fun type(typeId: String) = also {
-            @Suppress("DEPRECATION")
-            result.type = Bukkit.getUnsafe().getMaterialFromInternalName(typeId)
-        }
-
-        override fun amount(amount: Int) = also {
-            result.amount = amount
-        }
-
-        override fun displayName(displayName: Text?) = also {
-            result.itemMeta = result.itemMeta.apply {
-                setDisplayName((displayName as BukkitText?)?.text)
-            }
-        }
-
-        override fun lore(vararg lore: Text?) = also {
-            result.itemMeta = result.itemMeta.apply {
-                this.lore = lore.map { (it as BukkitText?)?.text }
-            }
-        }
-
-        override fun durability(durability: Int) {
-            result.durability = durability.toShort()
         }
     }
 }

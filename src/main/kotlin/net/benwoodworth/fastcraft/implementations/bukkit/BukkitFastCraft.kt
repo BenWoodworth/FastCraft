@@ -9,13 +9,14 @@ import net.benwoodworth.fastcraft.implementations.bukkit.item.BukkitModuleItem
 import net.benwoodworth.fastcraft.implementations.bukkit.player.BukkitModulePlayer
 import net.benwoodworth.fastcraft.implementations.bukkit.server.BukkitModuleServer
 import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitModuleText
-import org.bstats.bukkit.Metrics as BukkitBstatsMetrics
+import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
+import org.bstats.bukkit.Metrics as BukkitBstatsMetrics
 
 /**
  * Bukkit implementation of FastCraft.
  */
-class BukkitFastCraft : FastCraftImplementation, JavaPlugin() {
+object BukkitFastCraft : FastCraftImplementation, JavaPlugin() {
 
     override lateinit var instance: FastCraft
         private set
@@ -23,7 +24,6 @@ class BukkitFastCraft : FastCraftImplementation, JavaPlugin() {
     @Suppress("DEPRECATION") // TODO Don't suppress deprecation
     override fun onEnable() {
         val fastCraftBuilder = DaggerBukkitDependenciesComponent.builder()
-                .bukkitModule(BukkitModule(this))
                 .bukkitModuleConfig(BukkitModuleConfig())
                 .bukkitModuleEvent(BukkitModuleEvent(this))
                 .bukkitModuleGui(BukkitModuleGui(this))
@@ -35,5 +35,7 @@ class BukkitFastCraft : FastCraftImplementation, JavaPlugin() {
         instance = fastCraftBuilder.build().getFastCraft()
 
         BukkitBstatsMetrics(this)
+
+        println(Bukkit.getServer().javaClass.`package`.name)
     }
 }

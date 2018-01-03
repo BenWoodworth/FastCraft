@@ -16,7 +16,6 @@ import javax.inject.Singleton
  */
 @Singleton
 @Component(modules = [
-    BukkitModule::class,
     BukkitModuleConfig::class,
     BukkitModuleEvent::class,
     BukkitModuleGui::class,

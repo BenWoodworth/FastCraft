@@ -4,9 +4,7 @@ import net.benwoodworth.fastcraft.dependencies.item.Item
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.implementations.sponge.text.SpongeText
 import net.benwoodworth.fastcraft.util.Adapter
-import org.spongepowered.api.Sponge
 import org.spongepowered.api.data.key.Keys
-import org.spongepowered.api.item.ItemType
 import org.spongepowered.api.item.inventory.ItemStack
 import org.spongepowered.api.text.Text as Sponge_Text
 
@@ -81,62 +79,6 @@ class SpongeItem(
 
         override fun immutableCopy(): Item {
             return SpongeItem(base.copy())
-        }
-    }
-
-    class Builder : Item.Builder {
-
-        private val builder = ItemStack.builder()
-
-        private val postChanges = mutableListOf<(item: ItemStack) -> Unit>()
-
-        override fun build(): Item {
-            val result = builder.build()
-            postChanges.forEach { it(result) }
-            return SpongeItem(result)
-        }
-
-        override fun from(item: Item): Item.Builder {
-            builder.fromItemStack(
-                    (item.mutableCopy() as SpongeItem.Mutable).base
-            )
-            return this
-        }
-
-        override fun type(typeId: String): Item.Builder {
-            val itemType = Sponge.getRegistry().getType(ItemType::class.java, typeId)
-
-            builder.itemType(itemType.get())
-            return this
-        }
-
-        override fun amount(amount: Int): Item.Builder {
-            builder.quantity(amount)
-            return this
-        }
-
-        override fun displayName(displayName: Text?): Item.Builder {
-            postChanges += {
-                it.transform(Keys.DISPLAY_NAME) {
-                    (displayName as SpongeText?)?.base
-                }
-            }
-            return this
-        }
-
-        override fun lore(vararg lore: Text?): Item.Builder {
-            postChanges += {
-                it.transform(Keys.ITEM_LORE) {
-                    lore.map { (it as SpongeText?)?.base }
-                }
-            }
-            return this
-        }
-
-        override fun durability(durability: Int) {
-            postChanges += {
-                it.offer(Keys.ITEM_DURABILITY, durability)
-            }
         }
     }
 }

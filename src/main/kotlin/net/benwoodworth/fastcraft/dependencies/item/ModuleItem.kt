@@ -7,7 +7,7 @@ import net.benwoodworth.fastcraft.dependencies.item.recipe.RecipeProvider
  */
 interface ModuleItem {
 
-    fun itemBuilder(): Item.Builder
+    fun itemBuilder(): ItemBuilder
 
     fun recipeProvider(): RecipeProvider
 }
