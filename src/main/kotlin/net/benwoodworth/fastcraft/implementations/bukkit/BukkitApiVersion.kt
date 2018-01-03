@@ -25,7 +25,7 @@ data class BukkitApiVersion( // TODO Test
             val version = BukkitApiVersion.parse(versionStr)
 
             version ?: run {
-                BukkitFastCraft.logger.log(
+                BukkitFastCraft.plugin.logger.log(
                         Level.SEVERE,
                         "Unsupported Bukkit API version: $versionStr."
                                 + "Assuming latest version. Please report this."
