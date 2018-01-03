@@ -14,13 +14,15 @@ import javax.inject.Singleton
 /**
  * Bukkit implementation of [DependenciesComponent].
  */
-@Singleton @Component(modules = arrayOf(
-        BukkitModuleConfig::class,
-        BukkitModuleEvent::class,
-        BukkitModuleGui::class,
-        BukkitModuleItem::class,
-        BukkitModulePlayer::class,
-        BukkitModuleServer::class,
-        BukkitModuleText::class
-))
+@Singleton
+@Component(modules = [
+    BukkitModule::class,
+    BukkitModuleConfig::class,
+    BukkitModuleEvent::class,
+    BukkitModuleGui::class,
+    BukkitModuleItem::class,
+    BukkitModulePlayer::class,
+    BukkitModuleServer::class,
+    BukkitModuleText::class
+])
 interface BukkitDependenciesComponent : DependenciesComponent

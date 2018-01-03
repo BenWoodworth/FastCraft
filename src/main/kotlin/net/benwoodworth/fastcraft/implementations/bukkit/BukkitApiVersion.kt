@@ -5,12 +5,12 @@ package net.benwoodworth.fastcraft.implementations.bukkit
  */
 data class BukkitApiVersion( // TODO Test
         private val major: Int,
-        private val minor: Int,
-        private val patch: Int,
-        private val rMajor: Int?,
-        private val rMinor: Int?,
-        private val pre: Int?,
-        private val snapshot: Boolean
+        private val minor: Int = 0,
+        private val patch: Int = 0,
+        private val rMajor: Int? = null,
+        private val rMinor: Int? = null,
+        private val pre: Int? = null,
+        private val snapshot: Boolean = false
 ) : Comparable<BukkitApiVersion> {
 
     companion object {
@@ -22,22 +22,20 @@ data class BukkitApiVersion( // TODO Test
          * @return the parsed Bukkit version, or null if invalid
          */
         fun parse(version: String): BukkitApiVersion? {
-            // [major].[minor?].[patch?]-[revision?]-[pre?]-[snapshot?]
-            val regex = Regex(
-                    """^(\d+)(?:\.(\d+))?(?:\.(\d+))?(?:-R(\d+)\.(\d+))?(?:-pre(\d+))?(?:-(SNAPSHOT))?$"""
-            )
+            // [major].[minor].[patch?]-[revision?]-[pre?]-[snapshot?]
+            val regex = Regex("""^(\d+)\.(\d+)(?:\.(\d+))?(?:-R(\d+)\.(\d+))?(?:-pre(\d+))?(?:-(SNAPSHOT))?$""")
 
             val match = regex.matchEntire(version) ?: return null
             val (major, minor, patch, rMajor, rMinor, pre, snapshot) = match.destructured
 
             return BukkitApiVersion(
-                    major.toIntOrNull() ?: 0,
-                    minor.toIntOrNull() ?: 0,
-                    patch.toIntOrNull() ?: 0,
-                    rMajor.toIntOrNull(),
-                    rMinor.toIntOrNull(),
-                    pre.toIntOrNull(),
-                    snapshot == "SNAPSHOT"
+                    major.toInt(),
+                    minor.toInt(),
+                    if (patch.isEmpty()) 0 else patch.toInt(),
+                    if (rMajor.isEmpty()) null else rMajor.toInt(),
+                    if (rMinor.isEmpty()) null else rMinor.toInt(),
+                    if (pre.isEmpty()) null else pre.toInt(),
+                    snapshot.isNotEmpty()
             )
         }
     }
