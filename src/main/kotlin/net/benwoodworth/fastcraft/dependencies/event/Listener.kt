@@ -23,8 +23,20 @@ class Listener<TEvent> {
      * @param event the event to raise
      */
     fun notifyHandlers(event: TEvent) {
-        handlersParam.forEach { it(event) }
-        handlersNoParam.forEach { it() }
+        handlersParam.forEach {
+            try {
+                it(event)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+        handlersNoParam.forEach {
+            try {
+                it()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
     }
 
     /**
