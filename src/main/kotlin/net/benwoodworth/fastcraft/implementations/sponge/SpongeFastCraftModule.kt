@@ -14,7 +14,7 @@ import net.benwoodworth.fastcraft.dependencies.item.recipe.RecipeProvider
 import net.benwoodworth.fastcraft.dependencies.player.PlayerProvider
 import net.benwoodworth.fastcraft.dependencies.server.PluginRegistry
 import net.benwoodworth.fastcraft.dependencies.server.Task
-import net.benwoodworth.fastcraft.dependencies.text.Text
+import net.benwoodworth.fastcraft.dependencies.text.TextBuilder
 import net.benwoodworth.fastcraft.dependencies.text.TextColorRegistry
 import net.benwoodworth.fastcraft.implementations.sponge.config.SpongeConfigManager
 import net.benwoodworth.fastcraft.implementations.sponge.event.SpongeEventPlayerJoin
@@ -27,7 +27,7 @@ import net.benwoodworth.fastcraft.implementations.sponge.item.recipe.SpongeRecip
 import net.benwoodworth.fastcraft.implementations.sponge.player.SpongePlayerProvider
 import net.benwoodworth.fastcraft.implementations.sponge.server.SpongePluginRegistry
 import net.benwoodworth.fastcraft.implementations.sponge.server.SpongeTask
-import net.benwoodworth.fastcraft.implementations.sponge.text.SpongeText
+import net.benwoodworth.fastcraft.implementations.sponge.text.SpongeTextBuilder
 import net.benwoodworth.fastcraft.implementations.sponge.text.SpongeTextColorRegistry
 import org.spongepowered.api.Sponge
 import org.spongepowered.api.event.game.state.GameInitializationEvent
@@ -106,7 +106,7 @@ class SpongeFastCraftModule(
     fun pluginProvider(dep: SpongePluginRegistry): PluginRegistry = dep
 
     @Provides
-    fun textBuilder(dep: SpongeText.Builder): Text.Builder = dep
+    fun textBuilder(dep: SpongeTextBuilder): TextBuilder = dep
 
     @Provides
     @Singleton

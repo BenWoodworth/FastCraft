@@ -4,14 +4,14 @@ import net.benwoodworth.fastcraft.dependencies.gui.*
 import net.benwoodworth.fastcraft.dependencies.item.ItemBuilder
 import net.benwoodworth.fastcraft.dependencies.item.ItemTypeFactory
 import net.benwoodworth.fastcraft.dependencies.player.Player
-import net.benwoodworth.fastcraft.dependencies.text.Text
+import net.benwoodworth.fastcraft.dependencies.text.TextBuilder
 import javax.inject.Inject
 import javax.inject.Provider
 
 class FastCraftGui private constructor(
         val player: Player,
 
-        private val textBuilder: Provider<Text.Builder>,
+        private val textBuilder: Provider<TextBuilder>,
         itemBuilder: Provider<ItemBuilder>,
         guiBuilder: Provider<GuiBuilder>,
         itemTypeFactory: ItemTypeFactory
@@ -138,7 +138,7 @@ class FastCraftGui private constructor(
     }
 
     class Factory @Inject constructor(
-            private val textBuilder: Provider<Text.Builder>,
+            private val textBuilder: Provider<TextBuilder>,
             private val itemBuilder: Provider<ItemBuilder>,
             private val guiBuilder: Provider<GuiBuilder>,
             private val itemTypeFactory: ItemTypeFactory
