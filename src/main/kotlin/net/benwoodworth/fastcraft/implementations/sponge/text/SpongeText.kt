@@ -5,6 +5,7 @@ import net.benwoodworth.fastcraft.dependencies.text.TextStyle
 import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.text.LiteralText
 import org.spongepowered.api.text.format.TextFormat
+import javax.inject.Inject
 import org.spongepowered.api.text.Text as Sponge_Text
 import org.spongepowered.api.text.format.TextStyle as Sponge_TextStyle
 
@@ -18,9 +19,8 @@ class SpongeText(
     /**
      * Adapts the Sponge LiteralText builder.
      */
-    class Builder(
-            baseBuilder: LiteralText.Builder
-    ) : Text.Builder, Adapter<LiteralText.Builder>(baseBuilder) {
+    class Builder @Inject constructor(
+    ) : Text.Builder, Adapter<LiteralText.Builder>(LiteralText.builder("")) {
 
         override fun build(): Text {
             return SpongeText(base.build())

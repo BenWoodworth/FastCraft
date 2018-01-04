@@ -4,8 +4,9 @@ import net.benwoodworth.fastcraft.dependencies.gui.GuiBuilder
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.implementations.bukkit.BukkitFastCraft
 import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitText
+import javax.inject.Inject
 
-class BukkitGuiBuilder(
+class BukkitGuiBuilder @Inject constructor(
         private var plugin: BukkitFastCraft
 ) : GuiBuilder {
 

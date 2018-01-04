@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.implementations.bukkit.item
 
 import net.benwoodworth.fastcraft.dependencies.item.Item
+import net.benwoodworth.fastcraft.dependencies.item.ItemType
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitText
 import net.benwoodworth.fastcraft.util.Adapter
@@ -19,6 +20,9 @@ class BukkitItem(
     class Mutable(
             baseItem: ItemStack
     ) : Item.Mutable, Adapter<ItemStack>(baseItem) {
+
+        override val type: ItemType
+            get() = BukkitItemType(base.type)
 
         override var amount: Int
             get() = base.amount

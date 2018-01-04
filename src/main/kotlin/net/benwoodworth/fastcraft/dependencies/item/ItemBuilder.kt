@@ -24,10 +24,10 @@ interface ItemBuilder {
     /**
      * Set the item type.
      *
-     * @param typeId the Minecraft item type ID
+     * @param type the item type
      * @return this builder, for chaining
      */
-    fun type(typeId: String): ItemBuilder
+    fun type(type: ItemType): ItemBuilder
 
     /**
      * Set the item amount.

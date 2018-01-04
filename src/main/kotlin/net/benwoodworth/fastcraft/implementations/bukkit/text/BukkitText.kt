@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft.implementations.bukkit.text
 
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.dependencies.text.TextStyle
+import javax.inject.Inject
 
 /**
  * Bukkit implementation of [Text].
@@ -16,7 +17,8 @@ class BukkitText(
     /**
      * Bukkit implementation of [Text.Builder].
      */
-    class Builder : Text.Builder {
+    class Builder @Inject constructor(
+    ) : Text.Builder {
 
         private var text: String = ""
         private var extra = mutableListOf<Text>()

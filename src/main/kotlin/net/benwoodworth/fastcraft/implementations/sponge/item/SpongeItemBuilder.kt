@@ -2,14 +2,15 @@ package net.benwoodworth.fastcraft.implementations.sponge.item
 
 import net.benwoodworth.fastcraft.dependencies.item.Item
 import net.benwoodworth.fastcraft.dependencies.item.ItemBuilder
+import net.benwoodworth.fastcraft.dependencies.item.ItemType
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.implementations.sponge.text.SpongeText
-import org.spongepowered.api.Sponge
 import org.spongepowered.api.data.key.Keys
-import org.spongepowered.api.item.ItemType
 import org.spongepowered.api.item.inventory.ItemStack
+import javax.inject.Inject
 
-class SpongeItemBuilder : ItemBuilder {
+class SpongeItemBuilder @Inject constructor(
+) : ItemBuilder {
 
     private val builder = ItemStack.builder()
 
@@ -27,10 +28,8 @@ class SpongeItemBuilder : ItemBuilder {
         )
     }
 
-    override fun type(typeId: String) = also {
-        val itemType = Sponge.getRegistry().getType(ItemType::class.java, typeId)
-
-        builder.itemType(itemType.get())
+    override fun type(type: ItemType) = also {
+        builder.itemType((type as SpongeItemType).base)
     }
 
     override fun amount(amount: Int) = also {

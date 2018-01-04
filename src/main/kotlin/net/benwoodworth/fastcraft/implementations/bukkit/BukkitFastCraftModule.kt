@@ -9,6 +9,7 @@ import net.benwoodworth.fastcraft.dependencies.event.EventPluginEnable
 import net.benwoodworth.fastcraft.dependencies.event.Listener
 import net.benwoodworth.fastcraft.dependencies.gui.GuiBuilder
 import net.benwoodworth.fastcraft.dependencies.item.ItemBuilder
+import net.benwoodworth.fastcraft.dependencies.item.ItemTypeFactory
 import net.benwoodworth.fastcraft.dependencies.item.recipe.RecipeProvider
 import net.benwoodworth.fastcraft.dependencies.player.PlayerProvider
 import net.benwoodworth.fastcraft.dependencies.server.PluginRegistry
@@ -20,7 +21,8 @@ import net.benwoodworth.fastcraft.implementations.bukkit.event.BukkitEventPlayer
 import net.benwoodworth.fastcraft.implementations.bukkit.event.BukkitEventPluginDisable
 import net.benwoodworth.fastcraft.implementations.bukkit.event.BukkitEventPluginEnable
 import net.benwoodworth.fastcraft.implementations.bukkit.gui.BukkitGuiBuilder
-import net.benwoodworth.fastcraft.implementations.bukkit.item.BukkitItemBuilderProvider
+import net.benwoodworth.fastcraft.implementations.bukkit.item.BukkitItemBuilder
+import net.benwoodworth.fastcraft.implementations.bukkit.item.BukkitItemTypeFactory
 import net.benwoodworth.fastcraft.implementations.bukkit.item.recipe.BukkitRecipeProvider
 import net.benwoodworth.fastcraft.implementations.bukkit.player.BukkitPlayerProvider
 import net.benwoodworth.fastcraft.implementations.bukkit.server.BukkitPluginRegistry
@@ -42,9 +44,7 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun plugin(): BukkitFastCraft {
-        return plugin
-    }
+    fun plugin(): BukkitFastCraft = plugin
 
     @Provides
     @Singleton
@@ -58,9 +58,7 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun configManager(): ConfigManager {
-        return BukkitConfigManager()
-    }
+    fun configManager(dep: BukkitConfigManager): ConfigManager = dep
 
     @Provides
     @Singleton
@@ -111,46 +109,33 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    fun guiBuilder(plugin: BukkitFastCraft): GuiBuilder {
-        return BukkitGuiBuilder(plugin)
-    }
+    fun guiBuilder(dep: BukkitGuiBuilder): GuiBuilder = dep
 
     @Provides
-    fun itemBuilder(provider: BukkitItemBuilderProvider): ItemBuilder {
-        return provider.get()
-    }
+    fun itemBuilder(dep: BukkitItemBuilder): ItemBuilder = dep
 
     @Provides
-    @Singleton
-    fun recipeProvider(): RecipeProvider {
-        return BukkitRecipeProvider()
-    }
+    fun itemTypeFactory(dep: BukkitItemTypeFactory): ItemTypeFactory = dep
 
     @Provides
     @Singleton
-    fun playerProvider(): PlayerProvider {
-        return BukkitPlayerProvider()
-    }
-
-    @Provides
-    fun taskBuilder(plugin: BukkitFastCraft): Task.Builder {
-        return BukkitTask.Builder(plugin)
-    }
+    fun recipeProvider(dep: BukkitRecipeProvider): RecipeProvider = dep
 
     @Provides
     @Singleton
-    fun pluginProvider(): PluginRegistry {
-        return BukkitPluginRegistry()
-    }
+    fun playerProvider(dep: BukkitPlayerProvider): PlayerProvider = dep
 
     @Provides
-    fun textBuilder(): Text.Builder {
-        return BukkitText.Builder()
-    }
+    fun taskBuilder(dep: BukkitTask.Builder): Task.Builder = dep
 
     @Provides
     @Singleton
-    fun textColorRegistry(): TextColorRegistry {
-        return BukkitTextColorRegistry()
-    }
+    fun pluginProvider(dep: BukkitPluginRegistry): PluginRegistry = dep
+
+    @Provides
+    fun textBuilder(dep: BukkitText.Builder): Text.Builder = dep
+
+    @Provides
+    @Singleton
+    fun textColorRegistry(dep: BukkitTextColorRegistry): TextColorRegistry = dep
 }

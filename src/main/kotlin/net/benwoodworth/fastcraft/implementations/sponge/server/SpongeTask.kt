@@ -1,7 +1,9 @@
 package net.benwoodworth.fastcraft.implementations.sponge.server
 
 import net.benwoodworth.fastcraft.dependencies.server.Task
+import net.benwoodworth.fastcraft.implementations.sponge.SpongeFastCraft
 import net.benwoodworth.fastcraft.util.Adapter
+import javax.inject.Inject
 import org.spongepowered.api.scheduler.Task as Sponge_Task
 
 /**
@@ -18,10 +20,9 @@ class SpongeTask(
     /**
      * Sponge implementation of [Task.Builder].
      */
-    class Builder(
-            taskBuilder: Sponge_Task.Builder,
-            private val plugin: Any
-    ) : Task.Builder, Adapter<Sponge_Task.Builder>(taskBuilder) {
+    class Builder @Inject constructor(
+            private val plugin: SpongeFastCraft
+    ) : Task.Builder, Adapter<Sponge_Task.Builder>(Sponge_Task.builder()) {
 
         override fun execute(executable: (Task) -> Unit): Task {
             base.execute({ task -> executable(SpongeTask(task)) })

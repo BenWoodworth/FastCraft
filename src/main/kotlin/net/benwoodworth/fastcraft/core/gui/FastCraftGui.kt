@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft.core.gui
 
 import net.benwoodworth.fastcraft.dependencies.gui.*
 import net.benwoodworth.fastcraft.dependencies.item.ItemBuilder
+import net.benwoodworth.fastcraft.dependencies.item.ItemTypeFactory
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import javax.inject.Inject
@@ -12,7 +13,8 @@ class FastCraftGui private constructor(
 
         private val textBuilder: Provider<Text.Builder>,
         itemBuilder: Provider<ItemBuilder>,
-        guiBuilder: Provider<GuiBuilder>
+        guiBuilder: Provider<GuiBuilder>,
+        itemTypeFactory: ItemTypeFactory
 ) {
 
     /**
@@ -20,7 +22,7 @@ class FastCraftGui private constructor(
      */
     private val buttonPage: GuiButton = GuiButtonBasic().apply {
         item = itemBuilder.get()
-                .type("minecraft:iron_sword")
+                .type(itemTypeFactory.getIronSword())
                 .amount(1)
                 .displayName(textBuilder.get()
                         .text("Page")
@@ -36,7 +38,7 @@ class FastCraftGui private constructor(
      */
     private val buttonWorkbench = GuiButtonBasic().apply {
         item = itemBuilder.get()
-                .type("minecraft:crafting_table")
+                .type(itemTypeFactory.getCraftingTable())
                 .amount(1)
                 .displayName(textBuilder.get()
                         .text("Open Crafting Grid") // TODO Localize
@@ -52,7 +54,7 @@ class FastCraftGui private constructor(
      */
     private val buttonMultiplier = GuiButtonBasic().apply {
         item = itemBuilder.get()
-                .type("minecraft:anvil")
+                .type(itemTypeFactory.getAnvil())
                 .amount(1)
                 .displayName(textBuilder.get()
                         .text("Multiplier") // TODO Localize
@@ -68,7 +70,7 @@ class FastCraftGui private constructor(
      */
     private val buttonRefresh = GuiButtonBasic().apply {
         item = itemBuilder.get()
-                .type("minecraft:nether_star")
+                .type(itemTypeFactory.getNetherStar())
                 .amount(1)
                 .displayName(textBuilder.get()
                         .text("Refresh") // TODO Localize
@@ -138,14 +140,16 @@ class FastCraftGui private constructor(
     class Factory @Inject constructor(
             private val textBuilder: Provider<Text.Builder>,
             private val itemBuilder: Provider<ItemBuilder>,
-            private val guiBuilder: Provider<GuiBuilder>
+            private val guiBuilder: Provider<GuiBuilder>,
+            private val itemTypeFactory: ItemTypeFactory
     ) {
 
         fun create(player: Player) = FastCraftGui(
                 player,
                 textBuilder,
                 itemBuilder,
-                guiBuilder
+                guiBuilder,
+                itemTypeFactory
         )
     }
 }

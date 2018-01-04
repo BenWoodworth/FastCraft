@@ -9,6 +9,11 @@ import net.benwoodworth.fastcraft.util.TransMutable
 interface Item : TransMutable<Item, Item.Mutable> {
 
     /**
+     * The item type.
+     */
+    val type: ItemType
+
+    /**
      * The amount of items in this stack.
      */
     val amount: Int
@@ -50,13 +55,9 @@ interface Item : TransMutable<Item, Item.Mutable> {
      * A mutable [Item].
      */
     interface Mutable : Item {
-
         override var amount: Int
-
         override var displayName: Text?
-
         override var lore: List<Text?>?
-
         override var durability: Int
     }
 }

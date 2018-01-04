@@ -9,6 +9,7 @@ import net.benwoodworth.fastcraft.dependencies.event.EventPluginEnable
 import net.benwoodworth.fastcraft.dependencies.event.Listener
 import net.benwoodworth.fastcraft.dependencies.gui.GuiBuilder
 import net.benwoodworth.fastcraft.dependencies.item.ItemBuilder
+import net.benwoodworth.fastcraft.dependencies.item.ItemTypeFactory
 import net.benwoodworth.fastcraft.dependencies.item.recipe.RecipeProvider
 import net.benwoodworth.fastcraft.dependencies.player.PlayerProvider
 import net.benwoodworth.fastcraft.dependencies.server.PluginRegistry
@@ -21,6 +22,7 @@ import net.benwoodworth.fastcraft.implementations.sponge.event.SpongeEventPlugin
 import net.benwoodworth.fastcraft.implementations.sponge.event.SpongeEventPluginEnable
 import net.benwoodworth.fastcraft.implementations.sponge.gui.SpongeGuiBuilder
 import net.benwoodworth.fastcraft.implementations.sponge.item.SpongeItemBuilder
+import net.benwoodworth.fastcraft.implementations.sponge.item.SpongeItemTypeFactory
 import net.benwoodworth.fastcraft.implementations.sponge.item.recipe.SpongeRecipeProvider
 import net.benwoodworth.fastcraft.implementations.sponge.player.SpongePlayerProvider
 import net.benwoodworth.fastcraft.implementations.sponge.server.SpongePluginRegistry
@@ -41,15 +43,11 @@ class SpongeFastCraftModule(
 
     @Provides
     @Singleton
-    fun plugin(): SpongeFastCraft {
-        return plugin
-    }
+    fun plugin(): SpongeFastCraft = plugin
 
     @Provides
     @Singleton
-    fun configManager(): ConfigManager {
-        return SpongeConfigManager()
-    }
+    fun configManager(dep: SpongeConfigManager): ConfigManager = dep
 
     @Provides
     @Singleton
@@ -85,46 +83,33 @@ class SpongeFastCraftModule(
     }
 
     @Provides
-    fun guiBuilder(plugin: SpongeFastCraft): GuiBuilder {
-        return SpongeGuiBuilder(plugin)
-    }
+    fun guiBuilder(dep: SpongeGuiBuilder): GuiBuilder = dep
 
     @Provides
-    fun itemBuilder(): ItemBuilder {
-        return SpongeItemBuilder()
-    }
+    fun itemBuilder(dep: SpongeItemBuilder): ItemBuilder = dep
 
     @Provides
-    @Singleton
-    fun recipeProvider(plugin: SpongeFastCraft): RecipeProvider {
-        return SpongeRecipeProvider(plugin)
-    }
+    fun itemTypeFactory(dep: SpongeItemTypeFactory): ItemTypeFactory = dep
 
     @Provides
     @Singleton
-    fun playerProvider(): PlayerProvider {
-        return SpongePlayerProvider()
-    }
-
-    @Provides
-    fun taskBuilder(plugin: SpongeFastCraft): Task.Builder {
-        return SpongeTask.Builder(org.spongepowered.api.scheduler.Task.builder(), plugin)
-    }
+    fun recipeProvider(dep: SpongeRecipeProvider): RecipeProvider = dep
 
     @Provides
     @Singleton
-    fun pluginProvider(): PluginRegistry {
-        return SpongePluginRegistry()
-    }
+    fun playerProvider(dep: SpongePlayerProvider): PlayerProvider = dep
 
     @Provides
-    fun textBuilder(): Text.Builder {
-        return SpongeText.Builder(Sponge_Text.builder(""))
-    }
+    fun taskBuilder(dep: SpongeTask.Builder): Task.Builder = dep
 
     @Provides
     @Singleton
-    fun textColorRegistry(): TextColorRegistry {
-        return SpongeTextColorRegistry()
-    }
+    fun pluginProvider(dep: SpongePluginRegistry): PluginRegistry = dep
+
+    @Provides
+    fun textBuilder(dep: SpongeText.Builder): Text.Builder = dep
+
+    @Provides
+    @Singleton
+    fun textColorRegistry(dep: SpongeTextColorRegistry): TextColorRegistry = dep
 }

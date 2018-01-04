@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.implementations.sponge.item
 
 import net.benwoodworth.fastcraft.dependencies.item.Item
+import net.benwoodworth.fastcraft.dependencies.item.ItemType
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.implementations.sponge.text.SpongeText
 import net.benwoodworth.fastcraft.util.Adapter
@@ -21,6 +22,9 @@ class SpongeItem(
     class Mutable(
             baseItem: ItemStack
     ) : Item.Mutable, Adapter<ItemStack>(baseItem) {
+
+        override val type: ItemType
+            get() = SpongeItemType(base.type)
 
         override var amount: Int
             get() = base.quantity
