@@ -8,6 +8,7 @@ import net.benwoodworth.fastcraft.dependencies.event.EventPluginDisable
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginEnable
 import net.benwoodworth.fastcraft.dependencies.event.Listener
 import net.benwoodworth.fastcraft.dependencies.gui.Gui
+import net.benwoodworth.fastcraft.dependencies.gui.GuiBuilder
 import net.benwoodworth.fastcraft.dependencies.item.ItemBuilder
 import net.benwoodworth.fastcraft.dependencies.item.recipe.RecipeProvider
 import net.benwoodworth.fastcraft.dependencies.player.PlayerProvider
@@ -20,6 +21,7 @@ import net.benwoodworth.fastcraft.implementations.bukkit.event.BukkitEventPlayer
 import net.benwoodworth.fastcraft.implementations.bukkit.event.BukkitEventPluginDisable
 import net.benwoodworth.fastcraft.implementations.bukkit.event.BukkitEventPluginEnable
 import net.benwoodworth.fastcraft.implementations.bukkit.gui.BukkitGui
+import net.benwoodworth.fastcraft.implementations.bukkit.gui.BukkitGuiBuilder
 import net.benwoodworth.fastcraft.implementations.bukkit.item.BukkitItemBuilderProvider
 import net.benwoodworth.fastcraft.implementations.bukkit.item.recipe.BukkitRecipeProvider
 import net.benwoodworth.fastcraft.implementations.bukkit.player.BukkitPlayerProvider
@@ -111,8 +113,8 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    fun guiBuilder(plugin: BukkitFastCraft): Gui.Builder {
-        return BukkitGui.Builder(plugin)
+    fun guiBuilder(plugin: BukkitFastCraft): GuiBuilder {
+        return BukkitGuiBuilder(plugin)
     }
 
     @Provides

@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.implementations.bukkit
 import net.benwoodworth.fastcraft.core.FastCraft
 import net.benwoodworth.fastcraft.core.FastCraftImplementation
 import org.bukkit.plugin.java.JavaPlugin
-import org.bstats.bukkit.Metrics as BukkitBstatsMetrics
+import org.bstats.bukkit.Metrics as BukkitBStatsMetrics
 
 /**
  * Bukkit implementation of FastCraft.
@@ -19,6 +19,6 @@ class BukkitFastCraft : FastCraftImplementation, JavaPlugin() {
 
         instance = fastCraftBuilder.build().getFastCraft()
 
-        BukkitBstatsMetrics(this)
+        BukkitBStatsMetrics(this)
     }
 }

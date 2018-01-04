@@ -6,13 +6,12 @@ import net.benwoodworth.fastcraft.core.FastCraftImplementation
 import org.spongepowered.api.event.Listener
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent
 import org.spongepowered.api.plugin.Plugin
-import org.bstats.sponge.Metrics as SpongeBstatsMetrics
+import org.bstats.sponge.Metrics as SpongeBStatsMetrics
 
 /**
  * Sponge implementation of FastCraft.
  */
 @Plugin(id = "fastcraft")
-@Suppress("UNUSED")
 class SpongeFastCraft : FastCraftImplementation {
 
     override lateinit var instance: FastCraft
@@ -20,10 +19,10 @@ class SpongeFastCraft : FastCraftImplementation {
 
     @Inject
     @Suppress("UNUSED")
-    private lateinit var metrics: SpongeBstatsMetrics
+    private lateinit var metrics: SpongeBStatsMetrics
 
     @Listener
-    @Suppress("UNUSED", "UNUSED_PARAMETER", "DEPRECATION") // TODO Don't suppress deprecation
+    @Suppress("UNUSED", "UNUSED_PARAMETER")
     fun onPreInit(event: GamePreInitializationEvent) {
         val fastCraftBuilder = DaggerSpongeFastCraftComponent.builder()
                 .spongeFastCraftModule(SpongeFastCraftModule(this))

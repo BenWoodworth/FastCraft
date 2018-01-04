@@ -1,26 +1,16 @@
 package net.benwoodworth.fastcraft.implementations.sponge.gui
 
-import net.benwoodworth.fastcraft.dependencies.gui.EventGuiButtonClick
-import net.benwoodworth.fastcraft.dependencies.gui.EventGuiClose
 import net.benwoodworth.fastcraft.dependencies.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.player.Player
-import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.implementations.sponge.item.SpongeItem
 import net.benwoodworth.fastcraft.implementations.sponge.player.SpongePlayer
 import net.benwoodworth.fastcraft.implementations.sponge.text.SpongeText
 import org.spongepowered.api.Sponge
-import org.spongepowered.api.event.Order
-import org.spongepowered.api.event.filter.cause.First
-import org.spongepowered.api.event.item.inventory.AffectSlotEvent
-import org.spongepowered.api.event.item.inventory.ClickInventoryEvent
-import org.spongepowered.api.event.item.inventory.InteractInventoryEvent
 import org.spongepowered.api.item.inventory.Carrier
 import org.spongepowered.api.item.inventory.Inventory
 import org.spongepowered.api.item.inventory.InventoryArchetypes
-import org.spongepowered.api.item.inventory.Slot
 import org.spongepowered.api.item.inventory.property.InventoryDimension
 import org.spongepowered.api.item.inventory.property.InventoryTitle
-import org.spongepowered.api.item.inventory.property.SlotIndex
 import org.spongepowered.api.item.inventory.type.CarriedInventory
 import org.spongepowered.api.item.inventory.type.GridInventory
 import org.spongepowered.api.entity.living.player.Player as Sponge_Player
@@ -42,7 +32,7 @@ class SpongeGui(
 
     init {
         if (!registeredListeners) {
-            Sponge.getEventManager().registerListeners(plugin, SpongeGui.Listeners())
+            Sponge.getEventManager().registerListeners(plugin, SpongeGuiListeners())
             registeredListeners = true
         }
     }
@@ -91,124 +81,6 @@ class SpongeGui(
                 val item = getButton(x, y)?.item?.mutableCopy() as SpongeItem.Mutable?
                 gridInventory.set(x, y, item?.base)
             }
-        }
-    }
-
-    /**
-     * Listens for inventory events, in order to prevent modification
-     * of the [Gui]'s inventory, and handling button clicks.
-     */
-    @Suppress("UNUSED")
-    class Listeners {
-
-        /**
-         * Determine if a slot is part of a [Gui].
-         *
-         * @return `true` iff the slot is in a [Gui]
-         */
-        private fun isGuiSlot(slot: Slot): Boolean {
-            val parent = slot.parent() as? CarriedInventory<*> ?: return false
-            val carrier = parent.carrier.orElse(null) ?: return false
-
-            val slotIndex = slot.getProperty(SlotIndex::class.java, "slotindex")
-                    .map(SlotIndex::getValue)
-                    .orElse(null)
-
-            return slotIndex in 0 until carrier.inventory.capacity()
-        }
-
-        /**
-         * Disables slot transactions in [Gui] inventories.
-         *
-         * @param event the [AffectSlotEvent]
-         */
-        @Sponge_Listener(order = Order.EARLY)
-        fun onAffectSlot(event: AffectSlotEvent) {
-            event.transactions
-                    .filter { isGuiSlot(it.slot) }
-                    .forEach { it.isValid = false }
-        }
-
-        /**
-         * Forwards inventory clicks to buttons.
-         */
-        @Sponge_Listener(order = Order.BEFORE_POST)
-        fun onClick(event: ClickInventoryEvent, @First player: Sponge_Player?) {
-            if (event.transactions.size != 1) {
-                return
-            }
-
-            val slot = event.transactions[0].slot
-            if (!isGuiSlot(slot)) {
-                return
-            }
-
-            val carriedInv = slot.parent() as CarriedInventory<*>
-            val gui = carriedInv.carrier.get() as SpongeGui
-
-            val slotIndex = slot.getProperty(SlotIndex::class.java, "slotindex")
-                    .map(SlotIndex::getValue).get()
-
-            val button = gui.getButton(
-                    slotIndex.rem(gui.width),
-                    slotIndex / gui.width
-            ) ?: return
-
-            val clickEvent = EventGuiButtonClick(
-                    gui,
-                    button,
-                    player?.let(::SpongePlayer),
-                    event is ClickInventoryEvent.Primary,
-                    event is ClickInventoryEvent.Secondary,
-                    event is ClickInventoryEvent.Middle,
-                    event is ClickInventoryEvent.Double,
-                    (event as? ClickInventoryEvent.NumberPress)?.number
-            )
-
-            button.clickListener.notifyHandlers(clickEvent)
-        }
-
-        @Sponge_Listener(order = Order.LAST)
-        fun onClose(event: InteractInventoryEvent.Close, @First player: Sponge_Player?) {
-            if (event.isCancelled) {
-                return
-            }
-
-            val carriedInv = event.targetInventory as? CarriedInventory<*> ?: return
-            val gui = carriedInv.carrier.orElse(null) as? Gui ?: return
-
-            gui.closeListener.notifyHandlers(
-                    EventGuiClose(gui, player?.let(::SpongePlayer))
-            )
-        }
-    }
-
-    /**
-     * Sponge implementation of [Gui.Builder].
-     */
-    class Builder(
-            private val plugin: Any
-    ) : Gui.Builder {
-
-        private var height: Int? = null
-        private var title: Sponge_Text? = null
-
-        override fun build(): Gui {
-            return SpongeGui(
-                    plugin,
-                    height!!,
-                    title
-            )
-        }
-
-        override fun height(height: Int): Gui.Builder {
-            this.height = height
-            return this
-        }
-
-        override fun title(title: Text): Gui.Builder {
-            this.title = (title as SpongeText).base
-            return this
         }
     }
 }

@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.implementations.sponge
 
 import dagger.Component
+import net.benwoodworth.fastcraft.dependencies.FastCraftComponent
 import javax.inject.Singleton
 
 /**
@@ -10,4 +11,4 @@ import javax.inject.Singleton
 @Component(modules = [
     SpongeFastCraftModule::class
 ])
-interface SpongeFastCraftComponent : net.benwoodworth.fastcraft.dependencies.FastCraftComponent
+interface SpongeFastCraftComponent : FastCraftComponent

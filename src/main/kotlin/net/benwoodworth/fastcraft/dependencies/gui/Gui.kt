@@ -43,31 +43,4 @@ abstract class Gui(
      * Update the Gui's layout.
      */
     abstract fun updateLayout()
-
-    /**
-     * A builder for [Gui]'s.
-     */
-    interface Builder {
-
-        /**
-         * Build the [Gui]
-         *
-         * @return the built [Gui]
-         */
-        fun build(): Gui
-
-        /**
-         * Set the [Gui] height.
-         *
-         * @return fluent interface
-         */
-        fun height(height: Int): Builder
-
-        /**
-         * Set the [Gui] title.
-         *
-         * @return fluent interface
-         */
-        fun title(title: Text): Builder
-    }
 }

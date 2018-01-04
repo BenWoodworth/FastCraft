@@ -12,7 +12,7 @@ class FastCraftGui private constructor(
 
         private val textBuilder: Provider<Text.Builder>,
         itemBuilder: Provider<ItemBuilder>,
-        guiBuilder: Provider<Gui.Builder>
+        guiBuilder: Provider<GuiBuilder>
 ) {
 
     /**
@@ -138,7 +138,7 @@ class FastCraftGui private constructor(
     class Factory @Inject constructor(
             private val textBuilder: Provider<Text.Builder>,
             private val itemBuilder: Provider<ItemBuilder>,
-            private val guiBuilder: Provider<Gui.Builder>
+            private val guiBuilder: Provider<GuiBuilder>
     ) {
 
         fun create(player: Player) = FastCraftGui(

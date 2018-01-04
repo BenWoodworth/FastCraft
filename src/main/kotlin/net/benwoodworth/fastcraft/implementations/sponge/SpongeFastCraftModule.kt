@@ -8,6 +8,7 @@ import net.benwoodworth.fastcraft.dependencies.event.EventPluginDisable
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginEnable
 import net.benwoodworth.fastcraft.dependencies.event.Listener
 import net.benwoodworth.fastcraft.dependencies.gui.Gui
+import net.benwoodworth.fastcraft.dependencies.gui.GuiBuilder
 import net.benwoodworth.fastcraft.dependencies.item.ItemBuilder
 import net.benwoodworth.fastcraft.dependencies.item.recipe.RecipeProvider
 import net.benwoodworth.fastcraft.dependencies.player.PlayerProvider
@@ -20,6 +21,7 @@ import net.benwoodworth.fastcraft.implementations.sponge.event.SpongeEventPlayer
 import net.benwoodworth.fastcraft.implementations.sponge.event.SpongeEventPluginDisable
 import net.benwoodworth.fastcraft.implementations.sponge.event.SpongeEventPluginEnable
 import net.benwoodworth.fastcraft.implementations.sponge.gui.SpongeGui
+import net.benwoodworth.fastcraft.implementations.sponge.gui.SpongeGuiBuilder
 import net.benwoodworth.fastcraft.implementations.sponge.item.SpongeItemBuilder
 import net.benwoodworth.fastcraft.implementations.sponge.item.recipe.SpongeRecipeProvider
 import net.benwoodworth.fastcraft.implementations.sponge.player.SpongePlayerProvider
@@ -85,8 +87,8 @@ class SpongeFastCraftModule(
     }
 
     @Provides
-    fun guiBuilder(plugin: SpongeFastCraft): Gui.Builder {
-        return SpongeGui.Builder(plugin)
+    fun guiBuilder(plugin: SpongeFastCraft): GuiBuilder {
+        return SpongeGuiBuilder(plugin)
     }
 
     @Provides
