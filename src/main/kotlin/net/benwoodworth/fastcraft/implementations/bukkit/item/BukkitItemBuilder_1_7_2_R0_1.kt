@@ -8,9 +8,9 @@ import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitText
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 
-open class BukkitItemBuilder_1_4_5_R0_3 : ItemBuilder {
+open class BukkitItemBuilder_1_7_2_R0_1 : ItemBuilder {
 
-    private companion object {
+    private companion object { // TODO Test reflection
         private val reflectFactory = BukkitReflectFactory() // TODO Use DI
 
         val keyClass = reflectFactory.getNmsClass("MinecraftKey")
