@@ -53,6 +53,10 @@ buildscript {
         //version_bukkit = '1.4.7-R1.1-SNAPSHOT'
         //version_bukkit = '1.4.5-R0.3-SNAPSHOT' // Adds Item.itemMeta
         //version_bukkit = '1.3.2-R2.1-SNAPSHOT'
+        //version_bukkit = '1.2.5-R4.0'
+        //version_bukkit = '1.2.5-R1.0'
+        //version_bukkit = '1.1-R3'
+        //version_bukkit = '1.0.1-R1'
 
         version_sponge = '7.0.0-20171207.130015-65'
 
