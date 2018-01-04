@@ -22,16 +22,4 @@ class SpongePlugin(
 
     override val configFileName: String
         get() = Sponge.getConfigManager().getPluginConfig(base.instance.get()).configPath.fileName.toString()
-
-    /**
-     * Sponge implementation of [Plugin.Provider].
-     */
-    class Provider : Plugin.Provider {
-
-        override fun getPlugin(name: String): Plugin? {
-            return Sponge.getPluginManager().getPlugin(name)
-                    .map(::SpongePlugin)
-                    .orElse(null)
-        }
-    }
 }

@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.core.config
 
 import net.benwoodworth.fastcraft.dependencies.config.ConfigManager
-import net.benwoodworth.fastcraft.dependencies.server.Plugin
+import net.benwoodworth.fastcraft.dependencies.server.PluginRegistry
 import java.nio.file.Path
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -11,7 +11,7 @@ import javax.inject.Singleton
  */
 @Singleton
 class FcConfigLoader @Inject constructor(
-        pluginProvider: Plugin.Provider,
+        pluginProvider: PluginRegistry,
         private val configManager: ConfigManager
 ) {
 
@@ -73,13 +73,13 @@ class FcConfigLoader @Inject constructor(
     /**
      * Update the configs.
      */
-    private fun update() {
+    private fun update() { // TODO Add an updater class
         fcPluginConfig.config.header = listOf(
                 "FastCraft, developed by Kepler_",
                 "https://github.com/BenWoodworth/FastCraft",
                 "",
                 "language:",
-                "    The FastCraft localization. Available languages:",
+                "    The localization to use. Available languages:",
                 "    EN (English), DE (Deutsch),    RU (Русский язык), CS (Čeština),",
                 "    TR (Türkçe),  NL (Nederlands), VI (Tiếng Việt),   PL (Polskie),",
                 "    ZH-CN (中文),  ZH-TW (台語)",

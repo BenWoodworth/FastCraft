@@ -7,12 +7,11 @@ import net.benwoodworth.fastcraft.dependencies.event.EventPlayerJoin
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginDisable
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginEnable
 import net.benwoodworth.fastcraft.dependencies.event.Listener
-import net.benwoodworth.fastcraft.dependencies.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.gui.GuiBuilder
 import net.benwoodworth.fastcraft.dependencies.item.ItemBuilder
 import net.benwoodworth.fastcraft.dependencies.item.recipe.RecipeProvider
 import net.benwoodworth.fastcraft.dependencies.player.PlayerProvider
-import net.benwoodworth.fastcraft.dependencies.server.Plugin
+import net.benwoodworth.fastcraft.dependencies.server.PluginRegistry
 import net.benwoodworth.fastcraft.dependencies.server.Task
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.dependencies.text.TextColorRegistry
@@ -20,12 +19,11 @@ import net.benwoodworth.fastcraft.implementations.bukkit.config.BukkitConfigMana
 import net.benwoodworth.fastcraft.implementations.bukkit.event.BukkitEventPlayerJoin
 import net.benwoodworth.fastcraft.implementations.bukkit.event.BukkitEventPluginDisable
 import net.benwoodworth.fastcraft.implementations.bukkit.event.BukkitEventPluginEnable
-import net.benwoodworth.fastcraft.implementations.bukkit.gui.BukkitGui
 import net.benwoodworth.fastcraft.implementations.bukkit.gui.BukkitGuiBuilder
 import net.benwoodworth.fastcraft.implementations.bukkit.item.BukkitItemBuilderProvider
 import net.benwoodworth.fastcraft.implementations.bukkit.item.recipe.BukkitRecipeProvider
 import net.benwoodworth.fastcraft.implementations.bukkit.player.BukkitPlayerProvider
-import net.benwoodworth.fastcraft.implementations.bukkit.server.BukkitPlugin
+import net.benwoodworth.fastcraft.implementations.bukkit.server.BukkitPluginRegistry
 import net.benwoodworth.fastcraft.implementations.bukkit.server.BukkitTask
 import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitText
 import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitTextColorRegistry
@@ -141,8 +139,8 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun pluginProvider(): Plugin.Provider {
-        return BukkitPlugin.Provider()
+    fun pluginProvider(): PluginRegistry {
+        return BukkitPluginRegistry()
     }
 
     @Provides

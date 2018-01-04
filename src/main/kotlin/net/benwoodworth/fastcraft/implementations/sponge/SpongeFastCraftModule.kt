@@ -7,12 +7,11 @@ import net.benwoodworth.fastcraft.dependencies.event.EventPlayerJoin
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginDisable
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginEnable
 import net.benwoodworth.fastcraft.dependencies.event.Listener
-import net.benwoodworth.fastcraft.dependencies.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.gui.GuiBuilder
 import net.benwoodworth.fastcraft.dependencies.item.ItemBuilder
 import net.benwoodworth.fastcraft.dependencies.item.recipe.RecipeProvider
 import net.benwoodworth.fastcraft.dependencies.player.PlayerProvider
-import net.benwoodworth.fastcraft.dependencies.server.Plugin
+import net.benwoodworth.fastcraft.dependencies.server.PluginRegistry
 import net.benwoodworth.fastcraft.dependencies.server.Task
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.dependencies.text.TextColorRegistry
@@ -20,12 +19,11 @@ import net.benwoodworth.fastcraft.implementations.sponge.config.SpongeConfigMana
 import net.benwoodworth.fastcraft.implementations.sponge.event.SpongeEventPlayerJoin
 import net.benwoodworth.fastcraft.implementations.sponge.event.SpongeEventPluginDisable
 import net.benwoodworth.fastcraft.implementations.sponge.event.SpongeEventPluginEnable
-import net.benwoodworth.fastcraft.implementations.sponge.gui.SpongeGui
 import net.benwoodworth.fastcraft.implementations.sponge.gui.SpongeGuiBuilder
 import net.benwoodworth.fastcraft.implementations.sponge.item.SpongeItemBuilder
 import net.benwoodworth.fastcraft.implementations.sponge.item.recipe.SpongeRecipeProvider
 import net.benwoodworth.fastcraft.implementations.sponge.player.SpongePlayerProvider
-import net.benwoodworth.fastcraft.implementations.sponge.server.SpongePlugin
+import net.benwoodworth.fastcraft.implementations.sponge.server.SpongePluginRegistry
 import net.benwoodworth.fastcraft.implementations.sponge.server.SpongeTask
 import net.benwoodworth.fastcraft.implementations.sponge.text.SpongeText
 import net.benwoodworth.fastcraft.implementations.sponge.text.SpongeTextColorRegistry
@@ -115,8 +113,8 @@ class SpongeFastCraftModule(
 
     @Provides
     @Singleton
-    fun pluginProvider(): Plugin.Provider {
-        return SpongePlugin.Provider()
+    fun pluginProvider(): PluginRegistry {
+        return SpongePluginRegistry()
     }
 
     @Provides

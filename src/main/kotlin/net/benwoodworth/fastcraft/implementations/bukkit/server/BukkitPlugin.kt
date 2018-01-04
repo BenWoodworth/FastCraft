@@ -3,7 +3,6 @@ package net.benwoodworth.fastcraft.implementations.bukkit.server
 import net.benwoodworth.fastcraft.dependencies.server.Logger
 import net.benwoodworth.fastcraft.dependencies.server.Plugin
 import net.benwoodworth.fastcraft.util.Adapter
-import org.bukkit.Bukkit
 import java.nio.file.Path
 import org.bukkit.plugin.Plugin as Bukkit_Plugin
 
@@ -21,15 +20,4 @@ class BukkitPlugin(
         get() = base.dataFolder.toPath()
 
     override val configFileName = "config.yml"
-
-    /**
-     * Bukkit implementation of [Plugin.Provider].
-     */
-    class Provider : Plugin.Provider {
-
-        override fun getPlugin(name: String): Plugin? {
-            return Bukkit.getPluginManager().getPlugin(name)
-                    ?.let(::BukkitPlugin)
-        }
-    }
 }

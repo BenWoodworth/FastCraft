@@ -5,7 +5,7 @@ import javax.inject.Provider
 /**
  * Provides the appropriate dependency for a specific API version.
  */
-abstract class DependenciesProvider<in TApiVersion : Comparable<TApiVersion>, TDependency>(
+abstract class DependencyProvider<in TApiVersion : Comparable<TApiVersion>, TDependency>(
         private val apiVersion: TApiVersion,
         private vararg val dependencies: Pair<TApiVersion, () -> TDependency>
 ) : Provider<TDependency> {
