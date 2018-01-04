@@ -22,7 +22,7 @@ data class BukkitApiVersion( // TODO Test
          */
         fun parse(version: String): BukkitApiVersion? {
             // [major].[minor].[patch?]-[revision?]-[pre?]-[...?]
-            val regex = Regex("""^(\d+)\.(\d+)(?:\.(\d+))?(?:-R(\d+)\.(\d+))?(?:-pre(\d+))?(?:-.*)?$""")
+            val regex = Regex("""^(\d+)\.(\d+)(?:\.(\d+))?(?:-R(\d+)(?:\.(\d+))?)?(?:-pre(\d+))?(?:-.*)?$""")
 
             val match = regex.matchEntire(version) ?: return null
             val (major, minor, patch, rMajor, rMinor, pre) = match.destructured
@@ -53,8 +53,8 @@ data class BukkitApiVersion( // TODO Test
         }
 
         rMinor != other.rMinor -> when {
-            rMinor == null -> 1 // Released after
-            other.rMinor == null -> -1 // Released before
+            rMinor == null -> -1 // Released before
+            other.rMinor == null -> 1 // Released after
             else -> rMinor - other.rMinor
         }
 

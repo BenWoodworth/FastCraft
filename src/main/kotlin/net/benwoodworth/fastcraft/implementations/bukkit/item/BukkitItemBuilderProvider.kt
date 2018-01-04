@@ -9,5 +9,5 @@ class BukkitItemBuilderProvider @Inject constructor(
         version: BukkitApiVersion
 ) : DependencyProvider<BukkitApiVersion, ItemBuilder>(version,
         BukkitApiVersion.parse("1.7.2-R0.3")!! to { BukkitItemBuilder_1_7_2_R0_3() },
-        BukkitApiVersion.parse("1.5-R0.1")!! to { BukkitItemBuilder_1_5_R0_1() }
+        BukkitApiVersion.parse("1.4.5-R0.3")!! to { BukkitItemBuilder_1_4_5_R0_3() }
 )

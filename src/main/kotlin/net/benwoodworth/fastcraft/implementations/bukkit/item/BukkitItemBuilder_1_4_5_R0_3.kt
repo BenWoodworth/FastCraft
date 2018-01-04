@@ -8,7 +8,7 @@ import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitText
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 
-open class BukkitItemBuilder_1_5_R0_1 : ItemBuilder {
+open class BukkitItemBuilder_1_4_5_R0_3 : ItemBuilder {
 
     private companion object {
         private val reflectFactory = BukkitReflectFactory() // TODO Use DI
