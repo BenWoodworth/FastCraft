@@ -34,7 +34,6 @@ import org.spongepowered.api.event.game.state.GameInitializationEvent
 import org.spongepowered.api.event.game.state.GameStoppingEvent
 import org.spongepowered.api.event.network.ClientConnectionEvent.Join
 import javax.inject.Singleton
-import org.spongepowered.api.text.Text as Sponge_Text
 
 @Module
 class SpongeFastCraftModule(

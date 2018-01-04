@@ -1,7 +1,6 @@
 package net.benwoodworth.fastcraft.core.lang
 
 import javax.inject.Inject
-import com.beust.klaxon.Parser as JsonParser
 
 class FastCraftLang @Inject constructor(
         private val json: JsonLangReader

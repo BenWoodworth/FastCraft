@@ -13,8 +13,6 @@ import org.spongepowered.api.item.inventory.property.InventoryDimension
 import org.spongepowered.api.item.inventory.property.InventoryTitle
 import org.spongepowered.api.item.inventory.type.CarriedInventory
 import org.spongepowered.api.item.inventory.type.GridInventory
-import org.spongepowered.api.entity.living.player.Player as Sponge_Player
-import org.spongepowered.api.event.Listener as Sponge_Listener
 import org.spongepowered.api.text.Text as Sponge_Text
 
 /**
