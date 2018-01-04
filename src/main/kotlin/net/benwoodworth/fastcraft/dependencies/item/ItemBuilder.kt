@@ -59,5 +59,5 @@ interface ItemBuilder {
      * @param durability the durability
      * @return this builder, for chaining
      */
-    fun durability(durability: Int)
+    fun durability(durability: Int): ItemBuilder
 }

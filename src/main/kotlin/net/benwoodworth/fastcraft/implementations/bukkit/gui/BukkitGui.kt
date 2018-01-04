@@ -5,6 +5,7 @@ import net.benwoodworth.fastcraft.dependencies.gui.EventGuiClose
 import net.benwoodworth.fastcraft.dependencies.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.dependencies.text.Text
+import net.benwoodworth.fastcraft.implementations.bukkit.BukkitFastCraft
 import net.benwoodworth.fastcraft.implementations.bukkit.item.BukkitItem
 import net.benwoodworth.fastcraft.implementations.bukkit.player.BukkitPlayer
 import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitText
@@ -24,9 +25,21 @@ import org.bukkit.event.Listener as Bukkit_Listener
  * Bukkit implementation of [Gui].
  */
 class BukkitGui(
+        plugin: BukkitFastCraft,
         height: Int,
         title: String?
 ) : Gui(height), InventoryHolder {
+
+    private companion object {
+        var registeredListeners = false
+    }
+
+    init {
+        if (!registeredListeners) {
+            Bukkit.getPluginManager().registerEvents(BukkitGui.Listeners(), plugin)
+            registeredListeners = true
+        }
+    }
 
     private val inventory: Inventory = Bukkit.createInventory(
             this,
@@ -65,7 +78,7 @@ class BukkitGui(
      * of the [Gui]'s inventory, and handling button clicks.
      */
     @Suppress("UNUSED")
-    class Listeners : Bukkit_Listener {
+    private class Listeners : Bukkit_Listener { // TODO Move to own file
 
         @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
         fun onInventoryClick(event: InventoryClickEvent) {
@@ -97,7 +110,8 @@ class BukkitGui(
                     ClickType.NUMBER_KEY,
                     ClickType.DROP,
                     ClickType.CONTROL_DROP,
-                    ClickType.CREATIVE -> {} // Click is allowed
+                    ClickType.CREATIVE -> {
+                    } // Click is allowed
 
                     else -> event.isCancelled = true
                 }
@@ -128,12 +142,14 @@ class BukkitGui(
         }
     }
 
-    class Builder : Gui.Builder {
+    class Builder(
+            private var plugin: BukkitFastCraft
+    ) : Gui.Builder { // TODO Move to own file
 
         private var height = 0
         private var title: String? = null
 
-        override fun build() = BukkitGui(height, title)
+        override fun build() = BukkitGui(plugin, height, title)
 
         override fun height(height: Int) = also {
             this.height = height

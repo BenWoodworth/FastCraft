@@ -31,10 +31,21 @@ import org.spongepowered.api.text.Text as Sponge_Text
  * Sponge implementation of [Gui].
  */
 class SpongeGui(
+        plugin: Any,
         height: Int,
-        title: Sponge_Text?,
-        plugin: Any
+        title: Sponge_Text?
 ) : Gui(height), Carrier {
+
+    private companion object {
+        var registeredListeners = false
+    }
+
+    init {
+        if (!registeredListeners) {
+            Sponge.getEventManager().registerListeners(plugin, SpongeGui.Listeners())
+            registeredListeners = true
+        }
+    }
 
     /**
      * The inventory representing this GUI.
@@ -184,9 +195,9 @@ class SpongeGui(
 
         override fun build(): Gui {
             return SpongeGui(
+                    plugin,
                     height!!,
-                    title,
-                    plugin
+                    title
             )
         }
 

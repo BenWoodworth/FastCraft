@@ -1,8 +1,5 @@
 package net.benwoodworth.fastcraft.implementations.bukkit
 
-import org.bukkit.Bukkit
-import java.util.logging.Level
-
 /**
  * A Bukkit API version.
  */
@@ -16,24 +13,6 @@ data class BukkitApiVersion( // TODO Test
 ) : Comparable<BukkitApiVersion> {
 
     companion object {
-
-        /**
-         * The server's API version.
-         */
-        val current by lazy {
-            val versionStr = Bukkit.getBukkitVersion()
-            val version = BukkitApiVersion.parse(versionStr)
-
-            version ?: run {
-                BukkitFastCraft.plugin.logger.log(
-                        Level.SEVERE,
-                        "Unsupported Bukkit API version: $versionStr."
-                                + "Assuming latest version. Please report this."
-                )
-
-                BukkitApiVersion(1000)
-            }
-        }
 
         /**
          * Parses the Bukkit version.
