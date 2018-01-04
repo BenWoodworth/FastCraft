@@ -67,6 +67,7 @@ class BukkitFastCraftModule(
             Bukkit.getPluginManager().registerEvents(
                     object : org.bukkit.event.Listener {
                         @EventHandler
+                        @Suppress("UNUSED")
                         fun onPlayerJoin(event: PlayerJoinEvent) {
                             listener.notifyHandlers(BukkitEventPlayerJoin(event))
                         }
@@ -83,6 +84,7 @@ class BukkitFastCraftModule(
             Bukkit.getPluginManager().registerEvents(
                     object : org.bukkit.event.Listener {
                         @EventHandler
+                        @Suppress("UNUSED")
                         fun onPluginDisable(event: PluginDisableEvent) {
                             listener.notifyHandlers(BukkitEventPluginDisable(event))
                         }
@@ -99,6 +101,7 @@ class BukkitFastCraftModule(
             Bukkit.getPluginManager().registerEvents(
                     object : org.bukkit.event.Listener {
                         @EventHandler
+                        @Suppress("UNUSED")
                         fun onPluginEnable(event: PluginEnableEvent) {
                             listener.notifyHandlers(BukkitEventPluginEnable(event))
                         }
