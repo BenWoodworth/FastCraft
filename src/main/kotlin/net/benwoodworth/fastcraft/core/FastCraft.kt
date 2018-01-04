@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft.core
 
-import net.benwoodworth.fastcraft.core.gui.FastCraftGui
 import net.benwoodworth.fastcraft.dependencies.event.EventPlayerJoin
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginDisable
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginEnable
@@ -19,8 +18,8 @@ class FastCraft @Inject constructor(
         listenerPluginDisable: Listener<EventPluginDisable>,
         listenerPlayerJoin: Listener<EventPlayerJoin>,
 
-        private val taskBuilder: Provider<TaskBuilder>,
-        private val fastCraftGui: FastCraftGui.Factory
+        private val taskBuilder: Provider<TaskBuilder>
+        //private val fastCraftGui: FastCraftGui.Factory
 ) {
 
     init {
@@ -38,9 +37,10 @@ class FastCraft @Inject constructor(
     }
 
     private fun onPlayerJoin(event: EventPlayerJoin) {
-        taskBuilder.get()
-                .delay(1).execute {
-            fastCraftGui.create(event.player).open()
-        }
+        // TODO Remove debug code
+//        taskBuilder.get()
+//                .delay(1).execute {
+//            fastCraftGui.create(event.player).open()
+//        }
     }
 }

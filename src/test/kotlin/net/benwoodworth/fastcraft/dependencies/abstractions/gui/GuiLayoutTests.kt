@@ -2,7 +2,6 @@ package net.benwoodworth.fastcraft.dependencies.abstractions.gui
 
 import net.benwoodworth.fastcraft.ImplementationTests
 import net.benwoodworth.fastcraft.dependencies.gui.GuiButton
-import net.benwoodworth.fastcraft.dependencies.gui.GuiButtonBasic
 import net.benwoodworth.fastcraft.dependencies.gui.GuiLayout
 import org.junit.Assert.*
 import org.junit.jupiter.api.Test
@@ -34,12 +33,12 @@ abstract class GuiLayoutTests : ImplementationTests<GuiLayout>() {
 
     @Test
     fun `when replacing a button, should notify change listener once`() {
-        testInstance.setButton(0, 0, GuiButtonBasic())
+        testInstance.setButton(0, 0, GuiButton())
 
         var layoutNotifyCount = 0
         testInstance.changeListener += { -> layoutNotifyCount++ }
 
-        testInstance.setButton(0, 0, GuiButtonBasic())
+        testInstance.setButton(0, 0, GuiButton())
 
         assertEquals(1, layoutNotifyCount)
     }
@@ -51,14 +50,14 @@ abstract class GuiLayoutTests : ImplementationTests<GuiLayout>() {
         var layoutNotifyCount = 0
         testInstance.changeListener += { -> layoutNotifyCount++ }
 
-        testInstance.setButton(0, 0, GuiButtonBasic())
+        testInstance.setButton(0, 0, GuiButton())
 
         assertEquals(1, layoutNotifyCount)
     }
 
     @Test
     fun `when removing an existing button, should notify change listener once`() {
-        testInstance.setButton(0, 0, GuiButtonBasic())
+        testInstance.setButton(0, 0, GuiButton())
 
         var layoutNotifyCount = 0
         testInstance.changeListener += { -> layoutNotifyCount++ }
@@ -82,7 +81,7 @@ abstract class GuiLayoutTests : ImplementationTests<GuiLayout>() {
 
     @Test
     fun `when adding a button, should listen to its change listener`() {
-        val button = GuiButtonBasic()
+        val button = GuiButton()
 
         testInstance.setButton(0, 0, button)
 
@@ -96,9 +95,9 @@ abstract class GuiLayoutTests : ImplementationTests<GuiLayout>() {
 
     @Test
     fun `when adding a button, should remove button in the same position`() {
-        val button = GuiButtonBasic()
+        val button = GuiButton()
 
-        testInstance.setButton(0, 0, GuiButtonBasic())
+        testInstance.setButton(0, 0, GuiButton())
         testInstance.setButton(0, 0, button)
 
         assertTrue(button === testInstance.getButton(0, 0))
@@ -106,7 +105,7 @@ abstract class GuiLayoutTests : ImplementationTests<GuiLayout>() {
 
     @Test
     fun `when removing a button, should stop listening to its change listener`() {
-        val button = GuiButtonBasic()
+        val button = GuiButton()
 
         testInstance.setButton(0, 0, button)
         testInstance.removeButton(0, 0)
@@ -121,10 +120,10 @@ abstract class GuiLayoutTests : ImplementationTests<GuiLayout>() {
 
     @Test
     fun `when replacing a button, should stop listening to its change listener`() {
-        val button = GuiButtonBasic()
+        val button = GuiButton()
 
         testInstance.setButton(0, 0, button)
-        testInstance.setButton(0, 0, GuiButtonBasic())
+        testInstance.setButton(0, 0, GuiButton())
 
         var layoutNotified = false
         testInstance.changeListener += { -> layoutNotified = true }
@@ -136,7 +135,7 @@ abstract class GuiLayoutTests : ImplementationTests<GuiLayout>() {
 
     @Test
     fun `when a button is on a layout twice, change listener should be notified twice`() {
-        val button = GuiButtonBasic()
+        val button = GuiButton()
 
         testInstance.setButton(0, 0, button)
         testInstance.setButton(1, 0, button)
@@ -151,7 +150,7 @@ abstract class GuiLayoutTests : ImplementationTests<GuiLayout>() {
 
     @Test
     fun `when adding a button twice, and removing one, should still listen only to the other`() {
-        val button = GuiButtonBasic()
+        val button = GuiButton()
 
         testInstance.setButton(0, 0, button)
         testInstance.setButton(1, 0, button)
@@ -170,7 +169,7 @@ abstract class GuiLayoutTests : ImplementationTests<GuiLayout>() {
     fun `when adding a button, should be able to add inside and outside of bounds`() {
         for (x in -3..testInstance.width + 3) {
             for (y in -3..testInstance.height + 3) {
-                val button = GuiButtonBasic()
+                val button = GuiButton()
                 testInstance.setButton(x, y, button)
 
                 assertTrue(button === testInstance.getButton(x, y))

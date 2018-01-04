@@ -68,6 +68,7 @@ buildscript {
         version_dagger = '2.11'
         version_jsr250 = '1.0'
         version_javax_inject = '1'
+        version_autoFactory = '1.0-beta5'
 
         version_junit5 = '5.0.0-M4'
         version_junit_vintage_engine = '4.12.0-M4'
@@ -117,6 +118,7 @@ dependencies {
     compile "javax.inject:javax.inject:$version_javax_inject"
     compile "com.google.dagger:dagger:$version_dagger"
     kapt "com.google.dagger:dagger-compiler:$version_dagger"
+    compile "com.google.auto.factory:auto-factory:$version_autoFactory"
 
     compile "com.beust:klaxon:$version_klaxon"
 
@@ -164,10 +166,13 @@ compileKotlin {
 }
 
 kapt {
-    processors += 'org.spongepowered.plugin.processor.PluginProcessor'
+    // Allows AutoFactory processor to work properly
+    correctErrorTypes = true
+
+    // Allows Sponge processor to work properly
     arguments {
-        arg 'extraMetadataFiles', generateMetadata.target
-        arg 'metadataOutputFile', generateMetadata.target
+        arg 'metadataOutputFile', generateMetadata.target // Put mcmod.info in correct folder
+        arg 'extraMetadataFiles', generateMetadata.target // Fixes @Plugin warnings
     }
 }
 
