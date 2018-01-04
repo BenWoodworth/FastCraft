@@ -13,7 +13,7 @@ import net.benwoodworth.fastcraft.dependencies.item.ItemTypeFactory
 import net.benwoodworth.fastcraft.dependencies.item.recipe.RecipeProvider
 import net.benwoodworth.fastcraft.dependencies.player.PlayerProvider
 import net.benwoodworth.fastcraft.dependencies.server.PluginRegistry
-import net.benwoodworth.fastcraft.dependencies.server.Task
+import net.benwoodworth.fastcraft.dependencies.server.TaskBuilder
 import net.benwoodworth.fastcraft.dependencies.text.TextBuilder
 import net.benwoodworth.fastcraft.dependencies.text.TextColorRegistry
 import net.benwoodworth.fastcraft.implementations.bukkit.config.BukkitConfigManager
@@ -26,7 +26,7 @@ import net.benwoodworth.fastcraft.implementations.bukkit.item.BukkitItemTypeFact
 import net.benwoodworth.fastcraft.implementations.bukkit.item.recipe.BukkitRecipeProvider
 import net.benwoodworth.fastcraft.implementations.bukkit.player.BukkitPlayerProvider
 import net.benwoodworth.fastcraft.implementations.bukkit.server.BukkitPluginRegistry
-import net.benwoodworth.fastcraft.implementations.bukkit.server.BukkitTask
+import net.benwoodworth.fastcraft.implementations.bukkit.server.BukkitTaskBuilder
 import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitTextBuilder
 import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitTextColorRegistry
 import org.bukkit.Bukkit
@@ -129,7 +129,7 @@ class BukkitFastCraftModule(
     fun playerProvider(dep: BukkitPlayerProvider): PlayerProvider = dep
 
     @Provides
-    fun taskBuilder(dep: BukkitTask.Builder): Task.Builder = dep
+    fun taskBuilder(dep: BukkitTaskBuilder): TaskBuilder = dep
 
     @Provides
     @Singleton

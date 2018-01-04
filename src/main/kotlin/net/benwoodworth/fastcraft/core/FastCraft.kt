@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.dependencies.event.EventPlayerJoin
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginDisable
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginEnable
 import net.benwoodworth.fastcraft.dependencies.event.Listener
-import net.benwoodworth.fastcraft.dependencies.server.Task
+import net.benwoodworth.fastcraft.dependencies.server.TaskBuilder
 import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton
@@ -19,7 +19,7 @@ class FastCraft @Inject constructor(
         listenerPluginDisable: Listener<EventPluginDisable>,
         listenerPlayerJoin: Listener<EventPlayerJoin>,
 
-        private val taskBuilder: Provider<Task.Builder>,
+        private val taskBuilder: Provider<TaskBuilder>,
         private val fastCraftGui: FastCraftGui.Factory
 ) {
 

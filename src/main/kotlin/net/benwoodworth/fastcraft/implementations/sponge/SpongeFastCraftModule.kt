@@ -13,7 +13,7 @@ import net.benwoodworth.fastcraft.dependencies.item.ItemTypeFactory
 import net.benwoodworth.fastcraft.dependencies.item.recipe.RecipeProvider
 import net.benwoodworth.fastcraft.dependencies.player.PlayerProvider
 import net.benwoodworth.fastcraft.dependencies.server.PluginRegistry
-import net.benwoodworth.fastcraft.dependencies.server.Task
+import net.benwoodworth.fastcraft.dependencies.server.TaskBuilder
 import net.benwoodworth.fastcraft.dependencies.text.TextBuilder
 import net.benwoodworth.fastcraft.dependencies.text.TextColorRegistry
 import net.benwoodworth.fastcraft.implementations.sponge.config.SpongeConfigManager
@@ -26,7 +26,7 @@ import net.benwoodworth.fastcraft.implementations.sponge.item.SpongeItemTypeFact
 import net.benwoodworth.fastcraft.implementations.sponge.item.recipe.SpongeRecipeProvider
 import net.benwoodworth.fastcraft.implementations.sponge.player.SpongePlayerProvider
 import net.benwoodworth.fastcraft.implementations.sponge.server.SpongePluginRegistry
-import net.benwoodworth.fastcraft.implementations.sponge.server.SpongeTask
+import net.benwoodworth.fastcraft.implementations.sponge.server.SpongeTaskBuilder
 import net.benwoodworth.fastcraft.implementations.sponge.text.SpongeTextBuilder
 import net.benwoodworth.fastcraft.implementations.sponge.text.SpongeTextColorRegistry
 import org.spongepowered.api.Sponge
@@ -99,7 +99,7 @@ class SpongeFastCraftModule(
     fun playerProvider(dep: SpongePlayerProvider): PlayerProvider = dep
 
     @Provides
-    fun taskBuilder(dep: SpongeTask.Builder): Task.Builder = dep
+    fun taskBuilder(dep: SpongeTaskBuilder): TaskBuilder = dep
 
     @Provides
     @Singleton
