@@ -64,13 +64,15 @@ class GuiButtonMultiplier(
 
     override fun onClick(event: EventGuiButtonClick) {
         when {
+            event.double -> Unit
+
             event.middle -> multiplier = 1
 
             event.primary && event.shift -> multiplier++
             event.primary -> incrementBySequence(true)
 
-            event.primary && event.shift -> multiplier--
-            event.primary -> incrementBySequence(false)
+            event.secondary && event.shift -> multiplier--
+            event.secondary -> incrementBySequence(false)
 
             event.number != null -> multiplier = event.number
         }
