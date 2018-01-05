@@ -83,7 +83,8 @@ class SpongeGuiListeners {
                 event is ClickInventoryEvent.Secondary,
                 event is ClickInventoryEvent.Middle,
                 event is ClickInventoryEvent.Double,
-                (event as? ClickInventoryEvent.NumberPress)?.number
+                (event as? ClickInventoryEvent.NumberPress)?.number,
+                event is ClickInventoryEvent.Shift
         )
 
         button.clickListener.notifyHandlers(clickEvent)

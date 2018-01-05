@@ -38,7 +38,8 @@ class BukkitGuiListeners : Listener { // TODO Move to own file
                     event.isRightClick,
                     event.click == ClickType.MIDDLE,
                     event.click == ClickType.DOUBLE_CLICK,
-                    (event.hotbarButton + 1).takeUnless { it == 0 }
+                    (event.hotbarButton + 1).takeUnless { it == 0 },
+                    event.isShiftClick
             ))
         } else {
             when (event.click) {

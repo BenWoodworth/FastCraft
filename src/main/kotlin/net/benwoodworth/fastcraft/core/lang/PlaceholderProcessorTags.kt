@@ -1,9 +1,12 @@
 package net.benwoodworth.fastcraft.core.lang
 
+import javax.inject.Inject
+
 /**
  * Substitutes <tags> in localization strings.
  */
-class PlaceholderProcessorTags : PlaceholderProcessor {
+class PlaceholderProcessorTags @Inject constructor(
+) : PlaceholderProcessor {
 
     override fun sub(string: String, placeholders: Map<String, String>): String {
         return string.replace(Regex("<([^<>]*)>")) {

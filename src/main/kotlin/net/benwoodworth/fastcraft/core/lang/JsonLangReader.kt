@@ -14,7 +14,7 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class JsonLangReader @Inject constructor(
-        private val placeholderProcessor: PlaceholderProcessor,
+        private val placeholderProcessor: PlaceholderProcessorTags,
         private val textBuilder: Provider<TextBuilder>
 ) {
 

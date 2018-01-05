@@ -1,14 +1,17 @@
-package net.benwoodworth.fastcraft.core.gui.fastcraft
+package net.benwoodworth.fastcraft.core.gui.crafting
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.dependencies.gui.*
+import net.benwoodworth.fastcraft.dependencies.gui.Gui
+import net.benwoodworth.fastcraft.dependencies.gui.GuiBuilder
+import net.benwoodworth.fastcraft.dependencies.gui.GuiLayout
+import net.benwoodworth.fastcraft.dependencies.gui.GuiLayoutComposite
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.dependencies.text.TextBuilder
 import javax.inject.Provider
 
 @AutoFactory
-class GuiFastCraft constructor(
+class GuiCrafting constructor(
         val player: Player,
 
         @Provided textBuilder: Provider<TextBuilder>,
@@ -16,17 +19,6 @@ class GuiFastCraft constructor(
 
         @Provided buttonMultiplierFactory: GuiButtonMultiplierFactory
 ) {
-
-    private val buttonPage: GuiButton
-        get() = TODO()
-
-    private val buttonWorkbench: GuiButton
-        get() = TODO()
-
-    private val buttonMultiplier = buttonMultiplierFactory.create(this)
-
-    private val buttonRefresh: GuiButton
-        get() = TODO()
 
     /**
      * The layout containing the recipes.
@@ -37,10 +29,10 @@ class GuiFastCraft constructor(
      * The layout containing the sidebar buttons.
      */
     private val layoutSidebar = GuiLayout(1, 6).apply {
-        setButton(0, 0, buttonWorkbench)
-        setButton(0, 2, buttonMultiplier)
-        setButton(0, 3, buttonRefresh)
-        setButton(0, 5, buttonPage)
+        //        setButton(0, 0, buttonWorkbench)
+        setButton(0, 2, buttonMultiplierFactory.create(this@GuiCrafting))
+//        setButton(0, 3, buttonRefresh)
+//        setButton(0, 5, buttonPage)
     }
 
     /**
