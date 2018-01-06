@@ -17,8 +17,12 @@ class GuiCrafting constructor(
         @Provided textBuilder: Provider<TextBuilder>,
         @Provided guiBuilder: Provider<GuiBuilder>,
 
-        @Provided buttonMultiplierFactory: GuiButtonMultiplierFactory
+        @Provided buttonMultiplierFactory: GuiButtonMultiplierFactory,
+        @Provided buttonWorkbenchFactory: GuiButtonWorkbenchFactory
 ) {
+
+    private val buttonMultiplier = buttonMultiplierFactory.create(this)!!
+    private val buttonWorkbench = buttonWorkbenchFactory.create()!!
 
     /**
      * The layout containing the recipes.
@@ -29,10 +33,10 @@ class GuiCrafting constructor(
      * The layout containing the sidebar buttons.
      */
     private val layoutSidebar = GuiLayout(1, 6).apply {
-        //        setButton(0, 0, buttonWorkbench)
-        setButton(0, 2, buttonMultiplierFactory.create(this@GuiCrafting))
-//        setButton(0, 3, buttonRefresh)
-//        setButton(0, 5, buttonPage)
+        setButton(0, 0, buttonWorkbench)
+        setButton(0, 2, buttonMultiplier)
+        //setButton(0, 3, buttonRefresh)
+        //setButton(0, 5, buttonPage)
     }
 
     /**

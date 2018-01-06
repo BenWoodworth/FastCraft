@@ -57,7 +57,7 @@ class FastCraftLang @Inject constructor(
             )
     )
 
-    fun guiToolbarWorkbenchTitle() = json.list(
+    fun guiToolbarWorkbenchTitle() = json.string(
             "gui.toolbar.workbench.title"
     )
 

@@ -34,7 +34,7 @@ class GuiButtonMultiplier(
 
     private fun updateItem() {
 
-//        val itemDisplayName = fastCraftLang
+//        val itemDisplayName = fastCraftLang //TODO
 //                .guiToolbarMultiplierTitle(multiplier)
 //
 //        val itemLore = fastCraftLang
