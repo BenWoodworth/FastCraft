@@ -224,7 +224,7 @@ shadowJar {
     def libs = 'net.benwoodworth.fastcraft.libs'
     relocate('kotlin', "${libs}.kotlin")
     relocate('dagger', "${libs}.dagger")
-    relocate('javax', "${libs}.javax")
-    relocate('com.beust.klaxon', "${libs}.klaxon")
-    relocate('org.bstats', "${libs}.bstats")
+    relocate('javax.inject', "${libs}.javax.inject")
+    relocate('com.beust.klaxon', "${libs}.com.beust.klaxon")
+    relocate('org.bstats', "${libs}.org.bstats")
 }
