@@ -1,10 +1,10 @@
 package net.benwoodworth.fastcraft.core
 
+import net.benwoodworth.fastcraft.api.Listener
 import net.benwoodworth.fastcraft.core.gui.crafting.GuiCraftingFactory
 import net.benwoodworth.fastcraft.dependencies.event.EventPlayerJoin
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginDisable
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginEnable
-import net.benwoodworth.fastcraft.dependencies.event.Listener
 import net.benwoodworth.fastcraft.dependencies.server.TaskBuilder
 import javax.inject.Inject
 import javax.inject.Provider

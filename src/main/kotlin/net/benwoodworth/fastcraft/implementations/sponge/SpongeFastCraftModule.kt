@@ -2,12 +2,12 @@ package net.benwoodworth.fastcraft.implementations.sponge
 
 import dagger.Module
 import dagger.Provides
+import net.benwoodworth.fastcraft.api.Listener
 import net.benwoodworth.fastcraft.api.gui.GuiBuilder
 import net.benwoodworth.fastcraft.dependencies.config.ConfigManager
 import net.benwoodworth.fastcraft.dependencies.event.EventPlayerJoin
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginDisable
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginEnable
-import net.benwoodworth.fastcraft.dependencies.event.Listener
 import net.benwoodworth.fastcraft.dependencies.item.ItemBuilder
 import net.benwoodworth.fastcraft.dependencies.item.ItemTypeFactory
 import net.benwoodworth.fastcraft.dependencies.item.recipe.RecipeProvider

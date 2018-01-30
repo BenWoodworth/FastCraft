@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.api.gui
 
-import net.benwoodworth.fastcraft.dependencies.event.Listener
+import net.benwoodworth.fastcraft.api.Listener
 
 /**
  * The button layout of a GUI.

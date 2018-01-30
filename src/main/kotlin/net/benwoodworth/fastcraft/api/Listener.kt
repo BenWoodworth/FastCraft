@@ -1,16 +1,16 @@
-package net.benwoodworth.fastcraft.dependencies.event
+package net.benwoodworth.fastcraft.api
 
 /**
  * Listens to events, and notifies event handlers when events occur.
  *
- * @param TEvent the type of event being listened for
+ * @param T the type of event being listened for
  */
-class Listener<TEvent> {
+class Listener<T> {
 
     /**
      * Event handlers with an event parameter.
      */
-    private val handlersParam = mutableListOf<(event: TEvent) -> Unit>()
+    private val handlersParam = mutableListOf<(event: T) -> Unit>()
 
     /**
      * Event handlers without an event parameter.
@@ -22,7 +22,7 @@ class Listener<TEvent> {
      *
      * @param event the event to raise
      */
-    fun notifyHandlers(event: TEvent) {
+    fun notifyHandlers(event: T) {
         handlersParam.forEach {
             try {
                 it(event)
@@ -44,7 +44,7 @@ class Listener<TEvent> {
      *
      * @param handler the event handler to add to this event
      */
-    fun addHandler(handler: (event: TEvent) -> Unit) {
+    fun addHandler(handler: (event: T) -> Unit) {
         handlersParam += handler
     }
 
@@ -62,7 +62,7 @@ class Listener<TEvent> {
      *
      * @param handler the event handler to add to this event
      */
-    operator fun plusAssign(handler: (event: TEvent) -> Unit) {
+    operator fun plusAssign(handler: (event: T) -> Unit) {
         addHandler(handler)
     }
 
@@ -80,7 +80,7 @@ class Listener<TEvent> {
      *
      * @param handler the event handler to remove from this listener
      */
-    fun removeHandler(handler: (event: TEvent) -> Unit) {
+    fun removeHandler(handler: (event: T) -> Unit) {
         handlersParam -= handler
     }
 
@@ -98,7 +98,7 @@ class Listener<TEvent> {
      *
      * @param handler the event handler to remove from this listener
      */
-    operator fun minusAssign(handler: (event: TEvent) -> Unit) {
+    operator fun minusAssign(handler: (event: T) -> Unit) {
         removeHandler(handler)
     }
 

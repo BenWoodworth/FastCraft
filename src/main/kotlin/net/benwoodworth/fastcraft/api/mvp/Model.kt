@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.api.mvp
 
-import net.benwoodworth.fastcraft.dependencies.event.Listener
+import net.benwoodworth.fastcraft.api.Listener
 
 /**
  * The "model" aspect of the [MVP architectural pattern](http://bit.ly/WikiMVP).
