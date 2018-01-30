@@ -2,10 +2,9 @@ package net.benwoodworth.fastcraft.core.gui.crafting
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.dependencies.gui.Gui
-import net.benwoodworth.fastcraft.dependencies.gui.GuiBuilder
-import net.benwoodworth.fastcraft.dependencies.gui.GuiLayout
-import net.benwoodworth.fastcraft.dependencies.gui.GuiLayoutComposite
+import net.benwoodworth.fastcraft.api.gui.GuiBuilder
+import net.benwoodworth.fastcraft.api.gui.GuiLayout
+import net.benwoodworth.fastcraft.api.gui.GuiLayoutComposite
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.dependencies.text.TextBuilder
 import javax.inject.Provider
@@ -40,7 +39,7 @@ class GuiCrafting constructor(
     }
 
     /**
-     * The [Gui] for the FastCraft interface.
+     * The GUI for the FastCraft interface.
      */
     private val gui = guiBuilder.get()
             .height(6)

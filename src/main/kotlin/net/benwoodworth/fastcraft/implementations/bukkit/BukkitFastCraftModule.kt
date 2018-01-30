@@ -2,12 +2,12 @@ package net.benwoodworth.fastcraft.implementations.bukkit
 
 import dagger.Module
 import dagger.Provides
+import net.benwoodworth.fastcraft.api.gui.GuiBuilder
 import net.benwoodworth.fastcraft.dependencies.config.ConfigManager
 import net.benwoodworth.fastcraft.dependencies.event.EventPlayerJoin
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginDisable
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginEnable
 import net.benwoodworth.fastcraft.dependencies.event.Listener
-import net.benwoodworth.fastcraft.dependencies.gui.GuiBuilder
 import net.benwoodworth.fastcraft.dependencies.item.ItemBuilder
 import net.benwoodworth.fastcraft.dependencies.item.ItemTypeFactory
 import net.benwoodworth.fastcraft.dependencies.item.recipe.RecipeProvider
@@ -16,11 +16,11 @@ import net.benwoodworth.fastcraft.dependencies.server.PluginRegistry
 import net.benwoodworth.fastcraft.dependencies.server.TaskBuilder
 import net.benwoodworth.fastcraft.dependencies.text.TextBuilder
 import net.benwoodworth.fastcraft.dependencies.text.TextColorRegistry
+import net.benwoodworth.fastcraft.implementations.bukkit.api.gui.BukkitGuiBuilder
 import net.benwoodworth.fastcraft.implementations.bukkit.config.BukkitConfigManager
 import net.benwoodworth.fastcraft.implementations.bukkit.event.BukkitEventPlayerJoin
 import net.benwoodworth.fastcraft.implementations.bukkit.event.BukkitEventPluginDisable
 import net.benwoodworth.fastcraft.implementations.bukkit.event.BukkitEventPluginEnable
-import net.benwoodworth.fastcraft.implementations.bukkit.gui.BukkitGuiBuilder
 import net.benwoodworth.fastcraft.implementations.bukkit.item.BukkitItemBuilder
 import net.benwoodworth.fastcraft.implementations.bukkit.item.BukkitItemTypeFactory
 import net.benwoodworth.fastcraft.implementations.bukkit.item.recipe.BukkitRecipeProvider

@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.core.api
+package net.benwoodworth.fastcraft.api
 
 import net.benwoodworth.fastcraft.core.FastCraft
 import javax.inject.Inject

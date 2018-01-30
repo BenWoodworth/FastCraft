@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.core.api.mvp
+package net.benwoodworth.fastcraft.api.mvp
 
 import net.benwoodworth.fastcraft.dependencies.event.Listener
 

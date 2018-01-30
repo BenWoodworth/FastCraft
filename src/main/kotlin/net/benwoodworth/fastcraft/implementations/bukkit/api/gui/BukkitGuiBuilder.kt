@@ -1,6 +1,6 @@
-package net.benwoodworth.fastcraft.implementations.bukkit.gui
+package net.benwoodworth.fastcraft.implementations.bukkit.api.gui
 
-import net.benwoodworth.fastcraft.dependencies.gui.GuiBuilder
+import net.benwoodworth.fastcraft.api.gui.GuiBuilder
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.implementations.bukkit.BukkitFastCraft
 import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitText

@@ -1,7 +1,7 @@
-package net.benwoodworth.fastcraft.implementations.sponge.gui
+package net.benwoodworth.fastcraft.implementations.sponge.api.gui
 
-import net.benwoodworth.fastcraft.dependencies.gui.Gui
-import net.benwoodworth.fastcraft.dependencies.gui.GuiBuilder
+import net.benwoodworth.fastcraft.api.gui.Gui
+import net.benwoodworth.fastcraft.api.gui.GuiBuilder
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.implementations.sponge.SpongeFastCraft
 import net.benwoodworth.fastcraft.implementations.sponge.text.SpongeText
