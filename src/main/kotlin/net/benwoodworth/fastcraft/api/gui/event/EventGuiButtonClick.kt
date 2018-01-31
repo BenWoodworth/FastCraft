@@ -1,5 +1,7 @@
-package net.benwoodworth.fastcraft.api.gui
+package net.benwoodworth.fastcraft.api.gui.event
 
+import net.benwoodworth.fastcraft.api.gui.Gui
+import net.benwoodworth.fastcraft.api.gui.button.GuiButton
 import net.benwoodworth.fastcraft.dependencies.player.Player
 
 /**

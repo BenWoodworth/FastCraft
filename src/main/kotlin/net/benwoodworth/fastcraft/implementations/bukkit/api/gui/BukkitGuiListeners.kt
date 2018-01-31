@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.implementations.bukkit.api.gui
 
-import net.benwoodworth.fastcraft.api.gui.EventGuiButtonClick
-import net.benwoodworth.fastcraft.api.gui.EventGuiClose
+import net.benwoodworth.fastcraft.api.gui.event.EventGuiButtonClick
+import net.benwoodworth.fastcraft.api.gui.event.EventGuiClose
 import net.benwoodworth.fastcraft.api.gui.Gui
 import net.benwoodworth.fastcraft.implementations.bukkit.player.BukkitPlayer
 import org.bukkit.entity.Player

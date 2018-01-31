@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.implementations.sponge
 import dagger.Module
 import dagger.Provides
 import net.benwoodworth.fastcraft.api.Listener
-import net.benwoodworth.fastcraft.api.gui.GuiBuilder
+import net.benwoodworth.fastcraft.api.gui.GuiFactory
 import net.benwoodworth.fastcraft.dependencies.config.ConfigManager
 import net.benwoodworth.fastcraft.dependencies.event.EventPlayerJoin
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginDisable
@@ -16,7 +16,7 @@ import net.benwoodworth.fastcraft.dependencies.server.PluginRegistry
 import net.benwoodworth.fastcraft.dependencies.server.TaskBuilder
 import net.benwoodworth.fastcraft.dependencies.text.TextBuilder
 import net.benwoodworth.fastcraft.dependencies.text.TextColorRegistry
-import net.benwoodworth.fastcraft.implementations.sponge.api.gui.SpongeGuiBuilder
+import net.benwoodworth.fastcraft.implementations.sponge.api.gui.SpongeGuiFactory
 import net.benwoodworth.fastcraft.implementations.sponge.config.SpongeConfigManager
 import net.benwoodworth.fastcraft.implementations.sponge.event.SpongeEventPlayerJoin
 import net.benwoodworth.fastcraft.implementations.sponge.event.SpongeEventPluginDisable
@@ -82,7 +82,7 @@ class SpongeFastCraftModule(
     }
 
     @Provides
-    fun guiBuilder(dep: SpongeGuiBuilder): GuiBuilder = dep
+    fun guiBuilder(dep: SpongeGuiFactory): GuiFactory = dep
 
     @Provides
     fun itemBuilder(dep: SpongeItemBuilder): ItemBuilder = dep

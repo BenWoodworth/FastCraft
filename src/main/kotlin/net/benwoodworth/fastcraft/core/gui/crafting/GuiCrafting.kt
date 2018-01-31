@@ -2,9 +2,8 @@ package net.benwoodworth.fastcraft.core.gui.crafting
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.api.gui.GuiBuilder
-import net.benwoodworth.fastcraft.api.gui.GuiLayout
-import net.benwoodworth.fastcraft.api.gui.GuiLayoutComposite
+import net.benwoodworth.fastcraft.api.gui.GuiFactory
+import net.benwoodworth.fastcraft.api.gui.layout.GuiLayoutAbstract
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.dependencies.text.TextBuilder
 import javax.inject.Provider
@@ -14,7 +13,7 @@ class GuiCrafting constructor(
         val player: Player,
 
         @Provided textBuilder: Provider<TextBuilder>,
-        @Provided guiBuilder: Provider<GuiBuilder>,
+        @Provided guiFactory: Provider<GuiFactory>,
 
         @Provided buttonMultiplierFactory: GuiButtonMultiplierFactory,
         @Provided buttonWorkbenchFactory: GuiButtonWorkbenchFactory
@@ -31,7 +30,7 @@ class GuiCrafting constructor(
     /**
      * The layout containing the sidebar buttons.
      */
-    private val layoutSidebar = GuiLayout(1, 6).apply {
+    private val layoutSidebar = GuiLayoutAbstract(1, 6).apply {
         setButton(0, 0, buttonWorkbench)
         setButton(0, 2, buttonMultiplier)
         //setButton(0, 3, buttonRefresh)
@@ -41,7 +40,7 @@ class GuiCrafting constructor(
     /**
      * The GUI for the FastCraft interface.
      */
-    private val gui = guiBuilder.get()
+    private val gui = guiFactory.get()
             .height(6)
             .title(textBuilder.get()
                     .text("FastCraft") // TODO Localize

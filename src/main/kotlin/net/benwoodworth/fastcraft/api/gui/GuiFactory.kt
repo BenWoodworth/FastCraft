@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.dependencies.text.Text
 /**
  * A builder for [Gui]'s.
  */
-interface GuiBuilder {
+interface GuiFactory {
 
     /**
      * Build the [Gui]
@@ -19,12 +19,12 @@ interface GuiBuilder {
      *
      * @return fluent interface
      */
-    fun height(height: Int): GuiBuilder
+    fun height(height: Int): GuiFactory
 
     /**
      * Set the [Gui] title.
      *
      * @return fluent interface
      */
-    fun title(title: Text): GuiBuilder
+    fun title(title: Text): GuiFactory
 }

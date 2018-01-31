@@ -1,7 +1,5 @@
 package net.benwoodworth.fastcraft.dependencies.abstractions.gui
 
-import net.benwoodworth.fastcraft.api.gui.GuiLayoutComposite
-
 /**
  * Tests for [GuiLayoutComposite].
  */

@@ -1,15 +1,15 @@
 package net.benwoodworth.fastcraft.dependencies.abstractions.gui
 
 import net.benwoodworth.fastcraft.ImplementationTests
-import net.benwoodworth.fastcraft.api.gui.GuiButton
-import net.benwoodworth.fastcraft.api.gui.GuiLayout
+import net.benwoodworth.fastcraft.api.gui.button.GuiButton
+import net.benwoodworth.fastcraft.api.gui.layout.GuiLayoutAbstract
 import org.junit.Assert.*
 import org.junit.jupiter.api.Test
 
 /**
- * Tests for [GuiLayout].
+ * Tests for [GuiLayoutAbstract].
  */
-abstract class GuiLayoutTests : ImplementationTests<GuiLayout>() {
+abstract class GuiLayoutTests : ImplementationTests<GuiLayoutAbstract>() {
 
 //    @Test
 //    fun `when a layout's width changes, should notify change listener`() {
