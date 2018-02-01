@@ -1,20 +1,34 @@
 package net.benwoodworth.fastcraft.api.gui.layout
 
 import net.benwoodworth.fastcraft.api.Listener
-import net.benwoodworth.fastcraft.api.gui.GuiElement
+import net.benwoodworth.fastcraft.api.gui.element.GuiElement
 import net.benwoodworth.fastcraft.api.gui.button.GuiButton
 import net.benwoodworth.fastcraft.api.gui.event.EventGuiLayoutChange
 import java.util.*
 
 /**
- * The button layout of a GUI.
+ * Abstract implementation of [GuiLayout].
  */
 abstract class GuiLayoutAbstract(
+        x: Int,
+        y: Int,
         width: Int,
         height: Int
 ) : GuiLayout {
 
     override val changeListener = Listener<EventGuiLayoutChange>()
+
+    override var x = x
+        protected set(value) {
+            field = value
+            changeListener.notifyHandlers(EventGuiLayoutChange())
+        }
+
+    override var y = y
+        protected set(value) {
+            field = value
+            changeListener.notifyHandlers(EventGuiLayoutChange())
+        }
 
     override var width = width
         protected set(value) {

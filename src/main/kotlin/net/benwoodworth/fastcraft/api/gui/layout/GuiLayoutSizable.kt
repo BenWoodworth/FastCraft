@@ -1,6 +1,11 @@
 package net.benwoodworth.fastcraft.api.gui.layout
 
-class GuiLayoutBasic(
+import net.benwoodworth.fastcraft.api.gui.element.GuiElementSizable
+
+/**
+ * A resizable GUI layout.
+ */
+class GuiLayoutSizable(
         x: Int,
         y: Int,
         width: Int,
@@ -10,4 +15,4 @@ class GuiLayoutBasic(
         y,
         width,
         height
-)
+), GuiElementSizable

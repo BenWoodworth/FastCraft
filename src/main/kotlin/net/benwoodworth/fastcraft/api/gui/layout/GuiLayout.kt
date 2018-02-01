@@ -1,29 +1,13 @@
 package net.benwoodworth.fastcraft.api.gui.layout
 
-import net.benwoodworth.fastcraft.api.Listener
-import net.benwoodworth.fastcraft.api.gui.GuiElement
+import net.benwoodworth.fastcraft.api.gui.element.GuiElement
 import net.benwoodworth.fastcraft.api.gui.button.GuiButton
-import net.benwoodworth.fastcraft.api.gui.event.EventGuiLayoutChange
+import net.benwoodworth.fastcraft.api.gui.element.GuiElementPositioned
 
 /**
  * The button layout of a GUI.
  */
-interface GuiLayout {
-
-    /**
-     * A listener for layout changes.
-     */
-    val changeListener: Listener<EventGuiLayoutChange>
-
-    /**
-     * The width of this [GuiLayout].
-     */
-    val width: Int
-
-    /**
-     * The height of this [GuiLayout].
-     */
-    val height: Int
+interface GuiLayout : GuiElement {
 
     /**
      * Add a [GuiElement] to this layout.
@@ -32,7 +16,7 @@ interface GuiLayout {
      *
      * @param element the [GuiElement] to add
      */
-    fun addElement(element: GuiElement)
+    fun addElement(element: GuiElementPositioned)
 
     /**
      * Get the child layout at a the specified position.
@@ -42,11 +26,13 @@ interface GuiLayout {
      *
      * @param element the [GuiElement] to remove
      */
-    fun removeElement(element: GuiElement)
+    fun removeElement(element: GuiElementPositioned)
 
     /**
      * Get the layout element at the specified position in the layout.
      *
+     * @param x the x-coordinate of the button
+     * @param y the y-coordinate of the button
      * @return the element at the specified position, or 'null' if there is none
      */
     fun getElement(x: Int, y: Int): GuiElement?
