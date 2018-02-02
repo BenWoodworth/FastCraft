@@ -1,9 +1,10 @@
 package net.benwoodworth.fastcraft.api.gui.layout
 
 import net.benwoodworth.fastcraft.api.Listener
-import net.benwoodworth.fastcraft.api.gui.element.GuiElement
-import net.benwoodworth.fastcraft.api.gui.button.GuiButton
-import net.benwoodworth.fastcraft.api.gui.event.EventGuiLayoutChange
+import net.benwoodworth.fastcraft.api.gui.GuiElement
+import net.benwoodworth.fastcraft.api.gui.event.GuiEventClick
+import net.benwoodworth.fastcraft.api.gui.event.GuiEventLayoutChange
+import net.benwoodworth.fastcraft.dependencies.item.Item
 import java.util.*
 
 /**
@@ -16,30 +17,30 @@ abstract class GuiLayoutAbstract(
         height: Int
 ) : GuiLayout {
 
-    override val changeListener = Listener<EventGuiLayoutChange>()
+    override val changeListener = Listener<GuiEventLayoutChange>()
 
     override var x = x
-        protected set(value) {
+        set(value) {
             field = value
-            changeListener.notifyHandlers(EventGuiLayoutChange())
+            changeListener.notifyHandlers(GuiEventLayoutChange())
         }
 
     override var y = y
-        protected set(value) {
+        set(value) {
             field = value
-            changeListener.notifyHandlers(EventGuiLayoutChange())
+            changeListener.notifyHandlers(GuiEventLayoutChange())
         }
 
     override var width = width
-        protected set(value) {
+        set(value) {
             field = value
-            changeListener.notifyHandlers(EventGuiLayoutChange())
+            changeListener.notifyHandlers(GuiEventLayoutChange())
         }
 
     override var height = height
-        protected set(value) {
+        set(value) {
             field = value
-            changeListener.notifyHandlers(EventGuiLayoutChange())
+            changeListener.notifyHandlers(GuiEventLayoutChange())
         }
 
     private val elements = LinkedList<GuiElement>()
@@ -52,7 +53,7 @@ abstract class GuiLayoutAbstract(
         }
 
         elements.addFirst(element)
-        changeListener.notifyHandlers(EventGuiLayoutChange())
+        changeListener.notifyHandlers(GuiEventLayoutChange())
     }
 
     override fun removeElement(element: GuiElement) {
@@ -61,18 +62,20 @@ abstract class GuiLayoutAbstract(
     }
 
     override fun getElement(x: Int, y: Int): GuiElement? {
-        return elements.firstOrNull { it.contains(x, y) }
+        return elements.firstOrNull {
+            (x in it.x..(it.x + it.width)) && (y in it.y..(it.y + it.height))
+        }
     }
 
-    override fun getButton(x: Int, y: Int): GuiButton? {
-        val element = getElement(x, y)
-        return when (element) {
-            is GuiButton -> return element
-            is GuiLayout -> element.getButton(
-                    x - element.x,
-                    y - element.y
-            )
-            else -> null
+    override fun onClick(x: Int, y: Int, event: GuiEventClick) {
+        getElement(x, y)?.let {
+            it.onClick(x - it.x, y - it.y, event)
+        }
+    }
+
+    override fun getItem(x: Int, y: Int): Item? {
+        return getElement(x, y)?.let {
+            it.getItem(x - it.x, y - it.y)
         }
     }
 }

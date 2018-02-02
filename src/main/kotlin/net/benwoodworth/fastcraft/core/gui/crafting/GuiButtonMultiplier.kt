@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.core.gui.crafting
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.api.gui.event.EventGuiButtonClick
+import net.benwoodworth.fastcraft.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.api.gui.button.GuiButton
 import net.benwoodworth.fastcraft.core.lang.FastCraftLang
 import net.benwoodworth.fastcraft.dependencies.item.ItemBuilder
@@ -62,7 +62,7 @@ class GuiButtonMultiplier(
     }
 
 
-    override fun onClick(event: EventGuiButtonClick) {
+    override fun onClick(event: GuiEventClick) {
         when {
             event.double -> Unit
 

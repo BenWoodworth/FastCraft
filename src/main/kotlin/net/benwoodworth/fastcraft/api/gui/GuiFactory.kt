@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.api.gui
 import net.benwoodworth.fastcraft.dependencies.text.Text
 
 /**
- * A builder for [Gui]'s.
+ * A factory for [Gui]'s.
  */
 interface GuiFactory {
 

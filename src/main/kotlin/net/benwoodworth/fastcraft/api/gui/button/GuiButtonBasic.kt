@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.api.gui.button
 
-import net.benwoodworth.fastcraft.api.gui.event.EventGuiButtonClick
+import net.benwoodworth.fastcraft.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.item.Item
 
 /**
@@ -14,5 +14,5 @@ class GuiButtonBasic(item: Item? = null) : GuiButtonAbstract(item) {
             super.item = value
         }
 
-    override fun onClick(event: EventGuiButtonClick) = Unit
+    override fun onClick(event: GuiEventClick) = Unit
 }

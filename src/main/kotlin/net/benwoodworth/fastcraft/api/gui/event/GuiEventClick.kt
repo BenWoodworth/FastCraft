@@ -7,17 +7,12 @@ import net.benwoodworth.fastcraft.dependencies.player.Player
 /**
  * An event triggered when a [GuiButton] is clicked.
  */
-class EventGuiButtonClick(
+class GuiEventClick(
 
         /**
-         * The [Gui] in which the button was clicked.
+         * The [Gui] in which the event occurred.
          */
         val gui: Gui,
-
-        /**
-         * The [GuiButton] that was clicked.
-         */
-        val button: GuiButton,
 
         /**
          * The [Player] who clicked the button.

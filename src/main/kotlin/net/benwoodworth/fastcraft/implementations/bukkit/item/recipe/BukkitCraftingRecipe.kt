@@ -36,7 +36,7 @@ abstract class BukkitCraftingRecipe private constructor(
 
         val prepareEvent = PrepareItemCraftEvent(
                 inventory,
-                inventory.View(),
+                inventory.InvView(),
                 false
         )
 
@@ -89,7 +89,7 @@ abstract class BukkitCraftingRecipe private constructor(
 
             val craftEvent = CraftItemEvent(
                     bukkitRecipe,
-                    inventory.View(),
+                    inventory.InvView(),
                     InventoryType.SlotType.RESULT,
                     0,
                     ClickType.SHIFT_LEFT,

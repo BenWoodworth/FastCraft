@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.implementations.bukkit.api.gui
 
-import net.benwoodworth.fastcraft.api.gui.event.EventGuiButtonClick
-import net.benwoodworth.fastcraft.api.gui.event.EventGuiClose
+import net.benwoodworth.fastcraft.api.gui.event.GuiEventClick
+import net.benwoodworth.fastcraft.api.gui.event.GuiEventClose
 import net.benwoodworth.fastcraft.api.gui.Gui
 import net.benwoodworth.fastcraft.implementations.bukkit.player.BukkitPlayer
 import org.bukkit.entity.Player
@@ -30,7 +30,7 @@ class BukkitGuiListeners : Listener { // TODO Move to own file
 
             // See if a button was clicked
             val button = gui.getButton(event.slot.rem(9), event.slot / 9)
-            button?.clickListener?.notifyHandlers(EventGuiButtonClick(
+            button?.clickListener?.notifyHandlers(GuiEventClick(
                     gui,
                     button,
                     (event.whoClicked as? Player)?.let(::BukkitPlayer),
@@ -78,7 +78,7 @@ class BukkitGuiListeners : Listener { // TODO Move to own file
         val player = event.player as? Player
 
         gui.closeListener.notifyHandlers(
-                EventGuiClose(gui, player?.let(::BukkitPlayer))
+                GuiEventClose(gui, player?.let(::BukkitPlayer))
         )
     }
 }

@@ -78,7 +78,7 @@ internal class CustomBukkitCraftingInventory(
         return mutableListOf(player)
     }
 
-    inner class View : InventoryView() {
+    inner class InvView : InventoryView() {
 
         override fun getPlayer(): HumanEntity {
             return this@CustomBukkitCraftingInventory.player

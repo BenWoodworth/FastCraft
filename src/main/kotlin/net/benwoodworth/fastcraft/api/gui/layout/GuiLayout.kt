@@ -1,8 +1,6 @@
 package net.benwoodworth.fastcraft.api.gui.layout
 
-import net.benwoodworth.fastcraft.api.gui.element.GuiElement
-import net.benwoodworth.fastcraft.api.gui.button.GuiButton
-import net.benwoodworth.fastcraft.api.gui.element.GuiElementPositioned
+import net.benwoodworth.fastcraft.api.gui.GuiElement
 
 /**
  * The button layout of a GUI.
@@ -16,7 +14,7 @@ interface GuiLayout : GuiElement {
      *
      * @param element the [GuiElement] to add
      */
-    fun addElement(element: GuiElementPositioned)
+    fun addElement(element: GuiElement)
 
     /**
      * Get the child layout at a the specified position.
@@ -26,7 +24,7 @@ interface GuiLayout : GuiElement {
      *
      * @param element the [GuiElement] to remove
      */
-    fun removeElement(element: GuiElementPositioned)
+    fun removeElement(element: GuiElement)
 
     /**
      * Get the layout element at the specified position in the layout.
@@ -36,13 +34,4 @@ interface GuiLayout : GuiElement {
      * @return the element at the specified position, or 'null' if there is none
      */
     fun getElement(x: Int, y: Int): GuiElement?
-
-    /**
-     * Recursively get a button at the specified position in the layout.
-     *
-     * @param x the x-coordinate of the button
-     * @param y the y-coordinate of the button
-     * @return the button at the specified position, or 'null' if there is none
-     */
-    fun getButton(x: Int, y: Int): GuiButton?
 }

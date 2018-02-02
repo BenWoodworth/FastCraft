@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.implementations.sponge.api.gui
 
-import net.benwoodworth.fastcraft.api.gui.event.EventGuiButtonClick
-import net.benwoodworth.fastcraft.api.gui.event.EventGuiClose
+import net.benwoodworth.fastcraft.api.gui.event.GuiEventClick
+import net.benwoodworth.fastcraft.api.gui.event.GuiEventClose
 import net.benwoodworth.fastcraft.api.gui.Gui
 import net.benwoodworth.fastcraft.implementations.sponge.player.SpongePlayer
 import org.spongepowered.api.entity.living.player.Player
@@ -75,7 +75,7 @@ class SpongeGuiListeners {
                 slotIndex / gui.width
         ) ?: return
 
-        val clickEvent = EventGuiButtonClick(
+        val clickEvent = GuiEventClick(
                 gui,
                 button,
                 player?.let(::SpongePlayer),
@@ -100,7 +100,7 @@ class SpongeGuiListeners {
         val gui = carriedInv.carrier.orElse(null) as? Gui ?: return
 
         gui.closeListener.notifyHandlers(
-                EventGuiClose(gui, player?.let(::SpongePlayer))
+                GuiEventClose(gui, player?.let(::SpongePlayer))
         )
     }
 }

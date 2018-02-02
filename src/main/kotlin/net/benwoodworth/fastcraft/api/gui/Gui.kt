@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.api.gui
 
 import net.benwoodworth.fastcraft.api.Listener
-import net.benwoodworth.fastcraft.api.gui.event.EventGuiClose
+import net.benwoodworth.fastcraft.api.gui.event.GuiEventClose
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.dependencies.text.Text
 
@@ -13,7 +13,7 @@ interface Gui {
     /**
      * A listener for the inventory closing.
      */
-    val closeListener: Listener<EventGuiClose>
+    val closeListener: Listener<GuiEventClose>
 
     /**
      * The title of this [Gui].

@@ -6,10 +6,9 @@ import net.benwoodworth.fastcraft.dependencies.player.Player
 /**
  * An event for closed [Gui]'s.
  */
-class EventGuiClose(
-
+class GuiEventClose(
         /**
-         * The [Gui] that was closed.
+         * The [Gui] in which the event occurred.
          */
         val gui: Gui,
 
