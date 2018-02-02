@@ -3,28 +3,31 @@ package net.benwoodworth.fastcraft.api.gui
 import net.benwoodworth.fastcraft.dependencies.text.Text
 
 /**
- * A factory for [Gui]'s.
+ * A factory for creating [Gui]'s.
  */
 interface GuiFactory {
 
     /**
-     * Build the [Gui]
+     * Create a GUI with a specific layout size.
      *
-     * @return the built [Gui]
+     * Typically only supports the sizes 9xN, 5x1, and 3x3.
+     *
+     * @param width the width of the [Gui]'s layout
+     * @param height the height of the [Gui]'s layout
+     * @param title the [Gui]'s title
      */
-    fun build(): Gui
+    fun sized(width: Int, height: Int, title: Text): Gui = when {
+        width == 9 -> chest(height, title)
+        width == 3 && height == 3 -> dispenser(title)
+        width == 5 && height == 1 -> hopper(title)
+        else -> throw IllegalArgumentException(
+                "Unsupported GUI size: ${width}x$height"
+        )
+    }
 
-    /**
-     * Set the [Gui] height.
-     *
-     * @return fluent interface
-     */
-    fun height(height: Int): GuiFactory
+    fun chest(height: Int, title: Text? = null): Gui.Chest
 
-    /**
-     * Set the [Gui] title.
-     *
-     * @return fluent interface
-     */
-    fun title(title: Text): GuiFactory
+    fun dispenser(title: Text? = null): Gui.Dispenser
+
+    fun hopper(title: Text? = null): Gui.Hopper
 }

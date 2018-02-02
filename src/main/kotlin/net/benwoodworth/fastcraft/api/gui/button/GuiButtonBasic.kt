@@ -1,18 +1,28 @@
 package net.benwoodworth.fastcraft.api.gui.button
 
 import net.benwoodworth.fastcraft.api.gui.event.GuiEventClick
+import net.benwoodworth.fastcraft.api.gui.event.GuiEventLayoutChange
 import net.benwoodworth.fastcraft.dependencies.item.Item
 
 /**
  * A basic implementation of [GuiButton].
  */
-class GuiButtonBasic(item: Item? = null) : GuiButtonAbstract(item) {
+class GuiButtonBasic(
+        x: Int,
+        y: Int,
+        item: Item? = null
+) : GuiButtonAbstract(x, y) {
 
-    override var item: Item?
-        get() = super.item
+    /**
+     * The item representing this button.
+     */
+    var item = item
         set(value) {
-            super.item = value
+            field = value
+            changeListener.notifyHandlers(GuiEventLayoutChange())
         }
+
+    override fun getItem(x: Int, y: Int) = item
 
     override fun onClick(event: GuiEventClick) = Unit
 }

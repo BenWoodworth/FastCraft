@@ -1,25 +1,18 @@
 package net.benwoodworth.fastcraft.api.gui.button
 
 import net.benwoodworth.fastcraft.api.Listener
+import net.benwoodworth.fastcraft.api.gui.element.GuiElementAbstract
 import net.benwoodworth.fastcraft.api.gui.event.GuiEventClick
-import net.benwoodworth.fastcraft.api.gui.event.GuiEventLayoutChange
-import net.benwoodworth.fastcraft.dependencies.item.Item
 
 /**
  * An abstract implementation of [GuiButton].
  */
-abstract class GuiButtonAbstract(item: Item? = null) : GuiButton {
+abstract class GuiButtonAbstract(
+        x: Int,
+        y: Int
+) : GuiButton, GuiElementAbstract(x, y, 1, 1) {
 
-    override val changeListener = Listener<GuiEventLayoutChange>()
-
-    override val clickListener = Listener<GuiEventClick>().apply {
-        addHandler(::onClick)
-    }
-
-    override var item = item
-        protected set(value) {
-            changeListener.notifyHandlers(GuiEventLayoutChange())
-        }
+    override val clickListener = Listener<GuiEventClick>()
 
     /**
      * Handles this button's clicks.
@@ -27,4 +20,9 @@ abstract class GuiButtonAbstract(item: Item? = null) : GuiButton {
      * @param event the click event
      */
     protected abstract fun onClick(event: GuiEventClick)
+
+    override fun onClick(x: Int, y: Int, event: GuiEventClick) {
+        onClick(event)
+        clickListener.notifyHandlers(event)
+    }
 }

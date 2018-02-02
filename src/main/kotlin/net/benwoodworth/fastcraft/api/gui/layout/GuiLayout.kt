@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.api.gui.layout
 
-import net.benwoodworth.fastcraft.api.gui.GuiElement
+import net.benwoodworth.fastcraft.api.gui.element.GuiElement
 
 /**
  * The button layout of a GUI.

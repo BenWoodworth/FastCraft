@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft.api.gui
 
 import net.benwoodworth.fastcraft.api.Listener
 import net.benwoodworth.fastcraft.api.gui.event.GuiEventClose
+import net.benwoodworth.fastcraft.api.gui.layout.GuiLayoutRoot
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.dependencies.text.Text
 
@@ -11,6 +12,11 @@ import net.benwoodworth.fastcraft.dependencies.text.Text
 interface Gui {
 
     /**
+     * The primary layout in this [Gui].
+     */
+    val layout: GuiLayoutRoot
+
+    /**
      * A listener for the inventory closing.
      */
     val closeListener: Listener<GuiEventClose>
@@ -18,7 +24,7 @@ interface Gui {
     /**
      * The title of this [Gui].
      */
-    val title: Text?
+    val title: Text
 
     /**
      * Open this [Gui] for the given players.
@@ -38,4 +44,19 @@ interface Gui {
      * Update the Gui's layout.
      */
     fun updateLayout()
+
+    /**
+     * A chest [Gui] with a 9xN layout.
+     */
+    interface Chest : Gui
+
+    /**
+     * A dispencer [Gui] with a 3x3 layout.
+     */
+    interface Dispenser : Gui
+
+    /**
+     * A hopper [Gui] with a 5x1 layout.
+     */
+    interface Hopper : Gui
 }

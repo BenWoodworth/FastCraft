@@ -9,7 +9,7 @@ import net.benwoodworth.fastcraft.dependencies.text.Text
  * A user interface for in-game players.
  */
 abstract class GuiAbstract(
-        override val title: Text? = null
+        override val title: Text
 ) : Gui {
 
     override val closeListener = Listener<GuiEventClose>()

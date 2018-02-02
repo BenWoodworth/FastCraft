@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.api.gui
+package net.benwoodworth.fastcraft.api.gui.element
 
 import net.benwoodworth.fastcraft.api.Listener
 import net.benwoodworth.fastcraft.api.gui.event.GuiEventClick
