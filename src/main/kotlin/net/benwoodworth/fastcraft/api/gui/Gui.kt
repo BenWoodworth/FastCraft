@@ -46,17 +46,17 @@ interface Gui {
     fun updateLayout()
 
     /**
-     * A chest [Gui] with a 9xN layout.
+     * A chest [Gui], with a 9xN layout.
      */
     interface Chest : Gui
 
     /**
-     * A dispencer [Gui] with a 3x3 layout.
+     * A dispenser [Gui], with a 3x3 layout.
      */
     interface Dispenser : Gui
 
     /**
-     * A hopper [Gui] with a 5x1 layout.
+     * A hopper [Gui], with a 5x1 layout.
      */
     interface Hopper : Gui
 }
