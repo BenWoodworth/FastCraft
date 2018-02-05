@@ -12,7 +12,7 @@ interface GuiLayout : GuiElement {
      *
      * Elements added later will take precedence over layouts added earlier.
      *
-     * @param element the [GuiElement] to add
+     * @param element the [GuiElementMutable] to add
      */
     fun addElement(element: GuiElement)
 
@@ -22,7 +22,7 @@ interface GuiLayout : GuiElement {
      * If layouts are overlapping at the specified point,
      * the last layout added will be returned.
      *
-     * @param element the [GuiElement] to remove
+     * @param element the [GuiElementMutable] to remove
      */
     fun removeElement(element: GuiElement)
 

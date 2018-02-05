@@ -18,22 +18,22 @@ interface GuiElement {
     /**
      * The distance from the left of the containing layout.
      */
-    var x: Int
+    val x: Int
 
     /**
      * The distance from the top of the containing layout.
      */
-    var y: Int
+    val y: Int
 
     /**
      * The width of this element.
      */
-    var width: Int
+    val width: Int
 
     /**
      * The height of this element.
      */
-    var height: Int
+    val height: Int
 
     /**
      * Handles GUI clicks.
@@ -52,4 +52,14 @@ interface GuiElement {
      * @return the item at the specified position, or `null` if there is none
      */
     fun getItem(x: Int, y: Int): Item?
+
+    /**
+     * A [GuiElement] that can be moved and resized.
+     */
+    interface Mutable : GuiElement {
+        override var x: Int
+        override var y: Int
+        override var width: Int
+        override var height: Int
+    }
 }

@@ -1,5 +1,6 @@
 package net.benwoodworth.fastcraft.api.gui.button
 
+import net.benwoodworth.fastcraft.api.gui.element.GuiElement
 import net.benwoodworth.fastcraft.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.api.gui.event.GuiEventLayoutChange
 import net.benwoodworth.fastcraft.dependencies.item.Item
@@ -11,7 +12,7 @@ class GuiButtonBasic(
         x: Int,
         y: Int,
         item: Item? = null
-) : GuiButtonAbstract(x, y) {
+) : GuiElement.Mutable, GuiButtonAbstract(x, y) {
 
     /**
      * The item representing this button.

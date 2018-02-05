@@ -11,17 +11,4 @@ class GuiLayoutRoot(
         0,
         width,
         height
-) {
-
-    override var x = 0
-        set(value) = Unit
-
-    override var y = 0
-        set(value) = Unit
-
-    override var width = width
-        set(value) = Unit
-
-    override var height = height
-        set(value) = Unit
-}
+)

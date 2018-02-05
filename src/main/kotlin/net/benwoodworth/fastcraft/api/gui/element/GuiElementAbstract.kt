@@ -13,25 +13,25 @@ abstract class GuiElementAbstract(
     override val changeListener = Listener<GuiEventLayoutChange>()
 
     override var x = x
-        set(value) {
+        protected set(value) {
             field = value
             changeListener.notifyHandlers(GuiEventLayoutChange())
         }
 
     override var y = y
-        set(value) {
+        protected set(value) {
             field = value
             changeListener.notifyHandlers(GuiEventLayoutChange())
         }
 
     override var width = width
-        set(value) {
+        protected set(value) {
             field = value
             changeListener.notifyHandlers(GuiEventLayoutChange())
         }
 
     override var height = height
-        set(value) {
+        protected set(value) {
             field = value
             changeListener.notifyHandlers(GuiEventLayoutChange())
         }
