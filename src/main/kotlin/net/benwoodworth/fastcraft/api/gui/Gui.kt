@@ -24,7 +24,7 @@ interface Gui {
     /**
      * The title of this [Gui].
      */
-    val title: Text
+    val title: Text?
 
     /**
      * Open this [Gui] for the given players.
@@ -39,11 +39,6 @@ interface Gui {
      * @return the players viewing the inventory
      */
     fun getViewers(): List<Player>
-
-    /**
-     * Update the Gui's layout.
-     */
-    fun updateLayout()
 
     /**
      * A chest [Gui], with a 9xN layout.

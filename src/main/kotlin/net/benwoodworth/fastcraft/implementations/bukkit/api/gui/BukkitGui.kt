@@ -1,6 +1,8 @@
 package net.benwoodworth.fastcraft.implementations.bukkit.api.gui
 
 import net.benwoodworth.fastcraft.api.gui.Gui
+import net.benwoodworth.fastcraft.api.gui.GuiAbstract
+import net.benwoodworth.fastcraft.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.implementations.bukkit.BukkitFastCraft
@@ -15,11 +17,10 @@ import org.bukkit.entity.Player as Bukkit_Player
 /**
  * Bukkit implementation of [Gui].
  */
-class BukkitGui(
+abstract class BukkitGui(
         plugin: BukkitFastCraft,
-        height: Int,
-        title: String?
-) : Gui(height), InventoryHolder {
+        private val inventory: Inventory
+) : GuiAbstract(), InventoryHolder {
 
     private companion object {
         var registeredListeners = false
@@ -32,16 +33,10 @@ class BukkitGui(
         }
     }
 
-    private val inventory: Inventory = Bukkit.createInventory(
-            this,
-            width * height,
-            title
-    )
+    override val title: Text?
+        get() = inventory.title?.let(::BukkitText)
 
     override fun getInventory() = inventory
-
-    override val title: Text?
-        get() = BukkitText(inventory.title)
 
     override fun open(vararg players: Player) {
         for (player in players) {
@@ -56,11 +51,35 @@ class BukkitGui(
     }
 
     override fun updateLayout() {
-        for (x in 0 until width) {
-            for (y in 0 until height) {
-                val item = getButton(x, y)?.item?.mutableCopy() as BukkitItem.Mutable?
-                inventory.setItem(x + y * width, item?.base)
+        for (slot in 0 until inventory.size) {
+            val layoutPos = getLayoutPos(slot)
+            val item = layoutPos?.run {
+                layout.getItem(x, y)?.mutableCopy() as BukkitItem.Mutable?
             }
+            inventory.setItem(slot, item?.base)
         }
+    }
+
+    fun onClick(slot: Int, event: GuiEventClick) {
+        getLayoutPos(slot)?.run {
+            layout.onClick(x, y, event)
+        }
+    }
+
+    protected abstract fun getLayoutPos(slot: Int): LayoutPos?
+
+    class Chest(plugin: BukkitFastCraft, inventory: Inventory) : Gui.Chest, BukkitGui(plugin, inventory) {
+        override val layout = addLayout(9, inventory.size / 9)
+        override fun getLayoutPos(slot: Int) = LayoutPos(layout, slot % 9, slot / 9)
+    }
+
+    class Dispenser(plugin: BukkitFastCraft, inventory: Inventory) : Gui.Dispenser, BukkitGui(plugin, inventory) {
+        override val layout = addLayout(3, 3)
+        override fun getLayoutPos(slot: Int) = LayoutPos(layout, slot % 3, slot / 3)
+    }
+
+    class Hopper(plugin: BukkitFastCraft, inventory: Inventory) : Gui.Hopper, BukkitGui(plugin, inventory) {
+        override val layout = addLayout(5, 1)
+        override fun getLayoutPos(slot: Int) = LayoutPos(layout, slot % 5, slot / 5)
     }
 }

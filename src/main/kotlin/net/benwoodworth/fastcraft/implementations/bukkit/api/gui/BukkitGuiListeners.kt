@@ -22,25 +22,25 @@ class BukkitGuiListeners : Listener { // TODO Move to own file
 
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     fun onInventoryClick(event: InventoryClickEvent) {
-        val gui = event.inventory.holder as? Gui ?: return
+        val gui = event.inventory.holder as? BukkitGui ?: return
 
         // If a GUI slot was clicked...
         if (event.rawSlot in 0 until event.inventory.size) {
             event.isCancelled = true
 
-            // See if a button was clicked
-            val button = gui.getButton(event.slot.rem(9), event.slot / 9)
-            button?.clickListener?.notifyHandlers(GuiEventClick(
-                    gui,
-                    button,
-                    (event.whoClicked as? Player)?.let(::BukkitPlayer),
-                    event.isLeftClick,
-                    event.isRightClick,
-                    event.click == ClickType.MIDDLE,
-                    event.click == ClickType.DOUBLE_CLICK,
-                    (event.hotbarButton + 1).takeUnless { it == 0 },
-                    event.isShiftClick
-            ))
+            gui.onClick(
+                    event.slot,
+                    GuiEventClick(
+                            gui,
+                            (event.whoClicked as? Player)?.let(::BukkitPlayer),
+                            event.isLeftClick,
+                            event.isRightClick,
+                            event.click == ClickType.MIDDLE,
+                            event.click == ClickType.DOUBLE_CLICK,
+                            (event.hotbarButton + 1).takeUnless { it == 0 },
+                            event.isShiftClick
+                    )
+            )
         } else {
             when (event.click) {
                 ClickType.LEFT,
@@ -61,7 +61,7 @@ class BukkitGuiListeners : Listener { // TODO Move to own file
 
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     fun onInventoryDrag(event: InventoryDragEvent) {
-        event.inventory.holder as? Gui ?: return
+        event.inventory.holder as? BukkitGui ?: return
 
         // Cancel if dragged into GUI.
         for (i in event.rawSlots) {
@@ -74,7 +74,7 @@ class BukkitGuiListeners : Listener { // TODO Move to own file
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     fun onInventoryClose(event: InventoryCloseEvent) {
-        val gui = event.inventory.holder as? Gui ?: return
+        val gui = event.inventory.holder as? BukkitGui ?: return
         val player = event.player as? Player
 
         gui.closeListener.notifyHandlers(

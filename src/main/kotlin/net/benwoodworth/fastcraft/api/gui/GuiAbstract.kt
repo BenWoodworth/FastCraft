@@ -8,13 +8,27 @@ import net.benwoodworth.fastcraft.dependencies.text.Text
 /**
  * A user interface for in-game players.
  */
-abstract class GuiAbstract(
-        override val title: Text
-) : Gui {
+abstract class GuiAbstract : Gui {
 
     override val closeListener = Listener<GuiEventClose>()
 
-    protected fun addLayout(layout: GuiLayoutRoot) = layout.also {
-        it.changeListener += ::updateLayout
+    protected fun addLayout(width: Int, height: Int): GuiLayoutRoot {
+        return GuiLayoutRoot(width, height).also {
+            it.changeListener += ::updateLayout
+        }
     }
+
+    /**
+     * Update the Gui's layout.
+     */
+    protected abstract fun updateLayout()
+
+    /**
+     * The position within a GUI's layout.
+     */
+    protected class LayoutPos(
+            val layout: GuiLayoutRoot,
+            val x: Int,
+            val y: Int
+    )
 }
