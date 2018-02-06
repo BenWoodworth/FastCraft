@@ -1,28 +1,24 @@
 package net.benwoodworth.fastcraft.implementations.sponge.api.gui
 
 import net.benwoodworth.fastcraft.api.gui.Gui
+import net.benwoodworth.fastcraft.api.gui.GuiAbstract
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.implementations.sponge.item.SpongeItem
 import net.benwoodworth.fastcraft.implementations.sponge.player.SpongePlayer
 import net.benwoodworth.fastcraft.implementations.sponge.text.SpongeText
 import org.spongepowered.api.Sponge
 import org.spongepowered.api.item.inventory.Carrier
-import org.spongepowered.api.item.inventory.Inventory
-import org.spongepowered.api.item.inventory.InventoryArchetypes
-import org.spongepowered.api.item.inventory.property.InventoryDimension
 import org.spongepowered.api.item.inventory.property.InventoryTitle
 import org.spongepowered.api.item.inventory.type.CarriedInventory
-import org.spongepowered.api.item.inventory.type.GridInventory
 import org.spongepowered.api.text.Text as Sponge_Text
 
 /**
  * Sponge implementation of [Gui].
  */
-class SpongeGui(
+abstract class SpongeGui<TInv : CarriedInventory<SpongeGui<TInv>>>(
         plugin: Any,
-        height: Int,
-        title: Sponge_Text?
-) : Gui(height), Carrier {
+        invProvider: (SpongeGui<TInv>) -> TInv
+) : GuiAbstract(), Carrier {
 
     private companion object {
         var registeredListeners = false
@@ -35,24 +31,8 @@ class SpongeGui(
         }
     }
 
-    /**
-     * The inventory representing this GUI.
-     */
-    @Suppress("UNCHECKED_CAST", "NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-    private val inventory = Inventory.builder()
-            .of(InventoryArchetypes.CHEST)
-            .property(
-                    InventoryDimension.PROPERTY_NAME,
-                    InventoryDimension(width, height)
-            )
-            .property(
-                    InventoryTitle.PROPERTY_NAME,
-                    InventoryTitle(title)
-            )
-            .withCarrier(this)
-            .build(plugin) as CarriedInventory<SpongeGui>
-
-    private val gridInventory = inventory.query<GridInventory>(GridInventory::class.java)
+    @Suppress("LeakingThis")
+    private val inventory = invProvider(this)
 
     override fun getInventory() = inventory
 
@@ -71,6 +51,8 @@ class SpongeGui(
                 .filter { it.openInventory === inventory }
                 .map(::SpongePlayer)
     }
+
+    protected abstract fun getLayoutPos(slot: Int): LayoutPos?
 
     @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
     override fun updateLayout() {
