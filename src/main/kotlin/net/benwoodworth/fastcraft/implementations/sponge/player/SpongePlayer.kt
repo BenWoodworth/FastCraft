@@ -1,8 +1,8 @@
 package net.benwoodworth.fastcraft.implementations.sponge.player
 
+import net.benwoodworth.fastcraft.dependencies.api.text.Text
 import net.benwoodworth.fastcraft.dependencies.player.Player
-import net.benwoodworth.fastcraft.dependencies.text.Text
-import net.benwoodworth.fastcraft.implementations.sponge.text.SpongeText
+import net.benwoodworth.fastcraft.implementations.sponge.api.text.SpongeText
 import net.benwoodworth.fastcraft.util.Adapter
 import java.util.*
 import org.spongepowered.api.entity.living.player.Player as Sponge_Player

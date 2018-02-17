@@ -1,15 +1,15 @@
 package net.benwoodworth.fastcraft.implementations.sponge.api.gui
 
-import net.benwoodworth.fastcraft.api.gui.Gui
-import net.benwoodworth.fastcraft.api.gui.GuiAbstract
-import net.benwoodworth.fastcraft.api.gui.event.GuiEventClick
-import net.benwoodworth.fastcraft.api.gui.layout.GuiLayout
-import net.benwoodworth.fastcraft.api.gui.region.GuiRegion
+import net.benwoodworth.fastcraft.dependencies.api.gui.Gui
+import net.benwoodworth.fastcraft.dependencies.api.gui.GuiAbstract
+import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
+import net.benwoodworth.fastcraft.dependencies.api.gui.layout.GuiLayout
+import net.benwoodworth.fastcraft.dependencies.api.gui.region.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.implementations.sponge.SpongeFastCraft
-import net.benwoodworth.fastcraft.implementations.sponge.item.SpongeItem
+import net.benwoodworth.fastcraft.implementations.sponge.api.item.SpongeItem
+import net.benwoodworth.fastcraft.implementations.sponge.api.text.SpongeText
 import net.benwoodworth.fastcraft.implementations.sponge.player.SpongePlayer
-import net.benwoodworth.fastcraft.implementations.sponge.text.SpongeText
 import org.spongepowered.api.Sponge
 import org.spongepowered.api.item.inventory.Carrier
 import org.spongepowered.api.item.inventory.Inventory

@@ -1,15 +1,15 @@
 package net.benwoodworth.fastcraft.implementations.bukkit.api.gui
 
-import net.benwoodworth.fastcraft.api.gui.Gui
-import net.benwoodworth.fastcraft.api.gui.GuiAbstract
-import net.benwoodworth.fastcraft.api.gui.event.GuiEventClick
-import net.benwoodworth.fastcraft.api.gui.region.GuiRegion
+import net.benwoodworth.fastcraft.dependencies.api.gui.Gui
+import net.benwoodworth.fastcraft.dependencies.api.gui.GuiAbstract
+import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
+import net.benwoodworth.fastcraft.dependencies.api.gui.region.GuiRegion
+import net.benwoodworth.fastcraft.dependencies.api.text.Text
 import net.benwoodworth.fastcraft.dependencies.player.Player
-import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.implementations.bukkit.BukkitFastCraft
-import net.benwoodworth.fastcraft.implementations.bukkit.item.BukkitItem
+import net.benwoodworth.fastcraft.implementations.bukkit.api.item.BukkitItem
+import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitText
 import net.benwoodworth.fastcraft.implementations.bukkit.player.BukkitPlayer
-import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitText
 import org.bukkit.Bukkit
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.InventoryHolder

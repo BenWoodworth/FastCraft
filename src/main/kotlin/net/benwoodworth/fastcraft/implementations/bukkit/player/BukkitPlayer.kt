@@ -1,8 +1,8 @@
 package net.benwoodworth.fastcraft.implementations.bukkit.player
 
+import net.benwoodworth.fastcraft.dependencies.api.text.Text
 import net.benwoodworth.fastcraft.dependencies.player.Player
-import net.benwoodworth.fastcraft.dependencies.text.Text
-import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitText
+import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitText
 import net.benwoodworth.fastcraft.util.Adapter
 import java.util.*
 import org.bukkit.entity.Player as Bukkit_Player

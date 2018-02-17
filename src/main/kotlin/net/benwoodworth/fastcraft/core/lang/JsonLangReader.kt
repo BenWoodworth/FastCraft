@@ -4,8 +4,8 @@ import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Parser
 import com.beust.klaxon.obj
-import net.benwoodworth.fastcraft.dependencies.text.Text
-import net.benwoodworth.fastcraft.dependencies.text.TextBuilder
+import net.benwoodworth.fastcraft.dependencies.api.text.Text
+import net.benwoodworth.fastcraft.dependencies.api.text.TextBuilder
 import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
 import java.nio.file.Files

@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.dependencies.player
 
-import net.benwoodworth.fastcraft.dependencies.text.Text
+import net.benwoodworth.fastcraft.dependencies.api.text.Text
 import java.util.*
 
 /**

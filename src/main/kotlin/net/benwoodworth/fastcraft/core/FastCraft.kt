@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.core
 
-import net.benwoodworth.fastcraft.api.Listener
+import net.benwoodworth.fastcraft.dependencies.api.Listener
 import net.benwoodworth.fastcraft.dependencies.event.EventPlayerJoin
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginDisable
 import net.benwoodworth.fastcraft.dependencies.event.EventPluginEnable
