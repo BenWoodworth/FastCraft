@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft.implementations.sponge.api.gui
 
 import net.benwoodworth.fastcraft.api.gui.Gui
 import net.benwoodworth.fastcraft.api.gui.GuiAbstract
+import net.benwoodworth.fastcraft.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.api.gui.layout.GuiLayout
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.implementations.sponge.SpongeFastCraft
@@ -15,14 +16,14 @@ import org.spongepowered.api.item.inventory.ItemStack
 import org.spongepowered.api.item.inventory.property.InventoryTitle
 import org.spongepowered.api.item.inventory.type.CarriedInventory
 import org.spongepowered.api.item.inventory.type.GridInventory
-import org.spongepowered.api.item.inventory.type.Inventory2D
 import org.spongepowered.api.text.Text as Sponge_Text
 
 /**
  * Sponge implementation of [Gui].
  */
-abstract class SpongeGui<out TInv : Inventory>(
-        plugin: Any,
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+abstract class SpongeGui<out TInv: Inventory>(
+        plugin: SpongeFastCraft,
         invProvider: (SpongeGui<TInv>) -> TInv
 ) : GuiAbstract(), Carrier {
 
@@ -38,15 +39,16 @@ abstract class SpongeGui<out TInv : Inventory>(
     }
 
     @Suppress("LeakingThis")
-    private val inventory: TInv = invProvider(this).also {
+    protected val inventory: TInv = invProvider(this).also {
         require(it is CarriedInventory<*>)
     }
 
-    override fun getInventory() = inventory
+    override fun getInventory() = inventory as CarriedInventory<*>
 
-    override val title get() = inventory.archetype // TODO Correct?
-            .getProperty(InventoryTitle::class.java)
-            .get().value?.let { SpongeText(it) }
+    override val title
+        get() = inventory.archetype // TODO Correct?
+                .getProperty(InventoryTitle::class.java)
+                .get().value?.let { SpongeText(it) }
 
     override fun open(vararg players: Player) {
         for (player in players) {
@@ -64,32 +66,44 @@ abstract class SpongeGui<out TInv : Inventory>(
         return (getItem(x, y)?.mutableCopy() as SpongeItem.Mutable?)?.base
     }
 
-    class Chest(
+    abstract fun onClick(slotIndex: Int, guiEvent: GuiEventClick)
+
+    abstract class GridBase(
             plugin: SpongeFastCraft,
             invProvider: (SpongeGui<GridInventory>) -> GridInventory
-    ) : Gui.Chest, SpongeGui<GridInventory>(plugin, invProvider) {
-        override val layout = addLayout(9, inventory.columns)
+    ) : SpongeGui<GridInventory>(plugin, invProvider) {
+
+        override val layout = addLayout(inventory.columns, inventory.rows)
+
         override fun updateLayout() {
-            for (x in 0 until inventory.columns) {
-                for (y in 0 until inventory.rows) {
-                    @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+            for (x in 0 until layout.width) {
+                for (y in 0 until layout.height) {
                     inventory.set(x, y, layout.getSpongeItem(x, y))
                 }
             }
         }
+
+        override fun onClick(slotIndex: Int, guiEvent: GuiEventClick) {
+            layout.onClick(
+                    slotIndex % layout.width,
+                    slotIndex / layout.width,
+                    guiEvent
+            )
+        }
     }
+
+    class Chest(
+            plugin: SpongeFastCraft,
+            invProvider: (SpongeGui<GridInventory>) -> GridInventory
+    ) : Gui.Chest, GridBase(plugin, invProvider)
 
     class Dispenser(
             plugin: SpongeFastCraft,
-            invProvider: (SpongeGui) -> CarriedInventory<SpongeGui>
-    ) : Gui.Dispenser, SpongeGui(plugin, invProvider) {
-        override val layout = addLayout(3, 3)
-    }
+            invProvider: (SpongeGui<GridInventory>) -> GridInventory
+    ) : Gui.Dispenser, GridBase(plugin, invProvider)
 
     class Hopper(
             plugin: SpongeFastCraft,
-            invProvider: (SpongeGui) -> CarriedInventory<SpongeGui>
-    ) : Gui.Hopper, SpongeGui(plugin, invProvider) {
-        override val layout = addLayout(5, 1)
-    }
+            invProvider: (SpongeGui<GridInventory>) -> GridInventory
+    ) : Gui.Hopper, GridBase(plugin, invProvider)
 }

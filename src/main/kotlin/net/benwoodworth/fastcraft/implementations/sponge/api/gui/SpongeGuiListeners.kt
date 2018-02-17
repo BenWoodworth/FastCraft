@@ -1,8 +1,8 @@
 package net.benwoodworth.fastcraft.implementations.sponge.api.gui
 
+import net.benwoodworth.fastcraft.api.gui.Gui
 import net.benwoodworth.fastcraft.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.api.gui.event.GuiEventClose
-import net.benwoodworth.fastcraft.api.gui.Gui
 import net.benwoodworth.fastcraft.implementations.sponge.player.SpongePlayer
 import org.spongepowered.api.entity.living.player.Player
 import org.spongepowered.api.event.Listener
@@ -65,19 +65,10 @@ class SpongeGuiListeners {
         }
 
         val carriedInv = slot.parent() as CarriedInventory<*>
-        val gui = carriedInv.carrier.get() as SpongeGui
-
-        val slotIndex = slot.getProperty(SlotIndex::class.java, "slotindex")
-                .map(SlotIndex::getValue).get()
-
-        val button = gui.getButton(
-                slotIndex.rem(gui.width),
-                slotIndex / gui.width
-        ) ?: return
+        val gui = carriedInv.carrier.get() as SpongeGui<*>
 
         val clickEvent = GuiEventClick(
                 gui,
-                button,
                 player?.let(::SpongePlayer),
                 event is ClickInventoryEvent.Primary,
                 event is ClickInventoryEvent.Secondary,
@@ -87,7 +78,11 @@ class SpongeGuiListeners {
                 event is ClickInventoryEvent.Shift
         )
 
-        button.clickListener.notifyHandlers(clickEvent)
+        val slotIndex = slot
+                .getProperty(SlotIndex::class.java, "slotindex")
+                .map(SlotIndex::getValue).get()
+
+        gui.onClick(slotIndex, clickEvent)
     }
 
     @Listener(order = Order.LAST)
