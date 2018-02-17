@@ -3,37 +3,18 @@ package net.benwoodworth.fastcraft.api.gui.element
 import net.benwoodworth.fastcraft.api.Listener
 import net.benwoodworth.fastcraft.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.api.gui.event.GuiEventLayoutChange
+import net.benwoodworth.fastcraft.api.gui.region.GuiRegionRectangle
 import net.benwoodworth.fastcraft.dependencies.item.Item
 
 /**
  * An object that can be added to a [Gui].
  */
-interface GuiElement {
+interface GuiElement : GuiRegionRectangle {
 
     /**
      * A listener for element changes.
      */
     val changeListener: Listener<GuiEventLayoutChange>
-
-    /**
-     * The distance from the left of the containing layout.
-     */
-    val x: Int
-
-    /**
-     * The distance from the top of the containing layout.
-     */
-    val y: Int
-
-    /**
-     * The width of this element.
-     */
-    val width: Int
-
-    /**
-     * The height of this element.
-     */
-    val height: Int
 
     /**
      * Handles GUI clicks.

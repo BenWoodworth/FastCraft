@@ -34,7 +34,7 @@ open class BukkitItemBuilder @Inject constructor(
         }
     }
 
-    override fun lore(vararg lore: Text?) = also {
+    override fun lore(lore: List<Text?>) = also {
         result.itemMeta = result.itemMeta.apply {
             this.lore = lore.map { (it as BukkitText?)?.text }
         }

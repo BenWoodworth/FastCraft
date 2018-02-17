@@ -16,10 +16,11 @@ abstract class GuiButtonAbstract(
 
     /**
      * Handles this button's clicks.
+     * Runs before [clickListener] handlers are notified.
      *
      * @param event the click event
      */
-    protected abstract fun onClick(event: GuiEventClick)
+    protected open fun onClick(event: GuiEventClick) = Unit
 
     override fun onClick(x: Int, y: Int, event: GuiEventClick) {
         onClick(event)

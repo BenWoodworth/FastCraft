@@ -4,6 +4,7 @@ import net.benwoodworth.fastcraft.api.gui.Gui
 import net.benwoodworth.fastcraft.api.gui.GuiAbstract
 import net.benwoodworth.fastcraft.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.api.gui.layout.GuiLayout
+import net.benwoodworth.fastcraft.api.gui.region.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.implementations.sponge.SpongeFastCraft
 import net.benwoodworth.fastcraft.implementations.sponge.item.SpongeItem
@@ -75,10 +76,12 @@ abstract class SpongeGui<out TInv: Inventory>(
 
         override val layout = addLayout(inventory.columns, inventory.rows)
 
-        override fun updateLayout() {
+        override fun updateLayout(region: GuiRegion) {
             for (x in 0 until layout.width) {
                 for (y in 0 until layout.height) {
-                    inventory.set(x, y, layout.getSpongeItem(x, y))
+                    if (region.contains(x, y)) {
+                        inventory.set(x, y, layout.getSpongeItem(x, y))
+                    }
                 }
             }
         }

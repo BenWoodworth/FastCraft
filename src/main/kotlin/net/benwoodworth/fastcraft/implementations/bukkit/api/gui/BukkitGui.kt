@@ -3,6 +3,7 @@ package net.benwoodworth.fastcraft.implementations.bukkit.api.gui
 import net.benwoodworth.fastcraft.api.gui.Gui
 import net.benwoodworth.fastcraft.api.gui.GuiAbstract
 import net.benwoodworth.fastcraft.api.gui.event.GuiEventClick
+import net.benwoodworth.fastcraft.api.gui.region.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.dependencies.text.Text
 import net.benwoodworth.fastcraft.implementations.bukkit.BukkitFastCraft
@@ -50,13 +51,14 @@ abstract class BukkitGui(
                 .map(::BukkitPlayer)
     }
 
-    override fun updateLayout() {
+    override fun updateLayout(region: GuiRegion) {
         for (slot in 0 until inventory.size) {
-            val layoutPos = getLayoutPos(slot)
-            val item = layoutPos?.run {
-                layout.getItem(x, y)?.mutableCopy() as BukkitItem.Mutable?
+            getLayoutPos(slot)?.run {
+                if (region.contains(x, y)) {
+                    val item = layout.getItem(x, y)?.mutableCopy() as BukkitItem.Mutable?
+                    inventory.setItem(slot, item?.base)
+                }
             }
-            inventory.setItem(slot, item?.base)
         }
     }
 

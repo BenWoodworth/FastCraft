@@ -20,7 +20,7 @@ class GuiButtonBasic(
     var item = item
         set(value) {
             field = value
-            changeListener.notifyHandlers(GuiEventLayoutChange())
+            changeListener.notifyHandlers(GuiEventLayoutChange(this))
         }
 
     override fun getItem(x: Int, y: Int) = item

@@ -44,7 +44,7 @@ class SpongeItemBuilder @Inject constructor(
         }
     }
 
-    override fun lore(vararg lore: Text?) = also {
+    override fun lore(lore: List<Text?>) = also {
         postChanges += {
             it.transform(Keys.ITEM_LORE) {
                 lore.map { (it as SpongeText?)?.base }

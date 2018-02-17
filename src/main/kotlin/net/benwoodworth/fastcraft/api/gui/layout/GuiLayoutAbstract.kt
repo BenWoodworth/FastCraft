@@ -4,6 +4,7 @@ import net.benwoodworth.fastcraft.api.gui.element.GuiElement
 import net.benwoodworth.fastcraft.api.gui.element.GuiElementAbstract
 import net.benwoodworth.fastcraft.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.api.gui.event.GuiEventLayoutChange
+import net.benwoodworth.fastcraft.api.gui.region.GuiRegionOffset
 import net.benwoodworth.fastcraft.dependencies.item.Item
 import java.util.*
 
@@ -23,11 +24,11 @@ abstract class GuiLayoutAbstract(
         if (elements.any { it === element }) {
             elements.remove(element)
         } else {
-            element.changeListener += changeListener::notifyHandlers
+            element.changeListener += ::onLayoutChange
         }
 
         elements.addFirst(element)
-        changeListener.notifyHandlers(GuiEventLayoutChange())
+        changeListener.notifyHandlers(GuiEventLayoutChange(element))
     }
 
     override fun removeElement(element: GuiElement) {
@@ -51,5 +52,11 @@ abstract class GuiLayoutAbstract(
         return getElement(x, y)?.let {
             it.getItem(x - it.x, y - it.y)
         }
+    }
+
+    private fun onLayoutChange(event: GuiEventLayoutChange) {
+        changeListener.notifyHandlers(event.copy(
+                region = GuiRegionOffset(event.region, x, y)
+        ))
     }
 }

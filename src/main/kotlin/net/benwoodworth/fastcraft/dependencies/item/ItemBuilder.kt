@@ -51,7 +51,15 @@ interface ItemBuilder {
      * @param lore the lore
      * @return this builder, for chaining
      */
-    fun lore(vararg lore: Text?): ItemBuilder
+    fun lore(lore: List<Text?>): ItemBuilder
+
+    /**
+     * Set the item's lore.
+     *
+     * @param lore the lore
+     * @return this builder, for chaining
+     */
+    fun lore(vararg lore: Text?): ItemBuilder = lore(lore.toList())
 
     /**
      * Set the item's durability.
