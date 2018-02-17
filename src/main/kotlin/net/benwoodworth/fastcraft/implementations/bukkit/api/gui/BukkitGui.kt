@@ -4,12 +4,12 @@ import net.benwoodworth.fastcraft.dependencies.api.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiAbstract
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.api.gui.region.GuiRegion
+import net.benwoodworth.fastcraft.dependencies.api.player.Player
 import net.benwoodworth.fastcraft.dependencies.api.text.Text
-import net.benwoodworth.fastcraft.dependencies.player.Player
 import net.benwoodworth.fastcraft.implementations.bukkit.BukkitFastCraft
 import net.benwoodworth.fastcraft.implementations.bukkit.api.item.BukkitItem
+import net.benwoodworth.fastcraft.implementations.bukkit.api.player.BukkitPlayer
 import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitText
-import net.benwoodworth.fastcraft.implementations.bukkit.player.BukkitPlayer
 import org.bukkit.Bukkit
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.InventoryHolder

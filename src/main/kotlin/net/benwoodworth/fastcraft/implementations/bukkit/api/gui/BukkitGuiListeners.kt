@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.implementations.bukkit.api.gui
 import net.benwoodworth.fastcraft.dependencies.api.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClose
-import net.benwoodworth.fastcraft.implementations.bukkit.player.BukkitPlayer
+import net.benwoodworth.fastcraft.implementations.bukkit.api.player.BukkitPlayer
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority

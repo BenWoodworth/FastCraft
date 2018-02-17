@@ -1,7 +1,7 @@
-package net.benwoodworth.fastcraft.implementations.bukkit.player
+package net.benwoodworth.fastcraft.implementations.bukkit.api.player
 
-import net.benwoodworth.fastcraft.dependencies.player.Player
-import net.benwoodworth.fastcraft.dependencies.player.PlayerProvider
+import net.benwoodworth.fastcraft.dependencies.api.player.Player
+import net.benwoodworth.fastcraft.dependencies.api.player.PlayerProvider
 import org.bukkit.Bukkit
 import java.util.*
 

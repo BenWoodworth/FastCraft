@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.dependencies.recipe
 
 import net.benwoodworth.fastcraft.dependencies.api.item.Item
-import net.benwoodworth.fastcraft.dependencies.player.Player
+import net.benwoodworth.fastcraft.dependencies.api.player.Player
 import net.benwoodworth.fastcraft.util.Grid
 
 /**

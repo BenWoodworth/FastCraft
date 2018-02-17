@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.dependencies.api.gui.event
 
 import net.benwoodworth.fastcraft.dependencies.api.gui.Gui
-import net.benwoodworth.fastcraft.dependencies.player.Player
+import net.benwoodworth.fastcraft.dependencies.api.player.Player
 
 /**
  * An event for closed [Gui]'s.

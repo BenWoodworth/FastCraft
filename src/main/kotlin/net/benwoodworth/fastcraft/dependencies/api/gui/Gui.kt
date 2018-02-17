@@ -3,8 +3,8 @@ package net.benwoodworth.fastcraft.dependencies.api.gui
 import net.benwoodworth.fastcraft.dependencies.api.Listener
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClose
 import net.benwoodworth.fastcraft.dependencies.api.gui.layout.GuiLayoutRoot
+import net.benwoodworth.fastcraft.dependencies.api.player.Player
 import net.benwoodworth.fastcraft.dependencies.api.text.Text
-import net.benwoodworth.fastcraft.dependencies.player.Player
 
 /**
  * A user interface for in-game players.

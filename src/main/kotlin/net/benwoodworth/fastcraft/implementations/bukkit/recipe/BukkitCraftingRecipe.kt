@@ -1,11 +1,11 @@
 package net.benwoodworth.fastcraft.implementations.bukkit.recipe
 
 import net.benwoodworth.fastcraft.dependencies.api.item.Item
-import net.benwoodworth.fastcraft.dependencies.player.Player
+import net.benwoodworth.fastcraft.dependencies.api.player.Player
 import net.benwoodworth.fastcraft.dependencies.recipe.CraftingRecipe
 import net.benwoodworth.fastcraft.dependencies.recipe.Ingredient
 import net.benwoodworth.fastcraft.implementations.bukkit.api.item.BukkitItem
-import net.benwoodworth.fastcraft.implementations.bukkit.player.BukkitPlayer
+import net.benwoodworth.fastcraft.implementations.bukkit.api.player.BukkitPlayer
 import net.benwoodworth.fastcraft.util.Adapter
 import net.benwoodworth.fastcraft.util.Grid
 import org.bukkit.Bukkit

@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.implementations.sponge.api.gui
 import net.benwoodworth.fastcraft.dependencies.api.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClose
-import net.benwoodworth.fastcraft.implementations.sponge.player.SpongePlayer
+import net.benwoodworth.fastcraft.implementations.sponge.api.player.SpongePlayer
 import org.spongepowered.api.entity.living.player.Player
 import org.spongepowered.api.event.Listener
 import org.spongepowered.api.event.Order
