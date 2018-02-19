@@ -4,7 +4,7 @@ import net.benwoodworth.fastcraft.dependencies.api.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiAbstract
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.api.gui.layout.GuiLayout
-import net.benwoodworth.fastcraft.dependencies.api.gui.region.GuiRegion
+import net.benwoodworth.fastcraft.dependencies.api.gui.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.api.player.Player
 import net.benwoodworth.fastcraft.implementations.sponge.SpongeFastCraft
 import net.benwoodworth.fastcraft.implementations.sponge.api.item.SpongeItem

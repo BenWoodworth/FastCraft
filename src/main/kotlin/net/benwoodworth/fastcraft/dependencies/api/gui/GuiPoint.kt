@@ -1,11 +1,9 @@
-package net.benwoodworth.fastcraft.dependencies.api.gui.region
-
-import kotlin.math.abs
+package net.benwoodworth.fastcraft.dependencies.api.gui
 
 data class GuiPoint(
         val x: Int,
         val y: Int
-) : GuiRegion {
+) : GuiRegion.Positioned {
 
     override val location = this
 
@@ -14,15 +12,6 @@ data class GuiPoint(
     override fun offset(point: GuiPoint) = GuiPoint(x + point.x, y + point.y)
 
     override fun position(point: GuiPoint) = point
-
-    /**
-     * Creates a [GuiRegion.Rectangle] encompassing two [GuiPoint]s.
-     */
-    operator fun rangeTo(point: GuiPoint) = GuiRegion.Rectangle(
-            GuiPoint(minOf(x, point.x), minOf(y, point.y)),
-            abs(x - point.x) + 1,
-            abs(y - point.y) + 1
-    )
 
     /**
      * Creates a new [GuiPoint] with negated coordinates.

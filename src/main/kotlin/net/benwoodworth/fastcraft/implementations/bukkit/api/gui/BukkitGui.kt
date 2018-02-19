@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.implementations.bukkit.api.gui
 import net.benwoodworth.fastcraft.dependencies.api.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiAbstract
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
-import net.benwoodworth.fastcraft.dependencies.api.gui.region.GuiRegion
+import net.benwoodworth.fastcraft.dependencies.api.gui.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.api.player.Player
 import net.benwoodworth.fastcraft.dependencies.api.text.Text
 import net.benwoodworth.fastcraft.implementations.bukkit.BukkitFastCraft

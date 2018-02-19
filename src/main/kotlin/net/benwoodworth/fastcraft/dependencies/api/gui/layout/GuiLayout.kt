@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.dependencies.api.gui.layout
 
 import net.benwoodworth.fastcraft.dependencies.api.gui.element.GuiElement
-import net.benwoodworth.fastcraft.dependencies.api.gui.region.GuiRegion
+import net.benwoodworth.fastcraft.dependencies.api.gui.GuiRegion
 
 /**
  * The button layout of a GUI.

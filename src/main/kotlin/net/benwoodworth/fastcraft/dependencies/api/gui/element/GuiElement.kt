@@ -1,10 +1,10 @@
 package net.benwoodworth.fastcraft.dependencies.api.gui.element
 
 import net.benwoodworth.fastcraft.dependencies.api.Listener
+import net.benwoodworth.fastcraft.dependencies.api.gui.GuiPoint
+import net.benwoodworth.fastcraft.dependencies.api.gui.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventLayoutChange
-import net.benwoodworth.fastcraft.dependencies.api.gui.region.GuiPoint
-import net.benwoodworth.fastcraft.dependencies.api.gui.region.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.api.item.Item
 
 /**
@@ -20,7 +20,7 @@ interface GuiElement {
     /**
      * The region this element occupies within the containing layout.
      */
-    val region: GuiRegion
+    val region: GuiRegion.Positioned
 
     /**
      * Handles GUI clicks.
@@ -42,7 +42,6 @@ interface GuiElement {
      * A [GuiElement] that can be moved and resized.
      */
     interface Mutable : GuiElement {
-
-        override val region: GuiRegion
+        override val region: GuiRegion.Positioned
     }
 }

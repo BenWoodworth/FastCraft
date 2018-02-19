@@ -1,19 +1,17 @@
 package net.benwoodworth.fastcraft.dependencies.api.gui.layout
 
+import net.benwoodworth.fastcraft.dependencies.api.gui.GuiPoint
 import net.benwoodworth.fastcraft.dependencies.api.gui.element.GuiElement
 import net.benwoodworth.fastcraft.dependencies.api.gui.element.GuiElementAbstract
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventLayoutChange
-import net.benwoodworth.fastcraft.dependencies.api.gui.region.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.api.item.Item
 import java.util.*
 
 /**
  * Abstract implementation of [GuiLayout].
  */
-abstract class GuiLayoutAbstract(
-    region: GuiRegion.Rectangle
-) : GuiLayout, GuiElementAbstract(region) {
+abstract class GuiLayoutAbstract : GuiLayout, GuiElementAbstract(region) {
 
     private val elements = LinkedList<GuiElement>()
 
@@ -33,21 +31,19 @@ abstract class GuiLayoutAbstract(
         element.changeListener -= changeListener::notifyHandlers
     }
 
-    override fun getElement(x: Int, y: Int): GuiElement? {
-        return elements.firstOrNull {
-            (x in it.x..(it.x + it.width)) && (y in it.y..(it.y + it.height))
+    override fun getElement(point: GuiPoint): GuiElement? {
+        return elements.firstOrNull { point in it.region }
+    }
+
+    override fun onClick(point: GuiPoint, event: GuiEventClick) {
+        getElement(point)?.let {
+            it.onClick(point.offset(it.region.location), event)
         }
     }
 
-    override fun onClick(x: Int, y: Int, event: GuiEventClick) {
-        getElement(x, y)?.let {
-            it.onClick(x - it.x, y - it.y, event)
-        }
-    }
-
-    override fun getItem(x: Int, y: Int): Item? {
-        return getElement(x, y)?.let {
-            it.getItem(x - it.x, y - it.y)
+    override fun getItem(point: GuiPoint): Item? {
+        return getElement(point)?.let {
+            it.getItem(point.offset(it.region.location))
         }
     }
 
