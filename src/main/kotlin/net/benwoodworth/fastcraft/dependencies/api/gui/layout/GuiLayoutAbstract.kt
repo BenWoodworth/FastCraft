@@ -4,6 +4,7 @@ import net.benwoodworth.fastcraft.dependencies.api.gui.element.GuiElement
 import net.benwoodworth.fastcraft.dependencies.api.gui.element.GuiElementAbstract
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventLayoutChange
+import net.benwoodworth.fastcraft.dependencies.api.gui.region.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.api.item.Item
 import java.util.*
 
@@ -11,11 +12,8 @@ import java.util.*
  * Abstract implementation of [GuiLayout].
  */
 abstract class GuiLayoutAbstract(
-        x: Int,
-        y: Int,
-        width: Int,
-        height: Int
-) : GuiLayout, GuiElementAbstract(x, y, width, height) {
+    region: GuiRegion.Rectangle
+) : GuiLayout, GuiElementAbstract(region) {
 
     private val elements = LinkedList<GuiElement>()
 

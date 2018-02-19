@@ -6,9 +6,4 @@ package net.benwoodworth.fastcraft.dependencies.api.gui.layout
 class GuiLayoutRoot(
         width: Int,
         height: Int
-) : GuiLayoutAbstract(
-        0,
-        0,
-        width,
-        height
-)
+) : GuiLayoutAbstract()

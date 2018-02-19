@@ -1,11 +1,14 @@
 package net.benwoodworth.fastcraft.dependencies.api.gui.layout
 
 import net.benwoodworth.fastcraft.dependencies.api.gui.element.GuiElement
+import net.benwoodworth.fastcraft.dependencies.api.gui.region.GuiRegion
 
 /**
  * The button layout of a GUI.
  */
 interface GuiLayout : GuiElement {
+
+    override val region: GuiRegion.Rectangle
 
     /**
      * Add a [GuiElement] to this layout.
