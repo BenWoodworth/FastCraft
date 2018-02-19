@@ -3,13 +3,14 @@ package net.benwoodworth.fastcraft.dependencies.api.gui.element
 import net.benwoodworth.fastcraft.dependencies.api.Listener
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventLayoutChange
-import net.benwoodworth.fastcraft.dependencies.api.gui.region.GuiRegionRectangle
+import net.benwoodworth.fastcraft.dependencies.api.gui.region.GuiPoint
+import net.benwoodworth.fastcraft.dependencies.api.gui.region.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.api.item.Item
 
 /**
  * An object that can be added to a GUI.
  */
-interface GuiElement : GuiRegionRectangle {
+interface GuiElement {
 
     /**
      * A listener for element changes.
@@ -17,30 +18,31 @@ interface GuiElement : GuiRegionRectangle {
     val changeListener: Listener<GuiEventLayoutChange>
 
     /**
+     * The region this element occupies within the containing layout.
+     */
+    val region: GuiRegion
+
+    /**
      * Handles GUI clicks.
      *
-     * @param x the x-position that was clicked, relative to this element
-     * @param y the y-position that was clicked, relative to this element
+     * @param point the location that was clicked, relative to this element
      * @param event the click event
      */
-    fun onClick(x: Int, y: Int, event: GuiEventClick)
+    fun onClick(point: GuiPoint, event: GuiEventClick)
 
     /**
      * Get an item from within this element.
      *
-     * @param x the x-position of the item, relative to this element
-     * @param y the y-position of the item, relative to this element
+     * @param point the location of the item, relative to this element
      * @return the item at the specified position, or `null` if there is none
      */
-    fun getItem(x: Int, y: Int): Item?
+    fun getItem(point: GuiPoint): Item?
 
     /**
      * A [GuiElement] that can be moved and resized.
      */
     interface Mutable : GuiElement {
-        override var x: Int
-        override var y: Int
-        override var width: Int
-        override var height: Int
+
+        override val region: GuiRegion
     }
 }

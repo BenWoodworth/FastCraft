@@ -38,7 +38,7 @@ abstract class MvpPresenter<out TView : MvpView, out TModel : MvpModel>(
     }
 
     /**
-     * Updates the view to match the model.
+     * Updates the [view] to match the [model].
      *
      * Called automatically when [MvpModel.updated] is invoked.
      */

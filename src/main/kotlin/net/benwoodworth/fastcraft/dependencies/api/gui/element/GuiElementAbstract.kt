@@ -2,27 +2,33 @@ package net.benwoodworth.fastcraft.dependencies.api.gui.element
 
 import net.benwoodworth.fastcraft.dependencies.api.Listener
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventLayoutChange
+import net.benwoodworth.fastcraft.dependencies.api.gui.region.GuiPoint
 
 abstract class GuiElementAbstract(
-        x: Int,
-        y: Int,
+        location: GuiPoint
         width: Int,
         height: Int
 ) : GuiElement {
 
     override val changeListener = Listener<GuiEventLayoutChange>()
 
-    override var x = x
-        protected set(value) {
-            field = value
-            changeListener.notifyHandlers(GuiEventLayoutChange(this))//TODO update old region
-        }
+    private fun changePos(dx: Int, dy: Int) = changeListener.notifyHandlers(
+            GuiEventLayoutChange(
+                    GuiRegionConstruct()
+                            .include(this)
+                            .include(this, -dx, -dy)
+            )
+    )
 
-    override var y = y
-        protected set(value) {
-            field = value
-            changeListener.notifyHandlers(GuiEventLayoutChange(this))
-        }
+    private fun changeSize(dw: Int, dh: Int) = changeListener.notifyHandlers(
+            GuiEventLayoutChange(
+                    GuiRegionConstruct()
+                            .include(x, y, width, height)
+                            .include(x, y, width - dw, height - dh)
+            )
+    )
+
+    override var location: GuiPoint
 
     override var width = width
         protected set(value) {
