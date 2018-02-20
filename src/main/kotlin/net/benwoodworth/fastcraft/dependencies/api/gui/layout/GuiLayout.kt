@@ -1,14 +1,12 @@
 package net.benwoodworth.fastcraft.dependencies.api.gui.layout
 
+import net.benwoodworth.fastcraft.dependencies.api.gui.GuiLocation
 import net.benwoodworth.fastcraft.dependencies.api.gui.element.GuiElement
-import net.benwoodworth.fastcraft.dependencies.api.gui.GuiRegion
 
 /**
  * The button layout of a GUI.
  */
 interface GuiLayout : GuiElement {
-
-    override val region: GuiRegion.Rectangle
 
     /**
      * Add a [GuiElement] to this layout.
@@ -32,9 +30,8 @@ interface GuiLayout : GuiElement {
     /**
      * Get the layout element at the specified position in the layout.
      *
-     * @param x the x-coordinate of the button
-     * @param y the y-coordinate of the button
-     * @return the element at the specified position, or 'null' if there is none
+     * @param location the location of the button
+     * @return the element at the specified position, or `null` if there is none
      */
-    fun getElement(x: Int, y: Int): GuiElement?
+    fun getElement(location: GuiLocation): GuiElement?
 }

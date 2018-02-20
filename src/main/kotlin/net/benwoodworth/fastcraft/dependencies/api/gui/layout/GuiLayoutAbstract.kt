@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.dependencies.api.gui.layout
 
-import net.benwoodworth.fastcraft.dependencies.api.gui.GuiPoint
+import net.benwoodworth.fastcraft.dependencies.api.gui.GuiLocation
+import net.benwoodworth.fastcraft.dependencies.api.gui.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.api.gui.element.GuiElement
 import net.benwoodworth.fastcraft.dependencies.api.gui.element.GuiElementAbstract
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
@@ -11,7 +12,9 @@ import java.util.*
 /**
  * Abstract implementation of [GuiLayout].
  */
-abstract class GuiLayoutAbstract : GuiLayout, GuiElementAbstract(region) {
+abstract class GuiLayoutAbstract(
+        region: GuiRegion.Positioned
+) : GuiLayout, GuiElementAbstract(region) {
 
     private val elements = LinkedList<GuiElement>()
 
@@ -23,7 +26,9 @@ abstract class GuiLayoutAbstract : GuiLayout, GuiElementAbstract(region) {
         }
 
         elements.addFirst(element)
-        changeListener.notifyHandlers(GuiEventLayoutChange(element))
+        changeListener.notifyHandlers(
+                GuiEventLayoutChange(region.intersect(element.region))
+        )
     }
 
     override fun removeElement(element: GuiElement) {
@@ -31,25 +36,27 @@ abstract class GuiLayoutAbstract : GuiLayout, GuiElementAbstract(region) {
         element.changeListener -= changeListener::notifyHandlers
     }
 
-    override fun getElement(point: GuiPoint): GuiElement? {
-        return elements.firstOrNull { point in it.region }
+    override fun getElement(location: GuiLocation): GuiElement? {
+        return elements.firstOrNull { location in it.region }
     }
 
-    override fun onClick(point: GuiPoint, event: GuiEventClick) {
-        getElement(point)?.let {
-            it.onClick(point.offset(it.region.location), event)
+    override fun click(event: GuiEventClick) {
+        getElement(event.location)?.let {
+            it.click(event.copy(
+                    location = event.location.offset(-it.region.location)
+            ))
         }
     }
 
-    override fun getItem(point: GuiPoint): Item? {
-        return getElement(point)?.let {
-            it.getItem(point.offset(it.region.location))
+    override fun getItem(location: GuiLocation): Item? {
+        return getElement(location)?.let {
+            it.getItem(location.offset(it.region.location))
         }
     }
 
     private fun onLayoutChange(event: GuiEventLayoutChange) {
         changeListener.notifyHandlers(event.copy(
-                region = GuiRegionOffset(event.region, x, y)
+                region = event.region.offset(region.location)
         ))
     }
 }

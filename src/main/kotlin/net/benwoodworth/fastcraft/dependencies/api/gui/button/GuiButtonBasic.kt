@@ -1,5 +1,7 @@
 package net.benwoodworth.fastcraft.dependencies.api.gui.button
 
+import net.benwoodworth.fastcraft.dependencies.api.gui.GuiLocation
+import net.benwoodworth.fastcraft.dependencies.api.gui.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.api.gui.element.GuiElement
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventLayoutChange
@@ -9,10 +11,9 @@ import net.benwoodworth.fastcraft.dependencies.api.item.Item
  * A basic implementation of [GuiButton].
  */
 class GuiButtonBasic(
-        x: Int,
-        y: Int,
+        region: GuiRegion.Positioned,
         item: Item? = null
-) : GuiElement.Mutable, GuiButtonAbstract(x, y) {
+) : GuiElement.Mutable, GuiButtonAbstract(region) {
 
     /**
      * The item representing this button.
@@ -20,10 +21,12 @@ class GuiButtonBasic(
     var item = item
         set(value) {
             field = value
-            changeListener.notifyHandlers(GuiEventLayoutChange(this))
+            changeListener.notifyHandlers(GuiEventLayoutChange(region))
         }
 
-    override fun getItem(x: Int, y: Int) = item
+    override fun getItem(location: GuiLocation) = item
+
+    override fun click(event: GuiEventClick) = Unit
 
     override fun onClick(event: GuiEventClick) = Unit
 }

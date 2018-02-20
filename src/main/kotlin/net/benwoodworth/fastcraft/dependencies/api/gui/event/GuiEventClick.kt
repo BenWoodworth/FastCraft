@@ -1,13 +1,18 @@
 package net.benwoodworth.fastcraft.dependencies.api.gui.event
 
 import net.benwoodworth.fastcraft.dependencies.api.gui.Gui
+import net.benwoodworth.fastcraft.dependencies.api.gui.GuiLocation
 import net.benwoodworth.fastcraft.dependencies.api.gui.button.GuiButton
 import net.benwoodworth.fastcraft.dependencies.api.player.Player
 
 /**
  * An event triggered when a [GuiButton] is clicked.
  */
-class GuiEventClick(
+data class GuiEventClick(
+        /**
+         * The location that was clicked.
+         */
+        val location: GuiLocation,
 
         /**
          * The [Gui] in which the event occurred.

@@ -2,8 +2,8 @@ package net.benwoodworth.fastcraft.implementations.bukkit.api.gui
 
 import net.benwoodworth.fastcraft.dependencies.api.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiAbstract
-import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiRegion
+import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.api.player.Player
 import net.benwoodworth.fastcraft.dependencies.api.text.Text
 import net.benwoodworth.fastcraft.implementations.bukkit.BukkitFastCraft
@@ -64,7 +64,7 @@ abstract class BukkitGui(
 
     fun onClick(slot: Int, event: GuiEventClick) {
         getLayoutPos(slot)?.run {
-            layout.onClick(x, y, event)
+            layout.click(x, y, event)
         }
     }
 

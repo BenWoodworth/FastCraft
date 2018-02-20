@@ -1,7 +1,6 @@
 package net.benwoodworth.fastcraft.dependencies.api.gui.button
 
 import net.benwoodworth.fastcraft.dependencies.api.Listener
-import net.benwoodworth.fastcraft.dependencies.api.gui.GuiPoint
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.api.gui.element.GuiElementAbstract
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
@@ -21,10 +20,10 @@ abstract class GuiButtonAbstract(
      *
      * @param event the click event
      */
-    protected open fun onClick(event: GuiEventClick) = Unit
+    abstract fun onClick(event: GuiEventClick)
 
-    override fun onClick(location: GuiPoint, event: GuiEventClick) {
-        onClick(event)
+    override fun click(event: GuiEventClick) {
+        click(event)
         clickListener.notifyHandlers(event)
     }
 }

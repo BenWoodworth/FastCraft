@@ -3,9 +3,9 @@ package net.benwoodworth.fastcraft.dependencies.api.gui
 interface GuiRegion {
 
     /**
-     * Checks if a point is contained within this region.
+     * Checks if a location is contained within this region.
      */
-    operator fun contains(point: GuiPoint): Boolean
+    operator fun contains(location: GuiLocation): Boolean
 
     fun union(vararg regions: GuiRegion): GuiRegion {
         return Dynamic { point -> (point in this) || regions.any { point in it } }
@@ -37,39 +37,40 @@ interface GuiRegion {
 
     operator fun not() = invert()
 
-    fun offset(point: GuiPoint): Positioned {
-        return PositionedImpl(this, point)
+    fun offset(location: GuiLocation): Positioned {
+        return PositionedImpl(this, location)
     }
 
-    fun position(point: GuiPoint): Positioned {
-        return PositionedImpl(this, point)
+    fun position(location: GuiLocation): Positioned {
+        return PositionedImpl(this, location)
     }
 
     interface Positioned : GuiRegion {
-        val location: GuiPoint
+        val location: GuiLocation
     }
 
     private class PositionedImpl(
             private val region: GuiRegion,
-            override val location: GuiPoint
+            override val location: GuiLocation
     ) : Positioned {
-        override fun contains(point: GuiPoint) = region.contains(point.offset(-location))
-        override fun offset(point: GuiPoint) = PositionedImpl(region, location.offset(point))
-        override fun position(point: GuiPoint) = PositionedImpl(region, point)
+        override fun contains(location: GuiLocation) = region.contains(location.offset(-this.location))
+        override fun offset(location: GuiLocation) = PositionedImpl(region, this.location.offset(location))
+        override fun position(location: GuiLocation) = PositionedImpl(region, location)
     }
 
     class Dynamic(
-            private val condition: (point: GuiPoint) -> Boolean
+            private val condition: (location: GuiLocation) -> Boolean
     ) : GuiRegion {
-        override fun contains(point: GuiPoint) = condition(point)
+        override fun contains(location: GuiLocation) = condition(location)
     }
 
     class Rectangle(
-            override val location: GuiPoint,
+            override val location: GuiLocation,
             val width: Int,
             val height: Int
     ) : Positioned {
-        constructor(x: Int, y: Int, width: Int, height: Int) : this(GuiPoint(x, y), width, height)
-        override fun contains(point: GuiPoint) = (point.x in 0 until width) && (point.y in 0 until height)
+        constructor(x: Int, y: Int, width: Int, height: Int) : this(GuiLocation(x, y), width, height)
+
+        override fun contains(location: GuiLocation) = (location.x in 0 until width) && (location.y in 0 until height)
     }
 }

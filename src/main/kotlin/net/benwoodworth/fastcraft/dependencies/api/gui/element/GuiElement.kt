@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.dependencies.api.gui.element
 
 import net.benwoodworth.fastcraft.dependencies.api.Listener
-import net.benwoodworth.fastcraft.dependencies.api.gui.GuiPoint
+import net.benwoodworth.fastcraft.dependencies.api.gui.GuiLocation
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventLayoutChange
@@ -25,18 +25,17 @@ interface GuiElement {
     /**
      * Handles GUI clicks.
      *
-     * @param point the location that was clicked, relative to this element
      * @param event the click event
      */
-    fun onClick(point: GuiPoint, event: GuiEventClick)
+    fun click(event: GuiEventClick)
 
     /**
      * Get an item from within this element.
      *
-     * @param point the location of the item, relative to this element
+     * @param location the location of the item, relative to this element
      * @return the item at the specified position, or `null` if there is none
      */
-    fun getItem(point: GuiPoint): Item?
+    fun getItem(location: GuiLocation): Item?
 
     /**
      * A [GuiElement] that can be moved and resized.
