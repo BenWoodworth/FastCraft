@@ -1,9 +1,9 @@
 package net.benwoodworth.fastcraft.implementations.sponge.api.gui
 
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiFactory
-import net.benwoodworth.fastcraft.dependencies.api.text.Text
+import net.benwoodworth.fastcraft.dependencies.api.text.FcText
 import net.benwoodworth.fastcraft.implementations.sponge.SpongeFastCraft
-import net.benwoodworth.fastcraft.implementations.sponge.api.text.SpongeText
+import net.benwoodworth.fastcraft.implementations.sponge.api.text.SpongeFcText
 import org.spongepowered.api.item.inventory.Inventory
 import org.spongepowered.api.item.inventory.InventoryArchetype
 import org.spongepowered.api.item.inventory.InventoryArchetypes
@@ -22,7 +22,7 @@ class SpongeGuiFactory @Inject constructor(
     @Suppress("UNCHECKED_CAST")
     private fun <T : Inventory> build(
             gui: SpongeGui<*>,
-            title: Text?,
+            title: FcText?,
             archetype: InventoryArchetype,
             builder: Inventory.Builder.() -> Unit = {}
     ): T {
@@ -31,13 +31,13 @@ class SpongeGuiFactory @Inject constructor(
             forCarrier(gui)
             if (title != null) property(
                     InventoryTitle.PROPERTY_NAME,
-                    InventoryTitle.of((title as SpongeText).base)
+                    InventoryTitle.of((title as SpongeFcText).base)
             )
             builder(this)
         }.build(plugin) as T
     }
 
-    override fun chest(height: Int, title: Text?) = SpongeGui.Chest(plugin) {
+    override fun chest(height: Int, title: FcText?) = SpongeGui.Chest(plugin) {
         build(it, title, InventoryArchetypes.CHEST) {
             property(
                     InventoryDimension.PROPERTY_NAME,
@@ -46,11 +46,11 @@ class SpongeGuiFactory @Inject constructor(
         }
     }
 
-    override fun dispenser(title: Text?) = SpongeGui.Dispenser(plugin) {
+    override fun dispenser(title: FcText?) = SpongeGui.Dispenser(plugin) {
         build(it, title, InventoryArchetypes.DISPENSER)
     }
 
-    override fun hopper(title: Text?) = SpongeGui.Hopper(plugin) {
+    override fun hopper(title: FcText?) = SpongeGui.Hopper(plugin) {
         build(it, title, InventoryArchetypes.HOPPER)
     }
 }

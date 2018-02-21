@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.implementations.sponge.api.gui
 
 import net.benwoodworth.fastcraft.dependencies.api.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClose
-import net.benwoodworth.fastcraft.implementations.sponge.api.player.SpongePlayer
+import net.benwoodworth.fastcraft.implementations.sponge.api.player.SpongeFcPlayer
 import org.spongepowered.api.entity.living.player.Player
 import org.spongepowered.api.event.Listener
 import org.spongepowered.api.event.Order
@@ -79,7 +79,7 @@ class SpongeGuiListeners {
         val gui = carriedInv.carrier.orElse(null) as? Gui ?: return
 
         gui.closeListener.notifyHandlers(
-                GuiEventClose(gui, player?.let(::SpongePlayer))
+                GuiEventClose(gui, player?.let(::SpongeFcPlayer))
         )
     }
 }

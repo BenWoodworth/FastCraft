@@ -5,12 +5,12 @@ import net.benwoodworth.fastcraft.dependencies.api.gui.GuiAbstract
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiLocation
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
-import net.benwoodworth.fastcraft.dependencies.api.player.Player
-import net.benwoodworth.fastcraft.dependencies.api.text.Text
+import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayer
+import net.benwoodworth.fastcraft.dependencies.api.text.FcText
 import net.benwoodworth.fastcraft.implementations.bukkit.BukkitFastCraft
-import net.benwoodworth.fastcraft.implementations.bukkit.api.item.BukkitItem
-import net.benwoodworth.fastcraft.implementations.bukkit.api.player.BukkitPlayer
-import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitText
+import net.benwoodworth.fastcraft.implementations.bukkit.api.item.BukkitFcItem
+import net.benwoodworth.fastcraft.implementations.bukkit.api.player.BukkitFcPlayer
+import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitFcText
 import org.bukkit.Bukkit
 import org.bukkit.event.inventory.ClickType
 import org.bukkit.event.inventory.InventoryClickEvent
@@ -37,28 +37,28 @@ abstract class BukkitGui(
         }
     }
 
-    override val title: Text?
-        get() = inventory.title?.let(::BukkitText)
+    override val title: FcText?
+        get() = inventory.title?.let(::BukkitFcText)
 
     override fun getInventory() = inventory
 
-    override fun open(vararg players: Player) {
+    override fun open(vararg players: FcPlayer) {
         for (player in players) {
-            (player as BukkitPlayer).base.openInventory(inventory)
+            (player as BukkitFcPlayer).base.openInventory(inventory)
         }
     }
 
-    override fun getViewers(): List<Player> {
+    override fun getViewers(): List<FcPlayer> {
         return inventory.viewers
                 .filterIsInstance<Bukkit_Player>()
-                .map(::BukkitPlayer)
+                .map(::BukkitFcPlayer)
     }
 
     override fun updateLayout(region: GuiRegion) {
         for (slot in 0 until inventory.size) {
             getLayoutLocation(slot)?.run {
                 if (region.contains(location)) {
-                    val item = layout.getItem(location)?.mutableCopy() as BukkitItem.Mutable?
+                    val item = layout.getItem(location)?.mutableCopy() as BukkitFcItem.Mutable?
                     inventory.setItem(slot, item?.base)
                 }
             }
@@ -70,7 +70,7 @@ abstract class BukkitGui(
             layout.click(GuiEventClick(
                     location,
                     this@BukkitGui,
-                    (event.whoClicked as? org.bukkit.entity.Player)?.let(::BukkitPlayer),
+                    (event.whoClicked as? org.bukkit.entity.Player)?.let(::BukkitFcPlayer),
                     event.isLeftClick,
                     event.isRightClick,
                     event.click == ClickType.MIDDLE,

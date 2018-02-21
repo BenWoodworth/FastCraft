@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.dependencies.api.gui
 
-import net.benwoodworth.fastcraft.dependencies.api.text.Text
+import net.benwoodworth.fastcraft.dependencies.api.text.FcText
 
 /**
  * A factory for creating [Gui]'s.
@@ -17,15 +17,15 @@ interface GuiFactory {
      * @param height the height of the [Gui]'s layout
      * @param title the [Gui]'s title
      */
-    fun withSize(width: Int, height: Int, title: Text): Gui = when {
+    fun withSize(width: Int, height: Int, title: FcText): Gui = when {
         width == 3 && height == 3 -> dispenser(title)
         width == 5 && height == 1 -> hopper(title)
         else -> chest(height, title)
     }
 
-    fun chest(height: Int, title: Text? = null): Gui.Chest
+    fun chest(height: Int, title: FcText? = null): Gui.Chest
 
-    fun dispenser(title: Text? = null): Gui.Dispenser
+    fun dispenser(title: FcText? = null): Gui.Dispenser
 
-    fun hopper(title: Text? = null): Gui.Hopper
+    fun hopper(title: FcText? = null): Gui.Hopper
 }

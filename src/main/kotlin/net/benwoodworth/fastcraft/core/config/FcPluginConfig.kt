@@ -1,12 +1,12 @@
 package net.benwoodworth.fastcraft.core.config
 
-import net.benwoodworth.fastcraft.dependencies.config.Config
+import net.benwoodworth.fastcraft.dependencies.config.FcConfig
 
 /**
  * A wrapper for the plugin config.
  */
 class FcPluginConfig(
-        override var config: Config
+        override var config: FcConfig
 ) : ConfigWrapper {
 
     /**

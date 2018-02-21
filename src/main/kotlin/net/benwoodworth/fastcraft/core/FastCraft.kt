@@ -1,10 +1,10 @@
 package net.benwoodworth.fastcraft.core
 
 import net.benwoodworth.fastcraft.dependencies.api.Listener
-import net.benwoodworth.fastcraft.dependencies.event.EventPlayerJoin
-import net.benwoodworth.fastcraft.dependencies.event.EventPluginDisable
-import net.benwoodworth.fastcraft.dependencies.event.EventPluginEnable
-import net.benwoodworth.fastcraft.dependencies.server.TaskBuilder
+import net.benwoodworth.fastcraft.dependencies.event.FcEventPlayerJoin
+import net.benwoodworth.fastcraft.dependencies.event.FcEventPluginDisable
+import net.benwoodworth.fastcraft.dependencies.event.FcEventPluginEnable
+import net.benwoodworth.fastcraft.dependencies.server.FcTaskBuilder
 import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton
@@ -14,11 +14,11 @@ import javax.inject.Singleton
  */
 @Singleton
 class FastCraft @Inject constructor(
-        listenerPluginEnable: Listener<EventPluginEnable>,
-        listenerPluginDisable: Listener<EventPluginDisable>,
-        listenerPlayerJoin: Listener<EventPlayerJoin>,
+        listenerPluginEnable: Listener<FcEventPluginEnable>,
+        listenerPluginDisable: Listener<FcEventPluginDisable>,
+        listenerPlayerJoin: Listener<FcEventPlayerJoin>,
 
-        private val taskBuilder: Provider<TaskBuilder>
+        private val taskBuilder: Provider<FcTaskBuilder>
         //private val guiCraftingFactory: GuiCraftingFactory
 ) {
 
@@ -36,7 +36,7 @@ class FastCraft @Inject constructor(
         println("FASTCRAFT DISABLED")
     }
 
-    private fun onPlayerJoin(/*event: EventPlayerJoin*/) {
+    private fun onPlayerJoin(/*event: FcEventPlayerJoin*/) {
         // TODO Remove debug code
 //        taskBuilder.get()
 //                .delay(1).execute {

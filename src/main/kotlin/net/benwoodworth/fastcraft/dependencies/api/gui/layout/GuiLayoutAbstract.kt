@@ -6,7 +6,7 @@ import net.benwoodworth.fastcraft.dependencies.api.gui.element.GuiElement
 import net.benwoodworth.fastcraft.dependencies.api.gui.element.GuiElementAbstract
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventLayoutChange
-import net.benwoodworth.fastcraft.dependencies.api.item.Item
+import net.benwoodworth.fastcraft.dependencies.api.item.FcItem
 import java.util.*
 
 /**
@@ -48,7 +48,7 @@ abstract class GuiLayoutAbstract<TRegion : GuiRegion.Positioned>(
         }
     }
 
-    override fun getItem(location: GuiLocation): Item? {
+    override fun getItem(location: GuiLocation): FcItem? {
         return getElement(location)?.let {
             it.getItem(location.offset(it.region.location))
         }

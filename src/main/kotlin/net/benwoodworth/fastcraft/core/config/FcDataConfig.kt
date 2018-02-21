@@ -1,13 +1,13 @@
 package net.benwoodworth.fastcraft.core.config
 
-import net.benwoodworth.fastcraft.dependencies.api.player.Player
-import net.benwoodworth.fastcraft.dependencies.config.Config
+import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayer
+import net.benwoodworth.fastcraft.dependencies.config.FcConfig
 
 /**
  * Manages the data config.
  */
 class FcDataConfig(
-        override var config: Config
+        override var config: FcConfig
 ) : ConfigWrapper {
 
     /**
@@ -23,12 +23,12 @@ class FcDataConfig(
      * @param player the player
      * @return the player's preferences
      */
-    fun getPlayerPrefs(player: Player) = PlayerData(player)
+    fun getPlayerPrefs(player: FcPlayer) = PlayerData(player)
 
     /**
      * Accesses the player's preferences.
      */
-    inner class PlayerData(player: Player) {
+    inner class PlayerData(player: FcPlayer) {
         private val prefs = config["player-data"][player.uuid.toString()]
 
         /**

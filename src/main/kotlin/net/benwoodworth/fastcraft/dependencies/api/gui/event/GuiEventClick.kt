@@ -3,14 +3,14 @@ package net.benwoodworth.fastcraft.dependencies.api.gui.event
 import net.benwoodworth.fastcraft.dependencies.api.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiLocation
 import net.benwoodworth.fastcraft.dependencies.api.gui.button.GuiButton
-import net.benwoodworth.fastcraft.dependencies.api.player.Player
+import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayer
 
 /**
  * An event triggered when a [GuiButton] is clicked.
  *
  * @property location The location that was clicked.
  * @property gui The [Gui] in which the event occurred.
- * @property player The [Player] who clicked the button.
+ * @property player The [FcPlayer] who clicked the button.
  * @property primary Whether the click was with the primary mouse button.
  * @property secondary Whether the click was with the primary mouse button.
  * @property middle Whether the click was with the middle mouse button.
@@ -21,7 +21,7 @@ import net.benwoodworth.fastcraft.dependencies.api.player.Player
 data class GuiEventClick(
         val location: GuiLocation,
         val gui: Gui,
-        val player: Player?,
+        val player: FcPlayer?,
         val primary: Boolean,
         val secondary: Boolean,
         val middle: Boolean,

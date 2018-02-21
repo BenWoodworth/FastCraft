@@ -3,8 +3,8 @@ package net.benwoodworth.fastcraft.dependencies.api.gui
 import net.benwoodworth.fastcraft.dependencies.api.Listener
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClose
 import net.benwoodworth.fastcraft.dependencies.api.gui.layout.GuiLayoutRoot
-import net.benwoodworth.fastcraft.dependencies.api.player.Player
-import net.benwoodworth.fastcraft.dependencies.api.text.Text
+import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayer
+import net.benwoodworth.fastcraft.dependencies.api.text.FcText
 
 /**
  * A user interface for in-game players.
@@ -24,21 +24,21 @@ interface Gui {
     /**
      * The title of this [Gui].
      */
-    val title: Text?
+    val title: FcText?
 
     /**
      * Open this [Gui] for the given players.
      *
      * @param players the players to open the inventory for
      */
-    fun open(vararg players: Player)
+    fun open(vararg players: FcPlayer)
 
     /**
      * Get the players viewing the inventory.
      *
      * @return the players viewing the inventory
      */
-    fun getViewers(): List<Player>
+    fun getViewers(): List<FcPlayer>
 
     /**
      * A chest [Gui], with a 9xN layout.

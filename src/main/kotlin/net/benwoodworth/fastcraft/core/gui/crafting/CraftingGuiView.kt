@@ -5,19 +5,19 @@ import net.benwoodworth.fastcraft.dependencies.api.gui.GuiFactory
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiLocation
 import net.benwoodworth.fastcraft.dependencies.api.gui.button.GuiButtonAbstract
 import net.benwoodworth.fastcraft.dependencies.api.gui.element.GuiLayoutChanger
-import net.benwoodworth.fastcraft.dependencies.api.item.Item
-import net.benwoodworth.fastcraft.dependencies.api.item.ItemBuilder
-import net.benwoodworth.fastcraft.dependencies.api.item.ItemTypeFactory
+import net.benwoodworth.fastcraft.dependencies.api.item.FcItem
+import net.benwoodworth.fastcraft.dependencies.api.item.FcItemBuilder
+import net.benwoodworth.fastcraft.dependencies.api.item.FcItemTypeFactory
 import net.benwoodworth.fastcraft.dependencies.api.mvp.MvpView
-import net.benwoodworth.fastcraft.dependencies.recipe.CraftingRecipe
+import net.benwoodworth.fastcraft.dependencies.recipe.FcCraftingRecipe
 import javax.inject.Inject
 import javax.inject.Provider
 
 class CraftingGuiView @Inject constructor(
         guiFactory: GuiFactory,
         private val fastCraftLang: FastCraftLang,
-        private val itemBuilder: Provider<ItemBuilder>,
-        private val itemTypeFactory: ItemTypeFactory
+        private val itemBuilder: Provider<FcItemBuilder>,
+        private val itemTypeFactory: FcItemTypeFactory
 ) : MvpView {
 
 
@@ -65,9 +65,9 @@ class CraftingGuiView @Inject constructor(
     inner class ButtonRecipe(
             location: GuiLocation
     ) : GuiButtonAbstract(location) {
-        var recipe: CraftingRecipe.Prepared? by GuiLayoutChanger(null)
+        var recipe: FcCraftingRecipe.Prepared? by GuiLayoutChanger(null)
 
-        override fun getItem(location: GuiLocation): Item? = recipe.let { recipe ->
+        override fun getItem(location: GuiLocation): FcItem? = recipe.let { recipe ->
             if (recipe == null || recipe.results.isEmpty()) {
                 return null
             }

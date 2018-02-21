@@ -4,31 +4,31 @@ import dagger.Module
 import dagger.Provides
 import net.benwoodworth.fastcraft.dependencies.api.Listener
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiFactory
-import net.benwoodworth.fastcraft.dependencies.api.item.ItemBuilder
-import net.benwoodworth.fastcraft.dependencies.api.item.ItemTypeFactory
-import net.benwoodworth.fastcraft.dependencies.api.player.PlayerProvider
-import net.benwoodworth.fastcraft.dependencies.api.text.TextBuilder
-import net.benwoodworth.fastcraft.dependencies.api.text.TextColorRegistry
-import net.benwoodworth.fastcraft.dependencies.config.ConfigManager
-import net.benwoodworth.fastcraft.dependencies.event.EventPlayerJoin
-import net.benwoodworth.fastcraft.dependencies.event.EventPluginDisable
-import net.benwoodworth.fastcraft.dependencies.event.EventPluginEnable
-import net.benwoodworth.fastcraft.dependencies.recipe.RecipeProvider
-import net.benwoodworth.fastcraft.dependencies.server.PluginRegistry
-import net.benwoodworth.fastcraft.dependencies.server.TaskBuilder
+import net.benwoodworth.fastcraft.dependencies.api.item.FcItemBuilder
+import net.benwoodworth.fastcraft.dependencies.api.item.FcItemTypeFactory
+import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayerProvider
+import net.benwoodworth.fastcraft.dependencies.api.text.FcTextBuilder
+import net.benwoodworth.fastcraft.dependencies.api.text.FcTextColorRegistry
+import net.benwoodworth.fastcraft.dependencies.config.FcConfigManager
+import net.benwoodworth.fastcraft.dependencies.event.FcEventPlayerJoin
+import net.benwoodworth.fastcraft.dependencies.event.FcEventPluginDisable
+import net.benwoodworth.fastcraft.dependencies.event.FcEventPluginEnable
+import net.benwoodworth.fastcraft.dependencies.recipe.FcRecipeProvider
+import net.benwoodworth.fastcraft.dependencies.server.FcPluginRegistry
+import net.benwoodworth.fastcraft.dependencies.server.FcTaskBuilder
 import net.benwoodworth.fastcraft.implementations.sponge.api.gui.SpongeGuiFactory
-import net.benwoodworth.fastcraft.implementations.sponge.api.item.SpongeItemBuilder
-import net.benwoodworth.fastcraft.implementations.sponge.api.item.SpongeItemTypeFactory
-import net.benwoodworth.fastcraft.implementations.sponge.api.player.SpongePlayerProvider
-import net.benwoodworth.fastcraft.implementations.sponge.api.text.SpongeTextBuilder
-import net.benwoodworth.fastcraft.implementations.sponge.api.text.SpongeTextColorRegistry
-import net.benwoodworth.fastcraft.implementations.sponge.config.SpongeConfigManager
-import net.benwoodworth.fastcraft.implementations.sponge.event.SpongeEventPlayerJoin
-import net.benwoodworth.fastcraft.implementations.sponge.event.SpongeEventPluginDisable
-import net.benwoodworth.fastcraft.implementations.sponge.event.SpongeEventPluginEnable
-import net.benwoodworth.fastcraft.implementations.sponge.recipe.SpongeRecipeProvider
-import net.benwoodworth.fastcraft.implementations.sponge.server.SpongePluginRegistry
-import net.benwoodworth.fastcraft.implementations.sponge.server.SpongeTaskBuilder
+import net.benwoodworth.fastcraft.implementations.sponge.api.item.SpongeFcItemBuilder
+import net.benwoodworth.fastcraft.implementations.sponge.api.item.SpongeFcItemTypeFactory
+import net.benwoodworth.fastcraft.implementations.sponge.api.player.SpongeFcPlayerProvider
+import net.benwoodworth.fastcraft.implementations.sponge.api.text.SpongeFcTextBuilder
+import net.benwoodworth.fastcraft.implementations.sponge.api.text.SpongeFcTextColorRegistry
+import net.benwoodworth.fastcraft.implementations.sponge.config.SpongeFcConfigManager
+import net.benwoodworth.fastcraft.implementations.sponge.event.SpongeFcEventPlayerJoin
+import net.benwoodworth.fastcraft.implementations.sponge.event.SpongeFcEventPluginDisable
+import net.benwoodworth.fastcraft.implementations.sponge.event.SpongeFcEventPluginEnable
+import net.benwoodworth.fastcraft.implementations.sponge.recipe.SpongeFcRecipeProvider
+import net.benwoodworth.fastcraft.implementations.sponge.server.SpongeFcPluginRegistry
+import net.benwoodworth.fastcraft.implementations.sponge.server.SpongeFcTaskBuilder
 import org.spongepowered.api.Sponge
 import org.spongepowered.api.event.game.state.GameInitializationEvent
 import org.spongepowered.api.event.game.state.GameStoppingEvent
@@ -46,37 +46,37 @@ class SpongeFastCraftModule(
 
     @Provides
     @Singleton
-    fun configManager(dep: SpongeConfigManager): ConfigManager = dep
+    fun configManager(dep: SpongeFcConfigManager): FcConfigManager = dep
 
     @Provides
     @Singleton
-    fun listenerPlayerJoin(plugin: SpongeFastCraft): Listener<EventPlayerJoin> {
-        return Listener<EventPlayerJoin>().also { listener ->
+    fun listenerPlayerJoin(plugin: SpongeFastCraft): Listener<FcEventPlayerJoin> {
+        return Listener<FcEventPlayerJoin>().also { listener ->
             Sponge.getEventManager().registerListener(plugin,
                     Join::class.java,
-                    { listener.notifyHandlers(SpongeEventPlayerJoin(it)) }
+                    { listener.notifyHandlers(SpongeFcEventPlayerJoin(it)) }
             )
         }
     }
 
     @Provides
     @Singleton
-    fun listenerPluginDisable(plugin: SpongeFastCraft): Listener<EventPluginDisable> {
-        return Listener<EventPluginDisable>().also { listener ->
+    fun listenerPluginDisable(plugin: SpongeFastCraft): Listener<FcEventPluginDisable> {
+        return Listener<FcEventPluginDisable>().also { listener ->
             Sponge.getEventManager().registerListener(plugin,
                     GameStoppingEvent::class.java,
-                    { listener.notifyHandlers(SpongeEventPluginDisable(it)) }
+                    { listener.notifyHandlers(SpongeFcEventPluginDisable(it)) }
             )
         }
     }
 
     @Provides
     @Singleton
-    fun listenerPluginEnable(plugin: SpongeFastCraft): Listener<EventPluginEnable> {
-        return Listener<EventPluginEnable>().also { listener ->
+    fun listenerPluginEnable(plugin: SpongeFastCraft): Listener<FcEventPluginEnable> {
+        return Listener<FcEventPluginEnable>().also { listener ->
             Sponge.getEventManager().registerListener(plugin,
                     GameInitializationEvent::class.java,
-                    { listener.notifyHandlers(SpongeEventPluginEnable(it)) }
+                    { listener.notifyHandlers(SpongeFcEventPluginEnable(it)) }
             )
         }
     }
@@ -85,30 +85,30 @@ class SpongeFastCraftModule(
     fun guiBuilder(dep: SpongeGuiFactory): GuiFactory = dep
 
     @Provides
-    fun itemBuilder(dep: SpongeItemBuilder): ItemBuilder = dep
+    fun itemBuilder(dep: SpongeFcItemBuilder): FcItemBuilder = dep
 
     @Provides
-    fun itemTypeFactory(dep: SpongeItemTypeFactory): ItemTypeFactory = dep
-
-    @Provides
-    @Singleton
-    fun recipeProvider(dep: SpongeRecipeProvider): RecipeProvider = dep
+    fun itemTypeFactory(dep: SpongeFcItemTypeFactory): FcItemTypeFactory = dep
 
     @Provides
     @Singleton
-    fun playerProvider(dep: SpongePlayerProvider): PlayerProvider = dep
-
-    @Provides
-    fun taskBuilder(dep: SpongeTaskBuilder): TaskBuilder = dep
+    fun recipeProvider(dep: SpongeFcRecipeProvider): FcRecipeProvider = dep
 
     @Provides
     @Singleton
-    fun pluginProvider(dep: SpongePluginRegistry): PluginRegistry = dep
+    fun playerProvider(dep: SpongeFcPlayerProvider): FcPlayerProvider = dep
 
     @Provides
-    fun textBuilder(dep: SpongeTextBuilder): TextBuilder = dep
+    fun taskBuilder(dep: SpongeFcTaskBuilder): FcTaskBuilder = dep
 
     @Provides
     @Singleton
-    fun textColorRegistry(dep: SpongeTextColorRegistry): TextColorRegistry = dep
+    fun pluginProvider(dep: SpongeFcPluginRegistry): FcPluginRegistry = dep
+
+    @Provides
+    fun textBuilder(dep: SpongeFcTextBuilder): FcTextBuilder = dep
+
+    @Provides
+    @Singleton
+    fun textColorRegistry(dep: SpongeFcTextColorRegistry): FcTextColorRegistry = dep
 }

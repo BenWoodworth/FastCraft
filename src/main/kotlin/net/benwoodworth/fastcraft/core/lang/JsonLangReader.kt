@@ -4,8 +4,8 @@ import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Parser
 import com.beust.klaxon.obj
-import net.benwoodworth.fastcraft.dependencies.api.text.Text
-import net.benwoodworth.fastcraft.dependencies.api.text.TextBuilder
+import net.benwoodworth.fastcraft.dependencies.api.text.FcText
+import net.benwoodworth.fastcraft.dependencies.api.text.FcTextBuilder
 import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
 import java.nio.file.Files
@@ -15,7 +15,7 @@ import javax.inject.Provider
 
 class JsonLangReader @Inject constructor(
         private val placeholderProcessor: PlaceholderProcessorTags,
-        private val textBuilder: Provider<TextBuilder>
+        private val textBuilder: Provider<FcTextBuilder>
 ) {
 
     private lateinit var json: JsonObject
@@ -44,7 +44,7 @@ class JsonLangReader @Inject constructor(
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun list(path: String, placeholders: Map<String, String> = emptyMap()): List<Text> {
+    fun list(path: String, placeholders: Map<String, String> = emptyMap()): List<FcText> {
         val result = (get(path) as? JsonArray<String>)?.let {
             placeholderProcessor.sub(it, placeholders)
         } ?: listOf(missing(path))
@@ -56,7 +56,7 @@ class JsonLangReader @Inject constructor(
         }
     }
 
-    fun string(path: String, placeholders: Map<String, String> = emptyMap()): Text {
+    fun string(path: String, placeholders: Map<String, String> = emptyMap()): FcText {
         val result = (get(path) as? String)?.let {
             placeholderProcessor.sub(it, placeholders)
         } ?: missing(path)

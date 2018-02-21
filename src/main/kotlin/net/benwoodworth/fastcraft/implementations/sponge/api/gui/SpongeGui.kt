@@ -6,11 +6,11 @@ import net.benwoodworth.fastcraft.dependencies.api.gui.GuiLocation
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.api.gui.layout.GuiLayout
-import net.benwoodworth.fastcraft.dependencies.api.player.Player
+import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayer
 import net.benwoodworth.fastcraft.implementations.sponge.SpongeFastCraft
-import net.benwoodworth.fastcraft.implementations.sponge.api.item.SpongeItem
-import net.benwoodworth.fastcraft.implementations.sponge.api.player.SpongePlayer
-import net.benwoodworth.fastcraft.implementations.sponge.api.text.SpongeText
+import net.benwoodworth.fastcraft.implementations.sponge.api.item.SpongeFcItem
+import net.benwoodworth.fastcraft.implementations.sponge.api.player.SpongeFcPlayer
+import net.benwoodworth.fastcraft.implementations.sponge.api.text.SpongeFcText
 import org.spongepowered.api.Sponge
 import org.spongepowered.api.event.item.inventory.ClickInventoryEvent
 import org.spongepowered.api.item.inventory.Carrier
@@ -53,22 +53,22 @@ abstract class SpongeGui<out TInv: Inventory>(
     override val title
         get() = inventory.archetype // TODO Correct?
                 .getProperty(InventoryTitle::class.java)
-                .get().value?.let { SpongeText(it) }
+                .get().value?.let { SpongeFcText(it) }
 
-    override fun open(vararg players: Player) {
+    override fun open(vararg players: FcPlayer) {
         for (player in players) {
-            (player as SpongePlayer).base.openInventory(inventory)
+            (player as SpongeFcPlayer).base.openInventory(inventory)
         }
     }
 
-    override fun getViewers(): List<Player> {
+    override fun getViewers(): List<FcPlayer> {
         return Sponge.getServer().onlinePlayers
                 .filter { it.openInventory === inventory }
-                .map(::SpongePlayer)
+                .map(::SpongeFcPlayer)
     }
 
     protected fun GuiLayout.getSpongeItem(x: Int, y: Int): ItemStack? {
-        return (getItem(GuiLocation(x, y))?.mutableCopy() as SpongeItem.Mutable?)?.base
+        return (getItem(GuiLocation(x, y))?.mutableCopy() as SpongeFcItem.Mutable?)?.base
     }
 
     protected abstract fun getLayoutLocation(slotIndex: Int): LayoutLocation?
@@ -84,7 +84,7 @@ abstract class SpongeGui<out TInv: Inventory>(
             layout.click(GuiEventClick(
                     location,
                     this@SpongeGui,
-                    player?.let(::SpongePlayer),
+                    player?.let(::SpongeFcPlayer),
                     event is ClickInventoryEvent.Primary,
                     event is ClickInventoryEvent.Secondary,
                     event is ClickInventoryEvent.Middle,

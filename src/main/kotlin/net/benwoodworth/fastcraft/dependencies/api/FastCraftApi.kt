@@ -1,9 +1,9 @@
 package net.benwoodworth.fastcraft.dependencies.api
 
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiFactory
-import net.benwoodworth.fastcraft.dependencies.api.item.ItemBuilder
-import net.benwoodworth.fastcraft.dependencies.api.player.PlayerProvider
-import net.benwoodworth.fastcraft.dependencies.api.text.TextBuilder
+import net.benwoodworth.fastcraft.dependencies.api.item.FcItemBuilder
+import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayerProvider
+import net.benwoodworth.fastcraft.dependencies.api.text.FcTextBuilder
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -16,20 +16,20 @@ import javax.inject.Provider
  */
 @dagger.Module
 class FastCraftApi @Inject constructor(
-        private val textBuilder: Provider<TextBuilder>,
+        private val textBuilder: Provider<FcTextBuilder>,
         private val guiFactory: Provider<GuiFactory>,
-        private val itemBuilder: Provider<ItemBuilder>,
-        private val playerProvider: Provider<PlayerProvider>
+        private val itemBuilder: Provider<FcItemBuilder>,
+        private val playerProvider: Provider<FcPlayerProvider>
 ) : com.google.inject.AbstractModule() {
 
     override fun configure() = Unit
 
     /**
-     * Get an instance of a [TextBuilder].
+     * Get an instance of a [FcTextBuilder].
      */
     @dagger.Provides
     @com.google.inject.Provides
-    fun getTextBuilder(): TextBuilder {
+    fun getTextBuilder(): FcTextBuilder {
         return textBuilder.get()
     }
 
@@ -43,20 +43,20 @@ class FastCraftApi @Inject constructor(
     }
 
     /**
-     * Get an instance of a [ItemBuilder].
+     * Get an instance of a [FcItemBuilder].
      */
     @dagger.Provides
     @com.google.inject.Provides
-    fun getItemBuilder(): ItemBuilder {
+    fun getItemBuilder(): FcItemBuilder {
         return itemBuilder.get()
     }
 
     /**
-     * Get an instance of a [PlayerProvider].
+     * Get an instance of a [FcPlayerProvider].
      */
     @dagger.Provides
     @com.google.inject.Provides
-    fun getPlayerProvider(): PlayerProvider {
+    fun getPlayerProvider(): FcPlayerProvider {
         return playerProvider.get()
     }
 }

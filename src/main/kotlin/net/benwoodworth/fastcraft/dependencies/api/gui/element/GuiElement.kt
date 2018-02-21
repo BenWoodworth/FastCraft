@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.dependencies.api.gui.GuiLocation
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventLayoutChange
-import net.benwoodworth.fastcraft.dependencies.api.item.Item
+import net.benwoodworth.fastcraft.dependencies.api.item.FcItem
 
 /**
  * An object that can be added to a GUI.
@@ -35,7 +35,7 @@ interface GuiElement {
      * @param location the location of the item, relative to this element
      * @return the item at the specified position, or `null` if there is none
      */
-    fun getItem(location: GuiLocation): Item?
+    fun getItem(location: GuiLocation): FcItem?
 
     /**
      * A [GuiElement] that can be moved and resized.

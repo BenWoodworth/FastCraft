@@ -5,14 +5,14 @@ import net.benwoodworth.fastcraft.dependencies.api.gui.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.api.gui.element.GuiElement
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventLayoutChange
-import net.benwoodworth.fastcraft.dependencies.api.item.Item
+import net.benwoodworth.fastcraft.dependencies.api.item.FcItem
 
 /**
  * A basic implementation of [GuiButton].
  */
 class GuiButtonBasic(
         region: GuiRegion.Positioned,
-        item: Item? = null
+        item: FcItem? = null
 ) : GuiButtonAbstract(region), GuiElement.Mutable {
 
     /**
