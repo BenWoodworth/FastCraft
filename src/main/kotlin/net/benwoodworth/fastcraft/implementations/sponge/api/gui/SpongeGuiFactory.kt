@@ -10,7 +10,6 @@ import org.spongepowered.api.item.inventory.InventoryArchetypes
 import org.spongepowered.api.item.inventory.property.InventoryDimension
 import org.spongepowered.api.item.inventory.property.InventoryTitle
 import javax.inject.Inject
-import org.spongepowered.api.text.Text as Sponge_Text
 
 /**
  * Sponge implementation of [GuiFactory].

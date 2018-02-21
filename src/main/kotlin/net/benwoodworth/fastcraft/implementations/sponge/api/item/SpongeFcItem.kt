@@ -7,7 +7,7 @@ import net.benwoodworth.fastcraft.implementations.sponge.api.text.SpongeFcText
 import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.data.key.Keys
 import org.spongepowered.api.item.inventory.ItemStack
-import org.spongepowered.api.text.Text as Sponge_Text
+import org.spongepowered.api.text.Text
 
 /**
  * Sponge implementation of [FcItem].
@@ -32,7 +32,7 @@ class SpongeFcItem(
             }
 
         override val name: FcText
-            get() = SpongeFcText(Sponge_Text.of(base))
+            get() = SpongeFcText(Text.of(base))
 
         override var displayName: FcText?
             get() {

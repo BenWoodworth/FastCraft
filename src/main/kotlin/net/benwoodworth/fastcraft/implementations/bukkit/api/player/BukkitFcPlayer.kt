@@ -4,15 +4,15 @@ import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayer
 import net.benwoodworth.fastcraft.dependencies.api.text.FcText
 import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitFcText
 import net.benwoodworth.fastcraft.util.Adapter
+import org.bukkit.entity.Player
 import java.util.*
-import org.bukkit.entity.Player as Bukkit_Player
 
 /**
  * Bukkit implementation of [FcPlayer].
  */
 class BukkitFcPlayer(
-        basePlayer: Bukkit_Player
-) : FcPlayer, Adapter<Bukkit_Player>(basePlayer) {
+        basePlayer: Player
+) : FcPlayer, Adapter<Player>(basePlayer) {
 
     override val username: String
         get() = base.name

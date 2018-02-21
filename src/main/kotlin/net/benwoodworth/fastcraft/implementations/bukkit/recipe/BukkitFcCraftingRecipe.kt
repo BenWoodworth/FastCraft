@@ -12,16 +12,16 @@ import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.event.inventory.*
 import org.bukkit.inventory.ItemStack
+import org.bukkit.inventory.Recipe
 import org.bukkit.inventory.ShapedRecipe
 import org.bukkit.inventory.ShapelessRecipe
-import org.bukkit.inventory.Recipe as Bukkit_Recipe
 
 /**
  * Bukkit implementation of [FcCraftingRecipe].
  */
 abstract class BukkitFcCraftingRecipe private constructor(
-        baseRecipe: Bukkit_Recipe
-) : FcCraftingRecipe, Adapter<Bukkit_Recipe>(baseRecipe) {
+        baseRecipe: Recipe
+) : FcCraftingRecipe, Adapter<Recipe>(baseRecipe) {
 
     override fun prepare(player: FcPlayer, items: Grid<FcItem>): FcCraftingRecipe.Prepared? {
         val inventory = CustomBukkitCraftingInventory(

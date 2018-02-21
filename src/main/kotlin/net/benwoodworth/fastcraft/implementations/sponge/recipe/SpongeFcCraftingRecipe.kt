@@ -9,18 +9,18 @@ import net.benwoodworth.fastcraft.implementations.sponge.api.player.SpongeFcPlay
 import net.benwoodworth.fastcraft.util.Adapter
 import net.benwoodworth.fastcraft.util.Grid
 import org.spongepowered.api.item.inventory.ItemStack
+import org.spongepowered.api.item.recipe.crafting.CraftingRecipe
+import org.spongepowered.api.item.recipe.crafting.Ingredient
 import org.spongepowered.api.item.recipe.crafting.ShapedCraftingRecipe
 import org.spongepowered.api.item.recipe.crafting.ShapelessCraftingRecipe
-import org.spongepowered.api.item.recipe.crafting.CraftingRecipe as Sponge_CraftingRecipe
-import org.spongepowered.api.item.recipe.crafting.Ingredient as Sponge_Ingredient
 
 /**
  * Sponge implementation of [FcCraftingRecipe].
  */
 abstract class SpongeFcCraftingRecipe private constructor(
-        baseRecipe: Sponge_CraftingRecipe,
+        baseRecipe: CraftingRecipe,
         private val plugin: Any
-) : FcCraftingRecipe, Adapter<Sponge_CraftingRecipe>(baseRecipe) {
+) : FcCraftingRecipe, Adapter<CraftingRecipe>(baseRecipe) {
 
     override fun prepare(player: FcPlayer, items: Grid<FcItem>): FcCraftingRecipe.Prepared? {
         val grid = CustomSpongeCraftingInventory(plugin)
@@ -95,7 +95,7 @@ abstract class SpongeFcCraftingRecipe private constructor(
                     { _, _ ->
                         predicates.takeIf { it.hasNext() }
                                 ?.let { SpongeFcIngredient(it.next()) }
-                                ?: SpongeFcIngredient(Sponge_Ingredient.NONE)
+                                ?: SpongeFcIngredient(Ingredient.NONE)
                     }
             )
         }

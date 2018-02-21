@@ -2,14 +2,14 @@ package net.benwoodworth.fastcraft.implementations.sponge.server
 
 import net.benwoodworth.fastcraft.dependencies.server.FcLogger
 import net.benwoodworth.fastcraft.util.Adapter
-import org.slf4j.Logger as Sponge_Logger
+import org.slf4j.Logger
 
 /**
  * Sponge implementation of [FcLogger].
  */
 class SpongeFcLogger(
-        logger: Sponge_Logger
-) : FcLogger, Adapter<Sponge_Logger>(logger) {
+        logger: Logger
+) : FcLogger, Adapter<Logger>(logger) {
 
     override fun error(message: String) = base.error(message)
 

@@ -12,6 +12,7 @@ import net.benwoodworth.fastcraft.implementations.sponge.api.item.SpongeFcItem
 import net.benwoodworth.fastcraft.implementations.sponge.api.player.SpongeFcPlayer
 import net.benwoodworth.fastcraft.implementations.sponge.api.text.SpongeFcText
 import org.spongepowered.api.Sponge
+import org.spongepowered.api.entity.living.player.Player
 import org.spongepowered.api.event.item.inventory.ClickInventoryEvent
 import org.spongepowered.api.item.inventory.Carrier
 import org.spongepowered.api.item.inventory.Inventory
@@ -20,8 +21,6 @@ import org.spongepowered.api.item.inventory.property.InventoryTitle
 import org.spongepowered.api.item.inventory.property.SlotIndex
 import org.spongepowered.api.item.inventory.type.CarriedInventory
 import org.spongepowered.api.item.inventory.type.GridInventory
-import org.spongepowered.api.entity.living.player.Player as Sponge_Player
-import org.spongepowered.api.text.Text as Sponge_Text
 
 /**
  * Sponge implementation of [Gui].
@@ -73,7 +72,7 @@ abstract class SpongeGui<out TInv: Inventory>(
 
     protected abstract fun getLayoutLocation(slotIndex: Int): LayoutLocation?
 
-    fun onClick(event: ClickInventoryEvent, player: Sponge_Player?) {
+    fun onClick(event: ClickInventoryEvent, player: Player?) {
         val slotIndex = event
                 .transactions[0]
                 .slot

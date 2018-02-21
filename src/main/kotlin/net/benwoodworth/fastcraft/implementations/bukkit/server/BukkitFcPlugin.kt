@@ -3,15 +3,15 @@ package net.benwoodworth.fastcraft.implementations.bukkit.server
 import net.benwoodworth.fastcraft.dependencies.server.FcLogger
 import net.benwoodworth.fastcraft.dependencies.server.FcPlugin
 import net.benwoodworth.fastcraft.util.Adapter
+import org.bukkit.plugin.Plugin
 import java.nio.file.Path
-import org.bukkit.plugin.Plugin as Bukkit_Plugin
 
 /**
  * Bukkit implementation of [FcPlugin].
  */
 class BukkitFcPlugin(
-        plugin: Bukkit_Plugin
-) : FcPlugin, Adapter<Bukkit_Plugin>(plugin) {
+        plugin: Plugin
+) : FcPlugin, Adapter<Plugin>(plugin) {
 
     override val logger: FcLogger
         get() = BukkitFcLogger(base.logger)

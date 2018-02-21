@@ -12,11 +12,11 @@ import net.benwoodworth.fastcraft.implementations.bukkit.api.item.BukkitFcItem
 import net.benwoodworth.fastcraft.implementations.bukkit.api.player.BukkitFcPlayer
 import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitFcText
 import org.bukkit.Bukkit
+import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.InventoryHolder
-import org.bukkit.entity.Player as Bukkit_Player
 
 /**
  * Bukkit implementation of [Gui].
@@ -50,7 +50,7 @@ abstract class BukkitGui(
 
     override fun getViewers(): List<FcPlayer> {
         return inventory.viewers
-                .filterIsInstance<Bukkit_Player>()
+                .filterIsInstance<Player>()
                 .map(::BukkitFcPlayer)
     }
 
@@ -70,7 +70,7 @@ abstract class BukkitGui(
             layout.click(GuiEventClick(
                     location,
                     this@BukkitGui,
-                    (event.whoClicked as? org.bukkit.entity.Player)?.let(::BukkitFcPlayer),
+                    (event.whoClicked as? Player)?.let(::BukkitFcPlayer),
                     event.isLeftClick,
                     event.isRightClick,
                     event.click == ClickType.MIDDLE,
