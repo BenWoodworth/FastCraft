@@ -20,7 +20,7 @@ abstract class GuiButtonAbstract(
      *
      * @param event the click event
      */
-    abstract fun onClick(event: GuiEventClick)
+    open fun onClick(event: GuiEventClick) = Unit
 
     override fun click(event: GuiEventClick) {
         click(event)
