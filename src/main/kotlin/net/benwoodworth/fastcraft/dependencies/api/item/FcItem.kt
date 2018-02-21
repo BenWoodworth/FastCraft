@@ -46,8 +46,8 @@ interface FcItem : TransMutable<FcItem, FcItem.Mutable> {
     /**
      * Compare equality of this base item to another, ignoring amount.
      *
-     * @param item the [FcItem] to compare to
-     * @return `true` iff the items are similar
+     * @param item the [FcItem] to compare to.
+     * @return `true` iff the items are similar.
      */
     fun isSimilar(item: FcItem): Boolean
 

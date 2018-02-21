@@ -18,7 +18,7 @@ abstract class GuiButtonAbstract(
      * Handles this button's clicks.
      * Runs before [clickListener] handlers are notified.
      *
-     * @param event the click event
+     * @param event the click event.
      */
     open fun onClick(event: GuiEventClick) = Unit
 

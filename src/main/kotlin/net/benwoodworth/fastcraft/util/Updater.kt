@@ -10,7 +10,7 @@ abstract class Updater<in T : Updatable>(
     /**
      * Updates an object.
      *
-     * @param updatable the object to be updated
+     * @param updatable the object to be updated.
      */
     fun update(updatable: T) {
         var revision = updatable.revision ?: -1
@@ -34,14 +34,14 @@ abstract class Updater<in T : Updatable>(
     /**
      * Code to be run for objects that aren't setup.
      *
-     * @param updatable the object to initialize
+     * @param updatable the object to initialize.
      */
     abstract fun initialize(updatable: T)
 
     /**
      * Code to be run after updates have been made.
      *
-     * @param updatable the object to finalize
+     * @param updatable the object to finalize.
      */
     abstract fun finalize(updatable: T)
 }

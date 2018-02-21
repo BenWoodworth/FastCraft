@@ -8,7 +8,7 @@ interface FcRecipeProvider {
     /**
      * Get all the server's crafting recipes.
      *
-     * @return a list of recipes
+     * @return a list of recipes.
      */
     fun getCraftingRecipes(): List<FcCraftingRecipe>
 }

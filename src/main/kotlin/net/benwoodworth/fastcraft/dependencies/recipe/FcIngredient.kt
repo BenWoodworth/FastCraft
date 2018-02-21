@@ -10,8 +10,8 @@ interface FcIngredient {
     /**
      * Check if this ingredient matches an item.
      *
-     * @param item the item to check
-     * @return true iff this ingredient matches the item
+     * @param item the item to check.
+     * @return `true` iff this ingredient matches the item.
      */
     fun matches(item: FcItem): Boolean
 }

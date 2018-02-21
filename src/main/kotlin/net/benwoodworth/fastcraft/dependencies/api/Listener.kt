@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.dependencies.api
 /**
  * Listens to events, and notifies event handlers when events occur.
  *
- * @param T the type of event being listened for
+ * @param T the type of event being listened for.
  */
 class Listener<T> {
 
@@ -20,7 +20,7 @@ class Listener<T> {
     /**
      * Raise an event.
      *
-     * @param event the event to raise
+     * @param event the event to raise.
      */
     fun notifyHandlers(event: T) {
         handlersParam.forEach {
@@ -42,7 +42,7 @@ class Listener<T> {
     /**
      * Add an event handler to this listener.
      *
-     * @param handler the event handler to add to this event
+     * @param handler the event handler to add to this event.
      */
     fun addHandler(handler: (event: T) -> Unit) {
         handlersParam += handler
@@ -51,7 +51,7 @@ class Listener<T> {
     /**
      * Add an event handler to this listener.
      *
-     * @param handler the event handler to add to this event
+     * @param handler the event handler to add to this event.
      */
     fun addHandler(handler: () -> Unit) {
         handlersNoParam += handler
@@ -60,7 +60,7 @@ class Listener<T> {
     /**
      * Add an event handler to this listener.
      *
-     * @param handler the event handler to add to this event
+     * @param handler the event handler to add to this event.
      */
     operator fun plusAssign(handler: (event: T) -> Unit) {
         addHandler(handler)
@@ -69,7 +69,7 @@ class Listener<T> {
     /**
      * Add an event handler to this listener.
      *
-     * @param handler the event handler to add to this event
+     * @param handler the event handler to add to this event.
      */
     operator fun plusAssign(handler: () -> Unit) {
         addHandler(handler)
@@ -78,7 +78,7 @@ class Listener<T> {
     /**
      * Remove an event handler from this listener.
      *
-     * @param handler the event handler to remove from this listener
+     * @param handler the event handler to remove from this listener.
      */
     fun removeHandler(handler: (event: T) -> Unit) {
         handlersParam -= handler
@@ -87,7 +87,7 @@ class Listener<T> {
     /**
      * Remove an event handler from this listener.
      *
-     * @param handler the event handler to remove from this listener
+     * @param handler the event handler to remove from this listener.
      */
     fun removeHandler(handler: () -> Unit) {
         handlersNoParam -= handler
@@ -96,7 +96,7 @@ class Listener<T> {
     /**
      * Remove an event handler from this listener.
      *
-     * @param handler the event handler to remove from this listener
+     * @param handler the event handler to remove from this listener.
      */
     operator fun minusAssign(handler: (event: T) -> Unit) {
         removeHandler(handler)
@@ -105,7 +105,7 @@ class Listener<T> {
     /**
      * Remove an event handler from this listener.
      *
-     * @param handler the event handler to remove from this listener
+     * @param handler the event handler to remove from this listener.
      */
     operator fun minusAssign(handler: () -> Unit) {
         removeHandler(handler)

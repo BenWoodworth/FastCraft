@@ -25,15 +25,15 @@ interface GuiElement {
     /**
      * Handles GUI clicks.
      *
-     * @param event the click event
+     * @param event the click event.
      */
     fun click(event: GuiEventClick)
 
     /**
      * Get an item from within this element.
      *
-     * @param location the location of the item, relative to this element
-     * @return the item at the specified position, or `null` if there is none
+     * @param location the location of the item, relative to this element.
+     * @return the item at the specified position, or `null` if there is none.
      */
     fun getItem(location: GuiLocation): FcItem?
 

@@ -25,7 +25,7 @@ internal class CustomBukkitCraftingInventory(
      * after the recipe is prepared, and before items are removed
      * from the recipe being crafted.
      *
-     * @return the recipe results
+     * @return the recipe results.
      */
     fun getResults(): List<ItemStack> {
         val results = mutableListOf<ItemStack>()

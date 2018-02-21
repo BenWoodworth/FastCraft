@@ -17,8 +17,8 @@ data class BukkitApiVersion( // TODO Test
         /**
          * Parses the Bukkit version.
          *
-         * @param version the version string
-         * @return the parsed Bukkit version, or null if invalid
+         * @param version the version string.
+         * @return the parsed Bukkit version, or null if invalid.
          */
         fun parse(version: String): BukkitApiVersion? {
             // [major].[minor].[patch?]-[revision?]-[pre?]-[...?]

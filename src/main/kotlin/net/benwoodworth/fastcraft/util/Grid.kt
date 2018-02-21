@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.util
 /**
  * An immutable grid of values.
  *
- * @param T the type of object contained in the [Grid]
+ * @param T the type of object contained in the [Grid].
  */
 interface Grid<T> : TransMutable<Grid<T>, Grid.Mutable<T>>, Iterable<T> {
 
@@ -29,16 +29,16 @@ interface Grid<T> : TransMutable<Grid<T>, Grid.Mutable<T>>, Iterable<T> {
     /**
      * Get a value in the [Grid].
      *
-     * @param x the x-coordinate
-     * @param y the y-coordinate
-     * @return the value at the given coordinates
+     * @param x the x-coordinate.
+     * @param y the y-coordinate.
+     * @return the value at the given coordinates.
      */
     operator fun get(x: Int, y: Int): T
 
     /**
      * Iterate through the grid's entries.
      *
-     * @param action the action to take on each element
+     * @param action the action to take on each element.
      */
     fun forEach(action: ((T), x: Int, y: Int) -> Unit)
 
@@ -46,7 +46,7 @@ interface Grid<T> : TransMutable<Grid<T>, Grid.Mutable<T>>, Iterable<T> {
      * Create a new grid, with the contents mapped according
      * to the transform function.
      *
-     * @param transform the transformation function
+     * @param transform the transformation function.
      */
     fun <R> map(transform: (T) -> R): Grid<R>
 
@@ -54,16 +54,16 @@ interface Grid<T> : TransMutable<Grid<T>, Grid.Mutable<T>>, Iterable<T> {
      * Creates an iterator that iterates through each row left
      * to right, starting from the top row going down.
      *
-     * @return an iterator
+     * @return an iterator.
      */
     override fun iterator(): Iterator<T>
 
     /**
      * Implementation of [Grid].
      *
-     * @param width the width of the [Grid]
-     * @param height the height of the [Grid]
-     * @param init the initializer for the [Grid]'s values
+     * @param width the width of the [Grid].
+     * @param height the height of the [Grid].
+     * @param init the initializer for the [Grid]'s values.
      */
     class Impl<T>(
             width: Int,
@@ -81,16 +81,16 @@ interface Grid<T> : TransMutable<Grid<T>, Grid.Mutable<T>>, Iterable<T> {
          *
          * @param i the index of the item, going through each row left
          *          to right, starting from the top row going down.
-         * @param value the value to set
+         * @param value the value to set.
          */
         operator fun set(i: Int, value: T)
 
         /**
          * Get a value in the [Grid].
          *
-         * @param x the x-coordinate
-         * @param y the y-coordinate
-         * @param value the value to set
+         * @param x the x-coordinate.
+         * @param y the y-coordinate.
+         * @param value the value to set.
          */
         operator fun set(x: Int, y: Int, value: T)
 

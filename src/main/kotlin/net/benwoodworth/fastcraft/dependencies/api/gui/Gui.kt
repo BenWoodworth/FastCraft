@@ -29,14 +29,14 @@ interface Gui {
     /**
      * Open this [Gui] for the given players.
      *
-     * @param players the players to open the inventory for
+     * @param players the players to open the inventory for.
      */
     fun open(vararg players: FcPlayer)
 
     /**
      * Get the players viewing the inventory.
      *
-     * @return the players viewing the inventory
+     * @return the players viewing the inventory.
      */
     fun getViewers(): List<FcPlayer>
 

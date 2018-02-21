@@ -22,24 +22,24 @@ interface FcCraftingRecipe {
     /**
      * Get the preview results, before actually crafting the recipe.
      *
-     * @param player the player preparing the recipe
-     * @param items the grid of items used to prepare the recipe
-     * @return the prepared recipe, or `null` if unable to prepare
+     * @param player the player preparing the recipe.
+     * @param items the grid of items used to prepare the recipe.
+     * @return the prepared recipe, or `null` if unable to prepare.
      */
     fun prepare(player: FcPlayer, items: Grid<FcItem>): Prepared?
 
     /**
      * Check if this recipe is equal to an object.
      *
-     * @param other the object to compare to
-     * @return `true` iff the recipes are equal
+     * @param other the object to compare to.
+     * @return `true` iff the recipes are equal.
      */
     override fun equals(other: Any?): Boolean
 
     /**
      * Generates a hash code for this recipe.
      *
-     * @return the hash code
+     * @return the hash code.
      */
     override fun hashCode(): Int
 
@@ -74,7 +74,7 @@ interface FcCraftingRecipe {
          * Craft the prepared recipe. Simulates crafting as if shift
          * clicking the result slot of the crafting inventory.
          *
-         * @return the crafted items, or null if unable to craft
+         * @return the crafted items, or null if unable to craft.
          */
         fun craft(): List<FcItem>?
     }

@@ -24,7 +24,7 @@ class SpongeGuiListeners {
     /**
      * Determine if a slot is part of a [Gui].
      *
-     * @return `true` iff the slot is in a [Gui]
+     * @return `true` iff the slot is in a [Gui].
      */
     private fun isGuiSlot(slot: Slot): Boolean {
         val parent = slot.parent() as? CarriedInventory<*> ?: return false
@@ -40,7 +40,7 @@ class SpongeGuiListeners {
     /**
      * Disables slot transactions in [Gui] inventories.
      *
-     * @param event the [AffectSlotEvent]
+     * @param event the [AffectSlotEvent].
      */
     @Listener(order = Order.EARLY)
     fun onAffectSlot(event: AffectSlotEvent) {

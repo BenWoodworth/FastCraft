@@ -16,8 +16,8 @@ package net.benwoodworth.fastcraft.dependencies.api.mvp
  *
  * @property view The [MvpView] being maintained by this [MvpPresenter].
  * @property model The [MvpModel] being presented by this [MvpPresenter].
- * @param TView the type of [MvpView] being maintained
- * @param TModel the type of [MvpModel] being presented
+ * @param TView the type of [MvpView] being maintained.
+ * @param TModel the type of [MvpModel] being presented.
  */
 abstract class MvpPresenter<out TView : MvpView, out TModel : MvpModel>(
         protected val view: TView,

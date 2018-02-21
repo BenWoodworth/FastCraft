@@ -20,8 +20,8 @@ class FcDataConfig(
     /**
      * Get a player's preferences.
      *
-     * @param player the player
-     * @return the player's preferences
+     * @param player the player.
+     * @return the player's preferences.
      */
     fun getPlayerPrefs(player: FcPlayer) = PlayerData(player)
 
