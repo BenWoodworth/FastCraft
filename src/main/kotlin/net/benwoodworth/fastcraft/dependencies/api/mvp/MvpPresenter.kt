@@ -14,21 +14,13 @@ package net.benwoodworth.fastcraft.dependencies.api.mvp
  * - Updates the [MvpView] from [updateView] after the model changes.
  * - Translates data from the [MvpModel] to info in the [MvpView].
  *
- * @param view the [MvpView] being maintained
- * @param model the [MvpModel] being presented
+ * @property view The [MvpView] being maintained by this [MvpPresenter].
+ * @property model The [MvpModel] being presented by this [MvpPresenter].
  * @param TView the type of [MvpView] being maintained
  * @param TModel the type of [MvpModel] being presented
  */
 abstract class MvpPresenter<out TView : MvpView, out TModel : MvpModel>(
-
-        /**
-         * The [MvpView] being maintained by this [MvpPresenter].
-         */
         protected val view: TView,
-
-        /**
-         * The [MvpModel] being presented by this [MvpPresenter].
-         */
         protected val model: TModel
 ) {
 

@@ -9,11 +9,10 @@ import org.bukkit.inventory.ItemStack
 
 /**
  * Bukkit implementation of [Item].
+ *
+ * @property baseItem The item being adapter. Should not be modified.
  */
 class BukkitItem(
-        /**
-         * The item being adapter. Should not be modified.
-         */
         private val baseItem: ItemStack
 ) : Item by BukkitItem.Mutable(baseItem) {
 

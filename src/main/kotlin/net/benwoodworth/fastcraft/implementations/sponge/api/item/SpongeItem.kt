@@ -11,11 +11,10 @@ import org.spongepowered.api.text.Text as Sponge_Text
 
 /**
  * Sponge implementation of [Item].
+ *
+ * @property baseItem The item being adapted. Should not be modified.
  */
 class SpongeItem(
-        /**
-         * The item being adapted. Should not be modified.
-         */
         private val baseItem: ItemStack
 ) : Item by SpongeItem.Mutable(baseItem) {
 

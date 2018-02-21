@@ -4,10 +4,9 @@ import net.benwoodworth.fastcraft.dependencies.api.text.Text
 
 /**
  * Bukkit implementation of [Text].
+ *
+ * @property text The formatted text.
  */
 class BukkitText(
-        /**
-         * The formatted text.
-         */
         val text: String
 ) : Text

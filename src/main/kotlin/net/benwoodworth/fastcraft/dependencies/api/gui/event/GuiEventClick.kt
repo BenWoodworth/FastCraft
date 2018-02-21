@@ -7,50 +7,25 @@ import net.benwoodworth.fastcraft.dependencies.api.player.Player
 
 /**
  * An event triggered when a [GuiButton] is clicked.
+ *
+ * @property location The location that was clicked.
+ * @property gui The [Gui] in which the event occurred.
+ * @property player The [Player] who clicked the button.
+ * @property primary Whether the click was with the primary mouse button.
+ * @property secondary Whether the click was with the primary mouse button.
+ * @property middle Whether the click was with the middle mouse button.
+ * @property double Whether the click was a double click.
+ * @property number The number pressed, from 1..9, or `null` if there was none.
+ * @property shift Whether shift was held while clicking the button.
  */
 data class GuiEventClick(
-        /**
-         * The location that was clicked.
-         */
         val location: GuiLocation,
-
-        /**
-         * The [Gui] in which the event occurred.
-         */
         val gui: Gui,
-
-        /**
-         * The [Player] who clicked the button.
-         */
         val player: Player?,
-
-        /**
-         * Whether the click was with the primary mouse button.
-         */
         val primary: Boolean,
-
-        /**
-         * Whether the click was with the primary mouse button.
-         */
         val secondary: Boolean,
-
-        /**
-         * Whether the click was with the middle mouse button.
-         */
         val middle: Boolean,
-
-        /**
-         * Whether the click was a double click.
-         */
         val double: Boolean,
-
-        /**
-         * The number pressed, from 1..9, or `null` if there was none.
-         */
         val number: Int?,
-
-        /**
-         * Whether shift was held while clicking the button.
-         */
         val shift: Boolean
 )
