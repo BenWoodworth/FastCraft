@@ -1,7 +1,6 @@
 package net.benwoodworth.fastcraft.implementations.bukkit.api.gui
 
 import net.benwoodworth.fastcraft.dependencies.api.gui.Gui
-import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClose
 import net.benwoodworth.fastcraft.implementations.bukkit.api.player.BukkitPlayer
 import org.bukkit.entity.Player
@@ -23,24 +22,12 @@ class BukkitGuiListeners : Listener { // TODO Move to own file
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     fun onInventoryClick(event: InventoryClickEvent) {
         val gui = event.inventory.holder as? BukkitGui ?: return
+        if (event.isCancelled) return
 
-        // If a GUI slot was clicked...
         if (event.rawSlot in 0 until event.inventory.size) {
+            // If a GUI slot was clicked...
             event.isCancelled = true
-
-            gui.onClick(
-                    event.slot,
-                    GuiEventClick(
-                            gui,
-                            (event.whoClicked as? Player)?.let(::BukkitPlayer),
-                            event.isLeftClick,
-                            event.isRightClick,
-                            event.click == ClickType.MIDDLE,
-                            event.click == ClickType.DOUBLE_CLICK,
-                            (event.hotbarButton + 1).takeUnless { it == 0 },
-                            event.isShiftClick
-                    )
-            )
+            gui.onClick(event)
         } else {
             when (event.click) {
                 ClickType.LEFT,
@@ -52,7 +39,8 @@ class BukkitGuiListeners : Listener { // TODO Move to own file
                 ClickType.DROP,
                 ClickType.CONTROL_DROP,
                 ClickType.CREATIVE -> {
-                } // Click is allowed
+                    // Click is allowed
+                }
 
                 else -> event.isCancelled = true
             }

@@ -8,6 +8,6 @@ import net.benwoodworth.fastcraft.dependencies.api.gui.GuiRegion
 class GuiLayoutRoot(
         width: Int,
         height: Int
-) : GuiLayoutAbstract(
+) : GuiLayoutAbstract<GuiRegion.Rectangle>(
         GuiRegion.Rectangle(0, 0, width, height)
 )

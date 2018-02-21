@@ -5,4 +5,4 @@ import net.benwoodworth.fastcraft.dependencies.api.gui.element.GuiElement
 
 class GuiLayoutBasic(
         region: GuiRegion.Positioned
-) : GuiLayoutAbstract(region), GuiElement.Mutable
+) : GuiLayoutAbstract<GuiRegion.Positioned>(region), GuiElement.Mutable

@@ -13,7 +13,7 @@ import net.benwoodworth.fastcraft.dependencies.api.item.Item
 class GuiButtonBasic(
         region: GuiRegion.Positioned,
         item: Item? = null
-) : GuiElement.Mutable, GuiButtonAbstract(region) {
+) : GuiButtonAbstract(region), GuiElement.Mutable {
 
     /**
      * The item representing this button.

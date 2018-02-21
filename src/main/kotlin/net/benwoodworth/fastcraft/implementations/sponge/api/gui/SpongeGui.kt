@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft.implementations.sponge.api.gui
 
 import net.benwoodworth.fastcraft.dependencies.api.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiAbstract
+import net.benwoodworth.fastcraft.dependencies.api.gui.GuiLocation
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.api.gui.layout.GuiLayout
@@ -11,12 +12,15 @@ import net.benwoodworth.fastcraft.implementations.sponge.api.item.SpongeItem
 import net.benwoodworth.fastcraft.implementations.sponge.api.player.SpongePlayer
 import net.benwoodworth.fastcraft.implementations.sponge.api.text.SpongeText
 import org.spongepowered.api.Sponge
+import org.spongepowered.api.event.item.inventory.ClickInventoryEvent
 import org.spongepowered.api.item.inventory.Carrier
 import org.spongepowered.api.item.inventory.Inventory
 import org.spongepowered.api.item.inventory.ItemStack
 import org.spongepowered.api.item.inventory.property.InventoryTitle
+import org.spongepowered.api.item.inventory.property.SlotIndex
 import org.spongepowered.api.item.inventory.type.CarriedInventory
 import org.spongepowered.api.item.inventory.type.GridInventory
+import org.spongepowered.api.entity.living.player.Player as Sponge_Player
 import org.spongepowered.api.text.Text as Sponge_Text
 
 /**
@@ -64,10 +68,32 @@ abstract class SpongeGui<out TInv: Inventory>(
     }
 
     protected fun GuiLayout.getSpongeItem(x: Int, y: Int): ItemStack? {
-        return (getItem(x, y)?.mutableCopy() as SpongeItem.Mutable?)?.base
+        return (getItem(GuiLocation(x, y))?.mutableCopy() as SpongeItem.Mutable?)?.base
     }
 
-    abstract fun onClick(slotIndex: Int, guiEvent: GuiEventClick)
+    protected abstract fun getLayoutLocation(slotIndex: Int): LayoutLocation?
+
+    fun onClick(event: ClickInventoryEvent, player: Sponge_Player?) {
+        val slotIndex = event
+                .transactions[0]
+                .slot
+                .getProperty(SlotIndex::class.java, "slotindex")
+                .map(SlotIndex::getValue).get()
+
+        getLayoutLocation(slotIndex)?.run {
+            layout.click(GuiEventClick(
+                    location,
+                    this@SpongeGui,
+                    player?.let(::SpongePlayer),
+                    event is ClickInventoryEvent.Primary,
+                    event is ClickInventoryEvent.Secondary,
+                    event is ClickInventoryEvent.Middle,
+                    event is ClickInventoryEvent.Double,
+                    (event as? ClickInventoryEvent.NumberPress)?.number,
+                    event is ClickInventoryEvent.Shift
+            ))
+        }
+    }
 
     abstract class GridBase(
             plugin: SpongeFastCraft,
@@ -76,37 +102,43 @@ abstract class SpongeGui<out TInv: Inventory>(
 
         override val layout = addLayout(inventory.columns, inventory.rows)
 
+        override fun getLayoutLocation(slotIndex: Int): LayoutLocation? {
+            if (slotIndex !in 0 until inventory.size()) {
+                return null
+            }
+
+            return LayoutLocation(
+                    layout,
+                    GuiLocation(
+                            slotIndex % layout.region.width,
+                            slotIndex / layout.region.width
+                    )
+            )
+        }
+
         override fun updateLayout(region: GuiRegion) {
-            for (x in 0 until layout.width) {
-                for (y in 0 until layout.height) {
-                    if (region.contains(x, y)) {
+            for (x in 0 until layout.region.width) {
+                for (y in 0 until layout.region.height) {
+                    if (region.contains(GuiLocation(x, y))) {
                         inventory.set(x, y, layout.getSpongeItem(x, y))
                     }
                 }
             }
-        }
-
-        override fun onClick(slotIndex: Int, guiEvent: GuiEventClick) {
-            layout.click(
-                    slotIndex % layout.width,
-                    slotIndex / layout.width,
-                    guiEvent
-            )
         }
     }
 
     class Chest(
             plugin: SpongeFastCraft,
             invProvider: (SpongeGui<GridInventory>) -> GridInventory
-    ) : Gui.Chest, GridBase(plugin, invProvider)
+    ) : GridBase(plugin, invProvider), Gui.Chest
 
     class Dispenser(
             plugin: SpongeFastCraft,
             invProvider: (SpongeGui<GridInventory>) -> GridInventory
-    ) : Gui.Dispenser, GridBase(plugin, invProvider)
+    ) : GridBase(plugin, invProvider), Gui.Dispenser
 
     class Hopper(
             plugin: SpongeFastCraft,
             invProvider: (SpongeGui<GridInventory>) -> GridInventory
-    ) : Gui.Hopper, GridBase(plugin, invProvider)
+    ) : GridBase(plugin, invProvider), Gui.Hopper
 }

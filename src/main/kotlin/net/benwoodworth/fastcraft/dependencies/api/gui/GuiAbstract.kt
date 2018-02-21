@@ -27,9 +27,8 @@ abstract class GuiAbstract : Gui {
     /**
      * The position within a GUI's layout.
      */
-    protected class LayoutPos(
+    protected class LayoutLocation(
             val layout: GuiLayoutRoot,
-            val x: Int,
-            val y: Int
+            val location: GuiLocation
     )
 }

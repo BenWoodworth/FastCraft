@@ -12,9 +12,9 @@ import java.util.*
 /**
  * Abstract implementation of [GuiLayout].
  */
-abstract class GuiLayoutAbstract(
-        region: GuiRegion.Positioned
-) : GuiLayout, GuiElementAbstract(region) {
+abstract class GuiLayoutAbstract<TRegion : GuiRegion.Positioned>(
+        region: TRegion
+) : GuiLayout, GuiElementAbstract<TRegion>(region) {
 
     private val elements = LinkedList<GuiElement>()
 

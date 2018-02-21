@@ -10,7 +10,7 @@ import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
  */
 abstract class GuiButtonAbstract(
         region: GuiRegion.Positioned
-) : GuiButton, GuiElementAbstract(region) {
+) : GuiElementAbstract<GuiRegion.Positioned>(region), GuiButton {
 
     override val clickListener = Listener<GuiEventClick>()
 
