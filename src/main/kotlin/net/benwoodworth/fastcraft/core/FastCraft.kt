@@ -1,5 +1,6 @@
 package net.benwoodworth.fastcraft.core
 
+import net.benwoodworth.fastcraft.core.gui.crafting.CraftingGuiPresenterFactory
 import net.benwoodworth.fastcraft.dependencies.api.event.FcListener
 import net.benwoodworth.fastcraft.dependencies.event.FcEventPlayerJoin
 import net.benwoodworth.fastcraft.dependencies.event.FcEventPluginDisable
@@ -18,8 +19,8 @@ class FastCraft @Inject constructor(
         listenerPluginDisable: FcListener<FcEventPluginDisable>,
         listenerPlayerJoin: FcListener<FcEventPlayerJoin>,
 
-        private val taskBuilder: Provider<FcTaskBuilder>
-        //private val guiCraftingFactory: GuiCraftingFactory
+        private val taskBuilder: Provider<FcTaskBuilder>,
+        private val craftingGuiPresenterFactory: CraftingGuiPresenterFactory
 ) {
 
     init {
@@ -36,11 +37,12 @@ class FastCraft @Inject constructor(
         println("FASTCRAFT DISABLED")
     }
 
-    private fun onPlayerJoin(/*event: FcEventPlayerJoin*/) {
+    private fun onPlayerJoin(event: FcEventPlayerJoin) {
         // TODO Remove debug code
-//        taskBuilder.get()
-//                .delay(1).execute {
-//            guiCraftingFactory.create(event.player).open()
-//        }
+        taskBuilder.get().delay(1).execute {
+            craftingGuiPresenterFactory
+                    .create(event.player)
+                    .open()
+        }
     }
 }

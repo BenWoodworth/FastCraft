@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.core.gui.crafting
 
 import com.google.auto.factory.AutoFactory
+import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.core.gui.crafting.elements.ElementRecipeList
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClose
@@ -8,17 +9,16 @@ import net.benwoodworth.fastcraft.dependencies.api.mvp.MvpPresenter
 import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayer
 import net.benwoodworth.fastcraft.dependencies.api.text.FcTextBuilder
 import net.benwoodworth.fastcraft.dependencies.server.FcTaskBuilder
-import javax.inject.Inject
 import javax.inject.Provider
 
 @AutoFactory
-class CraftingGuiPresenter @Inject constructor(
+class CraftingGuiPresenter(
         private val player: FcPlayer,
 
-        view: CraftingGuiView,
-        model: CraftingGuiModel,
-        taskBuilder: Provider<FcTaskBuilder>,
-        private val textBuilder: Provider<FcTextBuilder>
+        @Provided view: CraftingGuiView,
+        @Provided model: CraftingGuiModel,
+        @Provided taskBuilder: Provider<FcTaskBuilder>,
+        @Provided private val textBuilder: Provider<FcTextBuilder>
 ) : MvpPresenter<CraftingGuiView, CraftingGuiModel>(view, model) {
 
     private val taskCycleResults = taskBuilder.get() //TODO Make disablable
