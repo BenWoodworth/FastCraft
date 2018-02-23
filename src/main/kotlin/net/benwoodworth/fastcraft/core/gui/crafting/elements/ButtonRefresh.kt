@@ -19,7 +19,7 @@ class ButtonRefresh(
 ) : GuiButtonAbstract(location) {
 
     override fun getItem(location: GuiLocation) = itemBuilder.get()
-            .type(itemTypeFactory.getAnvil())
+            .type(itemTypeFactory.getNetherStar())
             .displayName(fastCraftLang.guiToolbarWorkbenchTitle())
             .lore(fastCraftLang.guiToolbarWorkbenchDescription())
             .build()

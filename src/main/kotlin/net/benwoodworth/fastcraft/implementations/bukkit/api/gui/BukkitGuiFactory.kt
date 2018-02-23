@@ -4,6 +4,7 @@ import net.benwoodworth.fastcraft.dependencies.api.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiFactory
 import net.benwoodworth.fastcraft.dependencies.api.text.FcText
 import net.benwoodworth.fastcraft.implementations.bukkit.BukkitFastCraft
+import org.bukkit.Bukkit
 import javax.inject.Inject
 
 class BukkitGuiFactory @Inject constructor(
@@ -11,7 +12,10 @@ class BukkitGuiFactory @Inject constructor(
 ) : GuiFactory {
 
     override fun chest(height: Int, title: FcText?): Gui.Chest {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return BukkitGui.Chest(
+                plugin,
+                Bukkit.createInventory(null, 9 * height) //TODO
+        )
     }
 
     override fun dispenser(title: FcText?): Gui.Dispenser {

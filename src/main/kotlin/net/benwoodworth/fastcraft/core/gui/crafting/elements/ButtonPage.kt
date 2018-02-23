@@ -17,13 +17,13 @@ class ButtonPage(
         @Provided private val fastCraftLang: FastCraftLang,
         @Provided private val itemBuilder: Provider<FcItemBuilder>,
         @Provided private val itemTypeFactory: FcItemTypeFactory
-) : GuiButtonAbstract(GuiLocation(0, 4)) {
+) : GuiButtonAbstract(location) {
 
     var page by GuiLayoutChanger(0)
     var pageCount by GuiLayoutChanger(0)
 
     override fun getItem(location: GuiLocation) = itemBuilder.get()
-            .type(itemTypeFactory.getAnvil())
+            .type(itemTypeFactory.getIronSword())
             .displayName(fastCraftLang.guiToolbarPageTitle(page + 1, pageCount + 1))
             .lore(fastCraftLang.guiToolbarPageDescription(page + 1, pageCount + 1))
             .build()
