@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.core.gui.crafting
+package net.benwoodworth.fastcraft.core.gui.crafting.elements
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
@@ -10,16 +10,16 @@ import net.benwoodworth.fastcraft.dependencies.api.item.FcItemTypeFactory
 import javax.inject.Provider
 
 @AutoFactory
-class GuiButtonWorkbench(
+class ButtonWorkbench(
         location: GuiLocation,
 
+        @Provided private val fastCraftLang: FastCraftLang,
         @Provided private val itemBuilder: Provider<FcItemBuilder>,
-        @Provided private val itemTypeFactory: FcItemTypeFactory,
-        @Provided private val fastCraftLang: FastCraftLang
+        @Provided private val itemTypeFactory: FcItemTypeFactory
 ) : GuiButtonAbstract(location) {
 
     override fun getItem(location: GuiLocation) = itemBuilder.get()
-            .type(itemTypeFactory.getAnvil())
+            .type(itemTypeFactory.getCraftingTable())
             .displayName(fastCraftLang.guiToolbarWorkbenchTitle())
             .lore(fastCraftLang.guiToolbarWorkbenchDescription())
             .build()

@@ -1,67 +1,41 @@
 package net.benwoodworth.fastcraft.core.gui.crafting
 
+import net.benwoodworth.fastcraft.core.gui.crafting.elements.*
 import net.benwoodworth.fastcraft.core.lang.FastCraftLang
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiFactory
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiLocation
-import net.benwoodworth.fastcraft.dependencies.api.gui.button.GuiButtonAbstract
-import net.benwoodworth.fastcraft.dependencies.api.gui.element.GuiLayoutChanger
-import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
-import net.benwoodworth.fastcraft.dependencies.api.item.FcItemBuilder
-import net.benwoodworth.fastcraft.dependencies.api.item.FcItemTypeFactory
+import net.benwoodworth.fastcraft.dependencies.api.gui.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.api.mvp.MvpView
-import net.benwoodworth.fastcraft.dependencies.recipe.FcCraftingRecipe
 import javax.inject.Inject
-import javax.inject.Provider
 
 class CraftingGuiView @Inject constructor(
         guiFactory: GuiFactory,
-        private val fastCraftLang: FastCraftLang,
-        private val itemBuilder: Provider<FcItemBuilder>,
-        private val itemTypeFactory: FcItemTypeFactory
+        fastCraftLang: FastCraftLang,
+
+        buttonWorkbenchFactory: ButtonWorkbenchFactory,
+        buttonMultiplierFactory: ButtonMultiplierFactory,
+        buttonRefreshFactory: ButtonRefreshFactory,
+        buttonPageFactory: ButtonPageFactory,
+
+        elementRecipeListFactory: ElementRecipeListFactory
 ) : MvpView {
 
-    val gui = guiFactory.withSize(9, 6, fastCraftLang.guiTitle())
+    val elementRecipeList = elementRecipeListFactory.create(GuiRegion.Rectangle(0, 0, 8, 6))
 
-    inner class ButtonWorkbench : GuiButtonAbstract(GuiLocation(0, 0)) {
-        override fun getItem(location: GuiLocation) = itemBuilder.get()
-                .type(itemTypeFactory.getCraftingTable())
-                .displayName(fastCraftLang.guiToolbarWorkbenchTitle())
-                .lore(fastCraftLang.guiToolbarWorkbenchDescription())
-                .build()
+    val buttonWorkbench = buttonWorkbenchFactory.create(GuiLocation(8, 0))
+    val buttonMultiplier = buttonMultiplierFactory.create(GuiLocation(8, 2))
+    val buttonRefresh = buttonRefreshFactory.create(GuiLocation(8, 3))
+    val buttonPage = buttonPageFactory.create(GuiLocation(8, 5))
+
+    val gui = guiFactory.withSize(
+            9,
+            6,
+            fastCraftLang.guiTitle()
+    ).apply {
+        layout.addElement(elementRecipeList)
+        layout.addElement(buttonWorkbench)
+        layout.addElement(buttonMultiplier)
+        layout.addElement(buttonRefresh)
+        layout.addElement(buttonPage)
     }
-
-    inner class ButtonMultiplier : GuiButtonAbstract(GuiLocation(0, 2)) {
-        var multiplier by GuiLayoutChanger(1)
-
-        override fun getItem(location: GuiLocation) = itemBuilder.get()
-                .type(itemTypeFactory.getAnvil())
-                .amount(multiplier)
-                .displayName(fastCraftLang.guiToolbarMultiplierTitle(multiplier))
-                .lore(fastCraftLang.guiToolbarMultiplierDescription(multiplier))
-                .build()
-    }
-
-    inner class ButtonRefresh : GuiButtonAbstract(GuiLocation(0, 3)) {
-        override fun getItem(location: GuiLocation) = itemBuilder.get()
-                .type(itemTypeFactory.getAnvil())
-                .displayName(fastCraftLang.guiToolbarWorkbenchTitle())
-                .lore(fastCraftLang.guiToolbarWorkbenchDescription())
-                .build()
-    }
-
-    inner class ButtonPage : GuiButtonAbstract(GuiLocation(0, 4)) {
-        var pageLast by GuiLayoutChanger(0)
-        var pageCurrent by GuiLayoutChanger(0)
-
-        override fun getItem(location: GuiLocation) = itemBuilder.get()
-                .type(itemTypeFactory.getAnvil())
-                .displayName(fastCraftLang.guiToolbarPageTitle(pageCurrent + 1, pageLast + 1))
-                .lore(fastCraftLang.guiToolbarPageDescription(pageCurrent + 1, pageLast + 1))
-                .build()
-    }
-
-    data class RecipeClickEvent(
-            val clickEvent: GuiEventClick,
-            val recipe: FcCraftingRecipe.Prepared
-    )
 }

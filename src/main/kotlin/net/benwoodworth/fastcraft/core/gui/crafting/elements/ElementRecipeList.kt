@@ -2,7 +2,6 @@ package net.benwoodworth.fastcraft.core.gui.crafting.elements
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.core.gui.crafting.CraftingGuiView
 import net.benwoodworth.fastcraft.core.lang.FastCraftLang
 import net.benwoodworth.fastcraft.dependencies.api.event.FcListener
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiLocation
@@ -20,15 +19,17 @@ import javax.inject.Provider
 import kotlin.math.ceil
 
 @AutoFactory
-class RecipeLayout(
-        @Provided region: GuiRegion.Rectangle,
+class ElementRecipeList(
+        region: GuiRegion.Rectangle,
 
-        private val itemBuilder: Provider<FcItemBuilder>,
-        private val lang: FastCraftLang,
-        private val textBuilder: Provider<FcTextBuilder>
+        @Provided private val itemBuilder: Provider<FcItemBuilder>,
+        @Provided private val lang: FastCraftLang,
+        @Provided private val textBuilder: Provider<FcTextBuilder>
 ) : GuiElementAbstract<GuiRegion.Rectangle>(region) {
 
-    var page by GuiLayoutChanger(0)
+    var page by GuiLayoutChanger(0) {
+        it.coerceIn(0 until pageCount)
+    }
 
     val pageCount get() = maxOf(1, ceil(recipes.size.toDouble() / pageSize).toInt())
 
@@ -38,7 +39,7 @@ class RecipeLayout(
 
     private var resultDisplayIndex by GuiLayoutChanger(0)
 
-    val recipeClickListener = FcListener<CraftingGuiView.RecipeClickEvent>()
+    val recipeClickListener = FcListener<RecipeClickEvent>()
 
     fun showNextResult() {
         resultDisplayIndex++
@@ -50,7 +51,7 @@ class RecipeLayout(
 
     override fun click(event: GuiEventClick) {
         val recipe = getRecipe(event.location) ?: return
-        recipeClickListener.notifyHandlers(CraftingGuiView.RecipeClickEvent(event, recipe))
+        recipeClickListener.notifyHandlers(RecipeClickEvent(event, recipe))
     }
 
     override fun getItem(location: GuiLocation): FcItem? {
@@ -94,4 +95,9 @@ class RecipeLayout(
                 .lore(lore)
                 .build()
     }
+
+    data class RecipeClickEvent(
+            val clickEvent: GuiEventClick,
+            val recipe: FcCraftingRecipe.Prepared
+    )
 }
