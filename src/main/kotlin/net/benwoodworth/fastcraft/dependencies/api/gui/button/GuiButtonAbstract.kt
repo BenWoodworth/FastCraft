@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.dependencies.api.gui.button
 
-import net.benwoodworth.fastcraft.dependencies.api.Listener
+import net.benwoodworth.fastcraft.dependencies.api.event.FcListener
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.api.gui.element.GuiElementAbstract
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
@@ -12,7 +12,7 @@ abstract class GuiButtonAbstract(
         region: GuiRegion.Positioned
 ) : GuiElementAbstract<GuiRegion.Positioned>(region), GuiButton {
 
-    override val clickListener = Listener<GuiEventClick>()
+    override val clickListener = FcListener<GuiEventClick>()
 
     /**
      * Handles this button's clicks.

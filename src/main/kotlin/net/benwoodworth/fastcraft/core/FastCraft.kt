@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.core
 
-import net.benwoodworth.fastcraft.dependencies.api.Listener
+import net.benwoodworth.fastcraft.dependencies.api.event.FcListener
 import net.benwoodworth.fastcraft.dependencies.event.FcEventPlayerJoin
 import net.benwoodworth.fastcraft.dependencies.event.FcEventPluginDisable
 import net.benwoodworth.fastcraft.dependencies.event.FcEventPluginEnable
@@ -14,9 +14,9 @@ import javax.inject.Singleton
  */
 @Singleton
 class FastCraft @Inject constructor(
-        listenerPluginEnable: Listener<FcEventPluginEnable>,
-        listenerPluginDisable: Listener<FcEventPluginDisable>,
-        listenerPlayerJoin: Listener<FcEventPlayerJoin>,
+        listenerPluginEnable: FcListener<FcEventPluginEnable>,
+        listenerPluginDisable: FcListener<FcEventPluginDisable>,
+        listenerPlayerJoin: FcListener<FcEventPlayerJoin>,
 
         private val taskBuilder: Provider<FcTaskBuilder>
         //private val guiCraftingFactory: GuiCraftingFactory

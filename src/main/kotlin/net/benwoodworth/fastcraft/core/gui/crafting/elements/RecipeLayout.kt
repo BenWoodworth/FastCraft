@@ -1,0 +1,97 @@
+package net.benwoodworth.fastcraft.core.gui.crafting.elements
+
+import com.google.auto.factory.AutoFactory
+import com.google.auto.factory.Provided
+import net.benwoodworth.fastcraft.core.gui.crafting.CraftingGuiView
+import net.benwoodworth.fastcraft.core.lang.FastCraftLang
+import net.benwoodworth.fastcraft.dependencies.api.event.FcListener
+import net.benwoodworth.fastcraft.dependencies.api.gui.GuiLocation
+import net.benwoodworth.fastcraft.dependencies.api.gui.GuiRegion
+import net.benwoodworth.fastcraft.dependencies.api.gui.element.GuiElementAbstract
+import net.benwoodworth.fastcraft.dependencies.api.gui.element.GuiLayoutChanger
+import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
+import net.benwoodworth.fastcraft.dependencies.api.item.FcItem
+import net.benwoodworth.fastcraft.dependencies.api.item.FcItemBuilder
+import net.benwoodworth.fastcraft.dependencies.api.text.FcText
+import net.benwoodworth.fastcraft.dependencies.api.text.FcTextBuilder
+import net.benwoodworth.fastcraft.dependencies.api.text.FcTextStyle
+import net.benwoodworth.fastcraft.dependencies.recipe.FcCraftingRecipe
+import javax.inject.Provider
+import kotlin.math.ceil
+
+@AutoFactory
+class RecipeLayout(
+        @Provided region: GuiRegion.Rectangle,
+
+        private val itemBuilder: Provider<FcItemBuilder>,
+        private val lang: FastCraftLang,
+        private val textBuilder: Provider<FcTextBuilder>
+) : GuiElementAbstract<GuiRegion.Rectangle>(region) {
+
+    var page by GuiLayoutChanger(0)
+
+    val pageCount get() = maxOf(1, ceil(recipes.size.toDouble() / pageSize).toInt())
+
+    private val pageSize get() = region.width * region.height
+
+    var recipes by GuiLayoutChanger(emptyList<FcCraftingRecipe.Prepared>())
+
+    private var resultDisplayIndex by GuiLayoutChanger(0)
+
+    val recipeClickListener = FcListener<CraftingGuiView.RecipeClickEvent>()
+
+    fun showNextResult() {
+        resultDisplayIndex++
+    }
+
+    private fun getRecipe(location: GuiLocation): FcCraftingRecipe.Prepared? {
+        return recipes.getOrNull((page * pageSize) + location.x + (location.y * region.width))
+    }
+
+    override fun click(event: GuiEventClick) {
+        val recipe = getRecipe(event.location) ?: return
+        recipeClickListener.notifyHandlers(CraftingGuiView.RecipeClickEvent(event, recipe))
+    }
+
+    override fun getItem(location: GuiLocation): FcItem? {
+        val recipe = getRecipe(location) ?: return null
+        val resultIndex = resultDisplayIndex % recipe.results.size
+        val resultDisplay = recipe.results[resultIndex]
+
+        val lore = mutableListOf<FcText?>()
+
+        lore.add(lang.guiRecipeResultsLabel())
+        recipe.results.forEachIndexed { i, item ->
+            var itemName = item.displayName ?: item.name
+
+            if (i == resultIndex) {
+                itemName = textBuilder.get()
+                        .textStyle(FcTextStyle(bold = true))
+                        .addExtra(itemName)
+                        .build()
+            }
+
+            lore.add(lang.guiRecipeResultsItem(itemName.toString(), item.amount))
+        }
+
+        lore.add(null)
+        lore.add(lang.guiRecipeIngredientsLabel())
+        recipe.items.forEach { item ->
+            val itemName = item.displayName ?: item.name
+            lang.guiRecipeResultsItem(itemName.toString(), item.amount)
+        }
+
+        lore.add(null)
+        lore.add(lang.guiRecipeId(recipe.recipe.id))
+
+        resultDisplay.lore?.let {
+            lore.add(null)
+            lore.addAll(it)
+        }
+
+        return itemBuilder.get()
+                .from(recipe.results[resultIndex])
+                .lore(lore)
+                .build()
+    }
+}

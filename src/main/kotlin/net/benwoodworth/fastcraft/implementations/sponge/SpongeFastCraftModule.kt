@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.implementations.sponge
 
 import dagger.Module
 import dagger.Provides
-import net.benwoodworth.fastcraft.dependencies.api.Listener
+import net.benwoodworth.fastcraft.dependencies.api.event.FcListener
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiFactory
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItemBuilder
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItemTypeFactory
@@ -50,8 +50,8 @@ class SpongeFastCraftModule(
 
     @Provides
     @Singleton
-    fun listenerPlayerJoin(plugin: SpongeFastCraft): Listener<FcEventPlayerJoin> {
-        return Listener<FcEventPlayerJoin>().also { listener ->
+    fun listenerPlayerJoin(plugin: SpongeFastCraft): FcListener<FcEventPlayerJoin> {
+        return FcListener<FcEventPlayerJoin>().also { listener ->
             Sponge.getEventManager().registerListener(plugin,
                     Join::class.java,
                     { listener.notifyHandlers(SpongeFcEventPlayerJoin(it)) }
@@ -61,8 +61,8 @@ class SpongeFastCraftModule(
 
     @Provides
     @Singleton
-    fun listenerPluginDisable(plugin: SpongeFastCraft): Listener<FcEventPluginDisable> {
-        return Listener<FcEventPluginDisable>().also { listener ->
+    fun listenerPluginDisable(plugin: SpongeFastCraft): FcListener<FcEventPluginDisable> {
+        return FcListener<FcEventPluginDisable>().also { listener ->
             Sponge.getEventManager().registerListener(plugin,
                     GameStoppingEvent::class.java,
                     { listener.notifyHandlers(SpongeFcEventPluginDisable(it)) }
@@ -72,8 +72,8 @@ class SpongeFastCraftModule(
 
     @Provides
     @Singleton
-    fun listenerPluginEnable(plugin: SpongeFastCraft): Listener<FcEventPluginEnable> {
-        return Listener<FcEventPluginEnable>().also { listener ->
+    fun listenerPluginEnable(plugin: SpongeFastCraft): FcListener<FcEventPluginEnable> {
+        return FcListener<FcEventPluginEnable>().also { listener ->
             Sponge.getEventManager().registerListener(plugin,
                     GameInitializationEvent::class.java,
                     { listener.notifyHandlers(SpongeFcEventPluginEnable(it)) }

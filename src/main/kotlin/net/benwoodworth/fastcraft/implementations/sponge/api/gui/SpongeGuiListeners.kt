@@ -50,7 +50,7 @@ class SpongeGuiListeners {
     }
 
     /**
-     * Forwards inventory clicks to buttons.
+     * Forwards inventory clicks to elements.
      */
     @Listener(order = Order.BEFORE_POST)
     fun onClick(event: ClickInventoryEvent, @First player: Player?) {

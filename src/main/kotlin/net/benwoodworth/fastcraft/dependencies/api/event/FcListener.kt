@@ -1,11 +1,11 @@
-package net.benwoodworth.fastcraft.dependencies.api
+package net.benwoodworth.fastcraft.dependencies.api.event
 
 /**
  * Listens to events, and notifies event handlers when events occur.
  *
  * @param T the type of event being listened for.
  */
-class Listener<T> {
+class FcListener<T> {
 
     /**
      * Event handlers with an event parameter.

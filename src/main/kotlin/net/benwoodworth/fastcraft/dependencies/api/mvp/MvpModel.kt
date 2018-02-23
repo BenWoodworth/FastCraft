@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.dependencies.api.mvp
 
-import net.benwoodworth.fastcraft.dependencies.api.Listener
+import net.benwoodworth.fastcraft.dependencies.api.event.FcListener
 
 /**
  * The "model" aspect of the [MVP architectural pattern](http://bit.ly/WikiMVP).
@@ -16,7 +16,7 @@ abstract class MvpModel {
     /**
      * A listener to notify [MvpPresenter]s when this model changes.
      */
-    val changeListener = Listener<MvpModel>()
+    val changeListener = FcListener<MvpModel>()
 
     /**
      * Notifies observing [MvpPresenter]s that this model has changed.

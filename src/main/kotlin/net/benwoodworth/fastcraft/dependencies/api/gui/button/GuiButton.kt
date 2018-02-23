@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.dependencies.api.gui.button
 
-import net.benwoodworth.fastcraft.dependencies.api.Listener
+import net.benwoodworth.fastcraft.dependencies.api.event.FcListener
 import net.benwoodworth.fastcraft.dependencies.api.gui.element.GuiElement
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
 
@@ -12,5 +12,5 @@ interface GuiButton : GuiElement {
     /**
      * A listener for button clicks.
      */
-    val clickListener: Listener<GuiEventClick>
+    val clickListener: FcListener<GuiEventClick>
 }

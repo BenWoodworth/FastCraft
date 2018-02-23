@@ -26,7 +26,7 @@ class FastCraftLang @Inject constructor(
             "gui.recipe.results.label"
     )
 
-    fun guiRecipeResultsItem(item: String, amount: Int) = json.list(
+    fun guiRecipeResultsItem(item: String, amount: Int) = json.string(
             "gui.recipe.results.item",
             mapOf(
                     "amount" to amount.toString(),

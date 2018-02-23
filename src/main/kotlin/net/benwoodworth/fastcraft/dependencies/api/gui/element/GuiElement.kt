@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.dependencies.api.gui.element
 
-import net.benwoodworth.fastcraft.dependencies.api.Listener
+import net.benwoodworth.fastcraft.dependencies.api.event.FcListener
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiLocation
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
@@ -15,7 +15,7 @@ interface GuiElement {
     /**
      * A listener for element changes.
      */
-    val changeListener: Listener<GuiEventLayoutChange>
+    val changeListener: FcListener<GuiEventLayoutChange>
 
     /**
      * The region this element occupies within the containing layout.

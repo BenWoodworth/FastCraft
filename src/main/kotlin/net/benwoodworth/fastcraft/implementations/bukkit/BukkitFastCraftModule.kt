@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.implementations.bukkit
 
 import dagger.Module
 import dagger.Provides
-import net.benwoodworth.fastcraft.dependencies.api.Listener
+import net.benwoodworth.fastcraft.dependencies.api.event.FcListener
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiFactory
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItemBuilder
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItemTypeFactory
@@ -62,8 +62,8 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun listenerPlayerJoin(): Listener<FcEventPlayerJoin> {
-        return Listener<FcEventPlayerJoin>().also { listener ->
+    fun listenerPlayerJoin(): FcListener<FcEventPlayerJoin> {
+        return FcListener<FcEventPlayerJoin>().also { listener ->
             Bukkit.getPluginManager().registerEvents(
                     object : org.bukkit.event.Listener {
                         @EventHandler
@@ -79,8 +79,8 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun listenerPluginDisable(): Listener<FcEventPluginDisable> {
-        return Listener<FcEventPluginDisable>().also { listener ->
+    fun listenerPluginDisable(): FcListener<FcEventPluginDisable> {
+        return FcListener<FcEventPluginDisable>().also { listener ->
             Bukkit.getPluginManager().registerEvents(
                     object : org.bukkit.event.Listener {
                         @EventHandler
@@ -96,8 +96,8 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun listenerPluginEnable(): Listener<FcEventPluginEnable> {
-        return Listener<FcEventPluginEnable>().also { listener ->
+    fun listenerPluginEnable(): FcListener<FcEventPluginEnable> {
+        return FcListener<FcEventPluginEnable>().also { listener ->
             Bukkit.getPluginManager().registerEvents(
                     object : org.bukkit.event.Listener {
                         @EventHandler
