@@ -6,9 +6,8 @@ import com.beust.klaxon.Parser
 import com.beust.klaxon.obj
 import net.benwoodworth.fastcraft.dependencies.api.text.FcText
 import net.benwoodworth.fastcraft.dependencies.api.text.FcTextBuilder
+import java.io.InputStream
 import java.io.InputStreamReader
-import java.nio.charset.StandardCharsets
-import java.nio.file.Files
 import java.nio.file.Path
 import javax.inject.Inject
 import javax.inject.Provider
@@ -20,13 +19,14 @@ class JsonLangReader @Inject constructor(
 
     private lateinit var json: JsonObject
 
-    fun load(file: Path) {
-        InputStreamReader(
-                Files.newInputStream(file),
-                StandardCharsets.UTF_8
-        ).use {
+    fun load(stream: InputStream) {
+        InputStreamReader(stream).use {
             json = Parser().parse(it) as JsonObject
         }
+    }
+
+    fun load(file: Path) {
+        load(file.toFile().inputStream())
     }
 
     private fun missing(path: String): String {

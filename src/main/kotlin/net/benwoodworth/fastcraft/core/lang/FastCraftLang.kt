@@ -6,6 +6,13 @@ class FastCraftLang @Inject constructor(
         private val json: JsonLangReader
 ) {
 
+    init {
+        //TODO
+        json.load(javaClass.classLoader
+                .getResourceAsStream("lang/en.json")
+        )
+    }
+
     fun guiTitle() = json.string(
             "gui.title"
     )

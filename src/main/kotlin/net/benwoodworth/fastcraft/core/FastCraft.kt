@@ -15,9 +15,9 @@ import javax.inject.Singleton
  */
 @Singleton
 class FastCraft @Inject constructor(
-        listenerPluginEnable: FcListener<FcEventPluginEnable>,
-        listenerPluginDisable: FcListener<FcEventPluginDisable>,
-        listenerPlayerJoin: FcListener<FcEventPlayerJoin>,
+        private val listenerPluginEnable: FcListener<FcEventPluginEnable>,
+        private val listenerPluginDisable: FcListener<FcEventPluginDisable>,
+        private val listenerPlayerJoin: FcListener<FcEventPlayerJoin>,
 
         private val taskBuilder: Provider<FcTaskBuilder>,
         private val craftingGuiPresenterFactory: CraftingGuiPresenterFactory
