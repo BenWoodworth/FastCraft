@@ -53,7 +53,7 @@ gui:
     refresh:
       title: '&aaktualisieren'
       description:
-      - '&bNeusoritierung der Gegenstände'
+      - '&bNeusortierung der Gegenstände'
 
     multiplier:
       title: '&aMultiplikator (<mult>x)' # Variablen: mult
