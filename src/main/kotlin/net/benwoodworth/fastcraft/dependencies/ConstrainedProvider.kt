@@ -35,7 +35,7 @@ class ConstrainedProvider<TDependency, in TConstraint>(
         /**
          * Gets the first allowed dependency.
          */
-        final override fun get(): TDependency = providers
+        final override fun get() = providers
                 .first { it.allowed(constraint) }
                 .get()
     }

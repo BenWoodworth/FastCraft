@@ -30,11 +30,11 @@ import net.benwoodworth.fastcraft.implementations.bukkit.recipe.BukkitFcRecipePr
 import net.benwoodworth.fastcraft.implementations.bukkit.server.BukkitFcPluginRegistry
 import net.benwoodworth.fastcraft.implementations.bukkit.server.BukkitFcTaskBuilder
 import org.bukkit.Bukkit
+import org.bukkit.Server
 import org.bukkit.event.EventHandler
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.server.PluginDisableEvent
 import org.bukkit.event.server.PluginEnableEvent
-import java.util.logging.Level
 import javax.inject.Singleton
 
 @Module
@@ -48,17 +48,10 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun bukkitApiVersion(): BukkitApiVersion {
-        val versionStr = Bukkit.getBukkitVersion()
-        return BukkitApiVersion.parse(versionStr) ?: run {
-            plugin.logger.log(Level.SEVERE, "Unsupported Bukkit API version: $versionStr. Assuming latest API.")
-            BukkitApiVersion(1000)
-        }
-    }
+    fun configManager(dep: BukkitFcConfigManager): FcConfigManager = dep
 
     @Provides
-    @Singleton
-    fun configManager(dep: BukkitFcConfigManager): FcConfigManager = dep
+    fun server(): Server = Bukkit.getServer()
 
     @Provides
     @Singleton
