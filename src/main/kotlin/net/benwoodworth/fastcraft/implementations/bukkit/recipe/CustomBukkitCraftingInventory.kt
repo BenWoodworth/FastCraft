@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.implementations.bukkit.recipe
 
-import org.bukkit.Bukkit
 import org.bukkit.Material
+import org.bukkit.Server
 import org.bukkit.entity.HumanEntity
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryType
@@ -14,8 +14,9 @@ import org.bukkit.inventory.*
  */
 internal class CustomBukkitCraftingInventory(
         private val player: Player,
-        private val recipe: Recipe?
-) : CraftingInventory, Inventory by Bukkit.createInventory(
+        private val recipe: Recipe?,
+        server: Server
+) : CraftingInventory, Inventory by server.createInventory(
         player,
         InventoryType.WORKBENCH
 ) {

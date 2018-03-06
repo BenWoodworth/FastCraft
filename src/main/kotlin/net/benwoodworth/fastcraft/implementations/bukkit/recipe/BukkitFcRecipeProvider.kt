@@ -2,27 +2,28 @@ package net.benwoodworth.fastcraft.implementations.bukkit.recipe
 
 import net.benwoodworth.fastcraft.dependencies.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.dependencies.recipe.FcRecipeProvider
-import org.bukkit.Bukkit
+import org.bukkit.Server
 import org.bukkit.inventory.ShapedRecipe
 import org.bukkit.inventory.ShapelessRecipe
+import javax.inject.Inject
 
 /**
  * Bukkit implementation of [FcRecipeProvider].
  */
-class BukkitFcRecipeProvider : FcRecipeProvider {
+class BukkitFcRecipeProvider @Inject constructor(
+        private val server: Server,
+        private val shapedFactory: BukkitFcCraftingRecipe_ShapedFactory,
+        private val shapelessFactory: BukkitFcCraftingRecipe_ShapelessFactory
+) : FcRecipeProvider {
 
     override fun getCraftingRecipes(): List<FcCraftingRecipe> {
-        val serverRecipes = Bukkit.recipeIterator()
+        val serverRecipes = server.recipeIterator()
         val results = mutableListOf<FcCraftingRecipe>()
 
         serverRecipes.forEach { recipe ->
             when (recipe) {
-                is ShapedRecipe ->
-                    BukkitFcCraftingRecipe.Shaped(recipe)
-
-                is ShapelessRecipe ->
-                    BukkitFcCraftingRecipe.Shapeless(recipe)
-
+                is ShapedRecipe -> shapedFactory.create(recipe)
+                is ShapelessRecipe -> shapelessFactory.create(recipe)
                 else -> null
             }?.let(results::add)
         }

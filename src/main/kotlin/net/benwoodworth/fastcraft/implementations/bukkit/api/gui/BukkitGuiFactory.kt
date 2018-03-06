@@ -4,17 +4,19 @@ import net.benwoodworth.fastcraft.dependencies.api.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiFactory
 import net.benwoodworth.fastcraft.dependencies.api.text.FcText
 import net.benwoodworth.fastcraft.implementations.bukkit.BukkitFastCraft
-import org.bukkit.Bukkit
+import org.bukkit.Server
 import javax.inject.Inject
 
 class BukkitGuiFactory @Inject constructor(
-        private var plugin: BukkitFastCraft
+        private var plugin: BukkitFastCraft,
+        private var server: Server
 ) : GuiFactory {
 
     override fun chest(height: Int, title: FcText?): Gui.Chest {
         return BukkitGui.Chest(
                 plugin,
-                Bukkit.createInventory(null, 9 * height) //TODO
+                server,
+                server.createInventory(null, 9 * height) //TODO
         )
     }
 

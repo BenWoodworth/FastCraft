@@ -45,8 +45,8 @@ buildscript {
         //version_bukkit = '1.9.4-R0.1-SNAPSHOT'
         //version_bukkit = '1.8.8-R0.1-SNAPSHOT'
         //version_bukkit = '1.7.9-R0.3-SNAPSHOT'
-        //version_bukkit = '1.7.5-R0.1-SNAPSHOT' // Adds Bukkit.getPlayer(uuid)
-        //version_bukkit = '1.7.2-R0.3-SNAPSHOT' // Adds Bukkit.getUnsafe()
+        //version_bukkit = '1.7.5-R0.1-SNAPSHOT' // Adds Server.getPlayer(uuid)
+        //version_bukkit = '1.7.2-R0.3-SNAPSHOT' // Adds Server.getUnsafe()
         //version_bukkit = '1.6.4-R2.1-SNAPSHOT'
         //version_bukkit = '1.5.2-R1.0'
         //version_bukkit = '1.5.2-R0.2-SNAPSHOT' // Adds ClickType, InventoryDragEvent

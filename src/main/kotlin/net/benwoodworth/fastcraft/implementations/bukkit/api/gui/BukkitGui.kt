@@ -11,7 +11,7 @@ import net.benwoodworth.fastcraft.implementations.bukkit.BukkitFastCraft
 import net.benwoodworth.fastcraft.implementations.bukkit.api.item.BukkitFcItem
 import net.benwoodworth.fastcraft.implementations.bukkit.api.player.BukkitFcPlayer
 import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitFcText
-import org.bukkit.Bukkit
+import org.bukkit.Server
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType
 import org.bukkit.event.inventory.InventoryClickEvent
@@ -21,8 +21,9 @@ import org.bukkit.inventory.InventoryHolder
 /**
  * Bukkit implementation of [Gui].
  */
-abstract class BukkitGui(
+sealed class BukkitGui(
         plugin: BukkitFastCraft,
+        server: Server,
         private val inventory: Inventory
 ) : GuiAbstract(), InventoryHolder {
 
@@ -32,7 +33,7 @@ abstract class BukkitGui(
 
     init {
         if (!registeredListeners) {
-            Bukkit.getPluginManager().registerEvents(BukkitGuiListeners(), plugin)
+            server.pluginManager.registerEvents(BukkitGuiListeners(), plugin)
             registeredListeners = true
         }
     }
@@ -83,17 +84,17 @@ abstract class BukkitGui(
 
     protected abstract fun getLayoutLocation(slot: Int): LayoutLocation?
 
-    class Chest(plugin: BukkitFastCraft, inventory: Inventory) : BukkitGui(plugin, inventory), Gui.Chest {
+    class Chest(plugin: BukkitFastCraft, server: Server, inventory: Inventory) : BukkitGui(plugin, server, inventory), Gui.Chest {
         override val layout = addLayout(9, inventory.size / 9)
         override fun getLayoutLocation(slot: Int) = LayoutLocation(layout, GuiLocation(slot % 9, slot / 9))
     }
 
-    class Dispenser(plugin: BukkitFastCraft, inventory: Inventory) : BukkitGui(plugin, inventory), Gui.Dispenser {
+    class Dispenser(plugin: BukkitFastCraft, server: Server, inventory: Inventory) : BukkitGui(plugin, server, inventory), Gui.Dispenser {
         override val layout = addLayout(3, 3)
         override fun getLayoutLocation(slot: Int) = LayoutLocation(layout, GuiLocation(slot % 3, slot / 3))
     }
 
-    class Hopper(plugin: BukkitFastCraft, inventory: Inventory) : BukkitGui(plugin, inventory), Gui.Hopper {
+    class Hopper(plugin: BukkitFastCraft, server: Server, inventory: Inventory) : BukkitGui(plugin, server, inventory), Gui.Hopper {
         override val layout = addLayout(5, 1)
         override fun getLayoutLocation(slot: Int) = LayoutLocation(layout, GuiLocation(slot % 5, slot / 5))
     }

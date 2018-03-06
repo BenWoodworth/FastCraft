@@ -1,5 +1,7 @@
 package net.benwoodworth.fastcraft.implementations.bukkit.recipe
 
+import com.google.auto.factory.AutoFactory
+import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItem
 import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayer
 import net.benwoodworth.fastcraft.dependencies.recipe.FcCraftingRecipe
@@ -8,8 +10,8 @@ import net.benwoodworth.fastcraft.implementations.bukkit.api.item.BukkitFcItem
 import net.benwoodworth.fastcraft.implementations.bukkit.api.player.BukkitFcPlayer
 import net.benwoodworth.fastcraft.util.Adapter
 import net.benwoodworth.fastcraft.util.Grid
-import org.bukkit.Bukkit
 import org.bukkit.Material
+import org.bukkit.Server
 import org.bukkit.event.inventory.*
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.Recipe
@@ -19,20 +21,23 @@ import org.bukkit.inventory.ShapelessRecipe
 /**
  * Bukkit implementation of [FcCraftingRecipe].
  */
-abstract class BukkitFcCraftingRecipe private constructor(
+sealed class BukkitFcCraftingRecipe(
         baseRecipe: Recipe
 ) : FcCraftingRecipe, Adapter<Recipe>(baseRecipe) {
+
+    protected abstract val server: Server
+    protected abstract val preparedFactory: BukkitFcCraftingRecipe_PreparedFactory
 
     override fun prepare(player: FcPlayer, items: Grid<FcItem>): FcCraftingRecipe.Prepared? {
         val inventory = CustomBukkitCraftingInventory(
                 (player as BukkitFcPlayer).base,
-                base
+                base,
+                server
         )
 
-        inventory.matrix = Array(
-                items.width * items.height,
-                { (items[it].mutableCopy() as BukkitFcItem.Mutable).base }
-        )
+        inventory.matrix = Array(items.width * items.height) {
+            (items[it].mutableCopy() as BukkitFcItem.Mutable).base
+        }
 
         val prepareEvent = PrepareItemCraftEvent(
                 inventory,
@@ -40,7 +45,7 @@ abstract class BukkitFcCraftingRecipe private constructor(
                 false
         )
 
-        Bukkit.getPluginManager().callEvent(prepareEvent)
+        server.pluginManager.callEvent(prepareEvent)
 
         val result = inventory.result
         if (result == null || result.type == Material.AIR) {
@@ -54,23 +59,25 @@ abstract class BukkitFcCraftingRecipe private constructor(
 
         // Create Prepared recipe
         return inventory.result?.let {
-            BukkitFcCraftingRecipe.Prepared(
+            preparedFactory.create(
                     contents,
                     player,
                     this,
                     items,
-                    inventory.getResults()
-                            .map(::BukkitFcItem)
+                    inventory.getResults().map(::BukkitFcItem)
             )
         }
     }
 
-    private class Prepared(
+    @AutoFactory
+    class Prepared(
             private val invContents: Array<ItemStack?>,
             override val player: FcPlayer,
             override val recipe: FcCraftingRecipe,
             override val items: Grid<FcItem>,
-            override val results: List<FcItem>
+            override val results: List<FcItem>,
+
+            @Provided private val server: Server
     ) : FcCraftingRecipe.Prepared {
 
         override fun craft(): List<FcItem>? {
@@ -79,7 +86,8 @@ abstract class BukkitFcCraftingRecipe private constructor(
 
             val inventory = CustomBukkitCraftingInventory(
                     bukkitPlayer,
-                    bukkitRecipe
+                    bukkitRecipe,
+                    server
             )
 
             inventory.contents = Array(
@@ -96,7 +104,7 @@ abstract class BukkitFcCraftingRecipe private constructor(
                     InventoryAction.MOVE_TO_OTHER_INVENTORY
             )
 
-            Bukkit.getPluginManager().callEvent(craftEvent)
+            server.pluginManager.callEvent(craftEvent)
 
             if (craftEvent.isCancelled) {
                 return null
@@ -107,29 +115,33 @@ abstract class BukkitFcCraftingRecipe private constructor(
         }
     }
 
+    @AutoFactory
     class Shaped(
-            private val baseRecipe: ShapedRecipe
+            private val baseRecipe: ShapedRecipe,
+
+            @Provided override val server: Server,
+            @Provided override val preparedFactory: BukkitFcCraftingRecipe_PreparedFactory
     ) : BukkitFcCraftingRecipe(baseRecipe) {
 
         override val id: String
             get() = baseRecipe.key.toString()
 
-        override val ingredients: Grid.Impl<FcIngredient> = Grid.Impl(
-                3,
-                3,
-                { x, y ->
-                    baseRecipe.shape[y]
-                            .takeIf { x < it.length }
-                            ?.get(x)
-                            ?.let { baseRecipe.ingredientMap[it] }
-                            ?.let { BukkitFcIngredient(it) }
-                            ?: BukkitFcIngredient(ItemStack(Material.AIR))
-                }
-        )
+        override val ingredients: Grid.Impl<FcIngredient> = Grid.Impl(3, 3) { x, y ->
+            baseRecipe.shape[y]
+                    .takeIf { x < it.length }
+                    ?.get(x)
+                    ?.let { baseRecipe.ingredientMap[it] }
+                    ?.let { BukkitFcIngredient(it) }
+                    ?: BukkitFcIngredient(ItemStack(Material.AIR))
+        }
     }
 
+    @AutoFactory
     class Shapeless(
-            private val baseRecipe: ShapelessRecipe
+            private val baseRecipe: ShapelessRecipe,
+
+            @Provided override val server: Server,
+            @Provided override val preparedFactory: BukkitFcCraftingRecipe_PreparedFactory
     ) : BukkitFcCraftingRecipe(baseRecipe) {
 
         override val id: String
@@ -140,16 +152,12 @@ abstract class BukkitFcCraftingRecipe private constructor(
                     .map { it?.let(::BukkitFcIngredient) }
                     .iterator()
 
-            Grid.Impl(
-                    3,
-                    3,
-                    { _, _ ->
-                        ingredients
-                                .takeIf { it.hasNext() }
-                                ?.next()
-                                ?: BukkitFcIngredient(ItemStack(Material.AIR))
-                    }
-            )
+            Grid.Impl(3, 3) { _, _ ->
+                ingredients
+                        .takeIf { it.hasNext() }
+                        ?.next()
+                        ?: BukkitFcIngredient(ItemStack(Material.AIR))
+            }
         }
     }
 }

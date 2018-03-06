@@ -29,7 +29,6 @@ import net.benwoodworth.fastcraft.implementations.bukkit.event.BukkitFcEventPlug
 import net.benwoodworth.fastcraft.implementations.bukkit.recipe.BukkitFcRecipeProvider
 import net.benwoodworth.fastcraft.implementations.bukkit.server.BukkitFcPluginRegistry
 import net.benwoodworth.fastcraft.implementations.bukkit.server.BukkitFcTaskBuilder
-import org.bukkit.Bukkit
 import org.bukkit.Server
 import org.bukkit.event.EventHandler
 import org.bukkit.event.player.PlayerJoinEvent
@@ -51,13 +50,13 @@ class BukkitFastCraftModule(
     fun configManager(dep: BukkitFcConfigManager): FcConfigManager = dep
 
     @Provides
-    fun server(): Server = Bukkit.getServer()
+    fun server(): Server = plugin.server
 
     @Provides
     @Singleton
-    fun listenerPlayerJoin(): FcListener<FcEventPlayerJoin> {
+    fun listenerPlayerJoin(server: Server): FcListener<FcEventPlayerJoin> {
         return FcListener<FcEventPlayerJoin>().also { listener ->
-            Bukkit.getPluginManager().registerEvents(
+            server.pluginManager.registerEvents(
                     object : org.bukkit.event.Listener {
                         @EventHandler
                         @Suppress("UNUSED")
@@ -72,9 +71,9 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun listenerPluginDisable(): FcListener<FcEventPluginDisable> {
+    fun listenerPluginDisable(server: Server): FcListener<FcEventPluginDisable> {
         return FcListener<FcEventPluginDisable>().also { listener ->
-            Bukkit.getPluginManager().registerEvents(
+            server.pluginManager.registerEvents(
                     object : org.bukkit.event.Listener {
                         @EventHandler
                         @Suppress("UNUSED")
@@ -89,9 +88,9 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun listenerPluginEnable(): FcListener<FcEventPluginEnable> {
+    fun listenerPluginEnable(server: Server): FcListener<FcEventPluginEnable> {
         return FcListener<FcEventPluginEnable>().also { listener ->
-            Bukkit.getPluginManager().registerEvents(
+            server.pluginManager.registerEvents(
                     object : org.bukkit.event.Listener {
                         @EventHandler
                         @Suppress("UNUSED")
