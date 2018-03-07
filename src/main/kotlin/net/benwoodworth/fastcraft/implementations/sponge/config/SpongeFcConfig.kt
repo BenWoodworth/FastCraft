@@ -8,9 +8,9 @@ import ninja.leaping.configurate.commented.CommentedConfigurationNode
 /**
  * Sponge implementation of [FcConfig].
  */
-class SpongeFcConfig(baseNode: CommentedConfigurationNode) :
-        FcConfigSection by SpongeFcConfigSection(baseNode),
-        Adapter<CommentedConfigurationNode>(baseNode),
+class SpongeFcConfig(override val base: CommentedConfigurationNode) :
+        FcConfigSection by SpongeFcConfigSection(base),
+        Adapter<CommentedConfigurationNode>(),
         FcConfig {
 
     var configOptions = base.options

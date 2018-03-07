@@ -22,8 +22,8 @@ import org.bukkit.inventory.ShapelessRecipe
  * Bukkit implementation of [FcCraftingRecipe].
  */
 sealed class BukkitFcCraftingRecipe(
-        baseRecipe: Recipe
-) : FcCraftingRecipe, Adapter<Recipe>(baseRecipe) {
+        override val base: Recipe
+) : FcCraftingRecipe, Adapter<Recipe>() {
 
     protected abstract val server: Server
     protected abstract val preparedFactory: BukkitFcCraftingRecipe_PreparedFactory

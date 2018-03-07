@@ -8,8 +8,8 @@ import org.bukkit.scheduler.BukkitTask
  * Bukkit implementation of [FcTask].
  */
 class BukkitFcTask(
-        task: BukkitTask
-) : FcTask, Adapter<BukkitTask>(task) {
+        override val base: BukkitTask
+) : FcTask, Adapter<BukkitTask>() {
 
     override fun cancel() = base.cancel()
 }

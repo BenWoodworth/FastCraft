@@ -8,5 +8,5 @@ import org.spongepowered.api.text.Text
  * Adapts Sponge text.
  */
 class SpongeFcText(
-        baseText: Text
-) : FcText, Adapter<Text>(baseText)
+        override val base: Text
+) : FcText, Adapter<Text>()

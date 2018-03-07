@@ -11,8 +11,8 @@ import java.util.*
  * Bukkit implementation of [FcPlayer].
  */
 class BukkitFcPlayer(
-        basePlayer: Player
-) : FcPlayer, Adapter<Player>(basePlayer) {
+        override val base: Player
+) : FcPlayer, Adapter<Player>() {
 
     override val username: String
         get() = base.name

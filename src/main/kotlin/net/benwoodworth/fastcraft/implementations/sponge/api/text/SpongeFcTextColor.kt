@@ -8,5 +8,5 @@ import org.spongepowered.api.text.format.TextColor
  * Adapts Sponge text colors.
  */
 class SpongeFcTextColor(
-        baseTextColor: TextColor
-) : FcTextColor, Adapter<TextColor>(baseTextColor)
+        override val base: TextColor
+) : FcTextColor, Adapter<TextColor>()

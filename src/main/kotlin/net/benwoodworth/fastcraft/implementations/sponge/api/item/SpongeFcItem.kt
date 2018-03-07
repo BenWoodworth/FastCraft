@@ -12,15 +12,15 @@ import org.spongepowered.api.text.Text
 /**
  * Sponge implementation of [FcItem].
  *
- * @property baseItem The item being adapted. Should not be modified.
+ * @property base The item being adapted. Should not be modified.
  */
 class SpongeFcItem(
-        private val baseItem: ItemStack
-) : FcItem by SpongeFcItem.Mutable(baseItem) {
+        private val base: ItemStack
+) : FcItem by SpongeFcItem.Mutable(base) {
 
     class Mutable(
-            baseItem: ItemStack
-    ) : FcItem.Mutable, Adapter<ItemStack>(baseItem) {
+            override val base: ItemStack
+    ) : FcItem.Mutable, Adapter<ItemStack>() {
 
         override val type: FcItemType
             get() = SpongeFcItemType(base.type)
@@ -68,7 +68,7 @@ class SpongeFcItem(
             }
 
         override fun isSimilar(item: FcItem): Boolean {
-            var other = (item as SpongeFcItem).baseItem
+            var other = (item as SpongeFcItem).base
             if (other.quantity != base.quantity) {
                 other = other.copy()
                 other.quantity = base.quantity

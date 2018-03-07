@@ -11,8 +11,8 @@ import java.util.*
  * Sponge implementation of [FcPlayer].
  */
 class SpongeFcPlayer(
-        basePlayer: Player
-) : FcPlayer, Adapter<Player>(basePlayer) {
+        override val base: Player
+) : FcPlayer, Adapter<Player>() {
 
     override val username: String
         get() = base.name

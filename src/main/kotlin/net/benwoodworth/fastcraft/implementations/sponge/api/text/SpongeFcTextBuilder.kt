@@ -12,8 +12,10 @@ import javax.inject.Inject
  * Adapts the Sponge LiteralText builder.
  */
 class SpongeFcTextBuilder @Inject constructor(
-) : FcTextBuilder, Adapter<LiteralText.Builder>(LiteralText.builder("")) {
+) : FcTextBuilder, Adapter<LiteralText.Builder>() {
 
+    override val base: LiteralText.Builder = LiteralText.builder("")
+    
     override fun build(): FcText {
         return SpongeFcText(base.build())
     }

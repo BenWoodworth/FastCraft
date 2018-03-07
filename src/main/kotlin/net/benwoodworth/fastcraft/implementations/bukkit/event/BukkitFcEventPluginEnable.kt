@@ -8,5 +8,5 @@ import org.bukkit.event.server.PluginEnableEvent
  * Bukkit implementation of [FcEventPluginEnable].
  */
 class BukkitFcEventPluginEnable(
-        baseEvent: PluginEnableEvent
-) : FcEventPluginEnable, Adapter<PluginEnableEvent>(baseEvent)
+        override val base: PluginEnableEvent
+) : FcEventPluginEnable, Adapter<PluginEnableEvent>()

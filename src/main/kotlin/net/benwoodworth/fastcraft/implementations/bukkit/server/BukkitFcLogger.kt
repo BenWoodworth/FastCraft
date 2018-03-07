@@ -9,8 +9,8 @@ import java.util.logging.Logger
  * Bukkit implementation of [FcLogger].
  */
 class BukkitFcLogger(
-        logger: Logger
-) : FcLogger, Adapter<Logger>(logger) {
+        override val base: Logger
+) : FcLogger, Adapter<Logger>() {
 
     override fun error(message: String) = base.log(Level.SEVERE, message)
 

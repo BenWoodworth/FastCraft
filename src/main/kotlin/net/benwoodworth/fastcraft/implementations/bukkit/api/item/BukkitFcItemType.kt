@@ -5,5 +5,5 @@ import net.benwoodworth.fastcraft.util.Adapter
 import org.bukkit.Material
 
 class BukkitFcItemType(
-        base: Material
-) : FcItemType, Adapter<Material>(base)
+        override val base: Material
+) : FcItemType, Adapter<Material>()

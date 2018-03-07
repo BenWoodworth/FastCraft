@@ -8,9 +8,9 @@ import org.bukkit.configuration.file.YamlConfiguration
 /**
  * Bukkit implementation of [FcConfig].
  */
-class BukkitFcConfig(baseSection: YamlConfiguration) :
-        FcConfigSection by BukkitFcConfigSection(baseSection),
-        Adapter<YamlConfiguration>(baseSection),
+class BukkitFcConfig(override val base: YamlConfiguration) :
+        FcConfigSection by BukkitFcConfigSection(base),
+        Adapter<YamlConfiguration>(),
         FcConfig {
 
     override var header: List<String>

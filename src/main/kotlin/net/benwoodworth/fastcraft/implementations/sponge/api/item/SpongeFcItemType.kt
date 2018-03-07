@@ -5,5 +5,5 @@ import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.item.ItemType
 
 class SpongeFcItemType(
-        base: ItemType
-) : FcItemType, Adapter<ItemType>(base)
+        override val base: ItemType
+) : FcItemType, Adapter<ItemType>()

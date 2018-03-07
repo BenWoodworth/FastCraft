@@ -9,8 +9,8 @@ import org.spongepowered.api.util.TypeTokens
  * Sponge implementation of [FcConfigSection].
  */
 class SpongeFcConfigSection(
-        baseNode: ConfigurationNode
-) : FcConfigSection, Adapter<ConfigurationNode>(baseNode) {
+        override val base: ConfigurationNode
+) : FcConfigSection, Adapter<ConfigurationNode>() {
 
     override fun hasKey(key: String): Boolean {
         return !base.getNode(key).isVirtual

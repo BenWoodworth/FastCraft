@@ -18,9 +18,9 @@ import org.spongepowered.api.item.recipe.crafting.ShapelessCraftingRecipe
  * Sponge implementation of [FcCraftingRecipe].
  */
 abstract class SpongeFcCraftingRecipe private constructor(
-        baseRecipe: CraftingRecipe,
+        override val base: CraftingRecipe,
         private val plugin: Any
-) : FcCraftingRecipe, Adapter<CraftingRecipe>(baseRecipe) {
+) : FcCraftingRecipe, Adapter<CraftingRecipe>() {
 
     override fun prepare(player: FcPlayer, items: Grid<FcItem>): FcCraftingRecipe.Prepared? {
         val grid = CustomSpongeCraftingInventory(plugin)

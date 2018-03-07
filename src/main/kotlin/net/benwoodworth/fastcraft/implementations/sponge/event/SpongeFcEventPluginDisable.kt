@@ -8,5 +8,5 @@ import org.spongepowered.api.event.game.state.GameStoppingEvent
  * Sponge implementation of [FcEventPluginDisable].
  */
 class SpongeFcEventPluginDisable(
-        baseEvent: GameStoppingEvent
-) : FcEventPluginDisable, Adapter<GameStoppingEvent>(baseEvent)
+        override val base: GameStoppingEvent
+) : FcEventPluginDisable, Adapter<GameStoppingEvent>()

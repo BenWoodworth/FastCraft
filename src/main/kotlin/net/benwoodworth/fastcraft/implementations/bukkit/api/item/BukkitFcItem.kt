@@ -10,15 +10,15 @@ import org.bukkit.inventory.ItemStack
 /**
  * Bukkit implementation of [FcItem].
  *
- * @property baseItem The item being adapter. Should not be modified.
+ * @property base The item being adapter. Should not be modified.
  */
 class BukkitFcItem(
-        private val baseItem: ItemStack
-) : FcItem by BukkitFcItem.Mutable(baseItem) {
+        private val base: ItemStack
+) : FcItem by BukkitFcItem.Mutable(base) {
 
     class Mutable(
-            baseItem: ItemStack
-    ) : FcItem.Mutable, Adapter<ItemStack>(baseItem) {
+            override val base: ItemStack
+    ) : FcItem.Mutable, Adapter<ItemStack>() {
 
         override val type: FcItemType
             get() = BukkitFcItemType(base.type)
@@ -60,7 +60,7 @@ class BukkitFcItem(
             }
 
         override fun isSimilar(item: FcItem): Boolean {
-            return base.isSimilar((item as BukkitFcItem).baseItem)
+            return base.isSimilar((item as BukkitFcItem).base)
         }
 
         override fun mutableCopy(): FcItem.Mutable {
