@@ -166,6 +166,8 @@ compileKotlin {
 }
 
 kapt {
+    mapDiagnosticLocations = true
+
     // Allows AutoFactory processor to work properly
     correctErrorTypes = true
 
