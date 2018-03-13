@@ -8,7 +8,6 @@ import net.benwoodworth.fastcraft.dependencies.api.text.FcTextBuilder
 import net.benwoodworth.fastcraft.implementations.bukkit.api.gui.BukkitGuiFactory
 import net.benwoodworth.fastcraft.implementations.bukkit.api.item.BukkitFcItemBuilder
 import net.benwoodworth.fastcraft.implementations.bukkit.api.player.BukkitFcPlayerProvider
-import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitFcTextBuilder
 import javax.inject.Inject
 import javax.inject.Provider
 

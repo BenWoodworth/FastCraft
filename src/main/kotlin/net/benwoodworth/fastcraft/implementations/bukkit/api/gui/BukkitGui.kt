@@ -10,7 +10,6 @@ import net.benwoodworth.fastcraft.dependencies.api.text.FcText
 import net.benwoodworth.fastcraft.implementations.bukkit.BukkitFastCraft
 import net.benwoodworth.fastcraft.implementations.bukkit.api.item.BukkitFcItem
 import net.benwoodworth.fastcraft.implementations.bukkit.api.player.BukkitFcPlayer
-import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitFcText
 import org.bukkit.Server
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType

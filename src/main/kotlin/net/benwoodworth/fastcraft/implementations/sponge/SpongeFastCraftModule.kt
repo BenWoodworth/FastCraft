@@ -20,8 +20,6 @@ import net.benwoodworth.fastcraft.implementations.sponge.api.gui.SpongeGuiFactor
 import net.benwoodworth.fastcraft.implementations.sponge.api.item.SpongeFcItemBuilder
 import net.benwoodworth.fastcraft.implementations.sponge.api.item.SpongeFcItemTypeFactory
 import net.benwoodworth.fastcraft.implementations.sponge.api.player.SpongeFcPlayerProvider
-import net.benwoodworth.fastcraft.implementations.sponge.api.text.SpongeFcTextBuilder
-import net.benwoodworth.fastcraft.implementations.sponge.api.text.SpongeFcTextColorRegistry
 import net.benwoodworth.fastcraft.implementations.sponge.config.SpongeFcConfigManager
 import net.benwoodworth.fastcraft.implementations.sponge.event.SpongeFcEventPlayerJoin
 import net.benwoodworth.fastcraft.implementations.sponge.event.SpongeFcEventPluginDisable

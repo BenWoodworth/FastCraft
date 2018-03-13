@@ -2,7 +2,6 @@ package net.benwoodworth.fastcraft.implementations.sponge.api.player
 
 import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayer
 import net.benwoodworth.fastcraft.dependencies.api.text.FcText
-import net.benwoodworth.fastcraft.implementations.sponge.api.text.SpongeFcText
 import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.entity.living.player.Player
 import java.util.*

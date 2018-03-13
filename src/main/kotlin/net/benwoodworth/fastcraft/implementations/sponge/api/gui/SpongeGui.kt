@@ -10,7 +10,6 @@ import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayer
 import net.benwoodworth.fastcraft.implementations.sponge.SpongeFastCraft
 import net.benwoodworth.fastcraft.implementations.sponge.api.item.SpongeFcItem
 import net.benwoodworth.fastcraft.implementations.sponge.api.player.SpongeFcPlayer
-import net.benwoodworth.fastcraft.implementations.sponge.api.text.SpongeFcText
 import org.spongepowered.api.Sponge
 import org.spongepowered.api.entity.living.player.Player
 import org.spongepowered.api.event.item.inventory.ClickInventoryEvent

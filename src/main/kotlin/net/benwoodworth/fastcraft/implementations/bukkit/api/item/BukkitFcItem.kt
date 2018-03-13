@@ -3,7 +3,6 @@ package net.benwoodworth.fastcraft.implementations.bukkit.api.item
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItem
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItemType
 import net.benwoodworth.fastcraft.dependencies.api.text.FcText
-import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitFcText
 import net.benwoodworth.fastcraft.util.Adapter
 import org.bukkit.inventory.ItemStack
 

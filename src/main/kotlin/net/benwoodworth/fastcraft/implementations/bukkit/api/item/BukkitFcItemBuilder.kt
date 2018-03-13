@@ -4,7 +4,6 @@ import net.benwoodworth.fastcraft.dependencies.api.item.FcItem
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItemBuilder
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItemType
 import net.benwoodworth.fastcraft.dependencies.api.text.FcText
-import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitFcText
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import javax.inject.Inject

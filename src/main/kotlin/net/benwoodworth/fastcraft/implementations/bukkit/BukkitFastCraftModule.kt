@@ -20,8 +20,6 @@ import net.benwoodworth.fastcraft.implementations.bukkit.api.gui.BukkitGuiFactor
 import net.benwoodworth.fastcraft.implementations.bukkit.api.item.BukkitFcItemBuilder
 import net.benwoodworth.fastcraft.implementations.bukkit.api.item.BukkitFcItemTypeFactory
 import net.benwoodworth.fastcraft.implementations.bukkit.api.player.BukkitFcPlayerProvider
-import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitFcTextBuilder
-import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitFcTextColorRegistry
 import net.benwoodworth.fastcraft.implementations.bukkit.config.BukkitFcConfigManager
 import net.benwoodworth.fastcraft.implementations.bukkit.event.BukkitFcEventPlayerJoin
 import net.benwoodworth.fastcraft.implementations.bukkit.event.BukkitFcEventPluginDisable

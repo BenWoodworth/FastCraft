@@ -9,7 +9,6 @@ import net.benwoodworth.fastcraft.dependencies.api.text.FcTextBuilder
 import net.benwoodworth.fastcraft.implementations.sponge.api.gui.SpongeGuiFactory
 import net.benwoodworth.fastcraft.implementations.sponge.api.item.SpongeFcItemBuilder
 import net.benwoodworth.fastcraft.implementations.sponge.api.player.SpongeFcPlayerProvider
-import net.benwoodworth.fastcraft.implementations.sponge.api.text.SpongeFcTextBuilder
 import javax.inject.Inject
 import javax.inject.Provider
 
