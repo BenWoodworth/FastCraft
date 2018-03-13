@@ -6,17 +6,17 @@ interface FcText {
     val bold: Boolean?
     val italic: Boolean?
     val underlined: Boolean?
-    val strikethrough: Boolean?
+    val strikeThrough: Boolean?
     val obfuscated: Boolean?
 
     val insertion: String?
-    // val clickEvent: FcTextClickEvent
-    // val hoverEvent: FcTextHoverEvent
+    val clickEvent: FcTextClickEvent?
+    val hoverEvent: FcTextHoverEvent?
 
     val with: List<FcText?>?
     val extra: List<FcText>?
 
-    interface Simple : FcText {
+    interface Text : FcText {
         val text: String
     }
 
@@ -25,7 +25,7 @@ interface FcText {
     }
 
     interface Score : FcText {
-        val score: String
+        val score: FcTextScore
     }
 
     interface Selector : FcText {
