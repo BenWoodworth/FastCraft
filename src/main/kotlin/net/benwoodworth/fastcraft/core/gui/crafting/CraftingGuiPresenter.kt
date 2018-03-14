@@ -7,7 +7,6 @@ import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClose
 import net.benwoodworth.fastcraft.dependencies.api.mvp.MvpPresenter
 import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayer
-import net.benwoodworth.fastcraft.dependencies.api.text.FcTextBuilder
 import net.benwoodworth.fastcraft.dependencies.server.FcTaskBuilder
 import javax.inject.Provider
 
@@ -18,7 +17,7 @@ class CraftingGuiPresenter(
         @Provided view: CraftingGuiView,
         @Provided model: CraftingGuiModel,
         @Provided taskBuilder: Provider<FcTaskBuilder>,
-        @Provided private val textBuilder: Provider<FcTextBuilder>
+        @Provided private val textBuilder: Provider<FcText.Builder>
 ) : MvpPresenter<CraftingGuiView, CraftingGuiModel>(view, model) {
 
     private val taskCycleResults = taskBuilder.get() //TODO Make disablable

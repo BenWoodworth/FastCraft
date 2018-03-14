@@ -5,15 +5,16 @@ import net.benwoodworth.fastcraft.dependencies.api.FastCraftApi
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiFactory
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItemBuilder
 import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayerProvider
-import net.benwoodworth.fastcraft.dependencies.api.text.FcTextBuilder
+import net.benwoodworth.fastcraft.dependencies.api.text.FcText
 import net.benwoodworth.fastcraft.implementations.sponge.api.gui.SpongeGuiFactory
 import net.benwoodworth.fastcraft.implementations.sponge.api.item.SpongeFcItemBuilder
 import net.benwoodworth.fastcraft.implementations.sponge.api.player.SpongeFcPlayerProvider
+import net.benwoodworth.fastcraft.implementations.sponge.api.text.SpongeFcText
 import javax.inject.Inject
 import javax.inject.Provider
 
 class SpongeFastCraftApi @Inject constructor(
-        private val textBuilder: Provider<SpongeFcTextBuilder>,
+        private val textBuilder: Provider<SpongeFcText.Builder>,
         private val guiFactory: Provider<SpongeGuiFactory>,
         private val itemBuilder: Provider<SpongeFcItemBuilder>,
         private val playerProvider: Provider<SpongeFcPlayerProvider>
@@ -22,7 +23,7 @@ class SpongeFastCraftApi @Inject constructor(
     override fun configure() = Unit
 
     @com.google.inject.Provides
-    override fun getTextBuilder(): FcTextBuilder {
+    override fun getTextBuilder(): FcText.Builder {
         return textBuilder.get()
     }
 

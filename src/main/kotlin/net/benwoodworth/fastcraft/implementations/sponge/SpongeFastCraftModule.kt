@@ -7,8 +7,6 @@ import net.benwoodworth.fastcraft.dependencies.api.gui.GuiFactory
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItemBuilder
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItemTypeFactory
 import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayerProvider
-import net.benwoodworth.fastcraft.dependencies.api.text.FcTextBuilder
-import net.benwoodworth.fastcraft.dependencies.api.text.FcTextColorRegistry
 import net.benwoodworth.fastcraft.dependencies.config.FcConfigManager
 import net.benwoodworth.fastcraft.dependencies.event.FcEventPlayerJoin
 import net.benwoodworth.fastcraft.dependencies.event.FcEventPluginDisable
@@ -104,9 +102,9 @@ class SpongeFastCraftModule(
     fun pluginProvider(dep: SpongeFcPluginRegistry): FcPluginRegistry = dep
 
     @Provides
-    fun textBuilder(dep: SpongeFcTextBuilder): FcTextBuilder = dep
+    fun textBuilder(dep: SpongeFcText.Builder): FcText.Builder = dep
 
     @Provides
     @Singleton
-    fun textColorRegistry(dep: SpongeFcTextColorRegistry): FcTextColorRegistry = dep
+    fun textColorRegistry(dep: SpongeFcTextColor.Factory): FcTextColor.Factory = dep
 }

@@ -5,7 +5,6 @@ import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Parser
 import com.beust.klaxon.obj
 import net.benwoodworth.fastcraft.dependencies.api.text.FcText
-import net.benwoodworth.fastcraft.dependencies.api.text.FcTextBuilder
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.nio.file.Path
@@ -14,7 +13,7 @@ import javax.inject.Provider
 
 class JsonLangReader @Inject constructor(
         private val placeholderProcessor: PlaceholderProcessorTags,
-        private val textBuilder: Provider<FcTextBuilder>
+        private val textBuilder: Provider<FcText.Builder>
 ) {
 
     private lateinit var json: JsonObject

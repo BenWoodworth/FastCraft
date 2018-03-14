@@ -3,6 +3,7 @@ package net.benwoodworth.fastcraft.implementations.sponge.api.item
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItem
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItemType
 import net.benwoodworth.fastcraft.dependencies.api.text.FcText
+import net.benwoodworth.fastcraft.implementations.sponge.api.text.SpongeFcText
 import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.data.key.Keys
 import org.spongepowered.api.item.inventory.ItemStack
@@ -16,6 +17,8 @@ import org.spongepowered.api.text.Text
 class SpongeFcItem(
         private val base: ItemStack
 ) : FcItem by SpongeFcItem.Mutable(base) {
+
+    val snapshot by lazy { base.createSnapshot() }
 
     class Mutable(
             override val base: ItemStack

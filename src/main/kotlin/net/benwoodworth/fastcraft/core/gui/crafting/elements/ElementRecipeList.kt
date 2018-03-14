@@ -12,8 +12,6 @@ import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItem
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItemBuilder
 import net.benwoodworth.fastcraft.dependencies.api.text.FcText
-import net.benwoodworth.fastcraft.dependencies.api.text.FcTextBuilder
-import net.benwoodworth.fastcraft.dependencies.api.text.FcTextStyle
 import net.benwoodworth.fastcraft.dependencies.recipe.FcCraftingRecipe
 import javax.inject.Provider
 import kotlin.math.ceil
@@ -24,7 +22,7 @@ class ElementRecipeList(
 
         @Provided private val itemBuilder: Provider<FcItemBuilder>,
         @Provided private val lang: FastCraftLang,
-        @Provided private val textBuilder: Provider<FcTextBuilder>
+        @Provided private val textBuilder: Provider<FcText.Builder>
 ) : GuiElementAbstract<GuiRegion.Rectangle>(region) {
 
     var page by GuiLayoutChanger(0) {

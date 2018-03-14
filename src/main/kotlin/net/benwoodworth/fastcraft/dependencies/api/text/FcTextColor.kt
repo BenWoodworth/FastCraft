@@ -20,5 +20,6 @@ interface FcTextColor {
         val yellow: FcTextColor
         val white: FcTextColor
         val reset: FcTextColor
+        val none: FcTextColor
     }
 }

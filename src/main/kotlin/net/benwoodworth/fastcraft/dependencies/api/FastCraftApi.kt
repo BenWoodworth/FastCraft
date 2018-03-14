@@ -3,7 +3,6 @@ package net.benwoodworth.fastcraft.dependencies.api
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiFactory
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItemBuilder
 import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayerProvider
-import net.benwoodworth.fastcraft.dependencies.api.text.FcTextBuilder
 
 /**
  * A FastCraft API for use by other plugins.
@@ -11,9 +10,9 @@ import net.benwoodworth.fastcraft.dependencies.api.text.FcTextBuilder
 interface FastCraftApi {
 
     /**
-     * Get an instance of a [FcTextBuilder].
+     * Get an instance of a [FcText.Builder].
      */
-    fun getTextBuilder(): FcTextBuilder
+    fun getTextBuilder(): FcText.Builder
 
     /**
      * Get an instance of a [GuiFactory].

@@ -7,8 +7,8 @@ import net.benwoodworth.fastcraft.dependencies.api.gui.GuiFactory
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItemBuilder
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItemTypeFactory
 import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayerProvider
-import net.benwoodworth.fastcraft.dependencies.api.text.FcTextBuilder
-import net.benwoodworth.fastcraft.dependencies.api.text.FcTextColorRegistry
+import net.benwoodworth.fastcraft.dependencies.api.text.FcText
+import net.benwoodworth.fastcraft.dependencies.api.text.FcTextColor
 import net.benwoodworth.fastcraft.dependencies.config.FcConfigManager
 import net.benwoodworth.fastcraft.dependencies.event.FcEventPlayerJoin
 import net.benwoodworth.fastcraft.dependencies.event.FcEventPluginDisable
@@ -126,9 +126,9 @@ class BukkitFastCraftModule(
     fun pluginProvider(dep: BukkitFcPluginRegistry): FcPluginRegistry = dep
 
     @Provides
-    fun textBuilder(dep: BukkitFcTextBuilder): FcTextBuilder = dep
+    fun textBuilder(dep: BukkitFcText.Builder): FcText.Builder = dep
 
     @Provides
     @Singleton
-    fun textColorRegistry(dep: BukkitFcTextColorRegistry): FcTextColorRegistry = dep
+    fun textColorRegistry(dep: BukkitFcTextColor.Factory): FcTextColor.Factory = dep
 }
