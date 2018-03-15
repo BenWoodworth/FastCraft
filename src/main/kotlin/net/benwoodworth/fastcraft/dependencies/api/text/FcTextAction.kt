@@ -6,26 +6,33 @@ import java.util.*
 
 interface FcTextAction {
 
+    interface Factory {
+        fun showText(text: FcText): Hover.ShowText
+        fun showItem(item: FcItem): Hover.ShowItem
+        fun showEntity(id: UUID, name: String): Hover.ShowEntity
+
+        fun openUrl(url: URL): Click.OpenUrl
+        fun runCommand(command: String): Click.RunCommand
+        fun suggestCommand(command: String): Click.SuggestCommand
+        fun changePage(page: Int): Click.ChangePage
+
+        fun insertText(text: String): ShiftClick.InsertText
+    }
+
     interface Hover : FcTextAction {
-        interface Factory {
-            fun showText(text: FcText): Hover
-            fun showItem(item: FcItem): Hover
-            fun showEntity(id: UUID, name: String): Hover
-        }
+        interface ShowText : Hover
+        interface ShowItem : Hover
+        interface ShowEntity : Hover
     }
 
     interface Click : FcTextAction {
-        interface Factory {
-            fun openUrl(url: URL): Click
-            fun runCommand(command: String): Click
-            fun suggestCommand(command: String): Click
-            fun changePage(page: Int): Click
-        }
+        interface OpenUrl : Click
+        interface RunCommand : Click
+        interface SuggestCommand : Click
+        interface ChangePage : Click
     }
 
     interface ShiftClick : FcTextAction {
-        interface Factory {
-            fun insertText(text: String): ShiftClick
-        }
+        interface InsertText : ShiftClick
     }
 }

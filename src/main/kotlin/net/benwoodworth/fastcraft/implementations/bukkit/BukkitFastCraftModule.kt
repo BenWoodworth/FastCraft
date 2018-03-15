@@ -20,6 +20,8 @@ import net.benwoodworth.fastcraft.implementations.bukkit.api.gui.BukkitGuiFactor
 import net.benwoodworth.fastcraft.implementations.bukkit.api.item.BukkitFcItemBuilder
 import net.benwoodworth.fastcraft.implementations.bukkit.api.item.BukkitFcItemTypeFactory
 import net.benwoodworth.fastcraft.implementations.bukkit.api.player.BukkitFcPlayerProvider
+import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitFcText
+import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitFcTextColor
 import net.benwoodworth.fastcraft.implementations.bukkit.config.BukkitFcConfigManager
 import net.benwoodworth.fastcraft.implementations.bukkit.event.BukkitFcEventPlayerJoin
 import net.benwoodworth.fastcraft.implementations.bukkit.event.BukkitFcEventPluginDisable
@@ -130,5 +132,5 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun textColorRegistry(dep: BukkitFcTextColor.Factory): FcTextColor.Factory = dep
+    fun textColorRegistry(dep: BukkitFcTextColor.Catalog): FcTextColor.Catalog = dep
 }

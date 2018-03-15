@@ -3,6 +3,7 @@ package net.benwoodworth.fastcraft.dependencies.api
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiFactory
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItemBuilder
 import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayerProvider
+import net.benwoodworth.fastcraft.dependencies.api.text.FcText
 
 /**
  * A FastCraft API for use by other plugins.

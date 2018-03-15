@@ -4,7 +4,6 @@ import net.benwoodworth.fastcraft.dependencies.api.event.FcListener
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClose
 import net.benwoodworth.fastcraft.dependencies.api.gui.layout.GuiLayoutRoot
 import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayer
-import net.benwoodworth.fastcraft.dependencies.api.text.FcText
 
 /**
  * A user interface for in-game players.
@@ -20,11 +19,6 @@ interface Gui {
      * A listener for the inventory closing.
      */
     val closeListener: FcListener<GuiEventClose>
-
-    /**
-     * The title of this [Gui].
-     */
-    val title: FcText?
 
     /**
      * Open this [Gui] for the given players.

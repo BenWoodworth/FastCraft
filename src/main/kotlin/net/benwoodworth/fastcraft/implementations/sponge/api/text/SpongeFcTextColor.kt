@@ -10,8 +10,8 @@ class SpongeFcTextColor(
         override val base: TextColor
 ) : Adapter<TextColor>(), FcTextColor {
 
-    class Factory @Inject constructor(
-    ) : FcTextColor.Factory {
+    class Catalog @Inject constructor(
+    ) : FcTextColor.Catalog {
 
         override val black: FcTextColor = SpongeFcTextColor(TextColors.BLACK)
         override val darkBlue: FcTextColor = SpongeFcTextColor(TextColors.DARK_BLUE)

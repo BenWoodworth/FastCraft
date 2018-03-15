@@ -7,8 +7,8 @@ class BukkitFcTextColor(
         val id: String
 ) : FcTextColor {
 
-    class Factory @Inject constructor(
-    ) : FcTextColor.Factory {
+    class Catalog @Inject constructor(
+    ) : FcTextColor.Catalog {
 
         override val black = BukkitFcTextColor("black")
         override val darkBlue = BukkitFcTextColor("dark_blue")

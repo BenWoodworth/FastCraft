@@ -4,9 +4,11 @@ import net.benwoodworth.fastcraft.dependencies.api.FastCraftApi
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiFactory
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItemBuilder
 import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayerProvider
+import net.benwoodworth.fastcraft.dependencies.api.text.FcText
 import net.benwoodworth.fastcraft.implementations.bukkit.api.gui.BukkitGuiFactory
 import net.benwoodworth.fastcraft.implementations.bukkit.api.item.BukkitFcItemBuilder
 import net.benwoodworth.fastcraft.implementations.bukkit.api.player.BukkitFcPlayerProvider
+import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitFcText
 import javax.inject.Inject
 import javax.inject.Provider
 

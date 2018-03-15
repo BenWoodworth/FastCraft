@@ -11,13 +11,22 @@ import org.bukkit.event.inventory.ClickType
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.event.inventory.InventoryDragEvent
+import org.bukkit.plugin.Plugin
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Listens for inventory events, in order to prevent modification
  * of the [Gui]'s inventory, and handling button clicks.
  */
-@Suppress("UNUSED")
-class BukkitGuiListeners : Listener { // TODO Move to own file
+@Singleton
+class BukkitGuiListener @Inject constructor(
+        plugin: Plugin
+) : Listener {
+
+    init {
+        plugin.server.pluginManager.registerEvents(this, plugin)
+    }
 
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     fun onInventoryClick(event: InventoryClickEvent) {

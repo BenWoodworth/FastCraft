@@ -16,7 +16,7 @@ interface FcPlayer {
     /**
      * The player's display name.
      */
-    var displayName: FcText?
+    var customName: String?
 
     /**
      * The player's UUID.

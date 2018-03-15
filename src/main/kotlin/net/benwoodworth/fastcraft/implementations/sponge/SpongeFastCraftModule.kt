@@ -7,6 +7,8 @@ import net.benwoodworth.fastcraft.dependencies.api.gui.GuiFactory
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItemBuilder
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItemTypeFactory
 import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayerProvider
+import net.benwoodworth.fastcraft.dependencies.api.text.FcText
+import net.benwoodworth.fastcraft.dependencies.api.text.FcTextColor
 import net.benwoodworth.fastcraft.dependencies.config.FcConfigManager
 import net.benwoodworth.fastcraft.dependencies.event.FcEventPlayerJoin
 import net.benwoodworth.fastcraft.dependencies.event.FcEventPluginDisable
@@ -18,6 +20,8 @@ import net.benwoodworth.fastcraft.implementations.sponge.api.gui.SpongeGuiFactor
 import net.benwoodworth.fastcraft.implementations.sponge.api.item.SpongeFcItemBuilder
 import net.benwoodworth.fastcraft.implementations.sponge.api.item.SpongeFcItemTypeFactory
 import net.benwoodworth.fastcraft.implementations.sponge.api.player.SpongeFcPlayerProvider
+import net.benwoodworth.fastcraft.implementations.sponge.api.text.SpongeFcText
+import net.benwoodworth.fastcraft.implementations.sponge.api.text.SpongeFcTextColor
 import net.benwoodworth.fastcraft.implementations.sponge.config.SpongeFcConfigManager
 import net.benwoodworth.fastcraft.implementations.sponge.event.SpongeFcEventPlayerJoin
 import net.benwoodworth.fastcraft.implementations.sponge.event.SpongeFcEventPluginDisable
@@ -106,5 +110,5 @@ class SpongeFastCraftModule(
 
     @Provides
     @Singleton
-    fun textColorRegistry(dep: SpongeFcTextColor.Factory): FcTextColor.Factory = dep
+    fun textColorRegistry(dep: SpongeFcTextColor.Catalog): FcTextColor.Catalog = dep
 }

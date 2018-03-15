@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.dependencies.api.text
 
 interface FcTextColor {
 
-    interface Factory {
+    interface Catalog {
         val black: FcTextColor
         val darkBlue: FcTextColor
         val darkGreen: FcTextColor

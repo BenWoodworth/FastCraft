@@ -6,10 +6,10 @@ import net.benwoodworth.fastcraft.dependencies.api.gui.GuiLocation
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayer
-import net.benwoodworth.fastcraft.dependencies.api.text.FcText
 import net.benwoodworth.fastcraft.implementations.bukkit.BukkitFastCraft
 import net.benwoodworth.fastcraft.implementations.bukkit.api.item.BukkitFcItem
 import net.benwoodworth.fastcraft.implementations.bukkit.api.player.BukkitFcPlayer
+import net.benwoodworth.fastcraft.implementations.bukkit.api.player.BukkitFcPlayerFactory
 import org.bukkit.Server
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType
@@ -21,24 +21,12 @@ import org.bukkit.inventory.InventoryHolder
  * Bukkit implementation of [Gui].
  */
 sealed class BukkitGui(
-        plugin: BukkitFastCraft,
-        server: Server,
-        private val inventory: Inventory
+        private val inventory: Inventory,
+        private val playerFactory: BukkitFcPlayerFactory,
+
+        @Suppress("UNUSED_PARAMETER")
+        guiListener: BukkitGuiListener
 ) : GuiAbstract(), InventoryHolder {
-
-    private companion object {
-        var registeredListeners = false
-    }
-
-    init {
-        if (!registeredListeners) {
-            server.pluginManager.registerEvents(BukkitGuiListeners(), plugin)
-            registeredListeners = true
-        }
-    }
-
-    override val title: FcText?
-        get() = inventory.title?.let(::BukkitFcText)
 
     override fun getInventory() = inventory
 
@@ -51,7 +39,7 @@ sealed class BukkitGui(
     override fun getViewers(): List<FcPlayer> {
         return inventory.viewers
                 .filterIsInstance<Player>()
-                .map(::BukkitFcPlayer)
+                .map { playerFactory.create(it) }
     }
 
     override fun updateLayout(region: GuiRegion) {
@@ -70,7 +58,7 @@ sealed class BukkitGui(
             layout.click(GuiEventClick(
                     location,
                     this@BukkitGui,
-                    (event.whoClicked as? Player)?.let(::BukkitFcPlayer),
+                    (event.whoClicked as? Player)?.let { playerFactory.create(it) },
                     event.isLeftClick,
                     event.isRightClick,
                     event.click == ClickType.MIDDLE,

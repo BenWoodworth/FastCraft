@@ -50,7 +50,7 @@ class JsonLangReader @Inject constructor(
 
         return result.map {
             textBuilder.get()
-                    .text(it)
+                    .setText(it)
                     .build()
         }
     }
@@ -61,7 +61,7 @@ class JsonLangReader @Inject constructor(
         } ?: missing(path)
 
         return textBuilder.get()
-                .text(result)
+                .setText(result)
                 .build()
     }
 

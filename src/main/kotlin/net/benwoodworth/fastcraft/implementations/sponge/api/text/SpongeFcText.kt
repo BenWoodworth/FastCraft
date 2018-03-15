@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.implementations.sponge.api.text
 
 import net.benwoodworth.fastcraft.dependencies.api.text.FcText
+import net.benwoodworth.fastcraft.dependencies.api.text.FcTextAction
 import net.benwoodworth.fastcraft.dependencies.api.text.FcTextColor
 import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.text.Text
@@ -45,6 +46,18 @@ class SpongeFcText(
 
             override fun setObfuscated(obfuscated: Boolean) = also {
                 base.style.obfuscated(obfuscated)
+            }
+
+            override fun setShiftClickAction(action: FcTextAction.ShiftClick) = also {
+                base.onShiftClick((action as SpongeFcTextAction.ShiftClick<*>).base)
+            }
+
+            override fun setClickAction(action: FcTextAction.Click) = also {
+                base.onClick((action as SpongeFcTextAction.Click<*>).base)
+            }
+
+            override fun setHoverAction(action: FcTextAction.Hover) = also {
+                base.onHover((action as SpongeFcTextAction.Hover<*>).base)
             }
 
             override fun addExtra(text: FcText) = also {

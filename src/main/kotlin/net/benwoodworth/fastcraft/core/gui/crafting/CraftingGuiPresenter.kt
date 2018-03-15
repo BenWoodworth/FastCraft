@@ -7,6 +7,7 @@ import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClose
 import net.benwoodworth.fastcraft.dependencies.api.mvp.MvpPresenter
 import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayer
+import net.benwoodworth.fastcraft.dependencies.api.text.FcText
 import net.benwoodworth.fastcraft.dependencies.server.FcTaskBuilder
 import javax.inject.Provider
 
@@ -43,7 +44,7 @@ class CraftingGuiPresenter(
     private fun onWorkbenchClick(event: GuiEventClick) {
         event.player?.sendMessage(
                 textBuilder.get()
-                        .text("Workbench clicked!")
+                        .setText("Workbench clicked!")
                         .build()
         )
     }
@@ -51,7 +52,7 @@ class CraftingGuiPresenter(
     private fun onMultiplierClick(event: GuiEventClick) {
         event.player?.sendMessage(
                 textBuilder.get()
-                        .text("Multiplier clicked!")
+                        .setText("Multiplier clicked!")
                         .build()
         )
     }
@@ -59,7 +60,7 @@ class CraftingGuiPresenter(
     private fun onRefreshClick(event: GuiEventClick) {
         event.player?.sendMessage(
                 textBuilder.get()
-                        .text("Refresh clicked!")
+                        .setText("Refresh clicked!")
                         .build()
         )
     }
@@ -67,7 +68,7 @@ class CraftingGuiPresenter(
     private fun onPageClick(event: GuiEventClick) {
         event.player?.sendMessage(
                 textBuilder.get()
-                        .text("Page clicked!")
+                        .setText("Page clicked!")
                         .build()
         )
     }

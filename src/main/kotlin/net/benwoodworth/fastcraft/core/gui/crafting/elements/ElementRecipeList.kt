@@ -65,7 +65,7 @@ class ElementRecipeList(
 
             if (i == resultIndex) {
                 itemName = textBuilder.get()
-                        .textStyle(FcTextStyle(bold = true))
+                        .setText("")
                         .addExtra(itemName)
                         .build()
             }

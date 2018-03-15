@@ -23,7 +23,7 @@ interface FcText {
             fun setShiftClickAction(action: FcTextAction.ShiftClick): Specific
             fun setClickAction(action: FcTextAction.Click): Specific
             fun setHoverAction(action: FcTextAction.Hover): Specific
-            //            fun addWith(text: FcText?): Specific
+            //fun addWith(text: FcText?): Specific
             fun addExtra(text: FcText): Specific
         }
     }
