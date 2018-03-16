@@ -1,5 +1,6 @@
 package net.benwoodworth.fastcraft.implementations.bukkit.api.text
 
+import javax.inject.Inject
 import javax.inject.Singleton
 
 private const val ESC = '\u00A7'
@@ -11,7 +12,8 @@ private const val STRIKE_THROUGH = 'm'
 private const val OBFUSCATED = 'k'
 
 @Singleton
-class BukkitFcTextLegacyFormatter {
+class BukkitFcTextLegacyFormatter @Inject constructor(
+) {
 
     fun format(text: BukkitFcText.Legacy): String {
         val state = FormatterState()
@@ -21,14 +23,15 @@ class BukkitFcTextLegacyFormatter {
 
     private fun appendFormat(text: BukkitFcText.Legacy, details: FormatterState) {
         val newFormat = Format(text)
-        details.stringBuilder
-                .append(newFormat.toString(details.prevFormat))
-                .append(text.text)
 
-        details.prevFormat = newFormat
+        details.apply {
+            newFormat.append(stringBuilder, prevFormat)
+            stringBuilder.append(text.text)
+            prevFormat = newFormat
+        }
 
-        for (extra in text.extra) {
-            appendFormat(extra as BukkitFcText.Legacy, details)
+        text.extra.forEach {
+            appendFormat(it as BukkitFcText.Legacy, details)
         }
     }
 
@@ -61,19 +64,19 @@ class BukkitFcTextLegacyFormatter {
             append(code)
         }
 
-        override fun toString(): String {
-            return StringBuilder(12).apply {
+        private fun append(stringBuilder: StringBuilder) {
+            stringBuilder.apply {
                 if (color != null) appendEsc(color)
                 if (bold == true) appendEsc(BOLD)
                 if (italic == true) appendEsc(ITALIC)
                 if (underlined == true) appendEsc(UNDERLINED)
                 if (strikeThrough == true) appendEsc(STRIKE_THROUGH)
                 if (obfuscated == true) appendEsc(OBFUSCATED)
-            }.toString()
+            }
         }
 
-        fun toString(previous: Format): String {
-            if (color == RESET) return toString()
+        fun append(stringBuilder: StringBuilder, previous: Format) {
+            if (color == RESET) return append(stringBuilder)
 
             if ( // If formatting needs a reset
                     (bold == false && previous.bold != false) ||
@@ -82,17 +85,18 @@ class BukkitFcTextLegacyFormatter {
                     (strikeThrough == false && previous.strikeThrough != false) ||
                     (obfuscated == false && previous.obfuscated != false)
             ) {
-                return "$ESC$RESET${toString()}"
+                stringBuilder.appendEsc(RESET)
+                return append(stringBuilder)
             }
 
-            return StringBuilder(12).apply {
+            stringBuilder.apply {
                 color?.takeIf { it != previous.color }?.let { appendEsc(color) }
                 bold?.takeIf { it != previous.bold }?.let { appendEsc(BOLD) }
                 italic?.takeIf { it != previous.italic }?.let { appendEsc(ITALIC) }
                 underlined?.takeIf { it != previous.underlined }?.let { appendEsc(UNDERLINED) }
                 strikeThrough?.takeIf { it != previous.strikeThrough }?.let { appendEsc(STRIKE_THROUGH) }
                 obfuscated?.takeIf { it != previous.obfuscated }?.let { appendEsc(OBFUSCATED) }
-            }.toString()
+            }
         }
     }
 }
