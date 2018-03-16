@@ -40,13 +40,13 @@ buildscript {
 
         version_bukkit = '1.12-pre5-SNAPSHOT'
         //version_bukkit = '1.12-pre2-SNAPSHOT' // Adds Recipe.getKey()
-        //version_bukkit = '1.11.2-R0.1-SNAPSHOT'
-        //version_bukkit = '1.10.2-R0.1-SNAPSHOT'
-        //version_bukkit = '1.9.4-R0.1-SNAPSHOT'
+        //Y//version_bukkit = '1.11.2-R0.1-SNAPSHOT' // ItemMeta.localizedName
+        //N//version_bukkit = '1.10.2-R0.1-SNAPSHOT' // No ItemMeta.localizedName
+        //N//version_bukkit = '1.9.4-R0.1-SNAPSHOT'
         //version_bukkit = '1.8.8-R0.1-SNAPSHOT'
         //version_bukkit = '1.7.9-R0.3-SNAPSHOT'
         //version_bukkit = '1.7.5-R0.1-SNAPSHOT' // Adds Server.getPlayer(uuid)
-        //version_bukkit = '1.7.2-R0.3-SNAPSHOT' // Adds Server.getUnsafe()
+        //N//version_bukkit = '1.7.2-R0.3-SNAPSHOT' // Adds Server.getUnsafe()
         //version_bukkit = '1.6.4-R2.1-SNAPSHOT'
         //version_bukkit = '1.5.2-R1.0'
         //version_bukkit = '1.5.2-R0.2-SNAPSHOT' // Adds ClickType, InventoryDragEvent

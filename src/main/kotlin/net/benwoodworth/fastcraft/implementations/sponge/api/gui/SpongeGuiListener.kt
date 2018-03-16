@@ -2,7 +2,9 @@ package net.benwoodworth.fastcraft.implementations.sponge.api.gui
 
 import net.benwoodworth.fastcraft.dependencies.api.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClose
+import net.benwoodworth.fastcraft.implementations.sponge.SpongeFastCraft
 import net.benwoodworth.fastcraft.implementations.sponge.api.player.SpongeFcPlayer
+import org.spongepowered.api.Sponge
 import org.spongepowered.api.entity.living.player.Player
 import org.spongepowered.api.event.Listener
 import org.spongepowered.api.event.Order
@@ -13,13 +15,21 @@ import org.spongepowered.api.event.item.inventory.InteractInventoryEvent
 import org.spongepowered.api.item.inventory.Slot
 import org.spongepowered.api.item.inventory.property.SlotIndex
 import org.spongepowered.api.item.inventory.type.CarriedInventory
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Listens for inventory events, in order to prevent modification
  * of the [Gui]'s inventory, and handling button clicks.
  */
-@Suppress("UNUSED")
-class SpongeGuiListeners {
+@Singleton
+class SpongeGuiListener @Inject constructor(
+        plugin: SpongeFastCraft
+) {
+
+    init {
+        Sponge.getEventManager().registerListeners(plugin, this)
+    }
 
     /**
      * Determine if a slot is part of a [Gui].
@@ -42,6 +52,7 @@ class SpongeGuiListeners {
      *
      * @param event the [AffectSlotEvent].
      */
+    @Suppress("UNUSED")
     @Listener(order = Order.EARLY)
     fun onAffectSlot(event: AffectSlotEvent) {
         event.transactions
@@ -52,6 +63,7 @@ class SpongeGuiListeners {
     /**
      * Forwards inventory clicks to elements.
      */
+    @Suppress("UNUSED")
     @Listener(order = Order.BEFORE_POST)
     fun onClick(event: ClickInventoryEvent, @First player: Player?) {
         if (event.transactions.size != 1) {
@@ -69,6 +81,7 @@ class SpongeGuiListeners {
         gui.onClick(event, player)
     }
 
+    @Suppress("UNUSED")
     @Listener(order = Order.LAST)
     fun onClose(event: InteractInventoryEvent.Close, @First player: Player?) {
         if (event.isCancelled) {

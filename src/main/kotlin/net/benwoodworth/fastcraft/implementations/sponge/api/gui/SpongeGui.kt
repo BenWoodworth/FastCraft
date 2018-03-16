@@ -10,14 +10,12 @@ import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayer
 import net.benwoodworth.fastcraft.implementations.sponge.SpongeFastCraft
 import net.benwoodworth.fastcraft.implementations.sponge.api.item.SpongeFcItem
 import net.benwoodworth.fastcraft.implementations.sponge.api.player.SpongeFcPlayer
-import net.benwoodworth.fastcraft.implementations.sponge.api.text.SpongeFcText
 import org.spongepowered.api.Sponge
 import org.spongepowered.api.entity.living.player.Player
 import org.spongepowered.api.event.item.inventory.ClickInventoryEvent
 import org.spongepowered.api.item.inventory.Carrier
 import org.spongepowered.api.item.inventory.Inventory
 import org.spongepowered.api.item.inventory.ItemStack
-import org.spongepowered.api.item.inventory.property.InventoryTitle
 import org.spongepowered.api.item.inventory.property.SlotIndex
 import org.spongepowered.api.item.inventory.type.CarriedInventory
 import org.spongepowered.api.item.inventory.type.GridInventory
@@ -27,20 +25,11 @@ import org.spongepowered.api.item.inventory.type.GridInventory
  */
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 abstract class SpongeGui<out TInv: Inventory>(
-        plugin: SpongeFastCraft,
-        invProvider: (SpongeGui<TInv>) -> TInv
+        invProvider: (SpongeGui<TInv>) -> TInv,
+
+        @Suppress("UNUSED_PARAMETER")
+        listener: SpongeGuiListener
 ) : GuiAbstract(), Carrier {
-
-    private companion object {
-        var registeredListeners = false
-    }
-
-    init {
-        if (!registeredListeners) {
-            Sponge.getEventManager().registerListeners(plugin, SpongeGuiListeners())
-            registeredListeners = true
-        }
-    }
 
     @Suppress("LeakingThis")
     protected val inventory: TInv = invProvider(this).also {
@@ -48,11 +37,6 @@ abstract class SpongeGui<out TInv: Inventory>(
     }
 
     override fun getInventory() = inventory as CarriedInventory<*>
-
-    override val title
-        get() = inventory.archetype // TODO Correct?
-                .getProperty(InventoryTitle::class.java)
-                .get().value?.let { SpongeFcText(it) }
 
     override fun open(vararg players: FcPlayer) {
         for (player in players) {

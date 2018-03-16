@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.implementations.bukkit.api.gui
 
 import net.benwoodworth.fastcraft.dependencies.api.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.api.gui.event.GuiEventClose
-import net.benwoodworth.fastcraft.implementations.bukkit.api.player.BukkitFcPlayer
+import net.benwoodworth.fastcraft.implementations.bukkit.api.player.BukkitFcPlayerFactory
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
@@ -21,7 +21,8 @@ import javax.inject.Singleton
  */
 @Singleton
 class BukkitGuiListener @Inject constructor(
-        plugin: Plugin
+        plugin: Plugin,
+        private val playerFactory: BukkitFcPlayerFactory
 ) : Listener {
 
     init {
@@ -75,7 +76,7 @@ class BukkitGuiListener @Inject constructor(
         val player = event.player as? Player
 
         gui.closeListener.notifyHandlers(
-                GuiEventClose(gui, player?.let(::BukkitFcPlayer))
+                GuiEventClose(gui, player?.let { playerFactory.create(it) })
         )
     }
 }

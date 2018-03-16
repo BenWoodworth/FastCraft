@@ -5,7 +5,6 @@ import net.benwoodworth.fastcraft.dependencies.api.text.FcTextAction
 import net.benwoodworth.fastcraft.dependencies.api.text.FcTextColor
 import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.text.Text
-import org.spongepowered.api.text.selector.Selector
 import javax.inject.Inject
 
 class SpongeFcText(
@@ -16,7 +15,6 @@ class SpongeFcText(
     ) : FcText.Builder {
 
         override fun setText(text: String) = Specific(Text.builder(text))
-        override fun setSelector(selector: String) = Specific(Text.builder(Selector.parse(selector)))
 
         class Specific(
                 override val base: Text.Builder

@@ -81,6 +81,10 @@ interface BukkitFcText : FcText {
 
         fun setItemDisplayName(item: ItemStack, displayName: FcText?)
 
+        fun getItemLore(item: ItemStack): List<BukkitFcText?>?
+
+        fun setItemLore(item: ItemStack, lore: List<BukkitFcText?>?)
+
         fun sendPlayerMessage(player: Player, message: FcText)
     }
 }
