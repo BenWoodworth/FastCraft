@@ -30,8 +30,8 @@ class BukkitGuiListener @Inject constructor(
 
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     fun onInventoryClick(event: InventoryClickEvent) {
-        val gui = event.inventory.holder as? BukkitGui ?: return
         if (event.isCancelled) return
+        val gui = event.inventory.holder as? BukkitGui ?: return
 
         if (event.rawSlot in 0 until event.inventory.size) {
             // If a GUI slot was clicked...

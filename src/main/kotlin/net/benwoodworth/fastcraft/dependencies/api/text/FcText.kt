@@ -7,7 +7,7 @@ interface FcText {
         fun setText(text: String): Specific
         //fun setTranslation(translation: String): Specific
         //fun setScore(score: FcTextScore): Specific
-        fun setSelector(selector: String): Specific
+        //fun setSelector(selector: String): Specific
         //fun setKeybind(keybind: String): Specific
 
         interface Specific {
