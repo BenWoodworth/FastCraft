@@ -19,6 +19,10 @@ interface BukkitFcText : FcText {
     var hoverAction: BukkitFcTextAction.Hover?
     var extra: MutableList<BukkitFcText>
 
+    interface Legacy : BukkitFcText {
+        val text: String
+    }
+
     interface Builder : FcText.Builder {
 
         class Specific(

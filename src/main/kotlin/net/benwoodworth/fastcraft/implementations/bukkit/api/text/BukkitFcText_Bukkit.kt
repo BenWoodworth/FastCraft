@@ -5,8 +5,8 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 
 class BukkitFcText_Bukkit(
-        var text: String
-) : BukkitFcText {
+        override val text: String
+) : BukkitFcText.Legacy {
 
     override var color: BukkitFcTextColor? = null
     override var bold: Boolean? = null

@@ -13,13 +13,13 @@ private const val OBFUSCATED = 'k'
 @Singleton
 class BukkitFcTextLegacyFormatter {
 
-    fun format(text: BukkitFcText_Bukkit): String {
+    fun format(text: BukkitFcText.Legacy): String {
         val state = FormatterState()
         appendFormat(text, state)
         return state.stringBuilder.toString()
     }
 
-    private fun appendFormat(text: BukkitFcText_Bukkit, details: FormatterState) {
+    private fun appendFormat(text: BukkitFcText.Legacy, details: FormatterState) {
         val newFormat = Format(text)
         details.stringBuilder
                 .append(newFormat.toString(details.prevFormat))
@@ -28,7 +28,7 @@ class BukkitFcTextLegacyFormatter {
         details.prevFormat = newFormat
 
         for (extra in text.extra) {
-            appendFormat(extra as BukkitFcText_Bukkit, details)
+            appendFormat(extra as BukkitFcText.Legacy, details)
         }
     }
 
@@ -46,7 +46,7 @@ class BukkitFcTextLegacyFormatter {
             val obfuscated: Boolean? = null
     ) {
 
-        constructor(text: BukkitFcText_Bukkit) : this(
+        constructor(text: BukkitFcText.Legacy) : this(
                 text.color?.legacyCode,
                 text.bold,
                 text.italic,
