@@ -8,6 +8,8 @@ import org.bukkit.inventory.ItemStack
 
 interface BukkitFcText : FcText {
 
+    val helper: Helper
+
     var color: BukkitFcTextColor?
     var bold: Boolean?
     var italic: Boolean?

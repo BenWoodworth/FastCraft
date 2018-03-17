@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.util
 /**
  * Used to adapt native implementations for use by FastCraft.
  */
-abstract class Adapter<out TBase : Any> {
+abstract class Adapter<out TBase> {
 
     /**
      * The base object being adapted.
@@ -20,5 +20,5 @@ abstract class Adapter<out TBase : Any> {
     /**
      * Calculates the hash code of the base object.
      */
-    override fun hashCode() = base.hashCode()
+    override fun hashCode() = base?.hashCode() ?: 0
 }

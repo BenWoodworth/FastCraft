@@ -38,7 +38,7 @@ buildscript {
         version_spongegradle = '0.8.1'
         version_shadow = '2.0.2'
 
-        version_bukkit = '1.12-pre5-SNAPSHOT'
+        version_bukkit = '1.12.2-R0.1-SNAPSHOT'
         //version_bukkit = '1.12-pre2-SNAPSHOT' // Adds Recipe.getKey()
         //Y//version_bukkit = '1.11.2-R0.1-SNAPSHOT' // ItemMeta.localizedName
         //N//version_bukkit = '1.10.2-R0.1-SNAPSHOT' // No ItemMeta.localizedName
@@ -106,9 +106,11 @@ dependencies {
     ktlint 'com.github.shyiko:ktlint:0.8.1'
 
     compile "org.jetbrains.kotlin:kotlin-runtime:$version_kotlin"
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$version_kotlin"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version_kotlin"
 
-    compile "org.bukkit:bukkit:$version_bukkit"
+    //compile "org.bukkit:bukkit:$version_bukkit"
+    compile "org.spigotmc:spigot-api:$version_bukkit"
+
     compile "org.spongepowered:spongeapi:$version_sponge"
 
     compile "org.bstats:bstats-bukkit:$version_bstats_bukkit"
