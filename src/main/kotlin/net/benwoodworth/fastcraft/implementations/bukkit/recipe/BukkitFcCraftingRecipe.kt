@@ -7,6 +7,7 @@ import net.benwoodworth.fastcraft.dependencies.player.FcPlayer
 import net.benwoodworth.fastcraft.dependencies.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.dependencies.recipe.FcIngredient
 import net.benwoodworth.fastcraft.implementations.bukkit.item.BukkitFcItem
+import net.benwoodworth.fastcraft.implementations.bukkit.item.BukkitFcItemFactory
 import net.benwoodworth.fastcraft.implementations.bukkit.player.BukkitFcPlayer
 import net.benwoodworth.fastcraft.util.Adapter
 import net.benwoodworth.fastcraft.util.Grid
@@ -27,6 +28,7 @@ sealed class BukkitFcCraftingRecipe(
 
     protected abstract val server: Server
     protected abstract val preparedFactory: BukkitFcCraftingRecipe_PreparedFactory
+    protected abstract val itemFactory: BukkitFcItemFactory
 
     override fun prepare(player: FcPlayer, items: Grid<FcItem>): FcCraftingRecipe.Prepared? {
         val inventory = CustomBukkitCraftingInventory(
@@ -64,7 +66,7 @@ sealed class BukkitFcCraftingRecipe(
                     player,
                     this,
                     items,
-                    inventory.getResults().map(::BukkitFcItem)
+                    inventory.getResults().map { itemFactory.create(it) }
             )
         }
     }
@@ -77,7 +79,8 @@ sealed class BukkitFcCraftingRecipe(
             override val items: Grid<FcItem>,
             override val results: List<FcItem>,
 
-            @Provided private val server: Server
+            @Provided private val server: Server,
+            @Provided private val itemFactory: BukkitFcItemFactory
     ) : FcCraftingRecipe.Prepared {
 
         override fun craft(): List<FcItem>? {
@@ -111,7 +114,7 @@ sealed class BukkitFcCraftingRecipe(
             }
 
             return inventory.getResults()
-                    .map(::BukkitFcItem)
+                    .map { itemFactory.create(it) }
         }
     }
 
@@ -120,7 +123,8 @@ sealed class BukkitFcCraftingRecipe(
             private val baseRecipe: ShapedRecipe,
 
             @Provided override val server: Server,
-            @Provided override val preparedFactory: BukkitFcCraftingRecipe_PreparedFactory
+            @Provided override val preparedFactory: BukkitFcCraftingRecipe_PreparedFactory,
+            @Provided override val itemFactory: BukkitFcItemFactory
     ) : BukkitFcCraftingRecipe(baseRecipe) {
 
         override val id: String
@@ -141,7 +145,8 @@ sealed class BukkitFcCraftingRecipe(
             private val baseRecipe: ShapelessRecipe,
 
             @Provided override val server: Server,
-            @Provided override val preparedFactory: BukkitFcCraftingRecipe_PreparedFactory
+            @Provided override val preparedFactory: BukkitFcCraftingRecipe_PreparedFactory,
+            @Provided override val itemFactory: BukkitFcItemFactory
     ) : BukkitFcCraftingRecipe(baseRecipe) {
 
         override val id: String
