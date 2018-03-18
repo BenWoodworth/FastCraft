@@ -6,9 +6,10 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import javax.inject.Inject
 
-class BukkitFcText_Bukkit_1_7_2_R0_3(
+@Suppress("ClassName")
+class BukkitFcText_Legacy_1_7_2_R0_3(
         override val text: String
-) : BukkitFcText.Legacy {
+) : BukkitFcText_Legacy {
 
     override var color: BukkitFcTextColor? = null
     override var bold: Boolean? = null
@@ -21,20 +22,17 @@ class BukkitFcText_Bukkit_1_7_2_R0_3(
     override var hoverAction: BukkitFcTextAction.Hover? = null
     override var extra: MutableList<BukkitFcText> = mutableListOf()
 
-    class Builder @Inject constructor(
-    ) : BukkitFcText.Builder {
+    class Factory @Inject constructor(
+    ) : BukkitFcText_Legacy.Factory {
 
-        override fun setText(text: String): FcText.Builder.Specific {
-            return BukkitFcText.Builder.Specific(BukkitFcText_Bukkit_1_7_2_R0_3(text))
+        override fun buildText(text: String): FcText.Builder {
+            return BukkitFcText_Legacy.Builder(
+                    BukkitFcText_Legacy_1_7_2_R0_3(text)
+            )
         }
-    }
-
-    class Helper @Inject constructor(
-    ) : BukkitFcText.Helper {
 
         override fun getItemName(item: ItemStack): BukkitFcText {
-            // TODO Use item.itemMeta.localizedName
-            return BukkitFcText_Bukkit_1_7_2_R0_3(
+            return BukkitFcText_Legacy_1_7_2_R0_3(
                     WordUtils.capitalizeFully(item.data.toString())
             )
         }
@@ -42,7 +40,7 @@ class BukkitFcText_Bukkit_1_7_2_R0_3(
         override fun getItemDisplayName(item: ItemStack): BukkitFcText? {
             return if (item.hasItemMeta()) {
                 item.itemMeta.displayName?.let {
-                    BukkitFcText_Bukkit_1_7_2_R0_3(it)
+                    BukkitFcText_Legacy_1_7_2_R0_3(it)
                 }
             } else {
                 null
@@ -50,13 +48,13 @@ class BukkitFcText_Bukkit_1_7_2_R0_3(
         }
 
         override fun setItemDisplayName(item: ItemStack, displayName: FcText?) {
-            item.itemMeta.displayName = (displayName as BukkitFcText.Legacy?)?.text
+            item.itemMeta.displayName = (displayName as BukkitFcText_Legacy?)?.text
         }
 
         override fun getItemLore(item: ItemStack): List<BukkitFcText?>? {
             return if (item.hasItemMeta()) {
                 item.itemMeta.lore?.map {
-                    BukkitFcText_Bukkit_1_7_2_R0_3(it)
+                    BukkitFcText_Legacy_1_7_2_R0_3(it)
                 }
             } else {
                 null
@@ -65,13 +63,13 @@ class BukkitFcText_Bukkit_1_7_2_R0_3(
 
         override fun setItemLore(item: ItemStack, lore: List<BukkitFcText?>?) {
             item.itemMeta.lore = lore?.map {
-                (it as BukkitFcText.Legacy?)?.text
+                (it as BukkitFcText_Legacy?)?.text
             }
         }
 
         override fun sendPlayerMessage(player: Player, message: FcText) {
             player.sendMessage(
-                    (message as BukkitFcText.Legacy).text
+                    (message as BukkitFcText_Legacy).text
             )
         }
     }
