@@ -7,7 +7,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Suppress("ClassName")
-interface BukkitFcText_Legacy : BukkitFcText {
+interface BukkitFcText_Bukkit : BukkitFcText {
 
     val text: String
 
@@ -25,7 +25,7 @@ interface BukkitFcText_Legacy : BukkitFcText {
     interface Factory : BukkitFcText.Factory
 
     class Builder(
-            private val baseText: BukkitFcText_Legacy
+            private val baseText: BukkitFcText_Bukkit
     ) : FcText.Builder {
 
         override fun build() = baseText
@@ -75,13 +75,13 @@ interface BukkitFcText_Legacy : BukkitFcText {
     class Formatter @Inject constructor(
     ) {
 
-        fun format(text: BukkitFcText_Legacy): String {
+        fun format(text: BukkitFcText_Bukkit): String {
             val state = FormatterState()
             appendFormat(text, state)
             return state.stringBuilder.toString()
         }
 
-        private fun appendFormat(text: BukkitFcText_Legacy, details: FormatterState) {
+        private fun appendFormat(text: BukkitFcText_Bukkit, details: FormatterState) {
             val newFormat = Format(text)
 
             details.apply {
@@ -91,7 +91,7 @@ interface BukkitFcText_Legacy : BukkitFcText {
             }
 
             text.extra.forEach {
-                appendFormat(it as BukkitFcText_Legacy, details)
+                appendFormat(it as BukkitFcText_Bukkit, details)
             }
         }
 
@@ -119,7 +119,7 @@ interface BukkitFcText_Legacy : BukkitFcText {
                 private const val OBFUSCATED = 'k'
             }
 
-            constructor(text: BukkitFcText_Legacy) : this(
+            constructor(text: BukkitFcText_Bukkit) : this(
                     text.color?.legacyCode,
                     text.bold,
                     text.italic,
