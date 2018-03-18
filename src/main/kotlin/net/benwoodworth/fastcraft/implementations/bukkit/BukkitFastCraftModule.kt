@@ -8,7 +8,6 @@ import net.benwoodworth.fastcraft.dependencies.api.item.FcItemBuilder
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItemTypeFactory
 import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayerProvider
 import net.benwoodworth.fastcraft.dependencies.api.text.FcText
-import net.benwoodworth.fastcraft.dependencies.api.text.FcTextAction
 import net.benwoodworth.fastcraft.dependencies.api.text.FcTextColor
 import net.benwoodworth.fastcraft.dependencies.config.FcConfigManager
 import net.benwoodworth.fastcraft.dependencies.event.FcEventPlayerJoin
@@ -22,7 +21,6 @@ import net.benwoodworth.fastcraft.implementations.bukkit.api.item.BukkitFcItemBu
 import net.benwoodworth.fastcraft.implementations.bukkit.api.item.BukkitFcItemTypeFactory
 import net.benwoodworth.fastcraft.implementations.bukkit.api.player.BukkitFcPlayerProvider
 import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitFcText
-import net.benwoodworth.fastcraft.implementations.bukkit.api.text.bukkit.BukkitFcTextAction_Bukkit
 import net.benwoodworth.fastcraft.implementations.bukkit.api.text.bukkit.BukkitFcTextColor_Bukkit
 import net.benwoodworth.fastcraft.implementations.bukkit.config.BukkitFcConfigManager
 import net.benwoodworth.fastcraft.implementations.bukkit.event.BukkitFcEventPlayerJoin
@@ -130,10 +128,7 @@ class BukkitFastCraftModule(
     fun pluginProvider(dep: BukkitFcPluginRegistry): FcPluginRegistry = dep
 
     @Provides
-    fun textBuilder(dep: BukkitFcText.Builder): FcText.Builder = dep
-
-    @Provides
-    fun textActionFactory(dep: BukkitFcTextAction_Bukkit.Factory): FcTextAction.Factory = dep
+    fun textBuilder(dep: BukkitFcText.): FcText.Builder = dep
 
     @Provides
     @Singleton

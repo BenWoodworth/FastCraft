@@ -6,4 +6,8 @@ import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitFcText
 interface BukkitFcText_Nms : BukkitFcText {
 
     val component: Any
+
+    interface Factory : BukkitFcText.Factory
+
+    interface Builder : BukkitFcText.Builder
 }

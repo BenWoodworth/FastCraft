@@ -18,9 +18,9 @@ class BukkitFcText_Bukkit_1_7_2_R0_3(
     override var underlined: Boolean? = null
     override var strikeThrough: Boolean? = null
     override var obfuscated: Boolean? = null
-    override var shiftClickAction: BukkitFcTextAction_Bukkit.ShiftClick? = null
-    override var clickAction: BukkitFcTextAction_Bukkit.Click? = null
-    override var hoverAction: BukkitFcTextAction_Bukkit.Hover? = null
+    //override var shiftClickAction: BukkitFcTextAction_Bukkit.ShiftClick? = null
+    //override var clickAction: BukkitFcTextAction_Bukkit.Click? = null
+    //override var hoverAction: BukkitFcTextAction_Bukkit.Hover? = null
     override var extra: MutableList<BukkitFcText> = mutableListOf()
 
     class Factory @Inject constructor(

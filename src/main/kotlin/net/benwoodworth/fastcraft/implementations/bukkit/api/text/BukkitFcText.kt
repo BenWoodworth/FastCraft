@@ -7,6 +7,7 @@ import org.bukkit.inventory.ItemStack
 interface BukkitFcText : FcText {
 
     interface Factory : FcText.Factory {
+
         fun getItemName(item: ItemStack): BukkitFcText
 
         fun getItemDisplayName(item: ItemStack): BukkitFcText?
@@ -18,5 +19,5 @@ interface BukkitFcText : FcText {
         fun sendPlayerMessage(player: Player, message: FcText)
     }
 
-
+    interface Builder : FcText.Builder
 }

@@ -21,9 +21,9 @@ interface FcText {
         fun setUnderlined(underlined: Boolean): Builder
         fun setStrikeThrough(strikeThrough: Boolean): Builder
         fun setObfuscated(obfuscated: Boolean): Builder
-        fun setShiftClickAction(action: FcTextAction.ShiftClick): Builder
-        fun setClickAction(action: FcTextAction.Click): Builder
-        fun setHoverAction(action: FcTextAction.Hover): Builder
+        //fun setShiftClickAction(action: FcTextAction.ShiftClick): Builder
+        //fun setClickAction(action: FcTextAction.Click): Builder
+        //fun setHoverAction(action: FcTextAction.Hover): Builder
         //fun addWith(text: FcText?): Builder
         fun addExtra(text: FcText): Builder
     }
