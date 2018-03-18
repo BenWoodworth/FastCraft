@@ -1,6 +1,7 @@
-package net.benwoodworth.fastcraft.implementations.bukkit.api.text
+package net.benwoodworth.fastcraft.implementations.bukkit.api.text.bukkit
 
 import net.benwoodworth.fastcraft.dependencies.api.text.FcText
+import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitFcText
 import org.apache.commons.lang.WordUtils
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
@@ -11,15 +12,15 @@ class BukkitFcText_Bukkit_1_7_2_R0_3(
         override val text: String
 ) : BukkitFcText_Bukkit {
 
-    override var color: BukkitFcTextColor? = null
+    override var color: BukkitFcTextColor_Bukkit? = null
     override var bold: Boolean? = null
     override var italic: Boolean? = null
     override var underlined: Boolean? = null
     override var strikeThrough: Boolean? = null
     override var obfuscated: Boolean? = null
-    override var shiftClickAction: BukkitFcTextAction.ShiftClick? = null
-    override var clickAction: BukkitFcTextAction.Click? = null
-    override var hoverAction: BukkitFcTextAction.Hover? = null
+    override var shiftClickAction: BukkitFcTextAction_Bukkit.ShiftClick? = null
+    override var clickAction: BukkitFcTextAction_Bukkit.Click? = null
+    override var hoverAction: BukkitFcTextAction_Bukkit.Hover? = null
     override var extra: MutableList<BukkitFcText> = mutableListOf()
 
     class Factory @Inject constructor(

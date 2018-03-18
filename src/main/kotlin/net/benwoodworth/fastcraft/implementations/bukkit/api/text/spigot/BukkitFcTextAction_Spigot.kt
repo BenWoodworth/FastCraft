@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.implementations.spigot.api.text
+package net.benwoodworth.fastcraft.implementations.bukkit.api.text.spigot
 
 import net.benwoodworth.fastcraft.dependencies.api.item.FcItem
 import net.benwoodworth.fastcraft.dependencies.api.text.FcText
@@ -9,7 +9,7 @@ import net.md_5.bungee.api.chat.HoverEvent
 import java.net.URL
 import java.util.*
 
-sealed class SpigotFcTextAction : FcTextAction {
+sealed class BukkitFcTextAction_Spigot : FcTextAction {
 
     class Factory {
         fun showText(text: FcText): Hover.ShowText
@@ -26,7 +26,7 @@ sealed class SpigotFcTextAction : FcTextAction {
 
     sealed class Hover(
             val event: HoverEvent
-    ) : SpigotFcTextAction() {
+    ) : BukkitFcTextAction_Spigot() {
 
         class ShowText(text) : Hover(
                 HoverEvent.Action.SHOW_TEXT,
@@ -46,7 +46,7 @@ sealed class SpigotFcTextAction : FcTextAction {
 
     sealed class Click(
             val event: ClickEvent
-    ) : SpigotFcTextAction() {
+    ) : BukkitFcTextAction_Spigot() {
 
         class OpenUrl : Click
         class RunCommand : Click
@@ -54,7 +54,7 @@ sealed class SpigotFcTextAction : FcTextAction {
         class ChangePage : Click
     }
 
-    sealed class ShiftClick : SpigotFcTextAction() {
+    sealed class ShiftClick : BukkitFcTextAction_Spigot() {
         class InsertText : ShiftClick
     }
 }

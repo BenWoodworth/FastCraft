@@ -22,8 +22,8 @@ import net.benwoodworth.fastcraft.implementations.bukkit.api.item.BukkitFcItemBu
 import net.benwoodworth.fastcraft.implementations.bukkit.api.item.BukkitFcItemTypeFactory
 import net.benwoodworth.fastcraft.implementations.bukkit.api.player.BukkitFcPlayerProvider
 import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitFcText
-import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitFcTextAction
-import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitFcTextColor
+import net.benwoodworth.fastcraft.implementations.bukkit.api.text.bukkit.BukkitFcTextAction_Bukkit
+import net.benwoodworth.fastcraft.implementations.bukkit.api.text.bukkit.BukkitFcTextColor_Bukkit
 import net.benwoodworth.fastcraft.implementations.bukkit.config.BukkitFcConfigManager
 import net.benwoodworth.fastcraft.implementations.bukkit.event.BukkitFcEventPlayerJoin
 import net.benwoodworth.fastcraft.implementations.bukkit.event.BukkitFcEventPluginDisable
@@ -133,9 +133,9 @@ class BukkitFastCraftModule(
     fun textBuilder(dep: BukkitFcText.Builder): FcText.Builder = dep
 
     @Provides
-    fun textActionFactory(dep: BukkitFcTextAction.Factory): FcTextAction.Factory = dep
+    fun textActionFactory(dep: BukkitFcTextAction_Bukkit.Factory): FcTextAction.Factory = dep
 
     @Provides
     @Singleton
-    fun textColorRegistry(dep: BukkitFcTextColor.Catalog): FcTextColor.Catalog = dep
+    fun textColorRegistry(dep: BukkitFcTextColor_Bukkit.Catalog): FcTextColor.Catalog = dep
 }

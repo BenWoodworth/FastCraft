@@ -1,8 +1,9 @@
-package net.benwoodworth.fastcraft.implementations.bukkit.api.text
+package net.benwoodworth.fastcraft.implementations.bukkit.api.text.bukkit
 
 import net.benwoodworth.fastcraft.dependencies.api.text.FcText
 import net.benwoodworth.fastcraft.dependencies.api.text.FcTextAction
 import net.benwoodworth.fastcraft.dependencies.api.text.FcTextColor
+import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitFcText
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -11,15 +12,15 @@ interface BukkitFcText_Bukkit : BukkitFcText {
 
     val text: String
 
-    var color: BukkitFcTextColor?
+    var color: BukkitFcTextColor_Bukkit?
     var bold: Boolean?
     var italic: Boolean?
     var underlined: Boolean?
     var strikeThrough: Boolean?
     var obfuscated: Boolean?
-    var shiftClickAction: BukkitFcTextAction.ShiftClick?
-    var clickAction: BukkitFcTextAction.Click?
-    var hoverAction: BukkitFcTextAction.Hover?
+    var shiftClickAction: BukkitFcTextAction_Bukkit.ShiftClick?
+    var clickAction: BukkitFcTextAction_Bukkit.Click?
+    var hoverAction: BukkitFcTextAction_Bukkit.Hover?
     var extra: MutableList<BukkitFcText>
 
     interface Factory : BukkitFcText.Factory
@@ -31,7 +32,7 @@ interface BukkitFcText_Bukkit : BukkitFcText {
         override fun build() = baseText
 
         override fun setColor(color: FcTextColor) = also {
-            baseText.color = color as BukkitFcTextColor
+            baseText.color = color as BukkitFcTextColor_Bukkit
         }
 
         override fun setBold(bold: Boolean) = also {
@@ -55,15 +56,15 @@ interface BukkitFcText_Bukkit : BukkitFcText {
         }
 
         override fun setShiftClickAction(action: FcTextAction.ShiftClick) = also {
-            baseText.shiftClickAction = action as BukkitFcTextAction.ShiftClick
+            baseText.shiftClickAction = action as BukkitFcTextAction_Bukkit.ShiftClick
         }
 
         override fun setClickAction(action: FcTextAction.Click) = also {
-            baseText.clickAction = action as BukkitFcTextAction.Click
+            baseText.clickAction = action as BukkitFcTextAction_Bukkit.Click
         }
 
         override fun setHoverAction(action: FcTextAction.Hover) = also {
-            baseText.hoverAction = action as BukkitFcTextAction.Hover
+            baseText.hoverAction = action as BukkitFcTextAction_Bukkit.Hover
         }
 
         override fun addExtra(text: FcText) = also {

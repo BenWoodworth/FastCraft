@@ -1,5 +1,6 @@
-package net.benwoodworth.fastcraft.implementations.bukkit.api.text
+package net.benwoodworth.fastcraft.implementations.bukkit.api.text.bukkit
 
+import net.benwoodworth.fastcraft.implementations.bukkit.api.text.BukkitFcText
 import org.bukkit.inventory.ItemStack
 import javax.inject.Inject
 
