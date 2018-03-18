@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.core.lang.FastCraftLang
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiFactory
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiLocation
 import net.benwoodworth.fastcraft.dependencies.api.gui.GuiRegion
-import net.benwoodworth.fastcraft.dependencies.api.mvp.MvpView
+import net.benwoodworth.fastcraft.dependencies.api.gui.mvp.MvpView
 import javax.inject.Inject
 
 class CraftingGuiView @Inject constructor(
