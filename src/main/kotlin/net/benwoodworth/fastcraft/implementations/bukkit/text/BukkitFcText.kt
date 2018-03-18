@@ -10,11 +10,11 @@ interface BukkitFcText : FcText {
 
         fun getItemName(item: ItemStack): BukkitFcText
 
-        fun getItemDisplayName(item: ItemStack): BukkitFcText?
+        fun getItemDisplayName(item: ItemStack): FcText?
         fun setItemDisplayName(item: ItemStack, displayName: FcText?)
 
-        fun getItemLore(item: ItemStack): List<BukkitFcText?>?
-        fun setItemLore(item: ItemStack, lore: List<BukkitFcText?>?)
+        fun getItemLore(item: ItemStack): List<FcText?>?
+        fun setItemLore(item: ItemStack, lore: List<FcText?>?)
 
         fun sendPlayerMessage(player: Player, message: FcText)
     }

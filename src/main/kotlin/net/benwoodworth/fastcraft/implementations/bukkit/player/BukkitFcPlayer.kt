@@ -16,7 +16,7 @@ import java.util.*
 class BukkitFcPlayer(
         override val base: Player,
 
-        @Provided private val textHelper: BukkitFcText.Helper
+        @Provided private val textFactory: BukkitFcText.Factory
 ) : FcPlayer, Adapter<Player>() {
 
     override val username: String
@@ -32,7 +32,7 @@ class BukkitFcPlayer(
         get() = base.uniqueId
 
     override fun sendMessage(message: FcText) {
-        textHelper.sendPlayerMessage(base, message)
+        textFactory.sendPlayerMessage(base, message)
     }
 
     override fun hasPermission(permission: String): Boolean {

@@ -1,5 +1,7 @@
 package net.benwoodworth.fastcraft.implementations.bukkit.item
 
+import com.google.auto.factory.AutoFactory
+import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.dependencies.item.FcItem
 import net.benwoodworth.fastcraft.dependencies.item.FcItemType
 import net.benwoodworth.fastcraft.dependencies.text.FcText
@@ -12,12 +14,20 @@ import org.bukkit.inventory.ItemStack
  *
  * @property base The item being adapter. Should not be modified.
  */
+@AutoFactory
 class BukkitFcItem(
-        private val base: ItemStack
-) : FcItem by BukkitFcItem.Mutable(base) {
+        private val base: ItemStack,
 
+        @Provided itemMutableFactory: BukkitFcItem_MutableFactory
+) : FcItem by itemMutableFactory.create(base) {
+
+    @AutoFactory
     class Mutable(
-            override val base: ItemStack
+            override val base: ItemStack,
+
+            @Provided private val itemFactory: BukkitFcItemFactory,
+            @Provided private val itemMutableFactory: BukkitFcItem_MutableFactory,
+            @Provided private val textFactory: BukkitFcText.Factory
     ) : FcItem.Mutable, Adapter<ItemStack>() {
 
         override val type: FcItemType
@@ -30,25 +40,15 @@ class BukkitFcItem(
             }
 
         override val name: FcText
-            get() = BukkitFcText(base.type.name)
+            get() = textFactory.getItemName(base)
 
         override var displayName: FcText?
-            get() = base.itemMeta.displayName?.let(::BukkitFcText)
-            set(value) {
-                base.itemMeta = base.itemMeta?.apply {
-                    displayName = (value as BukkitFcText?)?.text
-                }
-            }
+            get() = textFactory.getItemDisplayName(base)
+            set(value) = textFactory.setItemDisplayName(base, value)
 
         override var lore: List<FcText?>?
-            get() = base.itemMeta
-                    .takeIf { it.hasLore() }?.lore
-                    ?.map { it?.let(::BukkitFcText) }
-            set(value) {
-                base.itemMeta = base.itemMeta.apply {
-                    lore = value?.map { (it as BukkitFcText?)?.text }
-                }
-            }
+            get() = textFactory.getItemLore(base)
+            set(value) = textFactory.setItemLore(base, value)
 
         override val maxStackSize: Int
             get() = base.maxStackSize
@@ -64,11 +64,11 @@ class BukkitFcItem(
         }
 
         override fun mutableCopy(): FcItem.Mutable {
-            return BukkitFcItem.Mutable(base.clone())
+            return itemMutableFactory.create(base)
         }
 
         override fun immutableCopy(): FcItem {
-            return BukkitFcItem(base.clone())
+            return itemFactory.create(base.clone())
         }
     }
 }
