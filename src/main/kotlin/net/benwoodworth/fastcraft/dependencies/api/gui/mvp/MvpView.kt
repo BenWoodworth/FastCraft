@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.dependencies.api.mvp
+package net.benwoodworth.fastcraft.dependencies.api.gui.mvp
 
 /**
  * The "view" aspect of the [MVP architectural pattern](http://bit.ly/WikiMVP).

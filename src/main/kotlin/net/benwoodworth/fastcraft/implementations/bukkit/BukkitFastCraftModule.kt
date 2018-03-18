@@ -128,7 +128,7 @@ class BukkitFastCraftModule(
     fun pluginProvider(dep: BukkitFcPluginRegistry): FcPluginRegistry = dep
 
     @Provides
-    fun textBuilder(dep: BukkitFcText.): FcText.Builder = dep
+    fun textFactory(dep: BukkitFcText.Factory): FcText.Factory = dep
 
     @Provides
     @Singleton

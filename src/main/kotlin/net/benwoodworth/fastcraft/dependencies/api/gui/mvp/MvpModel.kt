@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.dependencies.api.mvp
+package net.benwoodworth.fastcraft.dependencies.api.gui.mvp
 
 import net.benwoodworth.fastcraft.dependencies.api.event.FcListener
 
