@@ -2,12 +2,12 @@ package net.benwoodworth.fastcraft.implementations.bukkit.recipe
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.dependencies.api.item.FcItem
-import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayer
+import net.benwoodworth.fastcraft.dependencies.item.FcItem
+import net.benwoodworth.fastcraft.dependencies.player.FcPlayer
 import net.benwoodworth.fastcraft.dependencies.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.dependencies.recipe.FcIngredient
-import net.benwoodworth.fastcraft.implementations.bukkit.api.item.BukkitFcItem
-import net.benwoodworth.fastcraft.implementations.bukkit.api.player.BukkitFcPlayer
+import net.benwoodworth.fastcraft.implementations.bukkit.item.BukkitFcItem
+import net.benwoodworth.fastcraft.implementations.bukkit.player.BukkitFcPlayer
 import net.benwoodworth.fastcraft.util.Adapter
 import net.benwoodworth.fastcraft.util.Grid
 import org.bukkit.Material

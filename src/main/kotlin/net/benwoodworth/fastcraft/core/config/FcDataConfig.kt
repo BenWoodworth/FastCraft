@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.core.config
 
-import net.benwoodworth.fastcraft.dependencies.api.player.FcPlayer
+import net.benwoodworth.fastcraft.dependencies.player.FcPlayer
 import net.benwoodworth.fastcraft.dependencies.config.FcConfig
 
 /**

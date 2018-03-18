@@ -1,8 +1,8 @@
 package net.benwoodworth.fastcraft.implementations.sponge.recipe
 
-import net.benwoodworth.fastcraft.dependencies.api.item.FcItem
+import net.benwoodworth.fastcraft.dependencies.item.FcItem
 import net.benwoodworth.fastcraft.dependencies.recipe.FcIngredient
-import net.benwoodworth.fastcraft.implementations.sponge.api.item.SpongeFcItem
+import net.benwoodworth.fastcraft.implementations.sponge.item.SpongeFcItem
 import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.item.recipe.crafting.Ingredient
 

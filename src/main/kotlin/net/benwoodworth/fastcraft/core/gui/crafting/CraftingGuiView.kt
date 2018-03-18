@@ -2,10 +2,10 @@ package net.benwoodworth.fastcraft.core.gui.crafting
 
 import net.benwoodworth.fastcraft.core.gui.crafting.elements.*
 import net.benwoodworth.fastcraft.core.lang.FastCraftLang
-import net.benwoodworth.fastcraft.dependencies.api.gui.GuiFactory
-import net.benwoodworth.fastcraft.dependencies.api.gui.GuiLocation
-import net.benwoodworth.fastcraft.dependencies.api.gui.GuiRegion
-import net.benwoodworth.fastcraft.dependencies.api.gui.mvp.MvpView
+import net.benwoodworth.fastcraft.dependencies.gui.GuiFactory
+import net.benwoodworth.fastcraft.dependencies.gui.GuiLocation
+import net.benwoodworth.fastcraft.dependencies.gui.GuiRegion
+import net.benwoodworth.fastcraft.dependencies.gui.mvp.MvpView
 import javax.inject.Inject
 
 class CraftingGuiView @Inject constructor(
