@@ -1,12 +1,14 @@
 package net.benwoodworth.fastcraft.implementations.bukkit.gui
 
+import com.google.auto.factory.AutoFactory
+import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.dependencies.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.gui.GuiAbstract
 import net.benwoodworth.fastcraft.dependencies.gui.GuiLocation
 import net.benwoodworth.fastcraft.dependencies.gui.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.player.FcPlayer
-import net.benwoodworth.fastcraft.implementations.bukkit.BukkitFastCraft
+import net.benwoodworth.fastcraft.dependencies.text.FcText
 import net.benwoodworth.fastcraft.implementations.bukkit.item.BukkitFcItem
 import net.benwoodworth.fastcraft.implementations.bukkit.player.BukkitFcPlayer
 import net.benwoodworth.fastcraft.implementations.bukkit.player.BukkitFcPlayerFactory
@@ -20,34 +22,32 @@ import org.bukkit.inventory.InventoryHolder
 /**
  * Bukkit implementation of [Gui].
  */
-sealed class BukkitGui(
-        private val inventory: Inventory,
-        private val playerFactory: BukkitFcPlayerFactory,
+sealed class BukkitGui : GuiAbstract(), InventoryHolder {
 
-        @Suppress("UNUSED_PARAMETER")
-        guiListener: BukkitGuiListener
-) : GuiAbstract(), InventoryHolder {
+    protected abstract val baseInventory: Inventory
+    protected abstract val playerFactory: BukkitFcPlayerFactory
+    protected abstract val guiListener: BukkitGuiListener
 
-    override fun getInventory() = inventory
+    override fun getInventory() = baseInventory
 
     override fun open(vararg players: FcPlayer) {
         for (player in players) {
-            (player as BukkitFcPlayer).base.openInventory(inventory)
+            (player as BukkitFcPlayer).base.openInventory(baseInventory)
         }
     }
 
     override fun getViewers(): List<FcPlayer> {
-        return inventory.viewers
+        return baseInventory.viewers
                 .filterIsInstance<Player>()
                 .map { playerFactory.create(it) }
     }
 
     override fun updateLayout(region: GuiRegion) {
-        for (slot in 0 until inventory.size) {
+        for (slot in 0 until baseInventory.size) {
             getLayoutLocation(slot)?.run {
                 if (region.contains(location)) {
                     val item = layout.getItem(location)?.mutableCopy() as BukkitFcItem.Mutable?
-                    inventory.setItem(slot, item?.base)
+                    baseInventory.setItem(slot, item?.base)
                 }
             }
         }
@@ -71,17 +71,41 @@ sealed class BukkitGui(
 
     protected abstract fun getLayoutLocation(slot: Int): LayoutLocation?
 
-    class Chest(plugin: BukkitFastCraft, server: Server, inventory: Inventory) : BukkitGui(plugin, server, inventory), Gui.Chest {
+    @AutoFactory
+    class Chest(
+            height: Int,
+            title: FcText?,
+
+            @Provided private val server: Server,
+            @Provided override val playerFactory: BukkitFcPlayerFactory,
+            @Provided override val guiListener: BukkitGuiListener
+    ) : BukkitGui(), Gui.Chest {
         override val layout = addLayout(9, inventory.size / 9)
         override fun getLayoutLocation(slot: Int) = LayoutLocation(layout, GuiLocation(slot % 9, slot / 9))
+
+        override val baseInventory = Bukkit.
     }
 
-    class Dispenser(plugin: BukkitFastCraft, server: Server, inventory: Inventory) : BukkitGui(plugin, server, inventory), Gui.Dispenser {
+    @AutoFactory
+    class Dispenser(
+            title: FcText?,
+
+            @Provided private val server: Server,
+            @Provided override val playerFactory: BukkitFcPlayerFactory,
+            @Provided override val guiListener: BukkitGuiListener
+    ) : BukkitGui(), Gui.Dispenser {
         override val layout = addLayout(3, 3)
         override fun getLayoutLocation(slot: Int) = LayoutLocation(layout, GuiLocation(slot % 3, slot / 3))
     }
 
-    class Hopper(plugin: BukkitFastCraft, server: Server, inventory: Inventory) : BukkitGui(plugin, server, inventory), Gui.Hopper {
+    @AutoFactory
+    class Hopper(
+            title: FcText?,
+
+            @Provided private val server: Server,
+            @Provided override val playerFactory: BukkitFcPlayerFactory,
+            @Provided override val guiListener: BukkitGuiListener
+    ) : BukkitGui(), Gui.Hopper {
         override val layout = addLayout(5, 1)
         override fun getLayoutLocation(slot: Int) = LayoutLocation(layout, GuiLocation(slot % 5, slot / 5))
     }
