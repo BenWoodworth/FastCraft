@@ -10,11 +10,15 @@ class BukkitReflectionFactory @Inject constructor(
 
     private val classCache = mutableMapOf<String, Class<*>>()
 
-    fun getNmsClass(classPath: String) = classCache.getOrPut(classPath) {
-        Class.forName("net.minecraft.server.${bukkitVersions.nmsString}.$classPath")
+    fun getNmsClass(classPath: String): Class<*> {
+        return classCache.getOrPut(classPath) {
+            Class.forName("net.minecraft.server.${bukkitVersions.nmsString}.$classPath")
+        }
     }
 
-    fun getObcClass(classPath: String) = classCache.getOrPut(classPath) {
-        Class.forName("org.bukkit.craftbukkit.${bukkitVersions.nmsString}.$classPath")
+    fun getObcClass(classPath: String): Class<*> {
+        return classCache.getOrPut(classPath) {
+            Class.forName("org.bukkit.craftbukkit.${bukkitVersions.nmsString}.$classPath")
+        }
     }
 }

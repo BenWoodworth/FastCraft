@@ -2,33 +2,33 @@ package net.benwoodworth.fastcraft.implementations.bukkit
 
 import dagger.Module
 import dagger.Provides
+import net.benwoodworth.fastcraft.dependencies.config.FcConfigManager
+import net.benwoodworth.fastcraft.dependencies.event.FcEventPlayerJoin
+import net.benwoodworth.fastcraft.dependencies.event.FcEventPluginDisable
+import net.benwoodworth.fastcraft.dependencies.event.FcEventPluginEnable
 import net.benwoodworth.fastcraft.dependencies.event.FcListener
 import net.benwoodworth.fastcraft.dependencies.gui.GuiFactory
 import net.benwoodworth.fastcraft.dependencies.item.FcItemBuilder
 import net.benwoodworth.fastcraft.dependencies.item.FcItemTypeFactory
 import net.benwoodworth.fastcraft.dependencies.player.FcPlayerProvider
-import net.benwoodworth.fastcraft.dependencies.text.FcText
-import net.benwoodworth.fastcraft.dependencies.text.FcTextColor
-import net.benwoodworth.fastcraft.dependencies.config.FcConfigManager
-import net.benwoodworth.fastcraft.dependencies.event.FcEventPlayerJoin
-import net.benwoodworth.fastcraft.dependencies.event.FcEventPluginDisable
-import net.benwoodworth.fastcraft.dependencies.event.FcEventPluginEnable
 import net.benwoodworth.fastcraft.dependencies.recipe.FcRecipeProvider
 import net.benwoodworth.fastcraft.dependencies.server.FcPluginRegistry
 import net.benwoodworth.fastcraft.dependencies.server.FcTaskBuilder
-import net.benwoodworth.fastcraft.implementations.bukkit.gui.BukkitGuiFactory
-import net.benwoodworth.fastcraft.implementations.bukkit.item.BukkitFcItemBuilder
-import net.benwoodworth.fastcraft.implementations.bukkit.item.BukkitFcItemTypeFactory
-import net.benwoodworth.fastcraft.implementations.bukkit.player.BukkitFcPlayerProvider
-import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitFcText
-import net.benwoodworth.fastcraft.implementations.bukkit.text.bukkit.BukkitFcTextColor_Bukkit
+import net.benwoodworth.fastcraft.dependencies.text.FcText
+import net.benwoodworth.fastcraft.dependencies.text.FcTextColor
 import net.benwoodworth.fastcraft.implementations.bukkit.config.BukkitFcConfigManager
 import net.benwoodworth.fastcraft.implementations.bukkit.event.BukkitFcEventPlayerJoin
 import net.benwoodworth.fastcraft.implementations.bukkit.event.BukkitFcEventPluginDisable
 import net.benwoodworth.fastcraft.implementations.bukkit.event.BukkitFcEventPluginEnable
+import net.benwoodworth.fastcraft.implementations.bukkit.gui.BukkitGuiFactory
+import net.benwoodworth.fastcraft.implementations.bukkit.item.BukkitFcItemBuilder
+import net.benwoodworth.fastcraft.implementations.bukkit.item.BukkitFcItemTypeFactory
+import net.benwoodworth.fastcraft.implementations.bukkit.player.BukkitFcPlayerProvider
 import net.benwoodworth.fastcraft.implementations.bukkit.recipe.BukkitFcRecipeProvider
 import net.benwoodworth.fastcraft.implementations.bukkit.server.BukkitFcPluginRegistry
 import net.benwoodworth.fastcraft.implementations.bukkit.server.BukkitFcTaskBuilder
+import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitFcText
+import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitFcTextColor
 import org.bukkit.Server
 import org.bukkit.event.EventHandler
 import org.bukkit.event.player.PlayerJoinEvent
@@ -132,5 +132,5 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun textColorRegistry(dep: BukkitFcTextColor_Bukkit.Catalog): FcTextColor.Catalog = dep
+    fun textColorRegistry(dep: BukkitFcTextColor.Catalog): FcTextColor.Catalog = dep
 }
