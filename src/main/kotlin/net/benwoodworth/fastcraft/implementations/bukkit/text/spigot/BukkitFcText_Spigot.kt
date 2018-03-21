@@ -1,55 +1,46 @@
 package net.benwoodworth.fastcraft.implementations.bukkit.text.spigot
 
+import com.google.auto.factory.AutoFactory
+import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.dependencies.text.FcText
-import net.benwoodworth.fastcraft.dependencies.text.FcTextColor
 import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitFcText
-import net.benwoodworth.fastcraft.util.Adapter
+import net.benwoodworth.fastcraft.implementations.bukkit.text.bukkit.BukkitFcText_Bukkit
 import net.md_5.bungee.api.chat.BaseComponent
 import net.md_5.bungee.api.chat.TextComponent
+import javax.inject.Inject
 
 class BukkitFcText_Spigot(
-        override val base: BaseComponent
-) : Adapter<BaseComponent>(), FcText {
+        private val textComponent: BaseComponent,
+        delegate: BukkitFcText_Bukkit
+) : BukkitFcText by delegate {
 
-    class Factory : FcText.Factory {
+    class Factory @Inject constructor(
+            private val builderFactory: BukkitFcText_Spigot_BuilderFactory
+    ) : FcText.Factory {
 
-        override fun buildText(text: String) = Builder(TextComponent(text))
+        override fun buildText(text: String): FcText.Builder {
+            return builderFactory.create(TextComponent(text))
+        }
     }
 
+    @AutoFactory
     class Builder(
-            private val base: BaseComponent
-    ) : BukkitFcText.Builder {
+            private val textComponent: BaseComponent,
+
+            @Provided private val delegate: BukkitFcText_Bukkit.Builder
+    ) : BukkitFcText.Builder by delegate {
 
         override fun build(): FcText {
-            return BukkitFcText_Spigot(base)
+            return BukkitFcText_Spigot(textComponent, delegate.build())
         }
+    }
 
-        override fun setColor(color: FcTextColor) = also {
-            base.color = (color as BukkitFcTextColor_Spigot).base
-        }
+    class Converter @Inject constructor(
+            delegate: BukkitFcText_Bukkit.Converter
+    ) : BukkitFcText.Converter by delegate {
 
-        override fun setBold(bold: Boolean) = also {
-            base.isBold = bold
-        }
+        fun toSpigotTextComponent(text: BukkitFcText_Spigot) {
 
-        override fun setItalic(italic: Boolean) = also {
-            base.isItalic = italic
-        }
-
-        override fun setUnderlined(underlined: Boolean) = also {
-            base.isUnderlined = underlined
-        }
-
-        override fun setStrikeThrough(strikeThrough: Boolean) = also {
-            base.isStrikethrough = strikeThrough
-        }
-
-        override fun setObfuscated(obfuscated: Boolean) = also {
-            base.isObfuscated = obfuscated
-        }
-
-        override fun addExtra(text: FcText) = also {
-            base.addExtra((text as BukkitFcText_Spigot).base)
         }
     }
 }

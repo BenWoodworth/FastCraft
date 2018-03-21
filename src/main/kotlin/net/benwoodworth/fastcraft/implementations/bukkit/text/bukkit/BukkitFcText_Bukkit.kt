@@ -25,7 +25,7 @@ class BukkitFcText_Bukkit(
     ) : BukkitFcText.Factory {
 
         override fun buildText(text: String): FcText.Builder {
-            return Builder(text)
+            return builderFactory.create(text)
         }
     }
 
@@ -34,7 +34,7 @@ class BukkitFcText_Bukkit(
             private val text: String,
 
             @Provided private val colors: BukkitFcTextColor.Catalog
-    ) : FcText.Builder {
+    ) : BukkitFcText.Builder {
 
         private var color: BukkitFcTextColor = colors.none
         private var bold: Boolean? = null
