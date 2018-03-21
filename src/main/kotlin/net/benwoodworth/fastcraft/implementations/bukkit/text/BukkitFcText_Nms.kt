@@ -1,6 +1,5 @@
-package net.benwoodworth.fastcraft.implementations.bukkit.text.nms
+package net.benwoodworth.fastcraft.implementations.bukkit.text
 
-import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitFcText
 import java.lang.reflect.Method
 
 @Suppress("ClassName")

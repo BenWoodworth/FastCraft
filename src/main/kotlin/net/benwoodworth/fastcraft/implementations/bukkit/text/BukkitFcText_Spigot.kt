@@ -1,10 +1,9 @@
-package net.benwoodworth.fastcraft.implementations.bukkit.text.spigot
+package net.benwoodworth.fastcraft.implementations.bukkit.text
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.dependencies.text.FcText
-import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitFcText
-import net.benwoodworth.fastcraft.implementations.bukkit.text.bukkit.BukkitFcText_Bukkit
+import net.benwoodworth.fastcraft.implementations.bukkit.text.spigot.BukkitFcText_Spigot_BuilderFactory
 import net.md_5.bungee.api.chat.BaseComponent
 import net.md_5.bungee.api.chat.TextComponent
 import javax.inject.Inject

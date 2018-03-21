@@ -1,11 +1,10 @@
-package net.benwoodworth.fastcraft.implementations.bukkit.text.bukkit
+package net.benwoodworth.fastcraft.implementations.bukkit.text
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.dependencies.text.FcText
 import net.benwoodworth.fastcraft.dependencies.text.FcTextColor
-import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitFcText
-import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitFcTextColor
+import net.benwoodworth.fastcraft.implementations.bukkit.text.bukkit.BukkitFcText_Bukkit_BuilderFactory
 import javax.inject.Inject
 
 @Suppress("ClassName")

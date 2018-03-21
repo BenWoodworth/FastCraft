@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.implementations.bukkit.gui
 
 import net.benwoodworth.fastcraft.dependencies.text.FcText
 import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitFcText
-import net.benwoodworth.fastcraft.implementations.bukkit.text.bukkit.BukkitFcText_Bukkit
+import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitFcText_Bukkit
 import org.bukkit.Server
 import org.bukkit.event.inventory.InventoryType
 import org.bukkit.inventory.Inventory
