@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.implementations.bukkit.gui
+package net.benwoodworth.fastcraft.implementations.bukkit.gui.inventory
 
 import net.benwoodworth.fastcraft.dependencies.text.FcText
 import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitFcText

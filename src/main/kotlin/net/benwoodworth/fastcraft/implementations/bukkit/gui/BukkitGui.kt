@@ -9,6 +9,7 @@ import net.benwoodworth.fastcraft.dependencies.gui.GuiRegion
 import net.benwoodworth.fastcraft.dependencies.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.dependencies.player.FcPlayer
 import net.benwoodworth.fastcraft.dependencies.text.FcText
+import net.benwoodworth.fastcraft.implementations.bukkit.gui.inventory.BukkitInventoryFactory
 import net.benwoodworth.fastcraft.implementations.bukkit.item.BukkitFcItem
 import net.benwoodworth.fastcraft.implementations.bukkit.player.BukkitFcPlayer
 import org.bukkit.Server
