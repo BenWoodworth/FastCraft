@@ -4,9 +4,19 @@ import net.benwoodworth.fastcraft.dependencies.text.FcTextColor
 import javax.inject.Inject
 
 class BukkitFcTextColor(
-        val id: String,
-        val legacyCode: Char?
+        val name: String,
+        legacyCodeChar: Char?
 ) : FcTextColor {
+
+    val legacyCode = legacyCodeChar?.let { "\u00A7$it" } ?: ""
+
+    override fun equals(other: Any?): Boolean {
+        return other is BukkitFcTextColor && name == other.name
+    }
+
+    override fun hashCode() = name.hashCode()
+
+    override fun toString() = "${javaClass.simpleName}(name=$name)"
 
     class Catalog @Inject constructor(
     ) : FcTextColor.Catalog {

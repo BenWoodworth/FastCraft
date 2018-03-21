@@ -7,11 +7,7 @@ import org.bukkit.inventory.InventoryHolder
 
 interface BukkitInventoryFactory {
 
-    fun create(owner: InventoryHolder? = null, height: Int): Inventory
+    fun create(height: Int, title: FcText? = null, owner: InventoryHolder? = null): Inventory
 
-    fun create(owner: InventoryHolder? = null, height: Int, title: FcText): Inventory
-
-    fun create(owner: InventoryHolder? = null, type: InventoryType): Inventory
-
-    fun create(owner: InventoryHolder? = null, type: InventoryType, title: FcText): Inventory
+    fun create(type: InventoryType, title: FcText? = null, owner: InventoryHolder? = null): Inventory
 }

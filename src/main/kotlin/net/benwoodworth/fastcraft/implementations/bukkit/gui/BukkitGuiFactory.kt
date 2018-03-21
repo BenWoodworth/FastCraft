@@ -12,15 +12,14 @@ class BukkitGuiFactory @Inject constructor(
 ) : GuiFactory {
 
     override fun chest(height: Int, title: FcText?): Gui.Chest {
-        server.cre
-        return chestFactory.create()
+        return chestFactory.create(height, title)
     }
 
     override fun dispenser(title: FcText?): Gui.Dispenser {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return dispenserFactory.create(title)
     }
 
     override fun hopper(title: FcText?): Gui.Hopper {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return hopperFactory.create(title)
     }
 }

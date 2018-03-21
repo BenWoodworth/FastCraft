@@ -15,7 +15,7 @@
 //    class Factory : FcTextAction.Factory {
 //        override fun showText(text: List<FcText>) = Hover.ShowText
 //        override fun showItem(item: FcItem) = Hover.ShowItem
-//        override fun showEntity(id: UUID, name: String) = Hover.ShowEntity
+//        override fun showEntity(name: UUID, name: String) = Hover.ShowEntity
 //
 //        override fun openUrl(url: URL) = Click.OpenUrl
 //        override fun runCommand(command: String) = Click.RunCommand

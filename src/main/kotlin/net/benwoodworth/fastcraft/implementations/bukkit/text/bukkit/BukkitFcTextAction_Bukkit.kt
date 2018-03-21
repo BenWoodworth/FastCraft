@@ -16,7 +16,7 @@
 //
 //        override fun showText(text: FcText) = Hover.ShowText(text)
 //        override fun showItem(item: FcItem) = Hover.ShowItem(item)
-//        override fun showEntity(id: UUID, name: String) = Hover.ShowEntity(id, name)
+//        override fun showEntity(name: UUID, name: String) = Hover.ShowEntity(name, name)
 //
 //        override fun openUrl(url: URL) = Click.OpenUrl(url)
 //        override fun runCommand(command: String) = Click.RunCommand(command)
