@@ -93,6 +93,7 @@ repositories {
     mavenCentral()
     maven { url 'https://repo.md-5.net/content/repositories/public/' }
     maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     maven { url 'http://repo.bstats.org/content/repositories/releases/' }
     maven { url 'http://repo.spongepowered.org/maven' }
     jcenter()
