@@ -4,6 +4,7 @@ import net.benwoodworth.fastcraft.dependencies.text.FcText
 import net.benwoodworth.fastcraft.dependencies.text.FcTextColor
 import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.text.Text
+import javax.inject.Inject
 
 class SpongeFcText(
         override val base: Text
@@ -14,7 +15,7 @@ class SpongeFcText(
         override fun buildText(text: String) = Builder(Text.builder(text))
     }
 
-    class Builder(
+    class Builder @Inject constructor(
             override val base: Text.Builder
     ) : Adapter<Text.Builder>(), FcText.Builder {
 

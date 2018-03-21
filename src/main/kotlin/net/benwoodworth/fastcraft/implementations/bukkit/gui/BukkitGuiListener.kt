@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft.implementations.bukkit.gui
 
 import net.benwoodworth.fastcraft.dependencies.gui.Gui
 import net.benwoodworth.fastcraft.dependencies.gui.event.GuiEventClose
+import net.benwoodworth.fastcraft.implementations.bukkit.BukkitFastCraft
 import net.benwoodworth.fastcraft.implementations.bukkit.player.BukkitFcPlayerFactory
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
@@ -11,7 +12,6 @@ import org.bukkit.event.inventory.ClickType
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.event.inventory.InventoryDragEvent
-import org.bukkit.plugin.Plugin
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -21,7 +21,7 @@ import javax.inject.Singleton
  */
 @Singleton
 class BukkitGuiListener @Inject constructor(
-        plugin: Plugin,
+        plugin: BukkitFastCraft,
         private val playerFactory: BukkitFcPlayerFactory
 ) : Listener {
 
