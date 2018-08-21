@@ -1,8 +1,10 @@
-/.idea/
+.idea/
 *.iml
 
-/out/
-/build/
-/classes/
-/.gradle/
-/servers/
+.gradle/
+
+out/
+build/
+classes/
+
+servers/
