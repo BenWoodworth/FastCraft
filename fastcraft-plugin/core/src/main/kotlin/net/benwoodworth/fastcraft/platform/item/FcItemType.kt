@@ -1,3 +1,3 @@
-package net.benwoodworth.fastcraft.dependencies.item
+package net.benwoodworth.fastcraft.platform.item
 
 interface FcItemType

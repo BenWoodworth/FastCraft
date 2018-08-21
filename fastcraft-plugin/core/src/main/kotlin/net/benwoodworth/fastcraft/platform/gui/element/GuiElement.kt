@@ -1,11 +1,11 @@
-package net.benwoodworth.fastcraft.dependencies.gui.element
+package net.benwoodworth.fastcraft.platform.gui.element
 
-import net.benwoodworth.fastcraft.dependencies.event.FcListener
-import net.benwoodworth.fastcraft.dependencies.gui.GuiLocation
-import net.benwoodworth.fastcraft.dependencies.gui.GuiRegion
-import net.benwoodworth.fastcraft.dependencies.gui.event.GuiEventClick
-import net.benwoodworth.fastcraft.dependencies.gui.event.GuiEventLayoutChange
-import net.benwoodworth.fastcraft.dependencies.item.FcItem
+import net.benwoodworth.fastcraft.platform.event.FcListener
+import net.benwoodworth.fastcraft.platform.gui.GuiLocation
+import net.benwoodworth.fastcraft.platform.gui.GuiRegion
+import net.benwoodworth.fastcraft.platform.gui.event.GuiEventClick
+import net.benwoodworth.fastcraft.platform.gui.event.GuiEventLayoutChange
+import net.benwoodworth.fastcraft.platform.item.FcItem
 
 /**
  * An object that can be added to a GUI.

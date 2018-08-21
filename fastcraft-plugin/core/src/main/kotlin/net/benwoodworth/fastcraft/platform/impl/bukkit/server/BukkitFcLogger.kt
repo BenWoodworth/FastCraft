@@ -1,6 +1,6 @@
-package net.benwoodworth.fastcraft.implementations.bukkit.server
+package net.benwoodworth.fastcraft.platform.impl.bukkit.server
 
-import net.benwoodworth.fastcraft.dependencies.server.FcLogger
+import net.benwoodworth.fastcraft.platform.server.FcLogger
 import net.benwoodworth.fastcraft.util.Adapter
 import java.util.logging.Level
 import java.util.logging.Logger

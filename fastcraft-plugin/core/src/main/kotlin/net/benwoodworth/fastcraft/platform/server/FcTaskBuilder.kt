@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.dependencies.server
+package net.benwoodworth.fastcraft.platform.server
 
 /**
  * Builds a task and executes it.

@@ -1,8 +1,8 @@
-package net.benwoodworth.fastcraft.dependencies.gui.button
+package net.benwoodworth.fastcraft.platform.gui.button
 
-import net.benwoodworth.fastcraft.dependencies.event.FcListener
-import net.benwoodworth.fastcraft.dependencies.gui.element.GuiElement
-import net.benwoodworth.fastcraft.dependencies.gui.event.GuiEventClick
+import net.benwoodworth.fastcraft.platform.event.FcListener
+import net.benwoodworth.fastcraft.platform.gui.element.GuiElement
+import net.benwoodworth.fastcraft.platform.gui.event.GuiEventClick
 
 /**
  * A button in a GUI.

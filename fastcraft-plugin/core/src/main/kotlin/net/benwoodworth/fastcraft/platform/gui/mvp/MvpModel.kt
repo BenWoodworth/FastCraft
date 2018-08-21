@@ -1,6 +1,6 @@
-package net.benwoodworth.fastcraft.dependencies.gui.mvp
+package net.benwoodworth.fastcraft.platform.gui.mvp
 
-import net.benwoodworth.fastcraft.dependencies.event.FcListener
+import net.benwoodworth.fastcraft.platform.event.FcListener
 
 /**
  * The "model" aspect of the [MVP architectural pattern](http://bit.ly/WikiMVP).

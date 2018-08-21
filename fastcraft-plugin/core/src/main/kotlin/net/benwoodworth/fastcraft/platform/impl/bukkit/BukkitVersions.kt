@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.implementations.bukkit
+package net.benwoodworth.fastcraft.platform.impl.bukkit
 
 import org.bukkit.Server
 import javax.inject.Inject

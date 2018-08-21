@@ -1,6 +1,6 @@
-package net.benwoodworth.fastcraft.implementations.sponge.event
+package net.benwoodworth.fastcraft.platform.impl.sponge.event
 
-import net.benwoodworth.fastcraft.dependencies.event.FcEventPluginDisable
+import net.benwoodworth.fastcraft.platform.event.FcEventPluginDisable
 import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.event.game.state.GameStoppingEvent
 

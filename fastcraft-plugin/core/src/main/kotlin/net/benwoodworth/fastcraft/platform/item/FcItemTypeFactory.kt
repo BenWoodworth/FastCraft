@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.dependencies.item
+package net.benwoodworth.fastcraft.platform.item
 
 /**
  * A factory for creating item types.

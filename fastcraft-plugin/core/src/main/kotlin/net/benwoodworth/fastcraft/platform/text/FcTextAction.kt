@@ -1,6 +1,6 @@
-//package net.benwoodworth.fastcraft.dependencies.text
+//package net.benwoodworth.fastcraft.platform.text
 //
-//import net.benwoodworth.fastcraft.dependencies.item.FcItem
+//import net.benwoodworth.fastcraft.platform.item.FcItem
 //import java.net.URL
 //import java.util.*
 //

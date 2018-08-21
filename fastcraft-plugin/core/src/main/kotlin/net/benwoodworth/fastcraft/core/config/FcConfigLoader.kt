@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.core.config
 
-import net.benwoodworth.fastcraft.dependencies.config.FcConfigManager
-import net.benwoodworth.fastcraft.dependencies.server.FcPluginRegistry
+import net.benwoodworth.fastcraft.platform.config.FcConfigManager
+import net.benwoodworth.fastcraft.platform.server.FcPluginRegistry
 import java.nio.file.Path
 import javax.inject.Inject
 import javax.inject.Singleton

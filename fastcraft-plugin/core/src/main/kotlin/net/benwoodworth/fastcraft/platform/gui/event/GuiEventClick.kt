@@ -1,9 +1,9 @@
-package net.benwoodworth.fastcraft.dependencies.gui.event
+package net.benwoodworth.fastcraft.platform.gui.event
 
-import net.benwoodworth.fastcraft.dependencies.gui.Gui
-import net.benwoodworth.fastcraft.dependencies.gui.GuiLocation
-import net.benwoodworth.fastcraft.dependencies.gui.button.GuiButton
-import net.benwoodworth.fastcraft.dependencies.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.gui.Gui
+import net.benwoodworth.fastcraft.platform.gui.GuiLocation
+import net.benwoodworth.fastcraft.platform.gui.button.GuiButton
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
 
 /**
  * An event triggered when a [GuiButton] is clicked.

@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.core.config
 
-import net.benwoodworth.fastcraft.dependencies.config.FcConfig
+import net.benwoodworth.fastcraft.platform.config.FcConfig
 
 /**
  * A wrapper for the plugin config.

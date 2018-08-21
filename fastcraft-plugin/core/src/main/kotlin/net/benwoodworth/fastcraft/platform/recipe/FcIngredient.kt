@@ -1,6 +1,6 @@
-package net.benwoodworth.fastcraft.dependencies.recipe
+package net.benwoodworth.fastcraft.platform.recipe
 
-import net.benwoodworth.fastcraft.dependencies.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItem
 
 /**
  * An ingredient to a recipe.

@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.dependencies.event
+package net.benwoodworth.fastcraft.platform.event
 
 /**
  * A server start event.

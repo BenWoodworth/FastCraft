@@ -1,7 +1,7 @@
-package net.benwoodworth.fastcraft.implementations.bukkit.server
+package net.benwoodworth.fastcraft.platform.impl.bukkit.server
 
-import net.benwoodworth.fastcraft.dependencies.server.FcPlugin
-import net.benwoodworth.fastcraft.dependencies.server.FcPluginRegistry
+import net.benwoodworth.fastcraft.platform.server.FcPlugin
+import net.benwoodworth.fastcraft.platform.server.FcPluginRegistry
 import org.bukkit.Server
 import javax.inject.Inject
 

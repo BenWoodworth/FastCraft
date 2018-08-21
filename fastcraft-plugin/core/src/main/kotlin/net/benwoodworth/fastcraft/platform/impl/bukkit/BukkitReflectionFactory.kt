@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.implementations.bukkit
+package net.benwoodworth.fastcraft.platform.impl.bukkit
 
 import javax.inject.Inject
 import javax.inject.Singleton

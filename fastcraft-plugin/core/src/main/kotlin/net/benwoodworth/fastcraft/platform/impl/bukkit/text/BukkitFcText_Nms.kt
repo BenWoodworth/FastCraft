@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.implementations.bukkit.text
+package net.benwoodworth.fastcraft.platform.impl.bukkit.text
 
 import java.lang.reflect.Method
 

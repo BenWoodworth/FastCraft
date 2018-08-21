@@ -1,7 +1,7 @@
-package net.benwoodworth.fastcraft.dependencies.gui.event
+package net.benwoodworth.fastcraft.platform.gui.event
 
-import net.benwoodworth.fastcraft.dependencies.gui.Gui
-import net.benwoodworth.fastcraft.dependencies.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.gui.Gui
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
 
 /**
  * An event for closed [Gui]'s.

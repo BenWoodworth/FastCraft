@@ -1,8 +1,8 @@
-package net.benwoodworth.fastcraft.implementations.bukkit.event
+package net.benwoodworth.fastcraft.platform.impl.bukkit.event
 
-import net.benwoodworth.fastcraft.dependencies.player.FcPlayer
-import net.benwoodworth.fastcraft.dependencies.event.FcEventPlayerJoin
-import net.benwoodworth.fastcraft.implementations.bukkit.player.BukkitFcPlayerFactory
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.event.FcEventPlayerJoin
+import net.benwoodworth.fastcraft.platform.impl.bukkit.player.BukkitFcPlayerFactory
 import net.benwoodworth.fastcraft.util.Adapter
 import org.bukkit.event.player.PlayerJoinEvent
 

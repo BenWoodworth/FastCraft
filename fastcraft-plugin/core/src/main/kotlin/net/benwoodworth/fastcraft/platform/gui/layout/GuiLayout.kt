@@ -1,7 +1,7 @@
-package net.benwoodworth.fastcraft.dependencies.gui.layout
+package net.benwoodworth.fastcraft.platform.gui.layout
 
-import net.benwoodworth.fastcraft.dependencies.gui.GuiLocation
-import net.benwoodworth.fastcraft.dependencies.gui.element.GuiElement
+import net.benwoodworth.fastcraft.platform.gui.GuiLocation
+import net.benwoodworth.fastcraft.platform.gui.element.GuiElement
 
 /**
  * The button layout of a GUI.

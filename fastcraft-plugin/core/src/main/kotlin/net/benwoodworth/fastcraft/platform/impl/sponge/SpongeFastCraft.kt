@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.implementations.sponge
+package net.benwoodworth.fastcraft.platform.impl.sponge
 
 import com.google.inject.Inject
 import net.benwoodworth.fastcraft.core.FastCraft

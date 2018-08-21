@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.dependencies.config
+package net.benwoodworth.fastcraft.platform.config
 
 import java.nio.file.Path
 

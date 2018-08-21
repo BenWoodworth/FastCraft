@@ -1,12 +1,12 @@
-package net.benwoodworth.fastcraft.dependencies.gui.layout
+package net.benwoodworth.fastcraft.platform.gui.layout
 
-import net.benwoodworth.fastcraft.dependencies.gui.GuiLocation
-import net.benwoodworth.fastcraft.dependencies.gui.GuiRegion
-import net.benwoodworth.fastcraft.dependencies.gui.element.GuiElement
-import net.benwoodworth.fastcraft.dependencies.gui.element.GuiElementAbstract
-import net.benwoodworth.fastcraft.dependencies.gui.event.GuiEventClick
-import net.benwoodworth.fastcraft.dependencies.gui.event.GuiEventLayoutChange
-import net.benwoodworth.fastcraft.dependencies.item.FcItem
+import net.benwoodworth.fastcraft.platform.gui.GuiLocation
+import net.benwoodworth.fastcraft.platform.gui.GuiRegion
+import net.benwoodworth.fastcraft.platform.gui.element.GuiElement
+import net.benwoodworth.fastcraft.platform.gui.element.GuiElementAbstract
+import net.benwoodworth.fastcraft.platform.gui.event.GuiEventClick
+import net.benwoodworth.fastcraft.platform.gui.event.GuiEventLayoutChange
+import net.benwoodworth.fastcraft.platform.item.FcItem
 import java.util.*
 
 /**

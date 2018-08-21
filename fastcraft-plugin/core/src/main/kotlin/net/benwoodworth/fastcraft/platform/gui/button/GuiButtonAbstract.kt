@@ -1,9 +1,9 @@
-package net.benwoodworth.fastcraft.dependencies.gui.button
+package net.benwoodworth.fastcraft.platform.gui.button
 
-import net.benwoodworth.fastcraft.dependencies.event.FcListener
-import net.benwoodworth.fastcraft.dependencies.gui.GuiRegion
-import net.benwoodworth.fastcraft.dependencies.gui.element.GuiElementAbstract
-import net.benwoodworth.fastcraft.dependencies.gui.event.GuiEventClick
+import net.benwoodworth.fastcraft.platform.event.FcListener
+import net.benwoodworth.fastcraft.platform.gui.GuiRegion
+import net.benwoodworth.fastcraft.platform.gui.element.GuiElementAbstract
+import net.benwoodworth.fastcraft.platform.gui.event.GuiEventClick
 
 /**
  * An abstract implementation of [GuiButton].

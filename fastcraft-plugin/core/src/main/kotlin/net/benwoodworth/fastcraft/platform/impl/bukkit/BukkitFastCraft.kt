@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.implementations.bukkit
+package net.benwoodworth.fastcraft.platform.impl.bukkit
 
 import net.benwoodworth.fastcraft.core.FastCraft
 import net.benwoodworth.fastcraft.core.FastCraftImplementation

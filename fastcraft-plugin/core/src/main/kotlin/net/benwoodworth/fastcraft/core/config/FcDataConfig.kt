@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.core.config
 
-import net.benwoodworth.fastcraft.dependencies.player.FcPlayer
-import net.benwoodworth.fastcraft.dependencies.config.FcConfig
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.config.FcConfig
 
 /**
  * Manages the data config.

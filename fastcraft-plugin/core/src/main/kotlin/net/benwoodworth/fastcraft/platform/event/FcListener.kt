@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.dependencies.event
+package net.benwoodworth.fastcraft.platform.event
 
 /**
  * Listens to events, and notifies event handlers when events occur.

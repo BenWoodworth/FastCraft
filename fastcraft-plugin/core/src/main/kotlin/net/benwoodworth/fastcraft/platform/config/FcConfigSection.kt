@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.dependencies.config
+package net.benwoodworth.fastcraft.platform.config
 
 /**
  * A section of a configuration, providing access to keys/values, and other sub-sections.

@@ -1,7 +1,7 @@
-package net.benwoodworth.fastcraft.implementations.sponge.config
+package net.benwoodworth.fastcraft.platform.impl.sponge.config
 
-import net.benwoodworth.fastcraft.dependencies.config.FcConfig
-import net.benwoodworth.fastcraft.dependencies.config.FcConfigSection
+import net.benwoodworth.fastcraft.platform.config.FcConfig
+import net.benwoodworth.fastcraft.platform.config.FcConfigSection
 import net.benwoodworth.fastcraft.util.Adapter
 import ninja.leaping.configurate.commented.CommentedConfigurationNode
 

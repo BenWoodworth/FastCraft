@@ -1,8 +1,8 @@
-package net.benwoodworth.fastcraft.dependencies.gui
+package net.benwoodworth.fastcraft.platform.gui
 
-import net.benwoodworth.fastcraft.dependencies.event.FcListener
-import net.benwoodworth.fastcraft.dependencies.gui.event.GuiEventClose
-import net.benwoodworth.fastcraft.dependencies.gui.layout.GuiLayoutRoot
+import net.benwoodworth.fastcraft.platform.event.FcListener
+import net.benwoodworth.fastcraft.platform.gui.event.GuiEventClose
+import net.benwoodworth.fastcraft.platform.gui.layout.GuiLayoutRoot
 
 /**
  * A user interface for in-game players.

@@ -1,7 +1,7 @@
-package net.benwoodworth.fastcraft.implementations.sponge.text
+package net.benwoodworth.fastcraft.platform.impl.sponge.text
 
-import net.benwoodworth.fastcraft.dependencies.text.FcText
-import net.benwoodworth.fastcraft.dependencies.text.FcTextColor
+import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.text.FcTextColor
 import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.text.Text
 import javax.inject.Inject

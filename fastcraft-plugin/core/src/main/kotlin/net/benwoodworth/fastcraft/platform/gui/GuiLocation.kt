@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.dependencies.gui
+package net.benwoodworth.fastcraft.platform.gui
 
 import kotlin.math.abs
 

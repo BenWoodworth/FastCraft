@@ -1,6 +1,6 @@
-package net.benwoodworth.fastcraft.dependencies.gui.element
+package net.benwoodworth.fastcraft.platform.gui.element
 
-import net.benwoodworth.fastcraft.dependencies.gui.event.GuiEventLayoutChange
+import net.benwoodworth.fastcraft.platform.gui.event.GuiEventLayoutChange
 import kotlin.reflect.KProperty
 
 /**

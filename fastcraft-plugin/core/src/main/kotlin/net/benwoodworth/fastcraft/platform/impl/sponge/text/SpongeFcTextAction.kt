@@ -1,9 +1,9 @@
-//package net.benwoodworth.fastcraft.implementations.sponge.text
+//package net.benwoodworth.fastcraft.platform.impl.sponge.text
 //
-//import net.benwoodworth.fastcraft.dependencies.item.FcItem
-//import net.benwoodworth.fastcraft.dependencies.text.FcText
-//import net.benwoodworth.fastcraft.dependencies.text.FcTextAction
-//import net.benwoodworth.fastcraft.implementations.sponge.item.SpongeFcItem
+//import net.benwoodworth.fastcraft.platform.item.FcItem
+//import net.benwoodworth.fastcraft.platform.text.FcText
+//import net.benwoodworth.fastcraft.platform.text.FcTextAction
+//import net.benwoodworth.fastcraft.platform.impl.sponge.item.SpongeFcItem
 //import net.benwoodworth.fastcraft.util.Adapter
 //import org.spongepowered.api.text.action.*
 //import java.net.URL

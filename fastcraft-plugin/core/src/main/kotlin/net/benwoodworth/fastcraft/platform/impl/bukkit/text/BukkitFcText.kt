@@ -1,6 +1,6 @@
-package net.benwoodworth.fastcraft.implementations.bukkit.text
+package net.benwoodworth.fastcraft.platform.impl.bukkit.text
 
-import net.benwoodworth.fastcraft.dependencies.text.FcText
+import net.benwoodworth.fastcraft.platform.text.FcText
 
 interface BukkitFcText : FcText {
 

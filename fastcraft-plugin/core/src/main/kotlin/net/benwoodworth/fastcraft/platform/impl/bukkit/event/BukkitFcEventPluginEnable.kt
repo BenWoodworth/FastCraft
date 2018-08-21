@@ -1,6 +1,6 @@
-package net.benwoodworth.fastcraft.implementations.bukkit.event
+package net.benwoodworth.fastcraft.platform.impl.bukkit.event
 
-import net.benwoodworth.fastcraft.dependencies.event.FcEventPluginEnable
+import net.benwoodworth.fastcraft.platform.event.FcEventPluginEnable
 import net.benwoodworth.fastcraft.util.Adapter
 import org.bukkit.event.server.PluginEnableEvent
 

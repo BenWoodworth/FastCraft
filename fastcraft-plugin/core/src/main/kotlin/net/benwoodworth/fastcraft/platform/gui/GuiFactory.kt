@@ -1,6 +1,6 @@
-package net.benwoodworth.fastcraft.dependencies.gui
+package net.benwoodworth.fastcraft.platform.gui
 
-import net.benwoodworth.fastcraft.dependencies.text.FcText
+import net.benwoodworth.fastcraft.platform.text.FcText
 
 /**
  * A factory for creating [Gui]'s.

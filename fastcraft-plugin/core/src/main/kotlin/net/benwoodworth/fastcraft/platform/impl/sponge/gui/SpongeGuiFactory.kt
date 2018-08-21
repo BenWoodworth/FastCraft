@@ -1,9 +1,9 @@
-package net.benwoodworth.fastcraft.implementations.sponge.gui
+package net.benwoodworth.fastcraft.platform.impl.sponge.gui
 
-import net.benwoodworth.fastcraft.dependencies.gui.GuiFactory
-import net.benwoodworth.fastcraft.dependencies.text.FcText
-import net.benwoodworth.fastcraft.implementations.sponge.SpongeFastCraft
-import net.benwoodworth.fastcraft.implementations.sponge.text.SpongeFcText
+import net.benwoodworth.fastcraft.platform.gui.GuiFactory
+import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.impl.sponge.SpongeFastCraft
+import net.benwoodworth.fastcraft.platform.impl.sponge.text.SpongeFcText
 import org.spongepowered.api.item.inventory.Inventory
 import org.spongepowered.api.item.inventory.InventoryArchetype
 import org.spongepowered.api.item.inventory.InventoryArchetypes

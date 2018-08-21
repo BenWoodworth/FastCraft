@@ -3,12 +3,12 @@ package net.benwoodworth.fastcraft.core.gui.crafting
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.core.gui.crafting.elements.ElementRecipeList
-import net.benwoodworth.fastcraft.dependencies.gui.event.GuiEventClick
-import net.benwoodworth.fastcraft.dependencies.gui.event.GuiEventClose
-import net.benwoodworth.fastcraft.dependencies.gui.mvp.MvpPresenter
-import net.benwoodworth.fastcraft.dependencies.player.FcPlayer
-import net.benwoodworth.fastcraft.dependencies.text.FcText
-import net.benwoodworth.fastcraft.dependencies.server.FcTaskBuilder
+import net.benwoodworth.fastcraft.platform.gui.event.GuiEventClick
+import net.benwoodworth.fastcraft.platform.gui.event.GuiEventClose
+import net.benwoodworth.fastcraft.platform.gui.mvp.MvpPresenter
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.server.FcTaskBuilder
 import javax.inject.Provider
 
 @AutoFactory

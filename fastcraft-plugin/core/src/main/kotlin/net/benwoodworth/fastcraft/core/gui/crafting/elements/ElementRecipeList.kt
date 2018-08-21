@@ -3,16 +3,16 @@ package net.benwoodworth.fastcraft.core.gui.crafting.elements
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.core.lang.FastCraftLang
-import net.benwoodworth.fastcraft.dependencies.event.FcListener
-import net.benwoodworth.fastcraft.dependencies.gui.GuiLocation
-import net.benwoodworth.fastcraft.dependencies.gui.GuiRegion
-import net.benwoodworth.fastcraft.dependencies.gui.element.GuiElementAbstract
-import net.benwoodworth.fastcraft.dependencies.gui.element.GuiLayoutChanger
-import net.benwoodworth.fastcraft.dependencies.gui.event.GuiEventClick
-import net.benwoodworth.fastcraft.dependencies.item.FcItem
-import net.benwoodworth.fastcraft.dependencies.item.FcItemBuilder
-import net.benwoodworth.fastcraft.dependencies.text.FcText
-import net.benwoodworth.fastcraft.dependencies.recipe.FcCraftingRecipe
+import net.benwoodworth.fastcraft.platform.event.FcListener
+import net.benwoodworth.fastcraft.platform.gui.GuiLocation
+import net.benwoodworth.fastcraft.platform.gui.GuiRegion
+import net.benwoodworth.fastcraft.platform.gui.element.GuiElementAbstract
+import net.benwoodworth.fastcraft.platform.gui.element.GuiLayoutChanger
+import net.benwoodworth.fastcraft.platform.gui.event.GuiEventClick
+import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemBuilder
+import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import javax.inject.Provider
 import kotlin.math.ceil
 

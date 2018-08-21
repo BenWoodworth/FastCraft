@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.implementations.bukkit.recipe
+package net.benwoodworth.fastcraft.platform.impl.bukkit.recipe
 
 import org.bukkit.Material
 import org.bukkit.Server

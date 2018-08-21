@@ -1,10 +1,10 @@
-package net.benwoodworth.fastcraft.implementations.bukkit.player
+package net.benwoodworth.fastcraft.platform.impl.bukkit.player
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.dependencies.player.FcPlayer
-import net.benwoodworth.fastcraft.dependencies.text.FcText
-import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitFcText
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.impl.bukkit.text.BukkitFcText
 import net.benwoodworth.fastcraft.util.Adapter
 import org.bukkit.entity.Player
 import java.util.*

@@ -1,9 +1,9 @@
-package net.benwoodworth.fastcraft.implementations.bukkit.gui
+package net.benwoodworth.fastcraft.platform.impl.bukkit.gui
 
-import net.benwoodworth.fastcraft.dependencies.gui.Gui
-import net.benwoodworth.fastcraft.dependencies.gui.event.GuiEventClose
-import net.benwoodworth.fastcraft.implementations.bukkit.BukkitFastCraft
-import net.benwoodworth.fastcraft.implementations.bukkit.player.BukkitFcPlayerFactory
+import net.benwoodworth.fastcraft.platform.gui.Gui
+import net.benwoodworth.fastcraft.platform.gui.event.GuiEventClose
+import net.benwoodworth.fastcraft.platform.impl.bukkit.BukkitFastCraft
+import net.benwoodworth.fastcraft.platform.impl.bukkit.player.BukkitFcPlayerFactory
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority

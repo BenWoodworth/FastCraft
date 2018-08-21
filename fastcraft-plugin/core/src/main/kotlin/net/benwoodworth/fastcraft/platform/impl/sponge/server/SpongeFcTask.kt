@@ -1,6 +1,6 @@
-package net.benwoodworth.fastcraft.implementations.sponge.server
+package net.benwoodworth.fastcraft.platform.impl.sponge.server
 
-import net.benwoodworth.fastcraft.dependencies.server.FcTask
+import net.benwoodworth.fastcraft.platform.server.FcTask
 import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.scheduler.Task
 

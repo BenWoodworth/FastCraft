@@ -1,8 +1,8 @@
-package net.benwoodworth.fastcraft.dependencies.gui.element
+package net.benwoodworth.fastcraft.platform.gui.element
 
-import net.benwoodworth.fastcraft.dependencies.event.FcListener
-import net.benwoodworth.fastcraft.dependencies.gui.GuiRegion
-import net.benwoodworth.fastcraft.dependencies.gui.event.GuiEventLayoutChange
+import net.benwoodworth.fastcraft.platform.event.FcListener
+import net.benwoodworth.fastcraft.platform.gui.GuiRegion
+import net.benwoodworth.fastcraft.platform.gui.event.GuiEventLayoutChange
 
 abstract class GuiElementAbstract<TRegion : GuiRegion.Positioned>(
         region: TRegion

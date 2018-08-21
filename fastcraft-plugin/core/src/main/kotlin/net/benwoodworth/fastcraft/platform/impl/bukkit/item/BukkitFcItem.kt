@@ -1,11 +1,11 @@
-package net.benwoodworth.fastcraft.implementations.bukkit.item
+package net.benwoodworth.fastcraft.platform.impl.bukkit.item
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.dependencies.item.FcItem
-import net.benwoodworth.fastcraft.dependencies.item.FcItemType
-import net.benwoodworth.fastcraft.dependencies.text.FcText
-import net.benwoodworth.fastcraft.implementations.bukkit.text.BukkitFcText
+import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemType
+import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.impl.bukkit.text.BukkitFcText
 import net.benwoodworth.fastcraft.util.Adapter
 import org.bukkit.inventory.ItemStack
 

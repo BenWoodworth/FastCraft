@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.dependencies.gui.mvp
+package net.benwoodworth.fastcraft.platform.gui.mvp
 
 /**
  * The "presenter" aspect of the [MVP architectural pattern](http://bit.ly/WikiMVP).

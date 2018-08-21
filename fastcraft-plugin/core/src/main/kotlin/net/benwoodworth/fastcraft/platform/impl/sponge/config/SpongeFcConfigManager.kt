@@ -1,7 +1,7 @@
-package net.benwoodworth.fastcraft.implementations.sponge.config
+package net.benwoodworth.fastcraft.platform.impl.sponge.config
 
-import net.benwoodworth.fastcraft.dependencies.config.FcConfig
-import net.benwoodworth.fastcraft.dependencies.config.FcConfigManager
+import net.benwoodworth.fastcraft.platform.config.FcConfig
+import net.benwoodworth.fastcraft.platform.config.FcConfigManager
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader
 import java.nio.file.Path
 

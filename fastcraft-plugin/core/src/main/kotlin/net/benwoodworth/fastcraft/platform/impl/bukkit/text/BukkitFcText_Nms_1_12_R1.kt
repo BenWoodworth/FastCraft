@@ -1,9 +1,9 @@
-package net.benwoodworth.fastcraft.implementations.bukkit.text
+package net.benwoodworth.fastcraft.platform.impl.bukkit.text
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.dependencies.text.FcText
-import net.benwoodworth.fastcraft.implementations.bukkit.BukkitReflectionFactory
+import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.impl.bukkit.BukkitReflectionFactory
 import java.lang.reflect.Method
 import javax.inject.Inject
 import javax.inject.Singleton

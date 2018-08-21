@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.dependencies
+package net.benwoodworth.fastcraft.platform
 
 import net.benwoodworth.fastcraft.core.FastCraft
 

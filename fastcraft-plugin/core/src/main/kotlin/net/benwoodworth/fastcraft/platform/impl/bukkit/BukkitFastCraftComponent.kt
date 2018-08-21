@@ -1,7 +1,7 @@
-package net.benwoodworth.fastcraft.implementations.bukkit
+package net.benwoodworth.fastcraft.platform.impl.bukkit
 
 import dagger.Component
-import net.benwoodworth.fastcraft.dependencies.FastCraftComponent
+import net.benwoodworth.fastcraft.platform.FastCraftComponent
 import javax.inject.Singleton
 
 /**

@@ -1,6 +1,6 @@
-package net.benwoodworth.fastcraft.implementations.bukkit.text
+package net.benwoodworth.fastcraft.platform.impl.bukkit.text
 
-import net.benwoodworth.fastcraft.dependencies.text.FcTextColor
+import net.benwoodworth.fastcraft.platform.text.FcTextColor
 import javax.inject.Inject
 
 class BukkitFcTextColor(

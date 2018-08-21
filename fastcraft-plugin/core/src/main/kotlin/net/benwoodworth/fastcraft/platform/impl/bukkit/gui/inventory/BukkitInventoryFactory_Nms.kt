@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.implementations.bukkit.gui.inventory
+package net.benwoodworth.fastcraft.platform.impl.bukkit.gui.inventory
 
 interface BukkitInventoryFactory_Nms : BukkitInventoryFactory {
     /*

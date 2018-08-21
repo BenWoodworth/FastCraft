@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.dependencies.text
+package net.benwoodworth.fastcraft.platform.text
 
 interface FcTextColor {
 

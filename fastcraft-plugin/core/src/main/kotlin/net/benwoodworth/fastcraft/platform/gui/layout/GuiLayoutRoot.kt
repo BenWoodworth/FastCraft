@@ -1,6 +1,6 @@
-package net.benwoodworth.fastcraft.dependencies.gui.layout
+package net.benwoodworth.fastcraft.platform.gui.layout
 
-import net.benwoodworth.fastcraft.dependencies.gui.GuiRegion
+import net.benwoodworth.fastcraft.platform.gui.GuiRegion
 
 /**
  * The top-level layout within a GUI.

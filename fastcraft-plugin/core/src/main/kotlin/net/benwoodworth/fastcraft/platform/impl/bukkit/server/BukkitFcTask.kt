@@ -1,6 +1,6 @@
-package net.benwoodworth.fastcraft.implementations.bukkit.server
+package net.benwoodworth.fastcraft.platform.impl.bukkit.server
 
-import net.benwoodworth.fastcraft.dependencies.server.FcTask
+import net.benwoodworth.fastcraft.platform.server.FcTask
 import net.benwoodworth.fastcraft.util.Adapter
 import org.bukkit.scheduler.BukkitTask
 

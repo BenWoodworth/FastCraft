@@ -1,6 +1,6 @@
-package net.benwoodworth.fastcraft.dependencies.item
+package net.benwoodworth.fastcraft.platform.item
 
-import net.benwoodworth.fastcraft.dependencies.text.FcText
+import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.util.TransMutable
 
 /**
