@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform.impl.bukkit.server
+package net.benwoodworth.fastcraft.platform.bukkit.server
 
 import net.benwoodworth.fastcraft.platform.server.FcLogger
 import net.benwoodworth.fastcraft.util.Adapter

@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform.impl.sponge.item
+package net.benwoodworth.fastcraft.platform.sponge.item
 
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.util.Adapter

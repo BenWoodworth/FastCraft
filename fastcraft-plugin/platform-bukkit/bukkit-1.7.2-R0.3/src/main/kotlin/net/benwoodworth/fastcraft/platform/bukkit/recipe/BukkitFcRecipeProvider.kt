@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform.impl.bukkit.recipe
+package net.benwoodworth.fastcraft.platform.bukkit.recipe
 
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcRecipeProvider

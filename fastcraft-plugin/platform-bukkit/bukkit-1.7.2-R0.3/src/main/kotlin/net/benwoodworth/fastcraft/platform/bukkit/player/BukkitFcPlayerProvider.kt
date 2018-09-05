@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform.impl.bukkit.player
+package net.benwoodworth.fastcraft.platform.bukkit.player
 
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcPlayerProvider

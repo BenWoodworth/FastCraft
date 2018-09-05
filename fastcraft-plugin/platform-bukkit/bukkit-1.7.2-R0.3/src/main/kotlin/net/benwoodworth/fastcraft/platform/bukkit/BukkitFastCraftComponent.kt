@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform.impl.bukkit
+package net.benwoodworth.fastcraft.platform.bukkit
 
 import dagger.Component
 import net.benwoodworth.fastcraft.platform.FastCraftComponent

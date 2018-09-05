@@ -1,10 +1,10 @@
-package net.benwoodworth.fastcraft.platform.impl.sponge.item
+package net.benwoodworth.fastcraft.platform.sponge.item
 
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemBuilder
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.platform.impl.sponge.text.SpongeFcText
+import net.benwoodworth.fastcraft.platform.sponge.text.SpongeFcText
 import org.spongepowered.api.data.key.Keys
 import org.spongepowered.api.item.inventory.ItemStack
 import javax.inject.Inject

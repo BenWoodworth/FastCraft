@@ -1,9 +1,9 @@
-package net.benwoodworth.fastcraft.platform.impl.sponge.gui
+package net.benwoodworth.fastcraft.platform.sponge.gui
 
 import net.benwoodworth.fastcraft.platform.gui.Gui
 import net.benwoodworth.fastcraft.platform.gui.event.GuiEventClose
-import net.benwoodworth.fastcraft.platform.impl.sponge.SpongeFastCraft
-import net.benwoodworth.fastcraft.platform.impl.sponge.player.SpongeFcPlayer
+import net.benwoodworth.fastcraft.platform.sponge.SpongeFastCraft
+import net.benwoodworth.fastcraft.platform.sponge.player.SpongeFcPlayer
 import org.spongepowered.api.Sponge
 import org.spongepowered.api.entity.living.player.Player
 import org.spongepowered.api.event.Listener

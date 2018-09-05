@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform.impl.bukkit.gui.inventory
+package net.benwoodworth.fastcraft.platform.bukkit.gui.inventory
 
 //class BukkitInventoryFactory_Nms_1_8_R1(
 //        delegate: BukkitInventoryFactory_Bukkit,

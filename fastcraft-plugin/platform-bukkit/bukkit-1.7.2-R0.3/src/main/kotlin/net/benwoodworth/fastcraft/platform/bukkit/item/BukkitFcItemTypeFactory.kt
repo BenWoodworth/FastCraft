@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform.impl.bukkit.item
+package net.benwoodworth.fastcraft.platform.bukkit.item
 
 import net.benwoodworth.fastcraft.platform.item.FcItemTypeFactory
 import org.bukkit.Material

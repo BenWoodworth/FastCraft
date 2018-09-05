@@ -1,11 +1,11 @@
-package net.benwoodworth.fastcraft.platform.impl.sponge.recipe
+package net.benwoodworth.fastcraft.platform.sponge.recipe
 
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcIngredient
-import net.benwoodworth.fastcraft.platform.impl.sponge.item.SpongeFcItem
-import net.benwoodworth.fastcraft.platform.impl.sponge.player.SpongeFcPlayer
+import net.benwoodworth.fastcraft.platform.sponge.item.SpongeFcItem
+import net.benwoodworth.fastcraft.platform.sponge.player.SpongeFcPlayer
 import net.benwoodworth.fastcraft.util.Adapter
 import net.benwoodworth.fastcraft.util.Grid
 import org.spongepowered.api.item.inventory.ItemStack

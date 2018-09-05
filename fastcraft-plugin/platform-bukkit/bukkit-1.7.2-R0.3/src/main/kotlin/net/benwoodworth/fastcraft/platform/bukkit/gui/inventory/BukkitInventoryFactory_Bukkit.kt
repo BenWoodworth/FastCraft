@@ -1,8 +1,8 @@
-package net.benwoodworth.fastcraft.platform.impl.bukkit.gui.inventory
+package net.benwoodworth.fastcraft.platform.bukkit.gui.inventory
 
 import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.platform.impl.bukkit.text.BukkitFcText
-import net.benwoodworth.fastcraft.platform.impl.bukkit.text.BukkitFcText_Bukkit
+import net.benwoodworth.fastcraft.platform.bukkit.text.BukkitFcText
+import net.benwoodworth.fastcraft.platform.bukkit.text.BukkitFcText_Bukkit
 import org.bukkit.Server
 import org.bukkit.event.inventory.InventoryType
 import org.bukkit.inventory.Inventory

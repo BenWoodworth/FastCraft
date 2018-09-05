@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform.impl.bukkit.gui
+package net.benwoodworth.fastcraft.platform.bukkit.gui
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
@@ -9,9 +9,9 @@ import net.benwoodworth.fastcraft.platform.gui.GuiRegion
 import net.benwoodworth.fastcraft.platform.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.platform.impl.bukkit.gui.inventory.BukkitInventoryFactory
-import net.benwoodworth.fastcraft.platform.impl.bukkit.item.BukkitFcItem
-import net.benwoodworth.fastcraft.platform.impl.bukkit.player.BukkitFcPlayer
+import net.benwoodworth.fastcraft.platform.bukkit.gui.inventory.BukkitInventoryFactory
+import net.benwoodworth.fastcraft.platform.bukkit.item.BukkitFcItem
+import net.benwoodworth.fastcraft.platform.bukkit.player.BukkitFcPlayer
 import org.bukkit.Server
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType

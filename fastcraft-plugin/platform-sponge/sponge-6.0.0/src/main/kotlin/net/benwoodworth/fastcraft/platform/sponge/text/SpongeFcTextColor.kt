@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform.impl.sponge.text
+package net.benwoodworth.fastcraft.platform.sponge.text
 
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
 import net.benwoodworth.fastcraft.util.Adapter

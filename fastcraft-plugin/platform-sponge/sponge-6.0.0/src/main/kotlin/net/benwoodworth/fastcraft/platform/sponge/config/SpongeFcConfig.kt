@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform.impl.sponge.config
+package net.benwoodworth.fastcraft.platform.sponge.config
 
 import net.benwoodworth.fastcraft.platform.config.FcConfig
 import net.benwoodworth.fastcraft.platform.config.FcConfigSection

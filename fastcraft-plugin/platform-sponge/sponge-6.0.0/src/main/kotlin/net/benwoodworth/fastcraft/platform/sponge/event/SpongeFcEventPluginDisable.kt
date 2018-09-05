@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform.impl.sponge.event
+package net.benwoodworth.fastcraft.platform.sponge.event
 
 import net.benwoodworth.fastcraft.platform.event.FcEventPluginDisable
 import net.benwoodworth.fastcraft.util.Adapter

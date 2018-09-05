@@ -1,8 +1,8 @@
-package net.benwoodworth.fastcraft.platform.impl.bukkit.recipe
+package net.benwoodworth.fastcraft.platform.bukkit.recipe
 
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.recipe.FcIngredient
-import net.benwoodworth.fastcraft.platform.impl.bukkit.item.BukkitFcItem
+import net.benwoodworth.fastcraft.platform.bukkit.item.BukkitFcItem
 import org.bukkit.inventory.ItemStack
 
 /**

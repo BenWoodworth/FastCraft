@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform.impl.bukkit.config
+package net.benwoodworth.fastcraft.platform.bukkit.config
 
 import net.benwoodworth.fastcraft.platform.config.FcConfigSection
 import net.benwoodworth.fastcraft.util.Adapter

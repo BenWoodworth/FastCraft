@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform.impl.sponge.server
+package net.benwoodworth.fastcraft.platform.sponge.server
 
 import net.benwoodworth.fastcraft.platform.server.FcPlugin
 import net.benwoodworth.fastcraft.platform.server.FcPluginRegistry

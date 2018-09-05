@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform.impl.sponge
+package net.benwoodworth.fastcraft.platform.sponge
 
 import dagger.Component
 import net.benwoodworth.fastcraft.platform.FastCraftComponent

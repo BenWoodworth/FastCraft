@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform.impl.sponge.recipe
+package net.benwoodworth.fastcraft.platform.sponge.recipe
 
 import org.spongepowered.api.Sponge
 import org.spongepowered.api.item.inventory.Inventory

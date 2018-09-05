@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform.impl.bukkit.recipe
+package net.benwoodworth.fastcraft.platform.bukkit.recipe
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
@@ -6,9 +6,9 @@ import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcIngredient
-import net.benwoodworth.fastcraft.platform.impl.bukkit.item.BukkitFcItem
-import net.benwoodworth.fastcraft.platform.impl.bukkit.item.BukkitFcItemFactory
-import net.benwoodworth.fastcraft.platform.impl.bukkit.player.BukkitFcPlayer
+import net.benwoodworth.fastcraft.platform.bukkit.item.BukkitFcItem
+import net.benwoodworth.fastcraft.platform.bukkit.item.BukkitFcItemFactory
+import net.benwoodworth.fastcraft.platform.bukkit.player.BukkitFcPlayer
 import net.benwoodworth.fastcraft.util.Adapter
 import net.benwoodworth.fastcraft.util.Grid
 import org.bukkit.Material

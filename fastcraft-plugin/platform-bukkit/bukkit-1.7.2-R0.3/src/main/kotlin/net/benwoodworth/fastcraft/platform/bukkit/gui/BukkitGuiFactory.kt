@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform.impl.bukkit.gui
+package net.benwoodworth.fastcraft.platform.bukkit.gui
 
 import net.benwoodworth.fastcraft.platform.gui.Gui
 import net.benwoodworth.fastcraft.platform.gui.GuiFactory
