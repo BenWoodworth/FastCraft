@@ -1,4 +1,4 @@
-include("api")
-include("platform")
-include("platform-bukkit")
-include("platform-sponge")
+includeBuild("api")
+includeBuild("platform")
+includeBuild("platform-bukkit")
+includeBuild("platform-sponge")
