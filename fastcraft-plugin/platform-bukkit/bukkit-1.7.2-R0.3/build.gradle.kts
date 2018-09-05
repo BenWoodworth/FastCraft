@@ -1,7 +1,12 @@
 plugins {
-    kotlin("jvm") version "1.3-M2"
+    idea
+    kotlin("jvm") version "1.2.61"
+}
+
+repositories {
+    mavenCentral()
 }
 
 dependencies {
-    compile(kotlin("stdlib"))
+    compile(kotlin("stdlib-jdk8"))
 }
