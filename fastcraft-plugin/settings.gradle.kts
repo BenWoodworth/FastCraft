@@ -1,3 +1,4 @@
 include("api")
-include("core")
 include("platform")
+include("platform-bukkit")
+include("platform-sponge")
