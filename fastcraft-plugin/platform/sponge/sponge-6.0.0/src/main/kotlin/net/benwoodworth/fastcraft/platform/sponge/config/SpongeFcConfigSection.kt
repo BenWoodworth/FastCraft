@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.platform.sponge.config
 
-import net.benwoodworth.fastcraft.platform.config.FcConfigSection
+import net.benwoodworth.fastcraft.platform.api.config.FcConfigSection
 import net.benwoodworth.fastcraft.util.Adapter
 import ninja.leaping.configurate.ConfigurationNode
 import org.spongepowered.api.util.TypeTokens

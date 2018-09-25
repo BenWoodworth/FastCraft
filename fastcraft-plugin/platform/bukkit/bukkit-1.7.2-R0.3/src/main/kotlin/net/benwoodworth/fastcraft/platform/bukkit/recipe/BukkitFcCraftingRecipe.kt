@@ -2,10 +2,10 @@ package net.benwoodworth.fastcraft.platform.bukkit.recipe
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.platform.item.FcItem
-import net.benwoodworth.fastcraft.platform.player.FcPlayer
-import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
-import net.benwoodworth.fastcraft.platform.recipe.FcIngredient
+import net.benwoodworth.fastcraft.platform.api.item.FcItem
+import net.benwoodworth.fastcraft.platform.api.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.api.recipe.FcCraftingRecipe
+import net.benwoodworth.fastcraft.platform.api.recipe.FcIngredient
 import net.benwoodworth.fastcraft.platform.bukkit.item.BukkitFcItem
 import net.benwoodworth.fastcraft.platform.bukkit.item.BukkitFcItemFactory
 import net.benwoodworth.fastcraft.platform.bukkit.player.BukkitFcPlayer

@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.platform.sponge.server
 
-import net.benwoodworth.fastcraft.platform.server.FcLogger
-import net.benwoodworth.fastcraft.platform.server.FcPlugin
+import net.benwoodworth.fastcraft.platform.api.server.FcLogger
+import net.benwoodworth.fastcraft.platform.api.server.FcPlugin
 import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.Sponge
 import org.spongepowered.api.plugin.PluginContainer

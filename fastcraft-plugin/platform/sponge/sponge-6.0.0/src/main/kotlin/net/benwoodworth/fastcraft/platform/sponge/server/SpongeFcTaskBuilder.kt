@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.platform.sponge.server
 
-import net.benwoodworth.fastcraft.platform.server.FcTask
-import net.benwoodworth.fastcraft.platform.server.FcTaskBuilder
+import net.benwoodworth.fastcraft.platform.api.server.FcTask
+import net.benwoodworth.fastcraft.platform.api.server.FcTaskBuilder
 import net.benwoodworth.fastcraft.platform.sponge.SpongeFastCraft
 import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.scheduler.Task

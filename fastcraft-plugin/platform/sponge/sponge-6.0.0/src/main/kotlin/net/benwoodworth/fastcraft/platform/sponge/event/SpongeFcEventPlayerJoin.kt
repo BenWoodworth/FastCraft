@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.platform.sponge.event
 
-import net.benwoodworth.fastcraft.platform.player.FcPlayer
-import net.benwoodworth.fastcraft.platform.event.FcEventPlayerJoin
+import net.benwoodworth.fastcraft.platform.api.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.api.event.FcEventPlayerJoin
 import net.benwoodworth.fastcraft.platform.sponge.player.SpongeFcPlayer
 import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.event.network.ClientConnectionEvent

@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.platform.sponge.player
 
-import net.benwoodworth.fastcraft.platform.player.FcPlayer
-import net.benwoodworth.fastcraft.platform.player.FcPlayerProvider
+import net.benwoodworth.fastcraft.platform.api.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.api.player.FcPlayerProvider
 import org.spongepowered.api.Sponge
 import java.util.*
 

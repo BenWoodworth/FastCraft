@@ -2,9 +2,9 @@ package net.benwoodworth.fastcraft.platform.bukkit.item
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.platform.item.FcItem
-import net.benwoodworth.fastcraft.platform.item.FcItemType
-import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.api.item.FcItem
+import net.benwoodworth.fastcraft.platform.api.item.FcItemType
+import net.benwoodworth.fastcraft.platform.api.text.FcText
 import net.benwoodworth.fastcraft.platform.bukkit.text.BukkitFcText
 import net.benwoodworth.fastcraft.util.Adapter
 import org.bukkit.inventory.ItemStack

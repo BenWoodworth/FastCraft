@@ -1,12 +1,12 @@
 package net.benwoodworth.fastcraft.platform.sponge.gui
 
-import net.benwoodworth.fastcraft.platform.gui.Gui
-import net.benwoodworth.fastcraft.platform.gui.GuiAbstract
-import net.benwoodworth.fastcraft.platform.gui.GuiLocation
-import net.benwoodworth.fastcraft.platform.gui.GuiRegion
-import net.benwoodworth.fastcraft.platform.gui.event.GuiEventClick
-import net.benwoodworth.fastcraft.platform.gui.layout.GuiLayout
-import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.api.gui.Gui
+import net.benwoodworth.fastcraft.platform.api.gui.GuiAbstract
+import net.benwoodworth.fastcraft.platform.api.gui.GuiLocation
+import net.benwoodworth.fastcraft.platform.api.gui.GuiRegion
+import net.benwoodworth.fastcraft.platform.api.gui.event.GuiEventClick
+import net.benwoodworth.fastcraft.platform.api.gui.layout.GuiLayout
+import net.benwoodworth.fastcraft.platform.api.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.sponge.SpongeFastCraft
 import net.benwoodworth.fastcraft.platform.sponge.item.SpongeFcItem
 import net.benwoodworth.fastcraft.platform.sponge.player.SpongeFcPlayer

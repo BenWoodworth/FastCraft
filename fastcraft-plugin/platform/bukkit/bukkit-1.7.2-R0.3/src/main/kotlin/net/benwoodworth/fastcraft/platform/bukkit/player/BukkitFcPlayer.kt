@@ -2,8 +2,8 @@ package net.benwoodworth.fastcraft.platform.bukkit.player
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.platform.player.FcPlayer
-import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.api.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.api.text.FcText
 import net.benwoodworth.fastcraft.platform.bukkit.text.BukkitFcText
 import net.benwoodworth.fastcraft.util.Adapter
 import org.bukkit.entity.Player

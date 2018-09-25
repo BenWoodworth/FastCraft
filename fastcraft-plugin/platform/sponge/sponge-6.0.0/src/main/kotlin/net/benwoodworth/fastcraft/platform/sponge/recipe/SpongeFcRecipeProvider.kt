@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.platform.sponge.recipe
 
-import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
-import net.benwoodworth.fastcraft.platform.recipe.FcRecipeProvider
+import net.benwoodworth.fastcraft.platform.api.recipe.FcCraftingRecipe
+import net.benwoodworth.fastcraft.platform.api.recipe.FcRecipeProvider
 import org.spongepowered.api.Sponge
 import org.spongepowered.api.item.recipe.crafting.ShapedCraftingRecipe
 import org.spongepowered.api.item.recipe.crafting.ShapelessCraftingRecipe

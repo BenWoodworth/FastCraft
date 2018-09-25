@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.platform.bukkit.item
 
-import net.benwoodworth.fastcraft.platform.item.FcItemTypeFactory
+import net.benwoodworth.fastcraft.platform.api.item.FcItemTypeFactory
 import org.bukkit.Material
 import javax.inject.Inject
 

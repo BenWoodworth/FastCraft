@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.platform.sponge.player
 
-import net.benwoodworth.fastcraft.platform.player.FcPlayer
-import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.api.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.api.text.FcText
 import net.benwoodworth.fastcraft.platform.sponge.text.SpongeFcText
 import net.benwoodworth.fastcraft.util.Adapter
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData

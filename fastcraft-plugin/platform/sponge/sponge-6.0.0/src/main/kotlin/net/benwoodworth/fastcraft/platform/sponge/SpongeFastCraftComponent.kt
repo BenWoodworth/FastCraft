@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.platform.sponge
 
 import dagger.Component
-import net.benwoodworth.fastcraft.platform.FastCraftComponent
+import net.benwoodworth.fastcraft.platform.api.FastCraftComponent
 import javax.inject.Singleton
 
 /**

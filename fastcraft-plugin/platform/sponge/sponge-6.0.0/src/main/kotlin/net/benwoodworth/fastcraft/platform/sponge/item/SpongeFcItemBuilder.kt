@@ -1,9 +1,9 @@
 package net.benwoodworth.fastcraft.platform.sponge.item
 
-import net.benwoodworth.fastcraft.platform.item.FcItem
-import net.benwoodworth.fastcraft.platform.item.FcItemBuilder
-import net.benwoodworth.fastcraft.platform.item.FcItemType
-import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.api.item.FcItem
+import net.benwoodworth.fastcraft.platform.api.item.FcItemBuilder
+import net.benwoodworth.fastcraft.platform.api.item.FcItemType
+import net.benwoodworth.fastcraft.platform.api.text.FcText
 import net.benwoodworth.fastcraft.platform.sponge.text.SpongeFcText
 import org.spongepowered.api.data.key.Keys
 import org.spongepowered.api.item.inventory.ItemStack

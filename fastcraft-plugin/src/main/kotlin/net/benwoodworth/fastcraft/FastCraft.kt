@@ -1,11 +1,11 @@
 package net.benwoodworth.fastcraft
 
 import net.benwoodworth.fastcraft.gui.crafting.CraftingGuiPresenterFactory
-import net.benwoodworth.fastcraft.platform.event.FcListener
-import net.benwoodworth.fastcraft.platform.event.FcEventPlayerJoin
-import net.benwoodworth.fastcraft.platform.event.FcEventPluginDisable
-import net.benwoodworth.fastcraft.platform.event.FcEventPluginEnable
-import net.benwoodworth.fastcraft.platform.server.FcTaskBuilder
+import net.benwoodworth.fastcraft.platform.api.event.FcListener
+import net.benwoodworth.fastcraft.platform.api.event.FcEventPlayerJoin
+import net.benwoodworth.fastcraft.platform.api.event.FcEventPluginDisable
+import net.benwoodworth.fastcraft.platform.api.event.FcEventPluginEnable
+import net.benwoodworth.fastcraft.platform.api.server.FcTaskBuilder
 import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton

@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.platform.bukkit.server
 
-import net.benwoodworth.fastcraft.platform.server.FcTask
-import net.benwoodworth.fastcraft.platform.server.FcTaskBuilder
+import net.benwoodworth.fastcraft.platform.api.server.FcTask
+import net.benwoodworth.fastcraft.platform.api.server.FcTaskBuilder
 import net.benwoodworth.fastcraft.platform.bukkit.BukkitFastCraft
 import org.bukkit.scheduler.BukkitRunnable
 import javax.inject.Inject

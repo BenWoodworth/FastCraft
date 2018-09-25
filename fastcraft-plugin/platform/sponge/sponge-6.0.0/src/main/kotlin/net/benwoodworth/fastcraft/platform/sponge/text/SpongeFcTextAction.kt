@@ -1,8 +1,8 @@
 //package net.benwoodworth.fastcraft.platform.sponge.text
 //
-//import net.benwoodworth.fastcraft.platform.item.FcItem
-//import net.benwoodworth.fastcraft.platform.text.FcText
-//import net.benwoodworth.fastcraft.platform.text.FcTextAction
+//import net.benwoodworth.fastcraft.platform.api.item.FcItem
+//import net.benwoodworth.fastcraft.platform.api.text.FcText
+//import net.benwoodworth.fastcraft.platform.api.text.FcTextAction
 //import net.benwoodworth.fastcraft.platform.sponge.item.SpongeFcItem
 //import net.benwoodworth.fastcraft.util.Adapter
 //import org.spongepowered.api.text.action.*

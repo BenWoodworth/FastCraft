@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.platform.sponge.item
 
-import net.benwoodworth.fastcraft.platform.item.FcItemTypeFactory
+import net.benwoodworth.fastcraft.platform.api.item.FcItemTypeFactory
 import org.spongepowered.api.item.ItemTypes
 import javax.inject.Inject
 

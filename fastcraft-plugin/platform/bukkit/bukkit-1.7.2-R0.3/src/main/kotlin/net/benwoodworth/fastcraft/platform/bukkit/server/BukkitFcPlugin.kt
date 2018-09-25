@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.platform.bukkit.server
 
-import net.benwoodworth.fastcraft.platform.server.FcLogger
-import net.benwoodworth.fastcraft.platform.server.FcPlugin
+import net.benwoodworth.fastcraft.platform.api.server.FcLogger
+import net.benwoodworth.fastcraft.platform.api.server.FcPlugin
 import net.benwoodworth.fastcraft.util.Adapter
 import org.bukkit.plugin.Plugin
 import java.nio.file.Path

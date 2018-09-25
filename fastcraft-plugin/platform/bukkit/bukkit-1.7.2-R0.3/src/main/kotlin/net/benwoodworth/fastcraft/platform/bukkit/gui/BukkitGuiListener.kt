@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.platform.bukkit.gui
 
-import net.benwoodworth.fastcraft.platform.gui.Gui
-import net.benwoodworth.fastcraft.platform.gui.event.GuiEventClose
+import net.benwoodworth.fastcraft.platform.api.gui.Gui
+import net.benwoodworth.fastcraft.platform.api.gui.event.GuiEventClose
 import net.benwoodworth.fastcraft.platform.bukkit.BukkitFastCraft
 import net.benwoodworth.fastcraft.platform.bukkit.player.BukkitFcPlayerFactory
 import org.bukkit.entity.Player

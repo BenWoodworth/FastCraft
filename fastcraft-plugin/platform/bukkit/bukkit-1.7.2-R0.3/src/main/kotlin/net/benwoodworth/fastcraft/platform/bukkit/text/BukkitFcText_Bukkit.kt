@@ -2,8 +2,8 @@ package net.benwoodworth.fastcraft.platform.bukkit.text
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.platform.text.FcTextColor
+import net.benwoodworth.fastcraft.platform.api.text.FcText
+import net.benwoodworth.fastcraft.platform.api.text.FcTextColor
 import net.benwoodworth.fastcraft.platform.bukkit.text.bukkit.BukkitFcText_Bukkit_BuilderFactory
 import javax.inject.Inject
 

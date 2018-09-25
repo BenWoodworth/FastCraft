@@ -2,13 +2,13 @@ package net.benwoodworth.fastcraft.platform.bukkit.gui
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.platform.gui.Gui
-import net.benwoodworth.fastcraft.platform.gui.GuiAbstract
-import net.benwoodworth.fastcraft.platform.gui.GuiLocation
-import net.benwoodworth.fastcraft.platform.gui.GuiRegion
-import net.benwoodworth.fastcraft.platform.gui.event.GuiEventClick
-import net.benwoodworth.fastcraft.platform.player.FcPlayer
-import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.api.gui.Gui
+import net.benwoodworth.fastcraft.platform.api.gui.GuiAbstract
+import net.benwoodworth.fastcraft.platform.api.gui.GuiLocation
+import net.benwoodworth.fastcraft.platform.api.gui.GuiRegion
+import net.benwoodworth.fastcraft.platform.api.gui.event.GuiEventClick
+import net.benwoodworth.fastcraft.platform.api.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.api.text.FcText
 import net.benwoodworth.fastcraft.platform.bukkit.gui.inventory.BukkitInventoryFactory
 import net.benwoodworth.fastcraft.platform.bukkit.item.BukkitFcItem
 import net.benwoodworth.fastcraft.platform.bukkit.player.BukkitFcPlayer

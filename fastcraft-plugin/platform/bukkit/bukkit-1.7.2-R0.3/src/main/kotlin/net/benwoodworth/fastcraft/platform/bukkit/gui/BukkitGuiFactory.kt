@@ -1,8 +1,8 @@
 package net.benwoodworth.fastcraft.platform.bukkit.gui
 
-import net.benwoodworth.fastcraft.platform.gui.Gui
-import net.benwoodworth.fastcraft.platform.gui.GuiFactory
-import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.api.gui.Gui
+import net.benwoodworth.fastcraft.platform.api.gui.GuiFactory
+import net.benwoodworth.fastcraft.platform.api.text.FcText
 import javax.inject.Inject
 
 class BukkitGuiFactory @Inject constructor(

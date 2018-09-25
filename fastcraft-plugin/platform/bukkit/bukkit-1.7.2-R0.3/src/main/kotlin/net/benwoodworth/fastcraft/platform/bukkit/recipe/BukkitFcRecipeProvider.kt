@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.platform.bukkit.recipe
 
-import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
-import net.benwoodworth.fastcraft.platform.recipe.FcRecipeProvider
+import net.benwoodworth.fastcraft.platform.api.recipe.FcCraftingRecipe
+import net.benwoodworth.fastcraft.platform.api.recipe.FcRecipeProvider
 import org.bukkit.Server
 import org.bukkit.inventory.ShapedRecipe
 import org.bukkit.inventory.ShapelessRecipe

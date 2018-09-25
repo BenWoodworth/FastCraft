@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.platform.sponge.server
 
-import net.benwoodworth.fastcraft.platform.server.FcPlugin
-import net.benwoodworth.fastcraft.platform.server.FcPluginRegistry
+import net.benwoodworth.fastcraft.platform.api.server.FcPlugin
+import net.benwoodworth.fastcraft.platform.api.server.FcPluginRegistry
 import org.spongepowered.api.Sponge
 
 /**
