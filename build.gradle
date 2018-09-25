@@ -1,0 +1,20 @@
+ext {
+    version_gradle = "4.10"
+    
+    version_java = "1.8"
+    version_kotlin = "1.2.71"
+    
+    version_dagger = "2.17"
+    version_jsr250 = "1.0"
+    version_javax_inject = "1"
+    version_autofactory = "0.1-beta1"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = version_gradle
+    distributionType = Wrapper.DistributionType.ALL
+}
+
+allprojects {
+    apply plugin: "idea"
+}
