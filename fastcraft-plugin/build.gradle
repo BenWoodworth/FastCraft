@@ -34,6 +34,13 @@ allprojects {
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
         kotlinOptions.jvmTarget = version_java
     }
+
+    sourceSets {
+        main.java.srcDirs += "src/main/kotlin"
+        main.java.srcDirs += "$buildDir/generated/source/kapt/main"
+
+        test.java.srcDirs += "src/test/kotlin"
+    }
 }
 
 dependencies {
