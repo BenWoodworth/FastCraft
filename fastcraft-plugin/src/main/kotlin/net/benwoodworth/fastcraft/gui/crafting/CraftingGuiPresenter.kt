@@ -1,8 +1,8 @@
-package net.benwoodworth.fastcraft.core.gui.crafting
+package net.benwoodworth.fastcraft.gui.crafting
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.core.gui.crafting.elements.ElementRecipeList
+import net.benwoodworth.fastcraft.gui.crafting.elements.ElementRecipeList
 import net.benwoodworth.fastcraft.platform.gui.event.GuiEventClick
 import net.benwoodworth.fastcraft.platform.gui.event.GuiEventClose
 import net.benwoodworth.fastcraft.platform.gui.mvp.MvpPresenter
@@ -15,11 +15,11 @@ import javax.inject.Provider
 class CraftingGuiPresenter(
         private val player: FcPlayer,
 
-        @Provided view: CraftingGuiView,
-        @Provided model: CraftingGuiModel,
+        @Provided view: net.benwoodworth.fastcraft.gui.crafting.CraftingGuiView,
+        @Provided model: net.benwoodworth.fastcraft.gui.crafting.CraftingGuiModel,
         @Provided taskBuilder: Provider<FcTaskBuilder>,
         @Provided private val textFactory: FcText.Factory
-) : MvpPresenter<CraftingGuiView, CraftingGuiModel>(view, model) {
+) : MvpPresenter<net.benwoodworth.fastcraft.gui.crafting.CraftingGuiView, net.benwoodworth.fastcraft.gui.crafting.CraftingGuiModel>(view, model) {
 
     private val taskCycleResults = taskBuilder.get() //TODO Make disablable
             .delay(20) //TODO make configurable
@@ -37,7 +37,7 @@ class CraftingGuiPresenter(
 
     fun open() = view.gui.open(player)
 
-    private fun onRecipeClick(event: ElementRecipeList.RecipeClickEvent) {
+    private fun onRecipeClick(event: net.benwoodworth.fastcraft.gui.crafting.elements.ElementRecipeList.RecipeClickEvent) {
 
     }
 

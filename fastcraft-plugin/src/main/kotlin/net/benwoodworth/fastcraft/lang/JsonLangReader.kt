@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.core.lang
+package net.benwoodworth.fastcraft.lang
 
 import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject

@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.core.config
+package net.benwoodworth.fastcraft.config
 
 import net.benwoodworth.fastcraft.platform.config.FcConfig
 

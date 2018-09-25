@@ -1,7 +1,7 @@
-package net.benwoodworth.fastcraft.core.gui.crafting
+package net.benwoodworth.fastcraft.gui.crafting
 
 import net.benwoodworth.fastcraft.core.gui.crafting.elements.*
-import net.benwoodworth.fastcraft.core.lang.FastCraftLang
+import net.benwoodworth.fastcraft.lang.FastCraftLang
 import net.benwoodworth.fastcraft.platform.gui.GuiFactory
 import net.benwoodworth.fastcraft.platform.gui.GuiLocation
 import net.benwoodworth.fastcraft.platform.gui.GuiRegion
@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class CraftingGuiView @Inject constructor(
         guiFactory: GuiFactory,
-        fastCraftLang: FastCraftLang,
+        fastCraftLang: net.benwoodworth.fastcraft.lang.FastCraftLang,
 
         buttonWorkbenchFactory: ButtonWorkbenchFactory,
         buttonMultiplierFactory: ButtonMultiplierFactory,

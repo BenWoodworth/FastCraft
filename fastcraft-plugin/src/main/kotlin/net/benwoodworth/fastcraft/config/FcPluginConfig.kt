@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.core.config
+package net.benwoodworth.fastcraft.config
 
 import net.benwoodworth.fastcraft.platform.config.FcConfig
 
@@ -7,7 +7,7 @@ import net.benwoodworth.fastcraft.platform.config.FcConfig
  */
 class FcPluginConfig(
         override var config: FcConfig
-) : ConfigWrapper {
+) : net.benwoodworth.fastcraft.config.ConfigWrapper {
 
     /**
      * The localization FastCraft will use.

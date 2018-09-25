@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.core.gui.crafting
+package net.benwoodworth.fastcraft.gui.crafting
 
 import net.benwoodworth.fastcraft.platform.gui.mvp.MvpModel
 import javax.inject.Inject

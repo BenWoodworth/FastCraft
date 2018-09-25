@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.core.config
+package net.benwoodworth.fastcraft.config
 
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.config.FcConfig
@@ -8,7 +8,7 @@ import net.benwoodworth.fastcraft.platform.config.FcConfig
  */
 class FcDataConfig(
         override var config: FcConfig
-) : ConfigWrapper {
+) : net.benwoodworth.fastcraft.config.ConfigWrapper {
 
     /**
      * The config revision, which increments whenever changes are made.

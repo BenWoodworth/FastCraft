@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.core.config
+package net.benwoodworth.fastcraft.config
 
 import net.benwoodworth.fastcraft.platform.config.FcConfigManager
 import net.benwoodworth.fastcraft.platform.server.FcPluginRegistry
@@ -18,13 +18,13 @@ class FcConfigLoader @Inject constructor(
     /**
      * The FastCraft plugin config.
      */
-    lateinit var fcPluginConfig: FcPluginConfig
+    lateinit var fcPluginConfig: net.benwoodworth.fastcraft.config.FcPluginConfig
         private set
 
     /**
      * The FastCraft data config.
      */
-    lateinit var fcDataConfig: FcDataConfig
+    lateinit var fcDataConfig: net.benwoodworth.fastcraft.config.FcDataConfig
         private set
 
     /**
@@ -55,8 +55,8 @@ class FcConfigLoader @Inject constructor(
      * Load the configs.
      */
     fun load() {
-        fcPluginConfig = FcPluginConfig(configManager.loadConfig(fcPluginConfigFile))
-        fcDataConfig = FcDataConfig(configManager.loadConfig(fcPluginConfigFile))
+        fcPluginConfig = net.benwoodworth.fastcraft.config.FcPluginConfig(configManager.loadConfig(fcPluginConfigFile))
+        fcDataConfig = net.benwoodworth.fastcraft.config.FcDataConfig(configManager.loadConfig(fcPluginConfigFile))
 
         update()
         save()

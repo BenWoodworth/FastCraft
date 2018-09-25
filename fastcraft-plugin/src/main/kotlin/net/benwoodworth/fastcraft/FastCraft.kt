@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.core
+package net.benwoodworth.fastcraft
 
 import net.benwoodworth.fastcraft.core.gui.crafting.CraftingGuiPresenterFactory
 import net.benwoodworth.fastcraft.platform.event.FcListener

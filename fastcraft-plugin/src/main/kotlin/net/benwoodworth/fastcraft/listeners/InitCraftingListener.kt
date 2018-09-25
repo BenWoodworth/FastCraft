@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.core.listeners
+package net.benwoodworth.fastcraft.listeners
 
 /**
  * Listens for events that open crafting tables, so

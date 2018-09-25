@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.core.lang
+package net.benwoodworth.fastcraft.lang
 
 val globalPlaceholders = mapOf(
         "l" to "<",

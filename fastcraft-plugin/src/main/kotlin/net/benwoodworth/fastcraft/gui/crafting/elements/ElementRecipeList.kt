@@ -1,8 +1,8 @@
-package net.benwoodworth.fastcraft.core.gui.crafting.elements
+package net.benwoodworth.fastcraft.gui.crafting.elements
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.core.lang.FastCraftLang
+import net.benwoodworth.fastcraft.lang.FastCraftLang
 import net.benwoodworth.fastcraft.platform.event.FcListener
 import net.benwoodworth.fastcraft.platform.gui.GuiLocation
 import net.benwoodworth.fastcraft.platform.gui.GuiRegion
@@ -21,7 +21,7 @@ class ElementRecipeList(
         region: GuiRegion.Rectangle,
 
         @Provided private val itemBuilder: Provider<FcItemBuilder>,
-        @Provided private val lang: FastCraftLang,
+        @Provided private val lang: net.benwoodworth.fastcraft.lang.FastCraftLang,
         @Provided private val textBuilder: Provider<FcText.Builder>
 ) : GuiElementAbstract<GuiRegion.Rectangle>(region) {
 
@@ -37,7 +37,7 @@ class ElementRecipeList(
 
     private var resultDisplayIndex by GuiLayoutChanger(0)
 
-    val recipeClickListener = FcListener<RecipeClickEvent>()
+    val recipeClickListener = FcListener<net.benwoodworth.fastcraft.gui.crafting.elements.ElementRecipeList.RecipeClickEvent>()
 
     fun showNextResult() {
         resultDisplayIndex++
@@ -49,7 +49,7 @@ class ElementRecipeList(
 
     override fun click(event: GuiEventClick) {
         val recipe = getRecipe(event.location) ?: return
-        recipeClickListener.notifyHandlers(RecipeClickEvent(event, recipe))
+        recipeClickListener.notifyHandlers(net.benwoodworth.fastcraft.gui.crafting.elements.ElementRecipeList.RecipeClickEvent(event, recipe))
     }
 
     override fun getItem(location: GuiLocation): FcItem? {
