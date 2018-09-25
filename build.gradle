@@ -18,3 +18,8 @@ ext {
 allprojects {
     apply plugin: "idea"
 }
+
+wrapper {
+    gradleVersion = version_gradle
+    distributionType = Wrapper.DistributionType.ALL
+}
