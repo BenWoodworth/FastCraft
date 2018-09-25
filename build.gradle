@@ -10,11 +10,11 @@ ext {
     version_autofactory = "0.1-beta1"
 }
 
+allprojects {
+    apply plugin: "idea"
+}
+
 task wrapper(type: Wrapper) {
     gradleVersion = version_gradle
     distributionType = Wrapper.DistributionType.ALL
-}
-
-allprojects {
-    apply plugin: "idea"
 }

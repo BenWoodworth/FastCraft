@@ -4,7 +4,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin")
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin"
     }
 }
 
@@ -20,11 +20,12 @@ allprojects {
     }
 
     dependencies {
-        compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version_kotlin")
+        compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version_kotlin"
 
-        compile("javax.annotation:jsr250-api:$version_jsr250")
-        compile("javax.inject:javax.inject:$version_javax_inject")
-        compile("com.google.dagger:dagger:$version_dagger")
+        compile "javax.annotation:jsr250-api:$version_jsr250"
+        compile "javax.inject:javax.inject:$version_javax_inject"
+        compile "com.google.dagger:dagger:$version_dagger"
+        compile "com.google.auto.factory:auto-factory:$version_autofactory"
     }
 
     sourceCompatibility = version_java
@@ -33,4 +34,8 @@ allprojects {
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
         kotlinOptions.jvmTarget = version_java
     }
+}
+
+dependencies {
+    compile project(":fastcraft-plugin:platform")
 }
