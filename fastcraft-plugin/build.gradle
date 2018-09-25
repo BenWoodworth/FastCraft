@@ -1,6 +1,9 @@
 buildscript {
     repositories {
         mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://dl.bintray.com/kotlin/kotlin-eap" }
+        jcenter()
     }
 
     dependencies {
@@ -15,10 +18,11 @@ allprojects {
 
     repositories {
         mavenCentral()
-        maven { setUrl("https://plugins.gradle.org/m2/") }
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://dl.bintray.com/kotlin/kotlin-eap" }
         jcenter()
     }
-
+    
     dependencies {
         compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version_kotlin"
 
@@ -27,7 +31,7 @@ allprojects {
         compile "com.google.dagger:dagger:$version_dagger"
         compile "com.google.auto.factory:auto-factory:$version_autofactory"
     }
-
+    
     sourceCompatibility = version_java
     targetCompatibility = version_java
 
@@ -44,5 +48,5 @@ allprojects {
 }
 
 dependencies {
-    compile project(":fastcraft-plugin:platform")
+    implementation project("platform")
 }
