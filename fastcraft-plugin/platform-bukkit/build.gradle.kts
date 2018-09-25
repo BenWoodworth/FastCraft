@@ -1,6 +1,6 @@
 plugins {
     idea
-    kotlin("jvm") version "1.2.61"
+//    kotlin("jvm") version "1.2.61"
 }
 
 repositories {
@@ -8,5 +8,5 @@ repositories {
 }
 
 dependencies {
-    compile(kotlin("stdlib-jdk8"))
+//    compile(kotlin("stdlib-jdk8"))
 }
