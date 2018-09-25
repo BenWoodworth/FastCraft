@@ -3,6 +3,7 @@ rootProject.name = "FastCraft"
 include(
         ":fastcraft-assets",
         ":fastcraft-plugin",
+        ":fastcraft-plugin:api",
         ":fastcraft-plugin:platform",
         ":fastcraft-plugin:platform:bukkit",
         ":fastcraft-plugin:platform:bukkit:bukkit-1.7.2-R0.3",
