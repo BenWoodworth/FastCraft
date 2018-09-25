@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform
+package net.benwoodworth.fastcraft.core
 
 import net.benwoodworth.fastcraft.core.FastCraft
 
