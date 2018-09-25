@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.platform.bukkit
 
-import net.benwoodworth.fastcraft.core.FastCraft
-import net.benwoodworth.fastcraft.core.FastCraftImplementation
+import net.benwoodworth.fastcraft.FastCraft
+import net.benwoodworth.fastcraft.FastCraftImplementation
 import org.bukkit.plugin.java.JavaPlugin
 import org.bstats.bukkit.Metrics as BukkitBStatsMetrics
 

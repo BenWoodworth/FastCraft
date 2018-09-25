@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.gui.crafting
 
-import net.benwoodworth.fastcraft.core.gui.crafting.elements.*
+import net.benwoodworth.fastcraft.gui.crafting.elements.*
 import net.benwoodworth.fastcraft.lang.FastCraftLang
 import net.benwoodworth.fastcraft.platform.gui.GuiFactory
 import net.benwoodworth.fastcraft.platform.gui.GuiLocation

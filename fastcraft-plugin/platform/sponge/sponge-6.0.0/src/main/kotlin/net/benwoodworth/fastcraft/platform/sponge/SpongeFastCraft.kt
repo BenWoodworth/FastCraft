@@ -1,8 +1,8 @@
 package net.benwoodworth.fastcraft.platform.sponge
 
 import com.google.inject.Inject
-import net.benwoodworth.fastcraft.core.FastCraft
-import net.benwoodworth.fastcraft.core.FastCraftImplementation
+import net.benwoodworth.fastcraft.FastCraft
+import net.benwoodworth.fastcraft.FastCraftImplementation
 import org.spongepowered.api.event.Listener
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent
 import org.spongepowered.api.plugin.Plugin
