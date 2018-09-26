@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.platform.api.recipe
 /**
  * Provides recipe from the server.
  */
-interface FcRecipeFactory {
+interface FcRecipeProvider {
 
     /**
      * Get all the server's crafting recipes.
