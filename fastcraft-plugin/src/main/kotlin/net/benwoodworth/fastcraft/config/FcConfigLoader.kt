@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.config
 
-import net.benwoodworth.fastcraft.platform.api.server.FcPluginRegistry
+import net.benwoodworth.fastcraft.platform.api.server.FcPluginProvider
 import java.nio.file.Path
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -10,7 +10,7 @@ import javax.inject.Singleton
  */
 @Singleton
 class FcConfigLoader @Inject constructor(
-        pluginProvider: FcPluginRegistry,
+        pluginProvider: FcPluginProvider,
         private val configManager: FcConfigManager
 ) {
 
