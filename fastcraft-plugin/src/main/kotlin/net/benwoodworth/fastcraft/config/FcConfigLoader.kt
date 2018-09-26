@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft.config
 
-import net.benwoodworth.fastcraft.platform.api.config.FcConfigManager
 import net.benwoodworth.fastcraft.platform.api.server.FcPluginRegistry
 import java.nio.file.Path
 import javax.inject.Inject
