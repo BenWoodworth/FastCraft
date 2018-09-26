@@ -7,7 +7,7 @@ import net.benwoodworth.fastcraft.platform.api.gui.layout.GuiLayoutRoot
 /**
  * A user interface for in-game players.
  */
-abstract class GuiAbstract : Gui {
+abstract class FcGuiBase : FcGui {
 
     override val closeListener = FcListener<GuiEventClose>()
 
@@ -20,15 +20,15 @@ abstract class GuiAbstract : Gui {
     }
 
     /**
-     * Update the Gui's layout.
+     * Update the FcGui's layout.
      */
-    protected abstract fun updateLayout(region: GuiRegion)
+    protected abstract fun updateLayout(region: FcGuiRegion)
 
     /**
      * The position within a GUI's layout.
      */
     protected class LayoutLocation(
             val layout: GuiLayoutRoot,
-            val location: GuiLocation
+            val position: FcGuiPosition
     )
 }

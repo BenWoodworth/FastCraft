@@ -5,7 +5,7 @@ import java.util.*
 /**
  * Provides player for the plugin.
  */
-interface FcPlayerProvider {
+interface FcPlayerFactory {
 
     /**
      * Get a list of online player.

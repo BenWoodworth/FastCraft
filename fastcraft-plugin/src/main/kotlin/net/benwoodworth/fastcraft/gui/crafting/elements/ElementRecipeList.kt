@@ -3,8 +3,8 @@ package net.benwoodworth.fastcraft.gui.crafting.elements
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.platform.api.event.FcListener
-import net.benwoodworth.fastcraft.platform.api.gui.GuiLocation
-import net.benwoodworth.fastcraft.platform.api.gui.GuiRegion
+import net.benwoodworth.fastcraft.platform.api.gui.FcGuiPosition
+import net.benwoodworth.fastcraft.platform.api.gui.FcGuiRegion
 import net.benwoodworth.fastcraft.platform.api.gui.element.GuiElementAbstract
 import net.benwoodworth.fastcraft.platform.api.gui.element.GuiLayoutChanger
 import net.benwoodworth.fastcraft.platform.api.gui.event.GuiEventClick
@@ -17,12 +17,12 @@ import kotlin.math.ceil
 
 @AutoFactory
 class ElementRecipeList(
-        region: GuiRegion.Rectangle,
+        region: FcGuiRegion.Rectangle,
 
         @Provided private val itemBuilder: Provider<FcItemBuilder>,
         @Provided private val lang: net.benwoodworth.fastcraft.lang.FastCraftLang,
         @Provided private val textBuilder: Provider<FcText.Builder>
-) : GuiElementAbstract<GuiRegion.Rectangle>(region) {
+) : GuiElementAbstract<FcGuiRegion.Rectangle>(region) {
 
     var page by GuiLayoutChanger(0) {
         it.coerceIn(0 until pageCount)
@@ -42,17 +42,17 @@ class ElementRecipeList(
         resultDisplayIndex++
     }
 
-    private fun getRecipe(location: GuiLocation): FcCraftingRecipe.Prepared? {
-        return recipes.getOrNull((page * pageSize) + location.x + (location.y * region.width))
+    private fun getRecipe(position: FcGuiPosition): FcCraftingRecipe.Prepared? {
+        return recipes.getOrNull((page * pageSize) + position.x + (position.y * region.width))
     }
 
     override fun click(event: GuiEventClick) {
-        val recipe = getRecipe(event.location) ?: return
+        val recipe = getRecipe(event.position) ?: return
         recipeClickListener.notifyHandlers(net.benwoodworth.fastcraft.gui.crafting.elements.ElementRecipeList.RecipeClickEvent(event, recipe))
     }
 
-    override fun getItem(location: GuiLocation): FcItem? {
-        val recipe = getRecipe(location) ?: return null
+    override fun getItem(position: FcGuiPosition): FcItem? {
+        val recipe = getRecipe(position) ?: return null
         val resultIndex = resultDisplayIndex % recipe.results.size
         val resultDisplay = recipe.results[resultIndex]
 

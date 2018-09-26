@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.platform.api.gui.layout
 
-import net.benwoodworth.fastcraft.platform.api.gui.GuiLocation
-import net.benwoodworth.fastcraft.platform.api.gui.GuiRegion
+import net.benwoodworth.fastcraft.platform.api.gui.FcGuiPosition
+import net.benwoodworth.fastcraft.platform.api.gui.FcGuiRegion
 import net.benwoodworth.fastcraft.platform.api.gui.element.GuiElement
 import net.benwoodworth.fastcraft.platform.api.gui.element.GuiElementAbstract
 import net.benwoodworth.fastcraft.platform.api.gui.event.GuiEventClick
@@ -12,7 +12,7 @@ import java.util.*
 /**
  * Abstract implementation of [GuiLayout].
  */
-abstract class GuiLayoutAbstract<TRegion : GuiRegion.Positioned>(
+abstract class GuiLayoutAbstract<TRegion : FcGuiRegion.Positioned>(
         region: TRegion
 ) : GuiLayout, GuiElementAbstract<TRegion>(region) {
 
@@ -36,27 +36,27 @@ abstract class GuiLayoutAbstract<TRegion : GuiRegion.Positioned>(
         element.changeListener -= changeListener::notifyHandlers
     }
 
-    override fun getElement(location: GuiLocation): GuiElement? {
-        return elements.firstOrNull { location in it.region }
+    override fun getElement(position: FcGuiPosition): GuiElement? {
+        return elements.firstOrNull { position in it.region }
     }
 
     override fun click(event: GuiEventClick) {
-        getElement(event.location)?.let {
+        getElement(event.position)?.let {
             it.click(event.copy(
-                    location = event.location.offset(-it.region.location)
+                    position = event.position.offset(-it.region.position)
             ))
         }
     }
 
-    override fun getItem(location: GuiLocation): FcItem? {
-        return getElement(location)?.let {
-            it.getItem(location.offset(it.region.location))
+    override fun getItem(position: FcGuiPosition): FcItem? {
+        return getElement(position)?.let {
+            it.getItem(position.offset(it.region.position))
         }
     }
 
     private fun onLayoutChange(event: GuiEventLayoutChange) {
         changeListener.notifyHandlers(event.copy(
-                region = event.region.offset(region.location)
+                region = event.region.offset(region.position)
         ))
     }
 }

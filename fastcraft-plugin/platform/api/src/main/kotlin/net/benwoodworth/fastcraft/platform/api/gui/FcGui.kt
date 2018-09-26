@@ -8,12 +8,7 @@ import net.benwoodworth.fastcraft.platform.api.player.FcPlayer
 /**
  * A user interface for in-game players.
  */
-interface Gui {
-
-    /**
-     * The primary layout in this [Gui].
-     */
-    val layout: GuiLayoutRoot
+interface FcGui {
 
     /**
      * A listener for the inventory closing.
@@ -21,7 +16,7 @@ interface Gui {
     val closeListener: FcListener<GuiEventClose>
 
     /**
-     * Open this [Gui] for the given players.
+     * Open this [FcGui] for the given players.
      *
      * @param players the players to open the inventory for.
      */
@@ -33,19 +28,4 @@ interface Gui {
      * @return the players viewing the inventory.
      */
     fun getViewers(): List<FcPlayer>
-
-    /**
-     * A chest [Gui], with a 9xN layout.
-     */
-    interface Chest : Gui
-
-    /**
-     * A dispenser [Gui], with a 3x3 layout.
-     */
-    interface Dispenser : Gui
-
-    /**
-     * A hopper [Gui], with a 5x1 layout.
-     */
-    interface Hopper : Gui
 }

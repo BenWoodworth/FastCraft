@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.platform.api.gui.layout
 
-import net.benwoodworth.fastcraft.platform.api.gui.GuiLocation
+import net.benwoodworth.fastcraft.platform.api.gui.FcGuiPosition
 import net.benwoodworth.fastcraft.platform.api.gui.element.GuiElement
 
 /**
@@ -30,8 +30,8 @@ interface GuiLayout : GuiElement {
     /**
      * Get the layout element at the specified position in the layout.
      *
-     * @param location the location of the button.
+     * @param position the position of the button.
      * @return the element at the specified position, or `null` if there is none.
      */
-    fun getElement(location: GuiLocation): GuiElement?
+    fun getElement(position: FcGuiPosition): GuiElement?
 }

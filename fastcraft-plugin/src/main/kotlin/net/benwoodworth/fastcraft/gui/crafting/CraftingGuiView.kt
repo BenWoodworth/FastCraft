@@ -1,13 +1,12 @@
 package net.benwoodworth.fastcraft.gui.crafting
 
-import net.benwoodworth.fastcraft.platform.api.gui.GuiFactory
-import net.benwoodworth.fastcraft.platform.api.gui.GuiLocation
-import net.benwoodworth.fastcraft.platform.api.gui.GuiRegion
+import net.benwoodworth.fastcraft.platform.api.gui.FcGuiPosition
+import net.benwoodworth.fastcraft.platform.api.gui.FcGuiRegion
 import net.benwoodworth.fastcraft.platform.api.gui.mvp.MvpView
 import javax.inject.Inject
 
 class CraftingGuiView @Inject constructor(
-        guiFactory: GuiFactory,
+        guiFactory: FcGuiFactory,
         fastCraftLang: net.benwoodworth.fastcraft.lang.FastCraftLang,
 
         buttonWorkbenchFactory: ButtonWorkbenchFactory,
@@ -18,12 +17,12 @@ class CraftingGuiView @Inject constructor(
         elementRecipeListFactory: ElementRecipeListFactory
 ) : MvpView {
 
-    val elementRecipeList = elementRecipeListFactory.create(GuiRegion.Rectangle(0, 0, 8, 6))
+    val elementRecipeList = elementRecipeListFactory.create(FcGuiRegion.Rectangle(0, 0, 8, 6))
 
-    val buttonWorkbench = buttonWorkbenchFactory.create(GuiLocation(8, 0))
-    val buttonMultiplier = buttonMultiplierFactory.create(GuiLocation(8, 2))
-    val buttonRefresh = buttonRefreshFactory.create(GuiLocation(8, 3))
-    val buttonPage = buttonPageFactory.create(GuiLocation(8, 5))
+    val buttonWorkbench = buttonWorkbenchFactory.create(FcGuiPosition(8, 0))
+    val buttonMultiplier = buttonMultiplierFactory.create(FcGuiPosition(8, 2))
+    val buttonRefresh = buttonRefreshFactory.create(FcGuiPosition(8, 3))
+    val buttonPage = buttonPageFactory.create(FcGuiPosition(8, 5))
 
     val gui = guiFactory.withSize(
             9,

@@ -1,5 +1,5 @@
 package net.benwoodworth.fastcraft.platform.bukkit.recipe
 
-import net.benwoodworth.fastcraft.platform.api.recipe.FcRecipeProvider
+import net.benwoodworth.fastcraft.platform.api.recipe.FcRecipeFactory
 
-interface BukkitFcRecipeProvider : FcRecipeProvider
+interface BukkitFcRecipeProvider : FcRecipeFactory

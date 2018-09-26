@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.platform.api.gui.layout
 
-import net.benwoodworth.fastcraft.platform.api.gui.GuiRegion
+import net.benwoodworth.fastcraft.platform.api.gui.FcGuiRegion
 
 /**
  * The top-level layout within a GUI.
@@ -8,6 +8,6 @@ import net.benwoodworth.fastcraft.platform.api.gui.GuiRegion
 class GuiLayoutRoot(
         width: Int,
         height: Int
-) : GuiLayoutAbstract<GuiRegion.Rectangle>(
-        GuiRegion.Rectangle(0, 0, width, height)
+) : GuiLayoutAbstract<FcGuiRegion.Rectangle>(
+        FcGuiRegion.Rectangle(0, 0, width, height)
 )

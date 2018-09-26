@@ -1,12 +1,12 @@
 package net.benwoodworth.fastcraft.platform.bukkit.gui
 
-import net.benwoodworth.fastcraft.platform.api.gui.Gui
+import net.benwoodworth.fastcraft.platform.api.gui.FcGui
 
-interface BukkitGui : Gui {
+interface BukkitGui : FcGui {
 
-    interface Chest : Gui.Chest
+    interface Chest : FcGui.Chest
 
-    interface Dispenser : Gui.Chest
+    interface Dispenser : FcGui.Chest
 
-    interface Hopper : Gui.Chest
+    interface Hopper : FcGui.Chest
 }

@@ -1,10 +1,10 @@
 package net.benwoodworth.fastcraft.platform.api.gui.element
 
 import net.benwoodworth.fastcraft.platform.api.event.FcListener
-import net.benwoodworth.fastcraft.platform.api.gui.GuiRegion
+import net.benwoodworth.fastcraft.platform.api.gui.FcGuiRegion
 import net.benwoodworth.fastcraft.platform.api.gui.event.GuiEventLayoutChange
 
-abstract class GuiElementAbstract<TRegion : GuiRegion.Positioned>(
+abstract class GuiElementAbstract<TRegion : FcGuiRegion.Positioned>(
         region: TRegion
 ) : GuiElement {
 

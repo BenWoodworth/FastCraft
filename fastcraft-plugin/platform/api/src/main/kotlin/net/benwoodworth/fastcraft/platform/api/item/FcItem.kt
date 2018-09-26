@@ -1,12 +1,11 @@
 package net.benwoodworth.fastcraft.platform.api.item
 
 import net.benwoodworth.fastcraft.platform.api.text.FcText
-import net.benwoodworth.fastcraft.util.TransMutable
 
 /**
  * An immutable Minecraft item.
  */
-interface FcItem : TransMutable<FcItem, FcItem.Mutable> {
+interface FcItem {
 
     /**
      * The item type.
@@ -50,14 +49,4 @@ interface FcItem : TransMutable<FcItem, FcItem.Mutable> {
      * @return `true` iff the items are similar.
      */
     fun isSimilar(item: FcItem): Boolean
-
-    /**
-     * A mutable [FcItem].
-     */
-    interface Mutable : FcItem {
-        override var amount: Int
-        override var displayName: FcText?
-        override var lore: List<FcText?>?
-        override var durability: Int
-    }
 }
