@@ -5,9 +5,6 @@ import net.benwoodworth.fastcraft.platform.api.config.FcConfigSection
 import net.benwoodworth.fastcraft.util.Adapter
 import org.bukkit.configuration.file.YamlConfiguration
 
-/**
- * Bukkit implementation of [FcConfig].
- */
 class BukkitFcConfig(override val base: YamlConfiguration) :
         FcConfigSection by BukkitFcConfigSection(base),
         Adapter<YamlConfiguration>(),

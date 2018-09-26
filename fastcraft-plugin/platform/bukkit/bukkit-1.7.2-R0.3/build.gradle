@@ -1,0 +1,3 @@
+dependencies {
+    api project(":fastcraft-plugin:platform:bukkit:api")
+}

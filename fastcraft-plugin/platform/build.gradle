@@ -1,3 +1,6 @@
 dependencies {
     api project("api")
+    
+    implementation project("bukkit")
+//    implementation project("sponge")
 }
