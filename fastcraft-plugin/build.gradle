@@ -48,6 +48,5 @@ allprojects {
 }
 
 dependencies {
-    compile project(":fastcraft-plugin:platform")
-    compile project(":fastcraft-plugin:platform:api")
+    api project(":fastcraft-plugin:platform:api")
 }
