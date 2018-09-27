@@ -1,25 +1,69 @@
-ext {
-    plugin_id = "fastcraft"
-    plugin_name = "FastCraft"
-    plugin_author = "Kepler"
-    plugin_description = "Redefines crafting in Minecraft"
-    plugin_version = "3.x"
-    plugin_website = "https://github.com/BenWoodworth/FastCraft"
-
-    version_gradle = "4.10"
-    version_java = "1.8"
-    version_kotlin = "1.3.0-rc-57"
-    version_dagger = "2.17"
-    version_jsr250 = "1.0"
-    version_javax_inject = "1"
-    version_autofactory = "0.1-beta1"
-}
-
-allprojects {
-    apply plugin: "idea"
-}
+apply plugin: "idea"
 
 wrapper {
     gradleVersion = version_gradle
     distributionType = Wrapper.DistributionType.ALL
+}
+
+buildscript {
+    ext {
+        plugin_id = "fastcraft"
+        plugin_name = "FastCraft"
+        plugin_author = "Kepler"
+        plugin_description = "Redefines crafting in Minecraft"
+        plugin_version = "3.x"
+        plugin_website = "https://github.com/BenWoodworth/FastCraft"
+
+        version_gradle = "4.10"
+        version_java = "1.8"
+        version_kotlin = "1.3.0-rc-57"
+        version_dagger = "2.17"
+        version_jsr250 = "1.0"
+        version_javax_inject = "1"
+        version_autofactory = "0.1-beta1"
+    }
+    
+    repositories {
+        maven { url "https://dl.bintray.com/kotlin/kotlin-eap" }
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin"
+    }
+}
+
+subprojects {
+    apply plugin: "idea"
+    apply plugin: "java"
+    apply plugin: "kotlin"
+    apply plugin: "kotlin-kapt"
+
+    repositories {
+        maven { url "https://dl.bintray.com/kotlin/kotlin-eap" }
+        jcenter()
+    }
+
+    dependencies {
+        compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version_kotlin"
+
+        compile "javax.annotation:jsr250-api:$version_jsr250"
+        compile "javax.inject:javax.inject:$version_javax_inject"
+        compile "com.google.dagger:dagger:$version_dagger"
+        compile "com.google.auto.factory:auto-factory:$version_autofactory"
+    }
+
+    sourceCompatibility = version_java
+    targetCompatibility = version_java
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions.jvmTarget = version_java
+    }
+
+    sourceSets {
+        main.java.srcDirs += "src/main/kotlin"
+        main.java.srcDirs += "$buildDir/generated/source/kapt/main"
+
+        test.java.srcDirs += "src/test/kotlin"
+    }
 }
