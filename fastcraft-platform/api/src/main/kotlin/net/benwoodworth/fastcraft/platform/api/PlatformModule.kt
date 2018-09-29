@@ -5,9 +5,9 @@ import net.benwoodworth.fastcraft.platform.api.gui.FcGuiBuilder
 import net.benwoodworth.fastcraft.platform.api.item.FcItemBuilder
 import net.benwoodworth.fastcraft.platform.api.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.api.player.FcPlayerProvider
-import net.benwoodworth.fastcraft.platform.api.recipe.FcRecipeProvider
+import net.benwoodworth.fastcraft.platform.api.recipe.FcRecipeService
 import net.benwoodworth.fastcraft.platform.api.server.FcLogger
-import net.benwoodworth.fastcraft.platform.api.text.FcTextBuilder
+import net.benwoodworth.fastcraft.platform.api.server.FcTaskBuilder
 import java.nio.file.Path
 
 interface PlatformModule {
@@ -24,13 +24,11 @@ interface PlatformModule {
 
     fun createItemBuilder(): FcItemBuilder
 
-    fun getItemTypeFactory(): FcItemTypes
+    fun getItemTypes(): FcItemTypes
 
     fun getPlayerProvider(): FcPlayerProvider
 
-    fun getRecipeProvider(): FcRecipeProvider
+    fun getRecipeService(): FcRecipeService
 
-    fun getPluginProvider(): FcPlayerProvider
-
-    fun createTaskBuilder(): FcTextBuilder
+    fun createTaskBuilder(): FcTaskBuilder
 }

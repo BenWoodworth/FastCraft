@@ -1,20 +1,20 @@
 package net.benwoodworth.fastcraft.platform.bukkit.recipe
 
 import net.benwoodworth.fastcraft.platform.api.recipe.FcCraftingRecipe
-import net.benwoodworth.fastcraft.platform.api.recipe.FcRecipeProvider
+import net.benwoodworth.fastcraft.platform.api.recipe.FcRecipeService
 import org.bukkit.Server
 import org.bukkit.inventory.ShapedRecipe
 import org.bukkit.inventory.ShapelessRecipe
 import javax.inject.Inject
 
 /**
- * Bukkit implementation of [FcRecipeProvider].
+ * Bukkit implementation of [FcRecipeService].
  */
-class BukkitFcRecipeProvider @Inject constructor(
+class BukkitFcRecipeService @Inject constructor(
     private val server: Server,
     private val shapedFactory: BukkitFcCraftingRecipe_ShapedFactory,
     private val shapelessFactory: BukkitFcCraftingRecipe_ShapelessFactory
-) : FcRecipeProvider {
+) : FcRecipeService {
 
     override fun getCraftingRecipes(): List<FcCraftingRecipe> {
         val serverRecipes = server.recipeIterator()

@@ -10,7 +10,7 @@ import net.benwoodworth.fastcraft.platform.api.gui.GuiFactory
 import net.benwoodworth.fastcraft.platform.api.item.FcItemBuilder
 import net.benwoodworth.fastcraft.platform.api.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.api.player.FcPlayerProvider
-import net.benwoodworth.fastcraft.platform.api.recipe.FcRecipeProvider
+import net.benwoodworth.fastcraft.platform.api.recipe.FcRecipeService
 import net.benwoodworth.fastcraft.platform.api.server.FcPluginRegistry
 import net.benwoodworth.fastcraft.platform.api.server.FcTaskBuilder
 import net.benwoodworth.fastcraft.platform.api.text.FcText
@@ -23,7 +23,7 @@ import net.benwoodworth.fastcraft.platform.bukkit.gui.BukkitGuiFactory
 import net.benwoodworth.fastcraft.platform.bukkit.item.BukkitFcItemBuilder
 import net.benwoodworth.fastcraft.platform.bukkit.item.BukkitFcItemTypes
 import net.benwoodworth.fastcraft.platform.bukkit.player.BukkitFcPlayerProvider
-import net.benwoodworth.fastcraft.platform.bukkit.recipe.BukkitFcRecipeProvider
+import net.benwoodworth.fastcraft.platform.bukkit.recipe.BukkitFcRecipeService
 import net.benwoodworth.fastcraft.platform.bukkit.server.BukkitFcPluginRegistry
 import net.benwoodworth.fastcraft.platform.bukkit.server.BukkitFcTaskBuilder
 import net.benwoodworth.fastcraft.platform.bukkit.text.BukkitFcText
@@ -113,7 +113,7 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun recipeProvider(dep: BukkitFcRecipeProvider): FcRecipeProvider = dep
+    fun recipeProvider(dep: BukkitFcRecipeService): FcRecipeService = dep
 
     @Provides
     @Singleton
