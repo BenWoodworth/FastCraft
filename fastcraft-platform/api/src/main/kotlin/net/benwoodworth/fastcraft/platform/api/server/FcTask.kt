@@ -5,8 +5,15 @@ package net.benwoodworth.fastcraft.platform.api.server
  */
 interface FcTask {
 
+    val isRunning: Boolean
+
     /**
-     * Cancel the task.
+     * Start the task, if it is not already running.
      */
-    fun cancel()
+    fun start()
+
+    /**
+     * Stop the task if it's running.
+     */
+    fun stop()
 }

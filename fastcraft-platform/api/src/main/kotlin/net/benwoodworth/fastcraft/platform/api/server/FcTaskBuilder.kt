@@ -1,23 +1,19 @@
 package net.benwoodworth.fastcraft.platform.api.server
 
 /**
- * Builds a task and executes it.
+ * Builds a [FcTask] and executes it.
  */
 interface FcTaskBuilder {
 
     /**
-     * Execute the new task.
-     *
-     * @return the new task.
+     * Returns a new [FcTask].
      */
-    fun execute(executable: (task: FcTask) -> Unit): FcTask
+    fun build()
 
     /**
-     * Execute the new task.
-     *
-     * @return the new task.
+     * Set the task's action.
      */
-    fun execute(executable: () -> Unit): FcTask
+    fun action(action: (task: FcTask) -> Unit): FcTaskBuilder
 
     /**
      * Make the task execute asynchronously.
