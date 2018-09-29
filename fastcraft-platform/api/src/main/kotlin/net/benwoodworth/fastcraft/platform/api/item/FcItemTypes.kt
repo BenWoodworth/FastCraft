@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.platform.api.item
 
 /**
- * A factory for creating item types.
+ * Minecraft item types.
  */
 interface FcItemTypes {
 
