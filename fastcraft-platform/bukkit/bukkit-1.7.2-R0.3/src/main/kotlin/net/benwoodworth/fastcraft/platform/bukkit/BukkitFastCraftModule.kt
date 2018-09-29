@@ -6,7 +6,6 @@ import net.benwoodworth.fastcraft.platform.api.config.FcConfigManager
 import net.benwoodworth.fastcraft.platform.api.event.FcEventPlayerJoin
 import net.benwoodworth.fastcraft.platform.api.event.FcEventPluginDisable
 import net.benwoodworth.fastcraft.platform.api.event.FcEventPluginEnable
-import net.benwoodworth.fastcraft.platform.api.event.FcListener
 import net.benwoodworth.fastcraft.platform.api.gui.GuiFactory
 import net.benwoodworth.fastcraft.platform.api.item.FcItemBuilder
 import net.benwoodworth.fastcraft.platform.api.item.FcItemTypes

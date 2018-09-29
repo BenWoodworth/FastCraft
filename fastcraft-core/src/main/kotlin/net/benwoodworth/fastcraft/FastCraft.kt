@@ -1,7 +1,6 @@
 package net.benwoodworth.fastcraft
 
 import net.benwoodworth.fastcraft.gui.crafting.CraftingGuiPresenterFactory
-import net.benwoodworth.fastcraft.platform.api.event.FcListener
 import net.benwoodworth.fastcraft.platform.api.event.FcEventPlayerJoin
 import net.benwoodworth.fastcraft.platform.api.event.FcEventPluginDisable
 import net.benwoodworth.fastcraft.platform.api.event.FcEventPluginEnable
