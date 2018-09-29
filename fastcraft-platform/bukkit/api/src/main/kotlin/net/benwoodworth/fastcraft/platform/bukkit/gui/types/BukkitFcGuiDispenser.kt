@@ -1,5 +1,5 @@
-package net.benwoodworth.fastcraft.platform.bukkit.gui
+package net.benwoodworth.fastcraft.platform.bukkit.gui.types
 
-import net.benwoodworth.fastcraft.platform.api.gui.FcGuiDispenser
+import net.benwoodworth.fastcraft.platform.api.gui.types.FcGuiDispenser
 
 interface BukkitFcGuiDispenser : FcGuiDispenser
