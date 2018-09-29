@@ -6,7 +6,7 @@ import net.benwoodworth.fastcraft.platform.api.gui.Gui
 import net.benwoodworth.fastcraft.platform.api.gui.GuiAbstract
 import net.benwoodworth.fastcraft.platform.api.gui.GuiLocation
 import net.benwoodworth.fastcraft.platform.api.gui.GuiRegion
-import net.benwoodworth.fastcraft.platform.api.gui.event.GuiEventClick
+import net.benwoodworth.fastcraft.platform.api.gui.GuiEventClick
 import net.benwoodworth.fastcraft.platform.api.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.api.text.FcText
 import net.benwoodworth.fastcraft.platform.bukkit.gui.inventory.BukkitInventoryFactory

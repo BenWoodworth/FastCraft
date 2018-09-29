@@ -2,8 +2,8 @@ package net.benwoodworth.fastcraft.gui.crafting
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.platform.api.gui.event.GuiEventClick
-import net.benwoodworth.fastcraft.platform.api.gui.event.GuiEventClose
+import net.benwoodworth.fastcraft.platform.api.gui.GuiEventClick
+import net.benwoodworth.fastcraft.platform.api.gui.GuiEventClose
 import net.benwoodworth.fastcraft.platform.api.gui.mvp.MvpPresenter
 import net.benwoodworth.fastcraft.platform.api.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.api.text.FcText

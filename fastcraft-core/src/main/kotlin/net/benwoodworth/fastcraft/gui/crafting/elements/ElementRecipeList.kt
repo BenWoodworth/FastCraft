@@ -3,11 +3,9 @@ package net.benwoodworth.fastcraft.gui.crafting.elements
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.platform.api.event.FcListener
-import net.benwoodworth.fastcraft.platform.api.gui.FcGuiPosition
-import net.benwoodworth.fastcraft.platform.api.gui.FcGuiRegion
 import net.benwoodworth.fastcraft.platform.api.gui.element.GuiElementAbstract
 import net.benwoodworth.fastcraft.platform.api.gui.element.GuiLayoutChanger
-import net.benwoodworth.fastcraft.platform.api.gui.event.GuiEventClick
+import net.benwoodworth.fastcraft.platform.api.gui.GuiEventClick
 import net.benwoodworth.fastcraft.platform.api.item.FcItem
 import net.benwoodworth.fastcraft.platform.api.item.FcItemBuilder
 import net.benwoodworth.fastcraft.platform.api.text.FcText
