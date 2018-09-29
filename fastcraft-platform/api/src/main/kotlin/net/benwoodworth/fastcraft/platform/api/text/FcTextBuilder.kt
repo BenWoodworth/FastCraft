@@ -6,16 +6,15 @@ interface FcTextBuilder {
 
     fun translation(key: String): Typed
 
-    //fun buildTranslation(translation: String): Builder
-    //fun buildScore(score: FcTextScore): Builder
-    //fun buildSelector(selector: String): Builder
-    //fun buildKeybind(keybind: String): Builder
+    //fun score(score: FcTextScore): Builder
+    //fun selector(selector: String): Builder
+    //fun keybind(keybind: String): Builder
 
-    interface Typed {
-
-        fun build(): FcText
+    interface Typed : Extra {
 
         fun color(color: FcTextColor): Typed
+
+        fun color(color: FcTextColors.() -> FcTextColor): Typed
 
         fun bold(bold: Boolean = true): Typed
         fun italic(italic: Boolean = true): Typed
@@ -28,6 +27,14 @@ interface FcTextBuilder {
         //fun setHoverAction(action: FcTextAction.Hover): Builder
         //fun addWith(text: FcText?): Builder
 
-        fun addExtra(text: FcText): Typed
+    }
+
+    interface Extra {
+
+        fun build(): FcText
+
+        fun addExtra(text: FcText): Extra
+
+        fun addExtra(text: (textBuilder: FcTextBuilder) -> FcText): Extra
     }
 }

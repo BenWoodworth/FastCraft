@@ -1,11 +1,11 @@
 package net.benwoodworth.fastcraft.platform.bukkit.item
 
-import net.benwoodworth.fastcraft.platform.api.item.FcItemTypeFactory
+import net.benwoodworth.fastcraft.platform.api.item.FcItemTypes
 import org.bukkit.Material
 import javax.inject.Inject
 
-class BukkitFcItemTypeFactory @Inject constructor(
-) : FcItemTypeFactory {
+class BukkitFcItemTypes @Inject constructor(
+) : FcItemTypes {
 
     override fun getIronSword() = BukkitFcItemType(Material.IRON_SWORD)
 

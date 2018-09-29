@@ -9,7 +9,7 @@ import net.benwoodworth.fastcraft.platform.api.event.FcEventPluginEnable
 import net.benwoodworth.fastcraft.platform.api.event.FcListener
 import net.benwoodworth.fastcraft.platform.api.gui.GuiFactory
 import net.benwoodworth.fastcraft.platform.api.item.FcItemBuilder
-import net.benwoodworth.fastcraft.platform.api.item.FcItemTypeFactory
+import net.benwoodworth.fastcraft.platform.api.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.api.player.FcPlayerProvider
 import net.benwoodworth.fastcraft.platform.api.recipe.FcRecipeProvider
 import net.benwoodworth.fastcraft.platform.api.server.FcPluginRegistry
@@ -22,7 +22,7 @@ import net.benwoodworth.fastcraft.platform.bukkit.event.BukkitFcEventPluginDisab
 import net.benwoodworth.fastcraft.platform.bukkit.event.BukkitFcEventPluginEnable
 import net.benwoodworth.fastcraft.platform.bukkit.gui.BukkitGuiFactory
 import net.benwoodworth.fastcraft.platform.bukkit.item.BukkitFcItemBuilder
-import net.benwoodworth.fastcraft.platform.bukkit.item.BukkitFcItemTypeFactory
+import net.benwoodworth.fastcraft.platform.bukkit.item.BukkitFcItemTypes
 import net.benwoodworth.fastcraft.platform.bukkit.player.BukkitFcPlayerProvider
 import net.benwoodworth.fastcraft.platform.bukkit.recipe.BukkitFcRecipeProvider
 import net.benwoodworth.fastcraft.platform.bukkit.server.BukkitFcPluginRegistry
@@ -110,7 +110,7 @@ class BukkitFastCraftModule(
     fun itemBuilder(dep: BukkitFcItemBuilder): FcItemBuilder = dep
 
     @Provides
-    fun itemTypeFactory(dep: BukkitFcItemTypeFactory): FcItemTypeFactory = dep
+    fun itemTypeFactory(dep: BukkitFcItemTypes): FcItemTypes = dep
 
     @Provides
     @Singleton

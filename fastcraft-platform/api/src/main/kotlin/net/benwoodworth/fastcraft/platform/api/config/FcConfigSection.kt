@@ -3,13 +3,10 @@ package net.benwoodworth.fastcraft.platform.api.config
 /**
  * A section of a configuration, providing access to keys/values, and other sub-sections.
  */
-interface FcConfigSection {
+interface FcConfigSection : FcConfigEntry {
 
     /**
-     * See if this [FcConfigSection] has a key.
-     *
-     * @param key the key to check.
-     * @return `true` iff the key exists.
+     * Returns `true` if the [key] exists.
      */
     fun hasKey(key: String): Boolean
 
@@ -30,18 +27,9 @@ interface FcConfigSection {
     operator fun get(key: String) = getSection(key)
 
     /**
-     * Remove the section at the given key.
-     *
-     * @param key the key to remove.
+     * Remove the entry at the [key].
      */
-    fun removeSection(key: String)
-
-    /**
-     * Remove the value at the given key.
-     *
-     * @param key the key to remove.
-     */
-    fun removeValue(key: String)
+    fun remove(key: String)
 
     /**
      * Get a [String] at the given key.

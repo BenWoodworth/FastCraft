@@ -5,7 +5,7 @@ import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.platform.api.gui.FcGuiPosition
 import net.benwoodworth.fastcraft.platform.api.gui.button.GuiButtonAbstract
 import net.benwoodworth.fastcraft.platform.api.item.FcItemBuilder
-import net.benwoodworth.fastcraft.platform.api.item.FcItemTypeFactory
+import net.benwoodworth.fastcraft.platform.api.item.FcItemTypes
 import javax.inject.Provider
 
 @AutoFactory
@@ -14,11 +14,11 @@ class ButtonRefresh(
 
     @Provided private val fastCraftLang: net.benwoodworth.fastcraft.lang.FastCraftLang,
     @Provided private val itemBuilder: Provider<FcItemBuilder>,
-    @Provided private val itemTypeFactory: FcItemTypeFactory
+    @Provided private val itemTypes: FcItemTypes
 ) : GuiButtonAbstract(position) {
 
     override fun getItem(position: FcGuiPosition) = itemBuilder.get()
-        .type(itemTypeFactory.getNetherStar())
+        .type(itemTypes.getNetherStar())
         .displayName(fastCraftLang.guiToolbarWorkbenchTitle())
         .lore(fastCraftLang.guiToolbarWorkbenchDescription())
         .build()

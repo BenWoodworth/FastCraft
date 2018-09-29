@@ -6,31 +6,31 @@ package net.benwoodworth.fastcraft.platform.api.server
 interface FcTaskBuilder {
 
     /**
-     * Build and execute the task.
+     * Execute the new task.
      *
-     * @return the built and executed task.
+     * @return the new task.
      */
-    fun execute(executable: (FcTask) -> Unit): FcTask
+    fun execute(executable: (task: FcTask) -> Unit): FcTask
 
     /**
-     * Whether the task should be executed off the main server thread.
+     * Execute the new task.
      *
-     * @return fluent interface.
+     * @return the new task.
+     */
+    fun execute(executable: () -> Unit): FcTask
+
+    /**
+     * Make the task execute asynchronously.
      */
     fun async(): FcTaskBuilder
 
     /**
-     * The delay until the task is execute for the first time.
-     *
-     * @param ticks the number ticks.
-     * @return fluent interface.
+     * Set the number of [ticks] before the task executes.
      */
     fun delay(ticks: Long): FcTaskBuilder
 
     /**
-     * The time between each execution. Should be `0` if the task should not repeat.
-     *
-     * @return fluent interface.
+     * Set the number of [ticks] between each execution.
      */
     fun interval(ticks: Long): FcTaskBuilder
 }

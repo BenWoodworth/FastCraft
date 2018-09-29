@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft.config
 
-import net.benwoodworth.fastcraft.platform.api.server.FcPluginProvider
 import java.nio.file.Path
 import javax.inject.Inject
 import javax.inject.Singleton

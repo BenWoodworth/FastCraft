@@ -6,23 +6,17 @@ package net.benwoodworth.fastcraft.platform.api.server
 interface FcLogger {
 
     /**
-     * Log an error to the console.
-     *
-     * @param message the error message to log.
+     * Log an [error] to the console.
      */
-    fun error(message: String)
+    fun error(error: String)
 
     /**
-     * Log info to the console.
-     *
-     * @param message the info to log.
+     * Log [info] to the console.
      */
-    fun info(message: String)
+    fun info(info: String)
 
     /**
-     * Log a warning to the console.
-     *
-     * @param message the warning to log.
+     * Log a [warning] to the console.
      */
-    fun warn(message: String)
+    fun warn(warning: String)
 }

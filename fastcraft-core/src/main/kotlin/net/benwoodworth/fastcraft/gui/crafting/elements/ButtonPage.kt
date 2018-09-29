@@ -6,7 +6,7 @@ import net.benwoodworth.fastcraft.platform.api.gui.FcGuiPosition
 import net.benwoodworth.fastcraft.platform.api.gui.button.GuiButtonAbstract
 import net.benwoodworth.fastcraft.platform.api.gui.element.GuiLayoutChanger
 import net.benwoodworth.fastcraft.platform.api.item.FcItemBuilder
-import net.benwoodworth.fastcraft.platform.api.item.FcItemTypeFactory
+import net.benwoodworth.fastcraft.platform.api.item.FcItemTypes
 import javax.inject.Provider
 
 @AutoFactory
@@ -15,14 +15,14 @@ class ButtonPage(
 
     @Provided private val fastCraftLang: net.benwoodworth.fastcraft.lang.FastCraftLang,
     @Provided private val itemBuilder: Provider<FcItemBuilder>,
-    @Provided private val itemTypeFactory: FcItemTypeFactory
+    @Provided private val itemTypes: FcItemTypes
 ) : GuiButtonAbstract(position) {
 
     var page by GuiLayoutChanger(0)
     var pageCount by GuiLayoutChanger(0)
 
     override fun getItem(position: FcGuiPosition) = itemBuilder.get()
-        .type(itemTypeFactory.getIronSword())
+        .type(itemTypes.getIronSword())
         .displayName(fastCraftLang.guiToolbarPageTitle(page + 1, pageCount + 1))
         .lore(fastCraftLang.guiToolbarPageDescription(page + 1, pageCount + 1))
         .build()

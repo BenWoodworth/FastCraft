@@ -8,64 +8,45 @@ import net.benwoodworth.fastcraft.platform.api.text.FcText
 interface FcItemBuilder {
 
     /**
-     * Build the [FcItem].
-     *
-     * @return the built [FcItem].
+     * Set the item type.
      */
-    fun build(): FcItem
-
-    /**
-     * Resets this builder and uses the values from this item.
-     *
-     * @return this builder, for chaining.
-     */
-    fun from(item: FcItem): FcItemBuilder
+    fun type(type: FcItemType): Typed
 
     /**
      * Set the item type.
-     *
-     * @param type the item type.
-     * @return this builder, for chaining.
      */
-    fun type(type: FcItemType): FcItemBuilder
+    fun type(type: FcItemTypes.() -> FcItemType): Typed
 
     /**
-     * Set the item amount.
-     *
-     * @param amount the item amount.
-     * @return this builder, for chaining.
+     * Build an item based off this [item].
      */
-    fun amount(amount: Int): FcItemBuilder
+    fun from(item: FcItem): FcItemBuilder
 
-    /**
-     * Set the item's display name.
-     *
-     * @param displayName the display name.
-     * @return this builder, for chaining.
-     */
-    fun displayName(displayName: FcText?): FcItemBuilder
+    interface Typed {
 
-    /**
-     * Set the item's lore.
-     *
-     * @param lore the lore.
-     * @return this builder, for chaining.
-     */
-    fun lore(lore: List<FcText?>): FcItemBuilder
+        /**
+         * Returns a new [FcItem].
+         */
+        fun build(): FcItem
 
-    /**
-     * Set the item's lore.
-     *
-     * @param lore the lore.
-     * @return this builder, for chaining.
-     */
-    fun lore(vararg lore: FcText?): FcItemBuilder = lore(lore.toList())
+        /**
+         * Set the item amount.
+         */
+        fun amount(amount: Int): FcItemBuilder
 
-    /**
-     * Set the item's durability.
-     *
-     * @param durability the durability.
-     * @return this builder, for chaining.
-     */
-    fun durability(durability: Int): FcItemBuilder
+        /**
+         * Set the item's display name.
+         */
+        fun displayName(displayName: FcText?): FcItemBuilder
+
+        /**
+         * Set the item's lore.
+         */
+        fun lore(lore: List<FcText?>): FcItemBuilder
+
+        /**
+         * Set the item's durability.
+         */
+        fun durability(durability: Int): FcItemBuilder
+    }
 }
