@@ -10,8 +10,8 @@ import javax.inject.Inject
  * Bukkit implementation of [FcPlayerProvider].
  */
 class BukkitFcPlayerProvider @Inject constructor(
-        private val server: Server,
-        private val playerFactory: BukkitFcPlayerFactory
+    private val server: Server,
+    private val playerFactory: BukkitFcPlayerFactory
 ) : FcPlayerProvider {
 
     override fun getOnlinePlayers(): List<FcPlayer> {

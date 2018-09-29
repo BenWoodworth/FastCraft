@@ -20,8 +20,8 @@ package net.benwoodworth.fastcraft.platform.api.gui.mvp
  * @param TModel the type of [MvpModel] being presented.
  */
 abstract class MvpPresenter<out TView : MvpView, out TModel : MvpModel>(
-        protected val view: TView,
-        protected val model: TModel
+    protected val view: TView,
+    protected val model: TModel
 ) {
 
     init {

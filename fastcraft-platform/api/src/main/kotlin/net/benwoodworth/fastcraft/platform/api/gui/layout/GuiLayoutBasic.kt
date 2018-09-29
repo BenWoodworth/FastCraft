@@ -4,5 +4,5 @@ import net.benwoodworth.fastcraft.platform.api.gui.FcGuiRegion
 import net.benwoodworth.fastcraft.platform.api.gui.element.GuiElement
 
 class GuiLayoutBasic(
-        region: FcGuiRegion.Positioned
+    region: FcGuiRegion.Positioned
 ) : GuiLayoutAbstract<FcGuiRegion.Positioned>(region), GuiElement.Mutable

@@ -11,9 +11,9 @@ import javax.inject.Singleton
 @AutoFactory
 @Suppress("ClassName")
 class BukkitFcText_Nms_1_7_R1(
-        override val chatBaseComponent: Any,
+    override val chatBaseComponent: Any,
 
-        @Provided private val reflection: BukkitFcText_Nms.Reflection
+    @Provided private val reflection: BukkitFcText_Nms.Reflection
 ) : BukkitFcText_Nms {
 
     private val chatModifier: Any
@@ -53,20 +53,20 @@ class BukkitFcText_Nms_1_7_R1(
         set(value) {}
 
     class Factory(
-            private val reflectionFactory: BukkitReflectionFactory
+        private val reflectionFactory: BukkitReflectionFactory
     ) : BukkitFcText_Nms.Factory {
 
         override fun buildText(text: String): FcText.Builder {
             val cache =
 
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }
     }
 
     @Singleton
     @Suppress("PropertyName", "PrivatePropertyName")
     class Reflection @Inject constructor(
-            private val reflect: BukkitReflectionFactory
+        private val reflect: BukkitReflectionFactory
     ) : BukkitFcText_Nms.Reflection {
 
         override val class_IChatBaseComponent: Class<*> by lazy {

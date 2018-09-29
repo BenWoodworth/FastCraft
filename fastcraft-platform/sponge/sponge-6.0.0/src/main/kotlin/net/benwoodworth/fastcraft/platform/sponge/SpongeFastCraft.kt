@@ -25,7 +25,7 @@ class SpongeFastCraft : FastCraftImplementation {
     @Suppress("UNUSED", "UNUSED_PARAMETER")
     fun onPreInit(event: GamePreInitializationEvent) {
         val fastCraftBuilder = DaggerSpongeFastCraftComponent.builder()
-                .spongeFastCraftModule(SpongeFastCraftModule(this))
+            .spongeFastCraftModule(SpongeFastCraftModule(this))
 
         instance = fastCraftBuilder.build().getFastCraft()
     }

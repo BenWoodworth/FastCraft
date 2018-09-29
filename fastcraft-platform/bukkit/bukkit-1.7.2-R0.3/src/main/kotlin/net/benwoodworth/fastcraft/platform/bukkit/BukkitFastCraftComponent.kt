@@ -8,7 +8,9 @@ import javax.inject.Singleton
  * Bukkit implementation of [Component].
  */
 @Singleton
-@Component(modules = [
-    BukkitFastCraftModule::class
-])
+@Component(
+    modules = [
+        BukkitFastCraftModule::class
+    ]
+)
 interface BukkitFastCraftComponent : FastCraftComponent

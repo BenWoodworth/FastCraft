@@ -5,7 +5,7 @@ import javax.inject.Singleton
 
 @Singleton
 class BukkitReflectionFactory @Inject constructor(
-        private val bukkitVersions: BukkitVersions
+    private val bukkitVersions: BukkitVersions
 ) {
 
     private val classCache = mutableMapOf<String, Class<*>>()

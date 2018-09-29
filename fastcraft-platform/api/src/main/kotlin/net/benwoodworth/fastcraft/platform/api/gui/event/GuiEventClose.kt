@@ -10,6 +10,6 @@ import net.benwoodworth.fastcraft.platform.api.player.FcPlayer
  * @property player The [FcPlayer] whose inventory was closed.
  */
 class GuiEventClose(
-        val gui: FcGui,
-        val player: FcPlayer?
+    val gui: FcGui,
+    val player: FcPlayer?
 )

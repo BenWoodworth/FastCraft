@@ -9,18 +9,18 @@ import javax.inject.Inject
 
 @Suppress("ClassName")
 class BukkitFcText_Bukkit(
-        override val text: String,
-        override val color: BukkitFcTextColor,
-        override val bold: Boolean?,
-        override val italic: Boolean?,
-        override val underlined: Boolean?,
-        override val strikeThrough: Boolean?,
-        override val obfuscated: Boolean?,
-        override val extra: List<BukkitFcText>
+    override val text: String,
+    override val color: BukkitFcTextColor,
+    override val bold: Boolean?,
+    override val italic: Boolean?,
+    override val underlined: Boolean?,
+    override val strikeThrough: Boolean?,
+    override val obfuscated: Boolean?,
+    override val extra: List<BukkitFcText>
 ) : BukkitFcText {
 
     class Factory @Inject constructor(
-            private val builderFactory: BukkitFcText_Bukkit_BuilderFactory
+        private val builderFactory: BukkitFcText_Bukkit_BuilderFactory
     ) : BukkitFcText.Factory {
 
         override fun buildText(text: String): FcText.Builder {
@@ -30,9 +30,9 @@ class BukkitFcText_Bukkit(
 
     @AutoFactory
     class Builder(
-            private val text: String,
+        private val text: String,
 
-            @Provided private val colors: BukkitFcTextColor.Catalog
+        @Provided private val colors: BukkitFcTextColor.Catalog
     ) : BukkitFcText.Builder {
 
         private var color: BukkitFcTextColor = colors.none
@@ -44,7 +44,7 @@ class BukkitFcText_Bukkit(
         private var extra = mutableListOf<BukkitFcText>()
 
         override fun build() = BukkitFcText_Bukkit(
-                text, color, bold, italic, underlined, strikeThrough, obfuscated, extra.toList()
+            text, color, bold, italic, underlined, strikeThrough, obfuscated, extra.toList()
         )
 
         override fun setColor(color: FcTextColor) = also { this.color = color as BukkitFcTextColor }
@@ -57,7 +57,7 @@ class BukkitFcText_Bukkit(
     }
 
     class Converter @Inject constructor(
-            private val colors: BukkitFcTextColor.Catalog
+        private val colors: BukkitFcTextColor.Catalog
     ) : BukkitFcText.Converter {
 
         private companion object {
@@ -73,9 +73,9 @@ class BukkitFcText_Bukkit(
         }
 
         private fun buildLegacyText(
-                text: BukkitFcText,
-                currentFormat: CurrentFormat = CurrentFormat(colors.none),
-                stringBuilder: StringBuilder = StringBuilder()
+            text: BukkitFcText,
+            currentFormat: CurrentFormat = CurrentFormat(colors.none),
+            stringBuilder: StringBuilder = StringBuilder()
         ): StringBuilder {
 
             val resetFormatting: Boolean = (text.color == colors.reset) ||
@@ -115,12 +115,12 @@ class BukkitFcText_Bukkit(
         }
 
         private class CurrentFormat(
-                var color: BukkitFcTextColor,
-                var bold: Boolean? = null,
-                var italic: Boolean? = null,
-                var underlined: Boolean? = null,
-                var strikeThrough: Boolean? = null,
-                var obfuscated: Boolean? = null
+            var color: BukkitFcTextColor,
+            var bold: Boolean? = null,
+            var italic: Boolean? = null,
+            var underlined: Boolean? = null,
+            var strikeThrough: Boolean? = null,
+            var obfuscated: Boolean? = null
         )
     }
 }

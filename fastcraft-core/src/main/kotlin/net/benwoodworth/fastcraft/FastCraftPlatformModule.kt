@@ -7,7 +7,7 @@ import javax.inject.Singleton
 
 @Module
 class FastCraftPlatformModule(
-        private var module: PlatformModule
+    private var module: PlatformModule
 ) : PlatformModule {
 
     @Provides

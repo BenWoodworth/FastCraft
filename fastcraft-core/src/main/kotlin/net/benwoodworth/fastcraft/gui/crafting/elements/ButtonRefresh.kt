@@ -10,16 +10,16 @@ import javax.inject.Provider
 
 @AutoFactory
 class ButtonRefresh(
-        position: FcGuiPosition,
+    position: FcGuiPosition,
 
-        @Provided private val fastCraftLang: net.benwoodworth.fastcraft.lang.FastCraftLang,
-        @Provided private val itemBuilder: Provider<FcItemBuilder>,
-        @Provided private val itemTypeFactory: FcItemTypeFactory
+    @Provided private val fastCraftLang: net.benwoodworth.fastcraft.lang.FastCraftLang,
+    @Provided private val itemBuilder: Provider<FcItemBuilder>,
+    @Provided private val itemTypeFactory: FcItemTypeFactory
 ) : GuiButtonAbstract(position) {
 
     override fun getItem(position: FcGuiPosition) = itemBuilder.get()
-            .type(itemTypeFactory.getNetherStar())
-            .displayName(fastCraftLang.guiToolbarWorkbenchTitle())
-            .lore(fastCraftLang.guiToolbarWorkbenchDescription())
-            .build()
+        .type(itemTypeFactory.getNetherStar())
+        .displayName(fastCraftLang.guiToolbarWorkbenchTitle())
+        .lore(fastCraftLang.guiToolbarWorkbenchDescription())
+        .build()
 }

@@ -6,7 +6,7 @@ import net.benwoodworth.fastcraft.platform.api.config.FcConfig
  * A wrapper for the plugin config.
  */
 class FcPluginConfig(
-        override var config: FcConfig
+    override var config: FcConfig
 ) : net.benwoodworth.fastcraft.config.ConfigWrapper {
 
     /**

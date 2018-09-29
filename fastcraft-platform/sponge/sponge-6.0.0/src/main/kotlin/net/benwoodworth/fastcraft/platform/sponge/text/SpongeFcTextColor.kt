@@ -7,7 +7,7 @@ import org.spongepowered.api.text.format.TextColors
 import javax.inject.Inject
 
 class SpongeFcTextColor(
-        override val base: TextColor
+    override val base: TextColor
 ) : Adapter<TextColor>(), FcTextColor {
 
     class Catalog @Inject constructor(

@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.platform.api.gui.FcGuiRegion
 import net.benwoodworth.fastcraft.platform.api.gui.event.GuiEventLayoutChange
 
 abstract class GuiElementAbstract<TRegion : FcGuiRegion.Positioned>(
-        region: TRegion
+    region: TRegion
 ) : GuiElement {
 
     override val changeListener = FcListener<GuiEventLayoutChange>()

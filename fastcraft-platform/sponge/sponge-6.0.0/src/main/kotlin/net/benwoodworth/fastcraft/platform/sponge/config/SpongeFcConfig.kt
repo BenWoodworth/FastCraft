@@ -9,9 +9,9 @@ import ninja.leaping.configurate.commented.CommentedConfigurationNode
  * Sponge implementation of [FcConfig].
  */
 class SpongeFcConfig(override val base: CommentedConfigurationNode) :
-        FcConfigSection by SpongeFcConfigSection(base),
-        Adapter<CommentedConfigurationNode>(),
-        FcConfig {
+    FcConfigSection by SpongeFcConfigSection(base),
+    Adapter<CommentedConfigurationNode>(),
+    FcConfig {
 
     var configOptions = base.options
         private set
@@ -28,9 +28,9 @@ class SpongeFcConfig(override val base: CommentedConfigurationNode) :
         }
         set(value) {
             configOptions = configOptions.setHeader(value
-                    .takeUnless { it.isEmpty() }
-                    ?.map { " $it" }
-                    ?.joinToString("\n")
+                .takeUnless { it.isEmpty() }
+                ?.map { " $it" }
+                ?.joinToString("\n")
             )
         }
 }

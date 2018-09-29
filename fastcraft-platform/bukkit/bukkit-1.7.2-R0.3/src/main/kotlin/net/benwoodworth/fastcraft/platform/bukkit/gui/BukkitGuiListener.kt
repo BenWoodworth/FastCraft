@@ -21,8 +21,8 @@ import javax.inject.Singleton
  */
 @Singleton
 class BukkitGuiListener @Inject constructor(
-        plugin: BukkitFastCraft,
-        private val playerFactory: BukkitFcPlayerFactory
+    plugin: BukkitFastCraft,
+    private val playerFactory: BukkitFcPlayerFactory
 ) : Listener {
 
     init {
@@ -76,7 +76,7 @@ class BukkitGuiListener @Inject constructor(
         val player = event.player as? Player
 
         gui.closeListener.notifyHandlers(
-                GuiEventClose(gui, player?.let { playerFactory.create(it) })
+            GuiEventClose(gui, player?.let { playerFactory.create(it) })
         )
     }
 }

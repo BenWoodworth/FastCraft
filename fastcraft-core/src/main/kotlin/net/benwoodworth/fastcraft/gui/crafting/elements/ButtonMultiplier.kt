@@ -11,19 +11,19 @@ import javax.inject.Provider
 
 @AutoFactory
 class ButtonMultiplier(
-        position: FcGuiPosition,
+    position: FcGuiPosition,
 
-        @Provided private val fastCraftLang: net.benwoodworth.fastcraft.lang.FastCraftLang,
-        @Provided private val itemBuilder: Provider<FcItemBuilder>,
-        @Provided private val itemTypeFactory: FcItemTypeFactory
+    @Provided private val fastCraftLang: net.benwoodworth.fastcraft.lang.FastCraftLang,
+    @Provided private val itemBuilder: Provider<FcItemBuilder>,
+    @Provided private val itemTypeFactory: FcItemTypeFactory
 ) : GuiButtonAbstract(position) {
 
     var multiplier by GuiLayoutChanger(1)
 
     override fun getItem(position: FcGuiPosition) = itemBuilder.get()
-            .type(itemTypeFactory.getAnvil())
-            .amount(multiplier)
-            .displayName(fastCraftLang.guiToolbarMultiplierTitle(multiplier))
-            .lore(fastCraftLang.guiToolbarMultiplierDescription(multiplier))
-            .build()
+        .type(itemTypeFactory.getAnvil())
+        .amount(multiplier)
+        .displayName(fastCraftLang.guiToolbarMultiplierTitle(multiplier))
+        .lore(fastCraftLang.guiToolbarMultiplierDescription(multiplier))
+        .build()
 }

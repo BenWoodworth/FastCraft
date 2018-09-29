@@ -4,7 +4,7 @@ import org.bukkit.Server
 import javax.inject.Inject
 
 class BukkitVersions @Inject constructor(
-        server: Server
+    server: Server
 ) {
 
     private val obcRegex = Regex("org\\.bukkit\\.craftbukkit\\.(${Nms.regex})(?:\\..*)?")
@@ -18,16 +18,16 @@ class BukkitVersions @Inject constructor(
     }
 
     val nmsString = obcRegex
-            .matchEntire(server.javaClass.canonicalName)
-            ?.run { groupValues[1] }
+        .matchEntire(server.javaClass.canonicalName)
+        ?.run { groupValues[1] }
 
 
     val nms = nmsString?.let { Nms.parse(it) }
 
     data class Nms(
-            private val major: Int,
-            private val minor: Int,
-            private val revision: Int
+        private val major: Int,
+        private val minor: Int,
+        private val revision: Int
     ) : Comparable<Nms> {
 
         override fun compareTo(other: Nms) = when {
@@ -41,25 +41,25 @@ class BukkitVersions @Inject constructor(
 
             fun parse(string: String): Nms {
                 val (major, minor, revision) = regex
-                        .matchEntire(string)?.destructured
-                        ?: throw NumberFormatException("Invalid NMS version: $this")
+                    .matchEntire(string)?.destructured
+                    ?: throw NumberFormatException("Invalid NMS version: $this")
 
                 return Nms(
-                        major.toInt(),
-                        minor.toInt(),
-                        revision.toInt()
+                    major.toInt(),
+                    minor.toInt(),
+                    revision.toInt()
                 )
             }
         }
     }
 
     data class Api( // TODO Test
-            private val major: Int,
-            private val minor: Int,
-            private val patch: Int = 0,
-            private val rMajor: Int? = null,
-            private val rMinor: Int? = null,
-            private val pre: Int? = null
+        private val major: Int,
+        private val minor: Int,
+        private val patch: Int = 0,
+        private val rMajor: Int? = null,
+        private val rMinor: Int? = null,
+        private val pre: Int? = null
     ) : Comparable<Api> {
 
         override operator fun compareTo(other: Api) = when {
@@ -93,16 +93,16 @@ class BukkitVersions @Inject constructor(
 
             fun parse(string: String): Api {
                 return regex.matchEntire(string)
-                        ?.run {
-                            Api(
-                                    groupValues[1].toInt(),
-                                    groupValues[2].toInt(),
-                                    groupValues[3].toIntOrNull() ?: 0,
-                                    groupValues[4].toIntOrNull(),
-                                    groupValues[5].toIntOrNull(),
-                                    groupValues[6].toIntOrNull()
-                            )
-                        } ?: throw NumberFormatException("Invalid Bukkit version: $string")
+                    ?.run {
+                        Api(
+                            groupValues[1].toInt(),
+                            groupValues[2].toInt(),
+                            groupValues[3].toIntOrNull() ?: 0,
+                            groupValues[4].toIntOrNull(),
+                            groupValues[5].toIntOrNull(),
+                            groupValues[6].toIntOrNull()
+                        )
+                    } ?: throw NumberFormatException("Invalid Bukkit version: $string")
             }
         }
     }

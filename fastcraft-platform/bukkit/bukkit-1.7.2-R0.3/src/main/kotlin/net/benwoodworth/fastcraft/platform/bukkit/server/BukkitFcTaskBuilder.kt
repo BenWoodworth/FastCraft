@@ -7,7 +7,7 @@ import org.bukkit.scheduler.BukkitRunnable
 import javax.inject.Inject
 
 class BukkitFcTaskBuilder @Inject constructor(
-        private val plugin: BukkitFastCraft
+    private val plugin: BukkitFastCraft
 ) : FcTaskBuilder {
 
     private var async = false

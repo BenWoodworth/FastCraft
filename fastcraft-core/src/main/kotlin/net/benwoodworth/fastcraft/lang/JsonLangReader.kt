@@ -12,8 +12,8 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class JsonLangReader @Inject constructor(
-        private val placeholderProcessor: PlaceholderProcessorTags,
-        private val textBuilder: Provider<FcText.Builder>
+    private val placeholderProcessor: PlaceholderProcessorTags,
+    private val textBuilder: Provider<FcText.Builder>
 ) {
 
     private lateinit var json: JsonObject
@@ -50,8 +50,8 @@ class JsonLangReader @Inject constructor(
 
         return result.map {
             textBuilder.get()
-                    .setText(it)
-                    .build()
+                .setText(it)
+                .build()
         }
     }
 
@@ -61,8 +61,8 @@ class JsonLangReader @Inject constructor(
         } ?: missing(path)
 
         return textBuilder.get()
-                .setText(result)
-                .build()
+            .setText(result)
+            .build()
     }
 
 }

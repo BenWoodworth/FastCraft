@@ -6,9 +6,9 @@ import net.benwoodworth.fastcraft.platform.api.text.FcText
 import javax.inject.Inject
 
 class BukkitGuiFactory @Inject constructor(
-        private val chestFactory: BukkitGui_ChestFactory,
-        private val dispenserFactory: BukkitGui_DispenserFactory,
-        private val hopperFactory: BukkitGui_HopperFactory
+    private val chestFactory: BukkitGui_ChestFactory,
+    private val dispenserFactory: BukkitGui_DispenserFactory,
+    private val hopperFactory: BukkitGui_HopperFactory
 ) : GuiFactory {
 
     override fun chest(height: Int, title: FcText?): Gui.Chest {

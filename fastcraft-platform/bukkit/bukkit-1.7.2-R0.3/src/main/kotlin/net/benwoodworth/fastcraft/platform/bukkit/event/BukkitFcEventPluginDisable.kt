@@ -8,5 +8,5 @@ import org.bukkit.event.server.PluginDisableEvent
  * Bukkit implementation of [FcEventPluginDisable]
  */
 class BukkitFcEventPluginDisable(
-        override val base: PluginDisableEvent
+    override val base: PluginDisableEvent
 ) : FcEventPluginDisable, Adapter<PluginDisableEvent>()

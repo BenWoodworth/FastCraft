@@ -17,11 +17,11 @@ import kotlin.math.ceil
 
 @AutoFactory
 class ElementRecipeList(
-        region: FcGuiRegion.Rectangle,
+    region: FcGuiRegion.Rectangle,
 
-        @Provided private val itemBuilder: Provider<FcItemBuilder>,
-        @Provided private val lang: net.benwoodworth.fastcraft.lang.FastCraftLang,
-        @Provided private val textBuilder: Provider<FcText.Builder>
+    @Provided private val itemBuilder: Provider<FcItemBuilder>,
+    @Provided private val lang: net.benwoodworth.fastcraft.lang.FastCraftLang,
+    @Provided private val textBuilder: Provider<FcText.Builder>
 ) : GuiElementAbstract<FcGuiRegion.Rectangle>(region) {
 
     var page by GuiLayoutChanger(0) {
@@ -36,7 +36,8 @@ class ElementRecipeList(
 
     private var resultDisplayIndex by GuiLayoutChanger(0)
 
-    val recipeClickListener = FcListener<net.benwoodworth.fastcraft.gui.crafting.elements.ElementRecipeList.RecipeClickEvent>()
+    val recipeClickListener =
+        FcListener<net.benwoodworth.fastcraft.gui.crafting.elements.ElementRecipeList.RecipeClickEvent>()
 
     fun showNextResult() {
         resultDisplayIndex++
@@ -48,7 +49,12 @@ class ElementRecipeList(
 
     override fun click(event: GuiEventClick) {
         val recipe = getRecipe(event.position) ?: return
-        recipeClickListener.notifyHandlers(net.benwoodworth.fastcraft.gui.crafting.elements.ElementRecipeList.RecipeClickEvent(event, recipe))
+        recipeClickListener.notifyHandlers(
+            net.benwoodworth.fastcraft.gui.crafting.elements.ElementRecipeList.RecipeClickEvent(
+                event,
+                recipe
+            )
+        )
     }
 
     override fun getItem(position: FcGuiPosition): FcItem? {
@@ -64,9 +70,9 @@ class ElementRecipeList(
 
             if (i == resultIndex) {
                 itemName = textBuilder.get()
-                        .setText("")
-                        .addExtra(itemName)
-                        .build()
+                    .setText("")
+                    .addExtra(itemName)
+                    .build()
             }
 
             lore.add(lang.guiRecipeResultsItem(itemName.toString(), item.amount))
@@ -88,13 +94,13 @@ class ElementRecipeList(
         }
 
         return itemBuilder.get()
-                .from(recipe.results[resultIndex])
-                .lore(lore)
-                .build()
+            .from(recipe.results[resultIndex])
+            .lore(lore)
+            .build()
     }
 
     data class RecipeClickEvent(
-            val clickEvent: GuiEventClick,
-            val recipe: FcCraftingRecipe.Prepared
+        val clickEvent: GuiEventClick,
+        val recipe: FcCraftingRecipe.Prepared
     )
 }

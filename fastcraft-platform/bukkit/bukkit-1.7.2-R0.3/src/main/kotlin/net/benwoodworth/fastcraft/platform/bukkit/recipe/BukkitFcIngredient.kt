@@ -10,13 +10,13 @@ import org.bukkit.inventory.ItemStack
  */
 @Suppress("DEPRECATION")
 class BukkitFcIngredient(
-        ingredient: ItemStack
+    ingredient: ItemStack
 ) : FcIngredient {
 
     private val typeId = ingredient.typeId
 
     private val durability = ingredient.durability
-            .takeUnless { it == 32767.toShort() } // 32767 = match any durability
+        .takeUnless { it == 32767.toShort() } // 32767 = match any durability
 
     override fun matches(item: FcItem): Boolean {
         val bItem = (item.mutableCopy() as BukkitFcItem.Mutable).base

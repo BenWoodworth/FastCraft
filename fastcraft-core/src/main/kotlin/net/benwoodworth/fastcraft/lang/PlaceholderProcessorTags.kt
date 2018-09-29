@@ -11,8 +11,8 @@ class PlaceholderProcessorTags @Inject constructor(
     override fun sub(string: String, placeholders: Map<String, String>): String {
         return string.replace(Regex("<([^<>]*)>")) {
             placeholders[it.value]
-                    ?: globalPlaceholders[it.value]
-                    ?: "<${it.value}>"
+                ?: globalPlaceholders[it.value]
+                ?: "<${it.value}>"
         }
     }
 }

@@ -10,7 +10,7 @@ import java.nio.file.Path
  * Bukkit implementation of [FcPlugin].
  */
 class BukkitFcPlugin(
-        override val base: Plugin
+    override val base: Plugin
 ) : FcPlugin, Adapter<Plugin>() {
 
     override val logger: FcLogger

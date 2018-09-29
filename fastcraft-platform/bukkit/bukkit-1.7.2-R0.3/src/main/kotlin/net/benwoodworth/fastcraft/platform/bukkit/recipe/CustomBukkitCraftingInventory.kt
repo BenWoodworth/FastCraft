@@ -13,12 +13,12 @@ import org.bukkit.inventory.*
  * Simulates a [CraftingInventory] shown to a single player.
  */
 internal class CustomBukkitCraftingInventory(
-        private val player: Player,
-        private val recipe: Recipe?,
-        server: Server
+    private val player: Player,
+    private val recipe: Recipe?,
+    server: Server
 ) : CraftingInventory, Inventory by server.createInventory(
-        player,
-        InventoryType.WORKBENCH
+    player,
+    InventoryType.WORKBENCH
 ) {
 
     /**
@@ -39,8 +39,9 @@ internal class CustomBukkitCraftingInventory(
 
             // Filled buckets result in empty buckets (with data stripped)
             if (item.type == Material.WATER_BUCKET
-                    || item.type == Material.MILK_BUCKET
-                    || item.type == Material.LAVA_BUCKET) {
+                || item.type == Material.MILK_BUCKET
+                || item.type == Material.LAVA_BUCKET
+            ) {
 
                 results.add(ItemStack(Material.BUCKET, 1))
             }

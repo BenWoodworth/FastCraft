@@ -11,7 +11,7 @@ import java.nio.file.Path
  * An adapter for Sponge plugins.
  */
 class SpongeFcPlugin(
-        override val base: PluginContainer
+    override val base: PluginContainer
 ) : FcPlugin, Adapter<PluginContainer>() {
 
     override val logger: FcLogger

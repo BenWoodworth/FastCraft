@@ -9,7 +9,7 @@ import org.bukkit.inventory.InventoryHolder
 import javax.inject.Inject
 
 class BukkitInventoryFactory_Spigot @Inject constructor(
-        private val server: Server
+    private val server: Server
 ) : BukkitInventoryFactory {
 
     override fun create(height: Int, title: FcText?, owner: InventoryHolder?): Inventory {

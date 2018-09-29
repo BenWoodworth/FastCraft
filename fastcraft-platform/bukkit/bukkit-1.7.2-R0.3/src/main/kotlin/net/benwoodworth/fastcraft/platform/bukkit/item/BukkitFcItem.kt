@@ -16,18 +16,18 @@ import org.bukkit.inventory.ItemStack
  */
 @AutoFactory
 class BukkitFcItem(
-        private val base: ItemStack,
+    private val base: ItemStack,
 
-        @Provided itemMutableFactory: BukkitFcItem_MutableFactory
+    @Provided itemMutableFactory: BukkitFcItem_MutableFactory
 ) : FcItem by itemMutableFactory.create(base) {
 
     @AutoFactory
     class Mutable(
-            override val base: ItemStack,
+        override val base: ItemStack,
 
-            @Provided private val itemFactory: BukkitFcItemFactory,
-            @Provided private val itemMutableFactory: BukkitFcItem_MutableFactory,
-            @Provided private val textFactory: BukkitFcText.Factory
+        @Provided private val itemFactory: BukkitFcItemFactory,
+        @Provided private val itemMutableFactory: BukkitFcItem_MutableFactory,
+        @Provided private val textFactory: BukkitFcText.Factory
     ) : FcItem.Mutable, Adapter<ItemStack>() {
 
         override val type: FcItemType

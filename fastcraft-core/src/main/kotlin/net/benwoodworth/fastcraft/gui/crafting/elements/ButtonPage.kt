@@ -11,19 +11,19 @@ import javax.inject.Provider
 
 @AutoFactory
 class ButtonPage(
-        position: FcGuiPosition,
+    position: FcGuiPosition,
 
-        @Provided private val fastCraftLang: net.benwoodworth.fastcraft.lang.FastCraftLang,
-        @Provided private val itemBuilder: Provider<FcItemBuilder>,
-        @Provided private val itemTypeFactory: FcItemTypeFactory
+    @Provided private val fastCraftLang: net.benwoodworth.fastcraft.lang.FastCraftLang,
+    @Provided private val itemBuilder: Provider<FcItemBuilder>,
+    @Provided private val itemTypeFactory: FcItemTypeFactory
 ) : GuiButtonAbstract(position) {
 
     var page by GuiLayoutChanger(0)
     var pageCount by GuiLayoutChanger(0)
 
     override fun getItem(position: FcGuiPosition) = itemBuilder.get()
-            .type(itemTypeFactory.getIronSword())
-            .displayName(fastCraftLang.guiToolbarPageTitle(page + 1, pageCount + 1))
-            .lore(fastCraftLang.guiToolbarPageDescription(page + 1, pageCount + 1))
-            .build()
+        .type(itemTypeFactory.getIronSword())
+        .displayName(fastCraftLang.guiToolbarPageTitle(page + 1, pageCount + 1))
+        .lore(fastCraftLang.guiToolbarPageDescription(page + 1, pageCount + 1))
+        .build()
 }

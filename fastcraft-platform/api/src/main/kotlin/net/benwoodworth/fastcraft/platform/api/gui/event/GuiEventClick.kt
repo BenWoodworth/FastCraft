@@ -19,13 +19,13 @@ import net.benwoodworth.fastcraft.platform.api.player.FcPlayer
  * @property shift Whether shift was held while clicking the button.
  */
 data class GuiEventClick(
-        val position: FcGuiPosition,
-        val gui: FcGui,
-        val player: FcPlayer?,
-        val primary: Boolean,
-        val secondary: Boolean,
-        val middle: Boolean,
-        val double: Boolean,
-        val number: Int?,
-        val shift: Boolean
+    val position: FcGuiPosition,
+    val gui: FcGui,
+    val player: FcPlayer?,
+    val primary: Boolean,
+    val secondary: Boolean,
+    val middle: Boolean,
+    val double: Boolean,
+    val number: Int?,
+    val shift: Boolean
 )

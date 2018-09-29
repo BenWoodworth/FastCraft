@@ -24,7 +24,7 @@ class SpongeFcItemBuilder @Inject constructor(
 
     override fun from(item: FcItem) = also {
         builder.fromItemStack(
-                (item.mutableCopy() as SpongeFcItem.Mutable).base
+            (item.mutableCopy() as SpongeFcItem.Mutable).base
         )
     }
 

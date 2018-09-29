@@ -12,18 +12,21 @@ import javax.inject.Provider
 
 @AutoFactory
 class CraftingGuiPresenter(
-        private val player: FcPlayer,
+    private val player: FcPlayer,
 
-        @Provided view: net.benwoodworth.fastcraft.gui.crafting.CraftingGuiView,
-        @Provided model: net.benwoodworth.fastcraft.gui.crafting.CraftingGuiModel,
-        @Provided taskBuilder: Provider<FcTaskBuilder>,
-        @Provided private val textFactory: FcText.Factory
-) : MvpPresenter<net.benwoodworth.fastcraft.gui.crafting.CraftingGuiView, net.benwoodworth.fastcraft.gui.crafting.CraftingGuiModel>(view, model) {
+    @Provided view: net.benwoodworth.fastcraft.gui.crafting.CraftingGuiView,
+    @Provided model: net.benwoodworth.fastcraft.gui.crafting.CraftingGuiModel,
+    @Provided taskBuilder: Provider<FcTaskBuilder>,
+    @Provided private val textFactory: FcText.Factory
+) : MvpPresenter<net.benwoodworth.fastcraft.gui.crafting.CraftingGuiView, net.benwoodworth.fastcraft.gui.crafting.CraftingGuiModel>(
+    view,
+    model
+) {
 
     private val taskCycleResults = taskBuilder.get() //TODO Make disablable
-            .delay(20) //TODO make configurable
-            .interval(20)
-            .execute { view.elementRecipeList.showNextResult() }
+        .delay(20) //TODO make configurable
+        .interval(20)
+        .execute { view.elementRecipeList.showNextResult() }
 
     init {
         view.elementRecipeList.recipeClickListener += ::onRecipeClick
@@ -42,33 +45,33 @@ class CraftingGuiPresenter(
 
     private fun onWorkbenchClick(event: GuiEventClick) {
         event.player?.sendMessage(
-                textFactory
-                        .buildText("Workbench clicked!")
-                        .build()
+            textFactory
+                .buildText("Workbench clicked!")
+                .build()
         )
     }
 
     private fun onMultiplierClick(event: GuiEventClick) {
         event.player?.sendMessage(
-                textFactory
-                        .buildText("Multiplier clicked!")
-                        .build()
+            textFactory
+                .buildText("Multiplier clicked!")
+                .build()
         )
     }
 
     private fun onRefreshClick(event: GuiEventClick) {
         event.player?.sendMessage(
-                textFactory
-                        .buildText("Refresh clicked!")
-                        .build()
+            textFactory
+                .buildText("Refresh clicked!")
+                .build()
         )
     }
 
     private fun onPageClick(event: GuiEventClick) {
         event.player?.sendMessage(
-                textFactory
-                        .buildText("Page clicked!")
-                        .build()
+            textFactory
+                .buildText("Page clicked!")
+                .build()
         )
     }
 

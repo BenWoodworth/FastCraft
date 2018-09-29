@@ -10,8 +10,8 @@ import org.bukkit.event.player.PlayerJoinEvent
  * Bukkit implementation of [FcEventPlayerJoin].
  */
 class BukkitFcEventPlayerJoin(
-        override val base: PlayerJoinEvent,
-        private val playerFactory: BukkitFcPlayerFactory
+    override val base: PlayerJoinEvent,
+    private val playerFactory: BukkitFcPlayerFactory
 ) : FcEventPlayerJoin, Adapter<PlayerJoinEvent>() {
 
     override val player: FcPlayer

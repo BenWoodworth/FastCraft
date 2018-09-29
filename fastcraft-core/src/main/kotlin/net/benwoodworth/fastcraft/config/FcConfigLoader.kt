@@ -10,8 +10,8 @@ import javax.inject.Singleton
  */
 @Singleton
 class FcConfigLoader @Inject constructor(
-        pluginProvider: FcPluginProvider,
-        private val configManager: FcConfigManager
+    pluginProvider: FcPluginProvider,
+    private val configManager: FcConfigManager
 ) {
 
     /**
@@ -74,23 +74,23 @@ class FcConfigLoader @Inject constructor(
      */
     private fun update() { // TODO Add an updater class
         fcPluginConfig.config.header = listOf(
-                "FastCraft, developed by Kepler_",
-                "https://github.com/BenWoodworth/FastCraft",
-                "",
-                "language:",
-                "    The localization to use. Available languages:",
-                "    EN (English), DE (Deutsch),    RU (Русский язык), CS (Čeština),",
-                "    TR (Türkçe),  NL (Nederlands), VI (Tiếng Việt),   PL (Polskie),",
-                "    ZH-CN (中文),  ZH-TW (台語)",
-                "",
-                "disabled-recipes:",
-                "    A list of recipe ID's for recipes that should be hidden from the",
-                "    FastCraft UI. Recipe ID's are listed under the list of ingredients."
+            "FastCraft, developed by Kepler_",
+            "https://github.com/BenWoodworth/FastCraft",
+            "",
+            "language:",
+            "    The localization to use. Available languages:",
+            "    EN (English), DE (Deutsch),    RU (Русский язык), CS (Čeština),",
+            "    TR (Türkçe),  NL (Nederlands), VI (Tiếng Việt),   PL (Polskie),",
+            "    ZH-CN (中文),  ZH-TW (台語)",
+            "",
+            "disabled-recipes:",
+            "    A list of recipe ID's for recipes that should be hidden from the",
+            "    FastCraft UI. Recipe ID's are listed under the list of ingredients."
         )
 
         fcDataConfig.config.header = listOf(
-                "This file is by FastCraft to store",
-                "data, and should not be edited."
+            "This file is by FastCraft to store",
+            "data, and should not be edited."
         )
 
         for ((revision, updater) in updaters.toSortedMap()) {
@@ -105,14 +105,14 @@ class FcConfigLoader @Inject constructor(
      * The updaters that update to a specific revision.
      */
     val updaters = mapOf(
-            0 to {
-                with(fcPluginConfig) {
-                    language = "EN"
-                    hiddenRecipes = emptyList()
-                }
-
-                with(fcDataConfig) {
-                }
+        0 to {
+            with(fcPluginConfig) {
+                language = "EN"
+                hiddenRecipes = emptyList()
             }
+
+            with(fcDataConfig) {
+            }
+        }
     )
 }

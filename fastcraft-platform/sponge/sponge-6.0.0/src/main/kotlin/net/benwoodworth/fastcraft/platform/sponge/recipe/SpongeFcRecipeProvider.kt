@@ -10,7 +10,7 @@ import org.spongepowered.api.item.recipe.crafting.ShapelessCraftingRecipe
  * Sponge implementation of [FcRecipeProvider].
  */
 class SpongeFcRecipeProvider(
-        private val plugin: Any
+    private val plugin: Any
 ) : FcRecipeProvider {
 
     override fun getCraftingRecipes(): List<FcCraftingRecipe> {

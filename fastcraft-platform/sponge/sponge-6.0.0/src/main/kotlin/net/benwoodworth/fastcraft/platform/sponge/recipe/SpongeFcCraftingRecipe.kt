@@ -18,8 +18,8 @@ import org.spongepowered.api.item.recipe.crafting.ShapelessCraftingRecipe
  * Sponge implementation of [FcCraftingRecipe].
  */
 abstract class SpongeFcCraftingRecipe private constructor(
-        override val base: CraftingRecipe,
-        private val plugin: Any
+    override val base: CraftingRecipe,
+    private val plugin: Any
 ) : FcCraftingRecipe, Adapter<CraftingRecipe>() {
 
     override fun prepare(player: FcPlayer, items: Grid<FcItem>): FcCraftingRecipe.Prepared? {
@@ -33,19 +33,19 @@ abstract class SpongeFcCraftingRecipe private constructor(
             results.addAll(it.remainingItems.map { it.createStack() })
 
             SpongeFcCraftingRecipe.Prepared(
-                    player,
-                    this,
-                    items,
-                    results.map(::SpongeFcItem)
+                player,
+                this,
+                items,
+                results.map(::SpongeFcItem)
             )
         }
     }
 
     private class Prepared(
-            override val player: FcPlayer,
-            override val recipe: FcCraftingRecipe,
-            override val items: Grid<FcItem>,
-            override val results: List<FcItem>
+        override val player: FcPlayer,
+        override val recipe: FcCraftingRecipe,
+        override val items: Grid<FcItem>,
+        override val results: List<FcItem>
     ) : FcCraftingRecipe.Prepared {
 
         override fun craft(): List<FcItem>? {
@@ -61,17 +61,17 @@ abstract class SpongeFcCraftingRecipe private constructor(
      * A shaped [SpongeFcCraftingRecipe].
      */
     class Shaped(
-            private val baseRecipe: ShapedCraftingRecipe,
-            plugin: Any
+        private val baseRecipe: ShapedCraftingRecipe,
+        plugin: Any
     ) : SpongeFcCraftingRecipe(baseRecipe, plugin) {
 
         override val id: String
             get() = baseRecipe.id
 
         override val ingredients = Grid.Impl<FcIngredient>(
-                baseRecipe.width,
-                baseRecipe.height,
-                { x, y -> SpongeFcIngredient(baseRecipe.getIngredient(x, y)) }
+            baseRecipe.width,
+            baseRecipe.height,
+            { x, y -> SpongeFcIngredient(baseRecipe.getIngredient(x, y)) }
         )
     }
 
@@ -79,8 +79,8 @@ abstract class SpongeFcCraftingRecipe private constructor(
      * A shapeless [SpongeFcCraftingRecipe].
      */
     class Shapeless(
-            private val baseRecipe: ShapelessCraftingRecipe,
-            plugin: Any
+        private val baseRecipe: ShapelessCraftingRecipe,
+        plugin: Any
     ) : SpongeFcCraftingRecipe(baseRecipe, plugin) {
 
         override val id: String
@@ -90,13 +90,13 @@ abstract class SpongeFcCraftingRecipe private constructor(
             val predicates = baseRecipe.ingredientPredicates.iterator()
 
             Grid.Impl<FcIngredient>(
-                    3,
-                    3,
-                    { _, _ ->
-                        predicates.takeIf { it.hasNext() }
-                                ?.let { SpongeFcIngredient(it.next()) }
-                                ?: SpongeFcIngredient(Ingredient.NONE)
-                    }
+                3,
+                3,
+                { _, _ ->
+                    predicates.takeIf { it.hasNext() }
+                        ?.let { SpongeFcIngredient(it.next()) }
+                        ?: SpongeFcIngredient(Ingredient.NONE)
+                }
             )
         }
     }

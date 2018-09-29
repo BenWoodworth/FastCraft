@@ -10,7 +10,7 @@ import org.spongepowered.api.event.network.ClientConnectionEvent
  * Sponge implementation of [FcEventPlayerJoin].
  */
 class SpongeFcEventPlayerJoin(
-        override val base: ClientConnectionEvent.Join
+    override val base: ClientConnectionEvent.Join
 ) : FcEventPlayerJoin, Adapter<ClientConnectionEvent.Join>() {
 
     override val player: FcPlayer

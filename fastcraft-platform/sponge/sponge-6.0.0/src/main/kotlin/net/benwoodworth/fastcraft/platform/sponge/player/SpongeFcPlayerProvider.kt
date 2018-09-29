@@ -12,12 +12,12 @@ class SpongeFcPlayerProvider : FcPlayerProvider {
 
     override fun getOnlinePlayers(): List<FcPlayer> {
         return Sponge.getServer().onlinePlayers
-                .map(::SpongeFcPlayer)
+            .map(::SpongeFcPlayer)
     }
 
     override fun getOnlinePlayer(uuid: UUID): FcPlayer? {
         return Sponge.getServer().getPlayer(uuid)
-                .map(::SpongeFcPlayer)
-                .orElse(null)
+            .map(::SpongeFcPlayer)
+            .orElse(null)
     }
 }

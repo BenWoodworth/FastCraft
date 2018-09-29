@@ -15,22 +15,22 @@ import javax.inject.Inject
  * Sponge implementation of [GuiFactory].
  */
 class SpongeGuiFactory @Inject constructor(
-        private val plugin: SpongeFastCraft
+    private val plugin: SpongeFastCraft
 ) : GuiFactory {
 
     @Suppress("UNCHECKED_CAST")
     private fun <T : Inventory> build(
-            gui: SpongeGui<*>,
-            title: FcText?,
-            archetype: InventoryArchetype,
-            builder: Inventory.Builder.() -> Unit = {}
+        gui: SpongeGui<*>,
+        title: FcText?,
+        archetype: InventoryArchetype,
+        builder: Inventory.Builder.() -> Unit = {}
     ): T {
         return Inventory.builder().apply {
             of(archetype)
             forCarrier(gui)
             if (title != null) property(
-                    InventoryTitle.PROPERTY_NAME,
-                    InventoryTitle.of((title as SpongeFcText).base)
+                InventoryTitle.PROPERTY_NAME,
+                InventoryTitle.of((title as SpongeFcText).base)
             )
             builder(this)
         }.build(plugin) as T
@@ -39,8 +39,8 @@ class SpongeGuiFactory @Inject constructor(
     override fun chest(height: Int, title: FcText?) = SpongeGui.Chest(plugin) {
         build(it, title, InventoryArchetypes.CHEST) {
             property(
-                    InventoryDimension.PROPERTY_NAME,
-                    InventoryDimension.of(9, height)
+                InventoryDimension.PROPERTY_NAME,
+                InventoryDimension.of(9, height)
             )
         }
     }

@@ -28,7 +28,7 @@ abstract class FcGuiBase : FcGui {
      * The position within a GUI's layout.
      */
     protected class LayoutLocation(
-            val layout: GuiLayoutRoot,
-            val position: FcGuiPosition
+        val layout: GuiLayoutRoot,
+        val position: FcGuiPosition
     )
 }

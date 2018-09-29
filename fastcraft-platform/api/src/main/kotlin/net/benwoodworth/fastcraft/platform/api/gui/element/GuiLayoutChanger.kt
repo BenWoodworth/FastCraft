@@ -8,8 +8,8 @@ import kotlin.reflect.KProperty
  * triggers a [GuiEventLayoutChange] when its value is changed.
  */
 class GuiLayoutChanger<T> @JvmOverloads constructor(
-        private var value: T,
-        private val get: (field: T) -> T = { it }
+    private var value: T,
+    private val get: (field: T) -> T = { it }
 ) {
 
     operator fun getValue(thisRef: GuiElement, property: KProperty<*>) = get(value)

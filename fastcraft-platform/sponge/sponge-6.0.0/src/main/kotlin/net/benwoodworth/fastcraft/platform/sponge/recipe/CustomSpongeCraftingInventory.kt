@@ -17,15 +17,15 @@ import java.util.*
  * A custom implementation of [CraftingInventory].
  */
 internal class CustomSpongeCraftingInventory(
-        plugin: Any
+    plugin: Any
 ) : CraftingGridInventory, CraftingInventory, GridInventory by Inventory.builder()
-        .of(InventoryArchetypes.WORKBENCH)
-        .property(
-                InventoryDimension.PROPERTY_NAME,
-                InventoryDimension(3, 3)
-        )
-        .build(plugin)
-        .query(GridInventory::class.java) {
+    .of(InventoryArchetypes.WORKBENCH)
+    .property(
+        InventoryDimension.PROPERTY_NAME,
+        InventoryDimension(3, 3)
+    )
+    .build(plugin)
+    .query(GridInventory::class.java) {
 
     /**
      * The result slot.
@@ -45,10 +45,10 @@ internal class CustomSpongeCraftingInventory(
     }
 
     private class CustomCraftingOutput(
-            plugin: Any
+        plugin: Any
     ) : CraftingOutput, Slot by Inventory.builder()
-            .property(InventoryDimension.PROPERTY_NAME, InventoryDimension(1, 1))
-            .build(plugin)
-            .query<GridInventory>(GridInventory::class.java)
-            .getSlot(0, 0).get()
+        .property(InventoryDimension.PROPERTY_NAME, InventoryDimension(1, 1))
+        .build(plugin)
+        .query<GridInventory>(GridInventory::class.java)
+        .getSlot(0, 0).get()
 }

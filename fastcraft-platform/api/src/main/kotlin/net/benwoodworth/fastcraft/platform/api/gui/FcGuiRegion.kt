@@ -50,8 +50,8 @@ interface FcGuiRegion {
     }
 
     private class PositionedImpl(
-            private val region: FcGuiRegion,
-            override val position: FcGuiPosition
+        private val region: FcGuiRegion,
+        override val position: FcGuiPosition
     ) : Positioned {
         override fun contains(position: FcGuiPosition) = region.contains(position.offset(-this.position))
         override fun offset(position: FcGuiPosition) = PositionedImpl(region, this.position.offset(position))
@@ -59,15 +59,15 @@ interface FcGuiRegion {
     }
 
     class Dynamic(
-            private val condition: (position: FcGuiPosition) -> Boolean
+        private val condition: (position: FcGuiPosition) -> Boolean
     ) : FcGuiRegion {
         override fun contains(position: FcGuiPosition) = condition(position)
     }
 
     class Rectangle(
-            override val position: FcGuiPosition,
-            val width: Int,
-            val height: Int
+        override val position: FcGuiPosition,
+        val width: Int,
+        val height: Int
     ) : Positioned {
         constructor(x: Int, y: Int, width: Int, height: Int) : this(FcGuiPosition(x, y), width, height)
 

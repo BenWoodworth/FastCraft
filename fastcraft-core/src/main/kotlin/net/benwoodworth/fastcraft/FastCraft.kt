@@ -15,12 +15,12 @@ import javax.inject.Singleton
  */
 @Singleton
 class FastCraft @Inject constructor(
-        private val listenerPluginEnable: FcListener<FcEventPluginEnable>,
-        private val listenerPluginDisable: FcListener<FcEventPluginDisable>,
-        private val listenerPlayerJoin: FcListener<FcEventPlayerJoin>,
+    private val listenerPluginEnable: FcListener<FcEventPluginEnable>,
+    private val listenerPluginDisable: FcListener<FcEventPluginDisable>,
+    private val listenerPlayerJoin: FcListener<FcEventPlayerJoin>,
 
-        private val taskBuilder: Provider<FcTaskBuilder>,
-        private val craftingGuiPresenterFactory: CraftingGuiPresenterFactory
+    private val taskBuilder: Provider<FcTaskBuilder>,
+    private val craftingGuiPresenterFactory: CraftingGuiPresenterFactory
 ) {
 
     init {
@@ -41,8 +41,8 @@ class FastCraft @Inject constructor(
         // TODO Remove debug code
         taskBuilder.get().delay(1).execute {
             craftingGuiPresenterFactory
-                    .create(event.player)
-                    .open()
+                .create(event.player)
+                .open()
         }
     }
 }

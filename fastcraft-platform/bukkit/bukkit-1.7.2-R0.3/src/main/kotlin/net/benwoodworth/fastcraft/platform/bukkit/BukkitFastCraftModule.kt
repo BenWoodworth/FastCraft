@@ -38,7 +38,7 @@ import javax.inject.Singleton
 
 @Module
 class BukkitFastCraftModule(
-        private val plugin: BukkitFastCraft
+    private val plugin: BukkitFastCraft
 ) {
 
     @Provides
@@ -57,14 +57,14 @@ class BukkitFastCraftModule(
     fun listenerPlayerJoin(server: Server): FcListener<FcEventPlayerJoin> {
         return FcListener<FcEventPlayerJoin>().also { listener ->
             server.pluginManager.registerEvents(
-                    object : org.bukkit.event.Listener {
-                        @EventHandler
-                        @Suppress("UNUSED")
-                        fun onPlayerJoin(event: PlayerJoinEvent) {
-                            listener.notifyHandlers(BukkitFcEventPlayerJoin(event))
-                        }
-                    },
-                    plugin
+                object : org.bukkit.event.Listener {
+                    @EventHandler
+                    @Suppress("UNUSED")
+                    fun onPlayerJoin(event: PlayerJoinEvent) {
+                        listener.notifyHandlers(BukkitFcEventPlayerJoin(event))
+                    }
+                },
+                plugin
             )
         }
     }
@@ -74,14 +74,14 @@ class BukkitFastCraftModule(
     fun listenerPluginDisable(server: Server): FcListener<FcEventPluginDisable> {
         return FcListener<FcEventPluginDisable>().also { listener ->
             server.pluginManager.registerEvents(
-                    object : org.bukkit.event.Listener {
-                        @EventHandler
-                        @Suppress("UNUSED")
-                        fun onPluginDisable(event: PluginDisableEvent) {
-                            listener.notifyHandlers(BukkitFcEventPluginDisable(event))
-                        }
-                    },
-                    plugin
+                object : org.bukkit.event.Listener {
+                    @EventHandler
+                    @Suppress("UNUSED")
+                    fun onPluginDisable(event: PluginDisableEvent) {
+                        listener.notifyHandlers(BukkitFcEventPluginDisable(event))
+                    }
+                },
+                plugin
             )
         }
     }
@@ -91,14 +91,14 @@ class BukkitFastCraftModule(
     fun listenerPluginEnable(server: Server): FcListener<FcEventPluginEnable> {
         return FcListener<FcEventPluginEnable>().also { listener ->
             server.pluginManager.registerEvents(
-                    object : org.bukkit.event.Listener {
-                        @EventHandler
-                        @Suppress("UNUSED")
-                        fun onPluginEnable(event: PluginEnableEvent) {
-                            listener.notifyHandlers(BukkitFcEventPluginEnable(event))
-                        }
-                    },
-                    plugin
+                object : org.bukkit.event.Listener {
+                    @EventHandler
+                    @Suppress("UNUSED")
+                    fun onPluginEnable(event: PluginEnableEvent) {
+                        listener.notifyHandlers(BukkitFcEventPluginEnable(event))
+                    }
+                },
+                plugin
             )
         }
     }

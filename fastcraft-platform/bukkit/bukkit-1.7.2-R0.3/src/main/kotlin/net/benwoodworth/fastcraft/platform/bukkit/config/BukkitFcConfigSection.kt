@@ -8,7 +8,7 @@ import org.bukkit.configuration.ConfigurationSection
  * Bukkit implementation of [FcConfigSection].
  */
 class BukkitFcConfigSection(
-        override val base: ConfigurationSection
+    override val base: ConfigurationSection
 ) : FcConfigSection, Adapter<ConfigurationSection>() {
 
     override fun hasKey(key: String): Boolean {

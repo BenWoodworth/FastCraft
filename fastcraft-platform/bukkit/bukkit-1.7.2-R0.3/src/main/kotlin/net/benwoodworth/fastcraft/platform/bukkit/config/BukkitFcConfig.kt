@@ -6,9 +6,9 @@ import net.benwoodworth.fastcraft.util.Adapter
 import org.bukkit.configuration.file.YamlConfiguration
 
 class BukkitFcConfig(override val base: YamlConfiguration) :
-        FcConfigSection by BukkitFcConfigSection(base),
-        Adapter<YamlConfiguration>(),
-        FcConfig {
+    FcConfigSection by BukkitFcConfigSection(base),
+    Adapter<YamlConfiguration>(),
+    FcConfig {
 
     override var header: List<String>
         get() {
@@ -27,9 +27,9 @@ class BukkitFcConfig(override val base: YamlConfiguration) :
         }
         set(value) {
             base.options().header(value
-                    .takeUnless { it.isEmpty() }
-                    ?.map { " $it" }
-                    ?.joinToString("\n")
+                .takeUnless { it.isEmpty() }
+                ?.map { " $it" }
+                ?.joinToString("\n")
             )
         }
 }

@@ -37,7 +37,7 @@ import javax.inject.Singleton
 
 @Module
 class SpongeFastCraftModule(
-        private val plugin: SpongeFastCraft
+    private val plugin: SpongeFastCraft
 ) {
 
     @Provides
@@ -53,8 +53,8 @@ class SpongeFastCraftModule(
     fun listenerPlayerJoin(plugin: SpongeFastCraft): FcListener<FcEventPlayerJoin> {
         return FcListener<FcEventPlayerJoin>().also { listener ->
             Sponge.getEventManager().registerListener(plugin,
-                    Join::class.java,
-                    { listener.notifyHandlers(SpongeFcEventPlayerJoin(it)) }
+                Join::class.java,
+                { listener.notifyHandlers(SpongeFcEventPlayerJoin(it)) }
             )
         }
     }
@@ -64,8 +64,8 @@ class SpongeFastCraftModule(
     fun listenerPluginDisable(plugin: SpongeFastCraft): FcListener<FcEventPluginDisable> {
         return FcListener<FcEventPluginDisable>().also { listener ->
             Sponge.getEventManager().registerListener(plugin,
-                    GameStoppingEvent::class.java,
-                    { listener.notifyHandlers(SpongeFcEventPluginDisable(it)) }
+                GameStoppingEvent::class.java,
+                { listener.notifyHandlers(SpongeFcEventPluginDisable(it)) }
             )
         }
     }
@@ -75,8 +75,8 @@ class SpongeFastCraftModule(
     fun listenerPluginEnable(plugin: SpongeFastCraft): FcListener<FcEventPluginEnable> {
         return FcListener<FcEventPluginEnable>().also { listener ->
             Sponge.getEventManager().registerListener(plugin,
-                    GameInitializationEvent::class.java,
-                    { listener.notifyHandlers(SpongeFcEventPluginEnable(it)) }
+                GameInitializationEvent::class.java,
+                { listener.notifyHandlers(SpongeFcEventPluginEnable(it)) }
             )
         }
     }

@@ -11,7 +11,7 @@ import javax.inject.Inject
  * Sponge implementation of [FcTaskBuilder].
  */
 class SpongeFcTaskBuilder @Inject constructor(
-        private val plugin: SpongeFastCraft
+    private val plugin: SpongeFastCraft
 ) : FcTaskBuilder, Adapter<Task.Builder>() {
 
     override val base: Task.Builder = Task.builder()

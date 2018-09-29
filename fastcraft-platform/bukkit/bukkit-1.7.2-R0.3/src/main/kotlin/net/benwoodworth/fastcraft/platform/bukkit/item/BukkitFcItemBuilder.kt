@@ -10,8 +10,8 @@ import org.bukkit.inventory.ItemStack
 import javax.inject.Inject
 
 class BukkitFcItemBuilder @Inject constructor(
-        private val itemFactory: BukkitFcItemFactory,
-        private val textFactory: BukkitFcText.Factory
+    private val itemFactory: BukkitFcItemFactory,
+    private val textFactory: BukkitFcText.Factory
 ) : FcItemBuilder {
 
     private var result = ItemStack(Material.AIR)

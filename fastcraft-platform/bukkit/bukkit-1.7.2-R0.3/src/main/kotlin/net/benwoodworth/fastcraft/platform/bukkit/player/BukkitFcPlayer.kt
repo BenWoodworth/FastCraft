@@ -14,9 +14,9 @@ import java.util.*
  */
 @AutoFactory
 class BukkitFcPlayer(
-        override val base: Player,
+    override val base: Player,
 
-        @Provided private val textConverter: BukkitFcText.Converter
+    @Provided private val textConverter: BukkitFcText.Converter
 ) : FcPlayer, Adapter<Player>() {
 
     override val username: String

@@ -9,7 +9,7 @@ import org.spongepowered.api.util.TypeTokens
  * Sponge implementation of [FcConfigSection].
  */
 class SpongeFcConfigSection(
-        override val base: ConfigurationNode
+    override val base: ConfigurationNode
 ) : FcConfigSection, Adapter<ConfigurationNode>() {
 
     override fun hasKey(key: String): Boolean {

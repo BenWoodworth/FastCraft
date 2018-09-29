@@ -8,5 +8,5 @@ import org.spongepowered.api.event.game.state.GameInitializationEvent
  * Sponge implementation of [FcEventPluginEnable].
  */
 class SpongeFcEventPluginEnable(
-        override val base: GameInitializationEvent
+    override val base: GameInitializationEvent
 ) : FcEventPluginEnable, Adapter<GameInitializationEvent>()

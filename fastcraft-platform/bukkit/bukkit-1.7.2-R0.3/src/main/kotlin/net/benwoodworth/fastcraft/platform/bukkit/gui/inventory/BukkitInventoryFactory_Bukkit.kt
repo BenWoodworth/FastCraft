@@ -11,8 +11,8 @@ import javax.inject.Inject
 
 @Suppress("ClassName")
 class BukkitInventoryFactory_Bukkit @Inject constructor(
-        private val server: Server,
-        private val textConverter: BukkitFcText_Bukkit.Converter
+    private val server: Server,
+    private val textConverter: BukkitFcText_Bukkit.Converter
 ) : BukkitInventoryFactory {
 
     override fun create(height: Int, title: FcText?, owner: InventoryHolder?): Inventory {

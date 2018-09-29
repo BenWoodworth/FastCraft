@@ -23,7 +23,7 @@ import org.bukkit.inventory.ShapelessRecipe
  * Bukkit implementation of [FcCraftingRecipe].
  */
 sealed class BukkitFcCraftingRecipe(
-        override val base: Recipe
+    override val base: Recipe
 ) : FcCraftingRecipe, Adapter<Recipe>() {
 
     protected abstract val server: Server
@@ -32,9 +32,9 @@ sealed class BukkitFcCraftingRecipe(
 
     override fun prepare(player: FcPlayer, items: Grid<FcItem>): FcCraftingRecipe.Prepared? {
         val inventory = CustomBukkitCraftingInventory(
-                (player as BukkitFcPlayer).base,
-                base,
-                server
+            (player as BukkitFcPlayer).base,
+            base,
+            server
         )
 
         inventory.matrix = Array(items.width * items.height) {
@@ -42,9 +42,9 @@ sealed class BukkitFcCraftingRecipe(
         }
 
         val prepareEvent = PrepareItemCraftEvent(
-                inventory,
-                inventory.InvView(),
-                false
+            inventory,
+            inventory.InvView(),
+            false
         )
 
         server.pluginManager.callEvent(prepareEvent)
@@ -55,32 +55,32 @@ sealed class BukkitFcCraftingRecipe(
         }
 
         val contents = Array(
-                inventory.contents.size,
-                { inventory.contents[it]?.clone() }
+            inventory.contents.size,
+            { inventory.contents[it]?.clone() }
         )
 
         // Create Prepared recipe
         return inventory.result?.let {
             preparedFactory.create(
-                    contents,
-                    player,
-                    this,
-                    items,
-                    inventory.getResults().map { itemFactory.create(it) }
+                contents,
+                player,
+                this,
+                items,
+                inventory.getResults().map { itemFactory.create(it) }
             )
         }
     }
 
     @AutoFactory
     class Prepared(
-            private val invContents: Array<ItemStack?>,
-            override val player: FcPlayer,
-            override val recipe: FcCraftingRecipe,
-            override val items: Grid<FcItem>,
-            override val results: List<FcItem>,
+        private val invContents: Array<ItemStack?>,
+        override val player: FcPlayer,
+        override val recipe: FcCraftingRecipe,
+        override val items: Grid<FcItem>,
+        override val results: List<FcItem>,
 
-            @Provided private val server: Server,
-            @Provided private val itemFactory: BukkitFcItemFactory
+        @Provided private val server: Server,
+        @Provided private val itemFactory: BukkitFcItemFactory
     ) : FcCraftingRecipe.Prepared {
 
         override fun craft(): List<FcItem>? {
@@ -88,23 +88,23 @@ sealed class BukkitFcCraftingRecipe(
             val bukkitRecipe = (recipe as BukkitFcCraftingRecipe).base
 
             val inventory = CustomBukkitCraftingInventory(
-                    bukkitPlayer,
-                    bukkitRecipe,
-                    server
+                bukkitPlayer,
+                bukkitRecipe,
+                server
             )
 
             inventory.contents = Array(
-                    invContents.size,
-                    { invContents[it]?.clone() }
+                invContents.size,
+                { invContents[it]?.clone() }
             )
 
             val craftEvent = CraftItemEvent(
-                    bukkitRecipe,
-                    inventory.InvView(),
-                    InventoryType.SlotType.RESULT,
-                    0,
-                    ClickType.SHIFT_LEFT,
-                    InventoryAction.MOVE_TO_OTHER_INVENTORY
+                bukkitRecipe,
+                inventory.InvView(),
+                InventoryType.SlotType.RESULT,
+                0,
+                ClickType.SHIFT_LEFT,
+                InventoryAction.MOVE_TO_OTHER_INVENTORY
             )
 
             server.pluginManager.callEvent(craftEvent)
@@ -114,17 +114,17 @@ sealed class BukkitFcCraftingRecipe(
             }
 
             return inventory.getResults()
-                    .map { itemFactory.create(it) }
+                .map { itemFactory.create(it) }
         }
     }
 
     @AutoFactory
     class Shaped(
-            private val baseRecipe: ShapedRecipe,
+        private val baseRecipe: ShapedRecipe,
 
-            @Provided override val server: Server,
-            @Provided override val preparedFactory: BukkitFcCraftingRecipe_PreparedFactory,
-            @Provided override val itemFactory: BukkitFcItemFactory
+        @Provided override val server: Server,
+        @Provided override val preparedFactory: BukkitFcCraftingRecipe_PreparedFactory,
+        @Provided override val itemFactory: BukkitFcItemFactory
     ) : BukkitFcCraftingRecipe(baseRecipe) {
 
         override val id: String
@@ -132,21 +132,21 @@ sealed class BukkitFcCraftingRecipe(
 
         override val ingredients: Grid.Impl<FcIngredient> = Grid.Impl(3, 3) { x, y ->
             baseRecipe.shape[y]
-                    .takeIf { x < it.length }
-                    ?.get(x)
-                    ?.let { baseRecipe.ingredientMap[it] }
-                    ?.let { BukkitFcIngredient(it) }
-                    ?: BukkitFcIngredient(ItemStack(Material.AIR))
+                .takeIf { x < it.length }
+                ?.get(x)
+                ?.let { baseRecipe.ingredientMap[it] }
+                ?.let { BukkitFcIngredient(it) }
+                ?: BukkitFcIngredient(ItemStack(Material.AIR))
         }
     }
 
     @AutoFactory
     class Shapeless(
-            private val baseRecipe: ShapelessRecipe,
+        private val baseRecipe: ShapelessRecipe,
 
-            @Provided override val server: Server,
-            @Provided override val preparedFactory: BukkitFcCraftingRecipe_PreparedFactory,
-            @Provided override val itemFactory: BukkitFcItemFactory
+        @Provided override val server: Server,
+        @Provided override val preparedFactory: BukkitFcCraftingRecipe_PreparedFactory,
+        @Provided override val itemFactory: BukkitFcItemFactory
     ) : BukkitFcCraftingRecipe(baseRecipe) {
 
         override val id: String
@@ -154,14 +154,14 @@ sealed class BukkitFcCraftingRecipe(
 
         override val ingredients: Grid<FcIngredient> = run {
             val ingredients = baseRecipe.ingredientList
-                    .map { it?.let(::BukkitFcIngredient) }
-                    .iterator()
+                .map { it?.let(::BukkitFcIngredient) }
+                .iterator()
 
             Grid.Impl(3, 3) { _, _ ->
                 ingredients
-                        .takeIf { it.hasNext() }
-                        ?.next()
-                        ?: BukkitFcIngredient(ItemStack(Material.AIR))
+                    .takeIf { it.hasNext() }
+                    ?.next()
+                    ?: BukkitFcIngredient(ItemStack(Material.AIR))
             }
         }
     }

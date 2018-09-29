@@ -11,9 +11,9 @@ import javax.inject.Inject
  * Bukkit implementation of [FcRecipeProvider].
  */
 class BukkitFcRecipeProvider @Inject constructor(
-        private val server: Server,
-        private val shapedFactory: BukkitFcCraftingRecipe_ShapedFactory,
-        private val shapelessFactory: BukkitFcCraftingRecipe_ShapelessFactory
+    private val server: Server,
+    private val shapedFactory: BukkitFcCraftingRecipe_ShapedFactory,
+    private val shapelessFactory: BukkitFcCraftingRecipe_ShapelessFactory
 ) : FcRecipeProvider {
 
     override fun getCraftingRecipes(): List<FcCraftingRecipe> {

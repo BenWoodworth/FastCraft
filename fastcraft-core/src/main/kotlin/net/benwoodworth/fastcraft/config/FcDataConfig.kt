@@ -7,7 +7,7 @@ import net.benwoodworth.fastcraft.platform.api.config.FcConfig
  * Manages the data config.
  */
 class FcDataConfig(
-        override var config: FcConfig
+    override var config: FcConfig
 ) : net.benwoodworth.fastcraft.config.ConfigWrapper {
 
     /**

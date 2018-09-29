@@ -7,7 +7,7 @@ import org.spongepowered.api.text.Text
 import javax.inject.Inject
 
 class SpongeFcText(
-        override val base: Text
+    override val base: Text
 ) : Adapter<Text>(), FcText {
 
     class Factory : FcText.Factory {
@@ -16,7 +16,7 @@ class SpongeFcText(
     }
 
     class Builder @Inject constructor(
-            override val base: Text.Builder
+        override val base: Text.Builder
     ) : Adapter<Text.Builder>(), FcText.Builder {
 
         override fun build() = SpongeFcText(base.build())

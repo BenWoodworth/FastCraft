@@ -24,7 +24,7 @@ import javax.inject.Singleton
  */
 @Singleton
 class SpongeGuiListener @Inject constructor(
-        plugin: SpongeFastCraft
+    plugin: SpongeFastCraft
 ) {
 
     init {
@@ -41,8 +41,8 @@ class SpongeGuiListener @Inject constructor(
         val carrier = parent.carrier.orElse(null) ?: return false
 
         val slotIndex = slot.getProperty(SlotIndex::class.java, "slotindex")
-                .map(SlotIndex::getValue)
-                .orElse(null)
+            .map(SlotIndex::getValue)
+            .orElse(null)
 
         return slotIndex in 0 until carrier.inventory.capacity()
     }
@@ -56,8 +56,8 @@ class SpongeGuiListener @Inject constructor(
     @Listener(order = Order.EARLY)
     fun onAffectSlot(event: AffectSlotEvent) {
         event.transactions
-                .filter { isGuiSlot(it.slot) }
-                .forEach { it.isValid = false }
+            .filter { isGuiSlot(it.slot) }
+            .forEach { it.isValid = false }
     }
 
     /**
@@ -92,7 +92,7 @@ class SpongeGuiListener @Inject constructor(
         val gui = carriedInv.carrier.orElse(null) as? Gui ?: return
 
         gui.closeListener.notifyHandlers(
-                GuiEventClose(gui, player?.let(::SpongeFcPlayer))
+            GuiEventClose(gui, player?.let(::SpongeFcPlayer))
         )
     }
 }

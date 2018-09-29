@@ -8,7 +8,9 @@ import javax.inject.Singleton
  * Sponge implementation of [Component].
  */
 @Singleton
-@Component(modules = [
-    SpongeFastCraftModule::class
-])
+@Component(
+    modules = [
+        SpongeFastCraftModule::class
+    ]
+)
 interface SpongeFastCraftComponent : FastCraftComponent

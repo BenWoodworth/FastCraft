@@ -25,10 +25,10 @@ import org.spongepowered.api.item.inventory.type.GridInventory
  */
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 abstract class SpongeGui<out TInv : Inventory>(
-        invProvider: (SpongeGui<TInv>) -> TInv,
+    invProvider: (SpongeGui<TInv>) -> TInv,
 
-        @Suppress("UNUSED_PARAMETER")
-        listener: SpongeGuiListener
+    @Suppress("UNUSED_PARAMETER")
+    listener: SpongeGuiListener
 ) : GuiAbstract(), Carrier {
 
     @Suppress("LeakingThis")
@@ -46,8 +46,8 @@ abstract class SpongeGui<out TInv : Inventory>(
 
     override fun getViewers(): List<FcPlayer> {
         return Sponge.getServer().onlinePlayers
-                .filter { it.openInventory === inventory }
-                .map(::SpongeFcPlayer)
+            .filter { it.openInventory === inventory }
+            .map(::SpongeFcPlayer)
     }
 
     protected fun GuiLayout.getSpongeItem(x: Int, y: Int): ItemStack? {
@@ -58,13 +58,14 @@ abstract class SpongeGui<out TInv : Inventory>(
 
     fun onClick(event: ClickInventoryEvent, player: Player?) {
         val slotIndex = event
-                .transactions[0]
-                .slot
-                .getProperty(SlotIndex::class.java, "slotindex")
-                .map(SlotIndex::getValue).get()
+            .transactions[0]
+            .slot
+            .getProperty(SlotIndex::class.java, "slotindex")
+            .map(SlotIndex::getValue).get()
 
         getLayoutLocation(slotIndex)?.run {
-            layout.click(GuiEventClick(
+            layout.click(
+                GuiEventClick(
                     location,
                     this@SpongeGui,
                     player?.let(::SpongeFcPlayer),
@@ -74,13 +75,14 @@ abstract class SpongeGui<out TInv : Inventory>(
                     event is ClickInventoryEvent.Double,
                     (event as? ClickInventoryEvent.NumberPress)?.number,
                     event is ClickInventoryEvent.Shift
-            ))
+                )
+            )
         }
     }
 
     abstract class GridBase(
-            plugin: SpongeFastCraft,
-            invProvider: (SpongeGui<GridInventory>) -> GridInventory
+        plugin: SpongeFastCraft,
+        invProvider: (SpongeGui<GridInventory>) -> GridInventory
     ) : SpongeGui<GridInventory>(plugin, invProvider) {
 
         override val layout = addLayout(inventory.columns, inventory.rows)
@@ -91,11 +93,11 @@ abstract class SpongeGui<out TInv : Inventory>(
             }
 
             return LayoutLocation(
-                    layout,
-                    GuiLocation(
-                            slotIndex % layout.region.width,
-                            slotIndex / layout.region.width
-                    )
+                layout,
+                GuiLocation(
+                    slotIndex % layout.region.width,
+                    slotIndex / layout.region.width
+                )
             )
         }
 
@@ -111,17 +113,17 @@ abstract class SpongeGui<out TInv : Inventory>(
     }
 
     class Chest(
-            plugin: SpongeFastCraft,
-            invProvider: (SpongeGui<GridInventory>) -> GridInventory
+        plugin: SpongeFastCraft,
+        invProvider: (SpongeGui<GridInventory>) -> GridInventory
     ) : GridBase(plugin, invProvider), Gui.Chest
 
     class Dispenser(
-            plugin: SpongeFastCraft,
-            invProvider: (SpongeGui<GridInventory>) -> GridInventory
+        plugin: SpongeFastCraft,
+        invProvider: (SpongeGui<GridInventory>) -> GridInventory
     ) : GridBase(plugin, invProvider), Gui.Dispenser
 
     class Hopper(
-            plugin: SpongeFastCraft,
-            invProvider: (SpongeGui<GridInventory>) -> GridInventory
+        plugin: SpongeFastCraft,
+        invProvider: (SpongeGui<GridInventory>) -> GridInventory
     ) : GridBase(plugin, invProvider), Gui.Hopper
 }

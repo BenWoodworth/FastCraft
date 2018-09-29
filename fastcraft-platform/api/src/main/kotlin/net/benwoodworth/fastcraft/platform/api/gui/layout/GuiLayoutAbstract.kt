@@ -13,7 +13,7 @@ import java.util.*
  * Abstract implementation of [GuiLayout].
  */
 abstract class GuiLayoutAbstract<TRegion : FcGuiRegion.Positioned>(
-        region: TRegion
+    region: TRegion
 ) : GuiLayout, GuiElementAbstract<TRegion>(region) {
 
     private val elements = LinkedList<GuiElement>()
@@ -27,7 +27,7 @@ abstract class GuiLayoutAbstract<TRegion : FcGuiRegion.Positioned>(
 
         elements.addFirst(element)
         changeListener.notifyHandlers(
-                GuiEventLayoutChange(region.intersect(element.region))
+            GuiEventLayoutChange(region.intersect(element.region))
         )
     }
 
@@ -42,9 +42,11 @@ abstract class GuiLayoutAbstract<TRegion : FcGuiRegion.Positioned>(
 
     override fun click(event: GuiEventClick) {
         getElement(event.position)?.let {
-            it.click(event.copy(
+            it.click(
+                event.copy(
                     position = event.position.offset(-it.region.position)
-            ))
+                )
+            )
         }
     }
 
@@ -55,8 +57,10 @@ abstract class GuiLayoutAbstract<TRegion : FcGuiRegion.Positioned>(
     }
 
     private fun onLayoutChange(event: GuiEventLayoutChange) {
-        changeListener.notifyHandlers(event.copy(
+        changeListener.notifyHandlers(
+            event.copy(
                 region = event.region.offset(region.position)
-        ))
+            )
+        )
     }
 }

@@ -6,15 +6,15 @@ import net.benwoodworth.fastcraft.platform.api.gui.mvp.MvpView
 import javax.inject.Inject
 
 class CraftingGuiView @Inject constructor(
-        guiFactory: FcGuiFactory,
-        fastCraftLang: net.benwoodworth.fastcraft.lang.FastCraftLang,
+    guiFactory: FcGuiFactory,
+    fastCraftLang: net.benwoodworth.fastcraft.lang.FastCraftLang,
 
-        buttonWorkbenchFactory: ButtonWorkbenchFactory,
-        buttonMultiplierFactory: ButtonMultiplierFactory,
-        buttonRefreshFactory: ButtonRefreshFactory,
-        buttonPageFactory: ButtonPageFactory,
+    buttonWorkbenchFactory: ButtonWorkbenchFactory,
+    buttonMultiplierFactory: ButtonMultiplierFactory,
+    buttonRefreshFactory: ButtonRefreshFactory,
+    buttonPageFactory: ButtonPageFactory,
 
-        elementRecipeListFactory: ElementRecipeListFactory
+    elementRecipeListFactory: ElementRecipeListFactory
 ) : MvpView {
 
     val elementRecipeList = elementRecipeListFactory.create(FcGuiRegion.Rectangle(0, 0, 8, 6))
@@ -25,9 +25,9 @@ class CraftingGuiView @Inject constructor(
     val buttonPage = buttonPageFactory.create(FcGuiPosition(8, 5))
 
     val gui = guiFactory.withSize(
-            9,
-            6,
-            fastCraftLang.guiTitle()
+        9,
+        6,
+        fastCraftLang.guiTitle()
     ).apply {
         layout.addElement(elementRecipeList)
         layout.addElement(buttonWorkbench)

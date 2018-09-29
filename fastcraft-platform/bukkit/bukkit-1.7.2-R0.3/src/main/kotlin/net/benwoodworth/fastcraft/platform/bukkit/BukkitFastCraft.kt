@@ -15,7 +15,7 @@ class BukkitFastCraft : FastCraftImplementation, JavaPlugin() {
 
     override fun onEnable() {
         val fastCraftBuilder = DaggerBukkitFastCraftComponent.builder()
-                .bukkitFastCraftModule(BukkitFastCraftModule(this))
+            .bukkitFastCraftModule(BukkitFastCraftModule(this))
 
         instance = fastCraftBuilder.build().getFastCraft()
 

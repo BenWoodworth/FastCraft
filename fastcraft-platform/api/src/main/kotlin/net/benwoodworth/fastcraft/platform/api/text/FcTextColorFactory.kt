@@ -2,39 +2,39 @@ package net.benwoodworth.fastcraft.platform.api.text
 
 interface FcTextColorFactory {
 
-    fun  getBlack(): FcTextColor
+    fun getBlack(): FcTextColor
 
-    fun  getDarkBlue(): FcTextColor
+    fun getDarkBlue(): FcTextColor
 
-    fun  getDarkGreen(): FcTextColor
+    fun getDarkGreen(): FcTextColor
 
-    fun  getDarkAqua(): FcTextColor
+    fun getDarkAqua(): FcTextColor
 
-    fun  getDarkRed(): FcTextColor
+    fun getDarkRed(): FcTextColor
 
-    fun  getDarkPurple(): FcTextColor
+    fun getDarkPurple(): FcTextColor
 
-    fun  getGold(): FcTextColor
+    fun getGold(): FcTextColor
 
-    fun  getGray(): FcTextColor
+    fun getGray(): FcTextColor
 
-    fun  getDarkGray(): FcTextColor
+    fun getDarkGray(): FcTextColor
 
-    fun  getBlue(): FcTextColor
+    fun getBlue(): FcTextColor
 
-    fun  getGreen(): FcTextColor
+    fun getGreen(): FcTextColor
 
-    fun  getAqua(): FcTextColor
+    fun getAqua(): FcTextColor
 
-    fun  getRed(): FcTextColor
+    fun getRed(): FcTextColor
 
-    fun  getLightPurple(): FcTextColor
+    fun getLightPurple(): FcTextColor
 
-    fun  getYellow(): FcTextColor
+    fun getYellow(): FcTextColor
 
-    fun  getWhite(): FcTextColor
+    fun getWhite(): FcTextColor
 
-    fun  getReset(): FcTextColor
+    fun getReset(): FcTextColor
 
-    fun  getNone(): FcTextColor
+    fun getNone(): FcTextColor
 }

@@ -11,7 +11,7 @@ class SpongeFcPluginRegistry : FcPluginRegistry {
 
     override fun getPlugin(name: String): FcPlugin? {
         return Sponge.getPluginManager().getPlugin(name)
-                .map(::SpongeFcPlugin)
-                .orElse(null)
+            .map(::SpongeFcPlugin)
+            .orElse(null)
     }
 }

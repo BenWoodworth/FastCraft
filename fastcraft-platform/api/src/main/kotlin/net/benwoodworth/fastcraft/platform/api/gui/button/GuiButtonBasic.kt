@@ -11,8 +11,8 @@ import net.benwoodworth.fastcraft.platform.api.item.FcItem
  * A basic implementation of [GuiButton].
  */
 class GuiButtonBasic(
-        region: FcGuiRegion.Positioned,
-        item: FcItem? = null
+    region: FcGuiRegion.Positioned,
+    item: FcItem? = null
 ) : GuiButtonAbstract(region), GuiElement.Mutable {
 
     /**

@@ -15,13 +15,13 @@ import org.spongepowered.api.text.Text
  * @property base The item being adapted. Should not be modified.
  */
 class SpongeFcItem(
-        private val base: ItemStack
+    private val base: ItemStack
 ) : FcItem by SpongeFcItem.Mutable(base) {
 
     val snapshot by lazy { base.createSnapshot() }
 
     class Mutable(
-            override val base: ItemStack
+        override val base: ItemStack
     ) : FcItem.Mutable, Adapter<ItemStack>() {
 
         override val type: FcItemType

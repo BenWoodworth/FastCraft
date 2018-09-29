@@ -8,7 +8,7 @@ import org.slf4j.Logger
  * Sponge implementation of [FcLogger].
  */
 class SpongeFcLogger(
-        override val base: Logger
+    override val base: Logger
 ) : FcLogger, Adapter<Logger>() {
 
     override fun error(message: String) = base.error(message)

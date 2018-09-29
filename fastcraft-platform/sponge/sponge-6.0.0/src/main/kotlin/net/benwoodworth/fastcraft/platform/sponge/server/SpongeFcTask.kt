@@ -8,7 +8,7 @@ import org.spongepowered.api.scheduler.Task
  * Sponge implementation of [FcTask].
  */
 class SpongeFcTask(
-        override val base: Task
+    override val base: Task
 ) : FcTask, Adapter<Task>() {
 
     override fun cancel() {

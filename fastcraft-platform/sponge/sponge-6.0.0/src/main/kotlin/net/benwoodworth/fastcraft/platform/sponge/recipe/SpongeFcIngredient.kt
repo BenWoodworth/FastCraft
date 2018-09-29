@@ -10,7 +10,7 @@ import org.spongepowered.api.item.recipe.crafting.Ingredient
  * Sponge implementation of [FcIngredient].
  */
 class SpongeFcIngredient(
-        override val base: Ingredient
+    override val base: Ingredient
 ) : FcIngredient, Adapter<Ingredient>() {
 
     override fun matches(item: FcItem): Boolean {

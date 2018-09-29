@@ -4,8 +4,8 @@ import net.benwoodworth.fastcraft.platform.api.text.FcTextColor
 import javax.inject.Inject
 
 class BukkitFcTextColor(
-        val name: String,
-        legacyCodeChar: Char?
+    val name: String,
+    legacyCodeChar: Char?
 ) : FcTextColor {
 
     val legacyCode = legacyCodeChar?.let { "\u00A7$it" } ?: ""
