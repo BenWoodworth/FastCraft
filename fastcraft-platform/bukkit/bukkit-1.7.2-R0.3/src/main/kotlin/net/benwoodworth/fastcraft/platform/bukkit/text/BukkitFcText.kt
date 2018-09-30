@@ -11,7 +11,7 @@ interface BukkitFcText : FcText {
     val italic: Boolean?
     val underlined: Boolean?
     val strikeThrough: Boolean?
-    val obfuscated: Boolean?
+    val obfuscate: Boolean?
     //val shiftClickAction: BukkitFcTextAction_Bukkit.ShiftClick?
     //val clickAction: BukkitFcTextAction_Bukkit.Click?
     //val hoverAction: BukkitFcTextAction_Bukkit.Hover?

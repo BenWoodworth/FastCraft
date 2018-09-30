@@ -8,6 +8,7 @@ import net.benwoodworth.fastcraft.platform.api.player.FcPlayerProvider
 import net.benwoodworth.fastcraft.platform.api.recipe.FcRecipeService
 import net.benwoodworth.fastcraft.platform.api.server.FcLogger
 import net.benwoodworth.fastcraft.platform.api.server.FcTaskBuilder
+import net.benwoodworth.fastcraft.platform.api.text.FcTextBuilder
 import java.nio.file.Path
 
 interface PlatformModule {
@@ -31,4 +32,6 @@ interface PlatformModule {
     fun getRecipeService(): FcRecipeService
 
     fun createTaskBuilder(): FcTaskBuilder
+
+    fun createTextBuilder(): FcTextBuilder
 }

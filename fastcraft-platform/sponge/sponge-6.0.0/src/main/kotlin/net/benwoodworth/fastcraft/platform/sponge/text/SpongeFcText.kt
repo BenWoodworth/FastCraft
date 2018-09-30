@@ -41,8 +41,8 @@ class SpongeFcText(
             base.style.strikethrough(strikeThrough)
         }
 
-        override fun setObfuscated(obfuscated: Boolean) = also {
-            base.style.obfuscated(obfuscated)
+        override fun setObfuscated(obfuscate: Boolean) = also {
+            base.style.obfuscate(obfuscate)
         }
 
         //override fun setShiftClickAction(action: FcTextAction.ShiftClick) = also {

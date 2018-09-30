@@ -44,7 +44,7 @@ class BukkitFcText_Nms_1_7_R1(
         get() = TODO()
         set(value) {}
 
-    override var obfuscated: Boolean?
+    override var obfuscate: Boolean?
         get() = TODO()
         set(value) {}
 

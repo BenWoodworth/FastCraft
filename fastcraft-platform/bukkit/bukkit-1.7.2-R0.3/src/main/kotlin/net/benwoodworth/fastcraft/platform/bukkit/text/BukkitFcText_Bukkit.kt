@@ -15,7 +15,7 @@ class BukkitFcText_Bukkit(
     override val italic: Boolean?,
     override val underlined: Boolean?,
     override val strikeThrough: Boolean?,
-    override val obfuscated: Boolean?,
+    override val obfuscate: Boolean?,
     override val extra: List<BukkitFcText>
 ) : BukkitFcText {
 
@@ -40,11 +40,11 @@ class BukkitFcText_Bukkit(
         private var italic: Boolean? = null
         private var underlined: Boolean? = null
         private var strikeThrough: Boolean? = null
-        private var obfuscated: Boolean? = null
+        private var obfuscate: Boolean? = null
         private var extra = mutableListOf<BukkitFcText>()
 
         override fun build() = BukkitFcText_Bukkit(
-            text, color, bold, italic, underlined, strikeThrough, obfuscated, extra.toList()
+            text, color, bold, italic, underlined, strikeThrough, obfuscate, extra.toList()
         )
 
         override fun setColor(color: FcTextColor) = also { this.color = color as BukkitFcTextColor }
@@ -52,7 +52,7 @@ class BukkitFcText_Bukkit(
         override fun setItalic(italic: Boolean) = also { this.italic = italic }
         override fun setUnderlined(underlined: Boolean) = also { this.underlined = underlined }
         override fun setStrikeThrough(strikeThrough: Boolean) = also { this.strikeThrough = strikeThrough }
-        override fun setObfuscated(obfuscated: Boolean) = also { this.obfuscated = obfuscated }
+        override fun setObfuscated(obfuscate: Boolean) = also { this.obfuscate = obfuscate }
         override fun addExtra(text: FcText) = also { extra.add(text as BukkitFcText) }
     }
 
@@ -83,7 +83,7 @@ class BukkitFcText_Bukkit(
                     (text.italic == false && currentFormat.italic != false) ||
                     (text.underlined == false && currentFormat.underlined != false) ||
                     (text.strikeThrough == false && currentFormat.strikeThrough != false) ||
-                    (text.obfuscated == false && currentFormat.obfuscated != false)
+                    (text.obfuscate == false && currentFormat.obfuscate != false)
 
             if (resetFormatting) {
                 stringBuilder.append(colors.reset.legacyCode)
@@ -94,7 +94,7 @@ class BukkitFcText_Bukkit(
                     italic = false
                     underlined = false
                     strikeThrough = false
-                    obfuscated = false
+                    obfuscate = false
                 }
             }
 
@@ -103,7 +103,7 @@ class BukkitFcText_Bukkit(
             if (text.italic == true && currentFormat.italic != true) stringBuilder.append(ITALIC)
             if (text.underlined == true && currentFormat.underlined != true) stringBuilder.append(UNDERLINED)
             if (text.strikeThrough == true && currentFormat.strikeThrough != true) stringBuilder.append(STRIKE_THROUGH)
-            if (text.obfuscated == true && currentFormat.obfuscated != true) stringBuilder.append(OBFUSCATED)
+            if (text.obfuscate == true && currentFormat.obfuscate != true) stringBuilder.append(OBFUSCATED)
 
             stringBuilder.append(text.text)
 
@@ -120,7 +120,7 @@ class BukkitFcText_Bukkit(
             var italic: Boolean? = null,
             var underlined: Boolean? = null,
             var strikeThrough: Boolean? = null,
-            var obfuscated: Boolean? = null
+            var obfuscate: Boolean? = null
         )
     }
 }

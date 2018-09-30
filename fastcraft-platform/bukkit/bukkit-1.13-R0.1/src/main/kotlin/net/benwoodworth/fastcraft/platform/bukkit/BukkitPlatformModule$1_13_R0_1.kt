@@ -8,8 +8,10 @@ import net.benwoodworth.fastcraft.platform.api.player.FcPlayerProvider
 import net.benwoodworth.fastcraft.platform.api.recipe.FcRecipeService
 import net.benwoodworth.fastcraft.platform.api.server.FcLogger
 import net.benwoodworth.fastcraft.platform.api.server.FcTaskBuilder
+import net.benwoodworth.fastcraft.platform.api.text.FcTextBuilder
 import net.benwoodworth.fastcraft.platform.bukkit.server.`BukkitFcLogger$1_13_R0_1`
 import net.benwoodworth.fastcraft.platform.bukkit.server.`BukkitFcTaskBuilder$1_13_R0_1`
+import net.benwoodworth.fastcraft.platform.bukkit.text.`BukkitFcTextBuilder$1_13_R0_1`
 import org.bukkit.plugin.Plugin
 import java.nio.file.Path
 
@@ -60,5 +62,9 @@ class `BukkitPlatformModule$1_13_R0_1`(
 
     override fun createTaskBuilder(): FcTaskBuilder {
         return `BukkitFcTaskBuilder$1_13_R0_1`(plugin)
+    }
+
+    override fun createTextBuilder(): FcTextBuilder {
+        return `BukkitFcTextBuilder$1_13_R0_1`
     }
 }
