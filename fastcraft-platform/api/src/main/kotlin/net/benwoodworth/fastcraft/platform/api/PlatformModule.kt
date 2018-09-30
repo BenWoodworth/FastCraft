@@ -15,9 +15,9 @@ interface PlatformModule {
 
     fun getLogger(): FcLogger
 
-    fun getConfigPath(): Path
+    fun getDataFolder(): Path
 
-    fun getPluginDirectory(): Path
+    fun getConfigPath(): Path
 
     fun createConfigBuilder(): FcConfigBuilder
 
