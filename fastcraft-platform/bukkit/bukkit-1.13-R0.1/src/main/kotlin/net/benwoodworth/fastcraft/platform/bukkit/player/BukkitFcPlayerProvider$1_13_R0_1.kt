@@ -5,7 +5,7 @@ import org.bukkit.Bukkit
 import java.util.*
 
 @Suppress("ClassName")
-class `BukkitFcPlayerProvider$1_13_R0_1` : BukkitFcPlayerProvider {
+object `BukkitFcPlayerProvider$1_13_R0_1` : BukkitFcPlayerProvider {
 
     override fun getOnlinePlayers(): List<FcPlayer> {
         return Bukkit.getOnlinePlayers().map { player ->

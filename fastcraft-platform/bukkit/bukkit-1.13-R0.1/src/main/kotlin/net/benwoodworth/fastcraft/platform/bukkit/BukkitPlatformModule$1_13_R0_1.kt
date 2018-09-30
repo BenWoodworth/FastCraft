@@ -9,6 +9,7 @@ import net.benwoodworth.fastcraft.platform.api.recipe.FcRecipeService
 import net.benwoodworth.fastcraft.platform.api.server.FcLogger
 import net.benwoodworth.fastcraft.platform.api.server.FcTaskBuilder
 import net.benwoodworth.fastcraft.platform.api.text.FcTextBuilder
+import net.benwoodworth.fastcraft.platform.bukkit.player.`BukkitFcPlayerProvider$1_13_R0_1`
 import net.benwoodworth.fastcraft.platform.bukkit.server.`BukkitFcLogger$1_13_R0_1`
 import net.benwoodworth.fastcraft.platform.bukkit.server.`BukkitFcTaskBuilder$1_13_R0_1`
 import net.benwoodworth.fastcraft.platform.bukkit.text.`BukkitFcTextBuilder$1_13_R0_1`
@@ -53,7 +54,7 @@ class `BukkitPlatformModule$1_13_R0_1`(
     }
 
     override fun getPlayerProvider(): FcPlayerProvider {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return `BukkitFcPlayerProvider$1_13_R0_1`
     }
 
     override fun getRecipeService(): FcRecipeService {
