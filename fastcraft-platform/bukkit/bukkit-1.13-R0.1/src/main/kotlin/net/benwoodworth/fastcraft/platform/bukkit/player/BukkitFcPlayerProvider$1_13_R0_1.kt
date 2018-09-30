@@ -1,4 +1,21 @@
 package net.benwoodworth.fastcraft.platform.bukkit.player
 
+import net.benwoodworth.fastcraft.platform.api.player.FcPlayer
+import org.bukkit.Bukkit
+import java.util.*
+
 @Suppress("ClassName")
-class `BukkitFcPlayerProvider$1_13_R0_1` : BukkitFcPlayerProvider
+class `BukkitFcPlayerProvider$1_13_R0_1` : BukkitFcPlayerProvider {
+
+    override fun getOnlinePlayers(): List<FcPlayer> {
+        return Bukkit.getOnlinePlayers().map { player ->
+            `BukkitFcPlayer$1_13_R0_1`(player)
+        }
+    }
+
+    override fun getPlayer(uuid: UUID): FcPlayer? {
+        return Bukkit.getPlayer(uuid)?.let { player ->
+            `BukkitFcPlayer$1_13_R0_1`(player)
+        }
+    }
+}

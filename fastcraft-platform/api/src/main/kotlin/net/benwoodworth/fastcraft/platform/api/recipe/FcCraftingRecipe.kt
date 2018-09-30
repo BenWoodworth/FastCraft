@@ -14,20 +14,5 @@ interface FcCraftingRecipe {
      * The ingredients required to craft this recipe.
      */
     val ingredients: List<FcIngredient>
-
-    /**
-     * Check if this recipe is equal to an object.
-     *
-     * @param other the object to compare to.
-     * @return `true` iff the recipes are equal.
-     */
-    override fun equals(other: Any?): Boolean
-
-    /**
-     * Generates a hash code for this recipe.
-     *
-     * @return the hash code.
-     */
-    override fun hashCode(): Int
 }
 

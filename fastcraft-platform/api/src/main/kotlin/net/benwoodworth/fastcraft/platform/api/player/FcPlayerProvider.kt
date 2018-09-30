@@ -20,5 +20,5 @@ interface FcPlayerProvider {
      * @param uuid the player's UUID.
      * @return the player with the given UUID, or null if none exists.
      */
-    fun getOnlinePlayer(uuid: UUID): FcPlayer?
+    fun getPlayer(uuid: UUID): FcPlayer?
 }
