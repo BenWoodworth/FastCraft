@@ -5,7 +5,7 @@ import org.bukkit.Bukkit
 import org.bukkit.plugin.Plugin
 
 @Suppress("ClassName")
-class BukkitFcTask_1_13_R0_1(
+class `BukkitFcTask$1_13_R0_1`(
     private val plugin: Plugin,
     private val action: (task: FcTask) -> Unit,
     private val async: Boolean,

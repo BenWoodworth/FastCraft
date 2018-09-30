@@ -1,4 +1,4 @@
 package net.benwoodworth.fastcraft.platform.bukkit.server
 
 @Suppress("ClassName")
-class BukkitFcLogger_1_13_R0_1 : BukkitFcLogger
+class `BukkitFcLogger$1_13_R0_1` : BukkitFcLogger

@@ -1,4 +1,4 @@
 package net.benwoodworth.fastcraft.platform.bukkit.config
 
 @Suppress("ClassName")
-class BukkitFcConfigEntry_1_13_R0_1 : BukkitFcConfigEntry
+class `BukkitFcConfigEntry$1_13_R0_1` : BukkitFcConfigEntry
