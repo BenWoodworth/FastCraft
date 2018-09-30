@@ -8,7 +8,7 @@ interface FcTaskBuilder {
     /**
      * Returns a new [FcTask].
      */
-    fun build()
+    fun build(): FcTask
 
     /**
      * Set the task's action.
