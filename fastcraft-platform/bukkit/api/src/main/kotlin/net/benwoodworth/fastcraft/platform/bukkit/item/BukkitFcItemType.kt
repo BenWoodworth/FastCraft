@@ -4,5 +4,5 @@ import net.benwoodworth.fastcraft.platform.api.item.FcItemType
 
 interface BukkitFcItemType : FcItemType {
 
-    val `bukkitItemType$1_13_R0_1`: Any
+    val `bukkitMaterial$1_13_R0_1`: Any
 }

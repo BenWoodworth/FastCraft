@@ -1,8 +1,8 @@
 package net.benwoodworth.fastcraft.platform.bukkit.item
 
-import net.benwoodworth.fastcraft.platform.api.item.FcItem
+import net.benwoodworth.fastcraft.platform.api.item.FcItemBuilderTyped
 
-interface BukkitFcItem : FcItem {
+interface BukkitFcItemBuilderTyped : FcItemBuilderTyped {
 
     @Suppress("PropertyName")
     val `bukkitItemStack$1_13_R0_1`: Any

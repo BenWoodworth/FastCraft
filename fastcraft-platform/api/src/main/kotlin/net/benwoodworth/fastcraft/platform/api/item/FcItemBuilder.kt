@@ -10,43 +10,15 @@ interface FcItemBuilder {
     /**
      * Set the item type.
      */
-    fun type(type: FcItemType): Typed
+    fun type(type: FcItemType): FcItemBuilderTyped
 
     /**
      * Set the item type.
      */
-    fun type(type: FcItemTypes.() -> FcItemType): Typed
+    fun type(type: FcItemTypes.() -> FcItemType): FcItemBuilderTyped
 
     /**
      * Build an item based off this [item].
      */
-    fun from(item: FcItem): FcItemBuilder
-
-    interface Typed {
-
-        /**
-         * Returns a new [FcItem].
-         */
-        fun build(): FcItem
-
-        /**
-         * Set the item amount.
-         */
-        fun amount(amount: Int): FcItemBuilder
-
-        /**
-         * Set the item's display name.
-         */
-        fun displayName(displayName: FcText?): FcItemBuilder
-
-        /**
-         * Set the item's lore.
-         */
-        fun lore(lore: List<FcText?>): FcItemBuilder
-
-        /**
-         * Set the item's durability.
-         */
-        fun durability(durability: Int): FcItemBuilder
-    }
+    fun from(item: FcItem): FcItemBuilderTyped
 }
