@@ -9,7 +9,9 @@ import net.benwoodworth.fastcraft.platform.bukkit.recipe.`BukkitFcRecipeService$
 import net.benwoodworth.fastcraft.platform.bukkit.server.`BukkitFcLogger$1_13_R0_1`
 import net.benwoodworth.fastcraft.platform.bukkit.server.`BukkitFcTaskBuilder$1_13_R0_1`
 import net.benwoodworth.fastcraft.platform.bukkit.text.`BukkitFcTextBuilder$1_13_R0_1`
+import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.Plugin
+import java.io.File
 import java.nio.file.Path
 
 @Suppress("ClassName")
@@ -26,6 +28,7 @@ inline class `BukkitPlatformModule$1_13_R0_1`(
     }
 
     override fun getConfigPath(): Path {
+        YamlConfiguration.loadConfiguration(File("")).get
         return getDataFolder().resolve("config.yml")
     }
 
