@@ -4,12 +4,7 @@ import java.nio.file.Path
 
 interface FcConfigBuilder {
 
-    fun empty(): Loaded
+    fun empty(): FcConfigBuilderLoaded
 
-    fun file(file: Path): Loaded
-
-    interface Loaded {
-
-        fun build(): FcConfig
-    }
+    fun file(file: Path): FcConfigBuilderLoaded
 }

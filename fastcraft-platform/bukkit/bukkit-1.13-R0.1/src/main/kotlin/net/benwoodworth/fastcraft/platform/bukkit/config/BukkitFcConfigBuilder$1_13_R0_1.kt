@@ -1,5 +1,17 @@
 package net.benwoodworth.fastcraft.platform.bukkit.config
 
 import net.benwoodworth.fastcraft.platform.api.config.FcConfigBuilder
+import net.benwoodworth.fastcraft.platform.api.config.FcConfigBuilderLoaded
+import org.bukkit.configuration.file.YamlConfiguration
+import java.nio.file.Path
 
-class `BukkitFcConfigBuilder$1_13_R0_1` : FcConfigBuilder
+object `BukkitFcConfigBuilder$1_13_R0_1` : FcConfigBuilder {
+
+    override fun empty() = `BukkitFcConfigBuilderLoaded$1_13_R0_1` {
+        YamlConfiguration()
+    }
+
+    override fun file(file: Path) = `BukkitFcConfigBuilderLoaded$1_13_R0_1` {
+        YamlConfiguration.loadConfiguration(file.toFile())
+    }
+}

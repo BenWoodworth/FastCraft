@@ -17,7 +17,7 @@ interface PlatformModule {
 
     fun getDataFolder(): Path
 
-    fun getConfigPath(): Path
+    fun getConfigFile(): Path
 
     fun createConfigBuilder(): FcConfigBuilder
 
