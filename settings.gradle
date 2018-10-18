@@ -1,6 +1,5 @@
 rootProject.name = "FastCraft"
 
-include ":fastcraft-api"
 include ":fastcraft-core"
 include ":fastcraft-platform"
 include ":fastcraft-platform:api"
