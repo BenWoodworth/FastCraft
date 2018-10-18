@@ -1,5 +1,5 @@
 package net.benwoodworth.fastcraft.platform.bukkit.gui
 
-import net.benwoodworth.fastcraft.platform.api.gui.GuiEventClose
+import net.benwoodworth.fastcraft.platform.gui.GuiEventClose
 
 interface BukkitGuiEventClose : GuiEventClose

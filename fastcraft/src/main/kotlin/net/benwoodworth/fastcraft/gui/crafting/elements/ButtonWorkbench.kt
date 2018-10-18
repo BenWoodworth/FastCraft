@@ -3,8 +3,8 @@ package net.benwoodworth.fastcraft.gui.crafting.elements
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.platform.api.gui.button.GuiButtonAbstract
-import net.benwoodworth.fastcraft.platform.api.item.FcItemBuilder
-import net.benwoodworth.fastcraft.platform.api.item.FcItemTypes
+import net.benwoodworth.fastcraft.platform.item.FcItemBuilder
+import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import javax.inject.Provider
 
 @AutoFactory

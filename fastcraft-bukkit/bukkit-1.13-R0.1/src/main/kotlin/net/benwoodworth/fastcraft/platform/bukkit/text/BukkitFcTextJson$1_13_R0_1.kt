@@ -3,9 +3,9 @@ package net.benwoodworth.fastcraft.platform.bukkit.text
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
-import net.benwoodworth.fastcraft.platform.api.text.FcText
-import net.benwoodworth.fastcraft.platform.api.text.FcTextString
-import net.benwoodworth.fastcraft.platform.api.text.FcTextTranslation
+import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.text.FcTextString
+import net.benwoodworth.fastcraft.platform.text.FcTextTranslation
 import net.benwoodworth.fastcraft.platform.bukkit.bukkitColorName
 
 @Suppress("unused")

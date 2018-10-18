@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.platform.bukkit.player
 
-import net.benwoodworth.fastcraft.platform.api.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
 
 interface BukkitFcPlayer : FcPlayer {
 

@@ -4,11 +4,11 @@ import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.platform.api.gui.element.GuiElementAbstract
 import net.benwoodworth.fastcraft.platform.api.gui.element.GuiLayoutChanger
-import net.benwoodworth.fastcraft.platform.api.gui.GuiEventClick
-import net.benwoodworth.fastcraft.platform.api.item.FcItem
-import net.benwoodworth.fastcraft.platform.api.item.FcItemBuilder
-import net.benwoodworth.fastcraft.platform.api.text.FcText
-import net.benwoodworth.fastcraft.platform.api.recipe.FcCraftingRecipe
+import net.benwoodworth.fastcraft.platform.gui.GuiEventClick
+import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemBuilder
+import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import javax.inject.Provider
 import kotlin.math.ceil
 

@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.platform.bukkit.item
 
-import net.benwoodworth.fastcraft.platform.api.text.FcText
+import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.bukkit.bukkitItemStack
 import net.benwoodworth.fastcraft.platform.bukkit.bukkitLegacyText
 import net.benwoodworth.fastcraft.platform.bukkit.updateItemMeta

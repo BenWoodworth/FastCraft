@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.platform.bukkit.config
 
-import net.benwoodworth.fastcraft.platform.api.config.FcConfigEntry
+import net.benwoodworth.fastcraft.platform.config.FcConfigEntry
 import org.bukkit.configuration.Configuration
 import org.bukkit.configuration.ConfigurationSection
 

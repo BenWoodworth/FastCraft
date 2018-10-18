@@ -1,5 +1,5 @@
 package net.benwoodworth.fastcraft.platform.bukkit.text
 
-import net.benwoodworth.fastcraft.platform.api.text.FcTextColors
+import net.benwoodworth.fastcraft.platform.text.FcTextColors
 
 interface BukkitFcTextColors : FcTextColors

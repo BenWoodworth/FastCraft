@@ -1,5 +1,5 @@
 package net.benwoodworth.fastcraft.platform.bukkit.recipe
 
-import net.benwoodworth.fastcraft.platform.api.recipe.FcIngredient
+import net.benwoodworth.fastcraft.platform.recipe.FcIngredient
 
 interface BukkitFcIngredient : FcIngredient

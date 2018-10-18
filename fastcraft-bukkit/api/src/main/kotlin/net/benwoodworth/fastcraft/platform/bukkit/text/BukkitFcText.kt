@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.platform.bukkit.text
 
-import net.benwoodworth.fastcraft.platform.api.text.FcText
+import net.benwoodworth.fastcraft.platform.text.FcText
 import java.lang.StringBuilder
 
 @Suppress("PropertyName")

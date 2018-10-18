@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.platform.bukkit.item
 
-import net.benwoodworth.fastcraft.platform.api.item.FcItemBuilderTyped
+import net.benwoodworth.fastcraft.platform.item.FcItemBuilderTyped
 
 interface BukkitFcItemBuilderTyped : FcItemBuilderTyped {
 

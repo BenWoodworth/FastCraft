@@ -2,12 +2,12 @@
 
 package net.benwoodworth.fastcraft.platform.bukkit
 
-import net.benwoodworth.fastcraft.platform.api.item.FcItem
-import net.benwoodworth.fastcraft.platform.api.item.FcItemBuilderTyped
-import net.benwoodworth.fastcraft.platform.api.item.FcItemType
-import net.benwoodworth.fastcraft.platform.api.player.FcPlayer
-import net.benwoodworth.fastcraft.platform.api.text.FcText
-import net.benwoodworth.fastcraft.platform.api.text.FcTextColor
+import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemBuilderTyped
+import net.benwoodworth.fastcraft.platform.item.FcItemType
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.text.FcTextColor
 import net.benwoodworth.fastcraft.platform.bukkit.item.BukkitFcItem
 import net.benwoodworth.fastcraft.platform.bukkit.item.BukkitFcItemBuilderTyped
 import net.benwoodworth.fastcraft.platform.bukkit.item.BukkitFcItemType

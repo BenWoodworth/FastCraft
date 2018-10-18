@@ -1,5 +1,5 @@
 package net.benwoodworth.fastcraft.platform.sponge.text
 
-import net.benwoodworth.fastcraft.platform.api.text.FcText
+import net.benwoodworth.fastcraft.platform.text.FcText
 
 interface SpongeFcText : FcText

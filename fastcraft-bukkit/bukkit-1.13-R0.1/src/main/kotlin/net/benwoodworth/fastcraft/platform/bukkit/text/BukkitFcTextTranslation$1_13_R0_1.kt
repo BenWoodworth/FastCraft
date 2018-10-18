@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.platform.bukkit.text
 
-import net.benwoodworth.fastcraft.platform.api.text.FcText
-import net.benwoodworth.fastcraft.platform.api.text.FcTextColor
+import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.text.FcTextColor
 
 class `BukkitFcTextTranslation$1_13_R0_1`(
     override val translationKey: String,

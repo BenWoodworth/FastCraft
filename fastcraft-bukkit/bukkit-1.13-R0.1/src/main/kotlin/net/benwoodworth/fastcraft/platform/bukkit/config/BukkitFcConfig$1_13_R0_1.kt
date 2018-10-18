@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.platform.bukkit.config
 
-import net.benwoodworth.fastcraft.platform.api.config.FcConfig
-import net.benwoodworth.fastcraft.platform.api.config.FcConfigEntry
+import net.benwoodworth.fastcraft.platform.config.FcConfig
+import net.benwoodworth.fastcraft.platform.config.FcConfigEntry
 import org.bukkit.configuration.file.YamlConfiguration
 import java.nio.file.Path
 

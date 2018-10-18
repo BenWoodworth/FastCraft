@@ -3,6 +3,10 @@ package net.benwoodworth.fastcraft.platform.bukkit.item
 import net.benwoodworth.fastcraft.platform.api.item.*
 import net.benwoodworth.fastcraft.platform.bukkit.bukkitItemStack
 import net.benwoodworth.fastcraft.platform.bukkit.bukkitMaterial
+import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemBuilderTyped
+import net.benwoodworth.fastcraft.platform.item.FcItemType
+import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import org.bukkit.inventory.ItemStack
 
 @Suppress("ClassName")

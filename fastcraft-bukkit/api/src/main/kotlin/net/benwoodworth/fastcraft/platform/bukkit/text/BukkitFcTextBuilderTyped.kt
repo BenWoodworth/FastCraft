@@ -1,5 +1,5 @@
 package net.benwoodworth.fastcraft.platform.bukkit.text
 
-import net.benwoodworth.fastcraft.platform.api.text.FcTextBuilderTyped
+import net.benwoodworth.fastcraft.platform.text.FcTextBuilderTyped
 
 interface BukkitFcTextBuilderTyped : FcTextBuilderTyped
