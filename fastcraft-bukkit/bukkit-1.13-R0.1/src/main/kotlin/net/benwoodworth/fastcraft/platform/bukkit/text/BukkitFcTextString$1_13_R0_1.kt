@@ -2,8 +2,6 @@ package net.benwoodworth.fastcraft.platform.bukkit.text
 
 import net.benwoodworth.fastcraft.platform.api.text.FcText
 import net.benwoodworth.fastcraft.platform.api.text.FcTextColor
-import net.benwoodworth.fastcraft.platform.bukkit.bukkitLegacyText
-import java.lang.StringBuilder
 
 class `BukkitFcTextString$1_13_R0_1`(
     override val text: String,
