@@ -4,6 +4,35 @@ wrapper {
 }
 
 buildscript {
+    try { // TODO Move to buildSrc
+        def stout = new ByteArrayOutputStream()
+        exec {
+            commandLine "git", "describe", "--tags", "--long", "--dirty"
+            standardOutput = stout
+        }
+
+        def regex = /^\s*(.*?)-(\d+)-g([0-9a-f]+)(?:-(dirty))?\s*$/
+        def (_, tag, ahead, hash, dirty) = (stout =~ regex)[0]
+
+        if (ahead != "0" && dirty != "") {
+            version = "${tag}+${ahead}.${hash}.dirty"
+        } else if (ahead != "0") {
+            version = "${tag}+${ahead}.${hash}"
+        } else if (dirty != "") {
+            version = "${tag}.dirty"
+        } else {
+            version = tag
+        }
+    } catch (error) {
+        logger.warn("Unable to get FastCraft version using Git. Usint UTC timestamp instead.")
+        logger.warn("Git describe error: ${error.message}")
+
+        version = DateTimeFormatter
+                .ofPattern("'3.0.0-unknown+utc'.yyyyMMddkkmmss")
+                .withZone(ZoneId.of("UTC"))
+                .format(Instant.now())
+    }
+
     ext {
         plugin_id = "fastcraft"
         plugin_name = "FastCraft"
@@ -31,6 +60,11 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin"
         classpath "org.jetbrains.kotlin:kotlin-serialization:$version_kotlin"
     }
+}
+
+wrapper {
+    gradleVersion = version_gradle
+    distributionType = Wrapper.DistributionType.ALL
 }
 
 subprojects {
