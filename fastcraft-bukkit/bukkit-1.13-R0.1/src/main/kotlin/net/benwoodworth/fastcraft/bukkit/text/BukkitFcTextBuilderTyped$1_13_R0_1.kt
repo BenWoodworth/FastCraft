@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
-import net.benwoodworth.fastcraft.platform.api.text.*
+import net.benwoodworth.fastcraft.platform.text.*
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextBuilder
 import net.benwoodworth.fastcraft.platform.text.FcTextColor

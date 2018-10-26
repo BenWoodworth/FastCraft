@@ -2,9 +2,9 @@ package net.benwoodworth.fastcraft.gui.crafting
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.platform.gui.GuiEventClick
-import net.benwoodworth.fastcraft.platform.gui.GuiEventClose
-import net.benwoodworth.fastcraft.platform.api.gui.mvp.MvpPresenter
+import net.benwoodworth.fastcraft.platform.gui.FcGuiClickEvent
+import net.benwoodworth.fastcraft.platform.gui.FcGuiCloseEvent
+import net.benwoodworth.fastcraft.platform.gui.mvp.MvpPresenter
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.server.FcTaskBuilder
@@ -43,7 +43,7 @@ class CraftingGuiPresenter(
 
     }
 
-    private fun onWorkbenchClick(event: GuiEventClick) {
+    private fun onWorkbenchClick(event: FcGuiClickEvent) {
         event.player?.sendMessage(
             textFactory
                 .buildText("Workbench clicked!")
@@ -51,7 +51,7 @@ class CraftingGuiPresenter(
         )
     }
 
-    private fun onMultiplierClick(event: GuiEventClick) {
+    private fun onMultiplierClick(event: FcGuiClickEvent) {
         event.player?.sendMessage(
             textFactory
                 .buildText("Multiplier clicked!")
@@ -59,7 +59,7 @@ class CraftingGuiPresenter(
         )
     }
 
-    private fun onRefreshClick(event: GuiEventClick) {
+    private fun onRefreshClick(event: FcGuiClickEvent) {
         event.player?.sendMessage(
             textFactory
                 .buildText("Refresh clicked!")
@@ -67,7 +67,7 @@ class CraftingGuiPresenter(
         )
     }
 
-    private fun onPageClick(event: GuiEventClick) {
+    private fun onPageClick(event: FcGuiClickEvent) {
         event.player?.sendMessage(
             textFactory
                 .buildText("Page clicked!")
@@ -75,7 +75,7 @@ class CraftingGuiPresenter(
         )
     }
 
-    private fun onClose(event: GuiEventClose) {
+    private fun onClose(event: FcGuiCloseEvent) {
         taskCycleResults.cancel()
     }
 

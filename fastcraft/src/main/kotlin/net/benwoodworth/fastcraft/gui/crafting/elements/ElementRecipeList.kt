@@ -2,9 +2,9 @@ package net.benwoodworth.fastcraft.gui.crafting.elements
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.platform.api.gui.element.GuiElementAbstract
-import net.benwoodworth.fastcraft.platform.api.gui.element.GuiLayoutChanger
-import net.benwoodworth.fastcraft.platform.gui.GuiEventClick
+import net.benwoodworth.fastcraft.platform.gui.element.GuiElementAbstract
+import net.benwoodworth.fastcraft.platform.gui.element.GuiLayoutChanger
+import net.benwoodworth.fastcraft.platform.gui.FcGuiClickEvent
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemBuilder
 import net.benwoodworth.fastcraft.platform.text.FcText
@@ -44,7 +44,7 @@ class ElementRecipeList(
         return recipes.getOrNull((page * pageSize) + position.x + (position.y * region.width))
     }
 
-    override fun click(event: GuiEventClick) {
+    override fun click(event: FcGuiClickEvent) {
         val recipe = getRecipe(event.position) ?: return
         recipeClickListener.notifyHandlers(
             net.benwoodworth.fastcraft.gui.crafting.elements.ElementRecipeList.RecipeClickEvent(
@@ -97,7 +97,7 @@ class ElementRecipeList(
     }
 
     data class RecipeClickEvent(
-        val clickEvent: GuiEventClick,
+        val clickEvent: FcGuiClickEvent,
         val recipe: FcCraftingRecipe.Prepared
     )
 }

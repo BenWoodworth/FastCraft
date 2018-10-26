@@ -1,11 +1,12 @@
 package net.benwoodworth.fastcraft.platform.gui
 
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.event.FcEvent
 
 /**
  * An event triggered when an [FcGui] is clicked.
  */
-interface GuiEventClick {
+interface FcGuiClickEvent : FcEvent {
 
     /**
      * The [FcGui] in which the event occurred.

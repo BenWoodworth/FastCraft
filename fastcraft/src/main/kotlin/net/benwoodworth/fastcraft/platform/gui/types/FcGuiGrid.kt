@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.platform.gui.types
 
 import net.benwoodworth.fastcraft.platform.gui.FcGui
-import net.benwoodworth.fastcraft.platform.gui.GuiEventClick
+import net.benwoodworth.fastcraft.platform.gui.FcGuiClickEvent
 import net.benwoodworth.fastcraft.platform.item.FcItem
 
 /**
@@ -16,7 +16,7 @@ interface FcGuiGrid : FcGui {
         row: Int,
         column: Int,
         item: FcItem,
-        clickHandler: (event: GuiEventClick) -> Unit = {}
+        clickHandler: (event: FcGuiClickEvent) -> Unit = {}
     )
 
     fun removeItem(row: Int, column: Int)

@@ -1,11 +1,12 @@
 package net.benwoodworth.fastcraft.platform.gui
 
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.event.FcEvent
 
 /**
  * An event for closed [FcGui]'s.
  */
-interface GuiEventClose {
+interface FcGuiCloseEvent : FcEvent {
 
     /**
      * The [FcGui] in which the event occurred.

@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.platform.gui
 
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.event.FcEventListener
 
 /**
  * A user interface for in-game players.
@@ -10,7 +11,7 @@ interface FcGui {
     /**
      * A listener for the inventory closing.
      */
-    val closeListener: FcListener<GuiEventClose>
+    val onClose: FcEventListener<FcGuiCloseEvent>
 
     /**
      * Open this [FcGui] for the given players.
