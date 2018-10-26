@@ -1,9 +1,9 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
 import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.platform.bukkit.bukkitItemStack
-import net.benwoodworth.fastcraft.platform.bukkit.bukkitLegacyText
-import net.benwoodworth.fastcraft.platform.bukkit.updateItemMeta
+import net.benwoodworth.fastcraft.bukkit.bukkitItemStack
+import net.benwoodworth.fastcraft.bukkit.bukkitLegacyText
+import net.benwoodworth.fastcraft.bukkit.updateItemMeta
 import org.bukkit.inventory.ItemStack
 
 @Suppress("ClassName")

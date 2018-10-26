@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
-import net.benwoodworth.fastcraft.platform.bukkit.bukkitItemStack
-import net.benwoodworth.fastcraft.platform.bukkit.text.`BukkitFcText$1_13_R0_1`
+import net.benwoodworth.fastcraft.bukkit.bukkitItemStack
+import net.benwoodworth.fastcraft.bukkit.text.`BukkitFcText$1_13_R0_1`
 import org.bukkit.inventory.ItemStack
 
 @Suppress("ClassName")

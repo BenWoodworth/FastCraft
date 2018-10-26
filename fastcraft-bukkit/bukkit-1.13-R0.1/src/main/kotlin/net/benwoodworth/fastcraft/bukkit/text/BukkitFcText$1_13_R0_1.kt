@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
 import kotlinx.serialization.json.JSON
-import net.benwoodworth.fastcraft.platform.bukkit.bukkitLegacyText
+import net.benwoodworth.fastcraft.bukkit.bukkitLegacyText
 
 @Suppress("ClassName")
 abstract class `BukkitFcText$1_13_R0_1` : net.benwoodworth.fastcraft.bukkit.text.BukkitFcText {

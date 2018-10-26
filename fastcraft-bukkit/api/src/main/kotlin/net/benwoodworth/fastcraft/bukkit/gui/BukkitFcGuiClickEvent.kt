@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform.bukkit.gui
+package net.benwoodworth.fastcraft.bukkit.gui
 
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClickEvent
 

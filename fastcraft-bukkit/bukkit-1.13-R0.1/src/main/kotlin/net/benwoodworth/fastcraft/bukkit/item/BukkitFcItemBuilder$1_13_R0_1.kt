@@ -1,8 +1,8 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
 import net.benwoodworth.fastcraft.platform.item.*
-import net.benwoodworth.fastcraft.platform.bukkit.bukkitItemStack
-import net.benwoodworth.fastcraft.platform.bukkit.bukkitMaterial
+import net.benwoodworth.fastcraft.bukkit.bukkitItemStack
+import net.benwoodworth.fastcraft.bukkit.bukkitMaterial
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemBuilderTyped
 import net.benwoodworth.fastcraft.platform.item.FcItemType

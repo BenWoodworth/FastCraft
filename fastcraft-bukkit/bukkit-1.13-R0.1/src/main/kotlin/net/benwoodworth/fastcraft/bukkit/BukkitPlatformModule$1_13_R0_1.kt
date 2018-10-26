@@ -1,14 +1,14 @@
 package net.benwoodworth.fastcraft.bukkit
 
-import net.benwoodworth.fastcraft.platform.bukkit.config.`BukkitFcConfigBuilder$1_13_R0_1`
-import net.benwoodworth.fastcraft.platform.bukkit.gui.`BukkitFcGuiBuilder$1_13_R0_1`
-import net.benwoodworth.fastcraft.platform.bukkit.item.`BukkitFcItemBuilder$1_13_R0_1`
-import net.benwoodworth.fastcraft.platform.bukkit.item.`BukkitFcItemTypes$1_13_R0_1`
-import net.benwoodworth.fastcraft.platform.bukkit.player.`BukkitFcPlayerProvider$1_13_R0_1`
-import net.benwoodworth.fastcraft.platform.bukkit.recipe.`BukkitFcRecipeService$1_13_R0_1`
-import net.benwoodworth.fastcraft.platform.bukkit.server.`BukkitFcLogger$1_13_R0_1`
-import net.benwoodworth.fastcraft.platform.bukkit.server.`BukkitFcTaskBuilder$1_13_R0_1`
-import net.benwoodworth.fastcraft.platform.bukkit.text.`BukkitFcTextBuilder$1_13_R0_1`
+import net.benwoodworth.fastcraft.bukkit.config.`BukkitFcConfigBuilder$1_13_R0_1`
+import net.benwoodworth.fastcraft.bukkit.gui.`BukkitFcGuiBuilder$1_13_R0_1`
+import net.benwoodworth.fastcraft.bukkit.item.`BukkitFcItemBuilder$1_13_R0_1`
+import net.benwoodworth.fastcraft.bukkit.item.`BukkitFcItemTypes$1_13_R0_1`
+import net.benwoodworth.fastcraft.bukkit.player.`BukkitFcPlayerProvider$1_13_R0_1`
+import net.benwoodworth.fastcraft.bukkit.recipe.`BukkitFcRecipeService$1_13_R0_1`
+import net.benwoodworth.fastcraft.bukkit.server.`BukkitFcLogger$1_13_R0_1`
+import net.benwoodworth.fastcraft.bukkit.server.`BukkitFcTaskBuilder$1_13_R0_1`
+import net.benwoodworth.fastcraft.bukkit.text.`BukkitFcTextBuilder$1_13_R0_1`
 import org.bukkit.plugin.Plugin
 import java.nio.file.Path
 

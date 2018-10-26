@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.event
 
-import net.benwoodworth.fastcraft.platform.bukkit.player.`BukkitFcPlayer$1_13_R0_1`
+import net.benwoodworth.fastcraft.bukkit.player.`BukkitFcPlayer$1_13_R0_1`
 import org.bukkit.event.player.PlayerJoinEvent
 
 @Suppress("ClassName")

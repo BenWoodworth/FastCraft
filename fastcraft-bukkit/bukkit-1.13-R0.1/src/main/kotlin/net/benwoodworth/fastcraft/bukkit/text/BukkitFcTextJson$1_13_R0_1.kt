@@ -6,7 +6,7 @@ import kotlinx.serialization.Transient
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextString
 import net.benwoodworth.fastcraft.platform.text.FcTextTranslation
-import net.benwoodworth.fastcraft.platform.bukkit.bukkitColorName
+import net.benwoodworth.fastcraft.bukkit.bukkitColorName
 
 @Suppress("unused")
 @Serializable

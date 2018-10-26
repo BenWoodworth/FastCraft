@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform.bukkit.player
+package net.benwoodworth.fastcraft.bukkit.player
 
 import net.benwoodworth.fastcraft.platform.player.FcPlayerJoinEvent
 

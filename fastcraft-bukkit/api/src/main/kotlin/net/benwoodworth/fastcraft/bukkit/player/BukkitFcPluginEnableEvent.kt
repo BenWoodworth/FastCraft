@@ -1,3 +1,3 @@
-package net.benwoodworth.fastcraft.platform.bukkit.player
+package net.benwoodworth.fastcraft.bukkit.player
 
 interface BukkitFcPluginEnableEvent : FcPluginEnableEvent
