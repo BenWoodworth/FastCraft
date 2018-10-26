@@ -1,9 +1,9 @@
-name: ${plugin_id}
-prefix: ${plugin_name}
-author: ${plugin_author}
-version: ${plugin_version}
-website: ${plugin_website}
+name: "${plugin_id}"
+prefix: "${plugin_name}"
+author: "${plugin_author}"
+version: "${plugin_version}"
+website: "${plugin_website}"
 
-description: ${plugin_description}
+description: "${plugin_description}"
 
-main: net.benwoodworth.fastcraft.platform.bukkit.BukkitFastCraft
+main: "net.benwoodworth.fastcraft.platform.bukkit.BukkitFastCraft"
