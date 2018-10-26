@@ -1,55 +1,5 @@
-wrapper {
-    gradleVersion = version_gradle
-    distributionType = Wrapper.DistributionType.ALL
-}
-
 buildscript {
-    try { // TODO Move to buildSrc
-        def stout = new ByteArrayOutputStream()
-        exec {
-            commandLine "git", "describe", "--tags", "--long", "--dirty"
-            standardOutput = stout
-        }
-
-        def regex = /^\s*(.*?)-(\d+)-g([0-9a-f]+)(?:-(dirty))?\s*$/
-        def (_, tag, ahead, hash, dirty) = (stout =~ regex)[0]
-
-        if (ahead != "0" && dirty != "") {
-            version = "${tag}+${ahead}.${hash}.dirty"
-        } else if (ahead != "0") {
-            version = "${tag}+${ahead}.${hash}"
-        } else if (dirty != "") {
-            version = "${tag}.dirty"
-        } else {
-            version = tag
-        }
-    } catch (error) {
-        logger.warn("Unable to get FastCraft version using Git. Usint UTC timestamp instead.")
-        logger.warn("Git describe error: ${error.message}")
-
-        version = DateTimeFormatter
-                .ofPattern("'3.0.0-unknown+utc'.yyyyMMddkkmmss")
-                .withZone(ZoneId.of("UTC"))
-                .format(Instant.now())
-    }
-
-    ext {
-        plugin_id = "fastcraft"
-        plugin_name = "FastCraft"
-        plugin_author = "Kepler"
-        plugin_description = "Redefines crafting in Minecraft"
-        plugin_version = "3.x"
-        plugin_website = "https://github.com/BenWoodworth/FastCraft"
-
-        version_gradle = "4.10"
-        version_java = "1.8"
-        version_kotlin = "1.3.0-rc-116"
-        version_kotlin_serialization = "0.8.1-rc13"
-        version_dagger = "2.17"
-        version_jsr250 = "1.0"
-        version_javax_inject = "1"
-        version_autofactory = "0.1-beta1"
-    }
+    version = PluginInfo.version
     
     repositories {
         maven { url "https://dl.bintray.com/kotlin/kotlin-eap" }
@@ -57,13 +7,13 @@ buildscript {
     }
 
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin"
-        classpath "org.jetbrains.kotlin:kotlin-serialization:$version_kotlin"
+        classpath Dependencies.kotlin_gradle_plugin
+        classpath Dependencies.kotlin_serialization
     }
 }
 
 wrapper {
-    gradleVersion = version_gradle
+    gradleVersion = Versions.gradle
     distributionType = Wrapper.DistributionType.ALL
 }
 
@@ -80,28 +30,25 @@ subprojects {
     }
 
     dependencies {
-        compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version_kotlin"
-        compile "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$version_kotlin_serialization"
+        compile Dependencies.kotlin_stdlib
+        compile Dependencies.kotlin_serialization_runtime
 
-        compile "javax.annotation:jsr250-api:$version_jsr250"
-        compile "javax.inject:javax.inject:$version_javax_inject"
-        compile "com.google.dagger:dagger:$version_dagger"
-        compile "com.google.auto.factory:auto-factory:$version_autofactory"
+        compile Dependencies.jsr250
+        compile Dependencies.javax_inject
+        compile Dependencies.dagger
+        compile Dependencies.auto_factory
     }
 
-    sourceCompatibility = version_java
-    targetCompatibility = version_java
+    sourceCompatibility = Versions.java
+    targetCompatibility = Versions.java
 
     //noinspection GroovyAssignabilityCheck,GrUnresolvedAccess
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
         //noinspection GrUnresolvedAccess
-        kotlinOptions.jvmTarget = version_java
+        kotlinOptions.jvmTarget = Versions.java
     }
     
     sourceSets {
-        main.java.srcDirs += "src/main/kotlin"
         main.java.srcDirs += "$buildDir/generated/source/kapt/main"
-
-        test.java.srcDirs += "src/test/kotlin"
     }
 }
