@@ -3,7 +3,7 @@ object Dependencies {
         "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
 
     val kotlin_stdlib =
-        "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
+        "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
 
     val kotlin_serialization =
         "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}"

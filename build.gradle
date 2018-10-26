@@ -41,12 +41,6 @@ subprojects {
 
     sourceCompatibility = Versions.java
     targetCompatibility = Versions.java
-
-    //noinspection GroovyAssignabilityCheck,GrUnresolvedAccess
-    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-        //noinspection GrUnresolvedAccess
-        kotlinOptions.jvmTarget = Versions.java
-    }
     
     sourceSets {
         main.java.srcDirs += "$buildDir/generated/source/kapt/main"

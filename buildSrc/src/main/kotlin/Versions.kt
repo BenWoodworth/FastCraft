@@ -1,6 +1,6 @@
 object Versions {
     val gradle = "4.10"
-    val java = "1.8"
+    val java = "1.6"
     val kotlin = "1.3.0-rc-116"
     val kotlin_serialization = "0.8.1-rc13"
     val dagger = "2.17"
