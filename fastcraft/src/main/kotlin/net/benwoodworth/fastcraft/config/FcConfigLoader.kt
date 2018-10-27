@@ -72,25 +72,25 @@ class FcConfigLoader @Inject constructor(
      * Update the configs.
      */
     private fun update() { // TODO Add an updater class
-        fcPluginConfig.config.header = listOf(
-            "FastCraft, developed by Kepler_",
-            "https://github.com/BenWoodworth/FastCraft",
-            "",
-            "language:",
-            "    The localization to use. Available languages:",
-            "    EN (English), DE (Deutsch),    RU (Русский язык), CS (Čeština),",
-            "    TR (Türkçe),  NL (Nederlands), VI (Tiếng Việt),   PL (Polskie),",
-            "    ZH-CN (中文),  ZH-TW (台語)",
-            "",
-            "disabled-recipes:",
-            "    A list of recipe ID's for recipes that should be hidden from the",
-            "    FastCraft UI. Recipe ID's are listed under the list of ingredients."
-        )
+        fcPluginConfig.config.header = """
+            FastCraft, developed by Kepler_
+            https://github.com/BenWoodworth/FastCraft
 
-        fcDataConfig.config.header = listOf(
-            "This file is by FastCraft to store",
-            "data, and should not be edited."
-        )
+            language:
+                The localization to use. Available languages:
+                EN (English), DE (Deutsch),    RU (Русский язык), CS (Čeština),
+                TR (Türkçe),  NL (Nederlands), VI (Tiếng Việt),   PL (Polskie),
+                ZH-CN (中文),  ZH-TW (台語)
+
+            disabled-recipes:
+                A list of recipe ID's for recipes that should be hidden from the
+                FastCraft UI. Recipe ID's are listed under the list of ingredients.
+        """.trimIndent()
+
+        fcDataConfig.config.header = """
+            This file is by FastCraft to store
+            data, and should not be edited.
+        """.trimIndent()
 
         for ((revision, updater) in updaters.toSortedMap()) {
             if (revision > fcDataConfig.revision ?: -1) {
