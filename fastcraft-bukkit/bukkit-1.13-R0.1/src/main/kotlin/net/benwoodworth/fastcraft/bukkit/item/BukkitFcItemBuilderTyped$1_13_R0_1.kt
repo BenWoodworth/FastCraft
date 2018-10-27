@@ -7,7 +7,7 @@ import net.benwoodworth.fastcraft.bukkit.updateItemMeta
 import org.bukkit.inventory.ItemStack
 
 @Suppress("ClassName")
-inline class `BukkitFcItemBuilderTyped$1_13_R0_1`(
+class `BukkitFcItemBuilderTyped$1_13_R0_1`(
     override val `bukkitItemStack$1_13_R0_1`: ItemStack
 ) : net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemBuilderTyped {
 

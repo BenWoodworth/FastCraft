@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.bukkit.text.`BukkitFcText$1_13_R0_1`
 import org.bukkit.inventory.ItemStack
 
 @Suppress("ClassName")
-inline class `BukkitFcItem$1_13_R0_1`(
+class `BukkitFcItem$1_13_R0_1`(
     override val `bukkitItemStack$1_13_R0_1`: ItemStack
 ) : net.benwoodworth.fastcraft.bukkit.item.BukkitFcItem {
 

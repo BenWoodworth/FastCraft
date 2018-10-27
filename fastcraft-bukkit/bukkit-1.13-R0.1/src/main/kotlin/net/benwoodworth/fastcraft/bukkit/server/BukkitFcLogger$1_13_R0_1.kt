@@ -4,7 +4,7 @@ import java.util.logging.Level
 import java.util.logging.Logger
 
 @Suppress("ClassName")
-inline class `BukkitFcLogger$1_13_R0_1`(
+class `BukkitFcLogger$1_13_R0_1`(
     private val logger: Logger
 ) : net.benwoodworth.fastcraft.bukkit.server.BukkitFcLogger {
 

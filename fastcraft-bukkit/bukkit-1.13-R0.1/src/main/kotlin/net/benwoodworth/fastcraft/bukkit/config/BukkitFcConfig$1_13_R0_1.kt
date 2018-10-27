@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.platform.config.FcConfigEntry
 import org.bukkit.configuration.file.YamlConfiguration
 import java.nio.file.Path
 
-inline class `BukkitFcConfig$1_13_R0_1`(
+class `BukkitFcConfig$1_13_R0_1`(
     private val config: YamlConfiguration
 ) : FcConfig {
 

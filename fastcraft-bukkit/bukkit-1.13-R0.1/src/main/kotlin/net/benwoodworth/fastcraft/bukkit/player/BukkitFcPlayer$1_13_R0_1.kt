@@ -6,7 +6,7 @@ import org.bukkit.entity.Player
 import java.util.*
 
 @Suppress("ClassName")
-inline class `BukkitFcPlayer$1_13_R0_1`(
+class `BukkitFcPlayer$1_13_R0_1`(
     private val bukkitPlayer: Player
 ) : net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayer {
 

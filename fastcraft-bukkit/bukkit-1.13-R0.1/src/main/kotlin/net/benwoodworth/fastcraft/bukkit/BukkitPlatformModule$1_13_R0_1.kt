@@ -13,7 +13,7 @@ import org.bukkit.plugin.Plugin
 import java.nio.file.Path
 
 @Suppress("ClassName")
-inline class `BukkitPlatformModule$1_13_R0_1`(
+class `BukkitPlatformModule$1_13_R0_1`(
     private val plugin: Plugin
 ) : net.benwoodworth.fastcraft.bukkit.BukkitPlatformModule {
 
