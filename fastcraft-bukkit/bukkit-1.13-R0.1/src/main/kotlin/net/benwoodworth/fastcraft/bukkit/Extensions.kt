@@ -29,15 +29,12 @@ internal inline val FcItemBuilderTyped.bukkitItemStack
 internal inline val FcPlayer.bukkitPlayer
     get() = (this as net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayer).`bukkitPlayer$1_13_R0_1` as Player
 
-internal inline val FcText.bukkitLegacyText
-    get() = (this as net.benwoodworth.fastcraft.bukkit.text.BukkitFcText).`bukkitLegacyText$1_13_R0_1`
+internal inline fun FcText.bukkitLegacyText(locale: String): String {
+    return (this as net.benwoodworth.fastcraft.bukkit.text.BukkitFcText).`bukkitLegacyText$1_13_R0_1`(locale)
+}
 
 internal inline val FcText.bukkitRawText
     get() = (this as net.benwoodworth.fastcraft.bukkit.text.BukkitFcText).`bukkitRawText$1_13_R0_1`
-
-internal inline fun FcText.bukkitAppendRawText(stringBuilder: StringBuilder) {
-    (this as net.benwoodworth.fastcraft.bukkit.text.BukkitFcText).`bukkitAppendRawText$1_13_R0_1`(stringBuilder)
-}
 
 internal inline val FcItemType.bukkitMaterial
     get() = (this as net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemType).`bukkitMaterial$1_13_R0_1` as Material

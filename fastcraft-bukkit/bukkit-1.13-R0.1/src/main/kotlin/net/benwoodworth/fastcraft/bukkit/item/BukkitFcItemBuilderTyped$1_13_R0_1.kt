@@ -22,7 +22,7 @@ inline class `BukkitFcItemBuilderTyped$1_13_R0_1`(
 
     override fun displayName(displayName: FcText?): `BukkitFcItemBuilderTyped$1_13_R0_1` {
         `bukkitItemStack$1_13_R0_1`.updateItemMeta { itemMeta ->
-            itemMeta.displayName = displayName?.bukkitLegacyText
+            itemMeta.displayName = displayName?.bukkitLegacyText(TODO())
         }
 
         return this
@@ -31,7 +31,7 @@ inline class `BukkitFcItemBuilderTyped$1_13_R0_1`(
     override fun lore(lore: List<FcText>?): `BukkitFcItemBuilderTyped$1_13_R0_1` {
         `bukkitItemStack$1_13_R0_1`.updateItemMeta { itemMeta ->
             itemMeta.lore = lore?.map {
-                it.bukkitLegacyText
+                it.bukkitLegacyText(TODO())
             }
         }
 

@@ -14,6 +14,6 @@ abstract class `BukkitFcText$1_13_R0_1` : net.benwoodworth.fastcraft.bukkit.text
 
     override fun `bukkitLegacyText$1_13_R0_1`(locale: String): String {
         return getUnformattedText(locale) +
-                extra.joinToString("") { it.bukkitLegacyText }
+                extra.joinToString("") { it.bukkitLegacyText(TODO()) }
     }
 }
