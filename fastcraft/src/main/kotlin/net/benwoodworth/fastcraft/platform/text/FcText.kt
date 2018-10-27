@@ -1,6 +1,8 @@
 package net.benwoodworth.fastcraft.platform.text
 
-interface FcText {
+import net.benwoodworth.fastcraft.util.Extensible
+
+interface FcText : Extensible {
 
     val color: FcTextColor?
 

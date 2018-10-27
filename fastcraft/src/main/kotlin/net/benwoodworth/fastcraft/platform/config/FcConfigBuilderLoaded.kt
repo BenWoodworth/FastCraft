@@ -1,6 +1,8 @@
 package net.benwoodworth.fastcraft.platform.config
 
-interface FcConfigBuilderLoaded {
+import net.benwoodworth.fastcraft.util.Extensible
+
+interface FcConfigBuilderLoaded : Extensible {
 
     fun build(): FcConfig
 }

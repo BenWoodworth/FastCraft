@@ -1,9 +1,11 @@
 package net.benwoodworth.fastcraft.platform.recipe
 
+import net.benwoodworth.fastcraft.util.Extensible
+
 /**
  * A Minecraft crafting recipe.
  */
-interface FcCraftingRecipe {
+interface FcCraftingRecipe : Extensible {
 
     /**
      * An ID unique to this recipe. `namespace:id`

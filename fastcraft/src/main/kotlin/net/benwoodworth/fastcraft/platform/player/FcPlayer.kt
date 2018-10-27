@@ -1,12 +1,13 @@
 package net.benwoodworth.fastcraft.platform.player
 
 import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.util.Extensible
 import java.util.*
 
 /**
  * An interface for Minecraft players.
  */
-interface FcPlayer {
+interface FcPlayer : Extensible {
 
     /**
      * The player's username.

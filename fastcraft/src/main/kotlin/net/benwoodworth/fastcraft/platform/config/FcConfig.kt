@@ -1,11 +1,12 @@
 package net.benwoodworth.fastcraft.platform.config
 
+import net.benwoodworth.fastcraft.util.Extensible
 import java.nio.file.Path
 
 /**
  * A configuration.
  */
-interface FcConfig {
+interface FcConfig : Extensible {
 
     /**
      * The config header comment.

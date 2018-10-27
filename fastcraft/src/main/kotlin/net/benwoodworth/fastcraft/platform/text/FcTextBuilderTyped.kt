@@ -1,6 +1,8 @@
 package net.benwoodworth.fastcraft.platform.text
 
-interface FcTextBuilderTyped {
+import net.benwoodworth.fastcraft.util.Extensible
+
+interface FcTextBuilderTyped : Extensible {
 
     fun color(color: FcTextColor): FcTextBuilderTyped
     fun color(color: FcTextColors.() -> FcTextColor): FcTextBuilderTyped

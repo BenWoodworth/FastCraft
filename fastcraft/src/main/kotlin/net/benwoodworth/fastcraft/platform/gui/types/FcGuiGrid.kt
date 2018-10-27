@@ -3,11 +3,12 @@ package net.benwoodworth.fastcraft.platform.gui.types
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClickEvent
 import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.util.Extensible
 
 /**
  * A user interface for in-game players.
  */
-interface FcGuiGrid : FcGui {
+interface FcGuiGrid : Extensible, FcGui {
 
     val width: Int
     val height: Int

@@ -1,3 +1,5 @@
 package net.benwoodworth.fastcraft.platform.gui.types
 
-interface FcGuiChest : FcGuiGrid
+import net.benwoodworth.fastcraft.util.Extensible
+
+interface FcGuiChest : Extensible, FcGuiGrid

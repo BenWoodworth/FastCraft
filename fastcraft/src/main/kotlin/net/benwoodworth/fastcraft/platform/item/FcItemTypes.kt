@@ -1,9 +1,11 @@
 package net.benwoodworth.fastcraft.platform.item
 
+import net.benwoodworth.fastcraft.util.Extensible
+
 /**
  * Minecraft item types.
  */
-interface FcItemTypes {
+interface FcItemTypes : Extensible {
 
     val ironSword: FcItemType
 

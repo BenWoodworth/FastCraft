@@ -1,6 +1,8 @@
 package net.benwoodworth.fastcraft.platform.text
 
-interface FcTextBuilder {
+import net.benwoodworth.fastcraft.util.Extensible
+
+interface FcTextBuilder : Extensible {
 
     fun text(text: String): FcTextBuilderTyped
 

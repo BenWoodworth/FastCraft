@@ -1,3 +1,5 @@
 package net.benwoodworth.fastcraft.platform.event
 
-interface FcEvent
+import net.benwoodworth.fastcraft.util.Extensible
+
+interface FcEvent : Extensible

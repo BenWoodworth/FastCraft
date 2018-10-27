@@ -1,11 +1,12 @@
 package net.benwoodworth.fastcraft.platform.player
 
+import net.benwoodworth.fastcraft.util.Extensible
 import java.util.*
 
 /**
  * Provides player for the plugin.
  */
-interface FcPlayerProvider {
+interface FcPlayerProvider : Extensible {
 
     /**
      * Get a list of online player.

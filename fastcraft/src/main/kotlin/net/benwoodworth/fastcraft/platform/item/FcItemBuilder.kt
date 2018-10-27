@@ -1,11 +1,12 @@
 package net.benwoodworth.fastcraft.platform.item
 
 import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.util.Extensible
 
 /**
  * A builder that creates Minecraft items.
  */
-interface FcItemBuilder {
+interface FcItemBuilder : Extensible {
 
     /**
      * Set the item type.

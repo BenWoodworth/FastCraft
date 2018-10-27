@@ -1,9 +1,11 @@
 package net.benwoodworth.fastcraft.platform.server
 
+import net.benwoodworth.fastcraft.util.Extensible
+
 /**
  * A server task.
  */
-interface FcTask {
+interface FcTask : Extensible {
 
     val isRunning: Boolean
 

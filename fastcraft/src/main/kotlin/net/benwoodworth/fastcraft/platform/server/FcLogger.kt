@@ -1,9 +1,11 @@
 package net.benwoodworth.fastcraft.platform.server
 
+import net.benwoodworth.fastcraft.util.Extensible
+
 /**
  * Logs plugin messages to the server console.
  */
-interface FcLogger {
+interface FcLogger : Extensible {
 
     /**
      * Log an [error] to the console.

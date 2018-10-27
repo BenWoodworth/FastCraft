@@ -1,6 +1,8 @@
 package net.benwoodworth.fastcraft.platform.text
 
-interface FcTextString : FcText {
+import net.benwoodworth.fastcraft.util.Extensible
+
+interface FcTextString : Extensible, FcText {
 
     val text: String
 }

@@ -9,9 +9,10 @@ import net.benwoodworth.fastcraft.platform.recipe.FcRecipeService
 import net.benwoodworth.fastcraft.platform.server.FcLogger
 import net.benwoodworth.fastcraft.platform.server.FcTaskBuilder
 import net.benwoodworth.fastcraft.platform.text.FcTextBuilder
+import net.benwoodworth.fastcraft.util.Extensible
 import java.nio.file.Path
 
-interface PlatformModule {
+interface PlatformModule : Extensible {
 
     fun getLogger(): FcLogger
 

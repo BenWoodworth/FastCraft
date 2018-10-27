@@ -1,9 +1,11 @@
 package net.benwoodworth.fastcraft.platform.server
 
+import net.benwoodworth.fastcraft.util.Extensible
+
 /**
  * Builds a [FcTask] and executes it.
  */
-interface FcTaskBuilder {
+interface FcTaskBuilder : Extensible {
 
     /**
      * Returns a new [FcTask].

@@ -2,11 +2,12 @@ package net.benwoodworth.fastcraft.platform.gui
 
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.event.FcEventListener
+import net.benwoodworth.fastcraft.util.Extensible
 
 /**
  * A user interface for in-game players.
  */
-interface FcGui {
+interface FcGui : Extensible {
 
     /**
      * A listener for the inventory closing.

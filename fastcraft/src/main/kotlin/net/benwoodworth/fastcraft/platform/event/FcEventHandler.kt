@@ -1,6 +1,8 @@
 package net.benwoodworth.fastcraft.platform.event
 
-interface FcEventHandler<TEvent : FcEvent> {
+import net.benwoodworth.fastcraft.util.Extensible
+
+interface FcEventHandler<TEvent : FcEvent> : Extensible {
 
     fun handle(Event: TEvent)
 }

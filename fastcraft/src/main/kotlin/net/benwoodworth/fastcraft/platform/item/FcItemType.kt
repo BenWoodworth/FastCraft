@@ -1,3 +1,5 @@
 package net.benwoodworth.fastcraft.platform.item
 
-interface FcItemType
+import net.benwoodworth.fastcraft.util.Extensible
+
+interface FcItemType : Extensible

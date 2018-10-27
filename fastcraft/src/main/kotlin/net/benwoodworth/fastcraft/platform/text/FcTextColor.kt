@@ -1,3 +1,5 @@
 package net.benwoodworth.fastcraft.platform.text
 
-interface FcTextColor
+import net.benwoodworth.fastcraft.util.Extensible
+
+interface FcTextColor : Extensible
