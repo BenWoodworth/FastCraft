@@ -11,7 +11,7 @@ import net.benwoodworth.fastcraft.bukkit.bukkitColorName
 @Suppress("unused")
 @Serializable
 class `BukkitFcTextJson$1_13_R0_1`(
-    @Transient private val fcText: FcText
+    private val fcText: FcText
 ) {
 
     @SerialName("text")
