@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.util
 
-interface Extends<out T : Extendable> : Extendable {
+interface Extends<out T : Extensible> : Extensible {
 
     val base: T
 }

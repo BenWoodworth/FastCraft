@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.util
 
-inline fun <reified T> Extendable.`as`(): T {
+inline fun <reified T> Extensible.`as`(): T {
     var result = this
 
     while (result is Extends<*>) {
@@ -13,7 +13,7 @@ inline fun <reified T> Extendable.`as`(): T {
     return result as T
 }
 
-inline fun <reified T> Extendable.`as?`(): T? {
+inline fun <reified T> Extensible.`as?`(): T? {
     var result: Any? = this
 
     while (result is Extends<*>) {
