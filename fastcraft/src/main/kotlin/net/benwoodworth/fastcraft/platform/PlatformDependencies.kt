@@ -12,7 +12,7 @@ import net.benwoodworth.fastcraft.platform.text.FcTextBuilder
 import net.benwoodworth.fastcraft.util.Extensible
 import java.nio.file.Path
 
-interface PlatformModule : Extensible {
+interface PlatformDependencies : Extensible {
 
     fun getLogger(): FcLogger
 
