@@ -8,7 +8,7 @@ import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 
 @Suppress("ClassName")
-class Bukkit_113R01_FcGuiDispenser : FcGuiDispenser {
+class Bukkit_113_R01_FcGuiDispenser : FcGuiDispenser {
     override val width: Int
         get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
     override val height: Int

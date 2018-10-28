@@ -9,7 +9,7 @@ import net.benwoodworth.fastcraft.util.`as`
 
 @Suppress("unused")
 @Serializable
-class Bukkit_113R01_FcTextJson(
+class Bukkit_113_R01_FcTextJson(
     private val fcText: FcText
 ) {
 
@@ -23,7 +23,7 @@ class Bukkit_113R01_FcTextJson(
 
     @SerialName("color")
     val color: String?
-        get() = fcText.color?.`as`<Bukkit_113R01_FcTextColor>()?.name
+        get() = fcText.color?.`as`<Bukkit_113_R01_FcTextColor>()?.name
 
     @SerialName("bold")
     val bold: Boolean?
@@ -46,8 +46,8 @@ class Bukkit_113R01_FcTextJson(
         get() = fcText.obfuscate
 
     @SerialName("extra")
-    val extra: List<Bukkit_113R01_FcTextJson>?
+    val extra: List<Bukkit_113_R01_FcTextJson>?
         get() = fcText.extra
             .takeIf { it.any() }
-            ?.map { Bukkit_113R01_FcTextJson(it) }
+            ?.map { Bukkit_113_R01_FcTextJson(it) }
 }

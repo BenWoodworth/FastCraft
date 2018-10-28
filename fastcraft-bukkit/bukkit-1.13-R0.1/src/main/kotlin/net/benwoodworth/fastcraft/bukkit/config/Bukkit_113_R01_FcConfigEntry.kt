@@ -4,10 +4,10 @@ import net.benwoodworth.fastcraft.platform.config.FcConfigEntry
 import org.bukkit.configuration.Configuration
 import org.bukkit.configuration.ConfigurationSection
 
-class Bukkit_113R01_FcConfigEntry(
+class Bukkit_113_R01_FcConfigEntry(
     key: String,
     private val config: Configuration,
-    private val parentEntry: Bukkit_113R01_FcConfigEntry?
+    private val parentEntry: Bukkit_113_R01_FcConfigEntry?
 ) : FcConfigEntry {
 
     private val escapedKey = key.escapeKey()
@@ -49,7 +49,7 @@ class Bukkit_113R01_FcConfigEntry(
     }
 
     override fun get(key: String): FcConfigEntry {
-        return Bukkit_113R01_FcConfigEntry(key, config, this)
+        return Bukkit_113_R01_FcConfigEntry(key, config, this)
     }
 
     private fun getParentSection(): ConfigurationSection {

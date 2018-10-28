@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.player
 
-import net.benwoodworth.fastcraft.bukkit.text.Bukkit_113R01_FcText
+import net.benwoodworth.fastcraft.bukkit.text.Bukkit_113_R01_FcText
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.util.`as`
@@ -8,7 +8,7 @@ import org.bukkit.entity.Player
 import java.util.*
 
 @Suppress("ClassName")
-class Bukkit_113R01_FcPlayer(
+class Bukkit_113_R01_FcPlayer(
     val bukkitPlayer: Player
 ) : FcPlayer {
 
@@ -25,7 +25,7 @@ class Bukkit_113R01_FcPlayer(
         get() = bukkitPlayer.uniqueId
 
     override fun sendMessage(message: FcText) {
-        val bukkitText = message.`as`<Bukkit_113R01_FcText>()
+        val bukkitText = message.`as`<Bukkit_113_R01_FcText>()
 
         bukkitPlayer.sendRawMessage(bukkitText.rawText)
     }

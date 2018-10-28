@@ -4,7 +4,7 @@ import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcRecipeService
 
 @Suppress("ClassName")
-object Bukkit_113R01_FcRecipeService : FcRecipeService {
+object Bukkit_113_R01_FcRecipeService : FcRecipeService {
     override fun getCraftingRecipes(): List<FcCraftingRecipe> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
