@@ -1,27 +1,27 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
 import net.benwoodworth.fastcraft.platform.item.*
-import net.benwoodworth.fastcraft.bukkit.bukkitItemStack
-import net.benwoodworth.fastcraft.bukkit.bukkitMaterial
-import net.benwoodworth.fastcraft.platform.item.FcItem
-import net.benwoodworth.fastcraft.platform.item.FcItemBuilderTyped
-import net.benwoodworth.fastcraft.platform.item.FcItemType
-import net.benwoodworth.fastcraft.platform.item.FcItemTypes
+import net.benwoodworth.fastcraft.util.`as`
 import org.bukkit.inventory.ItemStack
 
 @Suppress("ClassName")
-object `BukkitFcItemBuilder$1_13_R0_1` : net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemBuilder {
+object `BukkitFcItemBuilder$1_13_R0_1` : FcItemBuilder {
 
     override fun type(type: FcItemType): FcItemBuilderTyped {
-        return `BukkitFcItemBuilderTyped$1_13_R0_1`(ItemStack(type.bukkitMaterial))
+        val bukkitType = type.`as`<`BukkitFcItemType$1_13_R0_1`>()
+        val item = ItemStack(bukkitType.bukkitMaterial)
+
+        return `BukkitFcItemBuilderTyped$1_13_R0_1`(item)
     }
 
     override fun type(type: FcItemTypes.() -> FcItemType): FcItemBuilderTyped {
-        val material = type(`BukkitFcItemTypes$1_13_R0_1`).bukkitMaterial
-        return `BukkitFcItemBuilderTyped$1_13_R0_1`(ItemStack(material))
+        return this.type(type(`BukkitFcItemTypes$1_13_R0_1`))
     }
 
     override fun from(item: FcItem): FcItemBuilderTyped {
-        return `BukkitFcItemBuilderTyped$1_13_R0_1`(item.bukkitItemStack.clone())
+        val bukkitItem = item.`as`<`BukkitFcItem$1_13_R0_1`>()
+        val copy = bukkitItem.bukkitItemStack.clone()
+
+        return `BukkitFcItemBuilderTyped$1_13_R0_1`(copy)
     }
 }

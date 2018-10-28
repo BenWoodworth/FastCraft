@@ -1,7 +1,9 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
+import net.benwoodworth.fastcraft.platform.text.FcTextBuilder
+
 @Suppress("ClassName")
-object `BukkitFcTextBuilder$1_13_R0_1` : net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextBuilder {
+object `BukkitFcTextBuilder$1_13_R0_1` : FcTextBuilder {
 
     override fun text(text: String): `BukkitFcTextBuilderTyped$1_13_R0_1` {
         return `BukkitFcTextBuilderTyped$1_13_R0_1`(text)

@@ -1,17 +1,13 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
 import net.benwoodworth.fastcraft.platform.text.*
-import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.platform.text.FcTextBuilder
-import net.benwoodworth.fastcraft.platform.text.FcTextColor
-import net.benwoodworth.fastcraft.platform.text.FcTextColors
 
 @Suppress("ClassName")
 class `BukkitFcTextBuilderTyped$1_13_R0_1`(
     private val text: String
-) : net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextBuilderTyped {
+) : FcTextBuilderTyped {
 
-    private var color: net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextColor? = null
+    private var color: FcTextColor? = null
 
     private var bold: Boolean? = null
     private var italic: Boolean? = null
@@ -22,7 +18,7 @@ class `BukkitFcTextBuilderTyped$1_13_R0_1`(
     private val extra = mutableListOf<FcText>()
 
     override fun color(color: FcTextColor) = also {
-        this.color = color as net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextColor
+        this.color = color
     }
 
     override fun color(color: FcTextColors.() -> FcTextColor) = also {

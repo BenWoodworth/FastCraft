@@ -11,7 +11,7 @@ class `BukkitFcTask$1_13_R0_1`(
     private val async: Boolean,
     private val delay: Long?,
     private val interval: Long?
-) : net.benwoodworth.fastcraft.bukkit.server.BukkitFcTask {
+) : FcTask {
 
     private var taskId: Int? = null
 

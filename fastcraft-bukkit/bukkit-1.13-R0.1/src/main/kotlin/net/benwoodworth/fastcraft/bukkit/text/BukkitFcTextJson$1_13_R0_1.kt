@@ -2,11 +2,10 @@ package net.benwoodworth.fastcraft.bukkit.text
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextString
 import net.benwoodworth.fastcraft.platform.text.FcTextTranslation
-import net.benwoodworth.fastcraft.bukkit.bukkitColorName
+import net.benwoodworth.fastcraft.util.`as`
 
 @Suppress("unused")
 @Serializable
@@ -24,7 +23,7 @@ class `BukkitFcTextJson$1_13_R0_1`(
 
     @SerialName("color")
     val color: String?
-        get() = fcText.color?.bukkitColorName
+        get() = fcText.color?.`as`<`BukkitFcTextColor$1_13_R0_1`>()?.name
 
     @SerialName("bold")
     val bold: Boolean?

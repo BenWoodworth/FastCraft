@@ -1,8 +1,9 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
+import net.benwoodworth.fastcraft.platform.item.FcItemType
 import org.bukkit.Material
 
 @Suppress("ClassName")
 class `BukkitFcItemType$1_13_R0_1`(
-    override val `bukkitMaterial$1_13_R0_1`: Material
-) : net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemType
+    val bukkitMaterial: Material
+) : FcItemType

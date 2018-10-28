@@ -7,7 +7,7 @@ import org.bukkit.plugin.Plugin
 @Suppress("ClassName")
 class `BukkitFcTaskBuilder$1_13_R0_1`(
     private val plugin: Plugin
-) : net.benwoodworth.fastcraft.bukkit.server.BukkitFcTaskBuilder {
+) : FcTaskBuilder {
 
     private var action: (task: FcTask) -> Unit = {}
     private var async: Boolean = false

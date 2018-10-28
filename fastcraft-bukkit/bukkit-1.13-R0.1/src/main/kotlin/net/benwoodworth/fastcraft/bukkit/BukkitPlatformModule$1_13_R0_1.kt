@@ -9,13 +9,14 @@ import net.benwoodworth.fastcraft.bukkit.recipe.`BukkitFcRecipeService$1_13_R0_1
 import net.benwoodworth.fastcraft.bukkit.server.`BukkitFcLogger$1_13_R0_1`
 import net.benwoodworth.fastcraft.bukkit.server.`BukkitFcTaskBuilder$1_13_R0_1`
 import net.benwoodworth.fastcraft.bukkit.text.`BukkitFcTextBuilder$1_13_R0_1`
+import net.benwoodworth.fastcraft.platform.PlatformModule
 import org.bukkit.plugin.Plugin
 import java.nio.file.Path
 
 @Suppress("ClassName")
 class `BukkitPlatformModule$1_13_R0_1`(
     private val plugin: Plugin
-) : net.benwoodworth.fastcraft.bukkit.BukkitPlatformModule {
+) : PlatformModule {
 
     override fun getLogger(): `BukkitFcLogger$1_13_R0_1` {
         return `BukkitFcLogger$1_13_R0_1`(plugin.logger)

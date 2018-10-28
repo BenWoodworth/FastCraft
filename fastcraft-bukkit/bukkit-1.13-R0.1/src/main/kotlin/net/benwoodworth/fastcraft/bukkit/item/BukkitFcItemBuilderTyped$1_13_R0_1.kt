@@ -1,15 +1,16 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
+import net.benwoodworth.fastcraft.bukkit.text.`BukkitFcText$1_13_R0_1`
+import net.benwoodworth.fastcraft.bukkit.updateMeta
+import net.benwoodworth.fastcraft.platform.item.FcItemBuilderTyped
 import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.bukkit.bukkitItemStack
-import net.benwoodworth.fastcraft.bukkit.bukkitLegacyText
-import net.benwoodworth.fastcraft.bukkit.updateItemMeta
+import net.benwoodworth.fastcraft.util.`as`
 import org.bukkit.inventory.ItemStack
 
 @Suppress("ClassName")
 class `BukkitFcItemBuilderTyped$1_13_R0_1`(
-    override val `bukkitItemStack$1_13_R0_1`: ItemStack
-) : net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemBuilderTyped {
+    val bukkitItemStack: ItemStack
+) : FcItemBuilderTyped {
 
     override fun build(): `BukkitFcItem$1_13_R0_1` {
         return `BukkitFcItem$1_13_R0_1`(bukkitItemStack.clone())
@@ -21,17 +22,21 @@ class `BukkitFcItemBuilderTyped$1_13_R0_1`(
     }
 
     override fun displayName(displayName: FcText?): `BukkitFcItemBuilderTyped$1_13_R0_1` {
-        `bukkitItemStack$1_13_R0_1`.updateItemMeta { itemMeta ->
-            itemMeta.displayName = displayName?.bukkitLegacyText(TODO())
+        val bukkitText = displayName?.`as`<`BukkitFcText$1_13_R0_1`>()
+
+        bukkitItemStack.updateMeta {
+            this.displayName = bukkitText?.legacyText(TODO())
         }
 
         return this
     }
 
     override fun lore(lore: List<FcText>?): `BukkitFcItemBuilderTyped$1_13_R0_1` {
-        `bukkitItemStack$1_13_R0_1`.updateItemMeta { itemMeta ->
-            itemMeta.lore = lore?.map {
-                it.bukkitLegacyText(TODO())
+        bukkitItemStack.updateMeta {
+            this.lore = lore?.map {
+                val bukkitText = it.`as`<`BukkitFcText$1_13_R0_1`>()
+
+                bukkitText.legacyText(TODO())
             }
         }
 
@@ -39,7 +44,7 @@ class `BukkitFcItemBuilderTyped$1_13_R0_1`(
     }
 
     override fun durability(durability: Int): `BukkitFcItemBuilderTyped$1_13_R0_1` {
-        `bukkitItemStack$1_13_R0_1`.durability = durability.toShort()
+        bukkitItemStack.durability = durability.toShort()
         return this
     }
 }

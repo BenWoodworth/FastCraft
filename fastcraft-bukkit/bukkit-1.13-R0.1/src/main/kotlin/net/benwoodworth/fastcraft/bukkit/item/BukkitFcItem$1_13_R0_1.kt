@@ -1,13 +1,13 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
-import net.benwoodworth.fastcraft.bukkit.bukkitItemStack
 import net.benwoodworth.fastcraft.bukkit.text.`BukkitFcText$1_13_R0_1`
+import net.benwoodworth.fastcraft.platform.item.FcItem
 import org.bukkit.inventory.ItemStack
 
 @Suppress("ClassName")
 class `BukkitFcItem$1_13_R0_1`(
-    override val `bukkitItemStack$1_13_R0_1`: ItemStack
-) : net.benwoodworth.fastcraft.bukkit.item.BukkitFcItem {
+    val bukkitItemStack: ItemStack
+) : FcItem {
 
     override val type: `BukkitFcItemType$1_13_R0_1`
         get() = `BukkitFcItemType$1_13_R0_1`(bukkitItemStack.type)

@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft.bukkit.text
 
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
+import net.benwoodworth.fastcraft.platform.text.FcTextTranslation
 
 class `BukkitFcTextTranslation$1_13_R0_1`(
     override val translationKey: String,
@@ -12,7 +13,7 @@ class `BukkitFcTextTranslation$1_13_R0_1`(
     override val strikethrough: Boolean?,
     override val obfuscate: Boolean?,
     override val extra: List<FcText>
-) : `BukkitFcText$1_13_R0_1`(), net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextTranslation {
+) : `BukkitFcText$1_13_R0_1`(), FcTextTranslation {
 
     override fun getUnformattedText(locale: String): String {
         return "[$locale/$translationKey]"
