@@ -37,6 +37,8 @@ subprojects {
         compile Dependencies.javax_inject
         compile Dependencies.dagger
         compile Dependencies.auto_factory
+        
+        kapt Dependencies.dagger_compiler
     }
 
     sourceCompatibility = Versions.java

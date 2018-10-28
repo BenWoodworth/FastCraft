@@ -20,6 +20,9 @@ object Dependencies {
     val dagger =
         "com.google.dagger:dagger:${Versions.dagger}"
 
+    val dagger_compiler =
+        "com.google.dagger:dagger-compiler:${Versions.dagger}"
+
     val auto_factory =
         "com.google.auto.factory:auto-factory:${Versions.auto_factory}"
 }

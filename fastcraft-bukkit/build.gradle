@@ -8,3 +8,7 @@ allprojects {
         compile project(":fastcraft")
     }
 }
+
+dependencies {
+    implementation project("bukkit-1.13-R0.1")
+}
