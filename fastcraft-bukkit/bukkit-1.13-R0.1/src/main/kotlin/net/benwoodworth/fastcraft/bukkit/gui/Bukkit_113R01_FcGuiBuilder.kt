@@ -6,7 +6,7 @@ import net.benwoodworth.fastcraft.platform.gui.types.FcGuiDispenser
 import net.benwoodworth.fastcraft.platform.gui.types.FcGuiHopper
 
 @Suppress("ClassName")
-class `BukkitFcGuiBuilder$1_13_R0_1` : FcGuiBuilder {
+class Bukkit_113R01_FcGuiBuilder : FcGuiBuilder {
     override fun chest(height: Int): FcGuiBuilder.Typed<FcGuiChest> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

@@ -4,13 +4,13 @@ import net.benwoodworth.fastcraft.platform.config.FcConfigBuilder
 import org.bukkit.configuration.file.YamlConfiguration
 import java.nio.file.Path
 
-object `BukkitFcConfigBuilder$1_13_R0_1` : FcConfigBuilder {
+object Bukkit_113R01_FcConfigBuilder : FcConfigBuilder {
 
-    override fun empty() = `BukkitFcConfigBuilderLoaded$1_13_R0_1` {
+    override fun empty() = Bukkit_113R01_FcConfigBuilderLoaded {
         YamlConfiguration()
     }
 
-    override fun file(file: Path) = `BukkitFcConfigBuilderLoaded$1_13_R0_1` {
+    override fun file(file: Path) = Bukkit_113R01_FcConfigBuilderLoaded {
         YamlConfiguration.loadConfiguration(file.toFile())
     }
 }

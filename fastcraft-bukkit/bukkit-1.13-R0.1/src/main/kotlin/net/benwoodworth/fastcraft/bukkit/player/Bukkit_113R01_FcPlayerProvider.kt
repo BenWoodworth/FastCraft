@@ -6,17 +6,17 @@ import org.bukkit.Bukkit
 import java.util.*
 
 @Suppress("ClassName")
-object `BukkitFcPlayerProvider$1_13_R0_1` : FcPlayerProvider {
+object Bukkit_113R01_FcPlayerProvider : FcPlayerProvider {
 
     override fun getOnlinePlayers(): List<FcPlayer> {
         return Bukkit.getOnlinePlayers().map { player ->
-            `BukkitFcPlayer$1_13_R0_1`(player)
+            Bukkit_113R01_FcPlayer(player)
         }
     }
 
     override fun getPlayer(uuid: UUID): FcPlayer? {
         return Bukkit.getPlayer(uuid)?.let { player ->
-            `BukkitFcPlayer$1_13_R0_1`(player)
+            Bukkit_113R01_FcPlayer(player)
         }
     }
 }

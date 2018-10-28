@@ -5,7 +5,7 @@ import java.util.logging.Level
 import java.util.logging.Logger
 
 @Suppress("ClassName")
-class `BukkitFcLogger$1_13_R0_1`(
+class Bukkit_113R01_FcLogger(
     private val logger: Logger
 ) : FcLogger {
 

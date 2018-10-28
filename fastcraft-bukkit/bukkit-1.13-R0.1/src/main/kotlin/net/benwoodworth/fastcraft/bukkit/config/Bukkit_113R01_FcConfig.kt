@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.platform.config.FcConfigEntry
 import org.bukkit.configuration.file.YamlConfiguration
 import java.nio.file.Path
 
-class `BukkitFcConfig$1_13_R0_1`(
+class Bukkit_113R01_FcConfig(
     private val config: YamlConfiguration
 ) : FcConfig {
 
@@ -20,6 +20,6 @@ class `BukkitFcConfig$1_13_R0_1`(
     }
 
     override fun get(key: String): FcConfigEntry {
-        return `BukkitFcConfigEntry$1_13_R0_1`(key, config, null)
+        return Bukkit_113R01_FcConfigEntry(key, config, null)
     }
 }

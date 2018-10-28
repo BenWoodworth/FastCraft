@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.bukkit.text
 import net.benwoodworth.fastcraft.platform.text.*
 
 @Suppress("ClassName")
-class `BukkitFcTextBuilderTyped$1_13_R0_1`(
+class Bukkit_113R01_FcTextBuilderTyped(
     private val text: String
 ) : FcTextBuilderTyped {
 
@@ -22,7 +22,7 @@ class `BukkitFcTextBuilderTyped$1_13_R0_1`(
     }
 
     override fun color(color: FcTextColors.() -> FcTextColor) = also {
-        this.color(color(`BukkitFcTextColors$1_13_R0_1`))
+        this.color(color(Bukkit_113R01_FcTextColors))
     }
 
     override fun bold(bold: Boolean) = also {
@@ -50,10 +50,10 @@ class `BukkitFcTextBuilderTyped$1_13_R0_1`(
     }
 
     override fun extra(text: (textBuilder: FcTextBuilder) -> FcText) = also {
-        extra(text(`BukkitFcTextBuilder$1_13_R0_1`))
+        extra(text(Bukkit_113R01_FcTextBuilder))
     }
 
-    override fun build() = `BukkitFcTextString$1_13_R0_1`(
+    override fun build() = Bukkit_113R01_FcTextString(
         text = text,
         color = color,
         bold = bold,

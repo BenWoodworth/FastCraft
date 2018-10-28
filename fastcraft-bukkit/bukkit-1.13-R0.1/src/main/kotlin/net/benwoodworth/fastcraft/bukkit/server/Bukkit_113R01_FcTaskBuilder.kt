@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.platform.server.FcTaskBuilder
 import org.bukkit.plugin.Plugin
 
 @Suppress("ClassName")
-class `BukkitFcTaskBuilder$1_13_R0_1`(
+class Bukkit_113R01_FcTaskBuilder(
     private val plugin: Plugin
 ) : FcTaskBuilder {
 
@@ -35,6 +35,6 @@ class `BukkitFcTaskBuilder$1_13_R0_1`(
     }
 
     override fun build(): FcTask {
-        return `BukkitFcTask$1_13_R0_1`(plugin, action, async, delay, interval)
+        return Bukkit_113R01_FcTask(plugin, action, async, delay, interval)
     }
 }

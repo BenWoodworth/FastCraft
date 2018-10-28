@@ -5,17 +5,17 @@ import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.util.`as`
 
 @Suppress("ClassName")
-abstract class `BukkitFcText$1_13_R0_1` : FcText {
+abstract class Bukkit_113R01_FcText : FcText {
 
     protected abstract fun getUnformattedText(locale: String): String
 
     val rawText: String by lazy {
-        JSON.stringify(`BukkitFcTextJson$1_13_R0_1`(this))
+        JSON.stringify(Bukkit_113R01_FcTextJson(this))
     }
 
     fun legacyText(locale: String): String {
         val extraLegacy = extra.joinToString("") {
-            it.`as`<`BukkitFcText$1_13_R0_1`>().legacyText(locale)
+            it.`as`<Bukkit_113R01_FcText>().legacyText(locale)
         }
 
         return getUnformattedText(locale) + extraLegacy
