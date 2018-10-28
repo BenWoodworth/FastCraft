@@ -7,11 +7,12 @@ import net.benwoodworth.fastcraft.bukkit.item.Bukkit_113_R01_FcItemTypes
 import net.benwoodworth.fastcraft.bukkit.player.Bukkit_113_R01_FcPlayerProvider
 import net.benwoodworth.fastcraft.bukkit.recipe.Bukkit_113_R01_FcRecipeService
 import net.benwoodworth.fastcraft.bukkit.server.Bukkit_113_R01_FcLogger
+import net.benwoodworth.fastcraft.bukkit.server.Bukkit_113_R01_FcPluginData
 import net.benwoodworth.fastcraft.bukkit.server.Bukkit_113_R01_FcTaskBuilder
 import net.benwoodworth.fastcraft.bukkit.text.Bukkit_113_R01_FcTextBuilder
 import net.benwoodworth.fastcraft.platform.PlatformDependencies
+import net.benwoodworth.fastcraft.platform.server.FcPluginData
 import org.bukkit.plugin.Plugin
-import java.nio.file.Path
 
 @Suppress("ClassName")
 class Bukkit_113_R01_PlatformDependencies(
@@ -22,12 +23,8 @@ class Bukkit_113_R01_PlatformDependencies(
         return Bukkit_113_R01_FcLogger(plugin.logger)
     }
 
-    override fun getDataFolder(): Path {
-        return plugin.dataFolder.toPath()
-    }
-
-    override fun getConfigFile(): Path {
-        return getDataFolder().resolve("config.yml")
+    override fun getPluginData(): FcPluginData {
+        return Bukkit_113_R01_FcPluginData(plugin)
     }
 
     override fun createConfigBuilder(): Bukkit_113_R01_FcConfigBuilder {

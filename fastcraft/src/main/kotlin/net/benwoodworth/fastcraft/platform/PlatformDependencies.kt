@@ -7,18 +7,16 @@ import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.player.FcPlayerProvider
 import net.benwoodworth.fastcraft.platform.recipe.FcRecipeService
 import net.benwoodworth.fastcraft.platform.server.FcLogger
+import net.benwoodworth.fastcraft.platform.server.FcPluginData
 import net.benwoodworth.fastcraft.platform.server.FcTaskBuilder
 import net.benwoodworth.fastcraft.platform.text.FcTextBuilder
 import net.benwoodworth.fastcraft.util.Extensible
-import java.nio.file.Path
 
 interface PlatformDependencies : Extensible {
 
     fun getLogger(): FcLogger
 
-    fun getDataFolder(): Path
-
-    fun getConfigFile(): Path
+    fun getPluginData(): FcPluginData
 
     fun createConfigBuilder(): FcConfigBuilder
 
