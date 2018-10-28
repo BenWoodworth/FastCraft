@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.platform.gui
 
-import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.event.FcEventListener
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.util.Extensible
 
 /**
