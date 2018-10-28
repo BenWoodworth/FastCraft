@@ -10,9 +10,9 @@ shadowJar {
     classifier(null)
 
     dependencies {
-        include project(":fastcraft")
-        include project(":fastcraft-bukkit")
-        include project(":fastcraft-sponge")
+        subprojects.forEach { subproject ->
+            include project(subproject.path)
+        }
 
         include dependency(Dependencies.kotlin_runtime)
         include dependency(Dependencies.kotlin_serialization)
