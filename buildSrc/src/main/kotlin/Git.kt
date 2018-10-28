@@ -28,7 +28,7 @@ object Git {
             .readText()
             .trim()
 
-        val regex = Regex("""^(.*?)-(\d+)-g([0-9a-f]+)(-dirty)?(-broken)?$""")
+        val regex = Regex("""^v?(.*?)-(\d+)-g([0-9a-f]+)(-dirty)?(-broken)?$""")
         val match = regex.matchEntire(output)!!
 
         val (tag, ahead, hash, dirty, broken) = match.destructured
