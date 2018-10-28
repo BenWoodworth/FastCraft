@@ -10,5 +10,7 @@ allprojects {
 }
 
 dependencies {
-    implementation project("bukkit-1.13-R0.1")
+    api "org.bukkit:bukkit:1.8-R0.1-SNAPSHOT"
+    
+    implementation project(":fastcraft-bukkit:bukkit-1.13-R0.1")
 }
