@@ -5,11 +5,15 @@ object Dependencies {
     val kotlin_stdlib =
         "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
 
+    val kotlin_runtime =
+        "org.jetbrains.kotlin:kotlin-runtime:${Versions.kotlin}"
+
     val kotlin_serialization =
         "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}"
 
     val kotlin_serialization_runtime =
         "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlin_serialization}"
+
 
     val jsr250 =
         "javax.annotation:jsr250-api:${Versions.jsr250}"
@@ -25,4 +29,13 @@ object Dependencies {
 
     val auto_factory =
         "com.google.auto.factory:auto-factory:${Versions.auto_factory}"
+
+
+    val shadow =
+        "com.github.jengelman.gradle.plugins:shadow:${Versions.shadow}"
+
+    val bstats_bukkit =
+        "org.bstats:bstats-bukkit:${Versions.bstats}"
+    val bstats_sponge =
+        "org.bstats:bstats-sponge:${Versions.bstats}"
 }

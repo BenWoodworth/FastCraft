@@ -1,0 +1,32 @@
+apply plugin: "com.github.johnrengelman.shadow"
+
+// Use shadowJar instead of jar
+jar {
+    enabled = false
+    dependsOn shadowJar
+}
+
+shadowJar {
+    classifier(null)
+
+    dependencies {
+        include project(":fastcraft")
+        include project(":fastcraft-bukkit")
+        include project(":fastcraft-sponge")
+
+        include dependency(Dependencies.kotlin_runtime)
+        include dependency(Dependencies.kotlin_serialization)
+        include dependency(Dependencies.kotlin_stdlib)
+        include dependency(Dependencies.dagger)
+        include dependency(Dependencies.javax_inject)
+        include dependency(Dependencies.bstats_bukkit)
+        include dependency(Dependencies.bstats_sponge)
+    }
+
+    def libPackage = "net.benwoodworth.fastcraft.lib"
+
+    relocate("kotlin", "${libPackage}.kotlin")
+    relocate("dagger", "${libPackage}.dagger")
+    relocate("javax", "${libPackage}.javax")
+    relocate("org.bstats", "${libPackage}.bstats")
+}
