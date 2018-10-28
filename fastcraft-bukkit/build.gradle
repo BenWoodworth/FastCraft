@@ -6,6 +6,21 @@ allprojects {
 
 dependencies {
     api "org.bukkit:bukkit:1.8-R0.1-SNAPSHOT"
-    
+
     implementation project(":fastcraft-bukkit:bukkit-1.13-R0.1")
+}
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        include 'plugin.yml'
+
+        expand([
+                plugin_id         : PluginInfo.id,
+                plugin_name       : PluginInfo.name,
+                plugin_author     : PluginInfo.author,
+                plugin_description: PluginInfo.description,
+                plugin_version    : PluginInfo.version,
+                plugin_website    : PluginInfo.website
+        ])
+    }
 }
