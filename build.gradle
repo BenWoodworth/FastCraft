@@ -1,6 +1,6 @@
 buildscript {
     version = PluginInfo.version
-    
+
     repositories {
         maven { url "https://dl.bintray.com/kotlin/kotlin-eap" }
         jcenter()
@@ -41,7 +41,7 @@ subprojects {
 
     sourceCompatibility = Versions.java
     targetCompatibility = Versions.java
-    
+
     sourceSets {
         main.java.srcDirs += "$buildDir/generated/source/kapt/main"
     }
