@@ -10,7 +10,10 @@ abstract class Bukkit_113_R01_FcText : FcText {
     protected abstract fun getUnformattedText(locale: String): String
 
     val rawText: String by lazy {
-        JSON.stringify(Bukkit_113_R01_FcTextJson(this))
+        JSON.stringify(
+            Bukkit_113_R01_FcTextJson.serializer(),
+            Bukkit_113_R01_FcTextJson(this)
+        )
     }
 
     fun legacyText(locale: String): String {
