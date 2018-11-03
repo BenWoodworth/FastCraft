@@ -1,7 +1,7 @@
 apply plugin: "java"
 
-apply from: "gradle/repositories.gradle"
-apply from: "gradle/shadowJar.gradle"
+apply from: "gradle/scripts/repositories.gradle"
+apply from: "gradle/scripts/shadowJar.gradle"
 
 buildscript {
     version = PluginInfo.version
