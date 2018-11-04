@@ -25,8 +25,8 @@ class Bukkit_11300R01_FcTask(
             return
         }
 
-        with(Bukkit.getScheduler()) {
-            taskId = when {
+        taskId = Bukkit.getScheduler().run {
+            when {
                 async && interval != null ->
                     scheduleAsyncRepeatingTask(plugin, runnable, delay ?: 0L, interval)
                 async ->
