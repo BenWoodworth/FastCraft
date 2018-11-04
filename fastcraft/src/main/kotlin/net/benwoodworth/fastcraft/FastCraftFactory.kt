@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft
 import dagger.Component
 import dagger.Module
 import dagger.Provides
-import net.benwoodworth.fastcraft.platform.PlatformDependencies
+import net.benwoodworth.fastcraft.platform.FcPlatformDependencies
 import net.benwoodworth.fastcraft.platform.config.FcConfigBuilder
 import net.benwoodworth.fastcraft.platform.gui.FcGuiBuilder
 import net.benwoodworth.fastcraft.platform.item.FcItemBuilder
@@ -16,7 +16,7 @@ import net.benwoodworth.fastcraft.platform.server.FcTaskBuilder
 import net.benwoodworth.fastcraft.platform.text.FcTextBuilder
 
 class FastCraftFactory(
-    private val dependencies: PlatformDependencies
+    private val dependencies: FcPlatformDependencies
 ) {
 
     private val component = DaggerFastCraftFactory_DaggerComponent.builder()
@@ -34,7 +34,7 @@ class FastCraftFactory(
     }
 
     @Module
-    internal inner class DaggerModule : PlatformDependencies {
+    internal inner class DaggerModule : FcPlatformDependencies {
 
         @Provides
         override fun getLogger(): FcLogger {

@@ -12,7 +12,7 @@ import net.benwoodworth.fastcraft.platform.server.FcTaskBuilder
 import net.benwoodworth.fastcraft.platform.text.FcTextBuilder
 import net.benwoodworth.fastcraft.util.Extensible
 
-interface PlatformDependencies : Extensible {
+interface FcPlatformDependencies : Extensible {
 
     fun getLogger(): FcLogger
 

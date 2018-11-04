@@ -10,14 +10,14 @@ import net.benwoodworth.fastcraft.bukkit.server.Bukkit_11300R01_FcLogger
 import net.benwoodworth.fastcraft.bukkit.server.Bukkit_11300R01_FcPluginData
 import net.benwoodworth.fastcraft.bukkit.server.Bukkit_11300R01_FcTaskBuilder
 import net.benwoodworth.fastcraft.bukkit.text.Bukkit_11300R01_FcTextBuilder
-import net.benwoodworth.fastcraft.platform.PlatformDependencies
+import net.benwoodworth.fastcraft.platform.FcPlatformDependencies
 import net.benwoodworth.fastcraft.platform.server.FcPluginData
 import org.bukkit.plugin.Plugin
 
 @Suppress("ClassName")
-class Bukkit_11300R01_PlatformDependencies(
+class Bukkit_11300R01_FcPlatformDependencies(
     private val plugin: Plugin
-) : PlatformDependencies {
+) : FcPlatformDependencies {
 
     override fun getLogger(): Bukkit_11300R01_FcLogger {
         return Bukkit_11300R01_FcLogger(plugin.logger)
