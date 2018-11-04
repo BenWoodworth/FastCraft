@@ -4,6 +4,7 @@ import kotlinx.serialization.json.JsonBuilder
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
 
+@Suppress("ClassName")
 class Bukkit_11300R01_FcTextText(
     val text: String,
     override val color: FcTextColor? = null,

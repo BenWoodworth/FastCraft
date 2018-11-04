@@ -4,6 +4,7 @@ import net.benwoodworth.fastcraft.platform.config.FcConfigEntry
 import org.bukkit.configuration.Configuration
 import org.bukkit.configuration.ConfigurationSection
 
+@Suppress("ClassName")
 class Bukkit_11300R01_FcConfigEntry(
     key: String,
     private val config: Configuration,

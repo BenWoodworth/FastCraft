@@ -11,6 +11,7 @@ import org.bukkit.event.Listener
 import org.bukkit.plugin.EventExecutor
 import org.bukkit.plugin.Plugin
 
+@Suppress("ClassName")
 class Bukkit_11300R01_FcEventListener<TBukkitEvent : Event, TEvent : FcEvent>(
     private val plugin: Plugin,
     private val event: Class<TBukkitEvent>,

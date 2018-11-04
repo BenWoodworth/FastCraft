@@ -3,6 +3,7 @@ package net.benwoodworth.fastcraft.bukkit.config
 import net.benwoodworth.fastcraft.platform.config.FcConfigBuilderLoaded
 import org.bukkit.configuration.file.YamlConfiguration
 
+@Suppress("ClassName")
 class Bukkit_11300R01_FcConfigBuilderLoaded(
     private val loadConfig: () -> YamlConfiguration
 ) : FcConfigBuilderLoaded {

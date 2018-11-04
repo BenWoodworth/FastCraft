@@ -5,6 +5,7 @@ import net.benwoodworth.fastcraft.platform.config.FcConfigBuilderLoaded
 import org.bukkit.configuration.file.YamlConfiguration
 import java.nio.file.Path
 
+@Suppress("ClassName")
 object Bukkit_11300R01_FcConfigBuilder : FcConfigBuilder {
 
     override fun empty(): FcConfigBuilderLoaded {
