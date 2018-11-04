@@ -18,7 +18,7 @@ and in so that the same plugin Jar will run seamlessly on either platform.
 - Git
 
 #### Clone the repo
-```console
+```
 git clone https://github.com/BenWoodworth/FastCraft.git
 cd FastCraft
 ```
