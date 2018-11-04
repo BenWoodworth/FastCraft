@@ -26,5 +26,5 @@ val globalPlaceholders = mapOf(
     "strike" to "§m",
     "underline" to "§n",
     "italic" to "§o",
-    "reset" to "§r"
+    "default" to "§r"
 )

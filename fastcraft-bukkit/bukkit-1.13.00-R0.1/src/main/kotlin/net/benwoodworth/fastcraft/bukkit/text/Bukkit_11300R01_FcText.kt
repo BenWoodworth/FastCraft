@@ -15,11 +15,7 @@ interface Bukkit_11300R01_FcText : FcText {
     val obfuscate: Boolean?
     val extra: List<FcText>
 
-    fun toRawText(): String
+    fun JsonBuilder.addAdditionalJson()
 
-    fun addRawTextJson(jsonBuilder: JsonBuilder)
-
-    fun toLegacyText(): String
-
-    fun getLegacyTextPart(): String
+    fun getTextPart(): String
 }

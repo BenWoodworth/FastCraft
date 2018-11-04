@@ -21,6 +21,5 @@ object Bukkit_11300R01_FcTextColors : FcTextColors {
     override val lightPurple = Bukkit_11300R01_FcTextColor("light_purple", "§d")
     override val yellow = Bukkit_11300R01_FcTextColor("yellow", "§e")
     override val white = Bukkit_11300R01_FcTextColor("white", "§f")
-    override val reset = Bukkit_11300R01_FcTextColor("reset", "§r")
-    override val none = Bukkit_11300R01_FcTextColor("none", "")
+    override val default = Bukkit_11300R01_FcTextColor("reset", "§r")
 }

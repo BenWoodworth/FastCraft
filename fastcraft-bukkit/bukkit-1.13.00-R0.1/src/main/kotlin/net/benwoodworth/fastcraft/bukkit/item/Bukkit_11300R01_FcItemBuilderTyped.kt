@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
 import net.benwoodworth.fastcraft.bukkit.text.Bukkit_11300R01_FcText
+import net.benwoodworth.fastcraft.bukkit.text.toLegacy
 import net.benwoodworth.fastcraft.bukkit.updateMeta
 import net.benwoodworth.fastcraft.platform.item.FcItemBuilderTyped
 import net.benwoodworth.fastcraft.platform.text.FcText
@@ -25,7 +26,9 @@ class Bukkit_11300R01_FcItemBuilderTyped(
         val bukkitText = displayName?.getAs<Bukkit_11300R01_FcText>()
 
         bukkitItemStack.updateMeta {
-            this.displayName = bukkitText?.legacyText(TODO())
+            this.displayName = bukkitText
+                ?.getAs<Bukkit_11300R01_FcText>()
+                ?.toLegacy()
         }
 
         return this

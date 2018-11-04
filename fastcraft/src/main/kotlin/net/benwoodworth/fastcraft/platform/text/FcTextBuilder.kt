@@ -4,6 +4,8 @@ import net.benwoodworth.fastcraft.util.Extensible
 
 interface FcTextBuilder : Extensible {
 
+    fun text(text: String): FcTextBuilder
+
     fun color(color: FcTextColor): FcTextBuilder
     fun color(color: FcTextColors.() -> FcTextColor): FcTextBuilder
 

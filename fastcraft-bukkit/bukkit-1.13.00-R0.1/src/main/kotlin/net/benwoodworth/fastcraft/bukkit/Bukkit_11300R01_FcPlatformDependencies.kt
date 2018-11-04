@@ -56,6 +56,6 @@ class Bukkit_11300R01_FcPlatformDependencies(
     }
 
     override fun createTextBuilder(): Bukkit_11300R01_FcTextBuilder {
-        return Bukkit_11300R01_FcTextBuilder
+        return Bukkit_11300R01_FcTextBuilder()
     }
 }

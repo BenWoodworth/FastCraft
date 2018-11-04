@@ -20,6 +20,5 @@ interface FcTextColors : Extensible {
     val lightPurple: FcTextColor
     val yellow: FcTextColor
     val white: FcTextColor
-    val reset: FcTextColor
-    val none: FcTextColor
+    val default: FcTextColor
 }
