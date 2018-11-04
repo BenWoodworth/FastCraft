@@ -3,7 +3,6 @@ package net.benwoodworth.fastcraft.bukkit.text
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextBuilder
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
-import net.benwoodworth.fastcraft.platform.text.FcTextColors
 
 @Suppress("ClassName")
 class Bukkit_11300R01_FcTextBuilder : FcTextBuilder {
@@ -24,11 +23,6 @@ class Bukkit_11300R01_FcTextBuilder : FcTextBuilder {
 
     override fun color(color: FcTextColor): FcTextBuilder {
         this.color = color
-        return this
-    }
-
-    override fun color(color: FcTextColors.() -> FcTextColor): FcTextBuilder {
-        this.color(color(Bukkit_11300R01_FcTextColors))
         return this
     }
 
@@ -59,11 +53,6 @@ class Bukkit_11300R01_FcTextBuilder : FcTextBuilder {
 
     override fun extra(text: FcText): FcTextBuilder {
         extra.add(text)
-        return this
-    }
-
-    override fun extra(text: (textBuilder: FcTextBuilder) -> FcText): FcTextBuilder {
-        extra(text(Bukkit_11300R01_FcTextBuilder()))
         return this
     }
 

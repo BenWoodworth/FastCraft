@@ -36,7 +36,7 @@ class Bukkit_11300R01_FcPlatformDependencies(
     }
 
     override fun createItemBuilder(): Bukkit_11300R01_FcItemBuilder {
-        return Bukkit_11300R01_FcItemBuilder
+        return Bukkit_11300R01_FcItemBuilder()
     }
 
     override fun getItemTypes(): Bukkit_11300R01_FcItemTypes {

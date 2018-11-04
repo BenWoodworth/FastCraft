@@ -4,14 +4,11 @@ import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.json
 import kotlinx.serialization.json.jsonArray
 import net.benwoodworth.fastcraft.bukkit.text.Bukkit_11300R01_FcText
-import net.benwoodworth.fastcraft.bukkit.text.Bukkit_11300R01_FcTextBuilder
 import net.benwoodworth.fastcraft.bukkit.text.toLegacy
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemBuilder
 import net.benwoodworth.fastcraft.platform.item.FcItemType
-import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.platform.text.FcTextBuilder
 import net.benwoodworth.fastcraft.util.getAs
 import org.bukkit.Bukkit
 import org.bukkit.Material
@@ -35,10 +32,6 @@ class Bukkit_11300R01_FcItemBuilder : FcItemBuilder {
         return this
     }
 
-    override fun type(type: FcItemTypes.() -> FcItemType): FcItemBuilder {
-        return this.type(type(Bukkit_11300R01_FcItemTypes))
-    }
-
     override fun amount(amount: Int): FcItemBuilder {
         this.amount = amount
         return this
@@ -50,10 +43,6 @@ class Bukkit_11300R01_FcItemBuilder : FcItemBuilder {
             .toRaw()
 
         return this
-    }
-
-    override fun displayName(displayName: (FcTextBuilder) -> FcText): FcItemBuilder {
-        return this.displayName(displayName(Bukkit_11300R01_FcTextBuilder()))
     }
 
     override fun lore(lore: List<FcText>): FcItemBuilder {
@@ -91,6 +80,7 @@ class Bukkit_11300R01_FcItemBuilder : FcItemBuilder {
             }
         }.toString()
 
+        @Suppress("DEPRECATION")
         Bukkit.getUnsafe().modifyItemStack(item, meta)
 
         return Bukkit_11300R01_FcItem(item)

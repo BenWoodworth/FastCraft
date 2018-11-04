@@ -5,6 +5,7 @@ import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.util.getAs
 import org.bukkit.entity.Player
+import toRaw
 import java.util.*
 
 @Suppress("ClassName")
@@ -27,7 +28,7 @@ class Bukkit_11300R01_FcPlayer(
     override fun sendMessage(message: FcText) {
         val bukkitText = message.getAs<Bukkit_11300R01_FcText>()
 
-        bukkitPlayer.sendRawMessage(bukkitText.rawText)
+        bukkitPlayer.sendRawMessage(bukkitText.toRaw().toString())
     }
 
     override fun hasPermission(permission: String): Boolean {
