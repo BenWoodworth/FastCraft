@@ -7,7 +7,6 @@ interface FcTextBuilder : Extensible {
     fun text(text: String): FcTextBuilder
 
     fun color(color: FcTextColor): FcTextBuilder
-    fun color(color: FcTextColors.() -> FcTextColor): FcTextBuilder
 
     fun bold(bold: Boolean = true): FcTextBuilder
     fun italic(italic: Boolean = true): FcTextBuilder
@@ -16,7 +15,6 @@ interface FcTextBuilder : Extensible {
     fun obfuscate(obfuscate: Boolean = true): FcTextBuilder
 
     fun extra(text: FcText): FcTextBuilder
-    fun extra(text: (textBuilder: FcTextBuilder) -> FcText): FcTextBuilder
 
     fun build(): FcText
 }
