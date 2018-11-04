@@ -1,14 +1,14 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
 import kotlinx.serialization.json.json
-import net.benwoodworth.fastcraft.util.`as`
+import net.benwoodworth.fastcraft.util.getAs
 
 object Bukkit_11300R01_RawTextSerializer {
 
     fun serialize(text: Bukkit_11300R01_FcText): String {
         val rawText = json {
             text.color
-                ?.`as`<Bukkit_11300R01_FcTextColor>()
+                ?.getAs<Bukkit_11300R01_FcTextColor>()
                 ?.let {
                     "color" to it.id
                 }
@@ -35,7 +35,7 @@ object Bukkit_11300R01_RawTextSerializer {
 
             text.extra
                 .takeIf { it.any() }
-                ?.map { it.`as`<Bukkit_11300R01_FcTextString>() }
+                ?.map { it.getAs<Bukkit_11300R01_FcTextString>() }
                 ?.let {
                     "extra" to it
                 }

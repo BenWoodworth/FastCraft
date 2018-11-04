@@ -20,7 +20,7 @@
 //
 //    fun load(stream: InputStream) {
 //        InputStreamReader(stream).use {
-//            json = Parser().parse(it) as JsonObject
+//            json = Parser().parse(it) getAs JsonObject
 //        }
 //    }
 //
@@ -44,7 +44,7 @@
 //
 //    @Suppress("UNCHECKED_CAST")
 //    fun list(path: String, placeholders: Map<String, String> = emptyMap()): List<FcText> {
-//        val result = (get(path) as? JsonArray<String>)?.let {
+//        val result = (get(path) getAs? JsonArray<String>)?.let {
 //            placeholderProcessor.sub(it, placeholders)
 //        } ?: listOf(missing(path))
 //
@@ -56,7 +56,7 @@
 //    }
 //
 //    fun string(path: String, placeholders: Map<String, String> = emptyMap()): FcText {
-//        val result = (get(path) as? String)?.let {
+//        val result = (get(path) getAs? String)?.let {
 //            placeholderProcessor.sub(it, placeholders)
 //        } ?: missing(path)
 //

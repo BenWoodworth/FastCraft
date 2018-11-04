@@ -4,7 +4,7 @@ import net.benwoodworth.fastcraft.bukkit.text.Bukkit_11300R01_FcText
 import net.benwoodworth.fastcraft.bukkit.updateMeta
 import net.benwoodworth.fastcraft.platform.item.FcItemBuilderTyped
 import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.util.`as`
+import net.benwoodworth.fastcraft.util.getAs
 import org.bukkit.inventory.ItemStack
 
 @Suppress("ClassName")
@@ -22,7 +22,7 @@ class Bukkit_11300R01_FcItemBuilderTyped(
     }
 
     override fun displayName(displayName: FcText?): Bukkit_11300R01_FcItemBuilderTyped {
-        val bukkitText = displayName?.`as`<Bukkit_11300R01_FcText>()
+        val bukkitText = displayName?.getAs<Bukkit_11300R01_FcText>()
 
         bukkitItemStack.updateMeta {
             this.displayName = bukkitText?.legacyText(TODO())
@@ -34,7 +34,7 @@ class Bukkit_11300R01_FcItemBuilderTyped(
     override fun lore(lore: List<FcText>?): Bukkit_11300R01_FcItemBuilderTyped {
         bukkitItemStack.updateMeta {
             this.lore = lore?.map {
-                val bukkitText = it.`as`<Bukkit_11300R01_FcText>()
+                val bukkitText = it.getAs<Bukkit_11300R01_FcText>()
 
                 bukkitText.legacyText(TODO())
             }
