@@ -17,50 +17,61 @@ class Bukkit_11300R01_FcTextBuilderTyped(
 
     private val extra = mutableListOf<FcText>()
 
-    override fun color(color: FcTextColor) = also {
+    override fun color(color: FcTextColor): FcTextBuilderTyped {
         this.color = color
+        return this
     }
 
-    override fun color(color: FcTextColors.() -> FcTextColor) = also {
+    override fun color(color: FcTextColors.() -> FcTextColor): FcTextBuilderTyped {
         this.color(color(Bukkit_11300R01_FcTextColors))
+        return this
     }
 
-    override fun bold(bold: Boolean) = also {
+    override fun bold(bold: Boolean): FcTextBuilderTyped {
         this.bold = bold
+        return this
     }
 
-    override fun italic(italic: Boolean) = also {
+    override fun italic(italic: Boolean): FcTextBuilderTyped {
         this.italic = italic
+        return this
     }
 
-    override fun underline(underline: Boolean) = also {
+    override fun underline(underline: Boolean): FcTextBuilderTyped {
         this.underline = underline
+        return this
     }
 
-    override fun strikethrough(strikethrough: Boolean) = also {
+    override fun strikethrough(strikethrough: Boolean): FcTextBuilderTyped {
         this.strikethrough = strikethrough
+        return this
     }
 
-    override fun obfuscate(obfuscate: Boolean) = also {
+    override fun obfuscate(obfuscate: Boolean): FcTextBuilderTyped {
         this.obfuscate = obfuscate
+        return this
     }
 
-    override fun extra(text: FcText) = also {
+    override fun extra(text: FcText): FcTextBuilderTyped {
         extra.add(text)
+        return this
     }
 
-    override fun extra(text: (textBuilder: FcTextBuilder) -> FcText) = also {
+    override fun extra(text: (textBuilder: FcTextBuilder) -> FcText): FcTextBuilderTyped {
         extra(text(Bukkit_11300R01_FcTextBuilder))
+        return this
     }
 
-    override fun build() = Bukkit_11300R01_FcTextString(
-        text = text,
-        color = color,
-        bold = bold,
-        italic = italic,
-        underline = underline,
-        strikethrough = strikethrough,
-        obfuscate = obfuscate,
-        extra = extra
-    )
+    override fun build(): Bukkit_11300R01_FcTextString {
+        return Bukkit_11300R01_FcTextString(
+            text = text,
+            color = color,
+            bold = bold,
+            italic = italic,
+            underline = underline,
+            strikethrough = strikethrough,
+            obfuscate = obfuscate,
+            extra = extra
+        )
+    }
 }

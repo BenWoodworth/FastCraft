@@ -64,15 +64,19 @@ class Bukkit_11300R01_FcConfigEntry(
         getParentSection().set(escapedKey, value)
     }
 
-    private fun String.escapeKey() = when {
-        isEmpty() -> "[]"
-        startsWith('[') && endsWith(']') || contains('.') -> "[$this]"
-        else -> this
+    private fun String.escapeKey(): String {
+        return when {
+            isEmpty() -> "[]"
+            startsWith('[') && endsWith(']') || contains('.') -> "[$this]"
+            else -> this
+        }
     }
 
-    private fun String.unescapeKey() = when {
-        length < 2 -> this
-        startsWith('[') && endsWith(']') -> substring(1, length - 2)
-        else -> this
+    private fun String.unescapeKey(): String {
+        return when {
+            length < 2 -> this
+            startsWith('[') && endsWith(']') -> substring(1, length - 2)
+            else -> this
+        }
     }
 }
