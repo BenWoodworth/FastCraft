@@ -1,26 +1,20 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
-import kotlinx.serialization.json.JSON
 import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.util.`as`
+import net.benwoodworth.fastcraft.platform.text.FcTextColor
 
 @Suppress("ClassName")
-abstract class Bukkit_11300R01_FcText : FcText {
+interface Bukkit_11300R01_FcText : FcText {
 
-    protected abstract fun getUnformattedText(locale: String): String
+    val color: FcTextColor?
+    val bold: Boolean?
+    val italic: Boolean?
+    val underline: Boolean?
+    val strikethrough: Boolean?
+    val obfuscate: Boolean?
+    val extra: List<FcText>
 
-    val rawText: String by lazy {
-        JSON.stringify(
-            Bukkit_11300R01_FcTextJson.serializer(),
-            Bukkit_11300R01_FcTextJson(this)
-        )
-    }
+    fun toRawText(): String
 
-    fun legacyText(locale: String): String {
-        val extraLegacy = extra.joinToString("") {
-            it.`as`<Bukkit_11300R01_FcText>().legacyText(locale)
-        }
-
-        return getUnformattedText(locale) + extraLegacy
-    }
+    fun toLegacyText(): String
 }

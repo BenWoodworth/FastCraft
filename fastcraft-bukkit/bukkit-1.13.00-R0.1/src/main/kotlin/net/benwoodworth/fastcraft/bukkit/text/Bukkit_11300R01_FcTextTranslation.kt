@@ -2,10 +2,9 @@ package net.benwoodworth.fastcraft.bukkit.text
 
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
-import net.benwoodworth.fastcraft.platform.text.FcTextTranslation
 
 class Bukkit_11300R01_FcTextTranslation(
-    override val translationKey: String,
+    val translationKey: String,
     override val color: FcTextColor?,
     override val bold: Boolean?,
     override val italic: Boolean?,
@@ -13,9 +12,13 @@ class Bukkit_11300R01_FcTextTranslation(
     override val strikethrough: Boolean?,
     override val obfuscate: Boolean?,
     override val extra: List<FcText>
-) : Bukkit_11300R01_FcText(), FcTextTranslation {
+) : Bukkit_11300R01_FcText {
 
-    override fun getUnformattedText(locale: String): String {
-        return "[$locale/$translationKey]"
+    override fun toRawText(): String {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun toLegacyText(): String {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
