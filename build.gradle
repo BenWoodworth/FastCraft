@@ -49,4 +49,10 @@ subprojects {
     sourceSets {
         main.java.srcDirs += "$buildDir/generated/source/kapt/main"
     }
+    
+    compileKotlin {
+        kotlinOptions {
+            freeCompilerArgs = ["-XXLanguage:+InlineClasses"]
+        }
+    }
 }
