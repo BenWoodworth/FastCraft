@@ -63,7 +63,7 @@
 //
 //        lore.add(lang.guiRecipeResultsLabel())
 //        recipe.results.forEachIndexed { i, item ->
-//            var itemName = item.displayName ?: item.name
+//            var itemName = item.displayName ?: item.displayName
 //
 //            if (i == resultIndex) {
 //                itemName = textBuilder.get()
@@ -78,7 +78,7 @@
 //        lore.add(null)
 //        lore.add(lang.guiRecipeIngredientsLabel())
 //        recipe.items.forEach { item ->
-//            val itemName = item.displayName ?: item.name
+//            val itemName = item.displayName ?: item.displayName
 //            lang.guiRecipeResultsItem(itemName.toString(), item.amount)
 //        }
 //

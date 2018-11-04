@@ -1,24 +1,24 @@
 package net.benwoodworth.fastcraft.platform.item
 
+import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.text.FcTextBuilder
 import net.benwoodworth.fastcraft.util.Extensible
 
-/**
- * A builder that creates Minecraft items.
- */
 interface FcItemBuilder : Extensible {
 
-    /**
-     * Set the item type.
-     */
-    fun type(type: FcItemType): FcItemBuilderTyped
+    fun type(type: FcItemType): FcItemBuilder
 
-    /**
-     * Set the item type.
-     */
-    fun type(type: FcItemTypes.() -> FcItemType): FcItemBuilderTyped
+    fun type(type: FcItemTypes.() -> FcItemType): FcItemBuilder
 
-    /**
-     * Build an item based off this [item].
-     */
-    fun from(item: FcItem): FcItemBuilderTyped
+    fun amount(amount: Int): FcItemBuilder
+
+    fun displayName(displayName: FcText): FcItemBuilder
+
+    fun displayName(displayName: (FcTextBuilder) -> FcText): FcItemBuilder
+
+    fun lore(lore: List<FcText>): FcItemBuilder
+
+    fun durability(durability: Int): FcItemBuilder
+
+    fun build(): FcItem
 }

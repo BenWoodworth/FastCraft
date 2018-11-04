@@ -15,7 +15,7 @@ interface FcPlayer : Extensible {
     val username: String
 
     /**
-     * The player's display name.
+     * The player's display displayName.
      */
     var customName: String?
 

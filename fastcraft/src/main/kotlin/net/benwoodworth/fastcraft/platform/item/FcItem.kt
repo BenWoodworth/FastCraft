@@ -12,8 +12,6 @@ interface FcItem : Extensible {
 
     val amount: Int
 
-    val name: FcText
-
     val displayName: FcText?
 
     val lore: List<FcText>?

@@ -1,11 +1,12 @@
+import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.json
 import net.benwoodworth.fastcraft.bukkit.text.Bukkit_11300R01_FcText
 import net.benwoodworth.fastcraft.bukkit.text.Bukkit_11300R01_FcTextColor
 import net.benwoodworth.fastcraft.bukkit.text.Bukkit_11300R01_FcTextText
 import net.benwoodworth.fastcraft.util.getAs
 
-fun Bukkit_11300R01_FcText.toRaw() {
-    json {
+fun Bukkit_11300R01_FcText.toRaw(): JsonElement {
+    return json {
         addAdditionalJson()
 
         color

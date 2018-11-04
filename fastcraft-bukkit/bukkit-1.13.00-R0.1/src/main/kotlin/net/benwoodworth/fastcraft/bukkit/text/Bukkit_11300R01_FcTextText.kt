@@ -6,13 +6,13 @@ import net.benwoodworth.fastcraft.platform.text.FcTextColor
 
 class Bukkit_11300R01_FcTextText(
     val text: String,
-    override val color: FcTextColor?,
-    override val bold: Boolean?,
-    override val italic: Boolean?,
-    override val underline: Boolean?,
-    override val strikethrough: Boolean?,
-    override val obfuscate: Boolean?,
-    override val extra: List<FcText>
+    override val color: FcTextColor? = null,
+    override val bold: Boolean? = null,
+    override val italic: Boolean? = null,
+    override val underline: Boolean? = null,
+    override val strikethrough: Boolean? = null,
+    override val obfuscate: Boolean? = null,
+    override val extra: List<FcText> = emptyList()
 ) : Bukkit_11300R01_FcText {
 
     override fun JsonBuilder.addAdditionalJson() {
