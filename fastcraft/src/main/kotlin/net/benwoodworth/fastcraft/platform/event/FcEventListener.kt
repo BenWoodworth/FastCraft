@@ -17,14 +17,6 @@ interface FcEventListener<TEvent : FcEvent> : Extensible {
     operator fun invoke(handler: FcEventHandler<TEvent>): FcEventHandler<TEvent> {
         return subscribe(handler)
     }
-
-    operator fun plusAssign(handler: FcEventHandler<TEvent>) {
-        subscribe(handler)
-    }
-
-    operator fun minusAssign(handler: FcEventHandler<TEvent>) {
-        unsubscribe(handler)
-    }
 }
 
 
