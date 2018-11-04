@@ -52,7 +52,10 @@ subprojects {
     
     compileKotlin {
         kotlinOptions {
-            freeCompilerArgs = ["-XXLanguage:+InlineClasses"]
+            freeCompilerArgs = [
+                    "-XXLanguage:+InlineClasses",
+                    "-Xuse-experimental=kotlin.Experimental",
+            ]
         }
     }
 }

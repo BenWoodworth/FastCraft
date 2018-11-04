@@ -1,10 +1,11 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
-import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JSON
+import kotlinx.serialization.json.json
+import kotlinx.serialization.stringify
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
 
-@Serializable
 class Bukkit_11300R01_FcTextString(
     val text: String,
     override val color: FcTextColor?,
@@ -17,10 +18,19 @@ class Bukkit_11300R01_FcTextString(
 ) : Bukkit_11300R01_FcText {
 
     override fun toRawText(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val jsonObject = json {
+            "text" to text
+
+            return JSON.stringify(jsonObject)
+        }
+
+        override fun getTextPart(): String {
+            return text
     }
 
     override fun toLegacyText(): String {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+
     }
 }

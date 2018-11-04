@@ -4,6 +4,6 @@ import net.benwoodworth.fastcraft.platform.text.FcTextColor
 
 @Suppress("ClassName")
 class Bukkit_11300R01_FcTextColor(
-    val name: String,
+    val id: String,
     val code: String
 ) : FcTextColor
