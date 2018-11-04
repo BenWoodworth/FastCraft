@@ -9,8 +9,4 @@ interface FcEventListener<TEvent : FcEvent> : Extensible {
     fun unsubscribe(handler: FcEventHandler<TEvent>)
 }
 
-operator fun <TEvent : FcEvent> FcEventListener<TEvent>.invoke(
-    handler: FcEventHandler<TEvent>
-) {
-    subscribe(handler)
-}
+
