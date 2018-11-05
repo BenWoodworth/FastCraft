@@ -1,12 +1,11 @@
-import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.json
 import net.benwoodworth.fastcraft.bukkit.text.Bukkit_11300R01_FcText
 import net.benwoodworth.fastcraft.bukkit.text.Bukkit_11300R01_FcTextColor
 import net.benwoodworth.fastcraft.bukkit.text.Bukkit_11300R01_FcTextText
 import net.benwoodworth.fastcraft.util.getAs
 
-fun Bukkit_11300R01_FcText.toRaw(): JsonElement {
-    return json {
+fun Bukkit_11300R01_FcText.toRaw(): String {
+    val rawJson = json {
         addAdditionalJson()
 
         color
@@ -24,4 +23,6 @@ fun Bukkit_11300R01_FcText.toRaw(): JsonElement {
             ?.map { it.getAs<Bukkit_11300R01_FcTextText>() }
             ?.let { "extra" to it }
     }
+
+    return rawJson.toString()
 }

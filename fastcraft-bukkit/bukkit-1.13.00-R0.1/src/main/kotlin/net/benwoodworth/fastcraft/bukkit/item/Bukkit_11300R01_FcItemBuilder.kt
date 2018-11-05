@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
-import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonLiteral
 import kotlinx.serialization.json.json
 import kotlinx.serialization.json.jsonArray
 import net.benwoodworth.fastcraft.bukkit.text.Bukkit_11300R01_FcText
@@ -20,7 +20,7 @@ class Bukkit_11300R01_FcItemBuilder : FcItemBuilder {
 
     private var type: Material = Material.AIR
     private var amount: Int = 1
-    private var displayName: JsonElement? = null
+    private var rawDisplayName: String? = null
     private var lore: List<String>? = null
     private var durability: Short? = null
 
@@ -38,7 +38,7 @@ class Bukkit_11300R01_FcItemBuilder : FcItemBuilder {
     }
 
     override fun displayName(displayName: FcText): FcItemBuilder {
-        this.displayName = displayName
+        this.rawDisplayName = displayName
             .getAs<Bukkit_11300R01_FcText>()
             .toRaw()
 
@@ -68,9 +68,11 @@ class Bukkit_11300R01_FcItemBuilder : FcItemBuilder {
             item.durability = it
         }
 
-        val meta = json {
+        val metaJson = json {
             "display" to json {
-                displayName?.let { "Name" to it }
+                rawDisplayName?.let {
+                    "Name" to JsonLiteral(it)
+                }
 
                 lore?.let { lore ->
                     "Lore" to jsonArray {
@@ -78,10 +80,10 @@ class Bukkit_11300R01_FcItemBuilder : FcItemBuilder {
                     }
                 }
             }
-        }.toString()
+        }
 
         @Suppress("DEPRECATION")
-        Bukkit.getUnsafe().modifyItemStack(item, meta)
+        Bukkit.getUnsafe().modifyItemStack(item, metaJson.toString())
 
         return Bukkit_11300R01_FcItem(item)
     }
