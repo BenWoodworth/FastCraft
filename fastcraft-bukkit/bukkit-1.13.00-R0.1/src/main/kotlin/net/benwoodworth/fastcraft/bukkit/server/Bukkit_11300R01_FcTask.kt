@@ -6,16 +6,16 @@ import org.bukkit.plugin.Plugin
 
 @Suppress("ClassName")
 class Bukkit_11300R01_FcTask(
-    private val plugin: Plugin,
-    private val action: (task: FcTask) -> Unit,
-    private val async: Boolean,
-    private val delay: Long?,
-    private val interval: Long?
+    builder: Bukkit_11300R01_FcTaskBuilder
 ) : FcTask {
 
-    private var taskId: Int? = null
+    private val plugin = builder.plugin
+    private val action = { builder.action(this) }
+    private val async = builder.async
+    private val delay = builder.delay
+    private val interval = builder.interval
 
-    private val runnable = { action(this) }
+    private var taskId: Int? = null
 
     override val isRunning: Boolean
         get() = taskId != null
@@ -28,15 +28,15 @@ class Bukkit_11300R01_FcTask(
         taskId = Bukkit.getScheduler().run {
             when {
                 async && interval != null ->
-                    scheduleAsyncRepeatingTask(plugin, runnable, delay ?: 0L, interval)
+                    scheduleAsyncRepeatingTask(plugin, action, delay ?: 0L, interval)
                 async ->
-                    scheduleAsyncDelayedTask(plugin, runnable, delay ?: 0L)
+                    scheduleAsyncDelayedTask(plugin, action, delay ?: 0L)
                 interval != null ->
-                    scheduleSyncRepeatingTask(plugin, runnable, delay ?: 0L, interval)
+                    scheduleSyncRepeatingTask(plugin, action, delay ?: 0L, interval)
                 delay != null ->
-                    scheduleSyncDelayedTask(plugin, runnable, delay)
+                    scheduleSyncDelayedTask(plugin, action, delay)
                 else ->
-                    scheduleSyncDelayedTask(plugin, runnable)
+                    scheduleSyncDelayedTask(plugin, action)
             }
         }
     }
