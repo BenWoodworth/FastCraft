@@ -2,10 +2,15 @@ package net.benwoodworth.fastcraft.bukkit.text
 
 import net.benwoodworth.fastcraft.util.getAs
 
-// TODO Optimize to reduce resulting string length
-fun Bukkit_11300R01_FcText.toLegacy(): String {
+internal object Bukkit_11300R01_LegacyTextConverter {
 
-    class Formatting(
+    fun convert(text: Bukkit_11300R01_FcText): String {
+        return StringBuilder()
+            .appendLegacyText(text, Formatting())
+            .toString()
+    }
+
+    private class Formatting(
         val color: Bukkit_11300R01_FcTextColor = Bukkit_11300R01_FcTextColors.default,
         val bold: Boolean = false,
         val italic: Boolean = false,
@@ -13,7 +18,6 @@ fun Bukkit_11300R01_FcText.toLegacy(): String {
         val strikethrough: Boolean = false,
         val obfuscate: Boolean = false
     ) {
-
         fun inherit(text: Bukkit_11300R01_FcText): Formatting {
             return Formatting(
                 text.color?.getAs() ?: color,
@@ -26,7 +30,7 @@ fun Bukkit_11300R01_FcText.toLegacy(): String {
         }
     }
 
-    fun StringBuilder.appendLegacyText(
+    private fun StringBuilder.appendLegacyText(
         text: Bukkit_11300R01_FcText,
         parentFormatting: Formatting
     ): StringBuilder {
@@ -48,11 +52,4 @@ fun Bukkit_11300R01_FcText.toLegacy(): String {
 
         return this
     }
-
-    return StringBuilder()
-        .appendLegacyText(this, Formatting())
-        .toString()
 }
-
-
-

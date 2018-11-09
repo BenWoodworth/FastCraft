@@ -4,17 +4,26 @@ import net.benwoodworth.fastcraft.util.Extensible
 
 interface FcTextBuilder : Extensible {
 
-    fun text(text: String): FcTextBuilder
+    fun text(value: String): Typed<FcText.Text>
 
-    fun color(color: FcTextColor): FcTextBuilder
+    fun translate(value: String): Typed<FcText.Translate>
 
-    fun bold(bold: Boolean = true): FcTextBuilder
-    fun italic(italic: Boolean = true): FcTextBuilder
-    fun underline(underline: Boolean = true): FcTextBuilder
-    fun strikethrough(strikethrough: Boolean = true): FcTextBuilder
-    fun obfuscate(obfuscate: Boolean = true): FcTextBuilder
+    interface Typed<out T : FcText> {
 
-    fun extra(text: FcText): FcTextBuilder
+        fun color(value: FcTextColor): Typed<T>
 
-    fun build(): FcText
+        fun bold(value: Boolean = true): Typed<T>
+
+        fun italic(value: Boolean = true): Typed<T>
+
+        fun underline(value: Boolean = true): Typed<T>
+
+        fun strikethrough(value: Boolean = true): Typed<T>
+
+        fun obfuscate(value: Boolean = true): Typed<T>
+
+        fun extra(value: FcText): Typed<T>
+
+        fun build(): T
+    }
 }
