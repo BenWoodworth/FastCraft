@@ -1,5 +1,6 @@
 package net.benwoodworth.fastcraft.platform.player
 
+import net.benwoodworth.fastcraft.platform.server.FcLocale
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.util.Extensible
 import java.util.*
@@ -11,6 +12,8 @@ interface FcPlayer : Extensible {
     var customName: String?
 
     val uuid: UUID
+
+    val locale: FcLocale
 
     fun sendMessage(message: FcText)
 

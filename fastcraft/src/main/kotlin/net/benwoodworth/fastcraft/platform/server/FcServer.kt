@@ -6,5 +6,7 @@ import net.benwoodworth.fastcraft.util.Extensible
 
 interface FcServer : Extensible {
 
+    val locale: FcLocale
+
     val onPlayerJoin: FcEventListener<FcPlayerJoinEvent>
 }
