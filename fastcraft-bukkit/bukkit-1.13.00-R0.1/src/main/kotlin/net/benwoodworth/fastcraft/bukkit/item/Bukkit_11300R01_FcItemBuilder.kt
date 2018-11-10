@@ -1,90 +1,62 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
-import kotlinx.serialization.json.JsonLiteral
-import kotlinx.serialization.json.json
-import kotlinx.serialization.json.jsonArray
 import net.benwoodworth.fastcraft.bukkit.text.Bukkit_11300R01_FcText
-import net.benwoodworth.fastcraft.bukkit.text.toLegacy
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemBuilder
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.text.FcTextBuilder
 import net.benwoodworth.fastcraft.util.getAs
-import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
-import toRaw
+import javax.inject.Inject
+import javax.inject.Provider
 
 @Suppress("ClassName")
-class Bukkit_11300R01_FcItemBuilder : FcItemBuilder {
+class Bukkit_11300R01_FcItemBuilder @Inject constructor(
+    private val itemFactory: Bukkit_11300R01_FcItemFactory
+) : FcItemBuilder, FcItemBuilder.WithType {
 
-    private var type: Material = Material.AIR
-    private var amount: Int = 1
-    private var rawDisplayName: String? = null
-    private var lore: List<String>? = null
-    private var durability: Short? = null
+    private var itemStack = ItemStack(Material.AIR)
 
-    override fun type(type: FcItemType): FcItemBuilder {
-        this.type = type
+    override fun copyFrom(value: FcItem): FcItemBuilder.WithType {
+        itemStack = value
+            .getAs<Bukkit_11300R01_FcItem>()
+            .getItemStackCopy()
+
+        return this
+    }
+
+    override fun type(value: FcItemType): FcItemBuilder.WithType {
+        itemStack.type = value
             .getAs<Bukkit_11300R01_FcItemType>()
             .material
 
         return this
     }
 
-    override fun amount(amount: Int): FcItemBuilder {
-        this.amount = amount
+    override fun amount(value: Int): FcItemBuilder.WithType {
+        itemStack.amount = value
         return this
     }
 
-    override fun displayName(displayName: FcText): FcItemBuilder {
-        this.rawDisplayName = displayName
-            .getAs<Bukkit_11300R01_FcText>()
-            .toRaw()
-
-        return this
-    }
-
-    override fun lore(lore: List<FcText>): FcItemBuilder {
-        this.lore = lore
-            .map { loreLine ->
-                loreLine
-                    .getAs<Bukkit_11300R01_FcText>()
-                    .toLegacy()
-            }
+    override fun displayName(value: FcText?): FcItemBuilder.WithType {
+        itemStack.displayName = value
+            ?.getAs<Bukkit_11300R01_FcText>()
+            ?.toLegacy()
 
         return this
     }
 
-    override fun durability(durability: Int): FcItemBuilder {
-        this.durability = durability.toShort()
+    override fun lore(value: List<FcText>): FcItemBuilder.WithType {
+        itemStack.lore = value
+            .takeUnless { it.isEmpty() }
+            ?.map { it.getAs<Bukkit_11300R01_FcText>().toLegacy() }
+
         return this
     }
 
     override fun build(): FcItem {
-        val item = ItemStack(type, amount)
-
-        durability?.let {
-            item.durability = it
-        }
-
-        val metaJson = json {
-            "display" to json {
-                rawDisplayName?.let {
-                    "Name" to JsonLiteral(it)
-                }
-
-                lore?.let { lore ->
-                    "Lore" to jsonArray {
-                        lore.forEach { +it }
-                    }
-                }
-            }
-        }
-
-        @Suppress("DEPRECATION")
-        Bukkit.getUnsafe().modifyItemStack(item, metaJson.toString())
-
-        return Bukkit_11300R01_FcItem(item)
+        return itemFactory.create(itemStack.clone())
     }
 }

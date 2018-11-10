@@ -2,7 +2,6 @@ package net.benwoodworth.fastcraft.bukkit.server
 
 import net.benwoodworth.fastcraft.platform.server.FcTask
 import org.bukkit.Bukkit
-import org.bukkit.plugin.Plugin
 
 @Suppress("ClassName")
 class Bukkit_11300R01_FcTask(

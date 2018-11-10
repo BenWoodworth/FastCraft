@@ -1,32 +1,49 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
-import net.benwoodworth.fastcraft.bukkit.text.Bukkit_11300R01_FcTextText
+import com.google.auto.factory.AutoFactory
+import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.text.FcTextBuilder
 import org.bukkit.inventory.ItemStack
+import javax.inject.Provider
 
+@AutoFactory
 @Suppress("ClassName")
 class Bukkit_11300R01_FcItem(
-    private val itemStack: ItemStack
+    private val itemStack: ItemStack,
+
+    @Provided private val textBuilder: Provider<FcTextBuilder>
 ) : FcItem {
 
     override val type: Bukkit_11300R01_FcItemType
-        get() = Bukkit_11300R01_FcItemType(itemStack.type)
+        get() = Bukkit_11300R01_FcItemType(itemStack.type, textBuilder)
 
     override val amount: Int
         get() = itemStack.amount
 
-    override val displayName: FcText?
-        get() = itemStack.displayName
-            ?.let { Bukkit_11300R01_FcTextText(it) }
+    override val displayName: FcText
+        get() = when (val displayName = itemStack.displayName) {
+            null -> type.name
 
-    override val lore: List<FcText>?
+            else -> textBuilder.get()
+                .text(displayName)
+                .build()
+        }
+
+    override val lore: List<FcText>
         get() = itemStack.lore
-            ?.map { Bukkit_11300R01_FcTextText(it) }
+            ?.map {
+                textBuilder.get()
+                    .text(it)
+                    .build()
+            }
+            ?: emptyList()
 
-    override val maxStackSize: Int
+    override val maxAmount: Int
         get() = itemStack.maxStackSize
 
-    override val durability: Int
-        get() = itemStack.durability.toInt()
+    fun getItemStackCopy(): ItemStack {
+        return itemStack.clone()
+    }
 }

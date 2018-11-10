@@ -12,11 +12,9 @@ interface FcItem : Extensible {
 
     val amount: Int
 
-    val displayName: FcText?
+    val displayName: FcText
 
-    val lore: List<FcText>?
+    val lore: List<FcText>
 
-    val maxStackSize: Int
-
-    val durability: Int
+    val maxAmount: Int
 }

@@ -5,15 +5,20 @@ import net.benwoodworth.fastcraft.util.Extensible
 
 interface FcItemBuilder : Extensible {
 
-    fun type(type: FcItemType): FcItemBuilder
+    fun copyFrom(value: FcItem): FcItemBuilder.WithType
 
-    fun amount(amount: Int): FcItemBuilder
+    fun type(value: FcItemType): FcItemBuilder.WithType
 
-    fun displayName(displayName: FcText): FcItemBuilder
+    interface WithType {
 
-    fun lore(lore: List<FcText>): FcItemBuilder
+        fun type(value: FcItemType): FcItemBuilder.WithType
 
-    fun durability(durability: Int): FcItemBuilder
+        fun amount(value: Int): FcItemBuilder.WithType
 
-    fun build(): FcItem
+        fun displayName(value: FcText?): FcItemBuilder.WithType
+
+        fun lore(value: List<FcText>): FcItemBuilder.WithType
+
+        fun build(): FcItem
+    }
 }

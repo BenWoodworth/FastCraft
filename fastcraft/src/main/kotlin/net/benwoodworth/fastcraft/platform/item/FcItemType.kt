@@ -5,5 +5,7 @@ import net.benwoodworth.fastcraft.util.Extensible
 
 interface FcItemType : Extensible {
 
+    val id: String
+
     val name: FcText
 }
