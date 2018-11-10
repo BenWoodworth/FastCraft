@@ -1,22 +1,26 @@
 package net.benwoodworth.fastcraft.bukkit.config
 
+import net.benwoodworth.fastcraft.platform.config.FcConfig
 import net.benwoodworth.fastcraft.platform.config.FcConfigBuilder
-import net.benwoodworth.fastcraft.platform.config.FcConfigBuilderLoaded
 import org.bukkit.configuration.file.YamlConfiguration
 import java.nio.file.Path
 
 @Suppress("ClassName")
-object Bukkit_11300R01_FcConfigBuilder : FcConfigBuilder {
+object Bukkit_11300R01_FcConfigBuilder : FcConfigBuilder, FcConfigBuilder.Loaded {
 
-    override fun empty(): FcConfigBuilderLoaded {
-        return Bukkit_11300R01_FcConfigBuilderLoaded {
-            YamlConfiguration()
-        }
+    private lateinit var load: () -> YamlConfiguration
+
+    override fun empty(): FcConfigBuilder.Loaded {
+        load = { YamlConfiguration() }
+        return this
     }
 
-    override fun file(file: Path): Bukkit_11300R01_FcConfigBuilderLoaded {
-        return Bukkit_11300R01_FcConfigBuilderLoaded {
-            YamlConfiguration.loadConfiguration(file.toFile())
-        }
+    override fun fromPath(value: Path): FcConfigBuilder.Loaded {
+        load = { YamlConfiguration.loadConfiguration(value.toFile()) }
+        return this
+    }
+
+    override fun build(): FcConfig {
+        return Bukkit_11300R01_FcConfig(load())
     }
 }

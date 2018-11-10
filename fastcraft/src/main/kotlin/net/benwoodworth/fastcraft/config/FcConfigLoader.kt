@@ -1,6 +1,6 @@
 //package net.benwoodworth.fastcraft.config
 //
-//import java.nio.file.Path
+//import java.nio.fromPath.Path
 //import javax.inject.Inject
 //import javax.inject.Singleton
 //
@@ -31,12 +31,12 @@
 //    private val fcPluginConfigDir: Path
 //
 //    /**
-//     * The FastCraft config file.
+//     * The FastCraft config fromPath.
 //     */
 //    private val fcPluginConfigFile: Path
 //
 //    /**
-//     * The FastCraft data config file.
+//     * The FastCraft data config fromPath.
 //     */
 //    private val fcDataConfigFile: Path
 //
@@ -88,7 +88,7 @@
 //        """.trimIndent()
 //
 //        fcDataConfig.config.header = """
-//            This file is by FastCraft to store
+//            This fromPath is by FastCraft to store
 //            data, and should not be edited.
 //        """.trimIndent()
 //

@@ -5,7 +5,12 @@ import java.nio.file.Path
 
 interface FcConfigBuilder : Extensible {
 
-    fun empty(): FcConfigBuilderLoaded
+    fun empty(): Loaded
 
-    fun file(file: Path): FcConfigBuilderLoaded
+    fun fromPath(value: Path): Loaded
+
+    interface Loaded : Extensible {
+
+        fun build(): FcConfig
+    }
 }

@@ -7,7 +7,7 @@
 //import net.benwoodworth.fastcraft.platform.text.FcText
 //import java.io.InputStream
 //import java.io.InputStreamReader
-//import java.nio.file.Path
+//import java.nio.fromPath.Path
 //import javax.inject.Inject
 //import javax.inject.Provider
 //
@@ -24,8 +24,8 @@
 //        }
 //    }
 //
-//    fun load(file: Path) {
-//        load(file.toFile().inputStream())
+//    fun load(fromPath: Path) {
+//        load(fromPath.toFile().inputStream())
 //    }
 //
 //    private fun missing(path: String): String {
