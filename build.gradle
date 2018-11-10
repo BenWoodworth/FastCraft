@@ -58,4 +58,8 @@ subprojects {
             ]
         }
     }
+
+    kapt {
+        correctErrorTypes = true
+    }
 }
