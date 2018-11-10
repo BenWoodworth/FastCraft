@@ -16,7 +16,7 @@ interface FcGuiBuilder : Extensible {
 
     interface Typed<TFcGui : FcGui> : Extensible {
 
-        fun title(title: FcText)
+        fun title(value: FcText): Typed<TFcGui>
 
         fun build(): TFcGui
     }
