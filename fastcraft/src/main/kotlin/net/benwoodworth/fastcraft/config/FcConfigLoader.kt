@@ -4,40 +4,22 @@
 //import javax.inject.Inject
 //import javax.inject.Singleton
 //
-///**
-// * Updates FastCraft's config files.
-// */
 //@Singleton
 //class FcConfigLoader @Inject constructor(
 //    pluginProvider: FcPluginProvider,
 //    private val configManager: FcConfigManager
 //) {
 //
-//    /**
-//     * The FastCraft plugin config.
-//     */
 //    lateinit var fcPluginConfig: net.benwoodworth.fastcraft.config.FcPluginConfig
 //        private set
 //
-//    /**
-//     * The FastCraft data config.
-//     */
 //    lateinit var fcDataConfig: net.benwoodworth.fastcraft.config.FcDataConfig
 //        private set
 //
-//    /**
-//     * The directory containing FastCraft configs.
-//     */
 //    private val fcPluginConfigDir: Path
 //
-//    /**
-//     * The FastCraft config fromPath.
-//     */
 //    private val fcPluginConfigFile: Path
 //
-//    /**
-//     * The FastCraft data config fromPath.
-//     */
 //    private val fcDataConfigFile: Path
 //
 //    init {
@@ -49,9 +31,6 @@
 //        fcDataConfigFile = fcPluginConfigDir.resolve("data$fileExt")
 //    }
 //
-//    /**
-//     * Load the configs.
-//     */
 //    fun load() {
 //        fcPluginConfig = net.benwoodworth.fastcraft.config.FcPluginConfig(configManager.loadConfig(fcPluginConfigFile))
 //        fcDataConfig = net.benwoodworth.fastcraft.config.FcDataConfig(configManager.loadConfig(fcPluginConfigFile))
@@ -60,17 +39,11 @@
 //        save()
 //    }
 //
-//    /**
-//     * Save the configs.
-//     */
 //    fun save() {
 //        configManager.saveConfig(fcPluginConfig.config, fcPluginConfigFile)
 //        configManager.saveConfig(fcDataConfig.config, fcDataConfigFile)
 //    }
 //
-//    /**
-//     * Update the configs.
-//     */
 //    private fun update() { // TODO Add an updater class
 //        fcPluginConfig.config.header = """
 //            FastCraft, developed by Kepler_
@@ -100,9 +73,6 @@
 //        }
 //    }
 //
-//    /**
-//     * The updaters that update to a specific revision.
-//     */
 //    val updaters = mapOf(
 //        0 to {
 //            with(fcPluginConfig) {

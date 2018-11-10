@@ -3,9 +3,6 @@ package net.benwoodworth.fastcraft
 import net.benwoodworth.fastcraft.platform.server.FcLogger
 import javax.inject.Inject
 
-/**
- * The core class of FastCraft.
- */
 class FastCraft @Inject internal constructor(
     private val logger: FcLogger
 ) {
