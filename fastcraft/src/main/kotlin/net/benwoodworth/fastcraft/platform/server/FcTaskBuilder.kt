@@ -4,13 +4,16 @@ import net.benwoodworth.fastcraft.util.Extensible
 
 interface FcTaskBuilder : Extensible {
 
-    fun build(): FcTask
-
     fun action(value: (task: FcTask) -> Unit): FcTaskBuilder
 
-    fun async(): FcTaskBuilder
+    interface WithAction : FcTaskBuilder {
 
-    fun tickDelay(value: Long): FcTaskBuilder
+        fun async(value: Boolean = true): FcTaskBuilder
 
-    fun tickInterval(value: Long): FcTaskBuilder
+        fun tickDelay(value: Long): FcTaskBuilder
+
+        fun tickInterval(value: Long): FcTaskBuilder
+
+        fun build(): FcTask
+    }
 }

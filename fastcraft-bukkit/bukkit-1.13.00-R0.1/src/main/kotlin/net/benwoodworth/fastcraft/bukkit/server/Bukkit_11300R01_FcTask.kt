@@ -2,19 +2,20 @@ package net.benwoodworth.fastcraft.bukkit.server
 
 import net.benwoodworth.fastcraft.platform.server.FcTask
 import org.bukkit.Bukkit
+import org.bukkit.plugin.Plugin
 
 @Suppress("ClassName")
 class Bukkit_11300R01_FcTask(
-    builder: Bukkit_11300R01_FcTaskBuilder
+    private val plugin: Plugin,
+    private val action: (task: FcTask) -> Unit,
+    private val async: Boolean,
+    private val delay: Long?,
+    private val interval: Long?
 ) : FcTask {
 
-    private val plugin = builder.plugin
-    private val action = { builder.action(this) }
-    private val async = builder.async
-    private val delay = builder.delay
-    private val interval = builder.interval
-
     private var taskId: Int? = null
+
+    private val runnable = { action(this) }
 
     override val isRunning: Boolean
         get() = taskId != null
@@ -27,15 +28,15 @@ class Bukkit_11300R01_FcTask(
         taskId = Bukkit.getScheduler().run {
             when {
                 async && interval != null ->
-                    scheduleAsyncRepeatingTask(plugin, action, delay ?: 0L, interval)
+                    scheduleAsyncRepeatingTask(plugin, runnable, delay ?: 0L, interval)
                 async ->
-                    scheduleAsyncDelayedTask(plugin, action, delay ?: 0L)
+                    scheduleAsyncDelayedTask(plugin, runnable, delay ?: 0L)
                 interval != null ->
-                    scheduleSyncRepeatingTask(plugin, action, delay ?: 0L, interval)
+                    scheduleSyncRepeatingTask(plugin, runnable, delay ?: 0L, interval)
                 delay != null ->
-                    scheduleSyncDelayedTask(plugin, action, delay)
+                    scheduleSyncDelayedTask(plugin, runnable, delay)
                 else ->
-                    scheduleSyncDelayedTask(plugin, action)
+                    scheduleSyncDelayedTask(plugin, runnable)
             }
         }
     }
