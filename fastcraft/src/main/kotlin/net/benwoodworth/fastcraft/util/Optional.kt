@@ -27,6 +27,10 @@ fun <T> optional(value: T): Optional<T> {
     return Optional.WithValue(value)
 }
 
+fun <T> T.asOptional(): Optional<T> {
+    return Optional.WithValue(this)
+}
+
 //inline val <T> Optional<T>.hasValue: Boolean
 //    get() {
 //        contract {
