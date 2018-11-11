@@ -1,25 +1,26 @@
 package net.benwoodworth.fastcraft.util
 
-import kotlin.contracts.contract
-
 @Suppress("unused")
 sealed class Optional<out T> {
 
-    class Empty<out T> : Optional<T>() {
+    class Empty<out T> internal constructor() : Optional<T>() {
 
 //        @Deprecated("Always returns false")
 //        val hasValue = false
     }
 
-    class WithValue<out T>(val value: T) : Optional<T>() {
+    class WithValue<out T> internal constructor(val value: T) : Optional<T>() {
 
 //        @Deprecated("Always returns true")
 //        val hasValue = true
     }
 }
 
+private val empty = Optional.Empty<Any>()
+
 fun <T> optional(): Optional<T> {
-    return Optional.Empty()
+    @Suppress("UNCHECKED_CAST")
+    return empty as Optional<T>
 }
 
 fun <T> optional(value: T): Optional<T> {
