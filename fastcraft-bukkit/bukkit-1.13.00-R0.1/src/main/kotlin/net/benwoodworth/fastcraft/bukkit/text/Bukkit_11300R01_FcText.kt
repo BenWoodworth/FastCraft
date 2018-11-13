@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
 import kotlinx.serialization.json.JsonBuilder
+import net.benwoodworth.fastcraft.platform.server.FcLocale
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
 
@@ -21,8 +22,8 @@ sealed class Bukkit_11300R01_FcText(
 
     internal abstract fun getTextPart(): String
 
-    fun toLegacy(): String {
-        return Bukkit_11300R01_LegacyTextConverter.convert(this)
+    fun toLegacy(locale: FcLocale): String {
+        return Bukkit_11300R01_LegacyTextConverter.convert(this, locale)
     }
 
     fun toRaw(): String {

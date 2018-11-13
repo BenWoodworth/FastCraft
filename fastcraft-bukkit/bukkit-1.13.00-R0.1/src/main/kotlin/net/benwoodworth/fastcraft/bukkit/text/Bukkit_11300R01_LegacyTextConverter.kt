@@ -1,10 +1,11 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
+import net.benwoodworth.fastcraft.platform.server.FcLocale
 import net.benwoodworth.fastcraft.util.getAs
 
 internal object Bukkit_11300R01_LegacyTextConverter {
 
-    fun convert(text: Bukkit_11300R01_FcText): String {
+    fun convert(text: Bukkit_11300R01_FcText, locale: FcLocale): String {
         return StringBuilder()
             .appendLegacyText(text, Formatting())
             .toString()
