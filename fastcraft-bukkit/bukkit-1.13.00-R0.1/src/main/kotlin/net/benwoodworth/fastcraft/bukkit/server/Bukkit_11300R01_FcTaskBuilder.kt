@@ -6,43 +6,18 @@ import org.bukkit.plugin.Plugin
 
 @Suppress("ClassName")
 class Bukkit_11300R01_FcTaskBuilder(
-    internal val plugin: Plugin
-) : FcTaskBuilder, FcTaskBuilder.WithAction {
+    val plugin: Plugin
+) : FcTaskBuilder {
 
-    lateinit var action: (task: FcTask) -> Unit
+    override var action: (task: FcTask) -> Unit = {}
 
-    var async: Boolean = false
-    var delay: Long? = null
-    var interval: Long? = null
+    override var async: Boolean = false
 
-    override fun action(value: (task: FcTask) -> Unit): FcTaskBuilder {
-        action = value
-        return this
-    }
+    override var delaySeconds: Double? = null
 
-    override fun async(value: Boolean): FcTaskBuilder {
-        async = value
-        return this
-    }
-
-    override fun tickDelay(value: Long): FcTaskBuilder {
-        delay = value
-        return this
-    }
-
-    override fun tickInterval(value: Long): FcTaskBuilder {
-        interval = value
-        return this
-    }
+    override var intervalSeconds: Double? = null
 
     override fun build(): FcTask {
-        return Bukkit_11300R01_FcTask(
-            plugin,
-            action,
-            async,
-            delay,
-            interval
-        )
-
+        return Bukkit_11300R01_FcTask(this)
     }
 }

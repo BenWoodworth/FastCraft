@@ -1,19 +1,19 @@
 package net.benwoodworth.fastcraft.platform.server
 
+import net.benwoodworth.fastcraft.util.Builder
 import net.benwoodworth.fastcraft.util.Extensible
 
-interface FcTaskBuilder : Extensible {
+interface FcTaskBuilder : Extensible, Builder<FcTask> {
 
-    fun action(value: (task: FcTask) -> Unit): FcTaskBuilder
+    var action: (task: FcTask) -> Unit
 
-    interface WithAction : FcTaskBuilder {
+    var async: Boolean
 
-        fun async(value: Boolean = true): FcTaskBuilder
+    var delaySeconds: Double?
 
-        fun tickDelay(value: Long): FcTaskBuilder
+    var intervalSeconds: Double?
+}
 
-        fun tickInterval(value: Long): FcTaskBuilder
-
-        fun build(): FcTask
-    }
+fun FcTaskBuilder.action(value: (task: FcTask) -> Unit) {
+    action = value
 }

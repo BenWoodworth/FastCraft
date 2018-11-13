@@ -4,9 +4,9 @@ import net.benwoodworth.fastcraft.util.Extensible
 
 interface FcTask : Extensible {
 
-    val isRunning: Boolean
+    val isScheduled: Boolean
 
-    fun start()
+    fun schedule()
 
-    fun stop()
+    fun cancel()
 }

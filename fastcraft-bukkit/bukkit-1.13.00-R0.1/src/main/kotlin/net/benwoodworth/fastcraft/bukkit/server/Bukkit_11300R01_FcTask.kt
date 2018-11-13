@@ -2,26 +2,33 @@ package net.benwoodworth.fastcraft.bukkit.server
 
 import net.benwoodworth.fastcraft.platform.server.FcTask
 import org.bukkit.Bukkit
-import org.bukkit.plugin.Plugin
+import kotlin.math.ceil
 
 @Suppress("ClassName")
 class Bukkit_11300R01_FcTask(
-    private val plugin: Plugin,
-    private val action: (task: FcTask) -> Unit,
-    private val async: Boolean,
-    private val delay: Long?,
-    private val interval: Long?
+    builder: Bukkit_11300R01_FcTaskBuilder
 ) : FcTask {
+
+    private val plugin = builder.plugin
+    private val async = builder.async
+
+    private val delay = builder.delaySeconds?.let { seconds ->
+        ceil(seconds * 20.0).toLong()
+    }
+
+    private val interval = builder.intervalSeconds?.let { seconds ->
+        ceil(seconds * 20.0).toLong()
+    }
 
     private var taskId: Int? = null
 
-    private val runnable = { action(this) }
+    private val runnable = { builder.action(this) }
 
-    override val isRunning: Boolean
+    override val isScheduled: Boolean
         get() = taskId != null
 
-    override fun start() {
-        if (isRunning) {
+    override fun schedule() {
+        if (isScheduled) {
             return
         }
 
@@ -41,7 +48,7 @@ class Bukkit_11300R01_FcTask(
         }
     }
 
-    override fun stop() {
+    override fun cancel() {
         taskId?.let {
             Bukkit.getScheduler().cancelTask(it)
         }
