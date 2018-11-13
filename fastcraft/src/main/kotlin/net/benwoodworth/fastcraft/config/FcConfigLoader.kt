@@ -1,6 +1,6 @@
 //package net.benwoodworth.fastcraft.config
 //
-//import java.nio.fromPath.Path
+//import java.nio.createFromPath.Path
 //import javax.inject.Inject
 //import javax.inject.Singleton
 //
@@ -61,7 +61,7 @@
 //        """.trimIndent()
 //
 //        fcDataConfig.config.header = """
-//            This fromPath is by FastCraft to store
+//            This createFromPath is by FastCraft to store
 //            data, and should not be edited.
 //        """.trimIndent()
 //

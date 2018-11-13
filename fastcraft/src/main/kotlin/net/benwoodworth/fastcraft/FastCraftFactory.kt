@@ -4,7 +4,7 @@ import dagger.Component
 import dagger.Module
 import dagger.Provides
 import net.benwoodworth.fastcraft.platform.FcPlatformDependencies
-import net.benwoodworth.fastcraft.platform.config.FcConfigBuilder
+import net.benwoodworth.fastcraft.platform.config.FcConfigFactory
 import net.benwoodworth.fastcraft.platform.gui.FcGuiBuilder
 import net.benwoodworth.fastcraft.platform.item.FcItemBuilder
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
@@ -47,7 +47,7 @@ class FastCraftFactory(
         }
 
         @Provides
-        override fun createConfigBuilder(): FcConfigBuilder {
+        override fun createConfigBuilder(): FcConfigFactory {
             return dependencies.createConfigBuilder()
         }
 

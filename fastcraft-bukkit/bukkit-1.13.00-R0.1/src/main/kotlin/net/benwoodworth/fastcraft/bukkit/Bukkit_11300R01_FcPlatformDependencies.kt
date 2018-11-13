@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit
 
-import net.benwoodworth.fastcraft.bukkit.config.Bukkit_11300R01_FcConfigBuilder
+import net.benwoodworth.fastcraft.bukkit.config.Bukkit_11300R01_FcConfigFactory
 import net.benwoodworth.fastcraft.bukkit.gui.Bukkit_11300R01_FcGuiBuilder
 import net.benwoodworth.fastcraft.bukkit.item.Bukkit_11300R01_FcItemBuilder
 import net.benwoodworth.fastcraft.bukkit.item.Bukkit_11300R01_FcItemTypes
@@ -27,8 +27,8 @@ class Bukkit_11300R01_FcPlatformDependencies(
         return Bukkit_11300R01_FcPluginData(plugin)
     }
 
-    override fun createConfigBuilder(): Bukkit_11300R01_FcConfigBuilder {
-        return Bukkit_11300R01_FcConfigBuilder
+    override fun createConfigBuilder(): Bukkit_11300R01_FcConfigFactory {
+        return Bukkit_11300R01_FcConfigFactory
     }
 
     override fun createGuiBuilder(): Bukkit_11300R01_FcGuiBuilder {
