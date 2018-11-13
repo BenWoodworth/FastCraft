@@ -16,7 +16,7 @@ sealed class Bukkit_11300R01_FcText(
     val underline: Boolean? = builder.underline
     val strikethrough: Boolean? = builder.strikethrough
     val obfuscate: Boolean? = builder.obfuscate
-    val extra: List<FcText> = builder.extra
+    val extra: List<FcText> = builder.extra.toList()
 
     internal abstract fun addRawJson(jsonBuilder: JsonBuilder)
 
@@ -34,7 +34,7 @@ sealed class Bukkit_11300R01_FcText(
         builder: Bukkit_11300R01_FcTextBuilder
     ) : Bukkit_11300R01_FcText(builder), FcText.Text {
 
-        val text: String = builder.text
+        val text: String = builder.text!!
 
         override fun addRawJson(jsonBuilder: JsonBuilder) {
             "text" to text
@@ -49,7 +49,7 @@ sealed class Bukkit_11300R01_FcText(
         builder: Bukkit_11300R01_FcTextBuilder
     ) : Bukkit_11300R01_FcText(builder), FcText.Translate {
 
-        val translate: String = builder.translate
+        val translate: String = builder.translate!!
 
         override fun addRawJson(jsonBuilder: JsonBuilder) {
             "translate" to translate
