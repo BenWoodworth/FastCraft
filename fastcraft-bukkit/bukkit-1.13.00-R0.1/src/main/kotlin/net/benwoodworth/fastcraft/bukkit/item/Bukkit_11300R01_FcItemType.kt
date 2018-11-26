@@ -2,8 +2,9 @@ package net.benwoodworth.fastcraft.bukkit.item
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
+import net.benwoodworth.fastcraft.bukkit.locale.Bukkit_11300R01_FcTranslatable
 import net.benwoodworth.fastcraft.platform.item.FcItemType
-import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.locale.FcTranslatable
 import net.benwoodworth.fastcraft.platform.text.FcTextBuilder
 import org.bukkit.Material
 import javax.inject.Provider
@@ -13,16 +14,18 @@ import javax.inject.Provider
 class Bukkit_11300R01_FcItemType(
     val material: Material,
 
-    @Provided private val textBuilder: Provider<FcTextBuilder>
+    @Provided private val buildText: Provider<FcTextBuilder>
 ) : FcItemType {
 
-    override val id: String
-        get() = with(material.key) { "$namespace:$key" }
+    override val name: FcTranslatable
+        get() = Bukkit_11300R01_FcTranslatable(
+            with(material.key) { "item.$namespace.$key" },
+            material.name // TODO
+        )
 
-    override val name: FcText
-        get() = textBuilder.get()
-            .translate(
-                with(material.key) { "item.$namespace.$key" }
-            )
-            .build()
+    override val description: FcTranslatable
+        get() = Bukkit_11300R01_FcTranslatable(
+            with(material.key) { "item.$namespace.$key.description" },
+            "None" // TODO
+        )
 }

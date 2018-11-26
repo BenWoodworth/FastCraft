@@ -1,24 +1,16 @@
 package net.benwoodworth.fastcraft.platform.item
 
 import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.util.Builder
 import net.benwoodworth.fastcraft.util.Extensible
 
-interface FcItemBuilder : Extensible {
+interface FcItemBuilder : Extensible, Builder<FcItem> {
 
-    fun copyFrom(value: FcItem): FcItemBuilder.WithType
+    var type: FcItemType
 
-    fun type(value: FcItemType): FcItemBuilder.WithType
+    var amount: Int
 
-    interface WithType {
+    var displayName: FcText?
 
-        fun type(value: FcItemType): FcItemBuilder.WithType
-
-        fun amount(value: Int): FcItemBuilder.WithType
-
-        fun displayName(value: FcText?): FcItemBuilder.WithType
-
-        fun lore(value: List<FcText>): FcItemBuilder.WithType
-
-        fun build(): FcItem
-    }
+    var lore: MutableList<FcText>
 }
