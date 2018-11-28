@@ -21,4 +21,7 @@ class Bukkit_11300R01_FcItemType(
             with(material.key) { "item.$namespace.$key.description" },
             "None" // TODO
         )
+
+    override val maxAmount: Int
+        get() = material.maxStackSize
 }

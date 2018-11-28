@@ -15,16 +15,16 @@ interface Builder<out T> {
 }
 
 inline operator fun <T, B : Builder<T>> B.invoke(
-    buildActions: B.() -> Unit
+    build: B.() -> Unit
 ): T {
-    buildActions(this)
+    build(this)
     return build()
 }
 
 inline operator fun <T, B : Builder<T>> Provider<B>.invoke(
-    buildActions: B.() -> Unit
+    build: B.() -> Unit
 ): T {
     val builder = get()
-    buildActions(builder)
+    build(builder)
     return builder.build()
 }

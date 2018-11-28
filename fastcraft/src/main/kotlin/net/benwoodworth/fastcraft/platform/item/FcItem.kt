@@ -9,9 +9,7 @@ interface FcItem : Extensible {
 
     val amount: Int
 
-    val displayName: FcText
+    val displayName: FcText?
 
     val lore: List<FcText>
-
-    val maxAmount: Int
 }

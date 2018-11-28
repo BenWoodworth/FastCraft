@@ -8,4 +8,6 @@ interface FcItemType : Extensible {
     val name: FcTranslatable
 
     val description: FcTranslatable
+
+    val maxAmount: Int
 }

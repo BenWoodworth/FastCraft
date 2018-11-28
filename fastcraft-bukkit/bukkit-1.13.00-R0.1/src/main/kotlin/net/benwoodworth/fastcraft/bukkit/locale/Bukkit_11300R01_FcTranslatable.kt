@@ -6,14 +6,10 @@ import net.benwoodworth.fastcraft.platform.locale.FcTranslatable
 @Suppress("ClassName")
 class Bukkit_11300R01_FcTranslatable(
     val key: String,
-    val default: String
+    val default: String?
 ) : FcTranslatable {
 
-    override fun translate(): String {
-        return default
-    }
-
-    override fun translate(locale: FcLocale): String {
-        return "[$locale/$key]" // TODO
+    override fun translate(locale: FcLocale?): String? {
+        return default // TODO
     }
 }
