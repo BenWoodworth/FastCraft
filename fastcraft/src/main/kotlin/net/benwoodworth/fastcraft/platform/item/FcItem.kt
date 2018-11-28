@@ -14,6 +14,4 @@ interface FcItem : Extensible {
     val lore: List<FcText>
 
     val maxAmount: Int
-
-    fun buildCopy(build: FcItemBuilder.() -> Unit): FcItem
 }

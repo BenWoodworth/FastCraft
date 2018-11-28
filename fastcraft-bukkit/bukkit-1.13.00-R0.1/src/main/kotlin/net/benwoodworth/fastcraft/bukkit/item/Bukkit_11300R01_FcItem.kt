@@ -1,7 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
 import net.benwoodworth.fastcraft.platform.item.FcItem
-import net.benwoodworth.fastcraft.platform.item.FcItemBuilder
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextBuilder
 import net.benwoodworth.fastcraft.util.invoke
@@ -35,9 +34,5 @@ class Bukkit_11300R01_FcItem(
 
     fun toItemStack(): ItemStack {
         return itemStack.clone()
-    }
-
-    override fun buildCopy(build: FcItemBuilder.() -> Unit): FcItem {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
