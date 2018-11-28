@@ -6,7 +6,7 @@ import org.bukkit.configuration.file.YamlConfiguration
 import java.nio.file.Path
 
 @Suppress("ClassName")
-object Bukkit_11300R01_FcConfigFactory : FcConfigFactory {
+class Bukkit_11300R01_FcConfigFactory : FcConfigFactory {
 
     override fun createEmpty(): FcConfig {
         return Bukkit_11300R01_FcConfig(YamlConfiguration())

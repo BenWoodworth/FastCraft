@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.bukkit.text
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
 
 @Suppress("ClassName")
-object Bukkit_11300R01_FcTextColors : FcTextColors {
+class Bukkit_11300R01_FcTextColors : FcTextColors {
 
     override val black = Bukkit_11300R01_FcTextColor("black", "§0")
     override val darkBlue = Bukkit_11300R01_FcTextColor("dark_blue", "§1")
