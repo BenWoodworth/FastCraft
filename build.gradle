@@ -38,7 +38,7 @@ subprojects {
         compile Dependencies.jsr250
         compile Dependencies.javax_inject
         compile Dependencies.dagger
-        compile Dependencies.auto_factory
+//        compile Dependencies.auto_factory
 
         kapt Dependencies.dagger_compiler
     }

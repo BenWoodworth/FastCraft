@@ -1,7 +1,5 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
-import com.google.auto.factory.AutoFactory
-import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemBuilder
 import net.benwoodworth.fastcraft.platform.text.FcText
@@ -10,16 +8,14 @@ import net.benwoodworth.fastcraft.util.invoke
 import org.bukkit.inventory.ItemStack
 import javax.inject.Provider
 
-@AutoFactory
 @Suppress("ClassName")
 class Bukkit_11300R01_FcItem(
     private val itemStack: ItemStack,
-
-    @Provided private val buildText: Provider<FcTextBuilder>
+    private val buildText: Provider<FcTextBuilder>
 ) : FcItem {
 
     override val type: Bukkit_11300R01_FcItemType
-        get() = Bukkit_11300R01_FcItemType(itemStack.type, buildText)
+        get() = Bukkit_11300R01_FcItemType(itemStack.type)
 
     override val amount: Int
         get() = itemStack.amount

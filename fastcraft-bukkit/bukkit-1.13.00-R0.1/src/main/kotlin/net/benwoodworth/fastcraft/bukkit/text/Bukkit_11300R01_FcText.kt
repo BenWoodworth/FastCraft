@@ -1,7 +1,5 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
-import com.google.auto.factory.AutoFactory
-import com.google.auto.factory.Provided
 import kotlinx.serialization.json.json
 import net.benwoodworth.fastcraft.bukkit.locale.Bukkit_11300R01_FcLocale
 import net.benwoodworth.fastcraft.platform.locale.FcLocale
@@ -11,12 +9,10 @@ import net.benwoodworth.fastcraft.platform.text.FcTextColor
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.util.getAs
 
-@AutoFactory
 @Suppress("ClassName")
 class Bukkit_11300R01_FcText(
     builder: Bukkit_11300R01_FcTextBuilder,
-
-    @Provided private val textColors: FcTextColors
+    private val textColors: FcTextColors
 ) : FcText {
 
     val text: String? = builder.text

@@ -10,9 +10,7 @@ import javax.inject.Inject
 
 @Suppress("ClassName")
 class Bukkit_11300R01_FcItemBuilder @Inject constructor(
-    itemTypes: FcItemTypes,
-
-    private val itemTypeFactory: Bukkit_11300R01_FcItemTypeFactory
+    itemTypes: FcItemTypes
 ) : FcItemBuilder {
 
     private var copyFrom: ItemStack? = null
