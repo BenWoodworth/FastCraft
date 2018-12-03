@@ -4,13 +4,9 @@ import net.benwoodworth.fastcraft.platform.locale.FcTranslatable
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextBuilder
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
-import net.benwoodworth.fastcraft.platform.text.FcTextColors
-import javax.inject.Inject
 
 @Suppress("ClassName")
-class Bukkit_11300R01_FcTextBuilder @Inject constructor(
-    private val textColors: FcTextColors
-) : FcTextBuilder {
+class Bukkit_11300R01_FcTextBuilder : FcTextBuilder {
 
     override var text: String? = null
     override var translate: FcTranslatable? = null
@@ -25,6 +21,16 @@ class Bukkit_11300R01_FcTextBuilder @Inject constructor(
     override var extra: MutableList<FcText> = mutableListOf()
 
     override fun build(): FcText {
-        return Bukkit_11300R01_FcText(this, textColors)
+        return Bukkit_11300R01_FcText(
+            text,
+            translate,
+            color,
+            bold,
+            italic,
+            underline,
+            strikethrough,
+            obfuscate,
+            extra.toList()
+        )
     }
 }

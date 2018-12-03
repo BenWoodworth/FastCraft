@@ -1,5 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
+import net.benwoodworth.fastcraft.platform.text.FcTextColor
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
 
 @Suppress("ClassName")
@@ -22,4 +23,27 @@ class Bukkit_11300R01_FcTextColors : FcTextColors {
     override val yellow = Bukkit_11300R01_FcTextColor("yellow", "§e")
     override val white = Bukkit_11300R01_FcTextColor("white", "§f")
     override val default = Bukkit_11300R01_FcTextColor("reset", "§r")
+
+    fun fromId(id: String): FcTextColor {
+        return when (id) {
+            "black" -> black
+            "dark_blue" -> darkBlue
+            "dark_green" -> darkGreen
+            "dark_aqua" -> darkAqua
+            "dark_red" -> darkRed
+            "dark_purple" -> darkPurple
+            "gold" -> gold
+            "gray" -> gray
+            "dark_gray" -> darkGray
+            "blue" -> blue
+            "green" -> green
+            "aqua" -> aqua
+            "red" -> red
+            "light_purple" -> lightPurple
+            "yellow" -> yellow
+            "white" -> white
+            "reset" -> default
+            else -> throw IllegalArgumentException("Invalid color ID: $id")
+        }
+    }
 }
