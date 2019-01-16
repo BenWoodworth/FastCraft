@@ -17,7 +17,7 @@ class BukkitFastCraft : JavaPlugin() {
     }
 
     init {
-        val platform = Bukkit_11300R01_FcPlatformDependencies(this)
+        val platform = BukkitFcPlatformDependencies(this)
 
         fastCraft = FastCraftFactory(platform).create()
     }
