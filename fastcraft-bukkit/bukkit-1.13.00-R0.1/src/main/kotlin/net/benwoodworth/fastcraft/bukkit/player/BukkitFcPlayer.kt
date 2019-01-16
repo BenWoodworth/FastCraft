@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.player
 
+import net.benwoodworth.fastcraft.bukkit.bukkit
 import net.benwoodworth.fastcraft.bukkit.locale.BukkitFcLocale
-import net.benwoodworth.fastcraft.bukkit.text.BukkitFcText
 import net.benwoodworth.fastcraft.platform.locale.FcLocale
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcText
@@ -28,9 +28,7 @@ class BukkitFcPlayer(
         get() = BukkitFcLocale(player.locale)
 
     override fun sendMessage(message: FcText) {
-        val bukkitText = message.getAs<BukkitFcText>()
-
-        player.sendRawMessage(bukkitText.toRaw())
+        player.sendRawMessage(message.bukkit.toRaw())
     }
 
     override fun hasPermission(permission: String): Boolean {

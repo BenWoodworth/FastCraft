@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
-import net.benwoodworth.fastcraft.bukkit.text.BukkitFcText
+import net.benwoodworth.fastcraft.bukkit.bukkit
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemBuilder
 import net.benwoodworth.fastcraft.platform.item.FcItemFactory
@@ -28,8 +28,7 @@ class BukkitFcItemFactory @Inject constructor(
                 lore = mutableListOf()
             )
             else -> BukkitFcItemBuilder(
-                base = copy
-                    .getAs<BukkitFcItem>()
+                base = copy.bukkit
                     .copyBase(),
                 type = copy.type,
                 amount = copy.amount,
@@ -69,26 +68,22 @@ class BukkitFcItemFactory @Inject constructor(
     }
 
     fun toItemStack(item: FcItem, locale: FcLocale): ItemStack {
-        val result = item
-            .getAs<BukkitFcItem>()
+        val result = item.bukkit
             .copyBase()
             ?: ItemStack(Material.AIR)
 
-        result.type = item.type
-            .getAs<BukkitFcItemType>()
+        result.type = item.type.bukkit
             .material
 
         result.amount = item.amount
 
-        result.displayName = item.displayName
-            ?.getAs<BukkitFcText>()
+        result.displayName = item.displayName?.bukkit
             ?.toLegacy(locale)
 
         result.lore = item.lore
             .takeIf { it.any() }
             ?.map { line ->
-                line
-                    .getAs<BukkitFcText>()
+                line.bukkit
                     .toLegacy(locale)
             }
 
