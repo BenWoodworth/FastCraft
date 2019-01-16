@@ -1,9 +1,8 @@
 package net.benwoodworth.fastcraft.platform.server
 
-import net.benwoodworth.fastcraft.util.Extensible
 import java.nio.file.Path
 
-interface FcPluginData : Extensible {
+interface FcPluginData {
 
     val dataFolder: Path
 

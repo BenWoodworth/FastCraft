@@ -1,8 +1,6 @@
 package net.benwoodworth.fastcraft.platform.config
 
-import net.benwoodworth.fastcraft.util.Extensible
-
-interface FcConfigEntry : Extensible {
+interface FcConfigEntry {
 
     var string: String?
     var stringList: List<String?>?

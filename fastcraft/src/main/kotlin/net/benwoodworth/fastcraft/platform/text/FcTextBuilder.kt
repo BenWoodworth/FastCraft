@@ -2,9 +2,8 @@ package net.benwoodworth.fastcraft.platform.text
 
 import net.benwoodworth.fastcraft.platform.locale.FcTranslatable
 import net.benwoodworth.fastcraft.util.Builder
-import net.benwoodworth.fastcraft.util.Extensible
 
-interface FcTextBuilder : Extensible, Builder<FcText> {
+interface FcTextBuilder : Builder<FcText> {
 
     var text: String?
 

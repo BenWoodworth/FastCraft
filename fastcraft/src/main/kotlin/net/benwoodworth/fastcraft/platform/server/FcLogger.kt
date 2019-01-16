@@ -1,8 +1,6 @@
 package net.benwoodworth.fastcraft.platform.server
 
-import net.benwoodworth.fastcraft.util.Extensible
-
-interface FcLogger : Extensible {
+interface FcLogger {
 
     fun error(error: String)
 

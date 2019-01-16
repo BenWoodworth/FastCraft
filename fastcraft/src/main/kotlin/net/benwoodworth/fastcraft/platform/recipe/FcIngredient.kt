@@ -1,9 +1,8 @@
 package net.benwoodworth.fastcraft.platform.recipe
 
 import net.benwoodworth.fastcraft.platform.item.FcItem
-import net.benwoodworth.fastcraft.util.Extensible
 
-interface FcIngredient : Extensible {
+interface FcIngredient {
 
     fun matches(item: FcItem): Boolean
 }

@@ -1,9 +1,8 @@
 package net.benwoodworth.fastcraft.platform.player
 
-import net.benwoodworth.fastcraft.util.Extensible
 import java.util.*
 
-interface FcPlayerProvider : Extensible {
+interface FcPlayerProvider {
 
     fun getOnlinePlayers(): List<FcPlayer>
 

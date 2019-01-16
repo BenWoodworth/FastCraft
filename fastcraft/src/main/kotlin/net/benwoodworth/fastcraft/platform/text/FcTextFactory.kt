@@ -1,9 +1,8 @@
 package net.benwoodworth.fastcraft.platform.text
 
 import net.benwoodworth.fastcraft.platform.locale.FcTranslatable
-import net.benwoodworth.fastcraft.util.Extensible
 
-interface FcTextFactory : Extensible {
+interface FcTextFactory {
 
     fun fromText(text: String): FcText
 

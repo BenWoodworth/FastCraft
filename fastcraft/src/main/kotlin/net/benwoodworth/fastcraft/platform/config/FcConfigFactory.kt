@@ -1,9 +1,8 @@
 package net.benwoodworth.fastcraft.platform.config
 
-import net.benwoodworth.fastcraft.util.Extensible
 import java.nio.file.Path
 
-interface FcConfigFactory : Extensible {
+interface FcConfigFactory {
 
     fun createEmpty(): FcConfig
 

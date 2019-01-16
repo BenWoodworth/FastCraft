@@ -1,8 +1,6 @@
 package net.benwoodworth.fastcraft.platform.recipe
 
-import net.benwoodworth.fastcraft.util.Extensible
-
-interface FcCraftingRecipe : Extensible {
+interface FcCraftingRecipe {
 
     val id: String
 

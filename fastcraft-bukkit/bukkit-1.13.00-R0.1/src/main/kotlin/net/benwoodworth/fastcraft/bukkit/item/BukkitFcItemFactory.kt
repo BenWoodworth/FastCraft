@@ -7,7 +7,6 @@ import net.benwoodworth.fastcraft.platform.item.FcItemFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.locale.FcLocale
 import net.benwoodworth.fastcraft.platform.text.FcTextBuilder
-import net.benwoodworth.fastcraft.util.getAs
 import net.benwoodworth.fastcraft.util.invoke
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack

@@ -2,10 +2,9 @@ package net.benwoodworth.fastcraft.platform.player
 
 import net.benwoodworth.fastcraft.platform.locale.FcLocale
 import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.util.Extensible
 import java.util.*
 
-interface FcPlayer : Extensible {
+interface FcPlayer {
 
     val username: String
 

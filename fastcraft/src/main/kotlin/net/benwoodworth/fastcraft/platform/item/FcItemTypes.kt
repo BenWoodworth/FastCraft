@@ -1,8 +1,6 @@
 package net.benwoodworth.fastcraft.platform.item
 
-import net.benwoodworth.fastcraft.util.Extensible
-
-interface FcItemTypes : Extensible {
+interface FcItemTypes {
 
     val air: FcItemType
 

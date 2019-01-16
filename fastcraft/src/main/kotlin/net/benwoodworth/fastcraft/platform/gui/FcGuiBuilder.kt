@@ -4,9 +4,8 @@ import net.benwoodworth.fastcraft.platform.gui.types.FcGuiChest
 import net.benwoodworth.fastcraft.platform.gui.types.FcGuiDispenser
 import net.benwoodworth.fastcraft.platform.gui.types.FcGuiHopper
 import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.util.Extensible
 
-interface FcGuiBuilder : Extensible {
+interface FcGuiBuilder {
 
     fun chest(height: Int): Typed<FcGuiChest>
 
@@ -14,7 +13,7 @@ interface FcGuiBuilder : Extensible {
 
     fun hopper(): Typed<FcGuiHopper>
 
-    interface Typed<TFcGui : FcGui> : Extensible {
+    interface Typed<TFcGui : FcGui> {
 
         fun title(value: FcText): Typed<TFcGui>
 

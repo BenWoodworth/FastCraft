@@ -1,8 +1,6 @@
 package net.benwoodworth.fastcraft.platform.event
 
-import net.benwoodworth.fastcraft.util.Extensible
-
-interface FcEventListener<TEvent : FcEvent> : Extensible {
+interface FcEventListener<TEvent : FcEvent> {
 
     fun subscribe(handler: FcEventHandler<TEvent>)
 
