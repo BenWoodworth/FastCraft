@@ -1,6 +1,7 @@
 allprojects {
     dependencies {
-        compile project(":fastcraft")
+        api project(":fastcraft")
+        api project(":fastcraft-bukkit:bukkit")
     }
 }
 
