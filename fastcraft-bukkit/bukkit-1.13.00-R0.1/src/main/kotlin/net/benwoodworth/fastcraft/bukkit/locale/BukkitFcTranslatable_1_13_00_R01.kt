@@ -7,7 +7,7 @@ class BukkitFcTranslatable_1_13_00_R01(
     val default: String?
 ) : BukkitFcTranslatable {
 
-    override fun translate(locale: FcLocale?): String? {
-        return default // TODO
+    override fun translate(locale: FcLocale): String {
+        TODO("not implemented")
     }
 }

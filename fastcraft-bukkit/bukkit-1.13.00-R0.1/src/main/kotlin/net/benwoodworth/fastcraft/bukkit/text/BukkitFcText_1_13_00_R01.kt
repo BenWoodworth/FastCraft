@@ -5,15 +5,15 @@ import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
 
 class BukkitFcText_1_13_00_R01(
-    val text: String? = null,
-    val translate: FcTranslatable? = null,
+    override val text: String? = null,
+    override val translate: FcTranslatable? = null,
 
-    val color: FcTextColor? = null,
-    val bold: Boolean? = null,
-    val italic: Boolean? = null,
-    val underline: Boolean? = null,
-    val strikethrough: Boolean? = null,
-    val obfuscate: Boolean? = null,
+    override val color: FcTextColor? = null,
+    override val bold: Boolean? = null,
+    override val italic: Boolean? = null,
+    override val underline: Boolean? = null,
+    override val strikethrough: Boolean? = null,
+    override val obfuscate: Boolean? = null,
 
-    val extra: List<FcText> = emptyList()
+    override val extra: List<FcText> = emptyList()
 ) : BukkitFcText

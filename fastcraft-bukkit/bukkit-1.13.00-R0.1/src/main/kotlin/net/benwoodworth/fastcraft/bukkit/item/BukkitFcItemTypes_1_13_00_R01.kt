@@ -2,7 +2,6 @@ package net.benwoodworth.fastcraft.bukkit.item
 
 import org.bukkit.Material
 
-@Suppress("ClassName")
 class BukkitFcItemTypes_1_13_00_R01 : BukkitFcItemTypes {
 
     override val air = BukkitFcItemType_1_13_00_R01(Material.AIR)

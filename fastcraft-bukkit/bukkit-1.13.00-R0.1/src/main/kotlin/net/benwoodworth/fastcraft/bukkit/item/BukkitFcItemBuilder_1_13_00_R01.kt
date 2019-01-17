@@ -6,7 +6,6 @@ import net.benwoodworth.fastcraft.platform.text.FcText
 import org.bukkit.inventory.ItemStack
 import javax.inject.Inject
 
-@Suppress("ClassName")
 class BukkitFcItemBuilder_1_13_00_R01 @Inject constructor(
     private var base: ItemStack? = null,
     override var type: FcItemType,

@@ -1,3 +1,5 @@
 package net.benwoodworth.fastcraft.bukkit.server
 
-interface BukkitFcTask
+import net.benwoodworth.fastcraft.platform.server.FcTask
+
+interface BukkitFcTask : FcTask

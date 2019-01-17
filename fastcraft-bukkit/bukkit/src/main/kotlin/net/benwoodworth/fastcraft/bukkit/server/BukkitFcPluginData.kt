@@ -1,3 +1,5 @@
 package net.benwoodworth.fastcraft.bukkit.server
 
-interface BukkitFcPluginData
+import net.benwoodworth.fastcraft.platform.server.FcPluginData
+
+interface BukkitFcPluginData : FcPluginData

@@ -4,7 +4,7 @@ import net.benwoodworth.fastcraft.platform.server.FcTask
 import org.bukkit.plugin.Plugin
 
 class BukkitFcTaskBuilder_1_13_00_R01(
-    val plugin: Plugin
+    private val plugin: Plugin
 ) : BukkitFcTaskBuilder {
 
     override var action: (task: FcTask) -> Unit = {}
@@ -16,6 +16,12 @@ class BukkitFcTaskBuilder_1_13_00_R01(
     override var intervalSeconds: Double? = null
 
     override fun build(): FcTask {
-        return BukkitFcTask_1_13_00_R01(this)
+        return BukkitFcTask_1_13_00_R01(
+            plugin,
+            async,
+            delaySeconds?.let { (it * 20).toLong() },
+            intervalSeconds?.let { (it * 20).toLong() },
+            action
+        )
     }
 }

@@ -4,7 +4,24 @@ import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfig
 import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfigEntry
 import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfigFactory
 import net.benwoodworth.fastcraft.bukkit.event.BukkitFcEvent
-import net.benwoodworth.fastcraft.platform.FcPlatformDependencies
+import net.benwoodworth.fastcraft.bukkit.gui.BukkitFcGui
+import net.benwoodworth.fastcraft.bukkit.gui.BukkitFcGuiBuilder
+import net.benwoodworth.fastcraft.bukkit.gui.types.BukkitFcGuiChest
+import net.benwoodworth.fastcraft.bukkit.gui.types.BukkitFcGuiDispenser
+import net.benwoodworth.fastcraft.bukkit.gui.types.BukkitFcGuiHopper
+import net.benwoodworth.fastcraft.bukkit.item.*
+import net.benwoodworth.fastcraft.bukkit.locale.BukkitFcLocale
+import net.benwoodworth.fastcraft.bukkit.locale.BukkitFcTranslatable
+import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayer
+import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerProvider
+import net.benwoodworth.fastcraft.bukkit.recipe.BukkitFcCraftingRecipe
+import net.benwoodworth.fastcraft.bukkit.recipe.BukkitFcIngredient
+import net.benwoodworth.fastcraft.bukkit.recipe.BukkitFcRecipeService
+import net.benwoodworth.fastcraft.bukkit.server.BukkitFcLogger
+import net.benwoodworth.fastcraft.bukkit.server.BukkitFcPluginData
+import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTask
+import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTaskBuilder
+import net.benwoodworth.fastcraft.bukkit.text.*
 import net.benwoodworth.fastcraft.platform.config.FcConfig
 import net.benwoodworth.fastcraft.platform.config.FcConfigEntry
 import net.benwoodworth.fastcraft.platform.config.FcConfigFactory
@@ -139,5 +156,5 @@ inline val FcConfigEntry.bukkit: BukkitFcConfigEntry
 inline val FcConfig.bukkit: BukkitFcConfig
     get() = this as BukkitFcConfig
 
-inline val FcPlatformDependencies.bukkit: BukkitFcPlatformDependencies
-    get() = this as BukkitFcPlatformDependencies
+//inline val FcPlatformDependencies.bukkit: BukkitFcPlatformDependencies
+//    get() = this as BukkitFcPlatformDependencies

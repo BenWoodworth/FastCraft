@@ -5,7 +5,7 @@ import org.bukkit.configuration.file.YamlConfiguration
 import java.nio.file.Path
 
 class BukkitFcConfig_1_13_00_R01(
-    private val config: YamlConfiguration
+    override val config: YamlConfiguration
 ) : BukkitFcConfig {
 
     override var header: String?

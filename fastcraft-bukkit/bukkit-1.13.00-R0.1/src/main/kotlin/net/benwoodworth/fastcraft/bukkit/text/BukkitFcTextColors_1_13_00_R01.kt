@@ -22,7 +22,7 @@ class BukkitFcTextColors_1_13_00_R01 : BukkitFcTextColors {
     override val white = BukkitFcTextColor_1_13_00_R01("white", "§f")
     override val default = BukkitFcTextColor_1_13_00_R01("reset", "§r")
 
-    fun fromId(id: String): FcTextColor {
+    override fun fromId(id: String): FcTextColor {
         return when (id) {
             "black" -> black
             "dark_blue" -> darkBlue

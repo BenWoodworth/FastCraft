@@ -1,26 +1,20 @@
 package net.benwoodworth.fastcraft.bukkit.server
 
+import net.benwoodworth.fastcraft.platform.server.FcTask
 import org.bukkit.Bukkit
-import kotlin.math.ceil
+import org.bukkit.plugin.Plugin
 
 class BukkitFcTask_1_13_00_R01(
-    builder: BukkitFcTaskBuilder
+    private val plugin: Plugin,
+    private val async: Boolean,
+    private val delay: Long?,
+    private val interval: Long?,
+    action: (task: FcTask) -> Unit
 ) : BukkitFcTask {
 
-    private val plugin = builder.plugin
-    private val async = builder.async
-
-    private val delay = builder.delaySeconds?.let { seconds ->
-        ceil(seconds * 20.0).toLong()
-    }
-
-    private val interval = builder.intervalSeconds?.let { seconds ->
-        ceil(seconds * 20.0).toLong()
-    }
+    private val action = { action(this) }
 
     private var taskId: Int? = null
-
-    private val runnable = { builder.action(this) }
 
     override val isScheduled: Boolean
         get() = taskId != null
@@ -33,15 +27,15 @@ class BukkitFcTask_1_13_00_R01(
         taskId = Bukkit.getScheduler().run {
             when {
                 async && interval != null ->
-                    scheduleAsyncRepeatingTask(plugin, runnable, delay ?: 0L, interval)
+                    scheduleAsyncRepeatingTask(plugin, action, delay ?: 0L, interval)
                 async ->
-                    scheduleAsyncDelayedTask(plugin, runnable, delay ?: 0L)
+                    scheduleAsyncDelayedTask(plugin, action, delay ?: 0L)
                 interval != null ->
-                    scheduleSyncRepeatingTask(plugin, runnable, delay ?: 0L, interval)
+                    scheduleSyncRepeatingTask(plugin, action, delay ?: 0L, interval)
                 delay != null ->
-                    scheduleSyncDelayedTask(plugin, runnable, delay)
+                    scheduleSyncDelayedTask(plugin, action, delay)
                 else ->
-                    scheduleSyncDelayedTask(plugin, runnable)
+                    scheduleSyncDelayedTask(plugin, action)
             }
         }
     }
@@ -49,6 +43,7 @@ class BukkitFcTask_1_13_00_R01(
     override fun cancel() {
         taskId?.let {
             Bukkit.getScheduler().cancelTask(it)
+            taskId = null
         }
     }
 }
