@@ -3,12 +3,11 @@ package net.benwoodworth.fastcraft.bukkit.bukkit_1_13_R01.text
 import net.benwoodworth.fastcraft.platform.locale.FcTranslatable
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextBuilder
-import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import javax.inject.Inject
 
 class BukkitFcTextFactory @Inject constructor(
 
-) : FcTextFactory {
+) : BukkitFcTextFactory {
 
     override fun fromText(text: String): FcText {
         return BukkitFcText(text = text)

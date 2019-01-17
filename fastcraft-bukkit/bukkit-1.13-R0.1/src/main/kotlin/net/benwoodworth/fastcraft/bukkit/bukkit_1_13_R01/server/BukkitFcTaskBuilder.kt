@@ -1,12 +1,11 @@
 package net.benwoodworth.fastcraft.bukkit.bukkit_1_13_R01.server
 
 import net.benwoodworth.fastcraft.platform.server.FcTask
-import net.benwoodworth.fastcraft.platform.server.FcTaskBuilder
 import org.bukkit.plugin.Plugin
 
 class BukkitFcTaskBuilder(
     val plugin: Plugin
-) : FcTaskBuilder {
+) : BukkitFcTaskBuilder {
 
     override var action: (task: FcTask) -> Unit = {}
 

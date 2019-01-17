@@ -1,13 +1,12 @@
 package net.benwoodworth.fastcraft.bukkit.bukkit_1_13_R01.config
 
-import net.benwoodworth.fastcraft.platform.config.FcConfig
 import net.benwoodworth.fastcraft.platform.config.FcConfigEntry
 import org.bukkit.configuration.file.YamlConfiguration
 import java.nio.file.Path
 
 class BukkitFcConfig(
     private val config: YamlConfiguration
-) : FcConfig {
+) : BukkitFcConfig {
 
     override var header: String?
         get() = config.options().header()

@@ -1,12 +1,11 @@
 package net.benwoodworth.fastcraft.bukkit.bukkit_1_13_R01.server
 
-import net.benwoodworth.fastcraft.platform.server.FcTask
 import org.bukkit.Bukkit
 import kotlin.math.ceil
 
 class BukkitFcTask(
     builder: BukkitFcTaskBuilder
-) : FcTask {
+) : BukkitFcTask {
 
     private val plugin = builder.plugin
     private val async = builder.async

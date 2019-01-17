@@ -8,7 +8,7 @@ class BukkitFcConfigEntry(
     key: String,
     private val config: Configuration,
     private val parentEntry: BukkitFcConfigEntry?
-) : FcConfigEntry {
+) : BukkitFcConfigEntry {
 
     private val escapedKey = key.escapeKey()
 

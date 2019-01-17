@@ -2,10 +2,9 @@ package net.benwoodworth.fastcraft.bukkit.bukkit_1_13_R01.text
 
 import net.benwoodworth.fastcraft.platform.locale.FcTranslatable
 import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.platform.text.FcTextBuilder
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
 
-class BukkitFcTextBuilder : FcTextBuilder {
+class BukkitFcTextBuilder : BukkitFcTextBuilder {
 
     override var text: String? = null
     override var translate: FcTranslatable? = null

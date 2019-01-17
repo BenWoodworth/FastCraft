@@ -16,4 +16,4 @@ class BukkitFcText(
     val obfuscate: Boolean? = null,
 
     val extra: List<FcText> = emptyList()
-) : FcText
+) : BukkitFcText

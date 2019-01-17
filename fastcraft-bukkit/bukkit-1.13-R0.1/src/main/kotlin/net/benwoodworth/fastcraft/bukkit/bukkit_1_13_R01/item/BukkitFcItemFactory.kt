@@ -3,7 +3,6 @@ package net.benwoodworth.fastcraft.bukkit.bukkit_1_13_R01.item
 import net.benwoodworth.fastcraft.bukkit.bukkit
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemBuilder
-import net.benwoodworth.fastcraft.platform.item.FcItemFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.locale.FcLocale
 import net.benwoodworth.fastcraft.platform.text.FcTextBuilder
@@ -16,7 +15,7 @@ import javax.inject.Provider
 class BukkitFcItemFactory @Inject constructor(
     private val itemTypes: FcItemTypes,
     private val buildText: Provider<FcTextBuilder>
-) : FcItemFactory {
+) : BukkitFcItemFactory {
 
     override fun buildItem(copy: FcItem?, build: FcItemBuilder.() -> Unit): FcItem {
         val builder = when (copy) {

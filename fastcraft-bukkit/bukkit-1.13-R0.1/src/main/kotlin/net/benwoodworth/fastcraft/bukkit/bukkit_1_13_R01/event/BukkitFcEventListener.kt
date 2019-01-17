@@ -2,7 +2,6 @@ package net.benwoodworth.fastcraft.bukkit.bukkit_1_13_R01.event
 
 import net.benwoodworth.fastcraft.platform.event.FcEvent
 import net.benwoodworth.fastcraft.platform.event.FcEventHandler
-import net.benwoodworth.fastcraft.platform.event.FcEventListener
 import org.bukkit.Bukkit
 import org.bukkit.event.Event
 import org.bukkit.event.EventPriority
@@ -16,7 +15,7 @@ class Bukkit_11300R01_FcEventListener<TBukkitEvent : Event, TEvent : FcEvent>(
     private val event: Class<TBukkitEvent>,
     private val priority: EventPriority = EventPriority.NORMAL,
     private val map: (TBukkitEvent) -> TEvent
-) : FcEventListener<TEvent>, Listener, EventExecutor {
+) : BukkitFcEventListener<TEvent>, Listener, EventExecutor {
 
     private val handlers = mutableSetOf<FcEventHandler<TEvent>>()
 
