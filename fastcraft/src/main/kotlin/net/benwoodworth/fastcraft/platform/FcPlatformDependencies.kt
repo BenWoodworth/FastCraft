@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.platform
 
 import net.benwoodworth.fastcraft.platform.config.FcConfigFactory
-import net.benwoodworth.fastcraft.platform.gui.FcGuiBuilder
+import net.benwoodworth.fastcraft.platform.gui.FcGuiFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemBuilder
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.player.FcPlayerProvider
@@ -19,7 +19,7 @@ interface FcPlatformDependencies {
 
     fun createConfigBuilder(): FcConfigFactory
 
-    fun createGuiBuilder(): FcGuiBuilder
+    fun createGuiBuilder(): FcGuiFactory
 
     fun createItemBuilder(): FcItemBuilder
 

@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfigEntry
 import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfigFactory
 import net.benwoodworth.fastcraft.bukkit.event.BukkitFcEvent
 import net.benwoodworth.fastcraft.bukkit.gui.BukkitFcGui
-import net.benwoodworth.fastcraft.bukkit.gui.BukkitFcGuiBuilder
+import net.benwoodworth.fastcraft.bukkit.gui.BukkitFcGuiFactory
 import net.benwoodworth.fastcraft.bukkit.gui.types.BukkitFcGuiChest
 import net.benwoodworth.fastcraft.bukkit.gui.types.BukkitFcGuiDispenser
 import net.benwoodworth.fastcraft.bukkit.gui.types.BukkitFcGuiHopper
@@ -27,7 +27,7 @@ import net.benwoodworth.fastcraft.platform.config.FcConfigEntry
 import net.benwoodworth.fastcraft.platform.config.FcConfigFactory
 import net.benwoodworth.fastcraft.platform.event.FcEvent
 import net.benwoodworth.fastcraft.platform.gui.FcGui
-import net.benwoodworth.fastcraft.platform.gui.FcGuiBuilder
+import net.benwoodworth.fastcraft.platform.gui.FcGuiFactory
 import net.benwoodworth.fastcraft.platform.gui.types.FcGuiChest
 import net.benwoodworth.fastcraft.platform.gui.types.FcGuiDispenser
 import net.benwoodworth.fastcraft.platform.gui.types.FcGuiHopper
@@ -120,8 +120,8 @@ inline val FcItem.bukkit: BukkitFcItem
 //inline val FcGuiClickEvent.bukkit: BukkitFcGuiClickEvent
 //    get() = this as BukkitFcGuiClickEvent
 
-inline val FcGuiBuilder.bukkit: BukkitFcGuiBuilder
-    get() = this as BukkitFcGuiBuilder
+inline val FcGuiFactory.bukkit: BukkitFcGuiFactory
+    get() = this as BukkitFcGuiFactory
 
 inline val FcGui.bukkit: BukkitFcGui
     get() = this as BukkitFcGui

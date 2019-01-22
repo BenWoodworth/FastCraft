@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.Provides
 import net.benwoodworth.fastcraft.platform.FcPlatformDependencies
 import net.benwoodworth.fastcraft.platform.config.FcConfigFactory
-import net.benwoodworth.fastcraft.platform.gui.FcGuiBuilder
+import net.benwoodworth.fastcraft.platform.gui.FcGuiFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemBuilder
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.player.FcPlayerProvider
@@ -52,7 +52,7 @@ class FastCraftFactory(
         }
 
         @Provides
-        override fun createGuiBuilder(): FcGuiBuilder {
+        override fun createGuiBuilder(): FcGuiFactory {
             return dependencies.createGuiBuilder()
         }
 
