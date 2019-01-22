@@ -38,16 +38,3 @@ class BukkitFcEventListener_1_13_00_R01<TBukkitEvent : Event, TEvent : FcEvent>(
         }
     }
 }
-
-inline fun <reified TBukkitEvent : Event, reified TEvent : FcEvent> listener(
-    plugin: Plugin,
-    priority: EventPriority = EventPriority.NORMAL,
-    noinline map: (TBukkitEvent) -> TEvent
-): BukkitFcEventListener<TBukkitEvent, TEvent> {
-    return BukkitFcEventListener_1_13_00_R01(
-        plugin = plugin,
-        event = TBukkitEvent::class.java,
-        priority = priority,
-        map = map
-    )
-}
