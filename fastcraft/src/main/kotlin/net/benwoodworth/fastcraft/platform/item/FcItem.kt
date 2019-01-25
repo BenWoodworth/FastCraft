@@ -8,7 +8,7 @@ interface FcItem {
 
     val amount: Int
 
-    val displayName: FcText?
+    val displayName: FcText? // TODO String
 
-    val lore: List<FcText>
+    val lore: List<FcText>? // TODO List<String>
 }

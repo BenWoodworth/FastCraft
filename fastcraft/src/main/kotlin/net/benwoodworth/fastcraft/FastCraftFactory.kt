@@ -6,7 +6,7 @@ import dagger.Provides
 import net.benwoodworth.fastcraft.platform.FcPlatformDependencies
 import net.benwoodworth.fastcraft.platform.config.FcConfigFactory
 import net.benwoodworth.fastcraft.platform.gui.FcGuiFactory
-import net.benwoodworth.fastcraft.platform.item.FcItemBuilder
+import net.benwoodworth.fastcraft.platform.item.FcItemFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.player.FcPlayerProvider
 import net.benwoodworth.fastcraft.platform.recipe.FcRecipeService
@@ -57,8 +57,8 @@ class FastCraftFactory(
         }
 
         @Provides
-        override fun createItemBuilder(): FcItemBuilder {
-            return dependencies.createItemBuilder()
+        override fun createItemFactory(): FcItemFactory {
+            return dependencies.createItemFactory()
         }
 
         @Provides
