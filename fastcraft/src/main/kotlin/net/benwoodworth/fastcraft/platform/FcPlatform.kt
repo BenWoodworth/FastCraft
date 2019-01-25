@@ -13,23 +13,23 @@ import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 
 interface FcPlatform {
 
-    fun getLogger(): FcLogger
+    val logger: FcLogger
 
-    fun getPluginData(): FcPluginData
+    val pluginData: FcPluginData
 
-    fun getConfigFactory(): FcConfigFactory
+    val configFactory: FcConfigFactory
 
-    fun getGuiFactory(): FcGuiFactory
+    val guiFactory: FcGuiFactory
 
-    fun getItemFactory(): FcItemFactory
+    val itemFactory: FcItemFactory
 
-    fun getItemTypes(): FcItemTypes
+    val itemTypes: FcItemTypes
 
-    fun getPlayerProvider(): FcPlayerProvider
+    val playerProvider: FcPlayerProvider
 
-    fun getRecipeService(): FcRecipeService
+    val recipeService: FcRecipeService
 
-    fun getTaskFactory(): FcTaskFactory
+    val taskFactory: FcTaskFactory
 
-    fun getTextFactory(): FcTextFactory
+    val textFactory: FcTextFactory
 }
