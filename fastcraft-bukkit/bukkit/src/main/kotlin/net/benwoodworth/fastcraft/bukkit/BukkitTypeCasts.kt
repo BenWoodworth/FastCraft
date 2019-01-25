@@ -162,5 +162,5 @@ inline val FcConfigEntry.bukkit: BukkitFcConfigEntry
 inline val FcConfig.bukkit: BukkitFcConfig
     get() = this as BukkitFcConfig
 
-//inline val FcPlatformDependencies.bukkit: BukkitFcPlatformDependencies
+//inline val FcPlatform.bukkit: BukkitFcPlatformDependencies
 //    get() = this as BukkitFcPlatformDependencies
