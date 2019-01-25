@@ -47,18 +47,18 @@ class FastCraftFactory(
         }
 
         @Provides
-        override fun createConfigFactory(): FcConfigFactory {
-            return dependencies.createConfigFactory()
+        override fun getConfigFactory(): FcConfigFactory {
+            return dependencies.getConfigFactory()
         }
 
         @Provides
-        override fun createGuiFactory(): FcGuiFactory {
-            return dependencies.createGuiFactory()
+        override fun getGuiFactory(): FcGuiFactory {
+            return dependencies.getGuiFactory()
         }
 
         @Provides
-        override fun createItemFactory(): FcItemFactory {
-            return dependencies.createItemFactory()
+        override fun getItemFactory(): FcItemFactory {
+            return dependencies.getItemFactory()
         }
 
         @Provides
@@ -77,13 +77,13 @@ class FastCraftFactory(
         }
 
         @Provides
-        override fun createTaskFactory(): FcTaskFactory {
-            return dependencies.createTaskFactory()
+        override fun getTaskFactory(): FcTaskFactory {
+            return dependencies.getTaskFactory()
         }
 
         @Provides
-        override fun createTextFactory(): FcTextFactory {
-            return dependencies.createTextFactory()
+        override fun getTextFactory(): FcTextFactory {
+            return dependencies.getTextFactory()
         }
     }
 }

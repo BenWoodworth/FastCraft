@@ -17,11 +17,11 @@ interface FcPlatformDependencies {
 
     fun getPluginData(): FcPluginData
 
-    fun createConfigFactory(): FcConfigFactory
+    fun getConfigFactory(): FcConfigFactory
 
-    fun createGuiFactory(): FcGuiFactory
+    fun getGuiFactory(): FcGuiFactory
 
-    fun createItemFactory(): FcItemFactory
+    fun getItemFactory(): FcItemFactory
 
     fun getItemTypes(): FcItemTypes
 
@@ -29,7 +29,7 @@ interface FcPlatformDependencies {
 
     fun getRecipeService(): FcRecipeService
 
-    fun createTaskFactory(): FcTaskFactory
+    fun getTaskFactory(): FcTaskFactory
 
-    fun createTextFactory(): FcTextFactory
+    fun getTextFactory(): FcTextFactory
 }
