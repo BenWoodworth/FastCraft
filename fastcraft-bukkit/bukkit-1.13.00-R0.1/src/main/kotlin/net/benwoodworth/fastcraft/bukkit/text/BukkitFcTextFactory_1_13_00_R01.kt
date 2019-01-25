@@ -2,24 +2,53 @@ package net.benwoodworth.fastcraft.bukkit.text
 
 import net.benwoodworth.fastcraft.platform.locale.FcTranslatable
 import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.platform.text.FcTextBuilder
-import javax.inject.Inject
+import net.benwoodworth.fastcraft.platform.text.FcTextColor
 
-class BukkitFcTextFactory_1_13_00_R01 @Inject constructor(
+class BukkitFcTextFactory_1_13_00_R01 : BukkitFcTextFactory {
 
-) : BukkitFcTextFactory {
-
-    override fun fromText(text: String): FcText {
-        return BukkitFcText_1_13_00_R01(text = text)
+    override fun FcText(
+        text: String,
+        color: FcTextColor?,
+        bold: Boolean?,
+        italic: Boolean?,
+        underline: Boolean?,
+        strikethrough: Boolean?,
+        obfuscate: Boolean?,
+        extra: List<FcText>?
+    ): FcText {
+        return BukkitFcText_1_13_00_R01(
+            text = text,
+            translate = null,
+            color = color,
+            bold = bold,
+            italic = italic,
+            underline = underline,
+            strikethrough = strikethrough,
+            obfuscate = obfuscate,
+            extra = extra
+        )
     }
 
-    override fun fromTranslatable(translate: FcTranslatable): FcText {
-        return BukkitFcText_1_13_00_R01(translate = translate)
-    }
-
-    override fun buildText(build: FcTextBuilder.() -> Unit): FcText {
-        return BukkitFcTextBuilder_1_13_00_R01()
-            .apply(build)
-            .build()
+    override fun FcText(
+        translate: FcTranslatable,
+        color: FcTextColor?,
+        bold: Boolean?,
+        italic: Boolean?,
+        underline: Boolean?,
+        strikethrough: Boolean?,
+        obfuscate: Boolean?,
+        extra: List<FcText>?
+    ): FcText {
+        return BukkitFcText_1_13_00_R01(
+            text = null,
+            translate = translate,
+            color = color,
+            bold = bold,
+            italic = italic,
+            underline = underline,
+            strikethrough = strikethrough,
+            obfuscate = obfuscate,
+            extra = extra
+        )
     }
 }

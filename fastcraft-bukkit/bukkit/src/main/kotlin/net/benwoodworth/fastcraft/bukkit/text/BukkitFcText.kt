@@ -17,5 +17,5 @@ interface BukkitFcText : FcText {
     val strikethrough: Boolean?
     val obfuscate: Boolean?
 
-    val extra: List<FcText>
+    val extra: List<FcText>?
 }

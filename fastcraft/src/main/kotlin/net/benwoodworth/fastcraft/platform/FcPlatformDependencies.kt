@@ -9,7 +9,7 @@ import net.benwoodworth.fastcraft.platform.recipe.FcRecipeService
 import net.benwoodworth.fastcraft.platform.server.FcLogger
 import net.benwoodworth.fastcraft.platform.server.FcPluginData
 import net.benwoodworth.fastcraft.platform.server.FcTaskFactory
-import net.benwoodworth.fastcraft.platform.text.FcTextBuilder
+import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 
 interface FcPlatformDependencies {
 
@@ -17,7 +17,7 @@ interface FcPlatformDependencies {
 
     fun getPluginData(): FcPluginData
 
-    fun createConfigBuilder(): FcConfigFactory
+    fun createConfigFactory(): FcConfigFactory
 
     fun createGuiBuilder(): FcGuiFactory
 
@@ -29,7 +29,7 @@ interface FcPlatformDependencies {
 
     fun getRecipeService(): FcRecipeService
 
-    fun createTaskBuilder(): FcTaskFactory
+    fun createTaskFactory(): FcTaskFactory
 
-    fun createTextBuilder(): FcTextBuilder
+    fun createTextFactory(): FcTextFactory
 }

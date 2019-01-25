@@ -12,8 +12,7 @@ import net.benwoodworth.fastcraft.platform.player.FcPlayerProvider
 import net.benwoodworth.fastcraft.platform.recipe.FcRecipeService
 import net.benwoodworth.fastcraft.platform.server.FcLogger
 import net.benwoodworth.fastcraft.platform.server.FcPluginData
-import net.benwoodworth.fastcraft.platform.server.FcTaskBuilder
-import net.benwoodworth.fastcraft.platform.text.FcTextBuilder
+import net.benwoodworth.fastcraft.platform.server.FcTaskFactory
 
 class FastCraftFactory(
     private val dependencies: FcPlatformDependencies
@@ -77,7 +76,7 @@ class FastCraftFactory(
         }
 
         @Provides
-        override fun createTaskBuilder(): FcTaskBuilder {
+        override fun createTaskBuilder(): FcTaskFactory {
             return dependencies.createTaskBuilder()
         }
 

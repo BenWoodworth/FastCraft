@@ -4,9 +4,25 @@ import net.benwoodworth.fastcraft.platform.locale.FcTranslatable
 
 interface FcTextFactory {
 
-    fun fromText(text: String): FcText
+    fun FcText(
+        text: String,
+        color: FcTextColor? = null,
+        bold: Boolean? = null,
+        italic: Boolean? = null,
+        underline: Boolean? = null,
+        strikethrough: Boolean? = null,
+        obfuscate: Boolean? = null,
+        extra: List<FcText>? = null
+    ): FcText
 
-    fun fromTranslatable(translate: FcTranslatable): FcText
-
-    fun buildText(build: FcTextBuilder.() -> Unit): FcText
+    fun FcText(
+        translate: FcTranslatable,
+        color: FcTextColor? = null,
+        bold: Boolean? = null,
+        italic: Boolean? = null,
+        underline: Boolean? = null,
+        strikethrough: Boolean? = null,
+        obfuscate: Boolean? = null,
+        extra: List<FcText>? = null
+    ): FcText
 }
