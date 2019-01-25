@@ -36,54 +36,34 @@ class FastCraftFactory(
     @Module
     internal inner class DaggerModule : FcPlatform {
 
-        @Provides
-        override fun getLogger(): FcLogger {
-            return dependencies.getLogger()
-        }
+        override val logger: FcLogger
+            @Provides get() = dependencies.logger
 
-        @Provides
-        override fun getPluginData(): FcPluginData {
-            return dependencies.getPluginData()
-        }
+        override val pluginData: FcPluginData
+            @Provides get() = dependencies.pluginData
 
-        @Provides
-        override fun getConfigFactory(): FcConfigFactory {
-            return dependencies.getConfigFactory()
-        }
+        override val configFactory: FcConfigFactory
+            @Provides get() = dependencies.configFactory
 
-        @Provides
-        override fun getGuiFactory(): FcGuiFactory {
-            return dependencies.getGuiFactory()
-        }
+        override val guiFactory: FcGuiFactory
+            @Provides get() = dependencies.guiFactory
 
-        @Provides
-        override fun getItemFactory(): FcItemFactory {
-            return dependencies.getItemFactory()
-        }
+        override val itemFactory: FcItemFactory
+            @Provides get() = dependencies.itemFactory
 
-        @Provides
-        override fun getItemTypes(): FcItemTypes {
-            return dependencies.getItemTypes()
-        }
+        override val itemTypes: FcItemTypes
+            @Provides get() = dependencies.itemTypes
 
-        @Provides
-        override fun getPlayerProvider(): FcPlayerProvider {
-            return dependencies.getPlayerProvider()
-        }
+        override val playerProvider: FcPlayerProvider
+            @Provides get() = dependencies.playerProvider
 
-        @Provides
-        override fun getRecipeService(): FcRecipeService {
-            return dependencies.getRecipeService()
-        }
+        override val recipeService: FcRecipeService
+            @Provides get() = dependencies.recipeService
 
-        @Provides
-        override fun getTaskFactory(): FcTaskFactory {
-            return dependencies.getTaskFactory()
-        }
+        override val taskFactory: FcTaskFactory
+            @Provides get() = dependencies.taskFactory
 
-        @Provides
-        override fun getTextFactory(): FcTextFactory {
-            return dependencies.getTextFactory()
-        }
+        override val textFactory: FcTextFactory
+            @Provides get() = dependencies.textFactory
     }
 }
