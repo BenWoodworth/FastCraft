@@ -24,7 +24,10 @@ import net.benwoodworth.fastcraft.bukkit.server.BukkitFcLogger
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcPluginData
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTask
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTaskFactory
-import net.benwoodworth.fastcraft.bukkit.text.*
+import net.benwoodworth.fastcraft.bukkit.text.BukkitFcText
+import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextColor
+import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextColors
+import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextFactory
 import net.benwoodworth.fastcraft.platform.config.FcConfig
 import net.benwoodworth.fastcraft.platform.config.FcConfigEntry
 import net.benwoodworth.fastcraft.platform.config.FcConfigFactory
@@ -49,7 +52,10 @@ import net.benwoodworth.fastcraft.platform.server.FcLogger
 import net.benwoodworth.fastcraft.platform.server.FcPluginData
 import net.benwoodworth.fastcraft.platform.server.FcTask
 import net.benwoodworth.fastcraft.platform.server.FcTaskFactory
-import net.benwoodworth.fastcraft.platform.text.*
+import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.text.FcTextColor
+import net.benwoodworth.fastcraft.platform.text.FcTextColors
+import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 
 inline val FcTask.bukkit: BukkitFcTask
     get() = this as BukkitFcTask
@@ -65,9 +71,6 @@ inline val FcTextColors.bukkit: BukkitFcTextColors
 
 inline val FcTextColor.bukkit: BukkitFcTextColor
     get() = this as BukkitFcTextColor
-
-inline val FcTextBuilder.bukkit: BukkitFcTextBuilder
-    get() = this as BukkitFcTextBuilder
 
 inline val FcText.bukkit: BukkitFcText
     get() = this as BukkitFcText
@@ -113,9 +116,6 @@ inline val FcItemType.bukkit: BukkitFcItemType
 
 inline val FcItemFactory.bukkit: BukkitFcItemFactory
     get() = this as BukkitFcItemFactory
-
-inline val FcItemBuilder.bukkit: BukkitFcItemBuilder
-    get() = this as BukkitFcItemBuilder
 
 inline val FcItem.bukkit: BukkitFcItem
     get() = this as BukkitFcItem
