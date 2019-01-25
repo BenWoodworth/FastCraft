@@ -19,7 +19,7 @@ interface FcPlatformDependencies {
 
     fun createConfigFactory(): FcConfigFactory
 
-    fun createGuiBuilder(): FcGuiFactory
+    fun createGuiFactory(): FcGuiFactory
 
     fun createItemFactory(): FcItemFactory
 

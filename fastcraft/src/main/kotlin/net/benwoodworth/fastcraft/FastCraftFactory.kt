@@ -13,6 +13,7 @@ import net.benwoodworth.fastcraft.platform.recipe.FcRecipeService
 import net.benwoodworth.fastcraft.platform.server.FcLogger
 import net.benwoodworth.fastcraft.platform.server.FcPluginData
 import net.benwoodworth.fastcraft.platform.server.FcTaskFactory
+import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 
 class FastCraftFactory(
     private val dependencies: FcPlatformDependencies
@@ -46,13 +47,13 @@ class FastCraftFactory(
         }
 
         @Provides
-        override fun createConfigBuilder(): FcConfigFactory {
-            return dependencies.createConfigBuilder()
+        override fun createConfigFactory(): FcConfigFactory {
+            return dependencies.createConfigFactory()
         }
 
         @Provides
-        override fun createGuiBuilder(): FcGuiFactory {
-            return dependencies.createGuiBuilder()
+        override fun createGuiFactory(): FcGuiFactory {
+            return dependencies.createGuiFactory()
         }
 
         @Provides
@@ -76,13 +77,13 @@ class FastCraftFactory(
         }
 
         @Provides
-        override fun createTaskBuilder(): FcTaskFactory {
-            return dependencies.createTaskBuilder()
+        override fun createTaskFactory(): FcTaskFactory {
+            return dependencies.createTaskFactory()
         }
 
         @Provides
-        override fun createTextBuilder(): FcTextBuilder {
-            return dependencies.createTextBuilder()
+        override fun createTextFactory(): FcTextFactory {
+            return dependencies.createTextFactory()
         }
     }
 }
