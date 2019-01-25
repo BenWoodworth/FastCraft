@@ -7,7 +7,7 @@
 //import net.benwoodworth.fastcraft.platform.gui.mvp.MvpPresenter
 //import net.benwoodworth.fastcraft.platform.player.FcPlayer
 //import net.benwoodworth.fastcraft.platform.text.FcText
-//import net.benwoodworth.fastcraft.platform.server.FcTaskBuilder
+//import net.benwoodworth.fastcraft.platform.server.FcTaskFactory
 //import javax.inject.Provider
 //
 //@AutoFactory
@@ -16,7 +16,7 @@
 //
 //    @Provided view: net.benwoodworth.fastcraft.gui.crafting.CraftingGuiView,
 //    @Provided model: net.benwoodworth.fastcraft.gui.crafting.CraftingGuiModel,
-//    @Provided taskBuilder: Provider<FcTaskBuilder>,
+//    @Provided taskBuilder: Provider<FcTaskFactory>,
 //    @Provided private val textFactory: FcText.Factory
 //) : MvpPresenter<net.benwoodworth.fastcraft.gui.crafting.CraftingGuiView, net.benwoodworth.fastcraft.gui.crafting.CraftingGuiModel>(
 //    view,

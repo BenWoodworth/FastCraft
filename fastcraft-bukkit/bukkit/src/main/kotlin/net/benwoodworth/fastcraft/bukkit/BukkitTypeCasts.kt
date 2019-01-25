@@ -9,7 +9,10 @@ import net.benwoodworth.fastcraft.bukkit.gui.BukkitFcGuiFactory
 import net.benwoodworth.fastcraft.bukkit.gui.types.BukkitFcGuiChest
 import net.benwoodworth.fastcraft.bukkit.gui.types.BukkitFcGuiDispenser
 import net.benwoodworth.fastcraft.bukkit.gui.types.BukkitFcGuiHopper
-import net.benwoodworth.fastcraft.bukkit.item.*
+import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItem
+import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemFactory
+import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemType
+import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemTypes
 import net.benwoodworth.fastcraft.bukkit.locale.BukkitFcLocale
 import net.benwoodworth.fastcraft.bukkit.locale.BukkitFcTranslatable
 import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayer
@@ -20,7 +23,7 @@ import net.benwoodworth.fastcraft.bukkit.recipe.BukkitFcRecipeService
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcLogger
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcPluginData
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTask
-import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTaskBuilder
+import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTaskFactory
 import net.benwoodworth.fastcraft.bukkit.text.*
 import net.benwoodworth.fastcraft.platform.config.FcConfig
 import net.benwoodworth.fastcraft.platform.config.FcConfigEntry
@@ -31,7 +34,10 @@ import net.benwoodworth.fastcraft.platform.gui.FcGuiFactory
 import net.benwoodworth.fastcraft.platform.gui.types.FcGuiChest
 import net.benwoodworth.fastcraft.platform.gui.types.FcGuiDispenser
 import net.benwoodworth.fastcraft.platform.gui.types.FcGuiHopper
-import net.benwoodworth.fastcraft.platform.item.*
+import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemFactory
+import net.benwoodworth.fastcraft.platform.item.FcItemType
+import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.locale.FcLocale
 import net.benwoodworth.fastcraft.platform.locale.FcTranslatable
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
@@ -42,14 +48,14 @@ import net.benwoodworth.fastcraft.platform.recipe.FcRecipeService
 import net.benwoodworth.fastcraft.platform.server.FcLogger
 import net.benwoodworth.fastcraft.platform.server.FcPluginData
 import net.benwoodworth.fastcraft.platform.server.FcTask
-import net.benwoodworth.fastcraft.platform.server.FcTaskBuilder
+import net.benwoodworth.fastcraft.platform.server.FcTaskFactory
 import net.benwoodworth.fastcraft.platform.text.*
 
 inline val FcTask.bukkit: BukkitFcTask
     get() = this as BukkitFcTask
 
-inline val FcTaskBuilder.bukkit: BukkitFcTaskBuilder
-    get() = this as BukkitFcTaskBuilder
+inline val FcTaskFactory.bukkit: BukkitFcTaskFactory
+    get() = this as BukkitFcTaskFactory
 
 inline val FcTextFactory.bukkit: BukkitFcTextFactory
     get() = this as BukkitFcTextFactory

@@ -8,7 +8,7 @@ import net.benwoodworth.fastcraft.platform.player.FcPlayerProvider
 import net.benwoodworth.fastcraft.platform.recipe.FcRecipeService
 import net.benwoodworth.fastcraft.platform.server.FcLogger
 import net.benwoodworth.fastcraft.platform.server.FcPluginData
-import net.benwoodworth.fastcraft.platform.server.FcTaskBuilder
+import net.benwoodworth.fastcraft.platform.server.FcTaskFactory
 import net.benwoodworth.fastcraft.platform.text.FcTextBuilder
 
 interface FcPlatformDependencies {
@@ -29,7 +29,7 @@ interface FcPlatformDependencies {
 
     fun getRecipeService(): FcRecipeService
 
-    fun createTaskBuilder(): FcTaskBuilder
+    fun createTaskBuilder(): FcTaskFactory
 
     fun createTextBuilder(): FcTextBuilder
 }

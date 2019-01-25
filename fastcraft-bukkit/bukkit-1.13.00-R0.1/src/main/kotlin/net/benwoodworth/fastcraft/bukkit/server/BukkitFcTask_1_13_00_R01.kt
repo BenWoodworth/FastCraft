@@ -7,8 +7,8 @@ import org.bukkit.plugin.Plugin
 class BukkitFcTask_1_13_00_R01(
     private val plugin: Plugin,
     private val async: Boolean,
-    private val delay: Long?,
-    private val interval: Long?,
+    private val delay: Long,
+    private val interval: Long,
     action: (task: FcTask) -> Unit
 ) : BukkitFcTask {
 
@@ -26,13 +26,13 @@ class BukkitFcTask_1_13_00_R01(
 
         taskId = Bukkit.getScheduler().run {
             when {
-                async && interval != null ->
-                    scheduleAsyncRepeatingTask(plugin, action, delay ?: 0L, interval)
+                async && interval != 0L ->
+                    scheduleAsyncRepeatingTask(plugin, action, delay, interval)
                 async ->
-                    scheduleAsyncDelayedTask(plugin, action, delay ?: 0L)
-                interval != null ->
-                    scheduleSyncRepeatingTask(plugin, action, delay ?: 0L, interval)
-                delay != null ->
+                    scheduleAsyncDelayedTask(plugin, action, delay)
+                interval != 0L ->
+                    scheduleSyncRepeatingTask(plugin, action, delay, interval)
+                delay != 0L ->
                     scheduleSyncDelayedTask(plugin, action, delay)
                 else ->
                     scheduleSyncDelayedTask(plugin, action)
