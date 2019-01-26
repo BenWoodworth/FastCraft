@@ -14,6 +14,8 @@ interface FcPlayer {
 
     val locale: FcLocale
 
+    val isOnline: Boolean
+
     fun sendMessage(message: FcText)
 
     fun hasPermission(permission: String): Boolean
