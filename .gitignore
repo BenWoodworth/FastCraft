@@ -7,4 +7,5 @@ out/
 build/
 classes/
 
-servers/
+test-servers/bukkit/*/
+test-servers/sponge/*/
