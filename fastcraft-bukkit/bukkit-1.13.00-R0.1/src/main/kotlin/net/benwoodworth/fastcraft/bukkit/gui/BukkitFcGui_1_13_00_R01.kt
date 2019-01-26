@@ -1,18 +1,26 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
-import net.benwoodworth.fastcraft.platform.event.FcEventListener
-import net.benwoodworth.fastcraft.platform.gui.FcGuiCloseEvent
+import net.benwoodworth.fastcraft.platform.gui.FcGuiClickEvent
+import net.benwoodworth.fastcraft.platform.gui.FcGuiLayout
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 
-class BukkitFcGui_1_13_00_R01 : BukkitFcGui {
-    override val onClose: FcEventListener<FcGuiCloseEvent>
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+class BukkitFcGui_1_13_00_R01<TLayout : FcGuiLayout> : BukkitFcGui<TLayout> {
+    override val layout: TLayout
+        get() = TODO("not implemented")
+    override val title: String
+        get() = TODO("not implemented")
+    override val player: FcPlayer
+        get() = TODO("not implemented")
 
-    override fun open(vararg players: FcPlayer) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun close() {
+        TODO("not implemented")
     }
 
-    override fun getViewers(): List<FcPlayer> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun setCloseHandler(handler: (event: FcGuiClickEvent) -> Unit) {
+        TODO("not implemented")
+    }
+
+    override fun removeCloseHandler(handler: (event: FcGuiClickEvent) -> Unit) {
+        TODO("not implemented")
     }
 }
