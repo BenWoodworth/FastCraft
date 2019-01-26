@@ -1,13 +1,19 @@
 package net.benwoodworth.fastcraft.platform.gui
 
-import net.benwoodworth.fastcraft.platform.event.FcEventListener
+import net.benwoodworth.fastcraft.platform.gui.layout.FcGuiLayout
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 
-interface FcGui {
+interface FcGui<TLayout : FcGuiLayout> {
 
-    val onClose: FcEventListener<FcGuiCloseEvent>
+    val layout: TLayout
 
-    fun open(vararg players: FcPlayer)
+    val title: String
 
-    fun getViewers(): List<FcPlayer>
+    val player: FcPlayer
+
+    fun close()
+
+    fun setCloseHandler(handler: (event: FcGuiClickEvent) -> Unit)
+
+    fun removeCloseHandler(handler: (event: FcGuiClickEvent) -> Unit)
 }

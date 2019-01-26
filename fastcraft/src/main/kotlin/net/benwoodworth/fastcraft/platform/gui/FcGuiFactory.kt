@@ -1,14 +1,13 @@
 package net.benwoodworth.fastcraft.platform.gui
 
-import net.benwoodworth.fastcraft.platform.gui.types.FcGuiChest
-import net.benwoodworth.fastcraft.platform.gui.types.FcGuiDispenser
-import net.benwoodworth.fastcraft.platform.gui.types.FcGuiHopper
+import net.benwoodworth.fastcraft.platform.gui.layout.FcGuiLayoutGrid
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
 
 interface FcGuiFactory {
 
-    fun FcGuiChest(height: Int): FcGuiChest
-
-    fun FcGuiDispenser(): FcGuiDispenser
-
-    fun FcGuiHopper(): FcGuiHopper
+    fun openChestGui(
+        player: FcPlayer,
+        title: String? = null,
+        height: Int = 3
+    ): FcGui<FcGuiLayoutGrid>
 }

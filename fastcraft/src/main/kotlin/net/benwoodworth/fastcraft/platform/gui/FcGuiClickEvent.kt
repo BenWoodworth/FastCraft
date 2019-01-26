@@ -5,19 +5,19 @@ import net.benwoodworth.fastcraft.platform.player.FcPlayer
 
 interface FcGuiClickEvent : FcEvent {
 
-    val gui: FcGui
+    val gui: FcGui<*>
 
-    val player: FcPlayer?
+    val player: FcPlayer
 
-    val primary: Boolean
+    val isPrimaryClick: Boolean
 
-    val secondary: Boolean
+    val isSecondaryClick: Boolean
 
-    val middle: Boolean
+    val isMiddleClick: Boolean
 
-    val double: Boolean
+    val isDoubleClick: Boolean
 
-    val number: Int?
+    val isShiftClick: Boolean
 
-    val shift: Boolean
+    val numberKeyPressed: Int?
 }

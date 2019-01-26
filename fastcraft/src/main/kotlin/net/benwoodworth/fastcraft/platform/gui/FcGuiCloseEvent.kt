@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.platform.player.FcPlayer
 
 interface FcGuiCloseEvent : FcEvent {
 
-    val gui: FcGui
+    val gui: FcGui<*>
 
-    val player: FcPlayer?
+    val player: FcPlayer
 }
