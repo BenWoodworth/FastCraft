@@ -24,6 +24,7 @@ class BukkitFcTask_1_13_00_R01(
             return
         }
 
+        @Suppress("DEPRECATION")
         taskId = Bukkit.getScheduler().run {
             when {
                 async && interval != 0L ->
