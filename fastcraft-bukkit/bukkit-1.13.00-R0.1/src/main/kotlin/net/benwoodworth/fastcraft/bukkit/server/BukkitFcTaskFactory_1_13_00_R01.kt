@@ -16,8 +16,8 @@ class BukkitFcTaskFactory_1_13_00_R01(
         return BukkitFcTask_1_13_00_R01(
             plugin,
             async,
-            delaySeconds.let { (it * 20).toLong() },
-            intervalSeconds?.let { (it * 20).toLong() },
+            (delaySeconds * 20.0).toLong(),
+            (intervalSeconds * 20.0).toLong(),
             action
         )
     }
