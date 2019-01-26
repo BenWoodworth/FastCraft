@@ -2,4 +2,4 @@ package net.benwoodworth.fastcraft.bukkit.gui
 
 import net.benwoodworth.fastcraft.platform.gui.FcGuiLayoutGrid
 
-interface BukkitFcGuiGrid : FcGuiLayoutGrid
+interface BukkitFcGuiLayoutGrid : FcGuiLayoutGrid
