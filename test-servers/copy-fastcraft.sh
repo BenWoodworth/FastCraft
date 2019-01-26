@@ -10,7 +10,7 @@ do
 done
 
 # Sponge Servers
-for d in "test-servers/sponge/*/"
+for d in test-servers/sponge/*/
 do
     mkdir -p "$d"/mods/plugins/
     rm -f "$d"/mods/plugins/update/FastCraft*.jar
