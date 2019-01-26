@@ -41,7 +41,7 @@ class BukkitFcItemFactory_1_13_00_R01 @Inject constructor(
         displayName: String?,
         lore: List<String>?
     ): FcItem {
-        val itemStack = this.bukkit.itemStack
+        val itemStack = this.bukkit.cloneItemStack()
 
         itemStack.type = type.bukkit.material
         itemStack.amount = amount

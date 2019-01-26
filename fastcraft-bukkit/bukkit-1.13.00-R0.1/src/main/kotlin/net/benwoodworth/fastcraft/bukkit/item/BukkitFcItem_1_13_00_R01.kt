@@ -7,7 +7,7 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.ItemMeta
 
 class BukkitFcItem_1_13_00_R01(
-    override val itemStack: ItemStack,
+    private val itemStack: ItemStack,
     private val itemTypes: FcItemTypes
 ) : BukkitFcItem {
 
@@ -26,4 +26,8 @@ class BukkitFcItem_1_13_00_R01(
 
     override val lore: List<String>?
         get() = meta?.lore?.toList()
+
+    override fun cloneItemStack(): ItemStack {
+        return itemStack.clone()
+    }
 }
