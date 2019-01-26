@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft.platform.gui
 
-import net.benwoodworth.fastcraft.platform.gui.layout.FcGuiLayout
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 
 interface FcGui<TLayout : FcGuiLayout> {

@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform.gui.layout
+package net.benwoodworth.fastcraft.platform.gui
 
 interface FcGuiLayoutGrid : FcGuiLayout {
 

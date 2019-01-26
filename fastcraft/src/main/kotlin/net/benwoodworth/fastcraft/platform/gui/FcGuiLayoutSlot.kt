@@ -1,6 +1,5 @@
-package net.benwoodworth.fastcraft.platform.gui.layout
+package net.benwoodworth.fastcraft.platform.gui
 
-import net.benwoodworth.fastcraft.platform.gui.FcGuiClickEvent
 import net.benwoodworth.fastcraft.platform.item.FcItem
 
 interface FcGuiLayoutSlot : FcGuiLayoutGrid {
