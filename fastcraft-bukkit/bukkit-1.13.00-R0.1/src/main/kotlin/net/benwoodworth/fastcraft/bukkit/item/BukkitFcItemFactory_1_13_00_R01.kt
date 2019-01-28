@@ -12,7 +12,7 @@ class BukkitFcItemFactory_1_13_00_R01 @Inject constructor(
 ) : BukkitFcItemFactory {
 
     override fun FcItem(itemStack: ItemStack): FcItem {
-        return BukkitFcItem_1_13_00_R01(itemStack, itemTypes)
+        return BukkitFcItem_1_13_00_R01(itemStack.clone(), itemTypes)
     }
 
     override fun FcItem(
@@ -32,7 +32,7 @@ class BukkitFcItemFactory_1_13_00_R01 @Inject constructor(
             itemStack.itemMeta = meta
         }
 
-        return FcItem(itemStack)
+        return BukkitFcItem_1_13_00_R01(itemStack, itemTypes)
     }
 
     override fun FcItem(
@@ -42,7 +42,7 @@ class BukkitFcItemFactory_1_13_00_R01 @Inject constructor(
         displayName: String?,
         lore: List<String>?
     ): FcItem {
-        val itemStack = copy.bukkit.cloneItemStack()
+        val itemStack = copy.bukkit.toItemStack()
 
         itemStack.type = type.bukkit.material
         itemStack.amount = amount
@@ -56,6 +56,6 @@ class BukkitFcItemFactory_1_13_00_R01 @Inject constructor(
             itemStack.itemMeta = meta
         }
 
-        return FcItem(itemStack)
+        return BukkitFcItem_1_13_00_R01(itemStack, itemTypes)
     }
 }

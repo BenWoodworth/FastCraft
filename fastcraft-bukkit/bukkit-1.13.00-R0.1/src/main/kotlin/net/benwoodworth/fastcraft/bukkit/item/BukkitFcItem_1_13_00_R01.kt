@@ -27,7 +27,7 @@ class BukkitFcItem_1_13_00_R01(
     override val lore: List<String>?
         get() = meta?.lore?.toList()
 
-    override fun cloneItemStack(): ItemStack {
+    override fun toItemStack(): ItemStack {
         return itemStack.clone()
     }
 }

@@ -17,7 +17,7 @@ class BukkitFcGuiLayoutSlot_1_13_00_R01(
             FcItem(inventory.getItem(slotIndex))
         }
         set(value) {
-            inventory.setItem(slotIndex, value?.bukkit?.cloneItemStack())
+            inventory.setItem(slotIndex, value?.bukkit?.toItemStack())
         }
 
     override fun setClickHandler(column: Int, row: Int, handler: (event: FcGuiClickEvent) -> Unit) {

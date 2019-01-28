@@ -5,5 +5,5 @@ import org.bukkit.inventory.ItemStack
 
 interface BukkitFcItem : FcItem {
 
-    fun cloneItemStack(): ItemStack
+    fun toItemStack(): ItemStack
 }
