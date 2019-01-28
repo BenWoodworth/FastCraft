@@ -1,5 +1,7 @@
 package net.benwoodworth.fastcraft.platform.item
 
+import net.benwoodworth.fastcraft.platform.text.FcLegacyText
+
 interface FcItemFactory {
 
     fun FcItem(
@@ -13,7 +15,7 @@ interface FcItemFactory {
         copy: FcItem,
         type: FcItemType = copy.type,
         amount: Int = copy.amount,
-        displayName: String? = copy.displayName,
-        lore: List<String>? = copy.lore
+        displayName: FcLegacyText? = copy.displayName,
+        lore: List<FcLegacyText>? = copy.lore
     ): FcItem
 }

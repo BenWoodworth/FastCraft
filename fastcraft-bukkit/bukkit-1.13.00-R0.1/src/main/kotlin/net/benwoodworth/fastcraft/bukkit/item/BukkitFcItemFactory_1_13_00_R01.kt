@@ -4,6 +4,7 @@ import net.benwoodworth.fastcraft.bukkit.bukkit
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
+import net.benwoodworth.fastcraft.platform.text.FcLegacyText
 import org.bukkit.inventory.ItemStack
 import javax.inject.Inject
 
@@ -18,8 +19,8 @@ class BukkitFcItemFactory_1_13_00_R01 @Inject constructor(
     override fun FcItem(
         type: FcItemType,
         amount: Int,
-        displayName: String?,
-        lore: List<String>?
+        displayName: FcLegacyText?,
+        lore: List<FcLegacyText>?
     ): FcItem {
         val itemStack = ItemStack(type.bukkit.material, amount)
 
@@ -39,8 +40,8 @@ class BukkitFcItemFactory_1_13_00_R01 @Inject constructor(
         copy: FcItem,
         type: FcItemType,
         amount: Int,
-        displayName: String?,
-        lore: List<String>?
+        displayName: FcLegacyText?,
+        lore: List<FcLegacyText>?
     ): FcItem {
         val itemStack = copy.bukkit.toItemStack()
 
