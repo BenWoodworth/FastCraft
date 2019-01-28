@@ -21,10 +21,7 @@ import net.benwoodworth.fastcraft.bukkit.server.BukkitFcLogger
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcPluginData
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTask
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTaskFactory
-import net.benwoodworth.fastcraft.bukkit.text.BukkitFcText
-import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextColor
-import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextColors
-import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextFactory
+import net.benwoodworth.fastcraft.bukkit.text.*
 import net.benwoodworth.fastcraft.platform.config.FcConfig
 import net.benwoodworth.fastcraft.platform.config.FcConfigEntry
 import net.benwoodworth.fastcraft.platform.config.FcConfigFactory
@@ -45,10 +42,7 @@ import net.benwoodworth.fastcraft.platform.server.FcLogger
 import net.benwoodworth.fastcraft.platform.server.FcPluginData
 import net.benwoodworth.fastcraft.platform.server.FcTask
 import net.benwoodworth.fastcraft.platform.server.FcTaskFactory
-import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.platform.text.FcTextColor
-import net.benwoodworth.fastcraft.platform.text.FcTextColors
-import net.benwoodworth.fastcraft.platform.text.FcTextFactory
+import net.benwoodworth.fastcraft.platform.text.*
 
 // config
 val FcConfig.bukkit get() = this as BukkitFcConfig
@@ -94,6 +88,8 @@ val FcTask.bukkit get() = this as BukkitFcTask
 val FcTaskFactory.bukkit get() = this as BukkitFcTaskFactory
 
 // text
+val FcLegacyText.bukkit get() = this as BukkitFcLegacyText
+val FcLegacyTextFactory.bukkit get() = this as BukkitFcLegacyTextFactory
 val FcText.bukkit get() = this as BukkitFcText
 val FcTextColor.bukkit get() = this as BukkitFcTextColor
 val FcTextColors.bukkit get() = this as BukkitFcTextColors
