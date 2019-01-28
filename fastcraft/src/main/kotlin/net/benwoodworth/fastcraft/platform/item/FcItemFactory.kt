@@ -9,10 +9,11 @@ interface FcItemFactory {
         lore: List<String>? = null
     ): FcItem
 
-    fun FcItem.copy(
-        type: FcItemType = this.type,
-        amount: Int = this.amount,
-        displayName: String? = this.displayName,
-        lore: List<String>? = this.lore
+    fun FcItem(
+        copy: FcItem,
+        type: FcItemType = copy.type,
+        amount: Int = copy.amount,
+        displayName: String? = copy.displayName,
+        lore: List<String>? = copy.lore
     ): FcItem
 }

@@ -35,13 +35,14 @@ class BukkitFcItemFactory_1_13_00_R01 @Inject constructor(
         return FcItem(itemStack)
     }
 
-    override fun FcItem.copy(
+    override fun FcItem(
+        copy: FcItem,
         type: FcItemType,
         amount: Int,
         displayName: String?,
         lore: List<String>?
     ): FcItem {
-        val itemStack = this.bukkit.cloneItemStack()
+        val itemStack = copy.bukkit.cloneItemStack()
 
         itemStack.type = type.bukkit.material
         itemStack.amount = amount
