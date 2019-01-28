@@ -1,4 +1,3 @@
-
 package net.benwoodworth.fastcraft.bukkit
 
 import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfig
@@ -45,52 +44,52 @@ import net.benwoodworth.fastcraft.platform.server.FcTaskFactory
 import net.benwoodworth.fastcraft.platform.text.*
 
 // config
-val FcConfig.bukkit get() = this as BukkitFcConfig
-val FcConfigEntry.bukkit get() = this as BukkitFcConfigEntry
-val FcConfigFactory.bukkit get() = this as BukkitFcConfigFactory
+inline val FcConfig.bukkit get() = this as BukkitFcConfig
+inline val FcConfigEntry.bukkit get() = this as BukkitFcConfigEntry
+inline val FcConfigFactory.bukkit get() = this as BukkitFcConfigFactory
 
 // event
-val FcEvent.bukkit get() = this as BukkitFcEvent
-//val FcEventListener.bukkit get() = this as BukkitFcEventListener
+inline val FcEvent.bukkit get() = this as BukkitFcEvent
+//inline val FcEventListener.bukkit get() = this as BukkitFcEventListener
 
 // gui
-val <T : FcGuiLayout> FcGui<T>.bukkit get() = this as BukkitFcGui<T>
-val FcGuiClickEvent.bukkit get() = this as BukkitFcGuiClickEvent
-val FcGuiCloseEvent.bukkit get() = this as BukkitFcGuiCloseEvent
-val FcGuiFactory.bukkit get() = this as BukkitFcGuiFactory
-val FcGuiLayout.bukkit get() = this as BukkitFcGuiLayout
-val FcGuiLayoutGrid.bukkit get() = this as BukkitFcGuiLayoutGrid
-val FcGuiLayoutSlot.bukkit get() = this as BukkitFcGuiLayoutSlot
+inline val <T : FcGuiLayout> FcGui<T>.bukkit get() = this as BukkitFcGui<T>
+inline val FcGuiClickEvent.bukkit get() = this as BukkitFcGuiClickEvent
+inline val FcGuiCloseEvent.bukkit get() = this as BukkitFcGuiCloseEvent
+inline val FcGuiFactory.bukkit get() = this as BukkitFcGuiFactory
+inline val FcGuiLayout.bukkit get() = this as BukkitFcGuiLayout
+inline val FcGuiLayoutGrid.bukkit get() = this as BukkitFcGuiLayoutGrid
+inline val FcGuiLayoutSlot.bukkit get() = this as BukkitFcGuiLayoutSlot
 
 // item
-val FcItem.bukkit get() = this as BukkitFcItem
-val FcItemFactory.bukkit get() = this as BukkitFcItemFactory
-val FcItemType.bukkit get() = this as BukkitFcItemType
-val FcItemTypes.bukkit get() = this as BukkitFcItemTypes
+inline val FcItem.bukkit get() = this as BukkitFcItem
+inline val FcItemFactory.bukkit get() = this as BukkitFcItemFactory
+inline val FcItemType.bukkit get() = this as BukkitFcItemType
+inline val FcItemTypes.bukkit get() = this as BukkitFcItemTypes
 
 // locale
-val FcLocale.bukkit get() = this as BukkitFcLocale
-val FcTranslatable.bukkit get() = this as BukkitFcTranslatable
+inline val FcLocale.bukkit get() = this as BukkitFcLocale
+inline val FcTranslatable.bukkit get() = this as BukkitFcTranslatable
 
 // player
-val FcPlayer.bukkit get() = this as BukkitFcPlayer
-val FcPlayerProvider.bukkit get() = this as BukkitFcPlayerProvider
+inline val FcPlayer.bukkit get() = this as BukkitFcPlayer
+inline val FcPlayerProvider.bukkit get() = this as BukkitFcPlayerProvider
 
 // recipe
-val FcCraftingRecipe.bukkit get() = this as BukkitFcCraftingRecipe
-val FcIngredient.bukkit get() = this as BukkitFcIngredient
-val FcRecipeService.bukkit get() = this as BukkitFcRecipeService
+inline val FcCraftingRecipe.bukkit get() = this as BukkitFcCraftingRecipe
+inline val FcIngredient.bukkit get() = this as BukkitFcIngredient
+inline val FcRecipeService.bukkit get() = this as BukkitFcRecipeService
 
 // server
-val FcLogger.bukkit get() = this as BukkitFcLogger
-val FcPluginData.bukkit get() = this as BukkitFcPluginData
-val FcTask.bukkit get() = this as BukkitFcTask
-val FcTaskFactory.bukkit get() = this as BukkitFcTaskFactory
+inline val FcLogger.bukkit get() = this as BukkitFcLogger
+inline val FcPluginData.bukkit get() = this as BukkitFcPluginData
+inline val FcTask.bukkit get() = this as BukkitFcTask
+inline val FcTaskFactory.bukkit get() = this as BukkitFcTaskFactory
 
 // text
-val FcLegacyText.bukkit get() = this as BukkitFcLegacyText
-val FcLegacyTextFactory.bukkit get() = this as BukkitFcLegacyTextFactory
-val FcText.bukkit get() = this as BukkitFcText
-val FcTextColor.bukkit get() = this as BukkitFcTextColor
-val FcTextColors.bukkit get() = this as BukkitFcTextColors
-val FcTextFactory.bukkit get() = this as BukkitFcTextFactory
+inline val FcLegacyText.bukkit get() = this as BukkitFcLegacyText
+inline val FcLegacyTextFactory.bukkit get() = this as BukkitFcLegacyTextFactory
+inline val FcText.bukkit get() = this as BukkitFcText
+inline val FcTextColor.bukkit get() = this as BukkitFcTextColor
+inline val FcTextColors.bukkit get() = this as BukkitFcTextColors
+inline val FcTextFactory.bukkit get() = this as BukkitFcTextFactory
