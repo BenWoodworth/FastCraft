@@ -7,8 +7,8 @@ interface FcItemFactory {
     fun FcItem(
         type: FcItemType,
         amount: Int = 1,
-        displayName: String? = null,
-        lore: List<String>? = null
+        displayName: FcLegacyText? = null,
+        lore: List<FcLegacyText>? = null
     ): FcItem
 
     fun FcItem(

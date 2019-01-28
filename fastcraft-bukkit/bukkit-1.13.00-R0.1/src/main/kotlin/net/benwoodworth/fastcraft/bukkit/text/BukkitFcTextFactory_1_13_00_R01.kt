@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
 import net.benwoodworth.fastcraft.platform.locale.FcTranslatable
+import net.benwoodworth.fastcraft.platform.text.FcLegacyText
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
 
@@ -50,5 +51,9 @@ class BukkitFcTextFactory_1_13_00_R01 : BukkitFcTextFactory {
             obfuscate = obfuscate,
             extra = extra
         )
+    }
+
+    override fun FcText(legacyText: FcLegacyText): FcText {
+        return FcText(legacyText)
     }
 }
