@@ -6,11 +6,11 @@ import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemFactory
 import org.bukkit.inventory.Inventory
 
-class BukkitFcGuiLayoutSlot_1_13_00_R01(
+class BukkitFcGuiButton_1_13_00_R01(
     private val inventory: Inventory,
     private val slotIndex: Int,
     private val itemFactory: FcItemFactory
-) : BukkitFcGuiLayoutSlot {
+) : BukkitFcGuiButton {
 
     override var item: FcItem?
         get() = with(itemFactory.bukkit) {

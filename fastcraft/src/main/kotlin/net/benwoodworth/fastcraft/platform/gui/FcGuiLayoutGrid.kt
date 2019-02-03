@@ -6,5 +6,5 @@ interface FcGuiLayoutGrid : FcGuiLayout {
 
     val height: Int
 
-    operator fun get(column: Int, row: Int): FcGuiLayoutSlot
+    fun getButton(column: Int, row: Int): FcGuiButton
 }

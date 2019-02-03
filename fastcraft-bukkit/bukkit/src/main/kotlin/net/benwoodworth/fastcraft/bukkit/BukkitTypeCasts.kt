@@ -59,7 +59,7 @@ inline val FcGuiCloseEvent.bukkit get() = this as BukkitFcGuiCloseEvent
 inline val FcGuiFactory.bukkit get() = this as BukkitFcGuiFactory
 inline val FcGuiLayout.bukkit get() = this as BukkitFcGuiLayout
 inline val FcGuiLayoutGrid.bukkit get() = this as BukkitFcGuiLayoutGrid
-inline val FcGuiLayoutSlot.bukkit get() = this as BukkitFcGuiLayoutSlot
+inline val FcGuiButton.bukkit get() = this as BukkitFcGuiButton
 
 // item
 inline val FcItem.bukkit get() = this as BukkitFcItem

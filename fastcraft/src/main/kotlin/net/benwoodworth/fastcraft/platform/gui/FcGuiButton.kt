@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.platform.gui
 
 import net.benwoodworth.fastcraft.platform.item.FcItem
 
-interface FcGuiLayoutSlot {
+interface FcGuiButton {
 
     var item: FcItem?
 

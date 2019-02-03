@@ -6,6 +6,7 @@ import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcLegacyText
 
 class BukkitFcGui_1_13_00_R01<TLayout : FcGuiLayout> : BukkitFcGui<TLayout> {
+
     override val layout: TLayout
         get() = TODO("not implemented")
     override val title: FcLegacyText
