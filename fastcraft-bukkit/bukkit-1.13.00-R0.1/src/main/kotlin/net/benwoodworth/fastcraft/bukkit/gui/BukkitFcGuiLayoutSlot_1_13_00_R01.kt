@@ -20,11 +20,7 @@ class BukkitFcGuiLayoutSlot_1_13_00_R01(
             inventory.setItem(slotIndex, value?.bukkit?.toItemStack())
         }
 
-    override fun setClickHandler(column: Int, row: Int, handler: (event: FcGuiClickEvent) -> Unit) {
-        TODO("not implemented")
-    }
-
-    override fun removeClickHandler(column: Int, row: Int) {
-        TODO("not implemented")
-    }
+    override var clickHandler: ((event: FcGuiClickEvent) -> Unit)?
+        get() = TODO("not implemented")
+        set(value) {}
 }
