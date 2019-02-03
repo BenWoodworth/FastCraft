@@ -10,14 +10,12 @@ class BukkitFcItemType_1_13_00_R01(
 
     override val name: FcTranslatable
         get() = BukkitFcTranslatable_1_13_00_R01(
-            with(material.key) { "item.$namespace.$key" },
-            material.name // TODO
+            with(material.key) { "item.$namespace.$key" }
         )
 
     override val description: FcTranslatable
         get() = BukkitFcTranslatable_1_13_00_R01(
-            with(material.key) { "item.$namespace.$key.description" },
-            "None" // TODO
+            with(material.key) { "item.$namespace.$key.description" }
         )
 
     override val maxAmount: Int

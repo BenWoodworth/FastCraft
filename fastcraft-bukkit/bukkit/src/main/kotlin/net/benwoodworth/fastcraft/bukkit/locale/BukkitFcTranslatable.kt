@@ -5,5 +5,5 @@ import net.benwoodworth.fastcraft.platform.locale.FcTranslatable
 
 interface BukkitFcTranslatable : FcTranslatable {
 
-    fun translate(locale: FcLocale): String
+    fun translate(locale: FcLocale): String?
 }
