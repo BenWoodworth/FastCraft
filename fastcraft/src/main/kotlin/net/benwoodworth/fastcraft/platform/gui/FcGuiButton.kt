@@ -4,7 +4,7 @@ import net.benwoodworth.fastcraft.platform.item.FcItem
 
 interface FcGuiButton {
 
-    var item: FcItem?
-
     var clickHandler: ((event: FcGuiClickEvent) -> Unit)?
+
+    fun setItem(item: FcItem?)
 }

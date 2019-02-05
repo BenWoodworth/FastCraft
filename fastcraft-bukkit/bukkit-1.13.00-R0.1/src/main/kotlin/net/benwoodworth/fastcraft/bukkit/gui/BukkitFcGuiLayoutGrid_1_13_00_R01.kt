@@ -1,14 +1,15 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
+import org.bukkit.inventory.Inventory
 
-class BukkitFcGuiLayoutGrid_1_13_00_R01 : BukkitFcGuiLayoutGrid {
-    override val width: Int
-        get() = TODO("not implemented")
-    override val height: Int
-        get() = TODO("not implemented")
+class BukkitFcGuiLayoutGrid_1_13_00_R01(
+    override val width: Int,
+    override val height: Int,
+    inventory: Inventory
+) : BukkitFcGuiLayout_1_13_00_R01(inventory), BukkitFcGuiLayoutGrid {
 
     override fun getButton(column: Int, row: Int): FcGuiButton {
-        TODO("not implemented")
+        return getSlotButtonOrCreate(row * width + column)
     }
 }

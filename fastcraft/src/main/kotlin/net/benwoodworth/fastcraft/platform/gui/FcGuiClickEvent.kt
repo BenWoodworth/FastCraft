@@ -1,13 +1,12 @@
 package net.benwoodworth.fastcraft.platform.gui
 
 import net.benwoodworth.fastcraft.platform.event.FcEvent
-import net.benwoodworth.fastcraft.platform.player.FcPlayer
 
 interface FcGuiClickEvent : FcEvent {
 
     val gui: FcGui<*>
 
-    val player: FcPlayer
+    val button: FcGuiButton
 
     val isPrimaryClick: Boolean
 
@@ -18,6 +17,10 @@ interface FcGuiClickEvent : FcEvent {
     val isDoubleClick: Boolean
 
     val isShiftClick: Boolean
+
+    val isControlClick: Boolean
+
+    val isDropClick: Boolean
 
     val numberKeyPressed: Int?
 }

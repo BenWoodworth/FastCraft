@@ -7,13 +7,11 @@ interface FcGui<TLayout : FcGuiLayout> {
 
     val layout: TLayout
 
-    val title: FcLegacyText
+    val title: FcLegacyText?
 
     val player: FcPlayer
 
+    val closeHandler: ((event: FcGuiCloseEvent) -> Unit)?
+
     fun close()
-
-    fun setCloseHandler(handler: (event: FcGuiClickEvent) -> Unit)
-
-    fun removeCloseHandler(handler: (event: FcGuiClickEvent) -> Unit)
 }
