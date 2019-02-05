@@ -6,10 +6,4 @@ import net.benwoodworth.fastcraft.platform.player.FcPlayerJoinEvent
 interface FcServerListeners {
 
     val onPlayerJoin: FcEventListener<FcPlayerJoinEvent>
-
-    val onPluginLoad: FcEventListener<FcPluginLoadEvent>
-
-    val onPluginEnable: FcEventListener<FcPluginEnableEvent>
-
-    val onPluginDisable: FcEventListener<FcPluginDisableEvent>
 }

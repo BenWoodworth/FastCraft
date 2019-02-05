@@ -4,6 +4,7 @@ import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfig
 import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfigEntry
 import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfigFactory
 import net.benwoodworth.fastcraft.bukkit.event.BukkitFcEvent
+import net.benwoodworth.fastcraft.bukkit.event.BukkitFcEventListener
 import net.benwoodworth.fastcraft.bukkit.gui.*
 import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItem
 import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemFactory
@@ -16,15 +17,13 @@ import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerProvider
 import net.benwoodworth.fastcraft.bukkit.recipe.BukkitFcCraftingRecipe
 import net.benwoodworth.fastcraft.bukkit.recipe.BukkitFcIngredient
 import net.benwoodworth.fastcraft.bukkit.recipe.BukkitFcRecipeService
-import net.benwoodworth.fastcraft.bukkit.server.BukkitFcLogger
-import net.benwoodworth.fastcraft.bukkit.server.BukkitFcPluginData
-import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTask
-import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTaskFactory
+import net.benwoodworth.fastcraft.bukkit.server.*
 import net.benwoodworth.fastcraft.bukkit.text.*
 import net.benwoodworth.fastcraft.platform.config.FcConfig
 import net.benwoodworth.fastcraft.platform.config.FcConfigEntry
 import net.benwoodworth.fastcraft.platform.config.FcConfigFactory
 import net.benwoodworth.fastcraft.platform.event.FcEvent
+import net.benwoodworth.fastcraft.platform.event.FcEventListener
 import net.benwoodworth.fastcraft.platform.gui.*
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemFactory
@@ -37,10 +36,7 @@ import net.benwoodworth.fastcraft.platform.player.FcPlayerProvider
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcIngredient
 import net.benwoodworth.fastcraft.platform.recipe.FcRecipeService
-import net.benwoodworth.fastcraft.platform.server.FcLogger
-import net.benwoodworth.fastcraft.platform.server.FcPluginData
-import net.benwoodworth.fastcraft.platform.server.FcTask
-import net.benwoodworth.fastcraft.platform.server.FcTaskFactory
+import net.benwoodworth.fastcraft.platform.server.*
 import net.benwoodworth.fastcraft.platform.text.*
 
 // config
@@ -50,7 +46,7 @@ inline val FcConfigFactory.bukkit get() = this as BukkitFcConfigFactory
 
 // event
 inline val FcEvent.bukkit get() = this as BukkitFcEvent
-//inline val FcEventListener.bukkit get() = this as BukkitFcEventListener
+inline val <T : FcEvent> FcEventListener<T>.bukkit get() = this as BukkitFcEventListener<T>
 
 // gui
 inline val <T : FcGuiLayout> FcGui<T>.bukkit get() = this as BukkitFcGui<T>
@@ -83,6 +79,7 @@ inline val FcRecipeService.bukkit get() = this as BukkitFcRecipeService
 // server
 inline val FcLogger.bukkit get() = this as BukkitFcLogger
 inline val FcPluginData.bukkit get() = this as BukkitFcPluginData
+inline val FcServerListeners.bukkit get() = this as BukkitFcServerListeners
 inline val FcTask.bukkit get() = this as BukkitFcTask
 inline val FcTaskFactory.bukkit get() = this as BukkitFcTaskFactory
 

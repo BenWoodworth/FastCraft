@@ -10,7 +10,9 @@ import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerProvider_1_13_00_R
 import net.benwoodworth.fastcraft.bukkit.recipe.BukkitFcRecipeService_1_13_00_R01
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcLogger_1_13_00_R01
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcPluginData_1_13_00_R01
+import net.benwoodworth.fastcraft.bukkit.server.BukkitFcServerListeners_1_13_00_R01
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTaskFactory_1_13_00_R01
+import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextColors_1_13_00_R01
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextFactory_1_13_00_R01
 import net.benwoodworth.fastcraft.platform.config.FcConfigFactory
 import net.benwoodworth.fastcraft.platform.gui.FcGuiFactory
@@ -20,7 +22,9 @@ import net.benwoodworth.fastcraft.platform.player.FcPlayerProvider
 import net.benwoodworth.fastcraft.platform.recipe.FcRecipeService
 import net.benwoodworth.fastcraft.platform.server.FcLogger
 import net.benwoodworth.fastcraft.platform.server.FcPluginData
+import net.benwoodworth.fastcraft.platform.server.FcServerListeners
 import net.benwoodworth.fastcraft.platform.server.FcTaskFactory
+import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.plugin.Plugin
 import javax.inject.Singleton
@@ -29,6 +33,12 @@ import javax.inject.Singleton
 class BukkitDaggerModule_1_13_00_R01(
     private val plugin: Plugin
 ) {
+
+    @Provides
+    @Singleton
+    fun providePlugin(): Plugin {
+        return plugin
+    }
 
     @Provides
     @Singleton
@@ -87,6 +97,18 @@ class BukkitDaggerModule_1_13_00_R01(
     @Provides
     @Singleton
     fun provideFcTextFactory(instance: BukkitFcTextFactory_1_13_00_R01): FcTextFactory {
+        return instance
+    }
+
+    @Provides
+    @Singleton
+    fun provideFcTextColors(instance: BukkitFcTextColors_1_13_00_R01): FcTextColors {
+        return instance
+    }
+
+    @Provides
+    @Singleton
+    fun provideFcServerListeners(instance: BukkitFcServerListeners_1_13_00_R01): FcServerListeners {
         return instance
     }
 }
