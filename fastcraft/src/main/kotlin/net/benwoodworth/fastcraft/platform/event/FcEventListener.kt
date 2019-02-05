@@ -2,9 +2,7 @@ package net.benwoodworth.fastcraft.platform.event
 
 interface FcEventListener<TEvent : FcEvent> {
 
-    fun subscribe(handler: FcEventHandler<TEvent>)
+    operator fun plusAssign(handler: (event: TEvent, listener: FcEventListener<TEvent>) -> Unit)
 
-    fun unsubscribe(handler: FcEventHandler<TEvent>)
+    operator fun minusAssign(handler: (event: TEvent, listener: FcEventListener<TEvent>) -> Unit)
 }
-
-
