@@ -9,19 +9,19 @@ import javax.inject.Inject
 
 class FastCraft @Inject internal constructor(
     private val logger: FcLogger,
-    serverListeners: FcServerListeners,
+    private val serverListeners: FcServerListeners,
     private val textFactory: FcTextFactory,
     private val textColors: FcTextColors
 ) {
 
     init {
         logger.info("FASTCRAFT INITIALIZED")
-
-        serverListeners.onPlayerJoin += ::onPlayerJoin
     }
 
     fun enable() {
         logger.info("FASTCRAFT ENABLED")
+
+        serverListeners.onPlayerJoin += ::onPlayerJoin
     }
 
     fun disable() {

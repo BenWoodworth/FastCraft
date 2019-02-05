@@ -1,7 +1,7 @@
 object Versions {
     val java = "1.6"
-    val kotlin = "1.3.10"
-    val kotlin_serialization = "0.9.1"
+    val kotlin = "1.3.20"
+    val kotlin_serialization = "0.10.0"
 
     val dagger = "2.17"
     val jsr250 = "1.0"

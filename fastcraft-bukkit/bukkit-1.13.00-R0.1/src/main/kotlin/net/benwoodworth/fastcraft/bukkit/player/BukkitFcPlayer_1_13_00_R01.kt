@@ -32,7 +32,9 @@ class BukkitFcPlayer_1_13_00_R01(
 
     override fun sendMessage(message: FcText) {
         with(rawTextFactory) {
-            player.sendRawMessage(BukkitFcRawText(message).toJson())
+            val raw = BukkitFcRawText(message).toJson() // TODO Remove debug code
+            println(raw)
+            player.sendRawMessage(raw)
         }
     }
 
