@@ -23,6 +23,7 @@ import net.benwoodworth.fastcraft.platform.server.FcLogger
 import net.benwoodworth.fastcraft.platform.server.FcPluginData
 import net.benwoodworth.fastcraft.platform.server.FcServerListeners
 import net.benwoodworth.fastcraft.platform.server.FcTaskFactory
+import net.benwoodworth.fastcraft.platform.text.FcLegacyTextFactory
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.plugin.Plugin
@@ -101,7 +102,7 @@ class BukkitDaggerModule_1_13_00_R01(
 
     @Provides
     @Singleton
-    fun provideBukkitFcLegacyTextFactory(instance: BukkitFcLegacyTextFactory_1_13_00_R01): BukkitFcLegacyTextFactory {
+    fun provideFcLegacyTextFactory(instance: BukkitFcLegacyTextFactory_1_13_00_R01): FcLegacyTextFactory {
         return instance
     }
 

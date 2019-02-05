@@ -57,15 +57,15 @@ class BukkitFcLegacyTextFactory_1_13_00_R01 @Inject constructor(
         }
 
         fcText.bukkit.extra?.forEach { extra ->
-            append(
-                extra,
-                locale,
-                color,
-                bold,
-                italic,
-                underline,
-                strikethrough,
-                obfuscate
+            appendFcText(
+                fcText = extra,
+                locale = locale,
+                parentColor = color,
+                parentBold = bold,
+                parentItalic = italic,
+                parentUnderline = underline,
+                parentStrikethrough = strikethrough,
+                parentObfuscate = obfuscate
             )
         }
     }
