@@ -1,8 +1,10 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
+import javax.inject.Inject
 
-class BukkitFcTextColors_1_13_00_R01 : BukkitFcTextColors {
+class BukkitFcTextColors_1_13_00_R01 @Inject constructor(
+) : BukkitFcTextColors {
 
     override val black = BukkitFcTextColor_1_13_00_R01("black", '0')
     override val darkBlue = BukkitFcTextColor_1_13_00_R01("dark_blue", '1')

@@ -6,19 +6,20 @@ import net.benwoodworth.fastcraft.platform.text.FcLegacyText
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
+import javax.inject.Inject
 
-class BukkitFcLegacyTextFactory_1_13_00_R0_1(
+class BukkitFcLegacyTextFactory_1_13_00_R01 @Inject constructor(
     private val textColors: FcTextColors
 ) : BukkitFcLegacyTextFactory {
 
     override fun FcLegacyText(legacyText: String): FcLegacyText {
-        return BukkitFcLegacyText_1_13_00_R0_1(legacyText)
+        return BukkitFcLegacyText_1_13_00_R01(legacyText)
     }
 
     override fun FcLegacyText(text: FcText, locale: FcLocale): FcLegacyText {
         val stringBuilder = StringBuilder()
         stringBuilder.appendFcText(text, locale)
-        return BukkitFcLegacyText_1_13_00_R0_1(stringBuilder.toString())
+        return BukkitFcLegacyText_1_13_00_R01(stringBuilder.toString())
     }
 
     private fun StringBuilder.appendFcText(
