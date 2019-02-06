@@ -6,6 +6,7 @@ import net.benwoodworth.fastcraft.platform.text.FcLegacyText
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
+import org.bukkit.ChatColor
 import javax.inject.Inject
 
 class BukkitFcLegacyTextFactory_1_13_00_R01 @Inject constructor(
@@ -33,8 +34,7 @@ class BukkitFcLegacyTextFactory_1_13_00_R01 @Inject constructor(
         parentObfuscate: Boolean = false
     ) {
         val color = fcText.bukkit.color ?: parentColor
-        append('§')
-        append(color.bukkit.legacyCode)
+        append(color.bukkit.chatColor)
 
         val bold = fcText.bukkit.bold ?: parentBold
         val italic = fcText.bukkit.italic ?: parentItalic
@@ -42,11 +42,11 @@ class BukkitFcLegacyTextFactory_1_13_00_R01 @Inject constructor(
         val strikethrough = fcText.bukkit.strikethrough ?: parentStrikethrough
         val obfuscate = fcText.bukkit.obfuscate ?: parentObfuscate
 
-        if (bold) append("§l")
-        if (italic) append("§o")
-        if (underline) append("§n")
-        if (strikethrough) append("§m")
-        if (obfuscate) append("§k")
+        if (bold) append(ChatColor.BOLD)
+        if (italic) append(ChatColor.ITALIC)
+        if (underline) append(ChatColor.UNDERLINE)
+        if (strikethrough) append(ChatColor.STRIKETHROUGH)
+        if (obfuscate) append(ChatColor.MAGIC)
 
         val text = fcText.bukkit.text
         val translate = fcText.bukkit.translate
