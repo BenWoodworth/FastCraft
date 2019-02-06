@@ -3,6 +3,7 @@ prefix: "${plugin_name}"
 author: "${plugin_author}"
 version: "${plugin_version}"
 website: "${plugin_website}"
+api-version: "1.13"
 
 description: "${plugin_description}"
 
