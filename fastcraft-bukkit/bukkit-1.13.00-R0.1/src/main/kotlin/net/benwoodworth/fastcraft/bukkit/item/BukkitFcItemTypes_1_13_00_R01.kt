@@ -2,8 +2,10 @@ package net.benwoodworth.fastcraft.bukkit.item
 
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import org.bukkit.Material
+import javax.inject.Inject
 
-class BukkitFcItemTypes_1_13_00_R01 : BukkitFcItemTypes {
+class BukkitFcItemTypes_1_13_00_R01 @Inject constructor(
+) : BukkitFcItemTypes {
 
     override val air = BukkitFcItemType_1_13_00_R01(Material.AIR)
 
