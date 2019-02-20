@@ -7,7 +7,6 @@ import net.benwoodworth.fastcraft.platform.gui.FcGuiLayout
 import net.benwoodworth.fastcraft.platform.server.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcLegacyText
 import net.benwoodworth.fastcraft.platform.text.FcLegacyTextFactory
-import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.HandlerList
@@ -17,6 +16,7 @@ import org.bukkit.event.server.PluginDisableEvent
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.InventoryHolder
 import org.bukkit.plugin.Plugin
+import org.bukkit.plugin.PluginManager
 
 
 class BukkitFcGui_1_13_00_R01<TLayout : FcGuiLayout>(
@@ -24,7 +24,8 @@ class BukkitFcGui_1_13_00_R01<TLayout : FcGuiLayout>(
     createInventory: (owner: InventoryHolder) -> Inventory,
     createLayout: (inventory: Inventory) -> TLayout,
     plugin: Plugin,
-    private val legacyTextFactory: FcLegacyTextFactory
+    private val legacyTextFactory: FcLegacyTextFactory,
+    private val pluginManager: PluginManager
 ) : BukkitFcGui<TLayout>, InventoryHolder, Listener {
 
     override val onClose: HandlerSet<FcGuiCloseEvent> = HandlerSet()
@@ -40,7 +41,7 @@ class BukkitFcGui_1_13_00_R01<TLayout : FcGuiLayout>(
 
     init {
         @Suppress("LeakingThis")
-        Bukkit.getPluginManager().registerEvents(this, plugin)
+        pluginManager.registerEvents(this, plugin)
 
         player.bukkit.player.openInventory(inventory)
     }

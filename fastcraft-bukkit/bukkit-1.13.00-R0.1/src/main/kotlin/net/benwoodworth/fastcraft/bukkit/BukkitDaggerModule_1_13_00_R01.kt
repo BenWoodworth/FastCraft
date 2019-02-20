@@ -18,18 +18,38 @@ import net.benwoodworth.fastcraft.platform.server.*
 import net.benwoodworth.fastcraft.platform.text.FcLegacyTextFactory
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
+import org.bukkit.Bukkit
+import org.bukkit.Server
 import org.bukkit.plugin.Plugin
+import org.bukkit.plugin.PluginManager
+import org.bukkit.scheduler.BukkitScheduler
 import javax.inject.Singleton
 
 @Module
 class BukkitDaggerModule_1_13_00_R01(
-    private val plugin: Plugin
+    private val plugin: Plugin,
+    private val server: Server
 ) {
 
     @Provides
     @Singleton
     fun providePlugin(): Plugin {
         return plugin
+    }
+
+    @Provides
+    fun provideServer(): Server {
+        return Bukkit.getServer()
+    }
+
+    @Provides
+    fun providePluginManager(server: Server): PluginManager {
+        return server.pluginManager
+    }
+
+    @Provides
+    fun provideScheduler(server: Server): BukkitScheduler {
+        return server.scheduler
     }
 
     @Provides

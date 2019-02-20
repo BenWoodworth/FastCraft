@@ -1,15 +1,16 @@
 package net.benwoodworth.fastcraft.bukkit.server
 
 import net.benwoodworth.fastcraft.platform.server.FcTask
-import org.bukkit.Bukkit
 import org.bukkit.plugin.Plugin
+import org.bukkit.scheduler.BukkitScheduler
 
 class BukkitFcTask_1_13_00_R01(
     private val plugin: Plugin,
     private val async: Boolean,
     private val delay: Long,
     private val interval: Long,
-    action: (task: FcTask) -> Unit
+    action: (task: FcTask) -> Unit,
+    private val scheduler: BukkitScheduler
 ) : BukkitFcTask {
 
     private val action = { action(this) }
@@ -25,7 +26,7 @@ class BukkitFcTask_1_13_00_R01(
         }
 
         @Suppress("DEPRECATION")
-        taskId = Bukkit.getScheduler().run {
+        taskId = scheduler.run {
             when {
                 async && interval != 0L ->
                     scheduleAsyncRepeatingTask(plugin, action, delay, interval)
@@ -43,7 +44,7 @@ class BukkitFcTask_1_13_00_R01(
 
     override fun cancel() {
         taskId?.let {
-            Bukkit.getScheduler().cancelTask(it)
+            scheduler.cancelTask(it)
             taskId = null
         }
     }

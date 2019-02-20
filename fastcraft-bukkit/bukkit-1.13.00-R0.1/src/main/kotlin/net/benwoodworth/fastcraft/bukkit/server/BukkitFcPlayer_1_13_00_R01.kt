@@ -4,13 +4,14 @@ import net.benwoodworth.fastcraft.bukkit.locale.BukkitFcLocale_1_13_00_R01
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcRawTextFactory
 import net.benwoodworth.fastcraft.platform.locale.FcLocale
 import net.benwoodworth.fastcraft.platform.text.FcText
-import org.bukkit.Bukkit
+import org.bukkit.Server
 import org.bukkit.entity.Player
 import java.util.*
 
 class BukkitFcPlayer_1_13_00_R01(
     override val player: Player,
-    private val rawTextFactory: BukkitFcRawTextFactory
+    private val rawTextFactory: BukkitFcRawTextFactory,
+    private val server: Server
 ) : BukkitFcPlayer {
 
     override val username: String
@@ -34,7 +35,7 @@ class BukkitFcPlayer_1_13_00_R01(
     override fun sendMessage(message: FcText) {
         with(rawTextFactory) {
             val json = BukkitFcRawText(message).toJson()
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tellraw $username $json")
+            server.dispatchCommand(server.consoleSender, "tellraw $username $json")
         }
     }
 

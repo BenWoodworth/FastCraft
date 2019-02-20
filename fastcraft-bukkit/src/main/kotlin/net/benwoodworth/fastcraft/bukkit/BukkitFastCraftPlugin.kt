@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit
 
 import net.benwoodworth.fastcraft.FastCraft
+import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 
 @Suppress("unused")
@@ -18,7 +19,7 @@ class BukkitFastCraftPlugin : JavaPlugin() {
 
     private fun createFastCraft(): FastCraft {
         val factory = DaggerBukkitFastCraftFactory_1_13_00_R01.builder()
-            .bukkitDaggerModule_1_13_00_R01(BukkitDaggerModule_1_13_00_R01(this))
+            .bukkitDaggerModule_1_13_00_R01(BukkitDaggerModule_1_13_00_R01(this, Bukkit.getServer()))
             .build()
 
         return with(factory) {

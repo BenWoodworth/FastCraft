@@ -6,22 +6,26 @@ import net.benwoodworth.fastcraft.platform.gui.FcGuiLayoutGrid
 import net.benwoodworth.fastcraft.platform.server.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcLegacyText
 import net.benwoodworth.fastcraft.platform.text.FcLegacyTextFactory
-import org.bukkit.Bukkit
+import org.bukkit.Server
 import org.bukkit.plugin.Plugin
+import org.bukkit.plugin.PluginManager
 import javax.inject.Inject
 
 class BukkitFcGuiFactory_1_13_00_R01 @Inject constructor(
     private val plugin: Plugin,
-    private val legacyTextFactory: FcLegacyTextFactory
+    private val legacyTextFactory: FcLegacyTextFactory,
+    private val server: Server,
+    private val pluginManager: PluginManager
 ) : BukkitFcGuiFactory {
 
     override fun openChestGui(player: FcPlayer, title: FcLegacyText?, height: Int): FcGui<FcGuiLayoutGrid> {
         return BukkitFcGui_1_13_00_R01(
             player,
-            { owner -> Bukkit.createInventory(owner, height, title?.bukkit?.legacyText) },
+            { owner -> server.createInventory(owner, height, title?.bukkit?.legacyText) },
             { inventory -> BukkitFcGuiLayoutGrid_1_13_00_R01(9, height, inventory) },
             plugin,
-            legacyTextFactory
+            legacyTextFactory,
+            pluginManager
         )
     }
 }
