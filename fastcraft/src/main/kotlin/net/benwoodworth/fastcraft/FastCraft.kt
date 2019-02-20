@@ -88,24 +88,32 @@ class FastCraft @Inject internal constructor(
             for (y in 0 until layout.height) {
                 val button = layout.getButton(x, y)
 
-                button.setItem(
-                    itemFactory.createFcItem(
-                        type = itemTypes.netherStar,
-                        amount = x + y * layout.width,
-                        displayName = legacyTextFactory.createFcLegacyText(
-                            locale = player.locale,
-                            text = textFactory.createFcText("($x, $y)")
-                        )
+                var item = itemFactory.createFcItem(
+                    type = itemTypes.netherStar,
+                    amount = x + y * layout.width + 1,
+                    displayName = legacyTextFactory.createFcLegacyText(
+                        locale = player.locale,
+                        text = textFactory.createFcText("($x, $y)")
                     )
                 )
 
+                button.setItem(item)
+
                 button.onClick {
                     with(layout.getButton(x, y)) {
-                        setItem(itemFactory.createFcItem(itemTypes.air))
-                        onClick.removeHandlers()
+                        item = itemFactory.createFcItem(
+                            copy = item,
+                            amount = item.amount % 63 + 1
+                        )
+
+                        setItem(item)
                     }
                 }
             }
+        }
+
+        gui.onClose {
+            logger.info("GUI closed!")
         }
     }
 }
