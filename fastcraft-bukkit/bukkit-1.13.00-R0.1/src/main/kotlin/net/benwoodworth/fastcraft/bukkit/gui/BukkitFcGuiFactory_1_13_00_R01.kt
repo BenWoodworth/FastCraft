@@ -21,7 +21,7 @@ class BukkitFcGuiFactory_1_13_00_R01 @Inject constructor(
     override fun openChestGui(player: FcPlayer, title: FcLegacyText?, height: Int): FcGui<FcGuiLayoutGrid> {
         return BukkitFcGui_1_13_00_R01(
             player,
-            { owner -> server.createInventory(owner, height, title?.bukkit?.legacyText) },
+            { owner -> server.createInventory(owner, 9 * height, title?.bukkit?.legacyText) },
             { inventory -> BukkitFcGuiLayoutGrid_1_13_00_R01(9, height, inventory) },
             plugin,
             legacyTextFactory,
