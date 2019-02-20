@@ -18,7 +18,6 @@ import net.benwoodworth.fastcraft.platform.server.*
 import net.benwoodworth.fastcraft.platform.text.FcLegacyTextFactory
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
-import org.bukkit.Bukkit
 import org.bukkit.Server
 import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.PluginManager
@@ -39,7 +38,7 @@ class BukkitDaggerModule_1_13_00_R01(
 
     @Provides
     fun provideServer(): Server {
-        return Bukkit.getServer()
+        return server
     }
 
     @Provides
