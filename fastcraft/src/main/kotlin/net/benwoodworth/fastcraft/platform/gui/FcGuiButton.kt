@@ -1,10 +1,11 @@
 package net.benwoodworth.fastcraft.platform.gui
 
+import net.benwoodworth.fastcraft.events.HandlerSet
 import net.benwoodworth.fastcraft.platform.item.FcItem
 
 interface FcGuiButton {
 
-    var clickHandler: ((event: FcGuiClickEvent) -> Unit)?
+    val onClick: HandlerSet<FcGuiClickEvent>
 
     fun setItem(item: FcItem?)
 }

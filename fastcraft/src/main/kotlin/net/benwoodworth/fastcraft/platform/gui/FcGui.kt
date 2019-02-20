@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.platform.gui
 
-import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.events.HandlerSet
+import net.benwoodworth.fastcraft.platform.server.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcLegacyText
 
 interface FcGui<TLayout : FcGuiLayout> {
@@ -11,7 +12,7 @@ interface FcGui<TLayout : FcGuiLayout> {
 
     val player: FcPlayer
 
-    val closeHandler: ((event: FcGuiCloseEvent) -> Unit)?
+    val onClose: HandlerSet<FcGuiCloseEvent>
 
     fun close()
 }

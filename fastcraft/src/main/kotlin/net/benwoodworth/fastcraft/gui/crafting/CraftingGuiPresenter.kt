@@ -5,7 +5,7 @@
 //import net.benwoodworth.fastcraft.platform.gui.FcGuiClickEvent
 //import net.benwoodworth.fastcraft.platform.gui.FcGuiCloseEvent
 //import net.benwoodworth.fastcraft.platform.gui.mvp.MvpPresenter
-//import net.benwoodworth.fastcraft.platform.player.FcPlayer
+//import net.benwoodworth.fastcraft.platform.server.FcPlayer
 //import net.benwoodworth.fastcraft.platform.text.FcText
 //import net.benwoodworth.fastcraft.platform.server.FcTaskFactory
 //import javax.inject.Provider

@@ -1,6 +1,6 @@
 //package net.benwoodworth.fastcraft.config
 //
-//import net.benwoodworth.fastcraft.platform.player.FcPlayer
+//import net.benwoodworth.fastcraft.platform.server.FcPlayer
 //import net.benwoodworth.fastcraft.platform.config.FcConfig
 //
 //class FcDataConfig(

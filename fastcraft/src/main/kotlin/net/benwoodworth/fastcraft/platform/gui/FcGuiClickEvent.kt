@@ -1,8 +1,6 @@
 package net.benwoodworth.fastcraft.platform.gui
 
-import net.benwoodworth.fastcraft.platform.event.FcEvent
-
-interface FcGuiClickEvent : FcEvent {
+interface FcGuiClickEvent {
 
     val gui: FcGui<*>
 

@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.bukkit.gui
 import net.benwoodworth.fastcraft.bukkit.bukkit
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiLayoutGrid
-import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.server.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcLegacyText
 import net.benwoodworth.fastcraft.platform.text.FcLegacyTextFactory
 import org.bukkit.Bukkit

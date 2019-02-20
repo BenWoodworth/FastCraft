@@ -6,23 +6,15 @@ import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfigFactory_1_13_00_R0
 import net.benwoodworth.fastcraft.bukkit.gui.BukkitFcGuiFactory_1_13_00_R01
 import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemFactory_1_13_00_R01
 import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemTypes_1_13_00_R01
-import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerProvider_1_13_00_R01
 import net.benwoodworth.fastcraft.bukkit.recipe.BukkitFcRecipeService_1_13_00_R01
-import net.benwoodworth.fastcraft.bukkit.server.BukkitFcLogger_1_13_00_R01
-import net.benwoodworth.fastcraft.bukkit.server.BukkitFcPluginData_1_13_00_R01
-import net.benwoodworth.fastcraft.bukkit.server.BukkitFcServerListeners_1_13_00_R01
-import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTaskFactory_1_13_00_R01
+import net.benwoodworth.fastcraft.bukkit.server.*
 import net.benwoodworth.fastcraft.bukkit.text.*
 import net.benwoodworth.fastcraft.platform.config.FcConfigFactory
 import net.benwoodworth.fastcraft.platform.gui.FcGuiFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
-import net.benwoodworth.fastcraft.platform.player.FcPlayerProvider
 import net.benwoodworth.fastcraft.platform.recipe.FcRecipeService
-import net.benwoodworth.fastcraft.platform.server.FcLogger
-import net.benwoodworth.fastcraft.platform.server.FcPluginData
-import net.benwoodworth.fastcraft.platform.server.FcServerListeners
-import net.benwoodworth.fastcraft.platform.server.FcTaskFactory
+import net.benwoodworth.fastcraft.platform.server.*
 import net.benwoodworth.fastcraft.platform.text.FcLegacyTextFactory
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
@@ -120,7 +112,7 @@ class BukkitDaggerModule_1_13_00_R01(
 
     @Provides
     @Singleton
-    fun provideFcServerListeners(instance: BukkitFcServerListeners_1_13_00_R01): FcServerListeners {
+    fun provideFcServerListeners(instance: BukkitFcServer_1_13_00_R01): FcServer {
         return instance
     }
 }

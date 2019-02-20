@@ -1,8 +1,8 @@
 package net.benwoodworth.fastcraft
 
-import net.benwoodworth.fastcraft.platform.player.FcPlayerJoinEvent
 import net.benwoodworth.fastcraft.platform.server.FcLogger
-import net.benwoodworth.fastcraft.platform.server.FcServerListeners
+import net.benwoodworth.fastcraft.platform.server.FcPlayerJoinEvent
+import net.benwoodworth.fastcraft.platform.server.FcServer
 import net.benwoodworth.fastcraft.platform.server.FcTaskFactory
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class FastCraft @Inject internal constructor(
     private val logger: FcLogger,
-    private val serverListeners: FcServerListeners,
+    private val serverListeners: FcServer,
     private val textFactory: FcTextFactory,
     private val textColors: FcTextColors,
     private val taskFactory: FcTaskFactory

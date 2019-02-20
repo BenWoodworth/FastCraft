@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform.player
+package net.benwoodworth.fastcraft.platform.server
 
 import net.benwoodworth.fastcraft.platform.locale.FcLocale
 import net.benwoodworth.fastcraft.platform.text.FcText

@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform.player
+package net.benwoodworth.fastcraft.platform.server
 
 import java.util.*
 

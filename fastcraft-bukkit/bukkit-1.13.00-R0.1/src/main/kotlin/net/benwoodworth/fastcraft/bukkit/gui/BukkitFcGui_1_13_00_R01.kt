@@ -1,9 +1,10 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
 import net.benwoodworth.fastcraft.bukkit.bukkit
+import net.benwoodworth.fastcraft.events.HandlerSet
 import net.benwoodworth.fastcraft.platform.gui.FcGuiCloseEvent
 import net.benwoodworth.fastcraft.platform.gui.FcGuiLayout
-import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.server.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcLegacyText
 import net.benwoodworth.fastcraft.platform.text.FcLegacyTextFactory
 import org.bukkit.Bukkit
@@ -26,7 +27,7 @@ class BukkitFcGui_1_13_00_R01<TLayout : FcGuiLayout>(
     private val legacyTextFactory: FcLegacyTextFactory
 ) : BukkitFcGui<TLayout>, InventoryHolder, Listener {
 
-    override val closeHandler: ((event: FcGuiCloseEvent) -> Unit)? = null
+    override val onClose: HandlerSet<FcGuiCloseEvent> = HandlerSet()
 
     private val inventory: Inventory = createInventory(this)
 
@@ -72,7 +73,7 @@ class BukkitFcGui_1_13_00_R01<TLayout : FcGuiLayout>(
             event.isCancelled = true
 
             layout.bukkit.getSlotButton(slot)?.let {
-                it.clickHandler?.invoke(BukkitFcGuiClickEvent_1_13_00_R01(event, it))
+                it.onClick.notifyHandlers(BukkitFcGuiClickEvent_1_13_00_R01(event, it))
             }
         } else {
             event.isCancelled = when (event.click) {
@@ -118,7 +119,7 @@ class BukkitFcGui_1_13_00_R01<TLayout : FcGuiLayout>(
         }
 
         HandlerList.unregisterAll(this)
-        closeHandler?.invoke(BukkitFcGuiCloseEvent_1_13_00_R01(this))
+        onClose.notifyHandlers(BukkitFcGuiCloseEvent_1_13_00_R01(this))
     }
 
     @Suppress("unused", "UNUSED_PARAMETER")

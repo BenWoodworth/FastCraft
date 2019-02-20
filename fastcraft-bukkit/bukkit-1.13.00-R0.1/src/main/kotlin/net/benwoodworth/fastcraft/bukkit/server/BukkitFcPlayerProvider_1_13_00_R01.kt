@@ -1,7 +1,7 @@
-package net.benwoodworth.fastcraft.bukkit.player
+package net.benwoodworth.fastcraft.bukkit.server
 
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcRawTextFactory
-import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.server.FcPlayer
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import java.util.*
