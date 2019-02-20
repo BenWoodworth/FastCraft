@@ -10,8 +10,8 @@ import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import javax.inject.Inject
 
 class FastCraft @Inject internal constructor(
+    serverListeners: FcServer,
     private val logger: FcLogger,
-    private val serverListeners: FcServer,
     private val textFactory: FcTextFactory,
     private val legacyTextFactory: FcLegacyTextFactory,
     private val textColors: FcTextColors,
@@ -23,10 +23,6 @@ class FastCraft @Inject internal constructor(
 
     init {
         logger.info("FASTCRAFT INITIALIZED")
-    }
-
-    fun enable() {
-        logger.info("FASTCRAFT ENABLED")
 
         serverListeners.onPlayerJoin += ::onPlayerJoin
     }

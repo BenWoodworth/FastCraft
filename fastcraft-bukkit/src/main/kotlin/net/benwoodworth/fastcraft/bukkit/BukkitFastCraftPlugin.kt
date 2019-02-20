@@ -14,8 +14,6 @@ class BukkitFastCraftPlugin : JavaPlugin() {
             .build()
 
         fastCraft = factory.createFastCraft()
-
-        fastCraft.enable()
     }
 
     override fun onDisable() {
