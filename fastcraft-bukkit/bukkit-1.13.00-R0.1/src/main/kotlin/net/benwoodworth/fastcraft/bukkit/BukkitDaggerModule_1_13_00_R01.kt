@@ -26,8 +26,7 @@ import javax.inject.Singleton
 
 @Module
 class BukkitDaggerModule_1_13_00_R01(
-    private val plugin: Plugin,
-    private val server: Server
+    private val plugin: Plugin
 ) {
 
     @Provides
@@ -38,7 +37,7 @@ class BukkitDaggerModule_1_13_00_R01(
 
     @Provides
     fun provideServer(): Server {
-        return server
+        return plugin.server
     }
 
     @Provides
