@@ -36,7 +36,7 @@ class BukkitFcGui_1_13_00_R01<TLayout : FcGuiLayout>(
 
     override val title: FcLegacyText?
         get() = with(legacyTextFactory.bukkit) {
-            inventory.title?.let { FcLegacyText(it) }
+            inventory.title?.let { createFcLegacyText(it) }
         }
 
     init {

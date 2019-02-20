@@ -13,11 +13,11 @@ class BukkitFcLegacyTextFactory_1_13_00_R01 @Inject constructor(
     private val textColors: FcTextColors
 ) : BukkitFcLegacyTextFactory {
 
-    override fun FcLegacyText(legacyText: String): FcLegacyText {
+    override fun createFcLegacyText(legacyText: String): FcLegacyText {
         return BukkitFcLegacyText_1_13_00_R01(legacyText)
     }
 
-    override fun FcLegacyText(text: FcText, locale: FcLocale): FcLegacyText {
+    override fun createFcLegacyText(text: FcText, locale: FcLocale): FcLegacyText {
         val stringBuilder = StringBuilder()
         stringBuilder.appendFcText(text, locale)
         return BukkitFcLegacyText_1_13_00_R01(stringBuilder.toString())

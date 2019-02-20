@@ -5,5 +5,5 @@ import net.benwoodworth.fastcraft.platform.text.FcLegacyTextFactory
 
 interface BukkitFcLegacyTextFactory : FcLegacyTextFactory {
 
-    fun FcLegacyText(legacyText: String): FcLegacyText
+    fun createFcLegacyText(legacyText: String): FcLegacyText
 }

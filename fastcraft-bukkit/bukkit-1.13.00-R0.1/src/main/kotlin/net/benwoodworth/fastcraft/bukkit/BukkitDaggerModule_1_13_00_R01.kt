@@ -47,7 +47,7 @@ class BukkitDaggerModule_1_13_00_R01(
     }
 
     @Provides
-    fun provideScheduler(server: Server): BukkitScheduler {
+    fun provideBukkitScheduler(server: Server): BukkitScheduler {
         return server.scheduler
     }
 

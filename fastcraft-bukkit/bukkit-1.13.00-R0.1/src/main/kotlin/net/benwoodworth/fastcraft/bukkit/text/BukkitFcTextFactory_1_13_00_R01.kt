@@ -9,7 +9,7 @@ import javax.inject.Inject
 class BukkitFcTextFactory_1_13_00_R01 @Inject constructor(
 ) : BukkitFcTextFactory {
 
-    override fun FcText(
+    override fun createFcText(
         text: String,
         color: FcTextColor?,
         bold: Boolean?,
@@ -32,7 +32,7 @@ class BukkitFcTextFactory_1_13_00_R01 @Inject constructor(
         )
     }
 
-    override fun FcText(
+    override fun createFcText(
         translate: FcTranslatable,
         color: FcTextColor?,
         bold: Boolean?,
@@ -55,7 +55,7 @@ class BukkitFcTextFactory_1_13_00_R01 @Inject constructor(
         )
     }
 
-    override fun FcText(legacyText: FcLegacyText): FcText {
-        return FcText(legacyText)
+    override fun createFcText(legacyText: FcLegacyText): FcText {
+        return createFcText(legacyText)
     }
 }

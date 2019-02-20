@@ -14,11 +14,11 @@ class BukkitFcItemFactory_1_13_00_R01 @Inject constructor(
     private val legacyTextFactory: FcLegacyTextFactory
 ) : BukkitFcItemFactory {
 
-    override fun FcItem(itemStack: ItemStack): FcItem {
+    override fun createFcItem(itemStack: ItemStack): FcItem {
         return BukkitFcItem_1_13_00_R01(itemStack.clone(), itemTypes, legacyTextFactory)
     }
 
-    override fun FcItem(
+    override fun createFcItem(
         type: FcItemType,
         amount: Int,
         displayName: FcLegacyText?,
@@ -38,7 +38,7 @@ class BukkitFcItemFactory_1_13_00_R01 @Inject constructor(
         return BukkitFcItem_1_13_00_R01(itemStack, itemTypes, legacyTextFactory)
     }
 
-    override fun FcItem(
+    override fun createFcItem(
         copy: FcItem,
         type: FcItemType,
         amount: Int,

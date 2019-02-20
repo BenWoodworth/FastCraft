@@ -33,22 +33,22 @@ class FastCraft @Inject internal constructor(
     private fun onPlayerJoin(event: FcPlayerJoinEvent) {
         with(textFactory) {
             with(taskFactory) {
-                val message = FcText(
+                val message = createFcText(
                     text = "Hello, ",
                     color = textColors.blue,
                     extra = listOf(
-                        FcText(
+                        createFcText(
                             text = event.player.username,
                             color = textColors.green,
                             bold = true
                         ),
-                        FcText(
+                        createFcText(
                             text = "! How are you?"
                         )
                     )
                 )
 
-                val task = FcTask(delaySeconds = 5.0) {
+                val task = createFcTask(delaySeconds = 5.0) {
                     event.player.sendMessage(message)
                 }
 

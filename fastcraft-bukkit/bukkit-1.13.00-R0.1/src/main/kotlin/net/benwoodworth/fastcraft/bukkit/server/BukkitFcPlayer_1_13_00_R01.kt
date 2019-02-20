@@ -34,7 +34,7 @@ class BukkitFcPlayer_1_13_00_R01(
 
     override fun sendMessage(message: FcText) {
         with(rawTextFactory) {
-            val json = BukkitFcRawText(message).toJson()
+            val json = createBukkitFcRawText(message).toJson()
             server.dispatchCommand(server.consoleSender, "tellraw $username $json")
         }
     }

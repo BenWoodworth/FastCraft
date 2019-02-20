@@ -4,5 +4,5 @@ import net.benwoodworth.fastcraft.platform.text.FcText
 
 interface BukkitFcRawTextFactory {
 
-    fun BukkitFcRawText(text: FcText): BukkitFcRawText
+    fun createBukkitFcRawText(text: FcText): BukkitFcRawText
 }

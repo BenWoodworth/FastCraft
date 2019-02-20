@@ -4,14 +4,14 @@ import net.benwoodworth.fastcraft.platform.text.FcLegacyText
 
 interface FcItemFactory {
 
-    fun FcItem(
+    fun createFcItem(
         type: FcItemType,
         amount: Int = 1,
         displayName: FcLegacyText? = null,
         lore: List<FcLegacyText>? = null
     ): FcItem
 
-    fun FcItem(
+    fun createFcItem(
         copy: FcItem,
         type: FcItemType = copy.type,
         amount: Int = copy.amount,

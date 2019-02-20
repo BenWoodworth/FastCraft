@@ -4,7 +4,7 @@ import net.benwoodworth.fastcraft.platform.locale.FcTranslatable
 
 interface FcTextFactory {
 
-    fun FcText(
+    fun createFcText(
         text: String,
         color: FcTextColor? = null,
         bold: Boolean? = null,
@@ -15,7 +15,7 @@ interface FcTextFactory {
         extra: List<FcText>? = null
     ): FcText
 
-    fun FcText(
+    fun createFcText(
         translate: FcTranslatable,
         color: FcTextColor? = null,
         bold: Boolean? = null,
@@ -26,7 +26,7 @@ interface FcTextFactory {
         extra: List<FcText>? = null
     ): FcText
 
-    fun FcText(
+    fun createFcText(
         legacyText: FcLegacyText
     ): FcText
 }

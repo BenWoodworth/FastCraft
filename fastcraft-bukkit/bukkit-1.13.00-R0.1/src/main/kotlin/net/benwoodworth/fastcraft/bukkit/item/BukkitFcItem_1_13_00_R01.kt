@@ -26,12 +26,12 @@ class BukkitFcItem_1_13_00_R01(
 
     override val displayName: FcLegacyText?
         get() = with(legacyTextFactory.bukkit) {
-            meta?.displayName?.let { FcLegacyText(it) }
+            meta?.displayName?.let { createFcLegacyText(it) }
         }
 
     override val lore: List<FcLegacyText>?
         get() = with(legacyTextFactory.bukkit) {
-            meta?.lore?.map { FcLegacyText(it) }
+            meta?.lore?.map { createFcLegacyText(it) }
         }
 
     override fun toItemStack(): ItemStack {

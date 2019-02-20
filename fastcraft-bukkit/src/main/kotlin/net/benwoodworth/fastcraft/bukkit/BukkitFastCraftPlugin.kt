@@ -23,7 +23,7 @@ class BukkitFastCraftPlugin : JavaPlugin() {
             .build()
 
         return with(factory) {
-            FastCraft()
+            createFastCraft()
         }
     }
 }

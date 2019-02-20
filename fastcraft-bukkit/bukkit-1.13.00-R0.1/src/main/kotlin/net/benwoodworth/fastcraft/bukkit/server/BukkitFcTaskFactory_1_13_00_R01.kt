@@ -10,7 +10,7 @@ class BukkitFcTaskFactory_1_13_00_R01 @Inject constructor(
     private val scheduler: BukkitScheduler
 ) : BukkitFcTaskFactory {
 
-    override fun FcTask(
+    override fun createFcTask(
         async: Boolean,
         delaySeconds: Double,
         intervalSeconds: Double,
