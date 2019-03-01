@@ -11,7 +11,8 @@ import javax.inject.Inject
 
 class BukkitFcItemFactory_1_13_00_R01 @Inject constructor(
     private val itemTypes: FcItemTypes,
-    private val legacyTextFactory: FcLegacyTextFactory
+    private val legacyTextFactory: FcLegacyTextFactory,
+    private val itemConverter: BukkitFcItemConverter
 ) : BukkitFcItemFactory {
 
     override fun createFcItem(itemStack: ItemStack): FcItem {
@@ -45,7 +46,9 @@ class BukkitFcItemFactory_1_13_00_R01 @Inject constructor(
         displayName: FcLegacyText?,
         lore: List<FcLegacyText>?
     ): FcItem {
-        val itemStack = copy.bukkit.toItemStack()
+        val itemStack = with(itemConverter) {
+            copy.bukkit.toItemStack()
+        }
 
         itemStack.type = type.bukkit.material
         itemStack.amount = amount

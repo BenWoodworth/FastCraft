@@ -1,10 +1,12 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
+import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemConverter
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import org.bukkit.inventory.Inventory
 
 abstract class BukkitFcGuiLayout_1_13_00_R01(
-    override val inventory: Inventory
+    override val inventory: Inventory,
+    private val itemConverter: BukkitFcItemConverter
 ) : BukkitFcGuiLayout {
 
     private val buttons: MutableMap<Int, FcGuiButton> = mutableMapOf()
@@ -15,7 +17,7 @@ abstract class BukkitFcGuiLayout_1_13_00_R01(
 
     protected fun getSlotButtonOrCreate(slot: Int): FcGuiButton {
         return buttons.getOrPut(slot) {
-            BukkitFcGuiButton_1_13_00_R01(inventory, slot)
+            BukkitFcGuiButton_1_13_00_R01(inventory, slot, itemConverter)
         }
     }
 }

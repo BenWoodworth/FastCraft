@@ -4,6 +4,8 @@ import dagger.Module
 import dagger.Provides
 import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfigFactory_1_13_00_R01
 import net.benwoodworth.fastcraft.bukkit.gui.BukkitFcGuiFactory_1_13_00_R01
+import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemConverter
+import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemConverter_1_13_00_R01
 import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemFactory_1_13_00_R01
 import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemTypes_1_13_00_R01
 import net.benwoodworth.fastcraft.bukkit.recipe.BukkitFcRecipeService_1_13_00_R01
@@ -71,6 +73,12 @@ class BukkitDaggerModule_1_13_00_R01(
     @Provides
     @Singleton
     fun provideFcGuiFactory(instance: BukkitFcGuiFactory_1_13_00_R01): FcGuiFactory {
+        return instance
+    }
+
+    @Provides
+    @Singleton
+    fun provideBukkitFcItemConverter(instance: BukkitFcItemConverter_1_13_00_R01): BukkitFcItemConverter {
         return instance
     }
 
