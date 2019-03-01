@@ -1,6 +1,8 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
+import net.benwoodworth.fastcraft.bukkit.bukkit
 import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemConverter
+import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextConverter
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiLayoutGrid
 import net.benwoodworth.fastcraft.platform.server.FcPlayer
@@ -16,13 +18,18 @@ class BukkitFcGuiFactory_1_13_00_R01 @Inject constructor(
     private val legacyTextFactory: FcTextFactory,
     private val server: Server,
     private val pluginManager: PluginManager,
-    private val itemConverter: BukkitFcItemConverter
+    private val itemConverter: BukkitFcItemConverter,
+    private val textConverter: BukkitFcTextConverter
 ) : BukkitFcGuiFactory {
 
     override fun openChestGui(player: FcPlayer, title: FcText?, height: Int): FcGui<FcGuiLayoutGrid> {
+        val legacyTitle = with(textConverter) {
+            title?.bukkit?.toLegacy(player.locale)
+        }
+
         return BukkitFcGui_1_13_00_R01(
             player,
-            { owner -> server.createInventory(owner, 9 * height, "TODO") }, // TODO Convert title to legacy
+            { owner -> server.createInventory(owner, 9 * height, legacyTitle) },
             { inventory -> BukkitFcGuiLayoutGrid_1_13_00_R01(9, height, inventory, itemConverter) },
             plugin,
             legacyTextFactory,
