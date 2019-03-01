@@ -8,8 +8,6 @@ import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItem
 import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemFactory
 import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemType
 import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemTypes
-import net.benwoodworth.fastcraft.bukkit.locale.BukkitFcLocale
-import net.benwoodworth.fastcraft.bukkit.locale.BukkitFcTranslatable
 import net.benwoodworth.fastcraft.bukkit.recipe.BukkitFcCraftingRecipe
 import net.benwoodworth.fastcraft.bukkit.recipe.BukkitFcIngredient
 import net.benwoodworth.fastcraft.bukkit.recipe.BukkitFcRecipeService
@@ -23,8 +21,6 @@ import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
-import net.benwoodworth.fastcraft.platform.locale.FcLocale
-import net.benwoodworth.fastcraft.platform.locale.FcTranslatable
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcIngredient
 import net.benwoodworth.fastcraft.platform.recipe.FcRecipeService

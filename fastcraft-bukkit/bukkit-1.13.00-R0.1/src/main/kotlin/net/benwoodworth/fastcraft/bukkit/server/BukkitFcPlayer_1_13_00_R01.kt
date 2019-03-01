@@ -1,8 +1,8 @@
 package net.benwoodworth.fastcraft.bukkit.server
 
-import net.benwoodworth.fastcraft.bukkit.locale.BukkitFcLocale_1_13_00_R01
+import net.benwoodworth.fastcraft.bukkit.text.BukkitFcLocale_1_13_00_R01
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcRawTextFactory
-import net.benwoodworth.fastcraft.platform.locale.FcLocale
+import net.benwoodworth.fastcraft.platform.text.FcLocale
 import net.benwoodworth.fastcraft.platform.text.FcText
 import org.bukkit.Server
 import org.bukkit.entity.Player

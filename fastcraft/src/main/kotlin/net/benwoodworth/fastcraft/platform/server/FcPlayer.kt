@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.platform.server
 
-import net.benwoodworth.fastcraft.platform.locale.FcLocale
+import net.benwoodworth.fastcraft.platform.text.FcLocale
 import net.benwoodworth.fastcraft.platform.text.FcText
 import java.util.*
 

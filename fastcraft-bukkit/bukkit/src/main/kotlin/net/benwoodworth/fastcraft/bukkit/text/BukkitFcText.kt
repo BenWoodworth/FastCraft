@@ -1,8 +1,8 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
-import net.benwoodworth.fastcraft.platform.locale.FcTranslatable
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
+import net.benwoodworth.fastcraft.platform.text.FcTranslatable
 
 
 interface BukkitFcText : FcText {

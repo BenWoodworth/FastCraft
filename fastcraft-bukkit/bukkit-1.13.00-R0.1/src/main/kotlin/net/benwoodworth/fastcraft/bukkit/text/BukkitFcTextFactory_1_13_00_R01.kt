@@ -1,9 +1,9 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
-import net.benwoodworth.fastcraft.platform.locale.FcTranslatable
 import net.benwoodworth.fastcraft.platform.text.FcLegacyText
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
+import net.benwoodworth.fastcraft.platform.text.FcTranslatable
 import javax.inject.Inject
 
 class BukkitFcTextFactory_1_13_00_R01 @Inject constructor(

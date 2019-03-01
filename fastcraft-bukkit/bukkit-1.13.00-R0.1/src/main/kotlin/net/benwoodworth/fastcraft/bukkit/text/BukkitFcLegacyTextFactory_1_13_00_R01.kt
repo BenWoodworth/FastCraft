@@ -1,11 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
 import net.benwoodworth.fastcraft.bukkit.bukkit
-import net.benwoodworth.fastcraft.platform.locale.FcLocale
-import net.benwoodworth.fastcraft.platform.text.FcLegacyText
-import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.platform.text.FcTextColor
-import net.benwoodworth.fastcraft.platform.text.FcTextColors
+import net.benwoodworth.fastcraft.platform.text.*
 import org.bukkit.ChatColor
 import javax.inject.Inject
 

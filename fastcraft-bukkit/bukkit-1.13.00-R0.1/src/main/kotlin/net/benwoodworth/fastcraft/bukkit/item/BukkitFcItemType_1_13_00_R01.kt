@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
-import net.benwoodworth.fastcraft.bukkit.locale.BukkitFcTranslatable_1_13_00_R01
-import net.benwoodworth.fastcraft.platform.locale.FcTranslatable
+import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTranslatable_1_13_00_R01
+import net.benwoodworth.fastcraft.platform.text.FcTranslatable
 import org.bukkit.Material
 
 class BukkitFcItemType_1_13_00_R01(
