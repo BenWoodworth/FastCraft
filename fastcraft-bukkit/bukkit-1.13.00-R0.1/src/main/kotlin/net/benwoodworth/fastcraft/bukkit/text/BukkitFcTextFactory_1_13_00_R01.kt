@@ -1,7 +1,5 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
-import net.benwoodworth.fastcraft.bukkit.bukkit
-import net.benwoodworth.fastcraft.platform.text.FcLegacyText
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
 import javax.inject.Inject
@@ -52,12 +50,6 @@ class BukkitFcTextFactory_1_13_00_R01 @Inject constructor(
             strikethrough = strikethrough,
             obfuscate = obfuscate,
             extra = extra
-        )
-    }
-
-    override fun createFcText(legacyText: FcLegacyText): FcText {
-        return BukkitFcText_1_13_00_R01(
-            text = legacyText.bukkit.legacyText
         )
     }
 }

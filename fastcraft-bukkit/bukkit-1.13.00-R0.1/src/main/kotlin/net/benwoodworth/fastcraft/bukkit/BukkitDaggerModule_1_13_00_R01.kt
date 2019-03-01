@@ -17,7 +17,6 @@ import net.benwoodworth.fastcraft.platform.item.FcItemFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.recipe.FcRecipeService
 import net.benwoodworth.fastcraft.platform.server.*
-import net.benwoodworth.fastcraft.platform.text.FcLegacyTextFactory
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.Server
@@ -121,12 +120,6 @@ class BukkitDaggerModule_1_13_00_R01(
     @Provides
     @Singleton
     fun provideBukkitFcRawTextFactory(instance: BukkitFcRawTextFactory_1_13_00_R01): BukkitFcRawTextFactory {
-        return instance
-    }
-
-    @Provides
-    @Singleton
-    fun provideFcLegacyTextFactory(instance: BukkitFcLegacyTextFactory_1_13_00_R01): FcLegacyTextFactory {
         return instance
     }
 

@@ -4,7 +4,6 @@ import net.benwoodworth.fastcraft.platform.gui.FcGuiFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.server.*
-import net.benwoodworth.fastcraft.platform.text.FcLegacyTextFactory
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import javax.inject.Inject
@@ -13,7 +12,6 @@ class FastCraft @Inject internal constructor(
     serverListeners: FcServer,
     private val logger: FcLogger,
     private val textFactory: FcTextFactory,
-    private val legacyTextFactory: FcLegacyTextFactory,
     private val textColors: FcTextColors,
     private val taskFactory: FcTaskFactory,
     private val guiFactory: FcGuiFactory,
@@ -67,17 +65,14 @@ class FastCraft @Inject internal constructor(
         val gui = guiFactory.openChestGui(
             player = player,
             height = 4,
-            title = legacyTextFactory.createFcLegacyText(
-                locale = player.locale,
-                text = textFactory.createFcText(
-                    text = "Test ",
-                    color = textColors.blue,
-                    extra = listOf(
-                        textFactory.createFcText(
-                            text = "GUI",
-                            color = textColors.green,
-                            underline = true
-                        )
+            title = textFactory.createFcText(
+                text = "Test ",
+                color = textColors.blue,
+                extra = listOf(
+                    textFactory.createFcText(
+                        text = "GUI",
+                        color = textColors.green,
+                        underline = true
                     )
                 )
             )
@@ -91,10 +86,7 @@ class FastCraft @Inject internal constructor(
                 var item = itemFactory.createFcItem(
                     type = itemTypes.netherStar,
                     amount = x + y * layout.width + 1,
-                    displayName = legacyTextFactory.createFcLegacyText(
-                        locale = player.locale,
-                        text = textFactory.createFcText("($x, $y)")
-                    )
+                    displayName = textFactory.createFcText("($x, $y)")
                 )
 
                 button.setItem(item)

@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.platform.item
 
-import net.benwoodworth.fastcraft.platform.text.FcLegacyText
+import net.benwoodworth.fastcraft.platform.text.FcText
 
 interface FcItem {
 
@@ -8,7 +8,7 @@ interface FcItem {
 
     val amount: Int
 
-    val displayName: FcLegacyText?
+    val displayName: FcText?
 
-    val lore: List<FcLegacyText>?
+    val lore: List<FcText>?
 }

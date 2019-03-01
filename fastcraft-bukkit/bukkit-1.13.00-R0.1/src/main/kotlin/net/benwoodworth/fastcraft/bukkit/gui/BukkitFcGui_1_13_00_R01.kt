@@ -5,8 +5,8 @@ import net.benwoodworth.fastcraft.events.HandlerSet
 import net.benwoodworth.fastcraft.platform.gui.FcGuiCloseEvent
 import net.benwoodworth.fastcraft.platform.gui.FcGuiLayout
 import net.benwoodworth.fastcraft.platform.server.FcPlayer
-import net.benwoodworth.fastcraft.platform.text.FcLegacyText
-import net.benwoodworth.fastcraft.platform.text.FcLegacyTextFactory
+import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.HandlerList
@@ -24,8 +24,8 @@ class BukkitFcGui_1_13_00_R01<TLayout : FcGuiLayout>(
     createInventory: (owner: InventoryHolder) -> Inventory,
     createLayout: (inventory: Inventory) -> TLayout,
     plugin: Plugin,
-    private val legacyTextFactory: FcLegacyTextFactory,
-    private val pluginManager: PluginManager
+    private val textFactory: FcTextFactory,
+    pluginManager: PluginManager
 ) : BukkitFcGui<TLayout>, InventoryHolder, Listener {
 
     override val onClose: HandlerSet<FcGuiCloseEvent> = HandlerSet()
@@ -34,9 +34,9 @@ class BukkitFcGui_1_13_00_R01<TLayout : FcGuiLayout>(
 
     override val layout: TLayout = createLayout(inventory)
 
-    override val title: FcLegacyText?
-        get() = with(legacyTextFactory.bukkit) {
-            inventory.title?.let { createFcLegacyText(it) }
+    override val title: FcText?
+        get() = with(textFactory.bukkit) {
+            inventory.title?.let { createFcText(it) }
         }
 
     init {

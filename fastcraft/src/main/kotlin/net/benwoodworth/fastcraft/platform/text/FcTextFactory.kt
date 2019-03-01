@@ -12,8 +12,4 @@ interface FcTextFactory {
         obfuscate: Boolean? = null,
         extra: List<FcText>? = null
     ): FcText
-
-    fun createFcText(
-        legacyText: FcLegacyText
-    ): FcText
 }

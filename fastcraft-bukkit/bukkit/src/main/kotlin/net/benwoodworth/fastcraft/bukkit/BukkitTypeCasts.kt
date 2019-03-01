@@ -62,8 +62,6 @@ inline val FcTask.bukkit get() = this as BukkitFcTask
 inline val FcTaskFactory.bukkit get() = this as BukkitFcTaskFactory
 
 // text
-inline val FcLegacyText.bukkit get() = this as BukkitFcLegacyText
-inline val FcLegacyTextFactory.bukkit get() = this as BukkitFcLegacyTextFactory
 inline val FcLocale.bukkit get() = this as BukkitFcLocale
 inline val FcText.bukkit get() = this as BukkitFcText
 inline val FcTextColor.bukkit get() = this as BukkitFcTextColor

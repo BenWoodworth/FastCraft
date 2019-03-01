@@ -4,64 +4,62 @@ import net.benwoodworth.fastcraft.bukkit.bukkit
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
-import net.benwoodworth.fastcraft.platform.text.FcLegacyText
-import net.benwoodworth.fastcraft.platform.text.FcLegacyTextFactory
+import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.inventory.ItemStack
 import javax.inject.Inject
 
 class BukkitFcItemFactory_1_13_00_R01 @Inject constructor(
     private val itemTypes: FcItemTypes,
-    private val legacyTextFactory: FcLegacyTextFactory,
-    private val itemConverter: BukkitFcItemConverter
+    private val textFactory: FcTextFactory
 ) : BukkitFcItemFactory {
-
-    override fun createFcItem(itemStack: ItemStack): FcItem {
-        return BukkitFcItem_1_13_00_R01(itemStack.clone(), itemTypes, legacyTextFactory)
-    }
 
     override fun createFcItem(
         type: FcItemType,
         amount: Int,
-        displayName: FcLegacyText?,
-        lore: List<FcLegacyText>?
+        displayName: FcText?,
+        lore: List<FcText>?
     ): FcItem {
-        val itemStack = ItemStack(type.bukkit.material, amount)
+        val item = ItemStack(type.bukkit.material, amount)
 
-        if (displayName != null || lore != null) {
-            val meta = itemStack.itemMeta
-
-            meta.displayName = displayName?.bukkit?.legacyText
-            meta.lore = lore?.map { it.bukkit.legacyText }
-
-            itemStack.itemMeta = meta
-        }
-
-        return BukkitFcItem_1_13_00_R01(itemStack, itemTypes, legacyTextFactory)
+        return BukkitFcItem_1_13_00_R01(
+            itemStack = item,
+            displayName = displayName,
+            lore = lore,
+            itemTypes = itemTypes
+        )
     }
 
     override fun createFcItem(
         copy: FcItem,
         type: FcItemType,
         amount: Int,
-        displayName: FcLegacyText?,
-        lore: List<FcLegacyText>?
+        displayName: FcText?,
+        lore: List<FcText>?
     ): FcItem {
-        val itemStack = with(itemConverter) {
-            copy.bukkit.toItemStack()
-        }
+        val item = copy.bukkit.itemStack
+        item.type = type.bukkit.material
+        item.amount = amount
 
-        itemStack.type = type.bukkit.material
-        itemStack.amount = amount
+        return BukkitFcItem_1_13_00_R01(
+            itemStack = item,
+            displayName = displayName,
+            lore = lore,
+            itemTypes = itemTypes
+        )
+    }
 
-        if (itemStack.hasItemMeta() || displayName != null || lore != null) {
-            val meta = itemStack.itemMeta
+    override fun createFcItem(itemStack: ItemStack): FcItem {
+        val item = itemStack.clone()
+        val meta = item.getItemMetaOrNull()
 
-            meta.displayName = displayName?.bukkit?.legacyText
-            meta.lore = lore?.map { it.bukkit.legacyText }
-
-            itemStack.itemMeta = meta
-        }
-
-        return BukkitFcItem_1_13_00_R01(itemStack, itemTypes, legacyTextFactory)
+        return BukkitFcItem_1_13_00_R01(
+            itemStack = item,
+            displayName = meta?.displayName
+                ?.let { textFactory.createFcText(it) },
+            lore = meta?.lore
+                ?.map { textFactory.createFcText(it ?: "") },
+            itemTypes = itemTypes
+        )
     }
 }
