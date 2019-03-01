@@ -1,5 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.server
 
+import net.benwoodworth.fastcraft.bukkit.bukkit
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcLocale_1_13_00_R01
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextConverter
 import net.benwoodworth.fastcraft.platform.text.FcLocale
@@ -34,7 +35,7 @@ class BukkitFcPlayer_1_13_00_R01(
 
     override fun sendMessage(message: FcText) {
         with(textConverter) {
-            server.dispatchCommand(server.consoleSender, "tellraw $username ${message.toRaw()}")
+            server.dispatchCommand(server.consoleSender, "tellraw $username ${message.bukkit.toRaw()}")
         }
     }
 

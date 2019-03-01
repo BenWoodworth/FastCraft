@@ -1,8 +1,10 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
-import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.text.FcLocale
 
 interface BukkitFcTextConverter {
 
-    fun FcText.toRaw(): String
+    fun BukkitFcText.toRaw(): String
+
+    fun BukkitFcText.toLegacy(locale: FcLocale): String
 }
