@@ -104,7 +104,7 @@ class BukkitFcTextConverter_1_13_00_R01 @Inject constructor(
 
             // Get the legacy to append
             val legacyText = text.text
-                ?: text.translate?.let { localizer.localize(it, locale) }
+                ?: text.translate?.let { localizer.localize(it, locale) ?: it }
 
             // Set the format, and append the text.
             legacyText?.let {
