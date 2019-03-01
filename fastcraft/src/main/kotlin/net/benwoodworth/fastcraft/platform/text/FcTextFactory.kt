@@ -14,17 +14,6 @@ interface FcTextFactory {
     ): FcText
 
     fun createFcText(
-        translate: FcTranslatable,
-        color: FcTextColor? = null,
-        bold: Boolean? = null,
-        italic: Boolean? = null,
-        underline: Boolean? = null,
-        strikethrough: Boolean? = null,
-        obfuscate: Boolean? = null,
-        extra: List<FcText>? = null
-    ): FcText
-
-    fun createFcText(
         legacyText: FcLegacyText
     ): FcText
 }

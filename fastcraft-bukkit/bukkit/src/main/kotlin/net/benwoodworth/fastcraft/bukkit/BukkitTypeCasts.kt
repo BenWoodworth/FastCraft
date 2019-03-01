@@ -47,12 +47,6 @@ inline val FcItemFactory.bukkit get() = this as BukkitFcItemFactory
 inline val FcItemType.bukkit get() = this as BukkitFcItemType
 inline val FcItemTypes.bukkit get() = this as BukkitFcItemTypes
 
-// locale
-inline val FcLocale.bukkit get() = this as BukkitFcLocale
-inline val FcTranslatable.bukkit get() = this as BukkitFcTranslatable
-
-// player
-
 // recipe
 inline val FcCraftingRecipe.bukkit get() = this as BukkitFcCraftingRecipe
 inline val FcIngredient.bukkit get() = this as BukkitFcIngredient
@@ -70,6 +64,7 @@ inline val FcTaskFactory.bukkit get() = this as BukkitFcTaskFactory
 // text
 inline val FcLegacyText.bukkit get() = this as BukkitFcLegacyText
 inline val FcLegacyTextFactory.bukkit get() = this as BukkitFcLegacyTextFactory
+inline val FcLocale.bukkit get() = this as BukkitFcLocale
 inline val FcText.bukkit get() = this as BukkitFcText
 inline val FcTextColor.bukkit get() = this as BukkitFcTextColor
 inline val FcTextColors.bukkit get() = this as BukkitFcTextColors

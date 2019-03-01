@@ -1,12 +1,12 @@
 package net.benwoodworth.fastcraft.platform.item
 
-import net.benwoodworth.fastcraft.platform.text.FcTranslatable
+import net.benwoodworth.fastcraft.platform.text.FcText
 
 interface FcItemType {
 
-    val name: FcTranslatable
+    val name: FcText
 
-    val description: FcTranslatable
+    val description: FcText
 
     val maxAmount: Int
 }

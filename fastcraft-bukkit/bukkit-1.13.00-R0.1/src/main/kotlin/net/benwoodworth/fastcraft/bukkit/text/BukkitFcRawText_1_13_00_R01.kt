@@ -21,7 +21,7 @@ class BukkitFcRawText_1_13_00_R01(
 
     constructor(fcText: FcText) : this(
         text = fcText.bukkit.text,
-        translate = fcText.bukkit.translate?.bukkit?.key,
+        translate = fcText.bukkit.translate,
         color = fcText.bukkit.color?.bukkit?.id,
         bold = fcText.bukkit.bold,
         italic = fcText.bukkit.italic,

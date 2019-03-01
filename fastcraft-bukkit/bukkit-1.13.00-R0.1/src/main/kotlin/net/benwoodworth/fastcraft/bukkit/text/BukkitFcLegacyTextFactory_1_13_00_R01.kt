@@ -6,7 +6,8 @@ import org.bukkit.ChatColor
 import javax.inject.Inject
 
 class BukkitFcLegacyTextFactory_1_13_00_R01 @Inject constructor(
-    private val textColors: FcTextColors
+    private val textColors: FcTextColors,
+    private val localizer: BukkitLocalizer
 ) : BukkitFcLegacyTextFactory {
 
     override fun createFcLegacyText(legacyText: String): FcLegacyText {
@@ -49,7 +50,7 @@ class BukkitFcLegacyTextFactory_1_13_00_R01 @Inject constructor(
 
         when {
             text != null -> append(text)
-            translate != null -> append(translate.bukkit.translate(locale))
+            translate != null -> append(localizer.localize(translate, locale))
         }
 
         fcText.bukkit.extra?.forEach { extra ->

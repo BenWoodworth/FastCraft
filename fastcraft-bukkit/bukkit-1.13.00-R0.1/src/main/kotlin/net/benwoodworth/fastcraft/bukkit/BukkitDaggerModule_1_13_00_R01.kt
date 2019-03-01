@@ -108,6 +108,12 @@ class BukkitDaggerModule_1_13_00_R01(
 
     @Provides
     @Singleton
+    fun provideFcServer(instance: BukkitFcServer_1_13_00_R01): FcServer {
+        return instance
+    }
+
+    @Provides
+    @Singleton
     fun provideFcTaskFactory(instance: BukkitFcTaskFactory_1_13_00_R01): FcTaskFactory {
         return instance
     }
@@ -138,7 +144,7 @@ class BukkitDaggerModule_1_13_00_R01(
 
     @Provides
     @Singleton
-    fun provideFcServerListeners(instance: BukkitFcServer_1_13_00_R01): FcServer {
+    fun provideBukkitLocalizer(instance: BukkitLocalizer_1_13_00_R01): BukkitLocalizer {
         return instance
     }
 }
