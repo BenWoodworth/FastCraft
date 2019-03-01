@@ -119,12 +119,6 @@ class BukkitDaggerModule_1_13_00_R01(
 
     @Provides
     @Singleton
-    fun provideBukkitFcRawTextFactory(instance: BukkitFcRawTextFactory_1_13_00_R01): BukkitFcRawTextFactory {
-        return instance
-    }
-
-    @Provides
-    @Singleton
     fun provideFcTextFactory(instance: BukkitFcTextFactory_1_13_00_R01): FcTextFactory {
         return instance
     }
@@ -132,6 +126,12 @@ class BukkitDaggerModule_1_13_00_R01(
     @Provides
     @Singleton
     fun provideFcTextColors(instance: BukkitFcTextColors_1_13_00_R01): FcTextColors {
+        return instance
+    }
+
+    @Provides
+    @Singleton
+    fun provideBukkitFcTextConverter(instance: BukkitFcTextConverter_1_13_00_R01): BukkitFcTextConverter {
         return instance
     }
 

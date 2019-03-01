@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.bukkit.text
 
 import net.benwoodworth.fastcraft.platform.text.FcText
 
-interface BukkitFcRawTextFactory {
+interface BukkitFcTextConverter {
 
-    fun createBukkitFcRawText(text: FcText): BukkitFcRawText
+    fun FcText.toRaw(): String
 }

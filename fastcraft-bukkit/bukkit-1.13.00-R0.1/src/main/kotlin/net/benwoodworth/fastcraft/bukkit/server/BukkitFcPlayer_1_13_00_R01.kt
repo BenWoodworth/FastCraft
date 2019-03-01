@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.server
 
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcLocale_1_13_00_R01
-import net.benwoodworth.fastcraft.bukkit.text.BukkitFcRawTextFactory
+import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextConverter
 import net.benwoodworth.fastcraft.platform.text.FcLocale
 import net.benwoodworth.fastcraft.platform.text.FcText
 import org.bukkit.Server
@@ -10,7 +10,7 @@ import java.util.*
 
 class BukkitFcPlayer_1_13_00_R01(
     override val player: Player,
-    private val rawTextFactory: BukkitFcRawTextFactory,
+    private val textConverter: BukkitFcTextConverter,
     private val server: Server
 ) : BukkitFcPlayer {
 
@@ -33,9 +33,8 @@ class BukkitFcPlayer_1_13_00_R01(
         get() = player.isOnline
 
     override fun sendMessage(message: FcText) {
-        with(rawTextFactory) {
-            val json = createBukkitFcRawText(message).toJson()
-            server.dispatchCommand(server.consoleSender, "tellraw $username $json")
+        with(textConverter) {
+            server.dispatchCommand(server.consoleSender, "tellraw $username ${message.toRaw()}")
         }
     }
 
