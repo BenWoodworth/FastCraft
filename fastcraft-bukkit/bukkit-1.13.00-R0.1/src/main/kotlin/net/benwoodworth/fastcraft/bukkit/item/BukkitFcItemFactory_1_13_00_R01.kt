@@ -18,31 +18,30 @@ class BukkitFcItemFactory_1_13_00_R01 @Inject constructor(
         type: FcItemType,
         amount: Int,
         displayName: FcText?,
-        lore: List<FcText>?
+        lore: List<FcText>
     ): FcItem {
         val item = ItemStack(type.bukkit.material, amount)
 
         return BukkitFcItem_1_13_00_R01(
-            itemStack = item,
+            base = item,
             displayName = displayName,
             lore = lore,
             itemTypes = itemTypes
         )
     }
 
-    override fun createFcItem(
-        copy: FcItem,
+    override fun FcItem.copy(
         type: FcItemType,
         amount: Int,
         displayName: FcText?,
-        lore: List<FcText>?
+        lore: List<FcText>
     ): FcItem {
-        val item = copy.bukkit.itemStack
+        val item = bukkit.base
         item.type = type.bukkit.material
         item.amount = amount
 
         return BukkitFcItem_1_13_00_R01(
-            itemStack = item,
+            base = item,
             displayName = displayName,
             lore = lore,
             itemTypes = itemTypes
@@ -54,11 +53,12 @@ class BukkitFcItemFactory_1_13_00_R01 @Inject constructor(
         val meta = item.getItemMetaOrNull()
 
         return BukkitFcItem_1_13_00_R01(
-            itemStack = item,
+            base = item,
             displayName = meta?.displayName
                 ?.let { textFactory.createFcText(it) },
             lore = meta?.lore
-                ?.map { textFactory.createFcText(it ?: "") },
+                ?.map { textFactory.createFcText(it ?: "") }
+                ?: emptyList(),
             itemTypes = itemTypes
         )
     }

@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import net.benwoodworth.fastcraft.bukkit.bukkit
 import net.benwoodworth.fastcraft.platform.text.FcLocale
+import net.benwoodworth.fastcraft.platform.text.FcText
 import org.bukkit.ChatColor
 import javax.inject.Inject
 
@@ -12,8 +13,8 @@ class BukkitFcTextConverter_1_13_00_R01 @Inject constructor(
     private val localizer: BukkitLocalizer
 ) : BukkitFcTextConverter {
 
-    override fun BukkitFcText.toRaw(): String {
-        return RawText(this).toString()
+    override fun FcText.toRaw(): String {
+        return RawText(this.bukkit).toString()
     }
 
     @Serializable
@@ -38,7 +39,7 @@ class BukkitFcTextConverter_1_13_00_R01 @Inject constructor(
             strikethrough = text.strikethrough,
             obfuscate = text.obfuscate,
             extra = text.extra
-                ?.takeIf { it.any() }
+                .takeIf { it.any() }
                 ?.map { RawText(it.bukkit) }
         )
 
@@ -51,9 +52,13 @@ class BukkitFcTextConverter_1_13_00_R01 @Inject constructor(
         }
     }
 
-    override fun BukkitFcText.toLegacy(locale: FcLocale): String {
+    override fun FcText.toLegacy(locale: FcLocale): String {
+        bukkit.legacy?.let {
+            return it
+        }
+
         return LegacyTextBuilder(locale)
-            .appendText(this)
+            .appendText(this.bukkit)
             .toString()
     }
 
@@ -108,7 +113,7 @@ class BukkitFcTextConverter_1_13_00_R01 @Inject constructor(
             }
 
             // Append the extra text.
-            text.extra?.forEach {
+            text.extra.forEach {
                 appendText(it.bukkit, format)
             }
         }

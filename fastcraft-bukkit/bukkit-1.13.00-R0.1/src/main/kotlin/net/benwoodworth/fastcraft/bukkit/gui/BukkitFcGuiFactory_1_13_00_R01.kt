@@ -30,7 +30,7 @@ class BukkitFcGuiFactory_1_13_00_R01 @Inject constructor(
         return BukkitFcGui_1_13_00_R01(
             player,
             { owner -> server.createInventory(owner, 9 * height, legacyTitle) },
-            { inventory -> BukkitFcGuiLayoutGrid_1_13_00_R01(9, height, inventory, itemConverter) },
+            { inventory -> BukkitFcGuiLayoutGrid_1_13_00_R01(9, height, inventory, player.locale, itemConverter) },
             plugin,
             legacyTextFactory,
             pluginManager

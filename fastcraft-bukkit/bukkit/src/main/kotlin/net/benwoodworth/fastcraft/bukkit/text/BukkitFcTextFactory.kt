@@ -15,6 +15,10 @@ interface BukkitFcTextFactory : FcTextFactory {
         underline: Boolean? = null,
         strikethrough: Boolean? = null,
         obfuscate: Boolean? = null,
-        extra: List<FcText>? = null
+        extra: List<FcText> = emptyList()
+    ): FcText
+
+    fun createFcText(
+        legacy: String
     ): FcText
 }

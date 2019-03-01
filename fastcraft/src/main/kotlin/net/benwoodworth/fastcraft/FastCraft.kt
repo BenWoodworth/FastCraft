@@ -63,66 +63,67 @@ class FastCraft @Inject internal constructor(
 
     private fun showTestGui(player: FcPlayer) {
         with(textFactory) {
-            val gui = guiFactory.openChestGui(
-                player = player,
-                height = 4,
-                title = createFcText(
-                    text = "This is a ",
-                    extra = listOf(
-                        createFcText(
-                            text = "Test ",
-                            color = textColors.blue,
-                            extra = listOf(
-                                createFcText(
-                                    text = "GUI",
-                                    color = textColors.green,
-                                    underline = true
+            with(itemFactory) {
+                val gui = guiFactory.openChestGui(
+                    player = player,
+                    height = 4,
+                    title = createFcText(
+                        text = "This is a ",
+                        extra = listOf(
+                            createFcText(
+                                text = "Test ",
+                                color = textColors.blue,
+                                extra = listOf(
+                                    createFcText(
+                                        text = "GUI",
+                                        color = textColors.green,
+                                        underline = true
+                                    )
                                 )
-                            )
-                        ),
-                        createFcText("!!")
-                    )
-                )
-            )
-
-            val layout = gui.layout
-            for (x in 0 until layout.width) {
-                for (y in 0 until layout.height) {
-                    val button = layout.getButton(x, y)
-
-                    var item = itemFactory.createFcItem(
-                        type = itemTypes.netherStar,
-                        amount = x + y * layout.width + 1,
-                        displayName = createFcText("($x, $y)"),
-                        lore = listOf(
-                            createFcText(
-                                "Name: ",
-                                extra = listOf(itemTypes.netherStar.name)
                             ),
-                            createFcText(
-                                "Description: ",
-                                extra = listOf(itemTypes.netherStar.description)
-                            )
+                            createFcText("!!")
                         )
                     )
+                )
 
-                    button.setItem(item)
+                val layout = gui.layout
+                for (x in 0 until layout.width) {
+                    for (y in 0 until layout.height) {
+                        val button = layout.getButton(x, y)
 
-                    button.onClick {
-                        with(layout.getButton(x, y)) {
-                            item = itemFactory.createFcItem(
-                                copy = item,
-                                amount = item.amount % 63 + 1
+                        var item = itemFactory.createFcItem(
+                            type = itemTypes.netherStar,
+                            amount = x + y * layout.width + 1,
+                            displayName = createFcText("($x, $y)"),
+                            lore = listOf(
+                                createFcText(
+                                    "Name: ",
+                                    extra = listOf(itemTypes.netherStar.name)
+                                ),
+                                createFcText(
+                                    "Description: ",
+                                    extra = listOf(itemTypes.netherStar.description)
+                                )
                             )
+                        )
 
-                            setItem(item)
+                        button.setItem(item)
+
+                        button.onClick {
+                            with(layout.getButton(x, y)) {
+                                item = item.copy(
+                                    amount = item.amount % 63 + 1
+                                )
+
+                                setItem(item)
+                            }
                         }
                     }
                 }
-            }
 
-            gui.onClose {
-                logger.info("GUI closed!")
+                gui.onClose {
+                    logger.info("GUI closed!")
+                }
             }
         }
     }

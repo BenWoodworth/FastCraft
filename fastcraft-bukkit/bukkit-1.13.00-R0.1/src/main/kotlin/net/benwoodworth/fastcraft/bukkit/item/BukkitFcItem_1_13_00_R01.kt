@@ -8,15 +8,15 @@ import org.bukkit.inventory.ItemStack
 import javax.inject.Inject
 
 class BukkitFcItem_1_13_00_R01 @Inject constructor(
-    override val itemStack: ItemStack,
+    override val base: ItemStack,
     override val displayName: FcText?,
-    override val lore: List<FcText>?,
+    override val lore: List<FcText>,
     private val itemTypes: FcItemTypes
 ) : BukkitFcItem {
 
     override val type: FcItemType
-        get() = itemTypes.bukkit.fromMaterial(itemStack.type)
+        get() = itemTypes.bukkit.fromMaterial(base.type)
 
     override val amount: Int
-        get() = itemStack.amount
+        get() = base.amount
 }

@@ -16,7 +16,7 @@ class BukkitFcTextFactory_1_13_00_R01 @Inject constructor(
         underline: Boolean?,
         strikethrough: Boolean?,
         obfuscate: Boolean?,
-        extra: List<FcText>?
+        extra: List<FcText>
     ): FcText {
         return BukkitFcText_1_13_00_R01(
             text = text,
@@ -39,7 +39,7 @@ class BukkitFcTextFactory_1_13_00_R01 @Inject constructor(
         underline: Boolean?,
         strikethrough: Boolean?,
         obfuscate: Boolean?,
-        extra: List<FcText>?
+        extra: List<FcText>
     ): FcText {
         return BukkitFcText_1_13_00_R01(
             text = text,
@@ -50,6 +50,12 @@ class BukkitFcTextFactory_1_13_00_R01 @Inject constructor(
             strikethrough = strikethrough,
             obfuscate = obfuscate,
             extra = extra
+        )
+    }
+
+    override fun createFcText(legacy: String): FcText {
+        return BukkitFcText_1_13_00_R01(
+            legacy = legacy
         )
     }
 }

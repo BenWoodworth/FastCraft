@@ -4,6 +4,7 @@ import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
 
 class BukkitFcText_1_13_00_R01(
+    override val legacy: String? = null,
     override val text: String? = null,
     override val translate: String? = null,
     override val color: FcTextColor? = null,
@@ -12,5 +13,5 @@ class BukkitFcText_1_13_00_R01(
     override val underline: Boolean? = null,
     override val strikethrough: Boolean? = null,
     override val obfuscate: Boolean? = null,
-    override val extra: List<FcText>? = null
+    override val extra: List<FcText> = emptyList()
 ) : BukkitFcText

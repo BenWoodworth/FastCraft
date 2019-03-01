@@ -10,5 +10,5 @@ interface FcItem {
 
     val displayName: FcText?
 
-    val lore: List<FcText>?
+    val lore: List<FcText>
 }

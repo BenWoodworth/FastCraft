@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.platform.text.FcTextColor
 
 
 interface BukkitFcText : FcText {
-
+    val legacy: String?
     val text: String?
     val translate: String?
 
@@ -16,5 +16,5 @@ interface BukkitFcText : FcText {
     val strikethrough: Boolean?
     val obfuscate: Boolean?
 
-    val extra: List<FcText>?
+    val extra: List<FcText>
 }

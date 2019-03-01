@@ -8,14 +8,13 @@ interface FcItemFactory {
         type: FcItemType,
         amount: Int = 1,
         displayName: FcText? = null,
-        lore: List<FcText>? = null
+        lore: List<FcText> = emptyList()
     ): FcItem
 
-    fun createFcItem(
-        copy: FcItem,
-        type: FcItemType = copy.type,
-        amount: Int = copy.amount,
-        displayName: FcText? = copy.displayName,
-        lore: List<FcText>? = copy.lore
+    fun FcItem.copy(
+        type: FcItemType = this.type,
+        amount: Int = this.amount,
+        displayName: FcText? = this.displayName,
+        lore: List<FcText> = this.lore
     ): FcItem
 }
