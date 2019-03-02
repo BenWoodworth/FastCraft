@@ -17,9 +17,12 @@ class BukkitFcGuiButton_1_13_00_R01(
 
     override val onClick: HandlerSet<FcGuiClickEvent> = HandlerSet()
 
-    override fun setItem(item: FcItem?) {
-        with(itemConverter) {
-            inventory.setItem(slotIndex, item?.bukkit?.toItemStack(locale))
+    override var item: FcItem? = null
+        set(value) {
+            field = value
+
+            with(itemConverter) {
+                inventory.setItem(slotIndex, item?.bukkit?.toItemStack(locale))
+            }
         }
-    }
 }
