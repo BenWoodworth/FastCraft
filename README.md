@@ -5,7 +5,7 @@
 # FastCraft v2 [![CircleCI](https://circleci.com/gh/BenWoodworth/FastCraft/tree/v2%2Fstable.svg?style=svg)](https://circleci.com/gh/BenWoodworth/FastCraft/tree/v2%2Fstable)
 Looking for FastCraft v2? [Click here!](https://github.com/BenWoodworth/FastCraft/tree/v2/dev)
 
-# FastCraft v3 [![CircleCI](https://circleci.com/gh/BenWoodworth/FastCraft/tree/v3%2Fstable.svg?style=svg)](https://circleci.com/gh/BenWoodworth/FastCraft/tree/v3%2Fstable)
+# FastCraft v3 [![CircleCI](https://circleci.com/gh/BenWoodworth/FastCraft/tree/master.svg?style=svg)](https://circleci.com/gh/BenWoodworth/FastCraft/tree/master)
 FastCraft v3 is being developed from the ground up in
 [Kotlin](http://kotlinlang.org/) for both
 [Bukkit](https://dev.bukkit.org/) and
