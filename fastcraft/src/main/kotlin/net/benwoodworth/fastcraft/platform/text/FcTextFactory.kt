@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.platform.text
 interface FcTextFactory {
 
     fun createFcText(
-        text: String,
+        text: String? = null,
         color: FcTextColor? = null,
         bold: Boolean? = null,
         italic: Boolean? = null,

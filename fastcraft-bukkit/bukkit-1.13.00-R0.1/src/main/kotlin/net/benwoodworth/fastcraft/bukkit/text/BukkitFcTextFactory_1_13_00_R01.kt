@@ -32,7 +32,7 @@ class BukkitFcTextFactory_1_13_00_R01 @Inject constructor(
     }
 
     override fun createFcText(
-        text: String,
+        text: String?,
         color: FcTextColor?,
         bold: Boolean?,
         italic: Boolean?,

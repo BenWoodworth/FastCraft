@@ -7,5 +7,5 @@ interface FcGuiButton {
 
     val onClick: HandlerSet<FcGuiClickEvent>
 
-    val item: FcItem?
+    var item: FcItem?
 }
