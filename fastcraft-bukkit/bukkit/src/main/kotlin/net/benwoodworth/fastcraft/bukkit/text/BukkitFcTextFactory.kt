@@ -17,8 +17,4 @@ interface BukkitFcTextFactory : FcTextFactory {
         obfuscate: Boolean? = null,
         extra: List<FcText> = emptyList()
     ): FcText
-
-    fun createFcText(
-        legacy: String
-    ): FcText
 }

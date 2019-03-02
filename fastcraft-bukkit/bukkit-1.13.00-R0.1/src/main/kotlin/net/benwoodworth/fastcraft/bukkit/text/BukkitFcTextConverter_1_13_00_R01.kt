@@ -53,10 +53,6 @@ class BukkitFcTextConverter_1_13_00_R01 @Inject constructor(
     }
 
     override fun FcText.toLegacy(locale: FcLocale): String {
-        bukkit.legacy?.let {
-            return it
-        }
-
         return LegacyTextBuilder(locale)
             .appendText(this.bukkit)
             .toString()

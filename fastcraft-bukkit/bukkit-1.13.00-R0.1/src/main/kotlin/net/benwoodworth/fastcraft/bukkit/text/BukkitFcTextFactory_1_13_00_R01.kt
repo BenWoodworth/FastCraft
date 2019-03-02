@@ -52,10 +52,4 @@ class BukkitFcTextFactory_1_13_00_R01 @Inject constructor(
             extra = extra
         )
     }
-
-    override fun createFcText(legacy: String): FcText {
-        return BukkitFcText_1_13_00_R01(
-            legacy = legacy
-        )
-    }
 }

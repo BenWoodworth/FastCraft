@@ -5,7 +5,6 @@ import net.benwoodworth.fastcraft.platform.text.FcTextColor
 
 
 interface BukkitFcText : FcText {
-    val legacy: String?
     val text: String?
     val translate: String?
 
