@@ -13,6 +13,8 @@ class BukkitFastCraftPlugin : JavaPlugin() {
             .bukkitDaggerModule_1_13_00_R01(BukkitDaggerModule_1_13_00_R01(this))
             .build()
 
+        factory.eagerLoad()
+
         fastCraft = factory.createFastCraft()
     }
 

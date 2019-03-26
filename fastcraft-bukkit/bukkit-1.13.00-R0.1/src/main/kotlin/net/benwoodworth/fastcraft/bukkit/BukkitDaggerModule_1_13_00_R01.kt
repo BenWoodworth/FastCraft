@@ -30,6 +30,28 @@ class BukkitDaggerModule_1_13_00_R01(
     private val plugin: Plugin
 ) {
 
+    @Suppress("UNUSED_PARAMETER")
+    @Provides
+    fun eagerLoad(
+        fcLogger: FcLogger,
+        fcPluginData: FcPluginData,
+        fcConfigFactory: FcConfigFactory,
+        fcGuiFactory: FcGuiFactory,
+        bukkitFcItemConverter: BukkitFcItemConverter,
+        fcItemFactory: FcItemFactory,
+        fcItemTypes: FcItemTypes,
+        fcPlayerProvider: FcPlayerProvider,
+        fcRecipeService: FcRecipeService,
+        fcServer: FcServer,
+        fcTaskFactory: FcTaskFactory,
+        fcTextFactory: FcTextFactory,
+        fcTextColors: FcTextColors,
+        bukkitFcTextConverter: BukkitFcTextConverter,
+        bukkitLocalizer: BukkitLocalizer
+    ): BukkitFastCraftFactory.EagerLoad {
+        return BukkitFastCraftFactory.EagerLoad
+    }
+
     @Provides
     @Singleton
     fun providePlugin(): Plugin {
