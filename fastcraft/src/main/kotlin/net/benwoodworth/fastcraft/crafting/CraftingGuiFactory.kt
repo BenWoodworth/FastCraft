@@ -6,6 +6,7 @@ import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.server.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
+import net.benwoodworth.fastcraft.profile
 import javax.inject.Inject
 
 class CraftingGuiFactory @Inject constructor(
@@ -17,9 +18,16 @@ class CraftingGuiFactory @Inject constructor(
 ) {
 
     fun openFastCraftGui(player: FcPlayer) {
-        val model = CraftingGuiModel(player)
-        val view = CraftingGuiView(player, guiFactory, textFactory)
+        val model = profile("openFastCraftGui model") {
+            CraftingGuiModel(player)
+        }
 
-        CraftingGuiController(player, model, view, textFactory, textColors, itemFactory, itemTypes)
+        val view = profile("openFastCraftGui view") {
+            CraftingGuiView(player, guiFactory, textFactory)
+        }
+
+        profile("openFastCraftGui CraftingGuiController") {
+            CraftingGuiController(player, model, view, textFactory, textColors, itemFactory, itemTypes)
+        }
     }
 }

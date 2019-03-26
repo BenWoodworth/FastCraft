@@ -20,12 +20,15 @@ class FastCraft @Inject internal constructor(
     }
 
     private fun onPlayerJoin(event: FcPlayerJoinEvent) {
-        with(taskFactory) {
-            val task = createFcTask(delaySeconds = 20.0) {
-                craftingGuiFactory.openFastCraftGui(event.player)
+        profile("onPlayerJoin") {
+            with(taskFactory) {
+                val task = profile("onPlayerJoin task") {
+                    createFcTask(delaySeconds = 20.0) {
+                        craftingGuiFactory.openFastCraftGui(event.player)
+                    }
+                }
+                task.schedule()
             }
-
-            task.schedule()
         }
     }
 }
