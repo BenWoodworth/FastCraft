@@ -29,9 +29,24 @@ class BukkitFcTextConverter_1_13_00_R01 @Inject constructor(
         @Optional var obfuscate: Boolean? = null,
         @Optional var extra: List<RawText>? = null
     ) {
-        constructor(text: BukkitFcText) : this(
-            text = text.text,
-            translate = text.translate,
+        companion object {
+            private val format = Json(encodeDefaults = false)
+
+            operator fun invoke(text: BukkitFcText): RawText {
+                return when (text) {
+                    is BukkitFcText.Legacy -> RawText(text)
+                    is BukkitFcText.Component -> RawText(text)
+                }
+            }
+        }
+
+        private constructor(text: BukkitFcText.Legacy) : this(
+            text = text.legacyText
+        )
+
+        private constructor(text: BukkitFcText.Component) : this(
+            text = (text as? BukkitFcText.Component.Text)?.text,
+            translate = (text as? BukkitFcText.Component.Translate)?.translate,
             color = text.color?.bukkit?.id,
             bold = text.bold,
             italic = text.italic,
@@ -43,19 +58,20 @@ class BukkitFcTextConverter_1_13_00_R01 @Inject constructor(
                 ?.map { RawText(it.bukkit) }
         )
 
-        private companion object {
-            val format = Json(encodeDefaults = false)
-        }
-
         override fun toString(): String {
             return format.stringify(serializer(), this)
         }
     }
 
     override fun FcText.toLegacy(locale: FcLocale): String {
-        return LegacyTextBuilder(locale)
-            .appendText(this.bukkit)
-            .toString()
+        this as BukkitFcText
+        return when (this) {
+            is BukkitFcText.Legacy -> this.legacyText
+            is BukkitFcText.Component ->
+                LegacyTextBuilder(locale)
+                    .appendText(this.bukkit)
+                    .toString()
+        }
     }
 
     private data class LegacyFormat(
@@ -88,6 +104,16 @@ class BukkitFcTextConverter_1_13_00_R01 @Inject constructor(
         }
 
         private fun appendText(text: BukkitFcText, parentFormat: LegacyFormat) {
+            when (text) {
+                is BukkitFcText.Component ->
+                    appendTextComponent(text, parentFormat)
+
+                is BukkitFcText.Legacy ->
+                    appendLegacyText(text.legacyText)
+            }
+        }
+
+        private fun appendTextComponent(text: BukkitFcText.Component, parentFormat: LegacyFormat) {
             // The text format, inheriting from parentFormat in place of nulls.
             val format = LegacyFormat(
                 color = text.color?.bukkit?.chatColor ?: parentFormat.color,
@@ -99,11 +125,16 @@ class BukkitFcTextConverter_1_13_00_R01 @Inject constructor(
             )
 
             // Get the legacy to append
-            val legacyText = text.text
-                ?: text.translate?.let { localizer.localize(it, locale) ?: it }
+            val legacyText = when (text) {
+                is BukkitFcText.Component.Text ->
+                    text.text
+
+                is BukkitFcText.Component.Translate ->
+                    localizer.localize(text.translate, locale) ?: text.translate
+            }
 
             // Set the format, and append the text.
-            legacyText?.let {
+            legacyText.let {
                 pendingFormat = format.copy()
                 appendLegacyText(it)
             }

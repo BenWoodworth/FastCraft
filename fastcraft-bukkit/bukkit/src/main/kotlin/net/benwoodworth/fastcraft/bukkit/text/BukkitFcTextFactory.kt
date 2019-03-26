@@ -6,9 +6,8 @@ import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 
 interface BukkitFcTextFactory : FcTextFactory {
 
-    fun createFcText(
-        text: String? = null,
-        translate: String? = null,
+    fun createFcTextTranslate(
+        translate: String,
         color: FcTextColor? = null,
         bold: Boolean? = null,
         italic: Boolean? = null,
@@ -16,5 +15,9 @@ interface BukkitFcTextFactory : FcTextFactory {
         strikethrough: Boolean? = null,
         obfuscate: Boolean? = null,
         extra: List<FcText> = emptyList()
+    ): FcText
+
+    fun createFcTextLegacy(
+        legacyText: String
     ): FcText
 }

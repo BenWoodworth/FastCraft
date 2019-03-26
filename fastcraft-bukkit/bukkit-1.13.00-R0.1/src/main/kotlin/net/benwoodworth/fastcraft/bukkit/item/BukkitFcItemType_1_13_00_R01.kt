@@ -11,13 +11,13 @@ class BukkitFcItemType_1_13_00_R01(
 ) : BukkitFcItemType {
 
     override val name: FcText
-        get() = textFactory.bukkit.createFcText(
-            translate = with(material.key) { "item.$namespace.$key" }
+        get() = textFactory.bukkit.createFcTextTranslate(
+            material.key.run { "item.$namespace.$key" }
         )
 
     override val description: FcText
-        get() = textFactory.bukkit.createFcText(
-            translate = with(material.key) { "item.$namespace.$key.description" }
+        get() = textFactory.bukkit.createFcTextTranslate(
+            material.key.run { "item.$namespace.$key.description" }
         )
 
     override val maxAmount: Int
