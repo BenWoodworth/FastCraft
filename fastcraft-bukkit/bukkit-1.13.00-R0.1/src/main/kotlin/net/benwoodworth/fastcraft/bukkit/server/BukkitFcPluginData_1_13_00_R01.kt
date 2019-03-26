@@ -2,8 +2,9 @@ package net.benwoodworth.fastcraft.bukkit.server
 
 import org.bukkit.plugin.Plugin
 import java.nio.file.Path
+import javax.inject.Inject
 
-class BukkitFcPluginData_1_13_00_R01(
+class BukkitFcPluginData_1_13_00_R01 @Inject constructor(
     plugin: Plugin
 ) : BukkitFcPluginData {
 
