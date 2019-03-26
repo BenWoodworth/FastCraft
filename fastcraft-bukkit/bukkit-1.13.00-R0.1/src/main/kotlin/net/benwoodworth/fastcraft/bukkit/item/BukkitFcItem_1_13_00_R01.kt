@@ -5,9 +5,8 @@ import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.text.FcText
 import org.bukkit.inventory.ItemStack
-import javax.inject.Inject
 
-class BukkitFcItem_1_13_00_R01 @Inject constructor(
+class BukkitFcItem_1_13_00_R01(
     override val base: ItemStack,
     override val displayName: FcText?,
     override val lore: List<FcText>,
