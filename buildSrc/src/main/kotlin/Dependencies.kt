@@ -8,12 +8,6 @@ object Dependencies {
     val kotlin_runtime =
         "org.jetbrains.kotlin:kotlin-runtime:${Versions.kotlin}"
 
-    val kotlin_serialization =
-        "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}"
-
-    val kotlin_serialization_runtime =
-        "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlin_serialization}"
-
 
     val jsr250 =
         "javax.annotation:jsr250-api:${Versions.jsr250}"
@@ -26,9 +20,6 @@ object Dependencies {
 
     val dagger_compiler =
         "com.google.dagger:dagger-compiler:${Versions.dagger}"
-
-    val auto_factory =
-        "com.google.auto.factory:auto-factory:${Versions.auto_factory}"
 
 
     val shadow =

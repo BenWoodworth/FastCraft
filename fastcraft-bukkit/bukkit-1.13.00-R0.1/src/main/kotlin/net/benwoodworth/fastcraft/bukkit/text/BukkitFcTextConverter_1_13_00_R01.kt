@@ -1,11 +1,10 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
-import kotlinx.serialization.Optional
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
 import net.benwoodworth.fastcraft.bukkit.bukkit
 import net.benwoodworth.fastcraft.platform.text.FcLocale
 import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.profile
+import net.benwoodworth.fastcraft.util.JsonStringBuilder
 import org.bukkit.ChatColor
 import javax.inject.Inject
 
@@ -14,63 +13,79 @@ class BukkitFcTextConverter_1_13_00_R01 @Inject constructor(
 ) : BukkitFcTextConverter {
 
     override fun FcText.toRaw(): String {
-        return RawText(this.bukkit).toString()
+        profile("toRaw") {
+            return JsonStringBuilder()
+                .appendFcText(bukkit)
+                .toString()
+        }
     }
 
-    @Serializable
-    private class RawText(
-        @Optional var text: String? = null,
-        @Optional var translate: String? = null,
-        @Optional var color: String? = null,
-        @Optional var bold: Boolean? = null,
-        @Optional var italic: Boolean? = null,
-        @Optional var underline: Boolean? = null,
-        @Optional var strikethrough: Boolean? = null,
-        @Optional var obfuscate: Boolean? = null,
-        @Optional var extra: List<RawText>? = null
-    ) {
-        companion object {
-            private val format = Json(encodeDefaults = false)
+    private fun JsonStringBuilder.appendFcText(text: FcText): JsonStringBuilder {
+        text as BukkitFcText
 
-            operator fun invoke(text: BukkitFcText): RawText {
-                return when (text) {
-                    is BukkitFcText.Legacy -> RawText(text)
-                    is BukkitFcText.Component -> RawText(text)
+        return when (text) {
+            is BukkitFcText.Legacy -> appendFcText(text)
+            is BukkitFcText.Component -> appendFcText(text)
+        }
+    }
+
+    private fun JsonStringBuilder.appendFcText(text: BukkitFcText.Legacy): JsonStringBuilder {
+        return appendString(text.legacyText)
+    }
+
+    private fun JsonStringBuilder.appendFcText(text: BukkitFcText.Component): JsonStringBuilder {
+        appendObject {
+            when (text) {
+                is BukkitFcText.Component.Text ->
+                    appendElement("text") { appendString(text.text) }
+
+                is BukkitFcText.Component.Translate ->
+                    appendElement("translate") { appendString(text.translate) }
+            }
+
+            with(text) {
+                color?.let {
+                    appendElement("color") { appendString(it.bukkit.id) }
+                }
+
+                bold?.let {
+                    appendElement("bold") { appendBoolean(it) }
+                }
+                italic?.let {
+                    appendElement("italic") { appendBoolean(it) }
+                }
+                underline?.let {
+                    appendElement("underline") { appendBoolean(it) }
+                }
+                strikethrough?.let {
+                    appendElement("strikethrough") { appendBoolean(it) }
+                }
+                obfuscate?.let {
+                    appendElement("obfuscate") { appendBoolean(it) }
+                }
+
+                if (extra.any()) {
+                    appendElement("extra") {
+                        appendArray {
+                            extra.forEach { appendFcText(it) }
+                        }
+                    }
                 }
             }
         }
 
-        private constructor(text: BukkitFcText.Legacy) : this(
-            text = text.legacyText
-        )
-
-        private constructor(text: BukkitFcText.Component) : this(
-            text = (text as? BukkitFcText.Component.Text)?.text,
-            translate = (text as? BukkitFcText.Component.Translate)?.translate,
-            color = text.color?.bukkit?.id,
-            bold = text.bold,
-            italic = text.italic,
-            underline = text.underline,
-            strikethrough = text.strikethrough,
-            obfuscate = text.obfuscate,
-            extra = text.extra
-                .takeIf { it.any() }
-                ?.map { RawText(it.bukkit) }
-        )
-
-        override fun toString(): String {
-            return format.stringify(serializer(), this)
-        }
+        return this
     }
 
     override fun FcText.toLegacy(locale: FcLocale): String {
         this as BukkitFcText
         return when (this) {
             is BukkitFcText.Legacy -> this.legacyText
-            is BukkitFcText.Component ->
+            is BukkitFcText.Component -> profile("componentToLegacy") {
                 LegacyTextBuilder(locale)
                     .appendText(this.bukkit)
                     .toString()
+            }
         }
     }
 
