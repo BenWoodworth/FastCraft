@@ -3,7 +3,6 @@ package net.benwoodworth.fastcraft.bukkit.text
 import net.benwoodworth.fastcraft.bukkit.bukkit
 import net.benwoodworth.fastcraft.platform.text.FcLocale
 import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.profile
 import net.benwoodworth.fastcraft.util.JsonStringBuilder
 import org.bukkit.ChatColor
 import javax.inject.Inject
@@ -13,11 +12,9 @@ class BukkitFcTextConverter_1_13_00_R01 @Inject constructor(
 ) : BukkitFcTextConverter {
 
     override fun FcText.toRaw(): String {
-        profile("toRaw") {
-            return JsonStringBuilder()
-                .appendFcText(bukkit)
-                .toString()
-        }
+        return JsonStringBuilder()
+            .appendFcText(bukkit)
+            .toString()
     }
 
     private fun JsonStringBuilder.appendFcText(text: FcText): JsonStringBuilder {
@@ -80,12 +77,12 @@ class BukkitFcTextConverter_1_13_00_R01 @Inject constructor(
     override fun FcText.toLegacy(locale: FcLocale): String {
         this as BukkitFcText
         return when (this) {
-            is BukkitFcText.Legacy -> this.legacyText
-            is BukkitFcText.Component -> profile("componentToLegacy") {
+            is BukkitFcText.Legacy ->
+                this.legacyText
+            is BukkitFcText.Component ->
                 LegacyTextBuilder(locale)
                     .appendText(this.bukkit)
                     .toString()
-            }
         }
     }
 

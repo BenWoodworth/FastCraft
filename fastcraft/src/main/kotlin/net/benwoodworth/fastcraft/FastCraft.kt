@@ -24,40 +24,31 @@ class FastCraft @Inject internal constructor(
     }
 
     private fun onPlayerJoin(event: FcPlayerJoinEvent) {
-        profile("onPlayerJoin welcome") {
-            with(textFactory) {
-                val welcomeMessage = profile("welcomeMessage") {
-                    createFcText(
-                        text = "Welcome to ",
-                        color = textColors.aqua,
-                        extra = listOf(
-                            createFcText(
-                                text = "the ",
-                                color = textColors.green
-                            ),
-                            createFcText(
-                                text = "server!",
-                                bold = true
-                            )
+        with(textFactory) {
+            event.player.sendMessage(
+                createFcText(
+                    text = "Welcome to ",
+                    color = textColors.aqua,
+                    extra = listOf(
+                        createFcText(
+                            text = "the ",
+                            color = textColors.green
+                        ),
+                        createFcText(
+                            text = "server!",
+                            bold = true
                         )
                     )
-                }
-
-                profile("sendMessage") {
-                    event.player.sendMessage(welcomeMessage)
-                }
-            }
+                )
+            )
         }
 
-        profile("onPlayerJoin task") {
-            with(taskFactory) {
-                val task = profile("onPlayerJoin task") {
-                    createFcTask(delaySeconds = 5.0) {
-                        craftingGuiFactory.openFastCraftGui(event.player)
-                    }
-                }
-                task.schedule()
+        with(taskFactory) {
+            val task = createFcTask(delaySeconds = 5.0) {
+                craftingGuiFactory.openFastCraftGui(event.player)
             }
+
+            task.schedule()
         }
     }
 }
