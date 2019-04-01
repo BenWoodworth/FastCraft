@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft.bukkit.server
 
 import net.benwoodworth.fastcraft.bukkit.bukkit
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcLocale_1_13_00_R01
+import net.benwoodworth.fastcraft.bukkit.text.BukkitFcText
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextConverter
 import net.benwoodworth.fastcraft.platform.text.FcLocale
 import net.benwoodworth.fastcraft.platform.text.FcText
@@ -34,8 +35,21 @@ class BukkitFcPlayer_1_13_00_R01(
         get() = player.isOnline
 
     override fun sendMessage(message: FcText) {
+        message as BukkitFcText
+
         with(textConverter) {
-            server.dispatchCommand(server.consoleSender, "tellraw $username ${message.bukkit.toRaw()}")
+            when (message) {
+                is BukkitFcText.Legacy -> {
+                    player.sendMessage(message.legacyText)
+                }
+                is BukkitFcText.Component -> {
+                    server.dispatchCommand(
+                        server.consoleSender,
+                        "tellraw $username ${message.bukkit.toRaw()}"
+                    )
+
+                }
+            }
         }
     }
 

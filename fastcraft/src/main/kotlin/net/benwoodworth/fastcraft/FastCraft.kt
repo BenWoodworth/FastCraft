@@ -26,7 +26,7 @@ class FastCraft @Inject internal constructor(
     private fun onPlayerJoin(event: FcPlayerJoinEvent) {
         profile("onPlayerJoin welcome") {
             with(textFactory) {
-                event.player.sendMessage(
+                val welcomeMessage = profile("welcomeMessage") {
                     createFcText(
                         text = "Welcome to ",
                         color = textColors.aqua,
@@ -41,7 +41,11 @@ class FastCraft @Inject internal constructor(
                             )
                         )
                     )
-                )
+                }
+
+                profile("sendMessage") {
+                    event.player.sendMessage(welcomeMessage)
+                }
             }
         }
 
