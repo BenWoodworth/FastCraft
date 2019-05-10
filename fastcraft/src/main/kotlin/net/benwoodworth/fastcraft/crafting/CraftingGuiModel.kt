@@ -1,10 +1,40 @@
 package net.benwoodworth.fastcraft.crafting
 
+import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemFactory
+import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.server.FcPlayer
+import net.benwoodworth.fastcraft.platform.text.FcTextFactory
+import kotlin.math.ceil
+import kotlin.math.max
 
 class CraftingGuiModel(
-    private val player: FcPlayer
+    private val player: FcPlayer,
+    private val itemFactory: FcItemFactory,
+    private val itemTypes: FcItemTypes,
+    private val textFactory: FcTextFactory
 ) {
+
+    var recipes: List<FcItem> = emptyList()
+
+    fun refreshRecipes() {
+        with(itemFactory) {
+            with(textFactory) {
+                recipes = (1..100).map {
+                    createFcItem(
+                        type = itemTypes.netherStar,
+                        amount = it,
+                        displayName = createFcText(
+                            text = it.toString()
+                        )
+                    )
+                }
+            }
+        }
+
+        pages.first()
+    }
+
     val multiplier = Multiplier()
 
     inner class Multiplier {
@@ -45,15 +75,26 @@ class CraftingGuiModel(
         }
     }
 
-    val pages = Page()
+    val pages = Pages()
 
-    inner class Page {
+    inner class Pages {
+        var pageSize: Int = 0
+
         var current: Int = 1
             private set(value) {
-                field = value.coerceIn(1..total)
+                field = value.coerceIn(1..count)
             }
 
-        val total: Int = 1
+        val count: Int
+            get() = max(1, ceil(recipes.size / pageSize.toDouble()).toInt())
+
+        val pageRecipes: List<FcItem?>
+            get() {
+                val startIndex = (current - 1) * pageSize
+                return List(pageSize) { i ->
+                    recipes.getOrNull(i)
+                }
+            }
 
         fun previous() {
             current--
@@ -68,7 +109,7 @@ class CraftingGuiModel(
         }
 
         fun last() {
-            current = total
+            current = count
         }
     }
 }

@@ -17,8 +17,8 @@ class CraftingGuiFactory @Inject constructor(
 ) {
 
     fun openFastCraftGui(player: FcPlayer) {
-        val model = CraftingGuiModel(player)
-        val view = CraftingGuiView(player, guiFactory, textFactory)
+        val model = CraftingGuiModel(player, itemFactory, itemTypes, textFactory)
+        val view = CraftingGuiView(player, guiFactory, textFactory, textColors, itemFactory, itemTypes)
 
         CraftingGuiController(player, model, view, textFactory, textColors, itemFactory, itemTypes)
     }
