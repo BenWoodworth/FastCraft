@@ -1,7 +1,7 @@
 apply plugin: "java"
 
-apply from: "gradle/scripts/repositories.gradle"
-apply from: "gradle/scripts/shadowJar.gradle"
+apply from: "../gradle/scripts/repositories.gradle"
+apply from: "../gradle/scripts/shadowJar.gradle"
 
 buildscript {
     version = PluginInfo.version
@@ -19,9 +19,9 @@ buildscript {
 }
 
 dependencies {
-    compile project(":fastcraft-common")
-    compile project(":fastcraft-bukkit")
-    compile project(":fastcraft-sponge")
+    compile project(":fastcraft:common")
+    compile project(":fastcraft:bukkit")
+    compile project(":fastcraft:sponge")
 }
 
 subprojects {
