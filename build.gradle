@@ -19,7 +19,7 @@ buildscript {
 }
 
 dependencies {
-    compile project(":fastcraft")
+    compile project(":fastcraft-common")
     compile project(":fastcraft-bukkit")
     compile project(":fastcraft-sponge")
 }
