@@ -1,0 +1,19 @@
+task build {
+    group = "build"
+    
+    copy {
+        from("fastcraft/build/libs/") {
+            include "*.jar"
+        }
+
+        into project.buildDir
+    }
+}
+
+task clean {
+    group = "build"
+    
+    doLast {
+        delete project.buildDir 
+    }
+}

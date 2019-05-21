@@ -14,7 +14,7 @@ jobs:
         name: Test
         command: gradle test
     - store_artifacts:
-        path: build/libs
+        path: build
         destination: artifacts
     - run:
         name: Deploy

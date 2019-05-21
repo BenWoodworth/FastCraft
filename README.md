@@ -38,4 +38,4 @@ git checkout tags/<VERSION>
 | Windows       | `gradlew.bat build` |
 
 #### Output
-The built plugin jar will be located in `./build/lib/`
+The newly built plugin jar will be in the `build` folder.
