@@ -1,13 +1,17 @@
-task build(group: "build", dependsOn: ":fastcraft:build") << {
-    copy {
-        from("${project(":fastcraft").buildDir}/libs") {
-            include "*.jar"
-        }
+task build(group: "build", dependsOn: ":fastcraft:build") {
+    doLast {
+        copy {
+            from("${project(":fastcraft").buildDir}/libs") {
+                include "*.jar"
+            }
 
-        into project.buildDir
+            into project.buildDir
+        }
     }
 }
 
-task clean(group: "build") << {
-    delete project.buildDir
+task clean(group: "build") {
+    doLast {
+        delete project.buildDir
+    }
 }
