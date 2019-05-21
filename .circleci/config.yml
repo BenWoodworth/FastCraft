@@ -24,7 +24,7 @@ jobs:
           curl -O https://bootstrap.pypa.io/get-pip.py &&
           sudo python get-pip.py &&
           sudo pip install -q awscli --upgrade &&
-          aws s3 sync build/libs s3://fastcraft/circleci/${CIRCLE_BUILD_NUM} --delete --acl public-read
+          aws s3 sync build s3://fastcraft/circleci/${CIRCLE_BUILD_NUM} --delete --acl public-read
 
 workflows:
   version: 2
