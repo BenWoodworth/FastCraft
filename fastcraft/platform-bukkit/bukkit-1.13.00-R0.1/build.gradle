@@ -1,4 +1,4 @@
 dependencies {
     api "org.bukkit:bukkit:1.13-R0.1-SNAPSHOT"
-    api project(":fastcraft:bukkit:bukkit")
+    api project(":fastcraft:platform-bukkit:bukkit")
 }

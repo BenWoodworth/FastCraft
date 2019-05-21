@@ -7,8 +7,8 @@ allprojects {
 dependencies {
     api "org.bukkit:bukkit:1.8-R0.1-SNAPSHOT"
 
-    implementation project(":fastcraft:bukkit:bukkit")
-    implementation project(":fastcraft:bukkit:bukkit-1.13.00-R0.1")
+    implementation project(":fastcraft:platform-bukkit:bukkit")
+    implementation project(":fastcraft:platform-bukkit:bukkit-1.13.00-R0.1")
 }
 
 processResources {

@@ -20,8 +20,8 @@ buildscript {
 
 dependencies {
     compile project(":fastcraft:common")
-    compile project(":fastcraft:bukkit")
-    compile project(":fastcraft:sponge")
+    compile project(":fastcraft:platform-bukkit")
+    compile project(":fastcraft:platform-sponge")
 }
 
 subprojects {
