@@ -4,6 +4,7 @@ apply from: "../gradle/scripts/repositories.gradle"
 apply from: "../gradle/scripts/shadowJar.gradle"
 
 buildscript {
+    PluginInfo.updatePluginVersion()
     version = PluginInfo.version
 
     repositories {

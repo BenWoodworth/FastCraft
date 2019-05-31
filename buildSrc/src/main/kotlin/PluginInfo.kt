@@ -7,13 +7,14 @@ object PluginInfo {
 
     val id = "fastcraft"
     val name = "FastCraft"
-    val version = getPluginVersion()
+    var version = baseVersion
     val author = "Kepler"
     val description = "Redefines crafting in Minecraft"
     val website = "https://github.com/BenWoodworth/FastCraft"
 
-    private fun getPluginVersion(): String {
-        return try {
+    @JvmStatic
+    fun updatePluginVersion() {
+        version = try {
             getGitVersion()
         } catch (exception: Git.DescribeException) {
             System.err.println("Unable to get version using Git: ${exception.message}")
@@ -29,15 +30,11 @@ object PluginInfo {
 
             if (commitsAhead > 0) {
                 buildMetadata.add(commitsAhead.toString())
-                buildMetadata.add(commitHash.take(8))
+                buildMetadata.add('g' + commitHash.take(8))
             }
 
             if (dirty) {
                 buildMetadata.add("dirty")
-            }
-
-            if (broken) {
-                buildMetadata.add("broken")
             }
 
             val metadataString = buildMetadata

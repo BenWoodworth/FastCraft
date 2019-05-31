@@ -5,7 +5,7 @@ object Git {
     fun describe(): DescribeResult {
         val process = try {
             ProcessBuilder()
-                .command("git", "describe", "--tags", "--long", "--abbrev=100", "--dirty", "--broken")
+                .command("git", "describe", "--tags", "--long", "--abbrev=100", "--dirty")
                 .start()
         } catch (exception: Exception) {
             throw DescribeException("Unable to run command 'git describe'", exception)
@@ -28,17 +28,16 @@ object Git {
             .readText()
             .trim()
 
-        val regex = Regex("""^v?(.*?)-(\d+)-g([0-9a-f]+)(-dirty)?(-broken)?$""")
+        val regex = Regex("""^v?(.*?)-(\d+)-g([0-9a-f]+)(-dirty)?$""")
         val match = regex.matchEntire(output)!!
 
-        val (tag, ahead, hash, dirty, broken) = match.destructured
+        val (tag, ahead, hash, dirty) = match.destructured
 
         return DescribeResult(
             tag = tag,
             commitsAhead = ahead.toInt(),
             commitHash = hash,
-            dirty = dirty.isNotEmpty(),
-            broken = broken.isNotEmpty()
+            dirty = dirty.isNotEmpty()
         )
     }
 
@@ -51,7 +50,6 @@ object Git {
         val tag: String,
         val commitsAhead: Int,
         val commitHash: String,
-        val dirty: Boolean,
-        val broken: Boolean
+        val dirty: Boolean
     )
 }
