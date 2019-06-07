@@ -1,11 +1,9 @@
 apply plugin: "java"
-
-apply from: "../gradle/scripts/repositories.gradle"
-apply from: "../gradle/scripts/shadowJar.gradle"
+apply plugin: "com.github.johnrengelman.shadow"
 
 buildscript {
-    PluginInfo.updatePluginVersion()
-    version = PluginInfo.version
+    PluginVersion.updateVersion()
+    version = PluginVersion.version
 
     repositories {
         maven { url "https://dl.bintray.com/kotlin/kotlin-eap" }
@@ -14,8 +12,8 @@ buildscript {
     }
 
     dependencies {
-        classpath Dependencies.kotlin_gradle_plugin
-        classpath Dependencies.shadow
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin"
+        classpath "com.github.jengelman.gradle.plugins:shadow:$version_shadow"
     }
 }
 
@@ -25,23 +23,27 @@ dependencies {
     compile project(":fastcraft:platform-sponge")
 }
 
+allprojects {
+    repositories {
+        maven { url "https://kotlin.bintray.com/kotlinx" }
+        maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
+        jcenter()
+    }
+}
+
 subprojects {
-    apply plugin: "java"
     apply plugin: "kotlin"
     apply plugin: "kotlin-kapt"
 
     dependencies {
-        compile Dependencies.kotlin_stdlib
+        compile "org.jetbrains.kotlin:kotlin-stdlib:$version_kotlin"
 
-        compile Dependencies.jsr250
-        compile Dependencies.javax_inject
-        compile Dependencies.dagger
+        compile "javax.annotation:jsr250-api:$version_jsr250"
+        compile "javax.inject:javax.inject:$version_javax_inject"
+        compile "com.google.dagger:dagger:$version_dagger"
 
-        kapt Dependencies.dagger_compiler
+        kapt "com.google.dagger:dagger-compiler:$version_dagger"
     }
-
-    sourceCompatibility = Versions.java
-    targetCompatibility = Versions.java
 
     sourceSets {
         main.java.srcDirs += "$buildDir/generated/source/kapt/main"
@@ -50,4 +52,36 @@ subprojects {
     kapt {
         correctErrorTypes = true
     }
+}
+
+jar {
+    archivesBaseName = "FastCraft"
+    
+    // Use shadowJar instead of jar
+    enabled = false
+    dependsOn shadowJar
+}
+
+shadowJar {
+    classifier(null)
+
+    dependencies {
+        subprojects.forEach { subproject ->
+            include project(subproject.path)
+        }
+
+        include dependency(dependency_kotlin_runtime)
+        include dependency(dependency_kotlin_stdlib)
+        include dependency(dependency_dagger)
+        include dependency(dependency_javax_inject)
+        include dependency(dependency_bstats_bukkit)
+        include dependency(dependency_bstats_sponge)
+    }
+
+    def libPackage = "net.benwoodworth.fastcraft.lib"
+
+    relocate("kotlin", "${libPackage}.kotlin")
+    relocate("dagger", "${libPackage}.dagger")
+    relocate("javax", "${libPackage}.javax")
+    relocate("org.bstats", "${libPackage}.bstats")
 }

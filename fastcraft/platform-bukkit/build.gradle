@@ -15,11 +15,11 @@ processResources {
     include 'plugin.yml'
 
     expand([
-            plugin_id         : PluginInfo.id,
-            plugin_name       : PluginInfo.name,
-            plugin_author     : PluginInfo.author,
-            plugin_description: PluginInfo.description,
-            plugin_version    : PluginInfo.version,
-            plugin_website    : PluginInfo.website
+            plugin_id         : plugin_id,
+            plugin_name       : plugin_name,
+            plugin_author     : plugin_author,
+            plugin_description: plugin_description,
+            plugin_website    : plugin_website,
+            plugin_version    : PluginVersion.version,
     ])
 }

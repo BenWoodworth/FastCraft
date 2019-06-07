@@ -2,18 +2,13 @@ import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
-object PluginInfo {
+object PluginVersion {
     private const val baseVersion = "3.0.0-unknown"
 
-    val id = "fastcraft"
-    val name = "FastCraft"
     var version = baseVersion
-    val author = "Kepler"
-    val description = "Redefines crafting in Minecraft"
-    val website = "https://github.com/BenWoodworth/FastCraft"
 
     @JvmStatic
-    fun updatePluginVersion() {
+    fun updateVersion() {
         version = try {
             getGitVersion()
         } catch (exception: Git.DescribeException) {
