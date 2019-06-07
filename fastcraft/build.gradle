@@ -12,8 +12,8 @@ buildscript {
     }
 
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin"
-        classpath "com.github.jengelman.gradle.plugins:shadow:$version_shadow"
+        classpath dependency_kotlin_gradle_plugin
+        classpath dependency_shadow
     }
 }
 
@@ -36,13 +36,13 @@ subprojects {
     apply plugin: "kotlin-kapt"
 
     dependencies {
-        compile "org.jetbrains.kotlin:kotlin-stdlib:$version_kotlin"
+        compile dependency_kotlin_stdlib
 
-        compile "javax.annotation:jsr250-api:$version_jsr250"
-        compile "javax.inject:javax.inject:$version_javax_inject"
-        compile "com.google.dagger:dagger:$version_dagger"
-
-        kapt "com.google.dagger:dagger-compiler:$version_dagger"
+        compile dependency_jsr250
+        compile dependency_javax_inject
+        compile dependency_dagger
+        
+        kapt dependency_dagger_compiler
     }
 
     sourceSets {
