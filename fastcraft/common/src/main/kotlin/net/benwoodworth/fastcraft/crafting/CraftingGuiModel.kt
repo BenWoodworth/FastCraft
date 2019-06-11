@@ -1,7 +1,6 @@
 package net.benwoodworth.fastcraft.crafting
 
 import net.benwoodworth.fastcraft.platform.item.FcItem
-import net.benwoodworth.fastcraft.platform.item.FcItemFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.server.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
@@ -10,7 +9,6 @@ import kotlin.math.max
 
 class CraftingGuiModel(
     private val player: FcPlayer,
-    private val itemFactory: FcItemFactory,
     private val itemTypes: FcItemTypes,
     private val textFactory: FcTextFactory
 ) {
@@ -18,19 +16,17 @@ class CraftingGuiModel(
     var recipes: List<FcItem> = emptyList()
 
     fun refreshRecipes() {
-        with(itemFactory) {
-            with(textFactory) {
-                recipes = (1..100).map {
-                    createFcItem(
-                        type = itemTypes.netherStar,
-                        amount = it,
-                        displayName = createFcText(
-                            text = it.toString()
-                        )
-                    )
-                }
-            }
-        }
+//        with(textFactory) {
+//            recipes = (1..100).map {
+//                createFcItem(
+//                    type = itemTypes.netherStar,
+//                    amount = it,
+//                    displayName = createFcText(
+//                        text = it.toString()
+//                    )
+//                )
+//            }
+//        }
 
         pages.first()
     }

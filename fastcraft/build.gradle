@@ -40,9 +40,12 @@ subprojects {
 
         compile dependency_jsr250
         compile dependency_javax_inject
+
         compile dependency_dagger
-        
         kapt dependency_dagger_compiler
+        
+        compile dependency_auto_factory
+        kapt dependency_auto_factory
     }
 
     sourceSets {

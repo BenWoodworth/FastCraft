@@ -5,5 +5,5 @@ import org.bukkit.inventory.ItemStack
 
 interface BukkitFcItem : FcItem {
 
-    val base: ItemStack
+    fun toItemStack(): ItemStack
 }

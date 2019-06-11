@@ -4,8 +4,7 @@ import dagger.Module
 import dagger.Provides
 import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfigFactory_1_13_00_R01
 import net.benwoodworth.fastcraft.bukkit.gui.BukkitFcGuiFactory_1_13_00_R01
-import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemConverter
-import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemConverter_1_13_00_R01
+import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemFactory
 import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemFactory_1_13_00_R01
 import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemTypes_1_13_00_R01
 import net.benwoodworth.fastcraft.bukkit.recipe.BukkitFcRecipeService_1_13_00_R01
@@ -13,7 +12,6 @@ import net.benwoodworth.fastcraft.bukkit.server.*
 import net.benwoodworth.fastcraft.bukkit.text.*
 import net.benwoodworth.fastcraft.platform.config.FcConfigFactory
 import net.benwoodworth.fastcraft.platform.gui.FcGuiFactory
-import net.benwoodworth.fastcraft.platform.item.FcItemFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.recipe.FcRecipeService
 import net.benwoodworth.fastcraft.platform.server.*
@@ -37,8 +35,7 @@ class BukkitDaggerModule_1_13_00_R01(
         fcPluginData: FcPluginData,
         fcConfigFactory: FcConfigFactory,
         fcGuiFactory: FcGuiFactory,
-        bukkitFcItemConverter: BukkitFcItemConverter,
-        fcItemFactory: FcItemFactory,
+        bukkitFcItemFactory: BukkitFcItemFactory,
         fcItemTypes: FcItemTypes,
         fcPlayerProvider: FcPlayerProvider,
         fcRecipeService: FcRecipeService,
@@ -99,13 +96,7 @@ class BukkitDaggerModule_1_13_00_R01(
 
     @Provides
     @Singleton
-    fun provideBukkitFcItemConverter(instance: BukkitFcItemConverter_1_13_00_R01): BukkitFcItemConverter {
-        return instance
-    }
-
-    @Provides
-    @Singleton
-    fun provideFcItemFactory(instance: BukkitFcItemFactory_1_13_00_R01): FcItemFactory {
+    fun provideBukkitFcItemFactory(instance: BukkitFcItemFactory_1_13_00_R01): BukkitFcItemFactory {
         return instance
     }
 

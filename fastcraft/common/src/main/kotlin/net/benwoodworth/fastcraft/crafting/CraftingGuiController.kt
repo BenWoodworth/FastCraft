@@ -1,7 +1,6 @@
 package net.benwoodworth.fastcraft.crafting
 
 import net.benwoodworth.fastcraft.platform.gui.FcGuiCloseEvent
-import net.benwoodworth.fastcraft.platform.item.FcItemFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.server.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
@@ -13,7 +12,6 @@ class CraftingGuiController(
     private val view: CraftingGuiView,
     private val textFactory: FcTextFactory,
     private val textColors: FcTextColors,
-    private val itemFactory: FcItemFactory,
     private val itemTypes: FcItemTypes
 ) {
 

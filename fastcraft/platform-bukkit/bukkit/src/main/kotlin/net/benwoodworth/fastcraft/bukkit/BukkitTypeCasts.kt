@@ -5,7 +5,6 @@ import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfigEntry
 import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfigFactory
 import net.benwoodworth.fastcraft.bukkit.gui.*
 import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItem
-import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemFactory
 import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemType
 import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemTypes
 import net.benwoodworth.fastcraft.bukkit.recipe.BukkitFcCraftingRecipe
@@ -18,7 +17,6 @@ import net.benwoodworth.fastcraft.platform.config.FcConfigEntry
 import net.benwoodworth.fastcraft.platform.config.FcConfigFactory
 import net.benwoodworth.fastcraft.platform.gui.*
 import net.benwoodworth.fastcraft.platform.item.FcItem
-import net.benwoodworth.fastcraft.platform.item.FcItemFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
@@ -43,7 +41,6 @@ inline val FcGuiButton.bukkit get() = this as BukkitFcGuiButton
 
 // item
 inline val FcItem.bukkit get() = this as BukkitFcItem
-inline val FcItemFactory.bukkit get() = this as BukkitFcItemFactory
 inline val FcItemType.bukkit get() = this as BukkitFcItemType
 inline val FcItemTypes.bukkit get() = this as BukkitFcItemTypes
 
