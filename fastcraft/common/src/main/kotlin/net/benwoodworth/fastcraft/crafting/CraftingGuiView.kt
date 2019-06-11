@@ -23,7 +23,7 @@ class CraftingGuiView(
     )
 
     private val width = gui.layout.width
-    private val height = gui.layout.width
+    private val height = gui.layout.height
 
     private val workbenchButton = gui.layout.getButton(width - 1, 0).apply {
         with(textFactory) {
@@ -120,7 +120,6 @@ class CraftingGuiView(
     }
 
     private fun updatePageButton() {
-        println("Hi!")
         with(textFactory) {
             pageButton.apply {
                 text = createFcText(
