@@ -4,9 +4,7 @@ import dagger.Module
 import dagger.Provides
 import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfigFactory_1_13_00_R01
 import net.benwoodworth.fastcraft.bukkit.gui.BukkitFcGuiFactory_1_13_00_R01
-import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemFactory
-import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemFactory_1_13_00_R01
-import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemTypes_1_13_00_R01
+import net.benwoodworth.fastcraft.bukkit.item.*
 import net.benwoodworth.fastcraft.bukkit.recipe.BukkitFcRecipeService_1_13_00_R01
 import net.benwoodworth.fastcraft.bukkit.server.*
 import net.benwoodworth.fastcraft.bukkit.text.*
@@ -37,6 +35,7 @@ class BukkitDaggerModule_1_13_00_R01(
         fcGuiFactory: FcGuiFactory,
         bukkitFcItemFactory: BukkitFcItemFactory,
         fcItemTypes: FcItemTypes,
+        itemStackNameProvider: ItemStackNameProvider,
         fcPlayerProvider: FcPlayerProvider,
         fcRecipeService: FcRecipeService,
         fcServer: FcServer,
@@ -103,6 +102,12 @@ class BukkitDaggerModule_1_13_00_R01(
     @Provides
     @Singleton
     fun provideFcItemTypes(instance: BukkitFcItemTypes_1_13_00_R01): FcItemTypes {
+        return instance
+    }
+
+    @Provides
+    @Singleton
+    fun provideItemStackNameProvider(instance: ItemStackNameProvider_1_13_00_R01): ItemStackNameProvider {
         return instance
     }
 

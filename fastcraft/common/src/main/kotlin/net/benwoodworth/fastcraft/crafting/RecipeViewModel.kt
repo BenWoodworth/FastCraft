@@ -2,13 +2,11 @@ package net.benwoodworth.fastcraft.crafting
 
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.item.FcItem
-import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 
 class RecipeViewModel(
     val recipe: FcItem,
-    val textFactory: FcTextFactory,
-    textColors: FcTextColors
+    private val textFactory: FcTextFactory
 ) {
 
     fun updateButton(button: FcGuiButton) {

@@ -1,10 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
-import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextConverter
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
-import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.text.FcLocale
-import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.inventory.Inventory
 
 abstract class BukkitFcGuiLayout_1_13_00_R01(

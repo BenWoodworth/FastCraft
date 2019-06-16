@@ -3,7 +3,6 @@ package net.benwoodworth.fastcraft.bukkit.gui
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.bukkit.bukkit
-import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemFactory
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextConverter
 import net.benwoodworth.fastcraft.events.HandlerSet
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClickEvent

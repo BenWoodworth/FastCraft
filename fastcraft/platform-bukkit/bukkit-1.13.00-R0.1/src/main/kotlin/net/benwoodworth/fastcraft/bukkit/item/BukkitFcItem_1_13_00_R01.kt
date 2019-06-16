@@ -13,7 +13,8 @@ import org.bukkit.inventory.ItemStack
 class BukkitFcItem_1_13_00_R01(
     itemStack: ItemStack,
     @Provided private val itemTypes: FcItemTypes,
-    @Provided private val textFactory: FcTextFactory
+    @Provided private val textFactory: FcTextFactory,
+    @Provided private val nameProvider: ItemStackNameProvider
 ) : BukkitFcItem {
 
     private val itemStack: ItemStack = itemStack.clone()
@@ -26,14 +27,8 @@ class BukkitFcItem_1_13_00_R01(
         get() = itemStack.amount
 
     override val name: FcText by lazy {
-        with(textFactory) {
-            itemStack
-                .takeIf { it.hasItemMeta() }
-                ?.itemMeta
-                ?.takeIf { it.hasDisplayName() }
-                ?.displayName
-                ?.let { createFcText(it) }
-                ?: type.name
+        with(nameProvider) {
+            itemStack.getName()
         }
     }
 

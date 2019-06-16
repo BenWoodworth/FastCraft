@@ -2,11 +2,8 @@ package net.benwoodworth.fastcraft.bukkit.gui
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextConverter
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
-import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.text.FcLocale
-import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.inventory.Inventory
 
 @AutoFactory
