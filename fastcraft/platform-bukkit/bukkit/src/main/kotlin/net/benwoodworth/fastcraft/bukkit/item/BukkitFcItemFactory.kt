@@ -1,9 +1,10 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
 import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemFactory
 import org.bukkit.inventory.ItemStack
 
-interface BukkitFcItemFactory {
+interface BukkitFcItemFactory: FcItemFactory {
 
     fun createFcItem(itemStack: ItemStack): FcItem
 }
