@@ -1,7 +1,5 @@
 allprojects{
     ext {
-        plugin_id = "fastcraft"
-        plugin_name = "FastCraft"
         plugin_author = "Kepler"
         plugin_description = "Redefines crafting in Minecraft"
         plugin_website = "https://github.com/BenWoodworth/FastCraft"

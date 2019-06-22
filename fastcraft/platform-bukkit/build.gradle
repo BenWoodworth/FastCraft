@@ -15,8 +15,7 @@ processResources {
     include 'plugin.yml'
 
     expand([
-            plugin_id         : plugin_id,
-            plugin_name       : plugin_name,
+            plugin_id         : "FastCraft",
             plugin_author     : plugin_author,
             plugin_description: plugin_description,
             plugin_website    : plugin_website,
