@@ -14,7 +14,9 @@ import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.Material
 import org.bukkit.inventory.Inventory
+import org.bukkit.inventory.ItemFactory
 import org.bukkit.inventory.ItemStack
+import org.bukkit.inventory.meta.ItemMeta
 
 @AutoFactory
 class BukkitFcGuiButton_1_13_00_R01(
@@ -23,15 +25,15 @@ class BukkitFcGuiButton_1_13_00_R01(
     locale: FcLocale,
     @Provided private val itemTypes: FcItemTypes,
     @Provided private val textFactory: FcTextFactory,
-    @Provided private val textConverter: BukkitFcTextConverter
+    @Provided private val textConverter: BukkitFcTextConverter,
+    @Provided private val itemFactory: ItemFactory
 ) : BukkitFcGuiButton {
 
     private lateinit var _text: FcText
     private lateinit var _description: List<FcText>
 
     private lateinit var itemStack: ItemStack
-    private var displayName: String? = null
-    private var lore: List<String>? = null
+    private lateinit var itemMeta: ItemMeta
 
     init {
         clear()
@@ -56,7 +58,7 @@ class BukkitFcGuiButton_1_13_00_R01(
         get() = _text
         set(value) {
             _text = value
-            updateDisplayName()
+            itemMeta.displayName = _text.toLegacy()
             updateItem()
         }
 
@@ -64,60 +66,52 @@ class BukkitFcGuiButton_1_13_00_R01(
         get() = _description
         set(value) {
             _description = value
-            updateLore()
+            itemMeta.lore = _description.toLegacy()
             updateItem()
         }
 
     override var locale: FcLocale = locale
         set(value) {
             field = value
-            updateDisplayName()
-            updateLore()
+            itemMeta.displayName = _text.toLegacy()
+            itemMeta.lore = _description.toLegacy()
             updateItem()
         }
 
-    private fun updateDisplayName() {
+    private fun FcText.toLegacy(): String {
         with(textConverter) {
-            displayName = _text.toLegacy(locale)
+            return this@toLegacy.toLegacy(locale)
         }
     }
 
-    private fun updateLore() {
+    private fun List<FcText>.toLegacy(): List<String> {
         with(textConverter) {
-            lore = _description.map { it.toLegacy(locale) }
+            return this@toLegacy.map { it.toLegacy(locale) }
         }
     }
 
     private fun updateItem() {
-        itemStack.itemMeta?.let { meta ->
-            meta.displayName = displayName
-            meta.lore = lore
-
-            itemStack.itemMeta = meta
-        }
-
+        itemStack.itemMeta = itemMeta
         inventory.setItem(slotIndex, itemStack)
     }
 
     override fun copyItem(item: FcItem) {
         itemStack = item.bukkit.toItemStack()
+        itemMeta = itemStack.itemMeta ?: itemFactory.getItemMeta(Material.STONE)
+
         _text = item.name
         _description = item.lore
 
-        updateDisplayName()
-        updateLore()
         updateItem()
     }
 
     override fun clear() {
         itemStack = ItemStack(Material.AIR)
-//        itemStack = ItemStack(Material.GOLDEN_APPLE)
+        itemMeta = itemFactory.getItemMeta(Material.STONE)
 
         _text = textFactory.createFcText()
         _description = emptyList()
 
-        displayName = ""
-        lore = emptyList()
         updateItem()
     }
 }

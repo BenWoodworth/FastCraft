@@ -16,6 +16,7 @@ import net.benwoodworth.fastcraft.platform.server.*
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.Server
+import org.bukkit.inventory.ItemFactory
 import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.PluginManager
 import org.bukkit.scheduler.BukkitScheduler
@@ -55,8 +56,13 @@ class BukkitDaggerModule_1_13_00_R01(
     }
 
     @Provides
-    fun provideServer(): Server {
+    fun provideServer(plugin: Plugin): Server {
         return plugin.server
+    }
+
+    @Provides
+    fun provideItemFactory(server: Server): ItemFactory {
+        return server.itemFactory
     }
 
     @Provides
