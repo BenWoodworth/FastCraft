@@ -126,5 +126,6 @@ class BukkitFcGuiButton_1_13_00_R01(
             ItemFlag.HIDE_PLACED_ON,
             ItemFlag.HIDE_POTION_EFFECTS
         )
+        updateItem()
     }
 }

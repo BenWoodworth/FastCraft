@@ -41,6 +41,8 @@ class CraftingGuiView(
                     )
                 )
             )
+
+            hideItemDetails()
         }
     }
 
@@ -55,6 +57,8 @@ class CraftingGuiView(
                 createFcText("Shift click to increment by 1", color = textColors.aqua),
                 createFcText("Middle click to reset to 1x", color = textColors.aqua)
             )
+
+            hideItemDetails()
         }
     }
 
@@ -67,6 +71,8 @@ class CraftingGuiView(
             description = listOf(
                 createFcText("Refresh the FastCraft interface", color = textColors.aqua)
             )
+
+            hideItemDetails()
         }
     }
 
@@ -77,8 +83,10 @@ class CraftingGuiView(
             description = listOf(
                 createFcText("Right click: next page", color = textColors.aqua),
                 createFcText("Left click: previous page", color = textColors.aqua),
-                createFcText("Shift click: first/last page", color = textColors.aqua)
+                createFcText("Shift click: first page", color = textColors.aqua)
             )
+
+            hideItemDetails()
         }
     }
 
