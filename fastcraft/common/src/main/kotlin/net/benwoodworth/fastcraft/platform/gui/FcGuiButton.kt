@@ -20,4 +20,6 @@ interface FcGuiButton {
     fun clear()
 
     fun copyItem(item: FcItem)
+
+    fun hideItemDetails()
 }

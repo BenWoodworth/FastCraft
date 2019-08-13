@@ -15,8 +15,10 @@ import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.Material
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemFactory
+import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.ItemMeta
+import kotlin.reflect.KProperty
 
 @AutoFactory
 class BukkitFcGuiButton_1_13_00_R01(
@@ -113,5 +115,16 @@ class BukkitFcGuiButton_1_13_00_R01(
         _description = emptyList()
 
         updateItem()
+    }
+
+    override fun hideItemDetails() {
+        itemMeta.addItemFlags(
+            ItemFlag.HIDE_ENCHANTS,
+            ItemFlag.HIDE_ATTRIBUTES,
+            ItemFlag.HIDE_UNBREAKABLE,
+            ItemFlag.HIDE_DESTROYS,
+            ItemFlag.HIDE_PLACED_ON,
+            ItemFlag.HIDE_POTION_EFFECTS
+        )
     }
 }
