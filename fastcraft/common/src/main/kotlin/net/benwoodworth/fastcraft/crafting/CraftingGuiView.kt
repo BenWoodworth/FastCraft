@@ -1,19 +1,23 @@
 package net.benwoodworth.fastcraft.crafting
 
+import com.google.auto.factory.AutoFactory
+import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClickEvent
 import net.benwoodworth.fastcraft.platform.gui.FcGuiFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.server.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
+import javax.inject.Inject
 import kotlin.properties.Delegates
 
+@AutoFactory
 class CraftingGuiView(
     player: FcPlayer,
-    guiFactory: FcGuiFactory,
-    private val textFactory: FcTextFactory,
-    private val textColors: FcTextColors,
-    private val itemTypes: FcItemTypes
+    @Provided guiFactory: FcGuiFactory,
+    @Provided private val textFactory: FcTextFactory,
+    @Provided private val textColors: FcTextColors,
+    @Provided private val itemTypes: FcItemTypes
 ) {
     private val gui = guiFactory.openChestGui(
         player = player,
@@ -81,8 +85,8 @@ class CraftingGuiView(
             itemType = itemTypes.ironSword
 
             description = listOf(
-                createFcText("Right click: next page", color = textColors.aqua),
-                createFcText("Left click: previous page", color = textColors.aqua),
+                createFcText("Left click: next page", color = textColors.aqua),
+                createFcText("Right click: previous page", color = textColors.aqua),
                 createFcText("Shift click: first page", color = textColors.aqua)
             )
 
