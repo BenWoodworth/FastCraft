@@ -68,7 +68,7 @@ dependencies {
     }
 
     def kaptAll = { dependency ->
-        implementation dependency
+        kapt dependency
         kaptCommon dependency
         kaptBukkit dependency
     }
