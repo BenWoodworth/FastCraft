@@ -1,4 +1,4 @@
-name: "${plugin_id}"
+name: "FastCraft"
 author: "${plugin_author}"
 version: "${plugin_version}"
 website: "${plugin_website}"
