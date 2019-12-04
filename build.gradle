@@ -1,47 +1,118 @@
-allprojects{
+group 'net.benwoodworth'
+
+apply plugin: "kotlin"
+apply plugin: "kotlin-kapt"
+apply plugin: "com.github.johnrengelman.shadow"
+
+buildscript {
+    PluginVersion.updateVersion()
+    version = PluginVersion.version
+
     ext {
-        plugin_author = "Kepler"
-        plugin_description = "Redefines crafting in Minecraft"
-        plugin_website = "https://github.com/BenWoodworth/FastCraft"
-        
-        version_java = "1.6"
-        version_kotlin = "1.3.31"
-        version_kotlin_serialization = "0.10.0"
+        version_java = "1.8"
+        version_kotlin = "1.3.60"
         version_dagger = "2.17"
-        version_auto_factory = "0.1-beta1"
-        version_jsr250 = "1.0"
         version_javax_inject = "1"
+        version_auto_factory = "0.1-beta1"
         version_shadow = "4.0.2"
         version_bstats = "1.3"
+        version_bukkit = "1.13-R0.1-SNAPSHOT"
 
-        dependency_kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin"
-        dependency_kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$version_kotlin"
-        dependency_kotlin_runtime = "org.jetbrains.kotlin:kotlin-runtime:$version_kotlin"
-        dependency_jsr250 = "javax.annotation:jsr250-api:$version_jsr250"
-        dependency_javax_inject = "javax.inject:javax.inject:$version_javax_inject"
+        dependency_kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version_kotlin"
+        dependency_kotlin_runtime = "org.jetbrains.kotlin:kotlin-runtime-jdk8:$version_kotlin"
         dependency_dagger = "com.google.dagger:dagger:$version_dagger"
         dependency_dagger_compiler = "com.google.dagger:dagger-compiler:$version_dagger"
+        dependency_javax_inject = "javax.inject:javax.inject:$version_javax_inject"
         dependency_auto_factory = "com.google.auto.factory:auto-factory:$version_auto_factory"
-        dependency_shadow = "com.github.jengelman.gradle.plugins:shadow:$version_shadow"
         dependency_bstats_bukkit = "org.bstats:bstats-bukkit:$version_bstats"
-        dependency_bstats_sponge = "org.bstats:bstats-sponge:$version_bstats"
+        dependency_bukkit = "org.bukkit:bukkit:$version_bukkit"
+    }
+
+    repositories {
+        maven { url "https://dl.bintray.com/kotlin/kotlin-eap" }
+        maven { url "https://plugins.gradle.org/m2/" }
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin"
+        classpath "com.github.jengelman.gradle.plugins:shadow:$version_shadow"
     }
 }
 
-task build(group: "build", dependsOn: ":fastcraft:build") {
-    doLast {
-        copy {
-            from("${project(":fastcraft").buildDir}/libs") {
-                include "*.jar"
-            }
+repositories {
+    mavenCentral()
+    jcenter()
+    maven { url "https://kotlin.bintray.com/kotlinx" }
+    maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots" }
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+}
 
-            into project.buildDir
-        }
+sourceSets {
+    common {
+        java.srcDirs += "$buildDir/generated/source/kapt/common"
+    }
+
+    bukkit {
+        java.srcDirs += "$buildDir/generated/source/kapt/bukkit"
+        compileClasspath += common.compileClasspath
+        runtimeClasspath += common.runtimeClasspath
     }
 }
 
-task clean(group: "build") {
-    doLast {
-        delete project.buildDir
+dependencies {
+    def allCompile = { dependency ->
+        commonCompile dependency
+        bukkitCompile dependency
     }
+
+    def kaptAll = { dependency ->
+        kaptCommon dependency
+        kaptBukkit dependency
+    }
+
+    allCompile dependency_kotlin_stdlib
+    allCompile dependency_dagger
+    allCompile dependency_javax_inject
+    allCompile dependency_auto_factory
+
+    kaptAll dependency_dagger_compiler
+    kaptAll dependency_auto_factory
+
+    bukkitCompile sourceSets.common.output
+    bukkitCompile dependency_bukkit
+}
+
+compileKotlin.kotlinOptions.jvmTarget = version_java
+compileTestKotlin.kotlinOptions.jvmTarget = version_java
+
+kapt {
+    correctErrorTypes = true
+}
+
+jar {
+    from sourceSets.common.output
+    from sourceSets.bukkit.output
+
+    enabled = false
+    dependsOn shadowJar
+}
+
+shadowJar {
+    classifier(null)
+
+    dependencies {
+        include dependency(dependency_kotlin_runtime)
+        include dependency(dependency_kotlin_stdlib)
+        include dependency(dependency_dagger)
+        include dependency(dependency_javax_inject)
+        include dependency(dependency_bstats_bukkit)
+    }
+
+    def libPackage = "net.benwoodworth.fastcraft.lib"
+
+    relocate("kotlin", "${libPackage}.kotlin")
+    relocate("dagger", "${libPackage}.dagger")
+    relocate("javax", "${libPackage}.javax")
+    relocate("org.bstats", "${libPackage}.bstats")
 }

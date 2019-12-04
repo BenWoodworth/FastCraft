@@ -1,13 +1,1 @@
 rootProject.name = "FastCraft"
-
-include ":fastcraft"
-
-include ":fastcraft:common"
-
-include ":fastcraft:platform-bukkit"
-include ":fastcraft:platform-bukkit:bukkit"
-include ":fastcraft:platform-bukkit:bukkit-1.13.00-R0.1"
-//include ":fastcraft:platform-bukkit:bukkit-1.07.02-R0.3"
-
-include ":fastcraft:platform-sponge"
-//include ":fastcraft:platform-sponge:sponge-6.0.0"
