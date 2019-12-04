@@ -6,6 +6,3 @@
 out/
 build/
 classes/
-
-test-servers/bukkit/*/
-test-servers/sponge/*/
