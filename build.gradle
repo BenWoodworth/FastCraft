@@ -91,14 +91,14 @@ kapt {
 }
 
 jar {
-    from sourceSets.common.output
-    from sourceSets.bukkit.output
-
     enabled = false
     dependsOn shadowJar
 }
 
 shadowJar {
+    from sourceSets.common.output
+    from sourceSets.bukkit.output
+
     classifier(null)
 
     dependencies {
