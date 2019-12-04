@@ -62,11 +62,13 @@ sourceSets {
 
 dependencies {
     def allCompile = { dependency ->
+        implementation dependency
         commonCompile dependency
         bukkitCompile dependency
     }
 
     def kaptAll = { dependency ->
+        implementation dependency
         kaptCommon dependency
         kaptBukkit dependency
     }
