@@ -24,9 +24,14 @@ cd FastCraft
 ```
 
 #### Choose a FastCraft Version
-Replace `<VERSION>` with the desired version.
+List available versions:
 ```
 git tag --sort=-v:refname --column
+
+```
+
+Replace `<VERSION>` with the desired version:
+```
 git checkout tags/<VERSION>
 ```
 
@@ -38,4 +43,4 @@ git checkout tags/<VERSION>
 | Windows       | `gradlew.bat build` |
 
 #### Output
-The newly built plugin jar will be in the `build` folder.
+The newly built plugin jar will be in the `build/libs/` folder.
