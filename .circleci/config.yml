@@ -9,10 +9,10 @@ jobs:
     - checkout
     - run:
         name: Build
-        command: gradle clean build
+        command: ./gradlew clean build
     - run:
         name: Test
-        command: gradle test
+        command: ./gradlew test
     - store_artifacts:
         path: build
         destination: artifacts
