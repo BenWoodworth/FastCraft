@@ -22,8 +22,8 @@ buildscript {
         version_bstats = "1.3"
         version_bukkit = "1.13-R0.1-SNAPSHOT"
 
-        dependency_kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version_kotlin"
-        dependency_kotlin_runtime = "org.jetbrains.kotlin:kotlin-runtime-jdk8:$version_kotlin"
+        dependency_kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$version_kotlin"
+        dependency_kotlin_stdlib_jdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version_kotlin"
         dependency_dagger = "com.google.dagger:dagger:$version_dagger"
         dependency_dagger_compiler = "com.google.dagger:dagger-compiler:$version_dagger"
         dependency_javax_inject = "javax.inject:javax.inject:$version_javax_inject"
@@ -78,6 +78,7 @@ dependencies {
     }
 
     allCompile dependency_kotlin_stdlib
+    allCompile dependency_kotlin_stdlib_jdk8
     allCompile dependency_dagger
     allCompile dependency_javax_inject
     allCompile dependency_auto_factory
@@ -108,8 +109,8 @@ shadowJar {
     from sourceSets.bukkit.output
 
     dependencies {
-        include dependency(dependency_kotlin_runtime)
         include dependency(dependency_kotlin_stdlib)
+        include dependency(dependency_kotlin_stdlib_jdk8)
         include dependency(dependency_dagger)
         include dependency(dependency_javax_inject)
         include dependency(dependency_bstats_bukkit)
