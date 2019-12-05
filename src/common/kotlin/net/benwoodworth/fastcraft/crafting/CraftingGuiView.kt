@@ -28,69 +28,61 @@ class CraftingGuiView(
     private val height = gui.layout.height
 
     private val workbenchButton = gui.layout.getButton(width - 1, 0).apply {
-        with(textFactory) {
-            itemType = itemTypes.craftingTable
+        itemType = itemTypes.craftingTable
 
-            text = createFcText("Crafting Grid", color = textColors.green)
+        text = textFactory.createFcText("Crafting Grid", color = textColors.green)
 
-            description = listOf(
-                createFcText("Open a 3x3 crafting grid", color = textColors.aqua),
-                createFcText(
-                    color = textColors.green,
-                    extra = listOf(
-                        createFcText("Use "),
-                        createFcText("/fc toggle", color = textColors.aqua, italic = true),
-                        createFcText(" to disable FastCraft")
-                    )
+        description = listOf(
+            textFactory.createFcText("Open a 3x3 crafting grid", color = textColors.aqua),
+            textFactory.createFcText(
+                color = textColors.green,
+                extra = listOf(
+                    textFactory.createFcText("Use "),
+                    textFactory.createFcText("/fc toggle", color = textColors.aqua, italic = true),
+                    textFactory.createFcText(" to disable FastCraft")
                 )
             )
+        )
 
-            hideItemDetails()
-        }
+        hideItemDetails()
     }
 
     private val multiplierButton = gui.layout.getButton(width - 1, 1).apply {
-        with(textFactory) {
-            itemType = itemTypes.anvil
+        itemType = itemTypes.anvil
 
-            text = createFcText("Crafting Multiplier", color = textColors.green)
+        text = textFactory.createFcText("Crafting Multiplier", color = textColors.green)
 
-            description = listOf(
-                createFcText("Left/right click to increase/decrease", color = textColors.aqua),
-                createFcText("Shift click to increment by 1", color = textColors.aqua),
-                createFcText("Middle click to reset to 1x", color = textColors.aqua)
-            )
+        description = listOf(
+            textFactory.createFcText("Left/right click to increase/decrease", color = textColors.aqua),
+            textFactory.createFcText("Shift click to increment by 1", color = textColors.aqua),
+            textFactory.createFcText("Middle click to reset to 1x", color = textColors.aqua)
+        )
 
-            hideItemDetails()
-        }
+        hideItemDetails()
     }
 
     private val refreshButton = gui.layout.getButton(width - 1, 2).apply {
-        with(textFactory) {
-            itemType = itemTypes.netherStar
+        itemType = itemTypes.netherStar
 
-            text = createFcText("Refresh", color = textColors.green)
+        text = textFactory.createFcText("Refresh", color = textColors.green)
 
-            description = listOf(
-                createFcText("Refresh the FastCraft interface", color = textColors.aqua)
-            )
+        description = listOf(
+            textFactory.createFcText("Refresh the FastCraft interface", color = textColors.aqua)
+        )
 
-            hideItemDetails()
-        }
+        hideItemDetails()
     }
 
     private val pageButton = gui.layout.getButton(width - 1, height - 1).apply {
-        with(textFactory) {
-            itemType = itemTypes.ironSword
+        itemType = itemTypes.ironSword
 
-            description = listOf(
-                createFcText("Left click: next page", color = textColors.aqua),
-                createFcText("Right click: previous page", color = textColors.aqua),
-                createFcText("Shift click: first page", color = textColors.aqua)
-            )
+        description = listOf(
+            textFactory.createFcText("Left click: next page", color = textColors.aqua),
+            textFactory.createFcText("Right click: previous page", color = textColors.aqua),
+            textFactory.createFcText("Shift click: first page", color = textColors.aqua)
+        )
 
-            hideItemDetails()
-        }
+        hideItemDetails()
     }
 
     private val recipeButtons = List((width - 2) * height) { i ->
@@ -130,13 +122,11 @@ class CraftingGuiView(
     }
 
     private fun updatePageButton() {
-        with(textFactory) {
-            pageButton.apply {
-                text = createFcText(
-                    text = "Page ${recipePages.pageNumber}/${recipePages.pageCount}",
-                    color = textColors.green
-                )
-            }
+        pageButton.apply {
+            text = textFactory.createFcText(
+                text = "Page ${recipePages.pageNumber}/${recipePages.pageCount}",
+                color = textColors.green
+            )
         }
     }
 

@@ -9,23 +9,21 @@ class RecipeViewModel(
     private val textFactory: FcTextFactory
 ) {
     fun updateButton(button: FcGuiButton) {
-        with(textFactory) {
-            button.apply {
-                copyItem(recipe)
+        button.apply {
+            copyItem(recipe)
 
-                description = mutableListOf(
-                    createFcText("Ingredients:"),
-                    createFcText(
-                        text = "  ${recipe.amount}x ",
-                        extra = listOf(
-                            recipe.name
-                        )
+            description = mutableListOf(
+                textFactory.createFcText("Ingredients:"),
+                textFactory.createFcText(
+                    text = "  ${recipe.amount}x ",
+                    extra = listOf(
+                        recipe.name
                     )
                 )
+            )
 
-                if (recipe.lore.any()) {
-                    description = description + createFcText() + recipe.lore
-                }
+            if (recipe.lore.any()) {
+                description = description + textFactory.createFcText() + recipe.lore
             }
         }
     }

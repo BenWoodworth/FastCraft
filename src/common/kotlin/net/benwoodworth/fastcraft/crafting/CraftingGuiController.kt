@@ -22,10 +22,8 @@ class CraftingGuiController(
     }
 
     private fun onGuiClose(event: FcGuiCloseEvent) {
-        with(textFactory) {
-            player.sendMessage(
-                createFcText("Thank you for using FastCraft!")
-            )
-        }
+        player.sendMessage(
+            textFactory.createFcText("Thank you for using FastCraft!")
+        )
     }
 }

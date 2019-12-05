@@ -23,31 +23,26 @@ class FastCraft @Inject internal constructor(
     }
 
     private fun onPlayerJoin(event: FcPlayerJoinEvent) {
-        with(textFactory) {
-            event.player.sendMessage(
-                createFcText(
-                    text = "Welcome to ",
-                    color = textColors.aqua,
-                    extra = listOf(
-                        createFcText(
-                            text = "the ",
-                            color = textColors.green
-                        ),
-                        createFcText(
-                            text = "server!",
-                            bold = true
-                        )
+        event.player.sendMessage(
+            textFactory.createFcText(
+                text = "Welcome to ",
+                color = textColors.aqua,
+                extra = listOf(
+                    textFactory.createFcText(
+                        text = "the ",
+                        color = textColors.green
+                    ),
+                    textFactory.createFcText(
+                        text = "server!",
+                        bold = true
                     )
                 )
             )
-        }
+        )
 
-        with(taskFactory) {
-            val task = createFcTask(delaySeconds = 5.0) {
-                craftingGuiFactory.openFastCraftGui(event.player)
-            }
-
-            task.schedule()
+        val task = taskFactory.createFcTask(delaySeconds = 5.0) {
+            craftingGuiFactory.openFastCraftGui(event.player)
         }
+        task.schedule()
     }
 }
