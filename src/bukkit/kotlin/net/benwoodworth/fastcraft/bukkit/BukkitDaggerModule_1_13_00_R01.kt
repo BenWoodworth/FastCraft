@@ -25,28 +25,6 @@ import javax.inject.Singleton
 class BukkitDaggerModule_1_13_00_R01(
     private val plugin: BukkitFastCraftPlugin
 ) {
-    @Suppress("UNUSED_PARAMETER")
-    @Provides
-    fun eagerLoad(
-        fcLogger: FcLogger,
-        fcPluginData: FcPluginData,
-        fcConfigFactory: FcConfigFactory,
-        fcGuiFactory: FcGuiFactory,
-        bukkitFcItemFactory: BukkitFcItemFactory,
-        fcItemTypes: FcItemTypes,
-        itemStackNameProvider: ItemStackNameProvider,
-        fcPlayerProvider: FcPlayerProvider,
-        fcRecipeService: FcRecipeService,
-        fcServer: FcServer,
-        fcTaskFactory: FcTaskFactory,
-        fcTextFactory: FcTextFactory,
-        fcTextColors: FcTextColors,
-        bukkitFcTextConverter: BukkitFcTextConverter,
-        bukkitLocalizer: BukkitLocalizer
-    ): BukkitFastCraftFactory.EagerLoad {
-        return BukkitFastCraftFactory.EagerLoad
-    }
-
     @Provides
     @Singleton
     fun providePlugin(): BukkitFastCraftPlugin {

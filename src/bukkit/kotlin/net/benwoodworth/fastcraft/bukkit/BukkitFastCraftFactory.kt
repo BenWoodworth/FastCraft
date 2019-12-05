@@ -2,8 +2,4 @@ package net.benwoodworth.fastcraft.bukkit
 
 import net.benwoodworth.fastcraft.FastCraftFactory
 
-interface BukkitFastCraftFactory : FastCraftFactory {
-    object EagerLoad
-
-    fun eagerLoad(): EagerLoad
-}
+interface BukkitFastCraftFactory : FastCraftFactory
