@@ -170,7 +170,7 @@ class BukkitFcTextConverter_1_13_00_R01 @Inject constructor(
                         i++
                     }
 
-                    // Append unapplied formatting codes and plaintext
+                    // Append un-applied formatting codes and plaintext
                     applyFormat()
                     stringBuilder.append(text, start, i)
                 }

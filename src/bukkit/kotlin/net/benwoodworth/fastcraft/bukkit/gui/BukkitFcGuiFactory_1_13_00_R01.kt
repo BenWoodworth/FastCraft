@@ -17,7 +17,7 @@ class BukkitFcGuiFactory_1_13_00_R01 @Inject constructor(
     private val server: Server,
     private val pluginManager: PluginManager,
     private val textConverter: BukkitFcTextConverter,
-    private val guiLayoutGridFactoy: BukkitFcGuiLayoutGrid_1_13_00_R01Factory
+    private val guiLayoutGridFactory: BukkitFcGuiLayoutGrid_1_13_00_R01Factory
 ) : BukkitFcGuiFactory {
     override fun openChestGui(player: FcPlayer, title: FcText?, height: Int): FcGui<FcGuiLayoutGrid> {
         val legacyTitle = with(textConverter) {
@@ -27,7 +27,7 @@ class BukkitFcGuiFactory_1_13_00_R01 @Inject constructor(
         return BukkitFcGui_1_13_00_R01(
             player,
             { owner -> server.createInventory(owner, 9 * height, legacyTitle) },
-            { inventory -> guiLayoutGridFactoy.create(9, height, inventory, player.locale) },
+            { inventory -> guiLayoutGridFactory.create(9, height, inventory, player.locale) },
             plugin,
             legacyTextFactory,
             pluginManager
