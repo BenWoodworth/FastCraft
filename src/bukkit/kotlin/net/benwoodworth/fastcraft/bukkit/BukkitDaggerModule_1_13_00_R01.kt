@@ -17,14 +17,13 @@ import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.Server
 import org.bukkit.inventory.ItemFactory
-import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.PluginManager
 import org.bukkit.scheduler.BukkitScheduler
 import javax.inject.Singleton
 
 @Module
 class BukkitDaggerModule_1_13_00_R01(
-    private val plugin: Plugin
+    private val plugin: BukkitFastCraftPlugin
 ) {
     @Suppress("UNUSED_PARAMETER")
     @Provides
@@ -50,12 +49,12 @@ class BukkitDaggerModule_1_13_00_R01(
 
     @Provides
     @Singleton
-    fun providePlugin(): Plugin {
+    fun providePlugin(): BukkitFastCraftPlugin {
         return plugin
     }
 
     @Provides
-    fun provideServer(plugin: Plugin): Server {
+    fun provideServer(plugin: BukkitFastCraftPlugin): Server {
         return plugin.server
     }
 

@@ -1,12 +1,12 @@
 package net.benwoodworth.fastcraft.bukkit.server
 
+import net.benwoodworth.fastcraft.bukkit.BukkitFastCraftPlugin
 import net.benwoodworth.fastcraft.platform.server.FcTask
-import org.bukkit.plugin.Plugin
 import org.bukkit.scheduler.BukkitScheduler
 import javax.inject.Inject
 
 class BukkitFcTaskFactory_1_13_00_R01 @Inject constructor(
-    private val plugin: Plugin,
+    private val plugin: BukkitFastCraftPlugin,
     private val scheduler: BukkitScheduler
 ) : BukkitFcTaskFactory {
     override fun createFcTask(

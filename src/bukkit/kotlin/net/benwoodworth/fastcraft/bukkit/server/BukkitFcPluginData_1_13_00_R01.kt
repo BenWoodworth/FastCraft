@@ -1,11 +1,11 @@
 package net.benwoodworth.fastcraft.bukkit.server
 
-import org.bukkit.plugin.Plugin
+import net.benwoodworth.fastcraft.bukkit.BukkitFastCraftPlugin
 import java.nio.file.Path
 import javax.inject.Inject
 
 class BukkitFcPluginData_1_13_00_R01 @Inject constructor(
-    plugin: Plugin
+    plugin: BukkitFastCraftPlugin
 ) : BukkitFcPluginData {
     override val dataFolder: Path = plugin.dataFolder.toPath()
 

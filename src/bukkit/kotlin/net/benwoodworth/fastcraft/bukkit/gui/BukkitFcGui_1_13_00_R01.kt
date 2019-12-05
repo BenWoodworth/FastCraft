@@ -1,5 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
+import net.benwoodworth.fastcraft.bukkit.BukkitFastCraftPlugin
 import net.benwoodworth.fastcraft.bukkit.server.player
 import net.benwoodworth.fastcraft.events.HandlerSet
 import net.benwoodworth.fastcraft.platform.gui.FcGuiCloseEvent
@@ -15,7 +16,6 @@ import org.bukkit.event.inventory.*
 import org.bukkit.event.server.PluginDisableEvent
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.InventoryHolder
-import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.PluginManager
 
 
@@ -23,7 +23,7 @@ class BukkitFcGui_1_13_00_R01<TLayout : FcGuiLayout>(
     override val player: FcPlayer,
     createInventory: (owner: InventoryHolder) -> Inventory,
     createLayout: (inventory: Inventory) -> TLayout,
-    plugin: Plugin,
+    plugin: BukkitFastCraftPlugin,
     private val textFactory: FcTextFactory,
     pluginManager: PluginManager
 ) : BukkitFcGui<TLayout>, InventoryHolder, Listener {
