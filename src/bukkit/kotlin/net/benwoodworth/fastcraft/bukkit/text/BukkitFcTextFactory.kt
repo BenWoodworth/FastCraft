@@ -20,3 +20,22 @@ interface BukkitFcTextFactory : FcTextFactory {
         legacyText: String
     ): FcText
 }
+
+fun FcTextFactory.createFcTextTranslate(
+    translate: String,
+    color: FcTextColor? = null,
+    bold: Boolean? = null,
+    italic: Boolean? = null,
+    underline: Boolean? = null,
+    strikethrough: Boolean? = null,
+    obfuscate: Boolean? = null,
+    extra: List<FcText> = emptyList()
+): FcText {
+    return (this as BukkitFcTextFactory).createFcTextTranslate(
+        translate, color, bold, italic, underline, strikethrough, obfuscate, extra
+    )
+}
+
+fun FcTextFactory.createFcTextLegacy(legacyText: String): FcText {
+    return (this as BukkitFcTextFactory).createFcTextLegacy(legacyText)
+}

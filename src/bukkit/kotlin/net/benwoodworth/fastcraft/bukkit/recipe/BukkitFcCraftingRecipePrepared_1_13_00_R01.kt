@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.bukkit.recipe
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.bukkit.bukkit
+import net.benwoodworth.fastcraft.bukkit.item.createFcItem
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemFactory
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
@@ -16,7 +16,7 @@ class BukkitFcCraftingRecipePrepared_1_13_00_R01(
     @Provided private val reminantProvider: IngredientReminantProvider
 ) : BukkitFcCraftingRecipePrepared {
     override val ingredients: List<FcItem> = craftingGrid.matrix
-        .map { itemFactory.bukkit.createFcItem(it) }
+        .map { itemFactory.createFcItem(it) }
 
     override fun getResultPreview(craftMaxAmount: Boolean): List<FcItem> {
         val multiplier = craftingGrid.matrix
@@ -25,7 +25,7 @@ class BukkitFcCraftingRecipePrepared_1_13_00_R01(
 
         val results = mutableListOf<FcItem>()
 
-        with(itemFactory.bukkit) {
+        with(itemFactory) {
             results += createFcItem(craftingGrid.result)
         }
 

@@ -9,3 +9,10 @@ interface BukkitFcGuiLayout : FcGuiLayout {
 
     fun getSlotButton(slot: Int): FcGuiButton?
 }
+
+val FcGuiLayout.inventory: Inventory
+    get() = (this as BukkitFcGuiLayout).inventory
+
+fun FcGuiLayout.getSlotButton(slot: Int): FcGuiButton? {
+    return (this as BukkitFcGuiLayout).getSlotButton(slot)
+}

@@ -8,3 +8,9 @@ interface BukkitFcConfigEntry : FcConfigEntry {
 
     val parentEntry: FcConfigEntry?
 }
+
+val FcConfigEntry.config: Configuration
+    get() = (this as BukkitFcConfigEntry).config
+
+val FcConfigEntry.parentEntry: FcConfigEntry?
+    get() = (this as BukkitFcConfigEntry).parentEntry

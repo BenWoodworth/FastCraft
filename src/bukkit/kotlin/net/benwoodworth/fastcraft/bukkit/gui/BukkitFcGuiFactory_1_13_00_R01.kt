@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
-import net.benwoodworth.fastcraft.bukkit.bukkit
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextConverter
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiLayoutGrid
@@ -22,7 +21,7 @@ class BukkitFcGuiFactory_1_13_00_R01 @Inject constructor(
 ) : BukkitFcGuiFactory {
     override fun openChestGui(player: FcPlayer, title: FcText?, height: Int): FcGui<FcGuiLayoutGrid> {
         val legacyTitle = with(textConverter) {
-            title?.bukkit?.toLegacy(player.locale)
+            title?.toLegacy(player.locale)
         }
 
         return BukkitFcGui_1_13_00_R01(

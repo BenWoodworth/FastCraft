@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
-import net.benwoodworth.fastcraft.bukkit.bukkit
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
@@ -19,7 +18,7 @@ class ItemStackNameProvider_1_13_00_R01 @Inject constructor(
                 ?.takeIf { it.hasDisplayName() }
                 ?.displayName
                 ?.let { createFcText(it) }
-                ?: itemTypes.bukkit.fromMaterial(type).name
+                ?: itemTypes.fromMaterial(type).name
         }
     }
 }

@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
-import net.benwoodworth.fastcraft.bukkit.bukkit
+import net.benwoodworth.fastcraft.bukkit.server.player
 import net.benwoodworth.fastcraft.events.HandlerSet
 import net.benwoodworth.fastcraft.platform.gui.FcGuiCloseEvent
 import net.benwoodworth.fastcraft.platform.gui.FcGuiLayout
@@ -34,7 +34,7 @@ class BukkitFcGui_1_13_00_R01<TLayout : FcGuiLayout>(
     override val layout: TLayout = createLayout(inventory)
 
     override val title: FcText?
-        get() = with(textFactory.bukkit) {
+        get() = with(textFactory) {
             inventory.title?.let { createFcText(it) }
         }
 
@@ -42,19 +42,19 @@ class BukkitFcGui_1_13_00_R01<TLayout : FcGuiLayout>(
         @Suppress("LeakingThis")
         pluginManager.registerEvents(this, plugin)
 
-        player.bukkit.player.openInventory(inventory)
+        player.player.openInventory(inventory)
     }
 
     override fun close() {
-        player.bukkit.player.openInventory?.let {
+        player.player.openInventory?.let {
             if (it.topInventory.holder === this) {
-                player.bukkit.player.closeInventory()
+                player.player.closeInventory()
             }
         }
     }
 
     override fun getInventory(): Inventory {
-        return layout.bukkit.inventory
+        return layout.inventory
     }
 
     private fun InventoryEvent.isGuiSlot(rawSlot: Int): Boolean {
@@ -72,7 +72,7 @@ class BukkitFcGui_1_13_00_R01<TLayout : FcGuiLayout>(
         if (event.isGuiSlot(slot)) {
             event.isCancelled = true
 
-            layout.bukkit.getSlotButton(slot)?.let {
+            layout.getSlotButton(slot)?.let {
                 it.onClick.notifyHandlers(BukkitFcGuiClickEvent_1_13_00_R01(event, it))
             }
         } else {

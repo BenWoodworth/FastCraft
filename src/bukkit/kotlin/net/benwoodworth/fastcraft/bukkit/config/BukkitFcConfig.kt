@@ -6,3 +6,6 @@ import org.bukkit.configuration.file.YamlConfiguration
 interface BukkitFcConfig : FcConfig {
     val config: YamlConfiguration
 }
+
+val FcConfig.config: YamlConfiguration
+    get() = (this as BukkitFcConfig).config

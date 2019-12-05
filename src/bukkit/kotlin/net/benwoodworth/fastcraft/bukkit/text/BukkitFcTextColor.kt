@@ -8,3 +8,9 @@ interface BukkitFcTextColor : FcTextColor {
 
     val chatColor: ChatColor
 }
+
+val FcTextColor.id: String
+    get() = (this as BukkitFcTextColor).id
+
+val FcTextColor.chatColor: ChatColor
+    get() = (this as BukkitFcTextColor).chatColor

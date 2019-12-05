@@ -7,3 +7,7 @@ import org.bukkit.inventory.ItemStack
 interface BukkitFcItemFactory : FcItemFactory {
     fun createFcItem(itemStack: ItemStack): FcItem
 }
+
+fun FcItemFactory.createFcItem(itemStack: ItemStack): FcItem {
+    return (this as BukkitFcItemFactory).createFcItem(itemStack)
+}

@@ -2,7 +2,6 @@ package net.benwoodworth.fastcraft.bukkit.item
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.bukkit.bukkit
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.text.FcText
@@ -19,7 +18,7 @@ class BukkitFcItem_1_13_00_R01(
     private val itemStack: ItemStack = itemStack.clone()
 
     override val type: FcItemType by lazy {
-        itemTypes.bukkit.fromMaterial(itemStack.type)
+        itemTypes.fromMaterial(itemStack.type)
     }
 
     override val amount: Int

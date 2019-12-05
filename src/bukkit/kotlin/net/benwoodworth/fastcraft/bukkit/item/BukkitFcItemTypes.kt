@@ -7,3 +7,7 @@ import org.bukkit.Material
 interface BukkitFcItemTypes : FcItemTypes {
     fun fromMaterial(material: Material): FcItemType
 }
+
+fun FcItemTypes.fromMaterial(material: Material): FcItemType {
+    return (this as BukkitFcItemTypes).fromMaterial(material)
+}

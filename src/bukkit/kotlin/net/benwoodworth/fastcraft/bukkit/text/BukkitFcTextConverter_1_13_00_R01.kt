@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
-import net.benwoodworth.fastcraft.bukkit.bukkit
 import net.benwoodworth.fastcraft.platform.text.FcLocale
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.util.JsonStringBuilder
@@ -41,7 +40,7 @@ class BukkitFcTextConverter_1_13_00_R01 @Inject constructor(
 
             with(text) {
                 color?.let {
-                    appendElement("color") { appendString(it.bukkit.id) }
+                    appendElement("color") { appendString(it.id) }
                 }
 
                 bold?.let {
@@ -127,7 +126,7 @@ class BukkitFcTextConverter_1_13_00_R01 @Inject constructor(
         private fun appendTextComponent(text: BukkitFcText.Component, parentFormat: LegacyFormat) {
             // The text format, inheriting from parentFormat in place of nulls.
             val format = LegacyFormat(
-                color = text.color?.bukkit?.chatColor ?: parentFormat.color,
+                color = text.color?.chatColor ?: parentFormat.color,
                 bold = text.bold ?: parentFormat.bold,
                 italic = text.italic ?: parentFormat.italic,
                 underline = text.underline ?: parentFormat.underline,

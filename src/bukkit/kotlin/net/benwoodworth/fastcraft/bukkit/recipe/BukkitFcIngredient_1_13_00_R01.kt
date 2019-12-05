@@ -2,9 +2,9 @@ package net.benwoodworth.fastcraft.bukkit.recipe
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.bukkit.bukkit
 import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemFactory
 import net.benwoodworth.fastcraft.bukkit.item.ItemStackNameProvider
+import net.benwoodworth.fastcraft.bukkit.item.toItemStack
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
@@ -46,7 +46,7 @@ class BukkitFcIngredient_1_13_00_R01(
     }
 
     override fun matches(item: FcItem): Boolean {
-        val itemStack = item.bukkit.toItemStack()
+        val itemStack = item.toItemStack()
 
         @Suppress("DEPRECATION")
         if (hasWildcardData) {

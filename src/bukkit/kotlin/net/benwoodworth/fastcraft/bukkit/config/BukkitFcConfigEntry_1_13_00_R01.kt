@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft.bukkit.config
 
-import net.benwoodworth.fastcraft.bukkit.bukkit
 import net.benwoodworth.fastcraft.platform.config.FcConfigEntry
 import org.bukkit.configuration.Configuration
 import org.bukkit.configuration.ConfigurationSection
@@ -53,7 +52,7 @@ class BukkitFcConfigEntry_1_13_00_R01(
     }
 
     private fun getParentSection(): ConfigurationSection {
-        return parentEntry?.bukkit?.config ?: config
+        return parentEntry?.config ?: config
     }
 
     private fun getSection(): ConfigurationSection {

@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
-import net.benwoodworth.fastcraft.bukkit.bukkit
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import org.bukkit.inventory.ItemStack
 import javax.inject.Inject
@@ -13,7 +12,7 @@ class BukkitFcItemFactory_1_13_00_R01 @Inject constructor(
             return this
         }
 
-        val itemStack = this.bukkit.toItemStack()
+        val itemStack = this.toItemStack()
         itemStack.amount = amount
 
         return createFcItem(itemStack)

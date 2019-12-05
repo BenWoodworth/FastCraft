@@ -6,3 +6,6 @@ import net.benwoodworth.fastcraft.platform.text.FcLocale
 interface BukkitFcGuiButton : FcGuiButton {
     var locale: FcLocale
 }
+
+val FcGuiButton.locale: FcLocale
+    get() = (this as BukkitFcGuiButton).locale
