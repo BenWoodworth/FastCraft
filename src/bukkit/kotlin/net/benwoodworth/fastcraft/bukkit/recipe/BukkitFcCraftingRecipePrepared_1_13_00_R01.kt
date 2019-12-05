@@ -13,7 +13,7 @@ class BukkitFcCraftingRecipePrepared_1_13_00_R01(
     override val recipe: FcCraftingRecipe,
     private val craftingGrid: CraftingInventory,
     @Provided private val itemFactory: FcItemFactory,
-    @Provided private val reminantProvider: IngredientReminantProvider
+    @Provided private val productProvider: IngredientProductProvider
 ) : BukkitFcCraftingRecipePrepared {
     override val ingredients: List<FcItem> = craftingGrid.matrix
         .map { itemFactory.createFcItem(it) }
