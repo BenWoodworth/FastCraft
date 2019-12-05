@@ -11,13 +11,12 @@ class BukkitFcTextConverter_1_13_00_R01 @Inject constructor(
 ) : BukkitFcTextConverter {
     override fun toRaw(text: FcText): String {
         return JsonStringBuilder()
-            .appendFcText(text.bukkit)
+            .appendFcText(text)
             .toString()
     }
 
     private fun JsonStringBuilder.appendFcText(text: FcText): JsonStringBuilder {
         text as BukkitFcText
-
         return when (text) {
             is BukkitFcText.Legacy -> appendFcText(text)
             is BukkitFcText.Component -> appendFcText(text)
@@ -79,7 +78,7 @@ class BukkitFcTextConverter_1_13_00_R01 @Inject constructor(
                 text.legacyText
             is BukkitFcText.Component ->
                 LegacyTextBuilder(locale)
-                    .appendText(text.bukkit)
+                    .appendText(text)
                     .toString()
         }
     }
@@ -113,7 +112,8 @@ class BukkitFcTextConverter_1_13_00_R01 @Inject constructor(
             return this
         }
 
-        private fun appendText(text: BukkitFcText, parentFormat: LegacyFormat) {
+        private fun appendText(text: FcText, parentFormat: LegacyFormat) {
+            text as BukkitFcText
             when (text) {
                 is BukkitFcText.Component ->
                     appendTextComponent(text, parentFormat)
@@ -151,7 +151,7 @@ class BukkitFcTextConverter_1_13_00_R01 @Inject constructor(
 
             // Append the extra text.
             text.extra.forEach {
-                appendText(it.bukkit, format)
+                appendText(it, format)
             }
         }
 

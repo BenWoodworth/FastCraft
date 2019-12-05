@@ -40,6 +40,3 @@ sealed class BukkitFcText : FcText {
         ) : Component()
     }
 }
-
-val FcText.bukkit: BukkitFcText
-    get() = this as BukkitFcText
