@@ -1,7 +1,6 @@
 package net.benwoodworth.fastcraft.platform.item
 
 interface FcItemTypes {
-
     val air: FcItemType
 
     val ironSword: FcItemType

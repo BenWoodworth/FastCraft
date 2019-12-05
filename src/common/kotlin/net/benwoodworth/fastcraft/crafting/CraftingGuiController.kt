@@ -14,7 +14,6 @@ class CraftingGuiController(
     private val textColors: FcTextColors,
     private val itemTypes: FcItemTypes
 ) {
-
     init {
         model.refreshRecipes()
 //        view.recipes = model.recipes

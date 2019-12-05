@@ -27,7 +27,6 @@ class BukkitFcGui_1_13_00_R01<TLayout : FcGuiLayout>(
     private val textFactory: FcTextFactory,
     pluginManager: PluginManager
 ) : BukkitFcGui<TLayout>, InventoryHolder, Listener {
-
     override val onClose: HandlerSet<FcGuiCloseEvent> = HandlerSet()
 
     private val inventory: Inventory = createInventory(this)

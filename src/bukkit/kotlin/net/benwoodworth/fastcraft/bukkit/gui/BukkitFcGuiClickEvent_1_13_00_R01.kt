@@ -9,7 +9,6 @@ class BukkitFcGuiClickEvent_1_13_00_R01(
     private val event: InventoryClickEvent,
     override val button: FcGuiButton
 ) : BukkitFcGuiClickEvent {
-
     override val gui: FcGui<*>
         get() = event.view.topInventory.holder as FcGui<*>
 

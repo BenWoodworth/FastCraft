@@ -15,7 +15,6 @@ class BukkitFcCraftingRecipePrepared_1_13_00_R01(
     @Provided private val itemFactory: FcItemFactory,
     @Provided private val reminantProvider: IngredientReminantProvider
 ) : BukkitFcCraftingRecipePrepared {
-
     override val ingredients: List<FcItem> = craftingGrid.matrix
         .map { itemFactory.bukkit.createFcItem(it) }
 
@@ -26,7 +25,7 @@ class BukkitFcCraftingRecipePrepared_1_13_00_R01(
 
         val results = mutableListOf<FcItem>()
 
-        with (itemFactory.bukkit) {
+        with(itemFactory.bukkit) {
             results += createFcItem(craftingGrid.result)
         }
 

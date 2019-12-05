@@ -17,7 +17,6 @@ class BukkitFcIngredient_1_13_00_R01(
     @Provided val itemFactory: BukkitFcItemFactory,
     @Provided val itemStackNameProvider: ItemStackNameProvider
 ) : BukkitFcIngredient {
-
     private companion object {
         const val WILDCARD_DATA = (-1).toByte()
     }

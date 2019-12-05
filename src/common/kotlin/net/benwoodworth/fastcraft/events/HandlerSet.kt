@@ -1,7 +1,6 @@
 package net.benwoodworth.fastcraft.events
 
 class HandlerSet<TEvent> {
-
     private val listeners = mutableSetOf<Handler<TEvent>>()
 
     private fun addHandler(handler: Handler<TEvent>) {

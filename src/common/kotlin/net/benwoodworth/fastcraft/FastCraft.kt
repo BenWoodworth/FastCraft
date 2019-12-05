@@ -15,7 +15,6 @@ class FastCraft @Inject internal constructor(
     private val textFactory: FcTextFactory,
     private val textColors: FcTextColors
 ) {
-
     init {
         serverListeners.onPlayerJoin += ::onPlayerJoin
     }

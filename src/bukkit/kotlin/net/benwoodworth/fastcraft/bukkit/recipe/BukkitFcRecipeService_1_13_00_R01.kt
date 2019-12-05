@@ -5,7 +5,6 @@ import javax.inject.Inject
 
 class BukkitFcRecipeService_1_13_00_R01 @Inject constructor(
 ) : BukkitFcRecipeService {
-
     override fun getCraftingRecipes(): List<FcCraftingRecipe> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

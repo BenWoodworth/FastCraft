@@ -6,7 +6,6 @@ import javax.inject.Inject
 
 class BukkitFcTextFactory_1_13_00_R01 @Inject constructor(
 ) : BukkitFcTextFactory {
-
     override fun createFcText(
         text: String,
         color: FcTextColor?,

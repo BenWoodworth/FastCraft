@@ -8,7 +8,6 @@ abstract class BukkitFcGuiLayout_1_13_00_R01(
     override val inventory: Inventory,
     private val guiButtonFactory: BukkitFcGuiButton_1_13_00_R01Factory
 ) : BukkitFcGuiLayout {
-
     protected abstract val locale: FcLocale
 
     private val buttons: MutableMap<Int, FcGuiButton> = mutableMapOf()

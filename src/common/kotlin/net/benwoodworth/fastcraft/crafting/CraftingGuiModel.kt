@@ -4,12 +4,9 @@ import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
-import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
-import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 import net.benwoodworth.fastcraft.platform.recipe.FcRecipeService
 import net.benwoodworth.fastcraft.platform.server.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
-import javax.inject.Inject
 import kotlin.math.ceil
 import kotlin.math.max
 
@@ -20,7 +17,6 @@ class CraftingGuiModel(
     @Provided private val textFactory: FcTextFactory,
     @Provided private val recipeService: FcRecipeService
 ) {
-
     var recipes: List<FcItem> = emptyList()
 
     fun refreshRecipes() {

@@ -9,7 +9,6 @@ class BukkitFcItemType_1_13_00_R01(
     override val material: Material,
     private val textFactory: FcTextFactory
 ) : BukkitFcItemType {
-
     override val name: FcText
         get() = textFactory.bukkit.createFcTextTranslate(
             material.key.run { "item.$namespace.$key" }

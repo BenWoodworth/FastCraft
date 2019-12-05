@@ -5,7 +5,6 @@ import kotlin.math.ceil
 import kotlin.math.max
 
 class PageCollection<T>(val pageSize: Int) {
-
     val onChange: HandlerSet<PageCollection<T>> = HandlerSet()
 
     var pageNumber: Int = 1

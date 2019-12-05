@@ -1,7 +1,6 @@
 package net.benwoodworth.fastcraft.platform.text
 
 interface FcTextColors {
-
     val black: FcTextColor
     val darkBlue: FcTextColor
     val darkGreen: FcTextColor

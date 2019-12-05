@@ -6,7 +6,6 @@ import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.text.FcText
 
 interface FcGuiButton {
-
     val onClick: HandlerSet<FcGuiClickEvent>
 
     var itemType: FcItemType

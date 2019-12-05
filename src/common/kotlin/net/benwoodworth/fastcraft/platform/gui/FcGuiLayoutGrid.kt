@@ -1,7 +1,6 @@
 package net.benwoodworth.fastcraft.platform.gui
 
 interface FcGuiLayoutGrid : FcGuiLayout {
-
     val width: Int
 
     val height: Int

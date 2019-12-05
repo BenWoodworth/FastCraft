@@ -1,7 +1,6 @@
 package net.benwoodworth.fastcraft.platform.text
 
 interface FcTextFactory {
-
     fun createFcText(
         text: String = "",
         color: FcTextColor? = null,

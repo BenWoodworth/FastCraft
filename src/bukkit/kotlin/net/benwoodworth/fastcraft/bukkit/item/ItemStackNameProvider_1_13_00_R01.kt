@@ -11,7 +11,6 @@ class ItemStackNameProvider_1_13_00_R01 @Inject constructor(
     private val textFactory: FcTextFactory,
     private val itemTypes: FcItemTypes
 ) : ItemStackNameProvider {
-
     override fun ItemStack.getName(): FcText {
         with(textFactory) {
             return this@getName

@@ -10,7 +10,6 @@ class BukkitFcConfigEntry_1_13_00_R01(
     override val config: Configuration,
     override val parentEntry: FcConfigEntry?
 ) : BukkitFcConfigEntry {
-
     private val escapedKey = key.escapeKey()
 
     override var string: String?

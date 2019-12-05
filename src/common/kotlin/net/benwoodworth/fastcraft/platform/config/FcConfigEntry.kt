@@ -1,7 +1,6 @@
 package net.benwoodworth.fastcraft.platform.config
 
 interface FcConfigEntry {
-
     var string: String?
     var stringList: List<String?>?
 

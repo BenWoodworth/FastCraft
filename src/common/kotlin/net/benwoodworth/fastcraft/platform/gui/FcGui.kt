@@ -5,7 +5,6 @@ import net.benwoodworth.fastcraft.platform.server.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcText
 
 interface FcGui<TLayout : FcGuiLayout> {
-
     val layout: TLayout
 
     val title: FcText?

@@ -8,7 +8,6 @@ import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.server.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
-import javax.inject.Inject
 import kotlin.properties.Delegates
 
 @AutoFactory

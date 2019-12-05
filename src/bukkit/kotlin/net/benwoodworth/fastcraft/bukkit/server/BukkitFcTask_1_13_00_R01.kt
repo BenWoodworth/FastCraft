@@ -12,7 +12,6 @@ class BukkitFcTask_1_13_00_R01(
     action: (task: FcTask) -> Unit,
     private val scheduler: BukkitScheduler
 ) : BukkitFcTask {
-
     private val action = { action(this) }
 
     private var taskId: Int? = null

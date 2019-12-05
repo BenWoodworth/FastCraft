@@ -5,7 +5,6 @@ import org.bukkit.plugin.java.JavaPlugin
 
 @Suppress("unused")
 class BukkitFastCraftPlugin : JavaPlugin() {
-
     private lateinit var fastCraft: FastCraft
 
     override fun onEnable() {

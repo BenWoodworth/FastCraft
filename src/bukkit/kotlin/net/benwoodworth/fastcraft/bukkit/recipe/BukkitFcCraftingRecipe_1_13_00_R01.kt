@@ -7,11 +7,9 @@ import org.bukkit.inventory.ShapedRecipe
 import org.bukkit.inventory.ShapelessRecipe
 
 sealed class BukkitFcCraftingRecipe_1_13_00_R01 : BukkitFcCraftingRecipe {
-
     class Shaped(
         private val base: ShapedRecipe
     ) : BukkitFcCraftingRecipe_1_13_00_R01() {
-
         override val id: String
             get() = base.key.toString()
 
@@ -26,7 +24,6 @@ sealed class BukkitFcCraftingRecipe_1_13_00_R01 : BukkitFcCraftingRecipe {
     class Shapeless(
         private val base: ShapelessRecipe
     ) : BukkitFcCraftingRecipe_1_13_00_R01() {
-
         override val id: String
             get() = base.key.toString()
 

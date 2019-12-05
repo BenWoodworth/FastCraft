@@ -15,7 +15,6 @@ class BukkitFcServer_1_13_00_R01 @Inject constructor(
     private val playerProvider: FcPlayerProvider,
     private val pluginManager: PluginManager
 ) : BukkitFcServer {
-
     override val onPlayerJoin: HandlerSet<FcPlayerJoinEvent> = HandlerSet()
 
     init {
@@ -23,7 +22,6 @@ class BukkitFcServer_1_13_00_R01 @Inject constructor(
     }
 
     private inner class ServerListener : Listener {
-
         @EventHandler
         fun onPlayerJoin(event: PlayerJoinEvent) {
             onPlayerJoin.notifyHandlers(BukkitFcPlayerJoinEvent_1_13_00_R01(event, playerProvider))

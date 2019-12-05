@@ -15,7 +15,6 @@ class CraftingGuiFactory @Inject constructor(
     private val craftingGuiModelFactory: CraftingGuiModelFactory,
     private val craftingGuiViewFactory: CraftingGuiViewFactory
 ) {
-
     fun openFastCraftGui(player: FcPlayer) {
         val model = craftingGuiModelFactory.create(player)
         val view = craftingGuiViewFactory.create(player)

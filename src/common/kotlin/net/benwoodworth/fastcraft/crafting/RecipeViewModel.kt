@@ -8,7 +8,6 @@ class RecipeViewModel(
     val recipe: FcItem,
     private val textFactory: FcTextFactory
 ) {
-
     fun updateButton(button: FcGuiButton) {
         with(textFactory) {
             button.apply {

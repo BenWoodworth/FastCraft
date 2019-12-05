@@ -10,7 +10,6 @@ import javax.inject.Inject
 class BukkitFcTextConverter_1_13_00_R01 @Inject constructor(
     private val localizer: BukkitLocalizer
 ) : BukkitFcTextConverter {
-
     override fun FcText.toRaw(): String {
         return JsonStringBuilder()
             .appendFcText(bukkit)

@@ -18,7 +18,6 @@ import org.bukkit.inventory.ItemFactory
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.ItemMeta
-import kotlin.reflect.KProperty
 
 @AutoFactory
 class BukkitFcGuiButton_1_13_00_R01(
@@ -30,7 +29,6 @@ class BukkitFcGuiButton_1_13_00_R01(
     @Provided private val textConverter: BukkitFcTextConverter,
     @Provided private val itemFactory: ItemFactory
 ) : BukkitFcGuiButton {
-
     private lateinit var _text: FcText
     private lateinit var _description: List<FcText>
 

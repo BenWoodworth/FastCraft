@@ -15,7 +15,6 @@ class BukkitFcPlayer_1_13_00_R01(
     private val textConverter: BukkitFcTextConverter,
     private val server: Server
 ) : BukkitFcPlayer {
-
     override val username: String
         get() = player.name
 

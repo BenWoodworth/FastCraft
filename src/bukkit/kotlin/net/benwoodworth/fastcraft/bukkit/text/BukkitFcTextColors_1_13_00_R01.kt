@@ -6,7 +6,6 @@ import javax.inject.Inject
 
 class BukkitFcTextColors_1_13_00_R01 @Inject constructor(
 ) : BukkitFcTextColors {
-
     override val black = BukkitFcTextColor_1_13_00_R01("black", ChatColor.BLACK)
     override val darkBlue = BukkitFcTextColor_1_13_00_R01("dark_blue", ChatColor.DARK_BLUE)
     override val darkGreen = BukkitFcTextColor_1_13_00_R01("dark_green", ChatColor.DARK_GREEN)

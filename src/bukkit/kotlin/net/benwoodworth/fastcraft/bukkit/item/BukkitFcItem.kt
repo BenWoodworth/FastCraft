@@ -4,6 +4,5 @@ import net.benwoodworth.fastcraft.platform.item.FcItem
 import org.bukkit.inventory.ItemStack
 
 interface BukkitFcItem : FcItem {
-
     fun toItemStack(): ItemStack
 }

@@ -5,7 +5,6 @@ import net.benwoodworth.fastcraft.platform.text.FcText
 import java.util.*
 
 interface FcPlayer {
-
     val username: String
 
     var customName: String?

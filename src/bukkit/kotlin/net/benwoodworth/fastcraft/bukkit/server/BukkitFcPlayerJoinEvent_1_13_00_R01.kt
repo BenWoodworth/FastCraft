@@ -9,7 +9,6 @@ class BukkitFcPlayerJoinEvent_1_13_00_R01(
     override val event: PlayerJoinEvent,
     private val playerProvider: FcPlayerProvider
 ) : BukkitFcPlayerJoinEvent {
-
     override val player: FcPlayer
         get() = playerProvider.bukkit.getPlayer(event.player)
 }

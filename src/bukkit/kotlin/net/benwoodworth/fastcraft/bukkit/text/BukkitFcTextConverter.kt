@@ -4,7 +4,6 @@ import net.benwoodworth.fastcraft.platform.text.FcLocale
 import net.benwoodworth.fastcraft.platform.text.FcText
 
 interface BukkitFcTextConverter {
-
     fun FcText.toRaw(): String
 
     fun FcText.toLegacy(locale: FcLocale): String

@@ -11,7 +11,6 @@ class BukkitFcPlayerProvider_1_13_00_R01 @Inject constructor(
     private val textConverter: BukkitFcTextConverter,
     private val server: Server
 ) : BukkitFcPlayerProvider {
-
     override fun getOnlinePlayers(): List<FcPlayer> {
         return server.onlinePlayers.map { player ->
             BukkitFcPlayer_1_13_00_R01(player, textConverter, server)

@@ -7,7 +7,6 @@ import javax.inject.Inject
 
 class BukkitFcConfigFactory_1_13_00_R01 @Inject constructor(
 ) : BukkitFcConfigFactory {
-
     override fun createEmpty(): FcConfig {
         return BukkitFcConfig_1_13_00_R01(YamlConfiguration())
     }

@@ -5,6 +5,5 @@ import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import org.bukkit.Material
 
 interface BukkitFcItemTypes : FcItemTypes {
-
     fun fromMaterial(material: Material): FcItemType
 }

@@ -3,7 +3,6 @@ package net.benwoodworth.fastcraft.util
 class JsonStringBuilder(
     val stringBuilder: StringBuilder = StringBuilder()
 ) {
-
     override fun toString(): String {
         return stringBuilder.toString()
     }

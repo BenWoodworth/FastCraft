@@ -8,7 +8,6 @@ import javax.inject.Inject
 class BukkitFcItemTypes_1_13_00_R01 @Inject constructor(
     private val textFactory: FcTextFactory
 ) : BukkitFcItemTypes {
-
     override val air = fromMaterial(Material.AIR)
 
     override val ironSword = fromMaterial(Material.IRON_SWORD)

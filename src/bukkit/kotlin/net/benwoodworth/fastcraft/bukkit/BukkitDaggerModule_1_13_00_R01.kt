@@ -26,7 +26,6 @@ import javax.inject.Singleton
 class BukkitDaggerModule_1_13_00_R01(
     private val plugin: Plugin
 ) {
-
     @Suppress("UNUSED_PARAMETER")
     @Provides
     fun eagerLoad(

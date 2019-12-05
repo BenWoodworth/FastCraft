@@ -6,7 +6,6 @@ import javax.inject.Inject
 
 class BukkitLocalizer_1_13_00_R01 @Inject constructor(
 ) : BukkitLocalizer {
-
     private val defaultLocale: Map<String, String>
 
     init {

@@ -4,7 +4,6 @@ import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
 
 sealed class BukkitFcText : FcText {
-
     class Legacy(
         val legacyText: String
     ) : BukkitFcText()

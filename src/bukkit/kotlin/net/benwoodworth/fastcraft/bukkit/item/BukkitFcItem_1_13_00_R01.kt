@@ -16,7 +16,6 @@ class BukkitFcItem_1_13_00_R01(
     @Provided private val textFactory: FcTextFactory,
     @Provided private val nameProvider: ItemStackNameProvider
 ) : BukkitFcItem {
-
     private val itemStack: ItemStack = itemStack.clone()
 
     override val type: FcItemType by lazy {

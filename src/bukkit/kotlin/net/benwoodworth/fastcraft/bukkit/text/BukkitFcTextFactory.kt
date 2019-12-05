@@ -5,7 +5,6 @@ import net.benwoodworth.fastcraft.platform.text.FcTextColor
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 
 interface BukkitFcTextFactory : FcTextFactory {
-
     fun createFcTextTranslate(
         translate: String,
         color: FcTextColor? = null,
