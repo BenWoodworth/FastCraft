@@ -65,10 +65,10 @@ sourceSets {
 }
 
 dependencies {
-    def allCompile = { dependency ->
+    def allImplementation = { dependency ->
         implementation dependency
-        commonCompile dependency
-        bukkitCompile dependency
+        commonImplementation dependency
+        bukkitImplementation dependency
     }
 
     def kaptAll = { dependency ->
@@ -77,17 +77,17 @@ dependencies {
         kaptBukkit dependency
     }
 
-    allCompile dependency_kotlin_stdlib
-    allCompile dependency_kotlin_stdlib_jdk8
-    allCompile dependency_dagger
-    allCompile dependency_javax_inject
-    allCompile dependency_auto_factory
+    allImplementation dependency_kotlin_stdlib
+    allImplementation dependency_kotlin_stdlib_jdk8
+    allImplementation dependency_dagger
+    allImplementation dependency_javax_inject
+    allImplementation dependency_auto_factory
 
     kaptAll dependency_dagger_compiler
     kaptAll dependency_auto_factory
 
-    bukkitCompile sourceSets.common.output
-    bukkitCompile dependency_bukkit
+    bukkitImplementation sourceSets.common.output
+    bukkitImplementation dependency_bukkit
 }
 
 compileKotlin.kotlinOptions.jvmTarget = version_java
@@ -103,7 +103,7 @@ jar {
 }
 
 shadowJar {
-    archiveName = "FastCraft.jar"
+    archiveFileName = "FastCraft.jar"
 
     from sourceSets.common.output
     from sourceSets.bukkit.output
