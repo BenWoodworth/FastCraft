@@ -34,19 +34,15 @@ class BukkitFcPlayer_1_13_00_R01(
 
     override fun sendMessage(message: FcText) {
         message as BukkitFcText
-
-        with(textConverter) {
-            when (message) {
-                is BukkitFcText.Legacy -> {
-                    player.sendMessage(message.legacyText)
-                }
-                is BukkitFcText.Component -> {
-                    server.dispatchCommand(
-                        server.consoleSender,
-                        "tellraw $username ${message.toRaw()}"
-                    )
-
-                }
+        when (message) {
+            is BukkitFcText.Legacy -> {
+                player.sendMessage(message.legacyText)
+            }
+            is BukkitFcText.Component -> {
+                server.dispatchCommand(
+                    server.consoleSender,
+                    "tellraw $username ${textConverter.toRaw(message)}"
+                )
             }
         }
     }

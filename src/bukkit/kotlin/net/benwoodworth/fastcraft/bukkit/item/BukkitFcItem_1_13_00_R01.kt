@@ -25,21 +25,17 @@ class BukkitFcItem_1_13_00_R01(
         get() = itemStack.amount
 
     override val name: FcText by lazy {
-        with(nameProvider) {
-            itemStack.getName()
-        }
+        nameProvider.getName(itemStack)
     }
 
     override val lore: List<FcText> by lazy {
-        with(textFactory) {
-            itemStack
-                .takeIf { it.hasItemMeta() }
-                ?.itemMeta
-                ?.takeIf { it.hasLore() }
-                ?.lore
-                ?.map { createFcText(it ?: "") }
-                ?: emptyList()
-        }
+        itemStack
+            .takeIf { it.hasItemMeta() }
+            ?.itemMeta
+            ?.takeIf { it.hasLore() }
+            ?.lore
+            ?.map { textFactory.createFcText(it ?: "") }
+            ?: emptyList()
     }
 
     override fun toItemStack(): ItemStack {

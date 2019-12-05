@@ -34,8 +34,8 @@ class BukkitFcGui_1_13_00_R01<TLayout : FcGuiLayout>(
     override val layout: TLayout = createLayout(inventory)
 
     override val title: FcText?
-        get() = with(textFactory) {
-            inventory.title?.let { createFcText(it) }
+        get() = inventory.title?.let {
+            textFactory.createFcText(it)
         }
 
     init {

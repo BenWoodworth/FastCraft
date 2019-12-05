@@ -9,9 +9,9 @@ import javax.inject.Inject
 class BukkitFcTextConverter_1_13_00_R01 @Inject constructor(
     private val localizer: BukkitLocalizer
 ) : BukkitFcTextConverter {
-    override fun FcText.toRaw(): String {
+    override fun toRaw(text: FcText): String {
         return JsonStringBuilder()
-            .appendFcText(bukkit)
+            .appendFcText(text.bukkit)
             .toString()
     }
 
@@ -72,14 +72,14 @@ class BukkitFcTextConverter_1_13_00_R01 @Inject constructor(
         return this
     }
 
-    override fun FcText.toLegacy(locale: FcLocale): String {
-        this as BukkitFcText
-        return when (this) {
+    override fun toLegacy(text: FcText, locale: FcLocale): String {
+        text as BukkitFcText
+        return when (text) {
             is BukkitFcText.Legacy ->
-                this.legacyText
+                text.legacyText
             is BukkitFcText.Component ->
                 LegacyTextBuilder(locale)
-                    .appendText(this.bukkit)
+                    .appendText(text.bukkit)
                     .toString()
         }
     }

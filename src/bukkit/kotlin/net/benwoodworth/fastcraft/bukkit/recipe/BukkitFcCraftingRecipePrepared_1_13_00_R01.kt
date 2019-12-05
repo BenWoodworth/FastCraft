@@ -25,9 +25,7 @@ class BukkitFcCraftingRecipePrepared_1_13_00_R01(
 
         val results = mutableListOf<FcItem>()
 
-        with(itemFactory) {
-            results += createFcItem(craftingGrid.result)
-        }
+        results += itemFactory.createFcItem(craftingGrid.result)
 
 //        results +=
         TODO()

@@ -81,14 +81,12 @@ class BukkitFcGuiButton_1_13_00_R01(
         }
 
     private fun FcText.toLegacy(): String {
-        with(textConverter) {
-            return this@toLegacy.toLegacy(locale)
-        }
+        return textConverter.toLegacy(this, locale)
     }
 
     private fun List<FcText>.toLegacy(): List<String> {
-        with(textConverter) {
-            return this@toLegacy.map { it.toLegacy(locale) }
+        return map {
+            textConverter.toLegacy(it, locale)
         }
     }
 

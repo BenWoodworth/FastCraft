@@ -25,23 +25,19 @@ class BukkitFcIngredient_1_13_00_R01(
     private val hasWildcardData: Boolean = ingredient.data.data == WILDCARD_DATA
 
     override val name: FcText = run {
-        with(textFactory) {
-            val itemName = with(itemStackNameProvider) {
-                ingredient.getName()
-            }
+        val itemName = itemStackNameProvider.getName(ingredient)
 
-            return@run if (!hasWildcardData) {
-                itemName
-            } else {
-                createFcText(
-                    extra = listOf(
-                        itemName,
-                        createFcText(
-                            text = " (*)"
-                        )
+        if (!hasWildcardData) {
+            itemName
+        } else {
+            textFactory.createFcText(
+                extra = listOf(
+                    itemName,
+                    textFactory.createFcText(
+                        text = " (*)"
                     )
                 )
-            }
+            )
         }
     }
 
