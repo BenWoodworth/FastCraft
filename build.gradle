@@ -1,4 +1,4 @@
-group 'net.benwoodworth'
+group "net.benwoodworth"
 
 apply plugin: "kotlin"
 apply plugin: "kotlin-kapt"
@@ -7,30 +7,6 @@ apply plugin: "com.github.johnrengelman.shadow"
 buildscript {
     PluginVersion.updateVersion()
     version = PluginVersion.version
-
-    ext {
-        plugin_author = "Kepler"
-        plugin_description = "Redefines crafting in Minecraft"
-        plugin_website = "https://github.com/BenWoodworth/FastCraft"
-
-        version_java = "1.8"
-        version_kotlin = "1.3.61"
-        version_dagger = "2.25.2"
-        version_javax_inject = "1"
-        version_auto_factory = "1.0-beta7"
-        version_shadow = "5.2.0"
-        version_bstats = "1.3"
-        version_bukkit = "1.13-R0.1-SNAPSHOT"
-
-        dependency_kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$version_kotlin"
-        dependency_kotlin_stdlib_jdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version_kotlin"
-        dependency_dagger = "com.google.dagger:dagger:$version_dagger"
-        dependency_dagger_compiler = "com.google.dagger:dagger-compiler:$version_dagger"
-        dependency_javax_inject = "javax.inject:javax.inject:$version_javax_inject"
-        dependency_auto_factory = "com.google.auto.factory:auto-factory:$version_auto_factory"
-        dependency_bstats_bukkit = "org.bstats:bstats-bukkit:$version_bstats"
-        dependency_bukkit = "org.bukkit:bukkit:$version_bukkit"
-    }
 
     repositories {
         maven { url "https://dl.bintray.com/kotlin/kotlin-eap" }
@@ -77,17 +53,17 @@ dependencies {
         kaptBukkit dependency
     }
 
-    allImplementation dependency_kotlin_stdlib
-    allImplementation dependency_kotlin_stdlib_jdk8
-    allImplementation dependency_dagger
-    allImplementation dependency_javax_inject
-    allImplementation dependency_auto_factory
+    allImplementation "org.jetbrains.kotlin:kotlin-stdlib:$version_kotlin"
+    allImplementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version_kotlin"
+    allImplementation "com.google.dagger:dagger:$version_dagger"
+    allImplementation "javax.inject:javax.inject:$version_javax_inject"
+    allImplementation "com.google.auto.factory:auto-factory:$version_auto_factory"
 
-    kaptAll dependency_dagger_compiler
-    kaptAll dependency_auto_factory
+    kaptAll "com.google.dagger:dagger-compiler:$version_dagger"
+    kaptAll "com.google.auto.factory:auto-factory:$version_auto_factory"
 
     bukkitImplementation sourceSets.common.output
-    bukkitImplementation dependency_bukkit
+    bukkitImplementation "org.bukkit:bukkit:$version_bukkit"
 }
 
 compileKotlin.kotlinOptions.jvmTarget = version_java
@@ -109,15 +85,10 @@ shadowJar {
     from sourceSets.bukkit.output
 
     dependencies {
-        include dependency(dependency_kotlin_stdlib)
-        include dependency(dependency_kotlin_stdlib_jdk8)
-        include dependency(dependency_dagger)
-        include dependency(dependency_javax_inject)
-        include dependency(dependency_bstats_bukkit)
+        exclude dependency("org.bukkit:bukkit")
     }
 
     def libPackage = "net.benwoodworth.fastcraft.lib"
-
     relocate("kotlin", "${libPackage}.kotlin")
     relocate("dagger", "${libPackage}.dagger")
     relocate("javax", "${libPackage}.javax")
@@ -125,7 +96,7 @@ shadowJar {
 }
 
 processBukkitResources {
-    include 'plugin.yml'
+    include "plugin.yml"
 
     expand([
             plugin_author     : plugin_author,
