@@ -7,12 +7,12 @@ import javax.inject.Inject
 class BukkitFcItemFactory_1_13_00_R01 @Inject constructor(
     private val itemFactory: BukkitFcItem_1_13_00_R01Factory
 ) : BukkitFcItemFactory {
-    override fun FcItem.copy(amount: Int): FcItem {
-        if (amount == this.amount) {
-            return this
+    override fun copyItem(item: FcItem, amount: Int): FcItem {
+        if (amount == item.amount) {
+            return item
         }
 
-        val itemStack = this.toItemStack()
+        val itemStack = item.toItemStack()
         itemStack.amount = amount
 
         return createFcItem(itemStack)
