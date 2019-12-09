@@ -68,6 +68,7 @@ compileTestKotlin.kotlinOptions.jvmTarget = version_java
 
 kapt {
     correctErrorTypes = true
+    includeCompileClasspath = false
 }
 
 jar {
