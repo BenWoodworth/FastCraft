@@ -1,3 +1,5 @@
 package net.benwoodworth.fastcraft.platform.item
 
-interface FcInventorySlot
+interface FcInventorySlot {
+    var item: FcItem?
+}
