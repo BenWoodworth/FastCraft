@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.bukkit.server
+package net.benwoodworth.fastcraft.bukkit.player
 
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcLocale_1_13_00_R01
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcText

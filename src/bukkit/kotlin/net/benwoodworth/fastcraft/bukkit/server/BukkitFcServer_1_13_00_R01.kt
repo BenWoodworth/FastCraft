@@ -1,9 +1,10 @@
 package net.benwoodworth.fastcraft.bukkit.server
 
 import net.benwoodworth.fastcraft.bukkit.BukkitFastCraftPlugin
+import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerJoinEvent_1_13_00_R01
 import net.benwoodworth.fastcraft.events.HandlerSet
-import net.benwoodworth.fastcraft.platform.server.FcPlayerJoinEvent
-import net.benwoodworth.fastcraft.platform.server.FcPlayerProvider
+import net.benwoodworth.fastcraft.platform.player.FcPlayerJoinEvent
+import net.benwoodworth.fastcraft.platform.player.FcPlayerProvider
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerJoinEvent
@@ -24,7 +25,12 @@ class BukkitFcServer_1_13_00_R01 @Inject constructor(
     private inner class ServerListener : Listener {
         @EventHandler
         fun onPlayerJoin(event: PlayerJoinEvent) {
-            onPlayerJoin.notifyHandlers(BukkitFcPlayerJoinEvent_1_13_00_R01(event, playerProvider))
+            onPlayerJoin.notifyHandlers(
+                BukkitFcPlayerJoinEvent_1_13_00_R01(
+                    event,
+                    playerProvider
+                )
+            )
         }
     }
 }

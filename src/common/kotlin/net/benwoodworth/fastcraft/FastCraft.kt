@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft
 
 import net.benwoodworth.fastcraft.crafting.CraftingGuiFactory
-import net.benwoodworth.fastcraft.platform.server.FcPlayerJoinEvent
+import net.benwoodworth.fastcraft.platform.player.FcPlayerJoinEvent
 import net.benwoodworth.fastcraft.platform.server.FcServer
 import net.benwoodworth.fastcraft.platform.server.FcTaskFactory
 import net.benwoodworth.fastcraft.platform.text.FcTextColors

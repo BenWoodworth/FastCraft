@@ -4,7 +4,7 @@ import net.benwoodworth.fastcraft.bukkit.BukkitFastCraftPlugin
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextConverter
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiLayoutGrid
-import net.benwoodworth.fastcraft.platform.server.FcPlayer
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.Server

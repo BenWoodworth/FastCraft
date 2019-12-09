@@ -1,7 +1,7 @@
-package net.benwoodworth.fastcraft.bukkit.server
+package net.benwoodworth.fastcraft.bukkit.player
 
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextConverter
-import net.benwoodworth.fastcraft.platform.server.FcPlayer
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import org.bukkit.Server
 import org.bukkit.entity.Player
 import java.util.*
@@ -13,17 +13,29 @@ class BukkitFcPlayerProvider_1_13_00_R01 @Inject constructor(
 ) : BukkitFcPlayerProvider {
     override fun getOnlinePlayers(): List<FcPlayer> {
         return server.onlinePlayers.map { player ->
-            BukkitFcPlayer_1_13_00_R01(player, textConverter, server)
+            BukkitFcPlayer_1_13_00_R01(
+                player,
+                textConverter,
+                server
+            )
         }
     }
 
     override fun getPlayer(uuid: UUID): FcPlayer? {
         return server.getPlayer(uuid)?.let { player ->
-            BukkitFcPlayer_1_13_00_R01(player, textConverter, server)
+            BukkitFcPlayer_1_13_00_R01(
+                player,
+                textConverter,
+                server
+            )
         }
     }
 
     override fun getPlayer(player: Player): FcPlayer {
-        return BukkitFcPlayer_1_13_00_R01(player, textConverter, server)
+        return BukkitFcPlayer_1_13_00_R01(
+            player,
+            textConverter,
+            server
+        )
     }
 }

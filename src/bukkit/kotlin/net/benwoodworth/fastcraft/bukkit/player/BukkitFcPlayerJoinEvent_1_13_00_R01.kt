@@ -1,7 +1,7 @@
-package net.benwoodworth.fastcraft.bukkit.server
+package net.benwoodworth.fastcraft.bukkit.player
 
-import net.benwoodworth.fastcraft.platform.server.FcPlayer
-import net.benwoodworth.fastcraft.platform.server.FcPlayerProvider
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.player.FcPlayerProvider
 import org.bukkit.event.player.PlayerJoinEvent
 
 class BukkitFcPlayerJoinEvent_1_13_00_R01(

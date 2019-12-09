@@ -1,11 +1,11 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
 import net.benwoodworth.fastcraft.bukkit.BukkitFastCraftPlugin
-import net.benwoodworth.fastcraft.bukkit.server.player
+import net.benwoodworth.fastcraft.bukkit.player.player
 import net.benwoodworth.fastcraft.events.HandlerSet
 import net.benwoodworth.fastcraft.platform.gui.FcGuiCloseEvent
 import net.benwoodworth.fastcraft.platform.gui.FcGuiLayout
-import net.benwoodworth.fastcraft.platform.server.FcPlayer
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.event.EventHandler
