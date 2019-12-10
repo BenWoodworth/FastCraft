@@ -14,6 +14,7 @@ import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTaskFactory_1_13_00_R01
 import net.benwoodworth.fastcraft.bukkit.text.*
 import net.benwoodworth.fastcraft.platform.config.FcConfigFactory
 import net.benwoodworth.fastcraft.platform.gui.FcGuiFactory
+import net.benwoodworth.fastcraft.platform.item.FcItemFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.player.FcPlayerProvider
 import net.benwoodworth.fastcraft.platform.recipe.FcRecipeService
@@ -146,6 +147,18 @@ class BukkitDaggerModule_1_13_00_R01(
     @Provides
     @Singleton
     fun provideBukkitLocalizer(instance: BukkitLocalizer_1_13_00_R01): BukkitLocalizer {
+        return instance
+    }
+
+    @Provides
+    @Singleton
+    fun provideFcItemFactory(instance: BukkitFcItemFactory_1_13_00_R01): FcItemFactory {
+        return instance
+    }
+
+    @Provides
+    @Singleton
+    fun provideBukkitFcInventorySlotFactory(instance: BukkitFcInventorySlotFactory_1_13_00_R01): BukkitFcInventorySlotFactory {
         return instance
     }
 }

@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft.platform.player
 
-import net.benwoodworth.fastcraft.platform.item.FcInventory
 import net.benwoodworth.fastcraft.platform.text.FcLocale
 import net.benwoodworth.fastcraft.platform.text.FcText
 import java.util.*
@@ -16,7 +15,7 @@ interface FcPlayer {
 
     val isOnline: Boolean
 
-    val inventory: FcInventory
+    val inventory: FcPlayerInventory
 
     fun sendMessage(message: FcText)
 
