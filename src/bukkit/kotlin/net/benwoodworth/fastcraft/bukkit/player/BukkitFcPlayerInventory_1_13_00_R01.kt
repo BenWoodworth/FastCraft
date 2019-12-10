@@ -11,10 +11,8 @@ class BukkitFcPlayerInventory_1_13_00_R01(
     override val inventory: PlayerInventory,
     @Provided private val slotFactory: BukkitFcInventorySlotFactory
 ) : BukkitFcPlayerInventory {
-    override val storage: Sequence<FcInventorySlot> = sequence {
-        for (slotIndex in 0..35) {
-            yield(slotFactory.createSlot(inventory, slotIndex))
-        }
+    override val storage: Collection<FcInventorySlot> = List(36) { slotIndex ->
+        slotFactory.createSlot(inventory, slotIndex)
     }
 
     override val helmet: FcInventorySlot

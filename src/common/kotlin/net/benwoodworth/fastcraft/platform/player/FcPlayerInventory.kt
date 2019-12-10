@@ -4,7 +4,7 @@ import net.benwoodworth.fastcraft.platform.item.FcInventory
 import net.benwoodworth.fastcraft.platform.item.FcInventorySlot
 
 interface FcPlayerInventory : FcInventory {
-    val storage: Sequence<FcInventorySlot>
+    val storage: Collection<FcInventorySlot>
 
     val helmet: FcInventorySlot
 
