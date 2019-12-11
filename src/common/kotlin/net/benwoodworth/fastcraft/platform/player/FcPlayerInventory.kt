@@ -13,8 +13,4 @@ interface FcPlayerInventory : FcInventory {
     val leggings: FcInventorySlot
 
     val boots: FcInventorySlot
-
-    override fun equals(other: Any?): Boolean
-
-    override fun hashCode(): Int
 }

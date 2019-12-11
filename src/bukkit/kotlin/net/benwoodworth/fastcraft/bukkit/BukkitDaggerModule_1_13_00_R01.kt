@@ -30,6 +30,7 @@ import org.bukkit.plugin.PluginManager
 import org.bukkit.scheduler.BukkitScheduler
 import javax.inject.Singleton
 
+@Suppress("unused")
 @Module
 class BukkitDaggerModule_1_13_00_R01(
     private val plugin: BukkitFastCraftPlugin
@@ -153,12 +154,6 @@ class BukkitDaggerModule_1_13_00_R01(
     @Provides
     @Singleton
     fun provideFcItemFactory(instance: BukkitFcItemFactory_1_13_00_R01): FcItemFactory {
-        return instance
-    }
-
-    @Provides
-    @Singleton
-    fun provideBukkitFcInventorySlotFactory(instance: BukkitFcInventorySlotFactory_1_13_00_R01): BukkitFcInventorySlotFactory {
         return instance
     }
 }
