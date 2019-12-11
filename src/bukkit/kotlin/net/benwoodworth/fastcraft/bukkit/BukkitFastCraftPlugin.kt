@@ -8,8 +8,8 @@ class BukkitFastCraftPlugin : JavaPlugin() {
     private var fastCraft: FastCraft? = null
 
     override fun onEnable() {
-        val factory = DaggerBukkitFastCraftFactory_1_13_00_R01.builder()
-            .bukkitDaggerModule_1_13_00_R01(BukkitDaggerModule_1_13_00_R01(this))
+        val factory = DaggerBukkitFastCraftFactory_1_15_00_R01.builder()
+            .bukkitDaggerModule_1_15_00_R01(BukkitDaggerModule_1_15_00_R01(this))
             .build()
 
         fastCraft = factory.createFastCraft()
