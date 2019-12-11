@@ -1,8 +1,17 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
+import net.benwoodworth.fastcraft.platform.text.FcTextColor
 import org.bukkit.ChatColor
 
 class BukkitFcTextColor_1_13_00_R01(
     override val id: String,
     override val chatColor: ChatColor
-) : BukkitFcTextColor
+) : BukkitFcTextColor {
+    override fun equals(other: Any?): Boolean {
+        return other is FcTextColor && id == other.id
+    }
+
+    override fun hashCode(): Int {
+        return id.hashCode()
+    }
+}

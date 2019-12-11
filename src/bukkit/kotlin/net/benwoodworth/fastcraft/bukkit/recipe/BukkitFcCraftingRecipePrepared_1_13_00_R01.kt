@@ -34,4 +34,12 @@ class BukkitFcCraftingRecipePrepared_1_13_00_R01(
     override fun craft(craftMaxAmount: Boolean): List<FcItem> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
+    override fun equals(other: Any?): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun hashCode(): Int {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }

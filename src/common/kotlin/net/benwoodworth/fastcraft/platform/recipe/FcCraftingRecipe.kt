@@ -8,5 +8,9 @@ interface FcCraftingRecipe {
     val ingredients: List<FcIngredient>
 
     fun prepare(ingredients: List<FcItem>): FcCraftingRecipePrepared
+
+    override fun equals(other: Any?): Boolean
+
+    override fun hashCode(): Int
 }
 

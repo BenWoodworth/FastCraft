@@ -10,4 +10,8 @@ interface FcCraftingRecipePrepared {
     fun getResultPreview(craftMaxAmount: Boolean): List<FcItem>
 
     fun craft(craftMaxAmount: Boolean): List<FcItem>
+
+    override fun equals(other: Any?): Boolean
+
+    override fun hashCode(): Int
 }

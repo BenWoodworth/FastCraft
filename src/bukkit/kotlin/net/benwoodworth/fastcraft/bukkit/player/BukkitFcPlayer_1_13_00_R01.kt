@@ -5,6 +5,7 @@ import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcLocale_1_13_00_R01
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcText
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextConverter
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcPlayerInventory
 import net.benwoodworth.fastcraft.platform.text.FcLocale
 import net.benwoodworth.fastcraft.platform.text.FcText
@@ -57,5 +58,13 @@ class BukkitFcPlayer_1_13_00_R01(
 
     override fun hasPermission(permission: String): Boolean {
         return player.hasPermission(permission)
+    }
+
+    override fun equals(other: Any?): Boolean {
+        return other is FcPlayer && player == other.player
+    }
+
+    override fun hashCode(): Int {
+        return player.hashCode()
     }
 }

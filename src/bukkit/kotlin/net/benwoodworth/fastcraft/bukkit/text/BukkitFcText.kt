@@ -2,11 +2,20 @@ package net.benwoodworth.fastcraft.bukkit.text
 
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
+import java.util.*
 
 sealed class BukkitFcText : FcText {
     class Legacy(
         val legacyText: String
-    ) : BukkitFcText()
+    ) : BukkitFcText() {
+        override fun equals(other: Any?): Boolean {
+            return other is Legacy && legacyText == other.legacyText
+        }
+
+        override fun hashCode(): Int {
+            return legacyText.hashCode()
+        }
+    }
 
     sealed class Component : BukkitFcText() {
         abstract val color: FcTextColor?
@@ -26,7 +35,31 @@ sealed class BukkitFcText : FcText {
             override val strikethrough: Boolean? = null,
             override val obfuscate: Boolean? = null,
             override val extra: List<FcText> = emptyList()
-        ) : Component()
+        ) : Component() {
+            override fun equals(other: Any?): Boolean {
+                return other is Text &&
+                        text == other.text &&
+                        color == other.color &&
+                        bold == other.bold &&
+                        italic == other.italic &&
+                        underline == other.underline &&
+                        strikethrough == other.strikethrough &&
+                        obfuscate == other.obfuscate &&
+                        extra == other.extra
+            }
+
+            override fun hashCode(): Int {
+                return Objects.hash(
+                    text,
+                    color,
+                    bold,
+                    italic,
+                    underline,
+                    strikethrough,
+                    obfuscate
+                )
+            }
+        }
 
         class Translate(
             val translate: String,
@@ -37,6 +70,30 @@ sealed class BukkitFcText : FcText {
             override val strikethrough: Boolean? = null,
             override val obfuscate: Boolean? = null,
             override val extra: List<FcText> = emptyList()
-        ) : Component()
+        ) : Component() {
+            override fun equals(other: Any?): Boolean {
+                return other is Translate &&
+                        translate == other.translate &&
+                        color == other.color &&
+                        bold == other.bold &&
+                        italic == other.italic &&
+                        underline == other.underline &&
+                        strikethrough == other.strikethrough &&
+                        obfuscate == other.obfuscate &&
+                        extra == other.extra
+            }
+
+            override fun hashCode(): Int {
+                return Objects.hash(
+                    translate,
+                    color,
+                    bold,
+                    italic,
+                    underline,
+                    strikethrough,
+                    obfuscate
+                )
+            }
+        }
     }
 }

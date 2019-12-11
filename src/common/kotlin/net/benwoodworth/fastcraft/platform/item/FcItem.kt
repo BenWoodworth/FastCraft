@@ -10,4 +10,8 @@ interface FcItem {
     val name: FcText
 
     val lore: List<FcText>
+
+    override fun equals(other: Any?): Boolean
+
+    override fun hashCode(): Int
 }

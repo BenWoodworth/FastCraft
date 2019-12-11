@@ -19,6 +19,14 @@ sealed class BukkitFcCraftingRecipe_1_13_00_R01 : BukkitFcCraftingRecipe {
         override fun prepare(ingredients: List<FcItem>): FcCraftingRecipePrepared {
             TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }
+
+        override fun equals(other: Any?): Boolean {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
+        override fun hashCode(): Int {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
     }
 
     class Shapeless(
@@ -31,6 +39,14 @@ sealed class BukkitFcCraftingRecipe_1_13_00_R01 : BukkitFcCraftingRecipe {
             get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
 
         override fun prepare(ingredients: List<FcItem>): FcCraftingRecipePrepared {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
+        override fun equals(other: Any?): Boolean {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
+        override fun hashCode(): Int {
             TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }
     }

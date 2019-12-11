@@ -8,4 +8,8 @@ interface FcItemType {
     val description: FcText
 
     val maxAmount: Int
+
+    override fun equals(other: Any?): Boolean
+
+    override fun hashCode(): Int
 }

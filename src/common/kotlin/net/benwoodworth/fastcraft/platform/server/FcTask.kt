@@ -6,4 +6,8 @@ interface FcTask {
     fun schedule()
 
     fun cancel()
+
+    override fun equals(other: Any?): Boolean
+
+    override fun hashCode(): Int
 }

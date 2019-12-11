@@ -20,4 +20,8 @@ interface FcPlayer {
     fun sendMessage(message: FcText)
 
     fun hasPermission(permission: String): Boolean
+
+    override fun equals(other: Any?): Boolean
+
+    override fun hashCode(): Int
 }

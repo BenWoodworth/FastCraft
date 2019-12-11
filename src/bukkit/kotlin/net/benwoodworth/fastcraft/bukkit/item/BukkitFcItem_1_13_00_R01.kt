@@ -44,4 +44,14 @@ class BukkitFcItem_1_13_00_R01(
         @Suppress("DEPRECATION")
         return itemStack.clone()
     }
+
+    override fun equals(other: Any?): Boolean {
+        @Suppress("DEPRECATION")
+        return other is FcItem && itemStack == other.itemStack
+    }
+
+    override fun hashCode(): Int {
+        @Suppress("DEPRECATION")
+        return itemStack.hashCode()
+    }
 }
