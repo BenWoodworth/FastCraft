@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft.bukkit.item
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
+import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.text.FcText
@@ -15,7 +16,8 @@ class BukkitFcItem_1_13_00_R01(
     @Provided private val textFactory: FcTextFactory,
     @Provided private val nameProvider: ItemStackNameProvider
 ) : BukkitFcItem {
-    private val itemStack: ItemStack = itemStack.clone()
+    @Suppress("OverridingDeprecatedMember")
+    override val itemStack: ItemStack = itemStack.clone()
 
     override val type: FcItemType by lazy {
         itemTypes.fromMaterial(itemStack.type)
@@ -39,6 +41,7 @@ class BukkitFcItem_1_13_00_R01(
     }
 
     override fun toItemStack(): ItemStack {
+        @Suppress("DEPRECATION")
         return itemStack.clone()
     }
 }
