@@ -1,54 +1,80 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
+import com.google.auto.factory.AutoFactory
+import com.google.auto.factory.Provided
+import net.benwoodworth.fastcraft.bukkit.item.toItemStack
+import net.benwoodworth.fastcraft.bukkit.player.player
 import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 import net.benwoodworth.fastcraft.platform.recipe.FcIngredient
+import org.bukkit.Keyed
+import org.bukkit.Server
+import org.bukkit.event.inventory.InventoryType
+import org.bukkit.event.inventory.PrepareItemCraftEvent
+import org.bukkit.inventory.CraftingInventory
+import org.bukkit.inventory.Recipe
 import org.bukkit.inventory.ShapedRecipe
 import org.bukkit.inventory.ShapelessRecipe
 
-sealed class BukkitFcCraftingRecipe_1_15_00_R01 : BukkitFcCraftingRecipe {
-    class Shaped(
-        private val base: ShapedRecipe
-    ) : BukkitFcCraftingRecipe_1_15_00_R01() {
-        override val id: String
-            get() = base.key.toString()
-
-        override val ingredients: List<FcIngredient>
-            get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-
-        override fun prepare(ingredients: List<FcItem>): FcCraftingRecipePrepared {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        }
-
-        override fun equals(other: Any?): Boolean {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        }
-
-        override fun hashCode(): Int {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        }
+@AutoFactory
+class BukkitFcCraftingRecipe_1_15_00_R01(
+    private val recipe: Recipe,
+    @Provided val server: Server,
+    @Provided val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_15_00_R01Factory
+) : BukkitFcCraftingRecipe {
+    init {
+        require(recipe is ShapedRecipe || recipe is ShapelessRecipe)
     }
 
-    class Shapeless(
-        private val base: ShapelessRecipe
-    ) : BukkitFcCraftingRecipe_1_15_00_R01() {
-        override val id: String
-            get() = base.key.toString()
+    override val id: String
+        get() = (recipe as Keyed).key.toString()
 
-        override val ingredients: List<FcIngredient>
-            get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+    override val ingredients: List<FcIngredient> = when (recipe) {
+        is ShapedRecipe -> recipe.shape
+            .mapIndexed { row, rowStr ->
+                rowStr.mapIndexed { column, char ->
+                    BukkitFcIngredient_1_15_00_R01(row * 3 + column, recipe.choiceMap[char]!!)
+                }
+            }
+            .flatten()
 
-        override fun prepare(ingredients: List<FcItem>): FcCraftingRecipePrepared {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        is ShapelessRecipe -> recipe.choiceList
+            .mapIndexed { i, recipeChoice ->
+                BukkitFcIngredient_1_15_00_R01(i, recipeChoice)
+            }
+
+        else -> throw IllegalStateException()
+    }
+
+    override fun prepare(player: FcPlayer, ingredients: Map<FcIngredient, FcItem>): FcCraftingRecipePrepared {
+        val craftingGrid = server.createInventory(null, InventoryType.CRAFTING) as CraftingInventory
+
+        ingredients.forEach { (ingredient, item) ->
+            ingredient as BukkitFcIngredient_1_15_00_R01
+
+            craftingGrid.setItem(ingredient.slotIndex, item.toItemStack())
         }
 
-        override fun equals(other: Any?): Boolean {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if (ingredients.all { (ingredient, item) -> ingredient.matches(item) }) {
+            craftingGrid.result = recipe.result
         }
 
-        override fun hashCode(): Int {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        }
+        val prepareView = PrepareCraftInventoryView_1_15_00_R01(player.player, craftingGrid)
+        val prepareEvent = PrepareItemCraftEvent(craftingGrid, prepareView, false)
+        server.pluginManager.callEvent(prepareEvent)
+
+        return preparedRecipeFactory.create(this, craftingGrid)
+    }
+
+    override fun equals(other: Any?): Boolean {
+        return other is FcCraftingRecipe &&
+                id == other.id
+    }
+
+    override fun hashCode(): Int {
+        return id.hashCode()
     }
 }
 
