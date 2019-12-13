@@ -6,7 +6,7 @@ import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfigFactory_1_15_00_R0
 import net.benwoodworth.fastcraft.bukkit.gui.BukkitFcGuiFactory_1_15_00_R01
 import net.benwoodworth.fastcraft.bukkit.item.*
 import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerProvider_1_15_00_R01
-import net.benwoodworth.fastcraft.bukkit.recipe.BukkitFcRecipeService_1_15_00_R01
+import net.benwoodworth.fastcraft.bukkit.recipe.*
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcLogger_1_15_00_R01
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcPluginData_1_15_00_R01
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcServer_1_15_00_R01
@@ -154,6 +154,18 @@ class BukkitDaggerModule_1_15_00_R01(
     @Provides
     @Singleton
     fun provideFcItemFactory(instance: BukkitFcItemFactory_1_15_00_R01): FcItemFactory {
+        return instance
+    }
+
+    @Provides
+    @Singleton
+    fun provideBukkitRecipeConverter(instance: BukkitRecipeConverter_1_15_00_R01): BukkitRecipeConverter {
+        return instance
+    }
+
+    @Provides
+    @Singleton
+    fun provideIngredientProductProvider(instance: IngredientProductProvider_1_15_00_R01): IngredientProductProvider {
         return instance
     }
 }
