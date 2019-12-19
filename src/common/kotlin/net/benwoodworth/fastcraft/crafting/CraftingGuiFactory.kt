@@ -1,6 +1,8 @@
 package net.benwoodworth.fastcraft.crafting
 
 import net.benwoodworth.fastcraft.crafting.controller.CraftingGuiController
+import net.benwoodworth.fastcraft.crafting.model.CraftingGuiModelFactory
+import net.benwoodworth.fastcraft.crafting.view.CraftingGuiViewFactory
 import net.benwoodworth.fastcraft.platform.gui.FcGuiFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
