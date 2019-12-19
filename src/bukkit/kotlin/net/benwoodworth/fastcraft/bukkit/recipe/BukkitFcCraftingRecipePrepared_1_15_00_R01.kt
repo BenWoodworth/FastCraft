@@ -18,7 +18,7 @@ class BukkitFcCraftingRecipePrepared_1_15_00_R01(
     private val craftingInventory: CraftingInventory,
     private val craftingView: InventoryView,
     @Provided private val itemFactory: FcItemFactory,
-    @Provided private val productProvider: IngredientProductProvider,
+    @Provided private val productProvider: IngredientRemnantProvider,
     @Provided private val server: Server
 ) : BukkitFcCraftingRecipePrepared {
     private var craftPreviewCalled: Boolean = false

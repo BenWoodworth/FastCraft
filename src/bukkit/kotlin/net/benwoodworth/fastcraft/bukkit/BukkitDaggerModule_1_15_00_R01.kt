@@ -165,7 +165,7 @@ class BukkitDaggerModule_1_15_00_R01(
 
     @Provides
     @Singleton
-    fun provideIngredientProductProvider(instance: IngredientProductProvider_1_15_00_R01): IngredientProductProvider {
+    fun provideIngredientProductProvider(instance: IngredientRemnantProvider_1_15_00_R01): IngredientRemnantProvider {
         return instance
     }
 }
