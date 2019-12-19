@@ -1,5 +1,6 @@
 package net.benwoodworth.fastcraft.crafting
 
+import net.benwoodworth.fastcraft.crafting.controller.CraftingGuiController
 import net.benwoodworth.fastcraft.platform.gui.FcGuiFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
@@ -19,6 +20,13 @@ class CraftingGuiFactory @Inject constructor(
         val model = craftingGuiModelFactory.create(player)
         val view = craftingGuiViewFactory.create(player)
 
-        CraftingGuiController(player, model, view, textFactory, textColors, itemTypes)
+        CraftingGuiController(
+            player,
+            model,
+            view,
+            textFactory,
+            textColors,
+            itemTypes
+        )
     }
 }

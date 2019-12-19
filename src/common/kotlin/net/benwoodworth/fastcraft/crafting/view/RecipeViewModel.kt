@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.crafting
+package net.benwoodworth.fastcraft.crafting.view
 
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.item.FcItem

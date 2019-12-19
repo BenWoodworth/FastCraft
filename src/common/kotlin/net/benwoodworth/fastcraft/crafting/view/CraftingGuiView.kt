@@ -1,7 +1,8 @@
-package net.benwoodworth.fastcraft.crafting
+package net.benwoodworth.fastcraft.crafting.view
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
+import net.benwoodworth.fastcraft.crafting.model.PageCollection
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClickEvent
 import net.benwoodworth.fastcraft.platform.gui.FcGuiFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
@@ -89,7 +90,8 @@ class CraftingGuiView(
         gui.layout.getButton(i % (width - 2), i / (width - 2))
     }
 
-    private val recipePages: PageCollection<RecipeViewModel> = PageCollection((width - 2) * height)
+    private val recipePages: PageCollection<RecipeViewModel> =
+        PageCollection((width - 2) * height)
 
     var multiplier: Int by Delegates.observable(1) { _, _, new ->
         multiplierButton.amount = new

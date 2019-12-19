@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.crafting
+package net.benwoodworth.fastcraft.crafting.model
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided

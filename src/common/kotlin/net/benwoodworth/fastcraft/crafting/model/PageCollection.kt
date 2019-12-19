@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.crafting
+package net.benwoodworth.fastcraft.crafting.model
 
 import net.benwoodworth.fastcraft.events.HandlerSet
 import kotlin.math.ceil

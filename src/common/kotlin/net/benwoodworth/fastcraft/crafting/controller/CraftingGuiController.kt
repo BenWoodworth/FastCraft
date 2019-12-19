@@ -1,5 +1,7 @@
-package net.benwoodworth.fastcraft.crafting
+package net.benwoodworth.fastcraft.crafting.controller
 
+import net.benwoodworth.fastcraft.crafting.model.CraftingGuiModel
+import net.benwoodworth.fastcraft.crafting.view.CraftingGuiView
 import net.benwoodworth.fastcraft.platform.gui.FcGuiCloseEvent
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
