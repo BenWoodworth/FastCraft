@@ -2,22 +2,22 @@ package net.benwoodworth.fastcraft.crafting.view
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
+import net.benwoodworth.fastcraft.crafting.model.FastCraftRecipe
 import net.benwoodworth.fastcraft.crafting.model.PageCollection
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClickEvent
 import net.benwoodworth.fastcraft.platform.gui.FcGuiFactory
-import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
-import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
-import kotlin.properties.Delegates
 
 @AutoFactory
 class CraftingGuiView(
     player: FcPlayer,
     @Provided guiFactory: FcGuiFactory,
-    @Provided private val textFactory: FcTextFactory,
-    @Provided private val textColors: FcTextColors,
-    @Provided private val itemTypes: FcItemTypes
+    @Provided workbenchButtonFactory: net.benwoodworth.fastcraft.crafting.view.buttons.WorkbenchButtonViewFactory,
+    @Provided pageButtonFactory: net.benwoodworth.fastcraft.crafting.view.buttons.PageButtonViewFactory,
+    @Provided multiplierButtonFactory: net.benwoodworth.fastcraft.crafting.view.buttons.MultiplierButtonViewFactory,
+    @Provided refreshButtonFactory: net.benwoodworth.fastcraft.crafting.view.buttons.RefreshButtonViewFactory,
+    @Provided private val textFactory: FcTextFactory
 ) {
     private val gui = guiFactory.openChestGui(
         player = player,
@@ -28,85 +28,21 @@ class CraftingGuiView(
     private val width = gui.layout.width
     private val height = gui.layout.height
 
-    private val workbenchButton = gui.layout.getButton(width - 1, 0).apply {
-        itemType = itemTypes.craftingTable
+    private val recipePages = PageCollection<FastCraftRecipe>((width - 2) * height)
 
-        text = textFactory.createFcText("Crafting Grid", color = textColors.green)
-
-        description = listOf(
-            textFactory.createFcText("Open a 3x3 crafting grid", color = textColors.aqua),
-            textFactory.createFcText(
-                color = textColors.green,
-                extra = listOf(
-                    textFactory.createFcText("Use "),
-                    textFactory.createFcText("/fc toggle", color = textColors.aqua, italic = true),
-                    textFactory.createFcText(" to disable FastCraft")
-                )
-            )
-        )
-
-        hideItemDetails()
-    }
-
-    private val multiplierButton = gui.layout.getButton(width - 1, 1).apply {
-        itemType = itemTypes.anvil
-
-        text = textFactory.createFcText("Crafting Multiplier", color = textColors.green)
-
-        description = listOf(
-            textFactory.createFcText("Left/right click to increase/decrease", color = textColors.aqua),
-            textFactory.createFcText("Shift click to increment by 1", color = textColors.aqua),
-            textFactory.createFcText("Middle click to reset to 1x", color = textColors.aqua)
-        )
-
-        hideItemDetails()
-    }
-
-    private val refreshButton = gui.layout.getButton(width - 1, 2).apply {
-        itemType = itemTypes.netherStar
-
-        text = textFactory.createFcText("Refresh", color = textColors.green)
-
-        description = listOf(
-            textFactory.createFcText("Refresh the FastCraft interface", color = textColors.aqua)
-        )
-
-        hideItemDetails()
-    }
-
-    private val pageButton = gui.layout.getButton(width - 1, height - 1).apply {
-        itemType = itemTypes.ironSword
-
-        description = listOf(
-            textFactory.createFcText("Left click: next page", color = textColors.aqua),
-            textFactory.createFcText("Right click: previous page", color = textColors.aqua),
-            textFactory.createFcText("Shift click: first page", color = textColors.aqua)
-        )
-
-        hideItemDetails()
-    }
-
-    private val recipeButtons = List((width - 2) * height) { i ->
-        gui.layout.getButton(i % (width - 2), i / (width - 2))
-    }
-
-    private val recipePages: PageCollection<RecipeViewModel> =
-        PageCollection((width - 2) * height)
-
-    var multiplier: Int by Delegates.observable(1) { _, _, new ->
-        multiplierButton.amount = new
-    }
+    private val workbenchButton = workbenchButtonFactory.create(gui.layout.getButton(width - 1, 0))
+    private val multiplierButton = multiplierButtonFactory.create(gui.layout.getButton(width - 1, 1))
+    private val refreshButton = refreshButtonFactory.create(gui.layout.getButton(width - 1, 2))
+    private val pageButton = pageButtonFactory.create(gui.layout.getButton(width - 1, height - 1), recipePages)
 
     init {
-        updatePageButton()
-        updateRecipeButtons()
+        pageButton.update()
 
         recipePages.onChange {
-            updatePageButton()
-            updateRecipeButtons()
+            pageButton.update()
         }
 
-        pageButton.onClick += ::onPageButtonClick
+        pageButton.button.onClick += ::onPageButtonClick
     }
 
     private fun onPageButtonClick(event: FcGuiClickEvent) {
@@ -121,25 +57,5 @@ class CraftingGuiView(
                 else -> return
             }
         }
-    }
-
-    private fun updatePageButton() {
-        pageButton.apply {
-            text = textFactory.createFcText(
-                text = "Page ${recipePages.pageNumber}/${recipePages.pageCount}",
-                color = textColors.green
-            )
-        }
-    }
-
-    private fun updateRecipeButtons() {
-//        recipePages.page.forEachIndexed { i: Int, recipe: FcItem? ->
-//            recipeButtons[i].apply {
-//                when (recipe) {
-//                    null -> clear()
-//                    else -> copyItem(recipe)
-//                }
-//            }
-//        }
     }
 }
