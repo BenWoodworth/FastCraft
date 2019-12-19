@@ -65,7 +65,7 @@ class BukkitFcCraftingRecipe_1_15_00_R01(
         val prepareEvent = PrepareItemCraftEvent(craftingGrid, prepareView, false)
         server.pluginManager.callEvent(prepareEvent)
 
-        return preparedRecipeFactory.create(this, craftingGrid)
+        return preparedRecipeFactory.create(this, craftingGrid, prepareView)
     }
 
     override fun equals(other: Any?): Boolean {
