@@ -20,7 +20,7 @@ import org.bukkit.inventory.ShapelessRecipe
 
 @AutoFactory
 class BukkitFcCraftingRecipe_1_15_00_R01(
-    private val recipe: Recipe,
+    val recipe: Recipe,
     @Provided val server: Server,
     @Provided val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_15_00_R01Factory
 ) : BukkitFcCraftingRecipe {
