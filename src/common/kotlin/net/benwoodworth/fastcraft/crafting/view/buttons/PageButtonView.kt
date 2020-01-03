@@ -5,6 +5,7 @@ import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.crafting.model.FastCraftRecipe
 import net.benwoodworth.fastcraft.crafting.model.PageCollection
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
+import net.benwoodworth.fastcraft.platform.gui.FcGuiClickEvent
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
@@ -18,7 +19,13 @@ class PageButtonView(
     @Provided val textColors: FcTextColors
 ) {
     init {
+        recipePages.onChange += {
+            update()
+        }
+
         button.apply {
+            onClick += ::onClick
+
             itemType = itemTypes.ironSword
 
             description = listOf(
@@ -29,6 +36,8 @@ class PageButtonView(
 
             hideItemDetails()
         }
+
+        update()
     }
 
     fun update() {
@@ -37,6 +46,20 @@ class PageButtonView(
                 text = "Page ${recipePages.pageNumber}/${recipePages.pageCount}",
                 color = textColors.green
             )
+        }
+    }
+
+    private fun onClick(event: FcGuiClickEvent) {
+        with(recipePages) {
+            when {
+                event.isShiftClick -> when {
+                    event.isPrimaryClick -> setPage(1)
+                    event.isSecondaryClick -> setPage(pageCount)
+                }
+                event.isPrimaryClick -> setPage(pageNumber - 1)
+                event.isSecondaryClick -> setPage(pageNumber + 1)
+                else -> return
+            }
         }
     }
 }

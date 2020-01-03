@@ -4,7 +4,6 @@ import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.crafting.model.FastCraftRecipe
 import net.benwoodworth.fastcraft.crafting.model.PageCollection
-import net.benwoodworth.fastcraft.platform.gui.FcGuiClickEvent
 import net.benwoodworth.fastcraft.platform.gui.FcGuiFactory
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
@@ -30,32 +29,15 @@ class CraftingGuiView(
 
     private val recipePages = PageCollection<FastCraftRecipe>((width - 2) * height)
 
-    private val workbenchButton = workbenchButtonFactory.create(gui.layout.getButton(width - 1, 0))
-    private val multiplierButton = multiplierButtonFactory.create(gui.layout.getButton(width - 1, 1))
-    private val refreshButton = refreshButtonFactory.create(gui.layout.getButton(width - 1, 2))
-    private val pageButton = pageButtonFactory.create(gui.layout.getButton(width - 1, height - 1), recipePages)
+    private val workbenchButton = workbenchButtonFactory
+        .create(gui.layout.getButton(width - 1, 0))
 
-    init {
-        pageButton.update()
+    private val multiplierButton = multiplierButtonFactory
+        .create(gui.layout.getButton(width - 1, 1))
 
-        recipePages.onChange {
-            pageButton.update()
-        }
+    private val refreshButton = refreshButtonFactory
+        .create(gui.layout.getButton(width - 1, 2))
 
-        pageButton.button.onClick += ::onPageButtonClick
-    }
-
-    private fun onPageButtonClick(event: FcGuiClickEvent) {
-        with(recipePages) {
-            when {
-                event.isShiftClick -> when {
-                    event.isPrimaryClick -> setPage(1)
-                    event.isSecondaryClick -> setPage(pageCount)
-                }
-                event.isPrimaryClick -> setPage(pageNumber - 1)
-                event.isSecondaryClick -> setPage(pageNumber + 1)
-                else -> return
-            }
-        }
-    }
+    private val pageButton = pageButtonFactory
+        .create(gui.layout.getButton(width - 1, height - 1), recipePages)
 }
