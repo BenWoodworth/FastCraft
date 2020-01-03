@@ -67,7 +67,11 @@ class BukkitFcGui_1_15_00_R01<TLayout : FcGuiLayout>(
             event.isCancelled = true
 
             layout.getSlotButton(slot)?.let {
-                it.onClick(BukkitFcGuiClickEvent_1_15_00_R01(event, it))
+                try {
+                    it.onClick(BukkitFcGuiClickEvent_1_15_00_R01(event, it))
+                } catch (throwable: Throwable) {
+                    throwable.printStackTrace()
+                }
             }
         } else {
             event.isCancelled = when (event.click) {
