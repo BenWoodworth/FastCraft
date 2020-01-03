@@ -6,7 +6,6 @@ import net.benwoodworth.fastcraft.bukkit.item.fromMaterial
 import net.benwoodworth.fastcraft.bukkit.item.material
 import net.benwoodworth.fastcraft.bukkit.item.toItemStack
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextConverter
-import net.benwoodworth.fastcraft.events.HandlerSet
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClickEvent
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemType
@@ -41,7 +40,7 @@ class BukkitFcGuiButton_1_15_00_R01(
         clear()
     }
 
-    override val onClick: HandlerSet<FcGuiClickEvent> = HandlerSet()
+    override var onClick: (FcGuiClickEvent) -> Unit = {}
 
     override var itemType: FcItemType
         get() = itemTypes.fromMaterial(itemStack.type)

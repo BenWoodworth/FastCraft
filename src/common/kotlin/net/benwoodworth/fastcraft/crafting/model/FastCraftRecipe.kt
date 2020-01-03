@@ -1,9 +1,9 @@
 package net.benwoodworth.fastcraft.crafting.model
 
-import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 
 data class FastCraftRecipe(
-    val recipe: FcItem,
+    val preparedRecipe: FcCraftingRecipePrepared,
     val multiplier: Int,
     val isCraftable: Boolean
 )

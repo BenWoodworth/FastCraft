@@ -9,22 +9,40 @@ import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 
 @AutoFactory
 class RefreshButtonView(
-    val button: FcGuiButton,
-    @Provided val itemTypes: FcItemTypes,
-    @Provided val textFactory: FcTextFactory,
-    @Provided val textColors: FcTextColors
+    private val button: FcGuiButton,
+    @Provided private val itemTypes: FcItemTypes,
+    @Provided private val textFactory: FcTextFactory,
+    @Provided private val textColors: FcTextColors
 ) {
+    var enabled: Boolean = false
+
+    lateinit var onRefresh: () -> Unit
+
     init {
+        button.onClick = {
+            if (enabled) {
+                onRefresh()
+            }
+        }
+
+        update()
+    }
+
+    fun update() {
         button.apply {
-            itemType = itemTypes.netherStar
+            clear()
 
-            text = textFactory.createFcText("Refresh", color = textColors.green)
+            if (enabled) {
+                itemType = itemTypes.netherStar
 
-            description = listOf(
-                textFactory.createFcText("Refresh the FastCraft interface", color = textColors.aqua)
-            )
+                text = textFactory.createFcText("Refresh", color = textColors.green)
 
-            hideItemDetails()
+                description = listOf(
+                    textFactory.createFcText("Refresh the FastCraft interface", color = textColors.aqua)
+                )
+
+                hideItemDetails()
+            }
         }
     }
 }

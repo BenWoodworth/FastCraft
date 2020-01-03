@@ -9,13 +9,19 @@ import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 
 @AutoFactory
 class WorkbenchButtonView(
-    val button: FcGuiButton,
-    @Provided val itemTypes: FcItemTypes,
-    @Provided val textFactory: FcTextFactory,
-    @Provided val textColors: FcTextColors
+    private val button: FcGuiButton,
+    @Provided private val itemTypes: FcItemTypes,
+    @Provided private val textFactory: FcTextFactory,
+    @Provided private val textColors: FcTextColors
 ) {
+    lateinit var onOpenWorkbench: () -> Unit
+
     init {
         button.apply {
+            onClick = {
+                onOpenWorkbench()
+            }
+
             itemType = itemTypes.craftingTable
 
             text = textFactory.createFcText("Crafting Grid", color = textColors.green)
