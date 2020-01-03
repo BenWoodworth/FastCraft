@@ -41,8 +41,8 @@ class CraftingGuiView(
     private val recipeButtons = List((width - 2) * height) { i ->
         recipeButtonFactory.create(
             gui.layout.getButton(
-                column = i / (width - 2),
-                row = i % (width - 2)
+                column = i % (width - 2),
+                row = i / (width - 2)
             )
         )
     }
