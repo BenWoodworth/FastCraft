@@ -49,6 +49,7 @@ class BukkitFcCraftingRecipe_1_15_00_R01(
     }
 
     override fun prepare(player: FcPlayer, ingredients: Map<FcIngredient, FcItem>): FcCraftingRecipePrepared {
+        // TODO Inventory owner
         val craftingGrid = server.createInventory(null, InventoryType.CRAFTING) as CraftingInventory
 
         ingredients.forEach { (ingredient, item) ->
@@ -69,8 +70,7 @@ class BukkitFcCraftingRecipe_1_15_00_R01(
     }
 
     override fun equals(other: Any?): Boolean {
-        return other is FcCraftingRecipe &&
-                id == other.id
+        return other is FcCraftingRecipe && id == other.id
     }
 
     override fun hashCode(): Int {

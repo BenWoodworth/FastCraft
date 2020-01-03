@@ -11,7 +11,6 @@ class PrepareCraftInventoryView_1_15_00_R01(
     private val player: Player,
     private val inventory: CraftingInventory
 ) : InventoryView() {
-
     override fun getPlayer(): HumanEntity {
         return player
     }
@@ -28,7 +27,7 @@ class PrepareCraftInventoryView_1_15_00_R01(
         return "TODO" // TODO
     }
 
-    override fun getTopInventory(): Inventory {
+    override fun getTopInventory(): CraftingInventory {
         return inventory
     }
 }

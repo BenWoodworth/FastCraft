@@ -7,7 +7,6 @@ import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
-import net.benwoodworth.fastcraft.util.CancellableResult
 import kotlin.properties.Delegates.observable
 
 @AutoFactory

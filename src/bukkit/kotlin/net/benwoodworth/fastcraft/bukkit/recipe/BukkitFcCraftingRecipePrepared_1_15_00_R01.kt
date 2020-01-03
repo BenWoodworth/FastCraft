@@ -5,70 +5,32 @@ import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.bukkit.item.createFcItem
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemFactory
-import net.benwoodworth.fastcraft.util.CancellableResult
+import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
+import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 import org.bukkit.Server
-import org.bukkit.event.inventory.*
-import org.bukkit.inventory.CraftingInventory
-import org.bukkit.inventory.InventoryView
-import org.bukkit.inventory.ItemStack
+import org.bukkit.event.inventory.ClickType
+import org.bukkit.event.inventory.CraftItemEvent
+import org.bukkit.event.inventory.InventoryAction
+import org.bukkit.event.inventory.InventoryType
 
 @AutoFactory
 class BukkitFcCraftingRecipePrepared_1_15_00_R01(
-    override val recipe: BukkitFcCraftingRecipe_1_15_00_R01,
-    private val craftingInventory: CraftingInventory,
-    private val craftingView: InventoryView,
+    override val recipe: FcCraftingRecipe,
+    private val ingredientRemnants: List<FcItem>,
+    override val resultsPreview: List<FcItem>,
+    private val preparedCraftingView: PrepareCraftInventoryView_1_15_00_R01,
     @Provided private val itemFactory: FcItemFactory,
-    @Provided private val productProvider: IngredientRemnantProvider,
     @Provided private val server: Server
 ) : BukkitFcCraftingRecipePrepared {
-    private var craftPreviewCalled: Boolean = false
-    private var craftCalled: Boolean = false
+    private var craftCalled = false
 
-    override val ingredients: List<FcItem> = run {
-        val ingredients = mutableMapOf<ItemStack, Int>()
-
-        for (item in craftingInventory.matrix) {
-            if (item == null || item.amount < 1) continue
-
-            val key = item.clone()
-            key.amount = 1
-
-            ingredients[key] = ingredients.getOrDefault(key, 0) + 1
-        }
-
-        ingredients.map { (item, amount) ->
-            item.amount = amount
-            itemFactory.createFcItem(item)
-        }
-    }
-
-    override fun craftPreview(): CancellableResult<List<FcItem>> {
-        require(!craftPreviewCalled) { "Only callable once." }
-        craftPreviewCalled = true
-
-        val prepareEvent = PrepareItemCraftEvent(craftingInventory, craftingView, false)
-        server.pluginManager.callEvent(prepareEvent)
-
-        val resultItem = craftingInventory.result
-        val isCancelled = resultItem == null || resultItem.amount < 1
-
-        return if (isCancelled) {
-            CancellableResult.Cancelled
-        } else {
-            // TODO Remnants
-            CancellableResult.Result(
-                listOf(itemFactory.createFcItem(resultItem!!))
-            )
-        }
-    }
-
-    override fun craft(): CancellableResult<List<FcItem>> {
-        require(!craftCalled) { "Only callable once." }
+    override fun craft(): FcCraftingRecipePrepared.CraftResult {
+        require(!craftCalled) { "Only callable once" }
         craftCalled = true
 
         val craftEvent = CraftItemEvent(
-            recipe.recipe,
-            craftingView,
+            preparedCraftingView.topInventory.recipe!!,
+            preparedCraftingView,
             InventoryType.SlotType.RESULT,
             9,
             ClickType.SHIFT_LEFT,
@@ -76,24 +38,17 @@ class BukkitFcCraftingRecipePrepared_1_15_00_R01(
         )
 
         server.pluginManager.callEvent(craftEvent)
-        val resultItem = craftingInventory.result
+
+        val resultItem = preparedCraftingView.topInventory.result
         val isCancelled = craftEvent.isCancelled || resultItem == null || resultItem.amount < 1
 
         return if (isCancelled) {
-            CancellableResult.Cancelled
+            FcCraftingRecipePrepared.CraftResult(emptyList(), true)
         } else {
-            // TODO Remnants
-            CancellableResult.Result(
-                listOf(itemFactory.createFcItem(resultItem!!))
+            FcCraftingRecipePrepared.CraftResult(
+                results = listOf(itemFactory.createFcItem(resultItem!!)) + ingredientRemnants,
+                cancelled = false
             )
         }
-    }
-
-    override fun equals(other: Any?): Boolean {
-        return super.equals(other)
-    }
-
-    override fun hashCode(): Int {
-        return super.hashCode()
     }
 }
