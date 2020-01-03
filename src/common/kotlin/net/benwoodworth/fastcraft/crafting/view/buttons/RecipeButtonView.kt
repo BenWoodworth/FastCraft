@@ -33,16 +33,16 @@ class RecipeButtonView(
                 return
             }
 
-            val preview = (recipe.craftPreview() as CancellableResult.Result).result
-            copyItem(preview.first())
-
-            description = mutableListOf(
-                textFactory.createFcText("Ingredients:")
-            )
-
-            if (preview.first().lore.any()) {
-                description = description + textFactory.createFcText() + preview.first().lore
-            }
+//            val preview = (recipe.craftPreview() as CancellableResult.Result).result
+//            copyItem(preview.first())
+//
+//            description = mutableListOf(
+//                textFactory.createFcText("Ingredients:")
+//            )
+//
+//            if (preview.first().lore.any()) {
+//                description = description + textFactory.createFcText() + preview.first().lore
+//            }
         }
     }
 }

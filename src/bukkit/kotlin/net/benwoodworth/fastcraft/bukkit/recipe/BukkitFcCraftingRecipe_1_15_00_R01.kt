@@ -2,14 +2,18 @@ package net.benwoodworth.fastcraft.bukkit.recipe
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
+import net.benwoodworth.fastcraft.bukkit.item.createFcItem
 import net.benwoodworth.fastcraft.bukkit.item.toItemStack
 import net.benwoodworth.fastcraft.bukkit.player.player
 import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemFactory
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 import net.benwoodworth.fastcraft.platform.recipe.FcIngredient
+import net.benwoodworth.fastcraft.util.CancellableResult
 import org.bukkit.Keyed
+import org.bukkit.Material
 import org.bukkit.Server
 import org.bukkit.event.inventory.InventoryType
 import org.bukkit.event.inventory.PrepareItemCraftEvent
@@ -22,7 +26,9 @@ import org.bukkit.inventory.ShapelessRecipe
 class BukkitFcCraftingRecipe_1_15_00_R01(
     val recipe: Recipe,
     @Provided val server: Server,
-    @Provided val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_15_00_R01Factory
+    @Provided val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_15_00_R01Factory,
+    @Provided val itemFactory: FcItemFactory,
+    @Provided val remnantProvider: IngredientRemnantProvider
 ) : BukkitFcCraftingRecipe {
     init {
         require(recipe is ShapedRecipe || recipe is ShapelessRecipe)
@@ -48,7 +54,10 @@ class BukkitFcCraftingRecipe_1_15_00_R01(
         else -> throw IllegalStateException()
     }
 
-    override fun prepare(player: FcPlayer, ingredients: Map<FcIngredient, FcItem>): FcCraftingRecipePrepared {
+    override fun prepare(
+        player: FcPlayer,
+        ingredients: Map<FcIngredient, FcItem>
+    ): CancellableResult<FcCraftingRecipePrepared> {
         // TODO Inventory owner
         val craftingGrid = server.createInventory(null, InventoryType.CRAFTING) as CraftingInventory
 
@@ -58,7 +67,8 @@ class BukkitFcCraftingRecipe_1_15_00_R01(
             craftingGrid.setItem(ingredient.slotIndex, item.toItemStack())
         }
 
-        if (ingredients.all { (ingredient, item) -> ingredient.matches(item) }) {
+        val validIngredients = ingredients.all { (ingredient, item) -> ingredient.matches(item) }
+        if (validIngredients) {
             craftingGrid.result = recipe.result
         }
 
@@ -66,7 +76,22 @@ class BukkitFcCraftingRecipe_1_15_00_R01(
         val prepareEvent = PrepareItemCraftEvent(craftingGrid, prepareView, false)
         server.pluginManager.callEvent(prepareEvent)
 
-        return preparedRecipeFactory.create(this, craftingGrid, prepareView)
+        val resultItem = craftingGrid.result
+        if (resultItem == null || resultItem.type == Material.AIR || resultItem.amount < 1) {
+            return CancellableResult.Cancelled
+        }
+
+        val ingredientItems = ingredients.map { (_, item) -> item }
+
+        val ingredientRemnants = ingredientItems
+            .flatMap { remnantProvider.getRemnants(it.toItemStack()) }
+            .map { itemFactory.createFcItem(it) }
+
+        val resultsPreview = listOf(itemFactory.createFcItem(resultItem)) + ingredientRemnants
+
+        return CancellableResult(
+            preparedRecipeFactory.create(this, ingredientItems, ingredientRemnants, resultsPreview, prepareView)
+        )
     }
 
     override fun equals(other: Any?): Boolean {
