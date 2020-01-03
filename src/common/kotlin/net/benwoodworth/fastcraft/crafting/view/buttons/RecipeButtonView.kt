@@ -4,6 +4,7 @@ import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.crafting.model.FastCraftRecipe
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
+import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
@@ -19,10 +20,18 @@ class RecipeButtonView(
 
     lateinit var onCraft: (recipe: FastCraftRecipe, dropResults: Boolean) -> Unit
 
+    private companion object {
+        val CLICK_CRAFT = FcGuiClick.Primary()
+        val CLICK_CRAFT_DROP = FcGuiClick.Drop()
+    }
+
     init {
         button.onClick = { event ->
-            fastCraftRecipe?.let {
-                onCraft(it, event.isDropClick)
+            fastCraftRecipe?.let { recipe ->
+                when (event.click) {
+                    CLICK_CRAFT -> onCraft(recipe, false)
+                    CLICK_CRAFT_DROP -> onCraft(recipe, true)
+                }
             }
         }
     }

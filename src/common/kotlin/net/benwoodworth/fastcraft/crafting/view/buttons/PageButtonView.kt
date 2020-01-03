@@ -3,6 +3,8 @@ package net.benwoodworth.fastcraft.crafting.view.buttons
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
+import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
+import net.benwoodworth.fastcraft.platform.gui.FcGuiClickModifier
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
@@ -21,15 +23,19 @@ class PageButtonView(
     lateinit var onPagePrevious: () -> Unit
     lateinit var onPageFirst: () -> Unit
 
+    private companion object {
+        val CLICK_PAGE_NEXT = FcGuiClick.Primary()
+        val CLICK_PAGE_PREVIOUS = FcGuiClick.Secondary()
+        val CLICK_PAGE_FIRST = FcGuiClick.Primary(FcGuiClickModifier.Shift)
+    }
+
     init {
         button.apply {
             onClick = { event ->
-                when {
-                    event.isPrimaryClick -> when {
-                        event.isShiftClick -> onPageFirst()
-                        else -> onPageNext()
-                    }
-                    event.isSecondaryClick -> onPagePrevious()
+                when (event.click) {
+                    CLICK_PAGE_NEXT -> onPageNext()
+                    CLICK_PAGE_PREVIOUS -> onPagePrevious()
+                    CLICK_PAGE_FIRST -> onPageFirst()
                 }
             }
 
