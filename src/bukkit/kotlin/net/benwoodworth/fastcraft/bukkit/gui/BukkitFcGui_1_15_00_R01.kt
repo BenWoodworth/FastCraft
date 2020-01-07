@@ -26,7 +26,7 @@ class BukkitFcGui_1_15_00_R01<TLayout : FcGuiLayout>(
     createLayout: (inventory: Inventory) -> TLayout,
     @Provided plugin: BukkitFastCraftPlugin,
     @Provided pluginManager: PluginManager
-) : BukkitFcGui<TLayout>, InventoryHolder, Listener {
+) : BukkitFcGui<TLayout>, InventoryHolder {
     override var listener: FcGui.Listener = FcGui.Listener.Default
 
     private val inventory: Inventory = createInventory(this)
@@ -35,7 +35,7 @@ class BukkitFcGui_1_15_00_R01<TLayout : FcGuiLayout>(
 
     init {
         @Suppress("LeakingThis")
-        pluginManager.registerEvents(this, plugin)
+        pluginManager.registerEvents(InventoryListener(), plugin)
     }
 
     override fun open() {
@@ -56,49 +56,6 @@ class BukkitFcGui_1_15_00_R01<TLayout : FcGuiLayout>(
 
     private fun InventoryEvent.isGuiSlot(rawSlot: Int): Boolean {
         return rawSlot == view.convertSlot(rawSlot)
-    }
-
-    @Suppress("unused")
-    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
-    private fun onInventoryClick(event: InventoryClickEvent) {
-        if (event.inventory.holder !== this) {
-            return
-        }
-
-        val slot = event.rawSlot
-        if (event.isGuiSlot(slot)) {
-            event.isCancelled = true
-
-            layout.getSlotButton(slot)?.let { button ->
-                try {
-                    button.listener.onClick(event.getGui(), button, event.getGuiClick())
-                } catch (throwable: Throwable) {
-                    throwable.printStackTrace()
-                }
-            }
-        } else {
-            event.isCancelled = when (event.click) {
-                // Clicks allowed outside the GUI inv
-                ClickType.LEFT,
-                ClickType.RIGHT,
-                ClickType.WINDOW_BORDER_LEFT,
-                ClickType.WINDOW_BORDER_RIGHT,
-                ClickType.MIDDLE,
-                ClickType.NUMBER_KEY,
-                ClickType.DOUBLE_CLICK,
-                ClickType.DROP,
-                ClickType.CONTROL_DROP,
-                ClickType.CREATIVE -> false
-
-                // Clicks disallowed
-                ClickType.SHIFT_LEFT,
-                ClickType.SHIFT_RIGHT,
-                ClickType.UNKNOWN -> true
-
-                // Unhandled clicks
-                else -> true
-            }
-        }
     }
 
     private fun InventoryClickEvent.getGui(): FcGui<*> {
@@ -132,31 +89,76 @@ class BukkitFcGui_1_15_00_R01<TLayout : FcGuiLayout>(
         }
     }
 
-    @Suppress("unused")
-    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
-    private fun onInventoryDrag(event: InventoryDragEvent) {
-        if (event.inventory.holder !== this) {
-            return
+    private inner class InventoryListener : Listener {
+        @Suppress("unused")
+        @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+        private fun onInventoryClick(event: InventoryClickEvent) {
+            if (event.inventory.holder !== this) {
+                return
+            }
+
+            val slot = event.rawSlot
+            if (event.isGuiSlot(slot)) {
+                event.isCancelled = true
+
+                layout.getSlotButton(slot)?.let { button ->
+                    try {
+                        button.listener.onClick(event.getGui(), button, event.getGuiClick())
+                    } catch (throwable: Throwable) {
+                        throwable.printStackTrace()
+                    }
+                }
+            } else {
+                event.isCancelled = when (event.click) {
+                    // Clicks allowed outside the GUI inv
+                    ClickType.LEFT,
+                    ClickType.RIGHT,
+                    ClickType.WINDOW_BORDER_LEFT,
+                    ClickType.WINDOW_BORDER_RIGHT,
+                    ClickType.MIDDLE,
+                    ClickType.NUMBER_KEY,
+                    ClickType.DOUBLE_CLICK,
+                    ClickType.DROP,
+                    ClickType.CONTROL_DROP,
+                    ClickType.CREATIVE -> false
+
+                    // Clicks disallowed
+                    ClickType.SHIFT_LEFT,
+                    ClickType.SHIFT_RIGHT,
+                    ClickType.UNKNOWN -> true
+
+                    // Unhandled clicks
+                    else -> true
+                }
+            }
         }
 
-        event.isCancelled = event.rawSlots
-            .any { event.isGuiSlot(it) }
-    }
+        @Suppress("unused")
+        @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+        private fun onInventoryDrag(event: InventoryDragEvent) {
+            if (event.inventory.holder !== this) {
+                return
+            }
 
-    @Suppress("unused")
-    @EventHandler(ignoreCancelled = true)
-    private fun onInventoryClose(event: InventoryCloseEvent) {
-        if (event.inventory.holder !== this) {
-            return
+            event.isCancelled = event.rawSlots
+                .any { event.isGuiSlot(it) }
         }
 
-        HandlerList.unregisterAll(this)
-        listener.onClose()
-    }
+        @Suppress("unused")
+        @EventHandler(ignoreCancelled = true)
+        private fun onInventoryClose(event: InventoryCloseEvent) {
+            if (event.inventory.holder !== this) {
+                return
+            }
 
-    @Suppress("unused", "UNUSED_PARAMETER")
-    @EventHandler(ignoreCancelled = true)
-    private fun onPluginDisable(event: PluginDisableEvent) {
-        close()
+            HandlerList.unregisterAll(this)
+            listener.onClose()
+        }
+
+        @Suppress("unused", "UNUSED_PARAMETER")
+        @EventHandler(ignoreCancelled = true)
+        private fun onPluginDisable(event: PluginDisableEvent) {
+            close()
+        }
     }
 }
