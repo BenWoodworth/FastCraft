@@ -6,7 +6,7 @@ import java.util.*
 import javax.inject.Inject
 
 class ItemAmounts private constructor(
-    private val ingredients: MutableMap<FcItem, Int>,
+    private val amounts: MutableMap<FcItem, Int>,
     private val itemFactory: FcItemFactory
 ) {
     private companion object {
@@ -26,17 +26,21 @@ class ItemAmounts private constructor(
     }
 
     operator fun get(item: FcItem): Int {
-        return ingredients.getOrDefault(item, 0)
+        return amounts.getOrDefault(item, 0)
     }
 
     operator fun set(item: FcItem, amount: Int) {
         when (amount) {
-            0 -> ingredients.remove(item.asKey())
-            else -> ingredients[item.asKey()] = amount
+            0 -> amounts.remove(item.asKey())
+            else -> amounts[item.asKey()] = amount
         }
     }
 
+    fun clear() {
+        amounts.clear()
+    }
+
     fun copy(): ItemAmounts {
-        return ItemAmounts(ingredients.toMutableMap(), itemFactory)
+        return ItemAmounts(amounts.toMutableMap(), itemFactory)
     }
 }
