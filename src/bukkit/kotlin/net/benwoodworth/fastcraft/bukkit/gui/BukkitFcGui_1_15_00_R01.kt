@@ -34,7 +34,9 @@ class BukkitFcGui_1_15_00_R01<TLayout : FcGuiLayout>(
     init {
         @Suppress("LeakingThis")
         pluginManager.registerEvents(this, plugin)
+    }
 
+    override fun open() {
         player.player.openInventory(inventory)
     }
 

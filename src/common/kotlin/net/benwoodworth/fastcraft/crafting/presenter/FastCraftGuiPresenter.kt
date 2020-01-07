@@ -23,6 +23,10 @@ class FastCraftGuiPresenter(
 
     }
 
+    fun openGui() {
+        view.gui.open()
+    }
+
     private fun onGuiClose(event: FcGuiCloseEvent) {
         player.sendMessage(
             textFactory.createFcText("Thank you for using FastCraft!")

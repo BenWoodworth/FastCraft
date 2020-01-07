@@ -17,7 +17,7 @@ class FastCraftGuiView(
     @Provided refreshButtonFactory: net.benwoodworth.fastcraft.crafting.view.buttons.RefreshButtonViewFactory,
     @Provided private val textFactory: FcTextFactory
 ) {
-    private val gui = guiFactory.openChestGui(
+    val gui = guiFactory.createChestGui(
         player = player,
         title = textFactory.createFcText("FastCraft"),
         height = 6

@@ -18,11 +18,11 @@ class FastCraftGuiFactory @Inject constructor(
     private val fastCraftGuiModelFactory: FastCraftGuiModelFactory,
     private val fastCraftGuiViewFactory: FastCraftGuiViewFactory
 ) {
-    fun openFastCraftGui(player: FcPlayer) {
+    fun createFastCraftGui(player: FcPlayer): FastCraftGuiPresenter {
         val model = fastCraftGuiModelFactory.create(player)
         val view = fastCraftGuiViewFactory.create(player)
 
-        FastCraftGuiPresenter(
+        return FastCraftGuiPresenter(
             player,
             model,
             view,

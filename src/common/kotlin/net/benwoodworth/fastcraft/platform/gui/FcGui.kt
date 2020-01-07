@@ -10,5 +10,7 @@ interface FcGui<TLayout : FcGuiLayout> {
 
     val onClose: HandlerSet<FcGuiCloseEvent>
 
+    fun open()
+
     fun close()
 }

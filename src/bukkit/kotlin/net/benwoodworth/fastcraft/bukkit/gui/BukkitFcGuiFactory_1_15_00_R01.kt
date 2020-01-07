@@ -14,7 +14,7 @@ class BukkitFcGuiFactory_1_15_00_R01 @Inject constructor(
     private val guiFactory: BukkitFcGui_1_15_00_R01Factory,
     private val guiLayoutGridFactory: BukkitFcGuiLayoutGrid_1_15_00_R01Factory
 ) : BukkitFcGuiFactory {
-    override fun openChestGui(player: FcPlayer, title: FcText?, height: Int): FcGui<FcGuiLayoutGrid> {
+    override fun createChestGui(player: FcPlayer, title: FcText?, height: Int): FcGui<FcGuiLayoutGrid> {
         val legacyTitle = title?.let {
             textConverter.toLegacy(it, player.locale)
         }

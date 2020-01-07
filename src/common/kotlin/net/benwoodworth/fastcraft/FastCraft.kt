@@ -41,7 +41,9 @@ class FastCraft @Inject internal constructor(
         )
 
         val task = taskFactory.createFcTask(delaySeconds = 5.0) {
-            fastCraftGuiFactory.openFastCraftGui(event.player)
+            fastCraftGuiFactory
+                .createFastCraftGui(event.player)
+                .openGui()
         }
         task.schedule()
     }
