@@ -6,16 +6,12 @@ import net.benwoodworth.fastcraft.crafting.model.FastCraftRecipe
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
-import net.benwoodworth.fastcraft.platform.item.FcItemTypes
-import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 
 @AutoFactory
 class RecipeButtonView(
     private val button: FcGuiButton,
-    @Provided private val itemTypes: FcItemTypes,
-    @Provided private val textFactory: FcTextFactory,
-    @Provided private val textColors: FcTextColors
+    @Provided private val textFactory: FcTextFactory
 ) {
     var fastCraftRecipe: FastCraftRecipe? = null
 
