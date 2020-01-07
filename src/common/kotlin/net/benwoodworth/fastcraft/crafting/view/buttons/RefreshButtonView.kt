@@ -18,7 +18,7 @@ class RefreshButtonView(
 ) {
     var enabled: Boolean = false
 
-    var eventListener: EventListener? = null
+    var eventListener: EventListener = EventListener.Default
 
     init {
         button.eventListener = ButtonEventListener()
@@ -45,7 +45,9 @@ class RefreshButtonView(
     }
 
     interface EventListener {
-        fun onRefresh()
+        object Default : EventListener
+
+        fun onRefresh() {}
     }
 
     private companion object {
@@ -56,7 +58,7 @@ class RefreshButtonView(
         override fun onClick(gui: FcGui<*>, button: FcGuiButton, click: FcGuiClick) {
             if (enabled) {
                 when (click) {
-                    CLICK_REFRESH -> eventListener?.onRefresh()
+                    CLICK_REFRESH -> eventListener.onRefresh()
                 }
             }
         }

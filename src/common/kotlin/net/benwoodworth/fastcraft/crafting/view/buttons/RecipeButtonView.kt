@@ -19,7 +19,7 @@ class RecipeButtonView(
 ) {
     var fastCraftRecipe: FastCraftRecipe? = null
 
-    var eventListener: EventListener? = null
+    var eventListener: EventListener = EventListener.Default
 
     init {
         button.eventListener = ButtonEventListener()
@@ -48,7 +48,9 @@ class RecipeButtonView(
     }
 
     interface EventListener {
-        fun onCraft(recipe: FastCraftRecipe, dropResults: Boolean)
+        object Default : EventListener
+
+        fun onCraft(recipe: FastCraftRecipe, dropResults: Boolean) {}
     }
 
     private companion object {
@@ -61,8 +63,8 @@ class RecipeButtonView(
             val recipe = fastCraftRecipe
             if (recipe != null) {
                 when (click) {
-                    CLICK_CRAFT -> eventListener?.onCraft(recipe, false)
-                    CLICK_CRAFT_DROP -> eventListener?.onCraft(recipe, true)
+                    CLICK_CRAFT -> eventListener.onCraft(recipe, false)
+                    CLICK_CRAFT_DROP -> eventListener.onCraft(recipe, true)
                 }
             }
         }

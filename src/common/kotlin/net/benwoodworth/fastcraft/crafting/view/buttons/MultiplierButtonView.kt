@@ -19,7 +19,7 @@ class MultiplierButtonView(
 ) {
     var multiplier: Int = 1
 
-    var eventListener: EventListener? = null
+    var eventListener: EventListener = EventListener.Default
 
     init {
         button.apply {
@@ -44,11 +44,13 @@ class MultiplierButtonView(
     }
 
     interface EventListener {
-        fun onIncrement()
-        fun onIncrementByOne()
-        fun onDecrement()
-        fun onDecrementByOne()
-        fun onReset()
+        object Default : EventListener
+
+        fun onIncrement() {}
+        fun onIncrementByOne() {}
+        fun onDecrement() {}
+        fun onDecrementByOne() {}
+        fun onReset() {}
     }
 
     private companion object {
@@ -62,11 +64,11 @@ class MultiplierButtonView(
     private inner class ButtonClickListener : FcGuiButton.EventListener {
         override fun onClick(gui: FcGui<*>, button: FcGuiButton, click: FcGuiClick) {
             when (click) {
-                CLICK_INCREMENT -> eventListener?.onIncrement()
-                CLICK_INCREMENT_ONE -> eventListener?.onIncrementByOne()
-                CLICK_DECREMENT -> eventListener?.onDecrement()
-                CLICK_DECREMENT_ONE -> eventListener?.onDecrementByOne()
-                CLICK_RESET -> eventListener?.onReset()
+                CLICK_INCREMENT -> eventListener.onIncrement()
+                CLICK_INCREMENT_ONE -> eventListener.onIncrementByOne()
+                CLICK_DECREMENT -> eventListener.onDecrement()
+                CLICK_DECREMENT_ONE -> eventListener.onDecrementByOne()
+                CLICK_RESET -> eventListener.onReset()
             }
         }
     }
