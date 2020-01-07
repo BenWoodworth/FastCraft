@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft.platform.gui
 
-import net.benwoodworth.fastcraft.events.HandlerSet
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 
 interface FcGui<TLayout : FcGuiLayout> {
@@ -8,9 +7,15 @@ interface FcGui<TLayout : FcGuiLayout> {
 
     val player: FcPlayer
 
-    val onClose: HandlerSet<FcGuiCloseEvent>
+    var listener: Listener
 
     fun open()
 
     fun close()
+
+    interface Listener {
+        object Default : Listener
+
+        fun onClose() {}
+    }
 }

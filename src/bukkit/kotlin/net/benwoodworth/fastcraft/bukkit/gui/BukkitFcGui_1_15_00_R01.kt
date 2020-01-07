@@ -4,8 +4,10 @@ import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.bukkit.BukkitFastCraftPlugin
 import net.benwoodworth.fastcraft.bukkit.player.player
-import net.benwoodworth.fastcraft.events.HandlerSet
-import net.benwoodworth.fastcraft.platform.gui.*
+import net.benwoodworth.fastcraft.platform.gui.FcGui
+import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
+import net.benwoodworth.fastcraft.platform.gui.FcGuiClickModifier
+import net.benwoodworth.fastcraft.platform.gui.FcGuiLayout
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
@@ -25,7 +27,7 @@ class BukkitFcGui_1_15_00_R01<TLayout : FcGuiLayout>(
     @Provided plugin: BukkitFastCraftPlugin,
     @Provided pluginManager: PluginManager
 ) : BukkitFcGui<TLayout>, InventoryHolder, Listener {
-    override val onClose: HandlerSet<FcGuiCloseEvent> = HandlerSet()
+    override var listener: FcGui.Listener = FcGui.Listener.Default
 
     private val inventory: Inventory = createInventory(this)
 
@@ -149,7 +151,7 @@ class BukkitFcGui_1_15_00_R01<TLayout : FcGuiLayout>(
         }
 
         HandlerList.unregisterAll(this)
-        onClose.notifyHandlers(BukkitFcGuiCloseEvent_1_15_00_R01(this))
+        listener.onClose()
     }
 
     @Suppress("unused", "UNUSED_PARAMETER")
