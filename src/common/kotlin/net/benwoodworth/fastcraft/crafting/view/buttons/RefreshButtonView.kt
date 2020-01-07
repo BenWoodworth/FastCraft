@@ -18,10 +18,10 @@ class RefreshButtonView(
 ) {
     var enabled: Boolean = false
 
-    var eventListener: EventListener = EventListener.Default
+    var listener: Listener = Listener.Default
 
     init {
-        button.eventListener = ButtonEventListener()
+        button.listener = ButtonListener()
 
         update()
     }
@@ -44,8 +44,8 @@ class RefreshButtonView(
         }
     }
 
-    interface EventListener {
-        object Default : EventListener
+    interface Listener {
+        object Default : Listener
 
         fun onRefresh() {}
     }
@@ -54,11 +54,11 @@ class RefreshButtonView(
         val CLICK_REFRESH = FcGuiClick.Primary()
     }
 
-    private inner class ButtonEventListener : FcGuiButton.EventListener {
+    private inner class ButtonListener : FcGuiButton.Listener {
         override fun onClick(gui: FcGui<*>, button: FcGuiButton, click: FcGuiClick) {
             if (enabled) {
                 when (click) {
-                    CLICK_REFRESH -> eventListener.onRefresh()
+                    CLICK_REFRESH -> listener.onRefresh()
                 }
             }
         }

@@ -19,11 +19,11 @@ class MultiplierButtonView(
 ) {
     var multiplier: Int = 1
 
-    var eventListener: EventListener = EventListener.Default
+    var listener: Listener = Listener.Default
 
     init {
         button.apply {
-            eventListener = ButtonClickListener()
+            listener = ButtonClickListener()
 
             itemType = itemTypes.anvil
 
@@ -43,8 +43,8 @@ class MultiplierButtonView(
         button.amount = multiplier
     }
 
-    interface EventListener {
-        object Default : EventListener
+    interface Listener {
+        object Default : Listener
 
         fun onIncrement() {}
         fun onIncrementByOne() {}
@@ -61,14 +61,14 @@ class MultiplierButtonView(
         val CLICK_RESET = FcGuiClick.Middle()
     }
 
-    private inner class ButtonClickListener : FcGuiButton.EventListener {
+    private inner class ButtonClickListener : FcGuiButton.Listener {
         override fun onClick(gui: FcGui<*>, button: FcGuiButton, click: FcGuiClick) {
             when (click) {
-                CLICK_INCREMENT -> eventListener.onIncrement()
-                CLICK_INCREMENT_ONE -> eventListener.onIncrementByOne()
-                CLICK_DECREMENT -> eventListener.onDecrement()
-                CLICK_DECREMENT_ONE -> eventListener.onDecrementByOne()
-                CLICK_RESET -> eventListener.onReset()
+                CLICK_INCREMENT -> listener.onIncrement()
+                CLICK_INCREMENT_ONE -> listener.onIncrementByOne()
+                CLICK_DECREMENT -> listener.onDecrement()
+                CLICK_DECREMENT_ONE -> listener.onDecrementByOne()
+                CLICK_RESET -> listener.onReset()
             }
         }
     }

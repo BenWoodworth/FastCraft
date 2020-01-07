@@ -19,10 +19,10 @@ class RecipeButtonView(
 ) {
     var fastCraftRecipe: FastCraftRecipe? = null
 
-    var eventListener: EventListener = EventListener.Default
+    var listener: Listener = Listener.Default
 
     init {
-        button.eventListener = ButtonEventListener()
+        button.listener = ButtonListener()
     }
 
     fun update() {
@@ -47,8 +47,8 @@ class RecipeButtonView(
         }
     }
 
-    interface EventListener {
-        object Default : EventListener
+    interface Listener {
+        object Default : Listener
 
         fun onCraft(recipe: FastCraftRecipe, dropResults: Boolean) {}
     }
@@ -58,13 +58,13 @@ class RecipeButtonView(
         val CLICK_CRAFT_DROP = FcGuiClick.Drop()
     }
 
-    private inner class ButtonEventListener : FcGuiButton.EventListener {
+    private inner class ButtonListener : FcGuiButton.Listener {
         override fun onClick(gui: FcGui<*>, button: FcGuiButton, click: FcGuiClick) {
             val recipe = fastCraftRecipe
             if (recipe != null) {
                 when (click) {
-                    CLICK_CRAFT -> eventListener.onCraft(recipe, false)
-                    CLICK_CRAFT_DROP -> eventListener.onCraft(recipe, true)
+                    CLICK_CRAFT -> listener.onCraft(recipe, false)
+                    CLICK_CRAFT_DROP -> listener.onCraft(recipe, true)
                 }
             }
         }

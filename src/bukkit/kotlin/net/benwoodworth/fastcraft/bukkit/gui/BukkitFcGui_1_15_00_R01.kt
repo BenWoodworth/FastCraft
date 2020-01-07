@@ -67,7 +67,7 @@ class BukkitFcGui_1_15_00_R01<TLayout : FcGuiLayout>(
 
             layout.getSlotButton(slot)?.let { button ->
                 try {
-                    button.eventListener.onClick(event.getGui(), button, event.getGuiClick())
+                    button.listener.onClick(event.getGui(), button, event.getGuiClick())
                 } catch (throwable: Throwable) {
                     throwable.printStackTrace()
                 }

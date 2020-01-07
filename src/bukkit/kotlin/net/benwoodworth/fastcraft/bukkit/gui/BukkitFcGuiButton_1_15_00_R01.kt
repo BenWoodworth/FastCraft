@@ -40,7 +40,7 @@ class BukkitFcGuiButton_1_15_00_R01(
         clear()
     }
 
-    override var eventListener: FcGuiButton.EventListener = FcGuiButton.EventListener.Default
+    override var listener: FcGuiButton.Listener = FcGuiButton.Listener.Default
 
     override var itemType: FcItemType
         get() = itemTypes.fromMaterial(itemStack.type)

@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.text.FcText
 
 interface FcGuiButton {
-    var eventListener: EventListener
+    var listener: Listener
 
     var itemType: FcItemType
 
@@ -21,8 +21,8 @@ interface FcGuiButton {
 
     fun hideItemDetails()
 
-    interface EventListener {
-        object Default : EventListener
+    interface Listener {
+        object Default : Listener
 
         fun onClick(gui: FcGui<*>, button: FcGuiButton, click: FcGuiClick) {}
     }

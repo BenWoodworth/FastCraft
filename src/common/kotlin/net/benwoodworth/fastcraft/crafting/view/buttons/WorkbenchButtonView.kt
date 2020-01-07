@@ -16,11 +16,11 @@ class WorkbenchButtonView(
     @Provided private val textFactory: FcTextFactory,
     @Provided private val textColors: FcTextColors
 ) {
-    var eventListener: EventListener = EventListener.Default
+    var listener: Listener = Listener.Default
 
     init {
         button.apply {
-            eventListener = ButtonEventListener()
+            listener = ButtonListener()
 
             itemType = itemTypes.craftingTable
 
@@ -42,8 +42,8 @@ class WorkbenchButtonView(
         }
     }
 
-    interface EventListener {
-        object Default : EventListener
+    interface Listener {
+        object Default : Listener
 
         fun onOpenWorkbench() {}
     }
@@ -52,10 +52,10 @@ class WorkbenchButtonView(
         val CLICK_OPEN_WORKBENCH = FcGuiClick.Primary()
     }
 
-    private inner class ButtonEventListener : FcGuiButton.EventListener {
+    private inner class ButtonListener : FcGuiButton.Listener {
         override fun onClick(gui: FcGui<*>, button: FcGuiButton, click: FcGuiClick) {
             when (click) {
-                CLICK_OPEN_WORKBENCH -> eventListener.onOpenWorkbench()
+                CLICK_OPEN_WORKBENCH -> listener.onOpenWorkbench()
             }
         }
     }

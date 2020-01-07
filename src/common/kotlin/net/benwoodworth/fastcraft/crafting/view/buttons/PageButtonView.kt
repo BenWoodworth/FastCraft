@@ -20,11 +20,11 @@ class PageButtonView(
     var page: Int = 1
     var pageCount: Int = 1
 
-    var eventListener: EventListener = EventListener.Default
+    var listener: Listener = Listener.Default
 
     init {
         button.apply {
-            eventListener = ButtonEventListener()
+            listener = ButtonListener()
 
             itemType = itemTypes.ironSword
 
@@ -49,8 +49,8 @@ class PageButtonView(
         }
     }
 
-    interface EventListener {
-        object Default : EventListener
+    interface Listener {
+        object Default : Listener
 
         fun onPageNext() {}
         fun onPagePrevious() {}
@@ -63,12 +63,12 @@ class PageButtonView(
         val CLICK_PAGE_FIRST = FcGuiClick.Primary(FcGuiClickModifier.Shift)
     }
 
-    private inner class ButtonEventListener : FcGuiButton.EventListener {
+    private inner class ButtonListener : FcGuiButton.Listener {
         override fun onClick(gui: FcGui<*>, button: FcGuiButton, click: FcGuiClick) {
             when (click) {
-                CLICK_PAGE_NEXT -> eventListener.onPageNext()
-                CLICK_PAGE_PREVIOUS -> eventListener.onPagePrevious()
-                CLICK_PAGE_FIRST -> eventListener.onPageFirst()
+                CLICK_PAGE_NEXT -> listener.onPageNext()
+                CLICK_PAGE_PREVIOUS -> listener.onPagePrevious()
+                CLICK_PAGE_FIRST -> listener.onPageFirst()
             }
         }
     }
