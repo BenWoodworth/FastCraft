@@ -16,7 +16,7 @@ class ItemAmounts private constructor(
     @Inject
     constructor(itemFactory: FcItemFactory) : this(mutableMapOf(), itemFactory)
 
-    fun FcItem.asKey(): FcItem {
+    private fun FcItem.asKey(): FcItem {
         return when (amount) {
             1 -> this
             else -> keys.getOrPut(this) {
