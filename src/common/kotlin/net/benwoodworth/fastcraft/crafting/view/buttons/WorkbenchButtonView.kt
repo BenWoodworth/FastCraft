@@ -15,7 +15,7 @@ class WorkbenchButtonView(
     @Provided private val textFactory: FcTextFactory,
     @Provided private val textColors: FcTextColors
 ) {
-    lateinit var onOpenWorkbench: () -> Unit
+    var eventListener: EventListener? = null
 
     private companion object {
         val CLICK_OPEN_WORKBENCH = FcGuiClick.Primary()
@@ -25,7 +25,7 @@ class WorkbenchButtonView(
         button.apply {
             onClick = { event ->
                 when (event.click) {
-                    CLICK_OPEN_WORKBENCH -> onOpenWorkbench()
+                    CLICK_OPEN_WORKBENCH -> eventListener?.onOpenWorkbench()
                 }
             }
 
@@ -47,5 +47,9 @@ class WorkbenchButtonView(
 
             hideItemDetails()
         }
+    }
+
+    interface EventListener {
+        fun onOpenWorkbench()
     }
 }

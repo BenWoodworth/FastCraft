@@ -18,7 +18,7 @@ class RecipeButtonView(
 ) {
     var fastCraftRecipe: FastCraftRecipe? = null
 
-    lateinit var onCraft: (recipe: FastCraftRecipe, dropResults: Boolean) -> Unit
+    var eventListener: EventListener? = null
 
     private companion object {
         val CLICK_CRAFT = FcGuiClick.Primary()
@@ -27,10 +27,11 @@ class RecipeButtonView(
 
     init {
         button.onClick = { event ->
-            fastCraftRecipe?.let { recipe ->
+            val recipe = fastCraftRecipe
+            if (recipe != null) {
                 when (event.click) {
-                    CLICK_CRAFT -> onCraft(recipe, false)
-                    CLICK_CRAFT_DROP -> onCraft(recipe, true)
+                    CLICK_CRAFT -> eventListener?.onCraft(recipe, false)
+                    CLICK_CRAFT_DROP -> eventListener?.onCraft(recipe, true)
                 }
             }
         }
@@ -56,5 +57,9 @@ class RecipeButtonView(
                 description = newDescription
             }
         }
+    }
+
+    interface EventListener {
+        fun onCraft(recipe: FastCraftRecipe, dropResults: Boolean)
     }
 }

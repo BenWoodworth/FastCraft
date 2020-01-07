@@ -17,7 +17,7 @@ class RefreshButtonView(
 ) {
     var enabled: Boolean = false
 
-    lateinit var onRefresh: () -> Unit
+    var eventListener: EventListener? = null
 
     private companion object {
         val CLICK_REFRESH = FcGuiClick.Primary()
@@ -27,7 +27,7 @@ class RefreshButtonView(
         button.onClick = { event ->
             if (enabled) {
                 when (event.click) {
-                    CLICK_REFRESH -> onRefresh()
+                    CLICK_REFRESH -> eventListener?.onRefresh()
                 }
             }
         }
@@ -51,5 +51,9 @@ class RefreshButtonView(
                 hideItemDetails()
             }
         }
+    }
+
+    interface EventListener {
+        fun onRefresh()
     }
 }

@@ -19,9 +19,7 @@ class PageButtonView(
     var page: Int = 1
     var pageCount: Int = 1
 
-    lateinit var onPageNext: () -> Unit
-    lateinit var onPagePrevious: () -> Unit
-    lateinit var onPageFirst: () -> Unit
+    var eventListener: EventListener? = null
 
     private companion object {
         val CLICK_PAGE_NEXT = FcGuiClick.Primary()
@@ -33,9 +31,9 @@ class PageButtonView(
         button.apply {
             onClick = { event ->
                 when (event.click) {
-                    CLICK_PAGE_NEXT -> onPageNext()
-                    CLICK_PAGE_PREVIOUS -> onPagePrevious()
-                    CLICK_PAGE_FIRST -> onPageFirst()
+                    CLICK_PAGE_NEXT -> eventListener?.onPageNext()
+                    CLICK_PAGE_PREVIOUS -> eventListener?.onPagePrevious()
+                    CLICK_PAGE_FIRST -> eventListener?.onPageFirst()
                 }
             }
 
@@ -60,5 +58,11 @@ class PageButtonView(
                 color = textColors.green
             )
         }
+    }
+
+    interface EventListener {
+        fun onPageNext()
+        fun onPagePrevious()
+        fun onPageFirst()
     }
 }

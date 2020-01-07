@@ -18,11 +18,7 @@ class MultiplierButtonView(
 ) {
     var multiplier: Int = 1
 
-    lateinit var onIncrement: () -> Unit
-    lateinit var onIncrementByOne: () -> Unit
-    lateinit var onDecrement: () -> Unit
-    lateinit var onDecrementByOne: () -> Unit
-    lateinit var onReset: () -> Unit
+    var eventListener: EventListener? = null
 
     private companion object {
         val CLICK_INCREMENT = FcGuiClick.Primary()
@@ -36,11 +32,11 @@ class MultiplierButtonView(
         button.apply {
             onClick = { event ->
                 when (event.click) {
-                    CLICK_INCREMENT -> onIncrement()
-                    CLICK_INCREMENT_ONE -> onIncrementByOne()
-                    CLICK_DECREMENT -> onDecrement()
-                    CLICK_DECREMENT_ONE -> onDecrementByOne()
-                    CLICK_RESET -> onReset()
+                    CLICK_INCREMENT -> eventListener?.onIncrement()
+                    CLICK_INCREMENT_ONE -> eventListener?.onIncrementByOne()
+                    CLICK_DECREMENT -> eventListener?.onDecrement()
+                    CLICK_DECREMENT_ONE -> eventListener?.onDecrementByOne()
+                    CLICK_RESET -> eventListener?.onReset()
                 }
             }
 
@@ -60,5 +56,13 @@ class MultiplierButtonView(
 
     fun update() {
         button.amount = multiplier
+    }
+
+    interface EventListener {
+        fun onIncrement()
+        fun onIncrementByOne()
+        fun onDecrement()
+        fun onDecrementByOne()
+        fun onReset()
     }
 }
