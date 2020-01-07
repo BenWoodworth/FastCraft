@@ -1,17 +1,17 @@
-package net.benwoodworth.fastcraft.crafting.controller
+package net.benwoodworth.fastcraft.crafting.presenter
 
-import net.benwoodworth.fastcraft.crafting.model.CraftingGuiModel
-import net.benwoodworth.fastcraft.crafting.view.CraftingGuiView
+import net.benwoodworth.fastcraft.crafting.model.FastCraftGuiModel
+import net.benwoodworth.fastcraft.crafting.view.FastCraftGuiView
 import net.benwoodworth.fastcraft.platform.gui.FcGuiCloseEvent
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 
-class CraftingGuiController(
+class FastCraftGuiPresenter(
     private val player: FcPlayer,
-    private val model: CraftingGuiModel,
-    private val view: CraftingGuiView,
+    private val model: FastCraftGuiModel,
+    private val view: FastCraftGuiView,
     private val textFactory: FcTextFactory,
     private val textColors: FcTextColors,
     private val itemTypes: FcItemTypes

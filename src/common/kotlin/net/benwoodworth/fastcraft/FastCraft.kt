@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft
 
-import net.benwoodworth.fastcraft.crafting.CraftingGuiFactory
+import net.benwoodworth.fastcraft.crafting.FastCraftGuiFactory
 import net.benwoodworth.fastcraft.platform.player.FcPlayerJoinEvent
 import net.benwoodworth.fastcraft.platform.server.FcServer
 import net.benwoodworth.fastcraft.platform.server.FcTaskFactory
@@ -11,7 +11,7 @@ import javax.inject.Inject
 class FastCraft @Inject internal constructor(
     serverListeners: FcServer,
     private val taskFactory: FcTaskFactory,
-    private val craftingGuiFactory: CraftingGuiFactory,
+    private val fastCraftGuiFactory: FastCraftGuiFactory,
     private val textFactory: FcTextFactory,
     private val textColors: FcTextColors
 ) {
@@ -41,7 +41,7 @@ class FastCraft @Inject internal constructor(
         )
 
         val task = taskFactory.createFcTask(delaySeconds = 5.0) {
-            craftingGuiFactory.openFastCraftGui(event.player)
+            fastCraftGuiFactory.openFastCraftGui(event.player)
         }
         task.schedule()
     }

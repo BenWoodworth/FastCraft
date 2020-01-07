@@ -7,7 +7,7 @@ import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 
 @AutoFactory
-class CraftingGuiView(
+class FastCraftGuiView(
     player: FcPlayer,
     @Provided guiFactory: FcGuiFactory,
     @Provided workbenchButtonFactory: net.benwoodworth.fastcraft.crafting.view.buttons.WorkbenchButtonViewFactory,

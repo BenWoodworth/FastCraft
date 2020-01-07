@@ -11,7 +11,7 @@ import kotlin.math.ceil
 import kotlin.math.max
 
 @AutoFactory
-class CraftingGuiModel(
+class FastCraftGuiModel(
     private val player: FcPlayer,
     @Provided private val itemTypes: FcItemTypes,
     @Provided private val textFactory: FcTextFactory,
