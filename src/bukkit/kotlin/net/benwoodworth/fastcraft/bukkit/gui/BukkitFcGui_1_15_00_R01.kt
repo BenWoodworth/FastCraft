@@ -93,7 +93,7 @@ class BukkitFcGui_1_15_00_R01<TLayout : FcGuiLayout>(
         @Suppress("unused")
         @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
         private fun onInventoryClick(event: InventoryClickEvent) {
-            if (event.inventory.holder !== this) {
+            if (event.inventory.holder !== this@BukkitFcGui_1_15_00_R01) {
                 return
             }
 
@@ -136,7 +136,7 @@ class BukkitFcGui_1_15_00_R01<TLayout : FcGuiLayout>(
         @Suppress("unused")
         @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
         private fun onInventoryDrag(event: InventoryDragEvent) {
-            if (event.inventory.holder !== this) {
+            if (event.inventory.holder !== this@BukkitFcGui_1_15_00_R01) {
                 return
             }
 
@@ -147,7 +147,7 @@ class BukkitFcGui_1_15_00_R01<TLayout : FcGuiLayout>(
         @Suppress("unused")
         @EventHandler(ignoreCancelled = true)
         private fun onInventoryClose(event: InventoryCloseEvent) {
-            if (event.inventory.holder !== this) {
+            if (event.inventory.holder !== this@BukkitFcGui_1_15_00_R01) {
                 return
             }
 
