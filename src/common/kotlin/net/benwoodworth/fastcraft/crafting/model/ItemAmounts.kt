@@ -36,11 +36,29 @@ class ItemAmounts private constructor(
         }
     }
 
+    operator fun plusAssign(item: FcItem) {
+        if (item.amount != 0) {
+            val key = item.asKey()
+            amounts[key] = amounts.getOrDefault(key, 0) + item.amount
+        }
+    }
+
+    operator fun minusAssign(item: FcItem) {
+        if (item.amount != 0) {
+            val key = item.asKey()
+            amounts[key] = amounts.getOrDefault(key, 0) - item.amount
+        }
+    }
+
     fun clear() {
         amounts.clear()
     }
 
     fun copy(): ItemAmounts {
         return ItemAmounts(amounts.toMutableMap(), itemFactory)
+    }
+
+    fun toMap(): Map<FcItem, Int> {
+        return amounts.toMap()
     }
 }
