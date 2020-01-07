@@ -3,101 +3,106 @@ package net.benwoodworth.fastcraft.crafting.model
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.recipe.FcRecipeService
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
-import kotlin.math.ceil
-import kotlin.math.max
+import net.benwoodworth.fastcraft.util.CancellableResult
+import javax.inject.Provider
 
 @AutoFactory
 class FastCraftGuiModel(
     private val player: FcPlayer,
     @Provided private val itemTypes: FcItemTypes,
     @Provided private val textFactory: FcTextFactory,
-    @Provided private val recipeService: FcRecipeService
+    @Provided private val recipeService: FcRecipeService,
+    @Provided private val itemAmountsProvider: Provider<ItemAmounts>,
+    @Provided private val itemFactory: FcItemFactory
 ) {
-    var recipes: List<FcItem> = emptyList()
+    var recipes: List<FastCraftRecipe> = emptyList()
 
-    fun refreshRecipes() {
-        pages.first()
-    }
+    val inventoryItemAmounts: ItemAmounts = itemAmountsProvider.get()
 
-    val multiplier = Multiplier()
+    fun updateInventoryItemAmounts() {
+        inventoryItemAmounts.clear()
 
-    inner class Multiplier {
-        private val range = 1..64
-        private val steps = listOf(1, 2, 3, 4, 6, 8, 12, 16, 24, 32, 48, 64)
-
-        var value: Int = 1
-            private set(value) {
-                field = value.coerceIn(range)
-            }
-
-        fun minimize() {
-            value = range.start
-        }
-
-        fun maximize() {
-            value = range.endInclusive
-        }
-
-        fun increase() {
-            value++
-        }
-
-        fun decrease() {
-            value--
-        }
-
-        fun increment() {
-            value = steps
-                .firstOrNull { it > value }
-                ?: range.endInclusive
-        }
-
-        fun decrement() {
-            value = steps
-                .firstOrNull { it < value }
-                ?: range.start
+        player.inventory.storage.forEach { slot ->
+            slot.item?.let { item -> inventoryItemAmounts += item }
         }
     }
 
-    val pages = Pages()
+    fun canCraftRecipe(recipe: FastCraftRecipe): Boolean {
+        val remainingItems = inventoryItemAmounts.copy()
 
-    inner class Pages {
-        var pageSize: Int = 0
+        recipe.preparedRecipe.ingredientItems.forEach { item ->
+            val amountLeft = remainingItems[item]
+            val removeAmount = item.amount * recipe.multiplier
 
-        var current: Int = 1
-            private set(value) {
-                field = value.coerceIn(1..count)
+            when {
+                amountLeft < removeAmount -> return false
+                else -> remainingItems[item] = amountLeft - removeAmount
             }
+        }
 
-        val count: Int
-            get() = max(1, ceil(recipes.size / pageSize.toDouble()).toInt())
+        return true
+    }
 
-        val pageRecipes: List<FcItem?>
-            get() {
-                val startIndex = (current - 1) * pageSize
-                return List(pageSize) { i ->
-                    recipes.getOrNull(i)
+    fun removeItems(items: List<FcItem>, multiplier: Int) {
+        val removeAmounts = itemAmountsProvider.get()
+        items.forEach { item ->
+            removeAmounts[item] += item.amount * multiplier
+        }
+
+        if (removeAmounts.isEmpty()) {
+            return
+        }
+
+        val removeFromSlots = player.inventory.storage.asSequence()
+            .filter { it.item != null && it.item!!.amount > 0 }
+            .sortedBy { it.item!!.amount }
+
+        for (slot in removeFromSlots) {
+            val item = slot.item!!
+            val removeAmount = removeAmounts[item]
+
+            when {
+                item.amount <= 0 -> Unit
+                removeAmount <= 0 -> Unit
+                removeAmount >= item.amount -> {
+                    removeAmounts[item] = removeAmount - item.amount
+                    slot.item = null
                 }
+                removeAmount < item.amount -> {
+                    removeAmounts[item] = 0
+                    slot.item = itemFactory.copyItem(
+                        item = item,
+                        amount = item.amount - removeAmount
+                    )
+                }
+                else -> throw IllegalStateException()
             }
+        }
+    }
 
-        fun previous() {
-            current--
+    /**
+     * @return `true` iff successful.
+     */
+    fun craftRecipe(recipe: FastCraftRecipe, dropItems: Boolean): Boolean {
+        updateInventoryItemAmounts()
+        if (!canCraftRecipe(recipe)) {
+            return false
         }
 
-        fun next() {
-            current++
+        val craftResult = recipe.preparedRecipe.craft()
+        val craftedItems = when (craftResult) {
+            is CancellableResult.Cancelled -> return false
+            is CancellableResult.Result -> craftResult.result
         }
 
-        fun first() {
-            current = 1
-        }
+        removeItems(recipe.preparedRecipe.ingredientItems, recipe.multiplier)
 
-        fun last() {
-            current = count
-        }
+        TODO("Give player crafted items")
+        return true
     }
 }

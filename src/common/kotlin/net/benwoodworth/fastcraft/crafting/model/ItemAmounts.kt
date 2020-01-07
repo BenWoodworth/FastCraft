@@ -61,4 +61,8 @@ class ItemAmounts private constructor(
     fun toMap(): Map<FcItem, Int> {
         return amounts.toMap()
     }
+
+    fun isEmpty(): Boolean {
+        return amounts.isEmpty()
+    }
 }

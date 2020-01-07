@@ -4,6 +4,5 @@ import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 
 data class FastCraftRecipe(
     val preparedRecipe: FcCraftingRecipePrepared,
-    val multiplier: Int,
-    val isCraftable: Boolean
+    val multiplier: Int
 )
