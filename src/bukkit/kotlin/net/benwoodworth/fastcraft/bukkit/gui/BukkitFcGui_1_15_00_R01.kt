@@ -5,8 +5,7 @@ import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.bukkit.BukkitFastCraftPlugin
 import net.benwoodworth.fastcraft.bukkit.player.player
 import net.benwoodworth.fastcraft.events.HandlerSet
-import net.benwoodworth.fastcraft.platform.gui.FcGuiCloseEvent
-import net.benwoodworth.fastcraft.platform.gui.FcGuiLayout
+import net.benwoodworth.fastcraft.platform.gui.*
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
@@ -66,9 +65,9 @@ class BukkitFcGui_1_15_00_R01<TLayout : FcGuiLayout>(
         if (event.isGuiSlot(slot)) {
             event.isCancelled = true
 
-            layout.getSlotButton(slot)?.let {
+            layout.getSlotButton(slot)?.let { button ->
                 try {
-                    it.onClick(BukkitFcGuiClickEvent_1_15_00_R01(event, it))
+                    button.eventListener?.onClick(event.getGui(), button, event.getGuiClick())
                 } catch (throwable: Throwable) {
                     throwable.printStackTrace()
                 }
@@ -95,6 +94,37 @@ class BukkitFcGui_1_15_00_R01<TLayout : FcGuiLayout>(
                 // Unhandled clicks
                 else -> true
             }
+        }
+    }
+
+    private fun InventoryClickEvent.getGui(): FcGui<*> {
+        return view.topInventory.holder as FcGui<*>
+    }
+
+    private fun InventoryClickEvent.getGuiClick(): FcGuiClick {
+        val modifiers = mutableSetOf<FcGuiClickModifier>()
+            .apply {
+                if (isShiftClick) {
+                    add(FcGuiClickModifier.Shift)
+                }
+
+                if (click == ClickType.CONTROL_DROP) {
+                    add(FcGuiClickModifier.Control)
+                }
+
+                if (click == ClickType.DOUBLE_CLICK) {
+                    add(FcGuiClickModifier.DoubleClick)
+                }
+            }
+            .toSet()
+
+        return when {
+            isLeftClick -> FcGuiClick.Primary(modifiers)
+            isRightClick -> FcGuiClick.Secondary(modifiers)
+            click == ClickType.MIDDLE -> FcGuiClick.Middle(modifiers)
+            click == ClickType.DROP || click == ClickType.CONTROL_DROP -> FcGuiClick.Drop(modifiers)
+            hotbarButton != -1 -> FcGuiClick.Number(hotbarButton, modifiers)
+            else -> throw IllegalStateException("Unable to read click: $click")
         }
     }
 

@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft.crafting.view.buttons
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
+import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClickModifier
@@ -20,25 +21,9 @@ class MultiplierButtonView(
 
     var eventListener: EventListener? = null
 
-    private companion object {
-        val CLICK_INCREMENT = FcGuiClick.Primary()
-        val CLICK_INCREMENT_ONE = FcGuiClick.Primary(FcGuiClickModifier.Shift)
-        val CLICK_DECREMENT = FcGuiClick.Secondary()
-        val CLICK_DECREMENT_ONE = FcGuiClick.Secondary(FcGuiClickModifier.Shift)
-        val CLICK_RESET = FcGuiClick.Middle()
-    }
-
     init {
         button.apply {
-            onClick = { event ->
-                when (event.click) {
-                    CLICK_INCREMENT -> eventListener?.onIncrement()
-                    CLICK_INCREMENT_ONE -> eventListener?.onIncrementByOne()
-                    CLICK_DECREMENT -> eventListener?.onDecrement()
-                    CLICK_DECREMENT_ONE -> eventListener?.onDecrementByOne()
-                    CLICK_RESET -> eventListener?.onReset()
-                }
-            }
+            eventListener = ButtonClickListener()
 
             itemType = itemTypes.anvil
 
@@ -64,5 +49,25 @@ class MultiplierButtonView(
         fun onDecrement()
         fun onDecrementByOne()
         fun onReset()
+    }
+
+    private companion object {
+        val CLICK_INCREMENT = FcGuiClick.Primary()
+        val CLICK_INCREMENT_ONE = FcGuiClick.Primary(FcGuiClickModifier.Shift)
+        val CLICK_DECREMENT = FcGuiClick.Secondary()
+        val CLICK_DECREMENT_ONE = FcGuiClick.Secondary(FcGuiClickModifier.Shift)
+        val CLICK_RESET = FcGuiClick.Middle()
+    }
+
+    private inner class ButtonClickListener : FcGuiButton.EventListener {
+        override fun onClick(gui: FcGui<*>, button: FcGuiButton, click: FcGuiClick) {
+            when (click) {
+                CLICK_INCREMENT -> eventListener?.onIncrement()
+                CLICK_INCREMENT_ONE -> eventListener?.onIncrementByOne()
+                CLICK_DECREMENT -> eventListener?.onDecrement()
+                CLICK_DECREMENT_ONE -> eventListener?.onDecrementByOne()
+                CLICK_RESET -> eventListener?.onReset()
+            }
+        }
     }
 }

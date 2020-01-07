@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft.crafting.view.buttons
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
+import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClickModifier
@@ -21,21 +22,9 @@ class PageButtonView(
 
     var eventListener: EventListener? = null
 
-    private companion object {
-        val CLICK_PAGE_NEXT = FcGuiClick.Primary()
-        val CLICK_PAGE_PREVIOUS = FcGuiClick.Secondary()
-        val CLICK_PAGE_FIRST = FcGuiClick.Primary(FcGuiClickModifier.Shift)
-    }
-
     init {
         button.apply {
-            onClick = { event ->
-                when (event.click) {
-                    CLICK_PAGE_NEXT -> eventListener?.onPageNext()
-                    CLICK_PAGE_PREVIOUS -> eventListener?.onPagePrevious()
-                    CLICK_PAGE_FIRST -> eventListener?.onPageFirst()
-                }
-            }
+            eventListener = ButtonEventListener()
 
             itemType = itemTypes.ironSword
 
@@ -64,5 +53,21 @@ class PageButtonView(
         fun onPageNext()
         fun onPagePrevious()
         fun onPageFirst()
+    }
+
+    private companion object {
+        val CLICK_PAGE_NEXT = FcGuiClick.Primary()
+        val CLICK_PAGE_PREVIOUS = FcGuiClick.Secondary()
+        val CLICK_PAGE_FIRST = FcGuiClick.Primary(FcGuiClickModifier.Shift)
+    }
+
+    private inner class ButtonEventListener : FcGuiButton.EventListener {
+        override fun onClick(gui: FcGui<*>, button: FcGuiButton, click: FcGuiClick) {
+            when (click) {
+                CLICK_PAGE_NEXT -> eventListener?.onPageNext()
+                CLICK_PAGE_PREVIOUS -> eventListener?.onPagePrevious()
+                CLICK_PAGE_FIRST -> eventListener?.onPageFirst()
+            }
+        }
     }
 }

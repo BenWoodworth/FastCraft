@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft.crafting.view.buttons
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
+import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
@@ -19,18 +20,8 @@ class RefreshButtonView(
 
     var eventListener: EventListener? = null
 
-    private companion object {
-        val CLICK_REFRESH = FcGuiClick.Primary()
-    }
-
     init {
-        button.onClick = { event ->
-            if (enabled) {
-                when (event.click) {
-                    CLICK_REFRESH -> eventListener?.onRefresh()
-                }
-            }
-        }
+        button.eventListener = ButtonEventListener()
 
         update()
     }
@@ -55,5 +46,19 @@ class RefreshButtonView(
 
     interface EventListener {
         fun onRefresh()
+    }
+
+    private companion object {
+        val CLICK_REFRESH = FcGuiClick.Primary()
+    }
+
+    private inner class ButtonEventListener : FcGuiButton.EventListener {
+        override fun onClick(gui: FcGui<*>, button: FcGuiButton, click: FcGuiClick) {
+            if (enabled) {
+                when (click) {
+                    CLICK_REFRESH -> eventListener?.onRefresh()
+                }
+            }
+        }
     }
 }

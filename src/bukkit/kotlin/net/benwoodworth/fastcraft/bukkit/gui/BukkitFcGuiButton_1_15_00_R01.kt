@@ -6,7 +6,7 @@ import net.benwoodworth.fastcraft.bukkit.item.fromMaterial
 import net.benwoodworth.fastcraft.bukkit.item.material
 import net.benwoodworth.fastcraft.bukkit.item.toItemStack
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextConverter
-import net.benwoodworth.fastcraft.platform.gui.FcGuiClickEvent
+import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
@@ -40,7 +40,7 @@ class BukkitFcGuiButton_1_15_00_R01(
         clear()
     }
 
-    override var onClick: (FcGuiClickEvent) -> Unit = {}
+    override var eventListener: FcGuiButton.EventListener? = null
 
     override var itemType: FcItemType
         get() = itemTypes.fromMaterial(itemStack.type)

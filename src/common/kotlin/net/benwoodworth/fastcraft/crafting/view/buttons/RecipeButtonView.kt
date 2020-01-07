@@ -3,6 +3,7 @@ package net.benwoodworth.fastcraft.crafting.view.buttons
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.crafting.model.FastCraftRecipe
+import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
@@ -20,21 +21,8 @@ class RecipeButtonView(
 
     var eventListener: EventListener? = null
 
-    private companion object {
-        val CLICK_CRAFT = FcGuiClick.Primary()
-        val CLICK_CRAFT_DROP = FcGuiClick.Drop()
-    }
-
     init {
-        button.onClick = { event ->
-            val recipe = fastCraftRecipe
-            if (recipe != null) {
-                when (event.click) {
-                    CLICK_CRAFT -> eventListener?.onCraft(recipe, false)
-                    CLICK_CRAFT_DROP -> eventListener?.onCraft(recipe, true)
-                }
-            }
-        }
+        button.eventListener = ButtonEventListener()
     }
 
     fun update() {
@@ -61,5 +49,22 @@ class RecipeButtonView(
 
     interface EventListener {
         fun onCraft(recipe: FastCraftRecipe, dropResults: Boolean)
+    }
+
+    private companion object {
+        val CLICK_CRAFT = FcGuiClick.Primary()
+        val CLICK_CRAFT_DROP = FcGuiClick.Drop()
+    }
+
+    private inner class ButtonEventListener : FcGuiButton.EventListener {
+        override fun onClick(gui: FcGui<*>, button: FcGuiButton, click: FcGuiClick) {
+            val recipe = fastCraftRecipe
+            if (recipe != null) {
+                when (click) {
+                    CLICK_CRAFT -> eventListener?.onCraft(recipe, false)
+                    CLICK_CRAFT_DROP -> eventListener?.onCraft(recipe, true)
+                }
+            }
+        }
     }
 }

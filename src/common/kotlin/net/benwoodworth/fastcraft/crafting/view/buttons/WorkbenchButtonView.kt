@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft.crafting.view.buttons
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
+import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
@@ -17,17 +18,9 @@ class WorkbenchButtonView(
 ) {
     var eventListener: EventListener? = null
 
-    private companion object {
-        val CLICK_OPEN_WORKBENCH = FcGuiClick.Primary()
-    }
-
     init {
         button.apply {
-            onClick = { event ->
-                when (event.click) {
-                    CLICK_OPEN_WORKBENCH -> eventListener?.onOpenWorkbench()
-                }
-            }
+            eventListener = ButtonEventListener()
 
             itemType = itemTypes.craftingTable
 
@@ -51,5 +44,17 @@ class WorkbenchButtonView(
 
     interface EventListener {
         fun onOpenWorkbench()
+    }
+
+    private companion object {
+        val CLICK_OPEN_WORKBENCH = FcGuiClick.Primary()
+    }
+
+    private inner class ButtonEventListener : FcGuiButton.EventListener {
+        override fun onClick(gui: FcGui<*>, button: FcGuiButton, click: FcGuiClick) {
+            when (click) {
+                CLICK_OPEN_WORKBENCH -> eventListener?.onOpenWorkbench()
+            }
+        }
     }
 }
