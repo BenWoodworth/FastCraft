@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.crafting
 
 import net.benwoodworth.fastcraft.crafting.model.FastCraftGuiModelFactory
-import net.benwoodworth.fastcraft.crafting.presenter.FastCraftGuiPresenter
+import net.benwoodworth.fastcraft.crafting.presenter.FastCraftGuiPresenterFactory
 import net.benwoodworth.fastcraft.crafting.view.FastCraftGuiViewFactory
 import net.benwoodworth.fastcraft.platform.gui.FcGuiFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
@@ -16,19 +16,14 @@ class FastCraftGuiFactory @Inject constructor(
     private val textColors: FcTextColors,
     private val itemTypes: FcItemTypes,
     private val fastCraftGuiModelFactory: FastCraftGuiModelFactory,
-    private val fastCraftGuiViewFactory: FastCraftGuiViewFactory
+    private val fastCraftGuiViewFactory: FastCraftGuiViewFactory,
+    private val fastCraftGuiPresenterFactory: FastCraftGuiPresenterFactory
 ) {
-    fun createFastCraftGui(player: FcPlayer): FastCraftGuiPresenter {
+    fun createFastCraftGui(player: FcPlayer): FastCraftGui {
         val model = fastCraftGuiModelFactory.create(player)
         val view = fastCraftGuiViewFactory.create(player)
+        val presenter = fastCraftGuiPresenterFactory.create(player, model, view)
 
-        return FastCraftGuiPresenter(
-            player,
-            model,
-            view,
-            textFactory,
-            textColors,
-            itemTypes
-        )
+        return FastCraftGui(presenter)
     }
 }
