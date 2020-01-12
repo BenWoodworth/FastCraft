@@ -17,6 +17,8 @@ class FastCraftGuiModel(
     @Provided private val itemAmountsProvider: Provider<ItemAmounts>,
     @Provided private val itemFactory: FcItemFactory
 ) {
+    var craftAmount: Int? = null
+
     var recipes: List<FastCraftRecipe> = emptyList()
 
     val inventoryItemAmounts: ItemAmounts = itemAmountsProvider.get()
