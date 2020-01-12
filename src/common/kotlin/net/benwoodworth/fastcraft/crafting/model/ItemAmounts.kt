@@ -58,8 +58,8 @@ class ItemAmounts private constructor(
         return ItemAmounts(amounts.toMutableMap(), itemFactory)
     }
 
-    fun toMap(): Map<FcItem, Int> {
-        return amounts.toMap()
+    fun asMap(): Map<FcItem, Int> {
+        return amounts
     }
 
     fun isEmpty(): Boolean {
