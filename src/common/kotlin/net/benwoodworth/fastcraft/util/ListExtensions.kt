@@ -1,15 +1,15 @@
 package net.benwoodworth.fastcraft.util
 
-fun <T> List<List<T>>.forEachPermutation(action: (permutation: List<T>) -> Unit) {
-    val options = this
+fun <T> List<List<T>>.getPermutations(): Sequence<List<T>> = sequence {
+    val options = this@getPermutations
     if (options.isEmpty() || options.any { it.isEmpty() }) {
-        return
+        return@sequence
     }
 
     val curPerm = MutableList(options.size) { i -> options[i].first() }
     val curPermIndices = IntArray(options.size)
 
-    action(curPerm)
+    yield(curPerm)
     var rollingOver: Boolean
     while (true) {
         // Increment curPermutationIndices
@@ -20,7 +20,7 @@ fun <T> List<List<T>>.forEachPermutation(action: (permutation: List<T>) -> Unit)
                 if (curPermIndices[i] >= option.lastIndex) {
                     if (i == options.lastIndex) {
                         // Finished iterating permutations
-                        return
+                        return@sequence
                     } else {
                         // Continue rollover
                         curPermIndices[i] = 0
@@ -34,6 +34,6 @@ fun <T> List<List<T>>.forEachPermutation(action: (permutation: List<T>) -> Unit)
             }
         }
 
-        action(curPerm)
+        yield(curPerm)
     }
 }
