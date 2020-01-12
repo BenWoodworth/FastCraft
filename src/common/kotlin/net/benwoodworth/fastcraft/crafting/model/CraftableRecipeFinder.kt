@@ -18,10 +18,10 @@ class CraftableRecipeFinder @Inject constructor(
         itemAmounts: ItemAmounts
     ): Sequence<FcCraftingRecipePrepared> {
         return recipeService.getCraftingRecipes()
-            .flatMap { getCraftablePreparedRecipes(player, itemAmounts, it) }
+            .flatMap { prepareCraftableRecipes(player, itemAmounts, it) }
     }
 
-    private fun getCraftablePreparedRecipes(
+    private fun prepareCraftableRecipes(
         player: FcPlayer,
         itemAmounts: ItemAmounts,
         recipe: FcCraftingRecipe
