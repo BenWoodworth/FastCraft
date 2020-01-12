@@ -40,7 +40,7 @@ class CraftableRecipeFinder @Inject constructor(
             permutation.forEach { itemsUsed += it }
 
             val enoughItems = itemsUsed.asMap().all { (item, amount) ->
-                availableItems[item] ?: 0 >= amount
+                availableItems[item] >= amount
             }
 
             if (enoughItems) {
