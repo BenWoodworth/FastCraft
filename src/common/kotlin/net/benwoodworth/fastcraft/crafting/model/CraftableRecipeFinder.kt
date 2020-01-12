@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft.crafting.model
 
-import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
@@ -16,7 +15,7 @@ class CraftableRecipeFinder @Inject constructor(
 ) {
     fun getCraftableRecipes(
         player: FcPlayer,
-        itemAmounts: Map<FcItem, Int>
+        itemAmounts: ItemAmounts
     ): Sequence<FcCraftingRecipePrepared> {
         return recipeService.getCraftingRecipes()
             .flatMap { getCraftablePreparedRecipes(player, itemAmounts, it) }
@@ -24,13 +23,13 @@ class CraftableRecipeFinder @Inject constructor(
 
     private fun getCraftablePreparedRecipes(
         player: FcPlayer,
-        itemAmounts: Map<FcItem, Int>,
+        itemAmounts: ItemAmounts,
         recipe: FcCraftingRecipe
     ): Sequence<FcCraftingRecipePrepared> = sequence {
         val ingredients = recipe.ingredients
 
         val possibleIngredientItems = ingredients.map { ingredient ->
-            itemAmounts.keys.filter { item ->
+            itemAmounts.asMap().keys.filter { item ->
                 ingredient.matches(item)
             }
         }
