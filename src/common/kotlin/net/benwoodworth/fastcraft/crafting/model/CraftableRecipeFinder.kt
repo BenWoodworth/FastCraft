@@ -15,21 +15,21 @@ class CraftableRecipeFinder @Inject constructor(
 ) {
     fun getCraftableRecipes(
         player: FcPlayer,
-        itemAmounts: ItemAmounts
+        availableItems: ItemAmounts
     ): Sequence<FcCraftingRecipePrepared> {
         return recipeService.getCraftingRecipes()
-            .flatMap { prepareCraftableRecipes(player, itemAmounts, it) }
+            .flatMap { prepareCraftableRecipes(player, availableItems, it) }
     }
 
     private fun prepareCraftableRecipes(
         player: FcPlayer,
-        itemAmounts: ItemAmounts,
+        availableItems: ItemAmounts,
         recipe: FcCraftingRecipe
     ): Sequence<FcCraftingRecipePrepared> = sequence {
         val ingredients = recipe.ingredients
 
         val possibleIngredientItems = ingredients.map { ingredient ->
-            itemAmounts.asMap().keys.filter { item ->
+            availableItems.asMap().keys.filter { item ->
                 ingredient.matches(item)
             }
         }
@@ -40,7 +40,7 @@ class CraftableRecipeFinder @Inject constructor(
             permutation.forEach { itemsUsed += it }
 
             val enoughItems = itemsUsed.asMap().all { (item, amount) ->
-                itemAmounts[item] ?: 0 >= amount
+                availableItems[item] ?: 0 >= amount
             }
 
             if (enoughItems) {
