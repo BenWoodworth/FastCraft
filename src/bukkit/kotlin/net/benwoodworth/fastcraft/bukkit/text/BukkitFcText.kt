@@ -5,6 +5,45 @@ import net.benwoodworth.fastcraft.platform.text.FcTextColor
 import java.util.*
 
 sealed class BukkitFcText : FcText {
+    private companion object {
+        val formattingCodeRegex = Regex("§.?")
+
+        fun String.toPlaintext(): String {
+            return this.replace(formattingCodeRegex, "")
+        }
+
+        fun StringBuilder.appendPlaintext(text: FcText) {
+            text as BukkitFcText
+            when (text) {
+                is Legacy -> {
+                    append(text.legacyText.toPlaintext())
+                }
+                is Component -> {
+                    when (text) {
+                        is Component.Text -> {
+                            append(text.text.toPlaintext())
+                        }
+                        is Component.Translate -> {
+                            append('[')
+                            append(text.translate)
+                            append(']')
+                        }
+                    }
+
+                    text.extra.forEach {
+                        appendPlaintext(it)
+                    }
+                }
+            }
+        }
+    }
+
+    override fun toPlaintext(): String {
+        return buildString {
+            appendPlaintext(this@BukkitFcText)
+        }
+    }
+
     class Legacy(
         val legacyText: String
     ) : BukkitFcText() {
@@ -14,6 +53,10 @@ sealed class BukkitFcText : FcText {
 
         override fun hashCode(): Int {
             return legacyText.hashCode()
+        }
+
+        override fun toPlaintext(): String {
+            return legacyText.replace(formattingCodeRegex, "")
         }
     }
 
