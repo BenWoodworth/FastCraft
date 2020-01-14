@@ -50,12 +50,18 @@ class FastCraftGuiPresenter(
 
     private inner class PageButtonListener : PageButtonView.Listener {
         override fun onPageNext() {
-            recipesPage = minOf(recipesPage + 1, recipesPageCount)
+            recipesPage = when (val page = recipesPage) {
+                recipesPageCount -> 1
+                else -> minOf(recipesPage + 1, recipesPageCount)
+            }
             updatePage()
         }
 
         override fun onPagePrevious() {
-            recipesPage = maxOf(1, recipesPage - 1)
+            recipesPage = when (val page = recipesPage) {
+                1 -> recipesPageCount
+                else -> maxOf(1, recipesPage - 1)
+            }
             updatePage()
         }
 
