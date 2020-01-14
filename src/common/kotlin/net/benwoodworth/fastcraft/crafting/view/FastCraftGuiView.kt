@@ -26,19 +26,19 @@ class FastCraftGuiView(
     private val width = gui.layout.width
     private val height = gui.layout.height
 
-    private val workbenchButton = workbenchButtonFactory
+    val workbenchButton = workbenchButtonFactory
         .create(gui.layout.getButton(width - 1, 0))
 
-    private val multiplierButton = multiplierButtonFactory
+    val multiplierButton = multiplierButtonFactory
         .create(gui.layout.getButton(width - 1, 1))
 
-    private val refreshButton = refreshButtonFactory
+    val refreshButton = refreshButtonFactory
         .create(gui.layout.getButton(width - 1, 2))
 
-    private val pageButton = pageButtonFactory
+    val pageButton = pageButtonFactory
         .create(gui.layout.getButton(width - 1, height - 1))
 
-    private val recipeButtons = List((width - 2) * height) { i ->
+    val recipeButtons = List((width - 2) * height) { i ->
         recipeButtonFactory.create(
             gui.layout.getButton(
                 column = i % (width - 2),
