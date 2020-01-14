@@ -15,9 +15,7 @@ import net.benwoodworth.fastcraft.util.CancellableResult
 import org.bukkit.Keyed
 import org.bukkit.Material
 import org.bukkit.Server
-import org.bukkit.event.inventory.InventoryType
 import org.bukkit.event.inventory.PrepareItemCraftEvent
-import org.bukkit.inventory.CraftingInventory
 import org.bukkit.inventory.Recipe
 import org.bukkit.inventory.ShapedRecipe
 import org.bukkit.inventory.ShapelessRecipe
@@ -28,7 +26,8 @@ class BukkitFcCraftingRecipe_1_15_00_R01(
     @Provided val server: Server,
     @Provided val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_15_00_R01Factory,
     @Provided val itemFactory: FcItemFactory,
-    @Provided val remnantProvider: IngredientRemnantProvider
+    @Provided val remnantProvider: IngredientRemnantProvider,
+    @Provided val inventoryViewFactory: PrepareCraftInventoryView_1_15_00_R01Factory
 ) : BukkitFcCraftingRecipe {
     init {
         require(recipe is ShapedRecipe || recipe is ShapelessRecipe)
@@ -63,7 +62,8 @@ class BukkitFcCraftingRecipe_1_15_00_R01(
         ingredients: Map<FcIngredient, FcItem>
     ): CancellableResult<FcCraftingRecipePrepared> {
         // TODO Inventory owner
-        val craftingGrid = server.createInventory(null, InventoryType.CRAFTING) as CraftingInventory
+        val prepareView = inventoryViewFactory.create(player.player, null, recipe)
+        val craftingGrid = prepareView.topInventory
 
         ingredients.forEach { (ingredient, item) ->
             ingredient as BukkitFcIngredient_1_15_00_R01
@@ -76,7 +76,6 @@ class BukkitFcCraftingRecipe_1_15_00_R01(
             craftingGrid.result = recipe.result
         }
 
-        val prepareView = PrepareCraftInventoryView_1_15_00_R01(player.player, craftingGrid)
         val prepareEvent = PrepareItemCraftEvent(craftingGrid, prepareView, false)
         server.pluginManager.callEvent(prepareEvent)
 
