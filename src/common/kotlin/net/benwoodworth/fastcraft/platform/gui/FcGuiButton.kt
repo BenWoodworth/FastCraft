@@ -6,14 +6,11 @@ import net.benwoodworth.fastcraft.platform.text.FcText
 
 interface FcGuiButton {
     var listener: Listener
-
     var itemType: FcItemType
-
     var amount: Int
-
     var text: FcText
-
     var description: List<FcText>
+    var progress: Double?
 
     fun clear()
 

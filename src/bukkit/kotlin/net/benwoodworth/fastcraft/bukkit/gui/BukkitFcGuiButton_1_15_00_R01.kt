@@ -17,6 +17,8 @@ import org.bukkit.Material
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
+import org.bukkit.inventory.meta.Damageable
+import kotlin.math.roundToInt
 import kotlin.properties.Delegates.observable
 
 @AutoFactory
@@ -59,6 +61,11 @@ class BukkitFcGuiButton_1_15_00_R01(
         updateSlot()
     }
 
+    override var progress: Double? by observable(null as Double?) { _, _, newProgress ->
+        updateDamage()
+        updateSlot()
+    }
+
     override var locale: FcLocale by observable(locale) { _, _, _ ->
         updateDisplayName()
         updateLore()
@@ -78,6 +85,7 @@ class BukkitFcGuiButton_1_15_00_R01(
         amount = 1
         text = textFactory.createFcText()
         description = emptyList()
+        progress = 0.0
         hideItemDetails = false
     }
 
@@ -98,6 +106,20 @@ class BukkitFcGuiButton_1_15_00_R01(
                     ItemFlag.HIDE_PLACED_ON,
                     ItemFlag.HIDE_POTION_EFFECTS
                 )
+            }
+        }
+    }
+
+    private fun updateDamage() {
+        val maxDamage = itemStack.type.maxDurability.toInt()
+
+        itemStack.updateMeta {
+            if (this is Damageable) {
+                damage = when (val progress = progress) {
+                    null -> 0
+                    in 0.0..1.0 -> ((1.0 - progress) * (maxDamage - 1) + 1).roundToInt()
+                    else -> 0
+                }
             }
         }
     }
