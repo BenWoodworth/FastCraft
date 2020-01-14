@@ -46,6 +46,8 @@ class PageButtonView(
                 text = "Page ${page}/${pageCount}",
                 color = textColors.green
             )
+
+            progress = page.toDouble() / pageCount
         }
     }
 
