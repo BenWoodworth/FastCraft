@@ -3,46 +3,65 @@ package net.benwoodworth.fastcraft.crafting.presenter
 import net.benwoodworth.fastcraft.crafting.model.FastCraftGuiModel
 import net.benwoodworth.fastcraft.crafting.view.FastCraftGuiView
 import net.benwoodworth.fastcraft.crafting.view.buttons.PageButtonView
+import kotlin.math.ceil
 
 class FastCraftGuiPresenter(
     private val model: FastCraftGuiModel,
     private val view: FastCraftGuiView
 ) {
     private var recipesPage = 1
-    private var recipesPageCount = 5 // TODO Change to 1
+
+    private val recipesPerPage: Int
+        get() = view.recipeButtons.count()
+
+    private val recipesPageCount: Int
+        get() = maxOf(1, ceil(model.recipes.count().toDouble() / recipesPerPage).toInt())
 
     init {
         view.pageButton.listener = PageButtonListener()
 
-        updatePageButton()
+        model.refreshRecipes()
+        updatePage()
     }
 
     fun openGui() {
         view.gui.open()
     }
 
-    private fun updatePageButton() {
+    private fun updatePage() {
         view.pageButton.apply {
             page = recipesPage
             pageCount = recipesPageCount
             update()
         }
+
+        val firstRecipeIndex = (recipesPage - 1) * recipesPerPage
+        view.recipeButtons.forEachIndexed { i, button ->
+            button.fastCraftRecipe = model.recipes.getOrNull(i + firstRecipeIndex)
+            button.update()
+        }
+    }
+
+    private fun calculatePageCount(): Int {
+        val recipeCount = model.recipes.count()
+        val pageCount = ceil(recipeCount.toDouble() / recipesPerPage).toInt()
+        return maxOf(1, pageCount)
     }
 
     private inner class PageButtonListener : PageButtonView.Listener {
         override fun onPageNext() {
             recipesPage = minOf(recipesPage + 1, recipesPageCount)
-            updatePageButton()
+            updatePage()
         }
 
         override fun onPagePrevious() {
             recipesPage = maxOf(1, recipesPage - 1)
-            updatePageButton()
+            updatePage()
         }
 
         override fun onPageFirst() {
             recipesPage = 1
-            updatePageButton()
+            updatePage()
         }
     }
 }
