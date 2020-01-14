@@ -13,14 +13,22 @@ class BukkitFcItemType_1_15_00_R01(
     override val id: String
         get() = material.key.toString()
 
+    private val Material.localeKey: String
+        get() {
+            val type = when {
+                isBlock -> "block"
+                isItem -> "item"
+                else -> "?"
+            }
+            return "$type.${key.namespace}.${key.key}"
+        }
+
     override val name: FcText
-        get() = textFactory.createFcTextTranslate(
-            material.key.run { "item.$namespace.$key" }
-        )
+        get() = textFactory.createFcTextTranslate(material.localeKey)
 
     override val description: FcText
         get() = textFactory.createFcTextTranslate(
-            material.key.run { "item.$namespace.$key.description" }
+            "${material.localeKey}.description"
         )
 
     override val maxAmount: Int
