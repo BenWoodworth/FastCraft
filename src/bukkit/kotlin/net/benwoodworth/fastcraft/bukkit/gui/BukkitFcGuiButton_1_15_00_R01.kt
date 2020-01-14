@@ -2,10 +2,10 @@ package net.benwoodworth.fastcraft.bukkit.gui
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.bukkit.item.fromMaterial
 import net.benwoodworth.fastcraft.bukkit.item.material
 import net.benwoodworth.fastcraft.bukkit.item.toItemStack
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextConverter
+import net.benwoodworth.fastcraft.bukkit.util.updateMeta
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemType
@@ -15,10 +15,9 @@ import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.Material
 import org.bukkit.inventory.Inventory
-import org.bukkit.inventory.ItemFactory
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
-import org.bukkit.inventory.meta.ItemMeta
+import kotlin.properties.Delegates.observable
 
 @AutoFactory
 class BukkitFcGuiButton_1_15_00_R01(
@@ -27,102 +26,97 @@ class BukkitFcGuiButton_1_15_00_R01(
     locale: FcLocale,
     @Provided private val itemTypes: FcItemTypes,
     @Provided private val textFactory: FcTextFactory,
-    @Provided private val textConverter: BukkitFcTextConverter,
-    @Provided private val itemFactory: ItemFactory
+    @Provided private val textConverter: BukkitFcTextConverter
 ) : BukkitFcGuiButton {
-    private lateinit var _text: FcText
-    private lateinit var _description: List<FcText>
+    private var hideItemDetails: Boolean = false
 
-    private lateinit var itemStack: ItemStack
-    private lateinit var itemMeta: ItemMeta
-
-    init {
-        clear()
+    private var itemStack: ItemStack by observable(ItemStack(Material.AIR)) { _, _, _ ->
+        updateSlot()
     }
 
     override var listener: FcGuiButton.Listener = FcGuiButton.Listener.Default
 
-    override var itemType: FcItemType
-        get() = itemTypes.fromMaterial(itemStack.type)
-        set(value) {
-            itemStack.type = value.material
-            updateItem()
-        }
-
-    override var amount: Int
-        get() = itemStack.amount
-        set(value) {
-            itemStack.amount = value
-        }
-
-    override var text: FcText
-        get() = _text
-        set(value) {
-            _text = value
-            itemMeta.setDisplayName(text.toLegacy())
-            updateItem()
-        }
-
-    override var description: List<FcText>
-        get() = _description
-        set(value) {
-            _description = value
-            itemMeta.lore = _description.toLegacy()
-            updateItem()
-        }
-
-    override var locale: FcLocale = locale
-        set(value) {
-            field = value
-            itemMeta.setDisplayName(_text.toLegacy())
-            itemMeta.lore = _description.toLegacy()
-            updateItem()
-        }
-
-    private fun FcText.toLegacy(): String {
-        return textConverter.toLegacy(this, locale)
+    override var itemType: FcItemType by observable(itemTypes.air) { _, _, newType ->
+        itemStack.type = newType.material
+        updateDisplayName()
+        updateLore()
+        updateItemDetails()
+        updateSlot()
     }
 
-    private fun List<FcText>.toLegacy(): List<String> {
-        return map {
-            textConverter.toLegacy(it, locale)
-        }
+    override var amount: Int by observable(1) { _, _, newAmount ->
+        itemStack.amount = newAmount
+        updateSlot()
     }
 
-    private fun updateItem() {
-        itemStack.itemMeta = itemMeta
-        inventory.setItem(slotIndex, itemStack)
+    override var text: FcText by observable(textFactory.createFcText()) { _, _, _ ->
+        updateDisplayName()
+        updateSlot()
+    }
+
+    override var description: List<FcText> by observable(emptyList()) { _, _, _ ->
+        updateLore()
+        updateSlot()
+    }
+
+    override var locale: FcLocale by observable(locale) { _, _, _ ->
+        updateDisplayName()
+        updateLore()
+        updateSlot()
     }
 
     override fun copyItem(item: FcItem) {
         itemStack = item.toItemStack()
-        itemMeta = itemStack.itemMeta ?: itemFactory.getItemMeta(Material.STONE)!!
 
-        _text = item.name
-        _description = item.lore
-
-        updateItem()
+        text = item.name
+        description = item.lore
+        hideItemDetails = false
     }
 
     override fun clear() {
         itemStack = ItemStack(Material.AIR)
-        itemMeta = itemFactory.getItemMeta(Material.STONE)!!
-
-        _text = textFactory.createFcText()
-        _description = emptyList()
-
-        updateItem()
+        amount = 1
+        text = textFactory.createFcText()
+        description = emptyList()
+        hideItemDetails = false
     }
 
     override fun hideItemDetails() {
-        itemMeta.addItemFlags(
-            ItemFlag.HIDE_ENCHANTS,
-            ItemFlag.HIDE_ATTRIBUTES,
-            ItemFlag.HIDE_UNBREAKABLE,
-            ItemFlag.HIDE_DESTROYS,
-            ItemFlag.HIDE_PLACED_ON,
-            ItemFlag.HIDE_POTION_EFFECTS
-        )
-        updateItem()
+        hideItemDetails = true
+        updateItemDetails()
+        updateSlot()
+    }
+
+    private fun updateItemDetails() {
+        if (hideItemDetails) {
+            itemStack.updateMeta {
+                addItemFlags(
+                    ItemFlag.HIDE_ENCHANTS,
+                    ItemFlag.HIDE_ATTRIBUTES,
+                    ItemFlag.HIDE_UNBREAKABLE,
+                    ItemFlag.HIDE_DESTROYS,
+                    ItemFlag.HIDE_PLACED_ON,
+                    ItemFlag.HIDE_POTION_EFFECTS
+                )
+            }
+        }
+    }
+
+    private fun updateSlot() {
+        inventory.setItem(slotIndex, itemStack)
+    }
+
+    private fun updateDisplayName() {
+        itemStack.updateMeta {
+            setDisplayName(textConverter.toLegacy(text, locale))
+        }
+    }
+
+    private fun updateLore() {
+        itemStack.updateMeta {
+            lore = description.map {
+                textConverter.toLegacy(it, locale)
+            }
+        }
     }
 }
