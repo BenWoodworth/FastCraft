@@ -39,10 +39,14 @@ class BukkitFcCraftingRecipe_1_15_00_R01(
 
     override val ingredients: List<FcIngredient> = when (recipe) {
         is ShapedRecipe -> recipe.shape
-            .mapIndexed { row, rowStr ->
-                rowStr.mapIndexed { column, char ->
-                    BukkitFcIngredient_1_15_00_R01(row * 3 + column, recipe.choiceMap[char]!!)
-                }
+            .mapIndexed { row, rowString ->
+                rowString
+                    .mapIndexed { column, char ->
+                        recipe.choiceMap[char]?.let { choice ->
+                            BukkitFcIngredient_1_15_00_R01(row * 3 + column, choice)
+                        }
+                    }
+                    .filterNotNull()
             }
             .flatten()
 
