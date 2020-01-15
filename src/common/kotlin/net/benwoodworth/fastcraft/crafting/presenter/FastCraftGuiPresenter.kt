@@ -79,8 +79,12 @@ class FastCraftGuiPresenter(
     }
 
     private inner class RecipeButtonListener : RecipeButtonView.Listener {
-        override fun onCraft(recipe: FastCraftRecipe, dropResults: Boolean) {
-            recipe.craft(dropResults)
+        override fun onCraft(button: RecipeButtonView, recipe: FastCraftRecipe, dropResults: Boolean) {
+            val craftSucceeded = recipe.craft(dropResults)
+            if (craftSucceeded) {
+                button.fastCraftRecipe = null
+                button.update()
+            }
         }
     }
 }
