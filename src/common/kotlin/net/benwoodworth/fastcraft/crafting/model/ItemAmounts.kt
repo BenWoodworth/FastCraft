@@ -26,7 +26,7 @@ class ItemAmounts private constructor(
     }
 
     operator fun get(item: FcItem): Int {
-        return amounts.getOrDefault(item, 0)
+        return amounts.getOrDefault(item.asKey(), 0)
     }
 
     operator fun set(item: FcItem, amount: Int) {
