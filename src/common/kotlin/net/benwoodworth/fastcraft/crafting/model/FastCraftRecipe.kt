@@ -76,7 +76,7 @@ class FastCraftRecipe(
 
         removeItems(preparedRecipe.ingredientItems, multiplier)
 
-        TODO("Give player crafted items")
+        fastCraftGuiModel.player.giveItems(craftedItems, dropItems)
         return true
     }
 
