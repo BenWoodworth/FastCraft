@@ -3,15 +3,18 @@ package net.benwoodworth.fastcraft.crafting.view.buttons
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.crafting.model.FastCraftRecipe
+import net.benwoodworth.fastcraft.crafting.model.ItemAmounts
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
+import javax.inject.Provider
 
 @AutoFactory
 class RecipeButtonView(
     private val button: FcGuiButton,
-    @Provided private val textFactory: FcTextFactory
+    @Provided private val textFactory: FcTextFactory,
+    @Provided private val itemAmountsProvider: Provider<ItemAmounts>
 ) {
     var fastCraftRecipe: FastCraftRecipe? = null
 
@@ -22,31 +25,46 @@ class RecipeButtonView(
     }
 
     fun update() {
-        button.apply {
-            button.clear()
+        button.clear()
 
-            fastCraftRecipe?.preparedRecipe?.let { recipe ->
-                val previewItem = recipe.resultsPreview.first()
-                copyItem(previewItem)
+        val fastCraftRecipe = fastCraftRecipe ?: return
+        if (!fastCraftRecipe.canCraft()) return
 
-                val newDescription = mutableListOf(
-                    textFactory.createFcText("Ingredients:")
-                )
+        fastCraftRecipe.preparedRecipe?.let { preparedRecipe ->
+            val previewItem = preparedRecipe.resultsPreview.first()
+            button.copyItem(previewItem)
 
-                if (previewItem.lore.any()) {
-                    newDescription += textFactory.createFcText()
-                    newDescription += previewItem.lore
+            val newDescription = mutableListOf(
+                textFactory.createFcText("Ingredients:")
+            )
+
+            val ingredients = itemAmountsProvider.get()
+            preparedRecipe.ingredientItems.forEach { ingredient ->
+                ingredients += ingredient
+            }
+
+            ingredients.asMap().entries
+                .sortedBy { (_, amount) -> amount }
+                .forEach { (item, amount) ->
+                    newDescription += textFactory.createFcText(
+                        text = "- ${amount}x ",
+                        extra = listOf(item.name)
+                    )
                 }
 
-                description = newDescription
+            if (previewItem.lore.any()) {
+                newDescription += textFactory.createFcText()
+                newDescription += previewItem.lore
             }
+
+            button.description = newDescription
         }
     }
 
     interface Listener {
         object Default : Listener
 
-        fun onCraft(recipe: FastCraftRecipe, dropResults: Boolean) {}
+        fun onCraft(button: RecipeButtonView, recipe: FastCraftRecipe, dropResults: Boolean) {}
     }
 
     private companion object {
@@ -59,8 +77,8 @@ class RecipeButtonView(
             val recipe = fastCraftRecipe
             if (recipe != null) {
                 when (click) {
-                    CLICK_CRAFT -> listener.onCraft(recipe, false)
-                    CLICK_CRAFT_DROP -> listener.onCraft(recipe, true)
+                    CLICK_CRAFT -> listener.onCraft(this@RecipeButtonView, recipe, false)
+                    CLICK_CRAFT_DROP -> listener.onCraft(this@RecipeButtonView, recipe, true)
                 }
             }
         }
