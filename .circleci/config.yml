@@ -16,15 +16,6 @@ jobs:
       - store_artifacts:
           path: build/libs/
           destination: artifacts
-      - run:
-          name: Deploy
-          command: |
-            sudo apt-get update &&
-            sudo apt-get install -qq -y python-pip libpython-dev &&
-            curl -O https://bootstrap.pypa.io/get-pip.py &&
-            sudo python get-pip.py &&
-            sudo pip install -q awscli --upgrade &&
-            aws s3 sync build/libs/ s3://fastcraft/circleci/`printf %04d $CIRCLE_BUILD_NUM` --delete --acl public-read
 
 workflows:
   version: 2
