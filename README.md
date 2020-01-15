@@ -1,7 +1,5 @@
 [![Downloads](https://img.shields.io/github/downloads/BenWoodworth/FastCraft/total.svg)](https://github.com/BenWoodworth/FastCraft/releases)
 
-[FastCraft Builds](http://benwoodworth.net/projects/fastcraft/builds.html)
-
 # FastCraft v2 [![CircleCI](https://circleci.com/gh/BenWoodworth/FastCraft/tree/v2%2Fstable.svg?style=svg)](https://circleci.com/gh/BenWoodworth/FastCraft/tree/v2%2Fstable)
 Looking for FastCraft v2? [Click here!](https://github.com/BenWoodworth/FastCraft/tree/v2/dev)
 
