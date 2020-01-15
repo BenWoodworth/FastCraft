@@ -7,15 +7,10 @@ import java.util.*
 
 interface FcPlayer {
     val username: String
-
     var customName: String?
-
     val uuid: UUID
-
     val locale: FcLocale
-
     val isOnline: Boolean
-
     val inventory: FcPlayerInventory
 
     fun sendMessage(message: FcText)

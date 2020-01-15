@@ -5,12 +5,8 @@ import net.benwoodworth.fastcraft.platform.item.FcInventorySlot
 
 interface FcPlayerInventory : FcInventory {
     val storage: Collection<FcInventorySlot>
-
     val helmet: FcInventorySlot
-
     val chestPlate: FcInventorySlot
-
     val leggings: FcInventorySlot
-
     val boots: FcInventorySlot
 }

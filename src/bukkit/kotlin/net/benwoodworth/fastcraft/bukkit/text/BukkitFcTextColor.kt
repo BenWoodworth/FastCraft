@@ -5,7 +5,6 @@ import org.bukkit.ChatColor
 
 interface BukkitFcTextColor : FcTextColor {
     val id: String
-
     val chatColor: ChatColor
 }
 

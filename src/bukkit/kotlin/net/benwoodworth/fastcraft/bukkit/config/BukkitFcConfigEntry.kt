@@ -5,7 +5,6 @@ import org.bukkit.configuration.Configuration
 
 interface BukkitFcConfigEntry : FcConfigEntry {
     val config: Configuration
-
     val parentEntry: FcConfigEntry?
 }
 
