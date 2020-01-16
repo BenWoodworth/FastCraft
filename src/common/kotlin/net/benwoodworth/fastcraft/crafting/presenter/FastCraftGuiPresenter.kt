@@ -19,12 +19,13 @@ class FastCraftGuiPresenter(
     private val recipesPageCount: Int
         get() = maxOf(1, ceil(model.recipes.count().toDouble() / recipesPerPage).toInt())
 
+    private val firstRecipeIndex = (recipesPage - 1) * recipesPerPage
+
     init {
         view.pageButton.listener = PageButtonListener()
 
-        val recipeButtonListener = RecipeButtonListener()
-        view.recipeButtons.forEach { button ->
-            button.listener = recipeButtonListener
+        view.recipeButtons.forEachIndexed { i, button ->
+            button.listener = RecipeButtonListener(i)
         }
 
         model.refreshRecipes()
@@ -42,17 +43,10 @@ class FastCraftGuiPresenter(
             update()
         }
 
-        val firstRecipeIndex = (recipesPage - 1) * recipesPerPage
         view.recipeButtons.forEachIndexed { i, button ->
             button.fastCraftRecipe = model.recipes.getOrNull(i + firstRecipeIndex)
             button.update()
         }
-    }
-
-    private fun calculatePageCount(): Int {
-        val recipeCount = model.recipes.count()
-        val pageCount = ceil(recipeCount.toDouble() / recipesPerPage).toInt()
-        return maxOf(1, pageCount)
     }
 
     private inner class PageButtonListener : PageButtonView.Listener {
@@ -67,7 +61,7 @@ class FastCraftGuiPresenter(
         override fun onPagePrevious() {
             recipesPage = when (val page = recipesPage) {
                 1 -> recipesPageCount
-                else -> maxOf(1, recipesPage - 1)
+                else -> maxOf(1, page - 1)
             }
             updatePage()
         }
@@ -78,11 +72,15 @@ class FastCraftGuiPresenter(
         }
     }
 
-    private inner class RecipeButtonListener : RecipeButtonView.Listener {
+    private inner class RecipeButtonListener(
+        private val recipeButtonIndex: Int
+    ) : RecipeButtonView.Listener {
         override fun onCraft(button: RecipeButtonView, recipe: FastCraftRecipe, dropResults: Boolean) {
-            val craftSucceeded = recipe.craft(dropResults)
+            val recipeIndex = recipeButtonIndex + firstRecipeIndex
+            val craftSucceeded = model.craftRecipe(recipeIndex, dropResults)
+
             if (craftSucceeded) {
-                button.fastCraftRecipe = null
+                button.fastCraftRecipe = model.recipes[recipeIndex]
                 button.update()
             }
         }
