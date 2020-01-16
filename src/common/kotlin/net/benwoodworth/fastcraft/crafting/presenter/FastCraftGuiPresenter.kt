@@ -19,7 +19,8 @@ class FastCraftGuiPresenter(
     private val recipesPageCount: Int
         get() = maxOf(1, ceil(model.recipes.count().toDouble() / recipesPerPage).toInt())
 
-    private val firstRecipeIndex = (recipesPage - 1) * recipesPerPage
+    private val firstRecipeIndex: Int
+        get() = (recipesPage - 1) * recipesPerPage
 
     init {
         view.pageButton.listener = PageButtonListener()
@@ -53,7 +54,7 @@ class FastCraftGuiPresenter(
         override fun onPageNext() {
             recipesPage = when (val page = recipesPage) {
                 recipesPageCount -> 1
-                else -> minOf(recipesPage + 1, recipesPageCount)
+                else -> minOf(page + 1, recipesPageCount)
             }
             updatePage()
         }
