@@ -72,7 +72,12 @@ class FastCraftGuiModel(
 
         player.giveItems(craftedItems, dropItems)
 
-        recipes[recipeIndex] = null // TODO Re-prepare recipe
+        val updatedRecipe = recipe.preparedRecipe.recipe.prepare(player, recipe.preparedRecipe.ingredients)
+        recipes[recipeIndex] = when (updatedRecipe) {
+            is CancellableResult.Cancelled -> null
+            is CancellableResult.Result -> FastCraftRecipe(this, updatedRecipe.result)
+        }
+
         return true
     }
 
