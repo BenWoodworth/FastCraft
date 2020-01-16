@@ -84,16 +84,14 @@ class BukkitFcCraftingRecipe_1_15_00_R01(
             return CancellableResult.Cancelled
         }
 
-        val ingredientItems = ingredients.map { (_, item) -> item }
-
-        val ingredientRemnants = ingredientItems
+        val ingredientRemnants = ingredients.values
             .flatMap { remnantProvider.getRemnants(it.toItemStack()) }
             .map { itemFactory.createFcItem(it) }
 
         val resultsPreview = listOf(itemFactory.createFcItem(resultItem)) + ingredientRemnants
 
         return CancellableResult(
-            preparedRecipeFactory.create(this, ingredientItems, ingredientRemnants, resultsPreview, prepareView)
+            preparedRecipeFactory.create(this, ingredients, ingredientRemnants, resultsPreview, prepareView)
         )
     }
 

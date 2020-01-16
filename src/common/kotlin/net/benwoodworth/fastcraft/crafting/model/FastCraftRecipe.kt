@@ -37,7 +37,7 @@ class FastCraftRecipe(
     fun canCraft(): Boolean {
         val remainingItems = fastCraftGuiModel.inventoryItemAmounts.copy()
 
-        preparedRecipe.ingredientItems.forEach { item ->
+        preparedRecipe.ingredients.values.forEach { item ->
             val amountLeft = remainingItems[item]
             val removeAmount = item.amount * multiplier
 

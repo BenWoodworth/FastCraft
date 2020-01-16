@@ -6,6 +6,7 @@ import net.benwoodworth.fastcraft.bukkit.item.createFcItem
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemFactory
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
+import net.benwoodworth.fastcraft.platform.recipe.FcIngredient
 import net.benwoodworth.fastcraft.util.CancellableResult
 import org.bukkit.Server
 import org.bukkit.event.inventory.ClickType
@@ -16,7 +17,7 @@ import org.bukkit.event.inventory.InventoryType
 @AutoFactory
 class BukkitFcCraftingRecipePrepared_1_15_00_R01(
     override val recipe: FcCraftingRecipe,
-    override val ingredientItems: List<FcItem>,
+    override val ingredients: Map<FcIngredient, FcItem>,
     private val ingredientRemnants: List<FcItem>,
     override val resultsPreview: List<FcItem>,
     private val preparedCraftingView: PrepareCraftInventoryView_1_15_00_R01,

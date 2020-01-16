@@ -45,7 +45,7 @@ class FastCraftGuiModel(
         recipes.clear()
         craftableRecipeFinder
             .getCraftableRecipes(player, inventoryItemAmounts)
-            .uniqueBy { it.ingredientItems.toSet() to it.resultsPreview.toSet() }
+            .uniqueBy { it.ingredients.values.toSet() to it.resultsPreview.toSet() }
             .sortedWith(recipeComparator)
             .map { FastCraftRecipe(this, it) }
             .forEach { recipes += it }
@@ -68,7 +68,7 @@ class FastCraftGuiModel(
             is CancellableResult.Result -> craftResult.result
         }
 
-        removeItems(recipe.preparedRecipe.ingredientItems, recipe.multiplier)
+        removeItems(recipe.preparedRecipe.ingredients.values, recipe.multiplier)
 
         player.giveItems(craftedItems, dropItems)
 
@@ -76,7 +76,7 @@ class FastCraftGuiModel(
         return true
     }
 
-    private fun removeItems(items: List<FcItem>, multiplier: Int) {
+    private fun removeItems(items: Collection<FcItem>, multiplier: Int) {
         val removeAmounts = itemAmountsProvider.get()
         items.forEach { item ->
             removeAmounts[item] += item.amount * multiplier

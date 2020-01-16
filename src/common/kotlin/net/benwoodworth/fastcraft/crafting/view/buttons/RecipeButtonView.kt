@@ -39,7 +39,7 @@ class RecipeButtonView(
             )
 
             val ingredients = itemAmountsProvider.get()
-            preparedRecipe.ingredientItems.forEach { ingredient ->
+            preparedRecipe.ingredients.values.forEach { ingredient ->
                 ingredients += ingredient
             }
 
