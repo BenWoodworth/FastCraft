@@ -93,6 +93,10 @@ shadowJar {
     relocate("kotlin", "${libPackage}.kotlin")
     relocate("dagger", "${libPackage}.dagger")
     relocate("javax", "${libPackage}.javax")
+
+    minimize {
+        exclude(project(":"))
+    }
 }
 
 processBukkitResources {
