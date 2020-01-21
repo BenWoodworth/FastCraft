@@ -78,6 +78,10 @@ class BukkitFcPlayer_1_15_00_R01(
         }
     }
 
+    override fun openCraftingTable() {
+        player.openWorkbench(null, true)
+    }
+
     override fun equals(other: Any?): Boolean {
         return other is FcPlayer && player == other.player
     }

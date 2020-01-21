@@ -19,6 +19,8 @@ interface FcPlayer {
 
     fun giveItems(items: List<FcItem>, dropAll: Boolean)
 
+    fun openCraftingTable() // TODO Location
+
     override fun equals(other: Any?): Boolean
 
     override fun hashCode(): Int
