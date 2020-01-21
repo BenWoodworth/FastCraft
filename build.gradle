@@ -83,14 +83,16 @@ shadowJar {
     from sourceSets.bukkit.output
 
     dependencies {
-        exclude dependency("org.bukkit:bukkit")
+        include dependency("org.jetbrains.kotlin:kotlin-stdlib")
+        include dependency("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+        include dependency("com.google.dagger:dagger")
+        include dependency("javax.inject:javax.inject")
     }
 
     def libPackage = "net.benwoodworth.fastcraft.lib"
     relocate("kotlin", "${libPackage}.kotlin")
     relocate("dagger", "${libPackage}.dagger")
     relocate("javax", "${libPackage}.javax")
-    relocate("org.bstats", "${libPackage}.bstats")
 }
 
 processBukkitResources {
