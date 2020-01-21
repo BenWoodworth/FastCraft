@@ -1,18 +1,18 @@
 package net.benwoodworth.fastcraft
 
 import net.benwoodworth.fastcraft.crafting.FastCraftGuiFactory
+import net.benwoodworth.fastcraft.platform.player.FcPlayerEvents
 import net.benwoodworth.fastcraft.platform.player.FcPlayerJoinEvent
-import net.benwoodworth.fastcraft.platform.server.FcServer
 import net.benwoodworth.fastcraft.platform.server.FcTaskFactory
 import javax.inject.Inject
 
 class FastCraft @Inject internal constructor(
-    serverListeners: FcServer,
+    playerEventsListeners: FcPlayerEvents,
     private val taskFactory: FcTaskFactory,
     private val fastCraftGuiFactory: FastCraftGuiFactory
 ) {
     init {
-        serverListeners.onPlayerJoin += ::onPlayerJoin
+        playerEventsListeners.onPlayerJoin += ::onPlayerJoin
     }
 
     fun disable() {
