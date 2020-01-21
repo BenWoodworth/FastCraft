@@ -117,7 +117,7 @@ class BukkitDaggerModule_1_15_00_R01(
 
     @Provides
     @Singleton
-    fun provideFcServer(instance: BukkitFcPlayerEvents_1_15_00_R01): FcPlayerEvents {
+    fun provideFcPlayerEvents(instance: BukkitFcPlayerEvents_1_15_00_R01): FcPlayerEvents {
         return instance
     }
 
