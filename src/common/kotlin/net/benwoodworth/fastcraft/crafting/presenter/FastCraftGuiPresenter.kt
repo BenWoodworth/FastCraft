@@ -5,6 +5,7 @@ import net.benwoodworth.fastcraft.crafting.model.FastCraftRecipe
 import net.benwoodworth.fastcraft.crafting.view.FastCraftGuiView
 import net.benwoodworth.fastcraft.crafting.view.buttons.PageButtonView
 import net.benwoodworth.fastcraft.crafting.view.buttons.RecipeButtonView
+import net.benwoodworth.fastcraft.crafting.view.buttons.WorkbenchButtonView
 import kotlin.math.ceil
 
 class FastCraftGuiPresenter(
@@ -23,6 +24,7 @@ class FastCraftGuiPresenter(
         get() = (recipesPage - 1) * recipesPerPage
 
     init {
+        view.workbenchButton.listener = WorkbenchButtonListener()
         view.pageButton.listener = PageButtonListener()
 
         view.recipeButtons.forEachIndexed { i, button ->
@@ -47,6 +49,12 @@ class FastCraftGuiPresenter(
         view.recipeButtons.forEachIndexed { i, button ->
             button.fastCraftRecipe = model.recipes.getOrNull(i + firstRecipeIndex)
             button.update()
+        }
+    }
+
+    private inner class WorkbenchButtonListener : WorkbenchButtonView.Listener {
+        override fun onOpenWorkbench() {
+            model.openCraftingTable()
         }
     }
 

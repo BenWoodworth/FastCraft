@@ -118,4 +118,8 @@ class FastCraftGuiModel(
             }
         }
     }
+
+    fun openCraftingTable() {
+        player.openCraftingTable()
+    }
 }
