@@ -57,6 +57,13 @@ class BukkitFcCraftingRecipe_1_15_00_R01(
         else -> throw IllegalStateException()
     }
 
+    override val group: String?
+        get() = when (recipe) {
+            is ShapedRecipe -> recipe.group.takeUnless { it == "" }
+            is ShapelessRecipe -> recipe.group.takeUnless { it == "" }
+            else -> throw IllegalStateException()
+        }
+
     override fun prepare(
         player: FcPlayer,
         ingredients: Map<FcIngredient, FcItem>

@@ -7,6 +7,7 @@ import net.benwoodworth.fastcraft.util.CancellableResult
 interface FcCraftingRecipe {
     val id: String
     val ingredients: List<FcIngredient>
+    val group: String?
 
     fun prepare(player: FcPlayer, ingredients: Map<FcIngredient, FcItem>): CancellableResult<FcCraftingRecipePrepared>
 
