@@ -40,6 +40,12 @@ class FastCraftGuiModel(
         }
     }
 
+    fun updateCraftAmounts() {
+        recipes.forEach { recipe ->
+            recipe?.setCraftAmount(craftAmount)
+        }
+    }
+
     fun refreshRecipes() {
         updateInventoryItemAmounts()
 
@@ -71,7 +77,9 @@ class FastCraftGuiModel(
 
         removeItems(recipe.preparedRecipe.ingredients.values, recipe.multiplier)
 
-        player.giveItems(craftedItems, dropItems)
+        repeat(recipe.multiplier) {
+            player.giveItems(craftedItems, dropItems)
+        }
 
         val updatedRecipe = recipe.preparedRecipe.recipe.prepare(player, recipe.preparedRecipe.ingredients)
         recipes[recipeIndex] = when (updatedRecipe) {

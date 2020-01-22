@@ -3,6 +3,7 @@ package net.benwoodworth.fastcraft.crafting.presenter
 import net.benwoodworth.fastcraft.crafting.model.FastCraftGuiModel
 import net.benwoodworth.fastcraft.crafting.model.FastCraftRecipe
 import net.benwoodworth.fastcraft.crafting.view.FastCraftGuiView
+import net.benwoodworth.fastcraft.crafting.view.buttons.MultiplierButtonView
 import net.benwoodworth.fastcraft.crafting.view.buttons.PageButtonView
 import net.benwoodworth.fastcraft.crafting.view.buttons.RecipeButtonView
 import net.benwoodworth.fastcraft.crafting.view.buttons.WorkbenchButtonView
@@ -25,6 +26,7 @@ class FastCraftGuiPresenter(
 
     init {
         view.workbenchButton.listener = WorkbenchButtonListener()
+        view.multiplierButton.listener = MultiplierButtonListener()
         view.pageButton.listener = PageButtonListener()
 
         view.recipeButtons.forEachIndexed { i, button ->
@@ -39,6 +41,13 @@ class FastCraftGuiPresenter(
         view.gui.open()
     }
 
+    private fun updateRecipes() {
+        view.recipeButtons.forEachIndexed { i, button ->
+            button.fastCraftRecipe = model.recipes.getOrNull(i + firstRecipeIndex)
+            button.update()
+        }
+    }
+
     private fun updatePage() {
         view.pageButton.apply {
             page = recipesPage
@@ -46,15 +55,72 @@ class FastCraftGuiPresenter(
             update()
         }
 
-        view.recipeButtons.forEachIndexed { i, button ->
-            button.fastCraftRecipe = model.recipes.getOrNull(i + firstRecipeIndex)
-            button.update()
+        updateRecipes()
+    }
+
+    private fun updateCraftAmount() {
+        model.updateCraftAmounts()
+
+        view.multiplierButton.apply {
+            multiplier = model.craftAmount ?: 1
+            update()
         }
+
+        updateRecipes()
     }
 
     private inner class WorkbenchButtonListener : WorkbenchButtonView.Listener {
         override fun onOpenWorkbench() {
             model.openCraftingTable()
+        }
+    }
+
+    private inner class MultiplierButtonListener : MultiplierButtonView.Listener {
+        override fun onIncrement() {
+            val amount = model.craftAmount
+            model.craftAmount = when {
+                amount == null -> 8
+                amount == 64 -> null
+                amount % 8 == 0 -> amount + 8
+                else -> (amount / 8 + 1) * 8
+            }
+            updateCraftAmount()
+        }
+
+        override fun onIncrementByOne() {
+            val amount = model.craftAmount
+            model.craftAmount = when (amount) {
+                null -> 2
+                64 -> null
+                else -> amount + 1
+            }
+            updateCraftAmount()
+        }
+
+        override fun onDecrement() {
+            val amount = model.craftAmount
+            model.craftAmount = when {
+                amount == null -> 64
+                amount <= 8 -> null
+                amount % 8 == 0 -> amount - 8
+                else -> (amount / 8) * 8
+            }
+            updateCraftAmount()
+        }
+
+        override fun onDecrementByOne() {
+            val amount = model.craftAmount
+            model.craftAmount = when (amount) {
+                null -> 64
+                2 -> null
+                else -> amount - 1
+            }
+            updateCraftAmount()
+        }
+
+        override fun onReset() {
+            model.craftAmount = null
+            updateCraftAmount()
         }
     }
 

@@ -30,9 +30,10 @@ class RecipeButtonView(
         val fastCraftRecipe = fastCraftRecipe ?: return
         if (!fastCraftRecipe.canCraft()) return
 
-        fastCraftRecipe.preparedRecipe?.let { preparedRecipe ->
+        fastCraftRecipe.preparedRecipe.let { preparedRecipe ->
             val previewItem = preparedRecipe.resultsPreview.first()
             button.copyItem(previewItem)
+            button.amount = previewItem.amount * fastCraftRecipe.multiplier
 
             val newDescription = mutableListOf(
                 textFactory.createFcText("Ingredients:")
@@ -47,7 +48,7 @@ class RecipeButtonView(
                 .sortedBy { (_, amount) -> amount }
                 .forEach { (item, amount) ->
                     newDescription += textFactory.createFcText(
-                        text = "- ${amount}x ",
+                        text = "- ${amount * fastCraftRecipe.multiplier}x ",
                         extra = listOf(item.name)
                     )
                 }
