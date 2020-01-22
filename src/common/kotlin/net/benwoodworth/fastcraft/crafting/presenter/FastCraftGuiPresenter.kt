@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.crafting.presenter
 import net.benwoodworth.fastcraft.crafting.model.FastCraftGuiModel
 import net.benwoodworth.fastcraft.crafting.model.FastCraftRecipe
 import net.benwoodworth.fastcraft.crafting.view.FastCraftGuiView
-import net.benwoodworth.fastcraft.crafting.view.buttons.MultiplierButtonView
+import net.benwoodworth.fastcraft.crafting.view.buttons.CraftAmountButtonView
 import net.benwoodworth.fastcraft.crafting.view.buttons.PageButtonView
 import net.benwoodworth.fastcraft.crafting.view.buttons.RecipeButtonView
 import net.benwoodworth.fastcraft.crafting.view.buttons.WorkbenchButtonView
@@ -26,7 +26,7 @@ class FastCraftGuiPresenter(
 
     init {
         view.workbenchButton.listener = WorkbenchButtonListener()
-        view.multiplierButton.listener = MultiplierButtonListener()
+        view.craftAmountButton.listener = CraftAmountButtonListener()
         view.pageButton.listener = PageButtonListener()
 
         view.recipeButtons.forEachIndexed { i, button ->
@@ -61,8 +61,8 @@ class FastCraftGuiPresenter(
     private fun updateCraftAmount() {
         model.updateCraftAmounts()
 
-        view.multiplierButton.apply {
-            multiplier = model.craftAmount ?: 1
+        view.craftAmountButton.apply {
+            craftAmount = model.craftAmount ?: 1
             update()
         }
 
@@ -75,7 +75,7 @@ class FastCraftGuiPresenter(
         }
     }
 
-    private inner class MultiplierButtonListener : MultiplierButtonView.Listener {
+    private inner class CraftAmountButtonListener : CraftAmountButtonView.Listener {
         override fun onIncrement() {
             val amount = model.craftAmount
             model.craftAmount = when {

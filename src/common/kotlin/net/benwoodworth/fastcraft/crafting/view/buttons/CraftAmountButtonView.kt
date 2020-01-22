@@ -11,13 +11,13 @@ import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 
 @AutoFactory
-class MultiplierButtonView(
+class CraftAmountButtonView(
     private val button: FcGuiButton,
     @Provided private val itemTypes: FcItemTypes,
     @Provided private val textFactory: FcTextFactory,
     @Provided private val textColors: FcTextColors
 ) {
-    var multiplier: Int = 1
+    var craftAmount: Int? = null
 
     var listener: Listener = Listener.Default
 
@@ -27,12 +27,12 @@ class MultiplierButtonView(
 
             itemType = itemTypes.anvil
 
-            text = textFactory.createFcText("Crafting Multiplier", color = textColors.green)
+            text = textFactory.createFcText("Craft Amount", color = textColors.green)
 
             description = listOf(
                 textFactory.createFcText("Left/right click to increase/decrease", color = textColors.aqua),
                 textFactory.createFcText("Shift click to increment by 1", color = textColors.aqua),
-                textFactory.createFcText("Middle click to reset to 1x", color = textColors.aqua)
+                textFactory.createFcText("Middle click to reset", color = textColors.aqua)
             )
 
             hideItemDetails()
@@ -40,7 +40,7 @@ class MultiplierButtonView(
     }
 
     fun update() {
-        button.amount = multiplier
+        button.amount = craftAmount ?: 1
     }
 
     interface Listener {

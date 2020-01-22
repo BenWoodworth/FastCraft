@@ -13,7 +13,7 @@ class FastCraftGuiView(
     @Provided workbenchButtonFactory: net.benwoodworth.fastcraft.crafting.view.buttons.WorkbenchButtonViewFactory,
     @Provided pageButtonFactory: net.benwoodworth.fastcraft.crafting.view.buttons.PageButtonViewFactory,
     @Provided recipeButtonFactory: net.benwoodworth.fastcraft.crafting.view.buttons.RecipeButtonViewFactory,
-    @Provided multiplierButtonFactory: net.benwoodworth.fastcraft.crafting.view.buttons.MultiplierButtonViewFactory,
+    @Provided craftAmountButtonFactory: net.benwoodworth.fastcraft.crafting.view.buttons.CraftAmountButtonViewFactory,
     @Provided refreshButtonFactory: net.benwoodworth.fastcraft.crafting.view.buttons.RefreshButtonViewFactory,
     @Provided private val textFactory: FcTextFactory
 ) {
@@ -29,7 +29,7 @@ class FastCraftGuiView(
     val workbenchButton = workbenchButtonFactory
         .create(gui.layout.getButton(width - 1, 0))
 
-    val multiplierButton = multiplierButtonFactory
+    val craftAmountButton = craftAmountButtonFactory
         .create(gui.layout.getButton(width - 1, 1))
 
     val refreshButton = refreshButtonFactory
