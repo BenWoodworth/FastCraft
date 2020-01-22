@@ -163,8 +163,10 @@ class FastCraftGuiPresenter(
 
             if (craftSucceeded) {
                 button.fastCraftRecipe = model.recipes[recipeIndex]
-                button.update()
             }
+
+            model.updateInventoryItemAmounts()
+            updateRecipes()
         }
     }
 }
