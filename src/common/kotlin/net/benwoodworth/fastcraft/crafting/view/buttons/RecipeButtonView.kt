@@ -48,7 +48,7 @@ class RecipeButtonView(
                 }
 
                 results.asMap().entries
-                    .sortedBy { (_, amount) -> amount }
+                    .sortedByDescending { (_, amount) -> amount } // TODO List primary result first
                     .forEach { (item, amount) ->
                         newDescription += textFactory.createFcText(
                             text = "- ${amount * fastCraftRecipe.multiplier}x ",
@@ -69,7 +69,7 @@ class RecipeButtonView(
                 }
 
                 ingredients.asMap().entries
-                    .sortedBy { (_, amount) -> amount }
+                    .sortedByDescending { (_, amount) -> amount }
                     .forEach { (item, amount) ->
                         newDescription += textFactory.createFcText(
                             text = "- ${amount * fastCraftRecipe.multiplier}x ",
