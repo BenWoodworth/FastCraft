@@ -16,7 +16,7 @@ class RefreshButtonView(
     @Provided private val textFactory: FcTextFactory,
     @Provided private val textColors: FcTextColors
 ) {
-    var enabled: Boolean = false
+    var enabled: Boolean = true
 
     var listener: Listener = Listener.Default
 
@@ -36,7 +36,7 @@ class RefreshButtonView(
                 text = textFactory.createFcText("Refresh", color = textColors.green)
 
                 description = listOf(
-                    textFactory.createFcText("Refresh the FastCraft interface", color = textColors.aqua)
+                    textFactory.createFcText("Refresh the list of craftable recipes", color = textColors.aqua)
                 )
 
                 hideItemDetails()

@@ -3,10 +3,7 @@ package net.benwoodworth.fastcraft.crafting.presenter
 import net.benwoodworth.fastcraft.crafting.model.FastCraftGuiModel
 import net.benwoodworth.fastcraft.crafting.model.FastCraftRecipe
 import net.benwoodworth.fastcraft.crafting.view.FastCraftGuiView
-import net.benwoodworth.fastcraft.crafting.view.buttons.CraftAmountButtonView
-import net.benwoodworth.fastcraft.crafting.view.buttons.PageButtonView
-import net.benwoodworth.fastcraft.crafting.view.buttons.RecipeButtonView
-import net.benwoodworth.fastcraft.crafting.view.buttons.WorkbenchButtonView
+import net.benwoodworth.fastcraft.crafting.view.buttons.*
 import kotlin.math.ceil
 
 class FastCraftGuiPresenter(
@@ -28,6 +25,7 @@ class FastCraftGuiPresenter(
         view.workbenchButton.listener = WorkbenchButtonListener()
         view.craftAmountButton.listener = CraftAmountButtonListener()
         view.pageButton.listener = PageButtonListener()
+        view.refreshButton.listener = RefreshButtonListener()
 
         view.recipeButtons.forEachIndexed { i, button ->
             button.listener = RecipeButtonListener(i)
@@ -121,6 +119,15 @@ class FastCraftGuiPresenter(
         override fun onReset() {
             model.craftAmount = null
             updateCraftAmount()
+        }
+    }
+
+    private inner class RefreshButtonListener : RefreshButtonView.Listener {
+        override fun onRefresh() {
+            model.refreshRecipes()
+
+            recipesPage = 1
+            updatePage()
         }
     }
 
