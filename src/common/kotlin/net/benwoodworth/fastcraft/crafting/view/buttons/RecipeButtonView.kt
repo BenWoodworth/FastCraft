@@ -7,6 +7,7 @@ import net.benwoodworth.fastcraft.crafting.model.ItemAmounts
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
+import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import javax.inject.Provider
 
@@ -35,23 +36,47 @@ class RecipeButtonView(
             button.copyItem(previewItem)
             button.amount = previewItem.amount * fastCraftRecipe.multiplier
 
-            val newDescription = mutableListOf(
-                textFactory.createFcText("Ingredients:")
-            )
+            val newDescription = mutableListOf<FcText>()
 
-            val ingredients = itemAmountsProvider.get()
-            preparedRecipe.ingredients.values.forEach { ingredient ->
-                ingredients += ingredient
+            // Results
+            if (preparedRecipe.resultsPreview.count() > 1) {
+                newDescription += textFactory.createFcText("Results:")
+
+                val results = itemAmountsProvider.get()
+                preparedRecipe.resultsPreview.forEach { result ->
+                    results += result
+                }
+
+                results.asMap().entries
+                    .sortedBy { (_, amount) -> amount }
+                    .forEach { (item, amount) ->
+                        newDescription += textFactory.createFcText(
+                            text = "- ${amount * fastCraftRecipe.multiplier}x ",
+                            extra = listOf(item.name)
+                        )
+                    }
+
+                newDescription += textFactory.createFcText()
             }
 
-            ingredients.asMap().entries
-                .sortedBy { (_, amount) -> amount }
-                .forEach { (item, amount) ->
-                    newDescription += textFactory.createFcText(
-                        text = "- ${amount * fastCraftRecipe.multiplier}x ",
-                        extra = listOf(item.name)
-                    )
+            // Ingredients
+            run {
+                textFactory.createFcText("Ingredients:")
+
+                val ingredients = itemAmountsProvider.get()
+                preparedRecipe.ingredients.values.forEach { ingredient ->
+                    ingredients += ingredient
                 }
+
+                ingredients.asMap().entries
+                    .sortedBy { (_, amount) -> amount }
+                    .forEach { (item, amount) ->
+                        newDescription += textFactory.createFcText(
+                            text = "- ${amount * fastCraftRecipe.multiplier}x ",
+                            extra = listOf(item.name)
+                        )
+                    }
+            }
 
             if (previewItem.lore.any()) {
                 newDescription += textFactory.createFcText()
