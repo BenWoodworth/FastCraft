@@ -18,5 +18,6 @@
     "fastcraft:gui.toolbar.multiplier.description.1": "${aqua}Shift muisklik om toe te nemen met 1",
     "fastcraft:gui.toolbar.multiplier.description.2": "${aqua}Middrl muisklik om te resetten naar 1x",
     "fastcraft:gui.toolbar.workbench.title": "${green}Werkbank",
-    "fastcraft:gui.toolbar.workbench.description.0": "${aqua}Open een 3x3 werkbank"
+    "fastcraft:gui.toolbar.workbench.description.0": "${aqua}Open een 3x3 werkbank",
+    "fastcraft:gui.toolbar.workbench.description.1": "${aqua}Gebruik $green/fc toggle$aqua om FastCraft uit te schakelen"
 }

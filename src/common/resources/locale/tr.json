@@ -18,5 +18,6 @@
     "fastcraft:gui.toolbar.multiplier.description.1": "${aqua}1 artırmak için shifte basarak tıklayın",
     "fastcraft:gui.toolbar.multiplier.description.2": "${aqua}Sıfırlamak için farenin orta tuşuna tıkla",
     "fastcraft:gui.toolbar.workbench.title": "${green}Klasik Üretim",
-    "fastcraft:gui.toolbar.workbench.description.0": "${aqua}Klasik üretim masasını aç"
+    "fastcraft:gui.toolbar.workbench.description.0": "${aqua}Klasik üretim masasını aç",
+    "fastcraft:gui.toolbar.workbench.description.1": "${aqua}devre dışı FastCraft Kullanım $green/fc toggle"
 }

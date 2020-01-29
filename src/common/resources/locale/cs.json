@@ -18,5 +18,6 @@
   "fastcraft:gui.toolbar.multiplier.description.1": "${aqua}Shift klik zvyuje nasobic o 1",
   "fastcraft:gui.toolbar.multiplier.description.2": "${aqua}Kliknuti kolecka vyresetuje nasobic na 1",
   "fastcraft:gui.toolbar.workbench.title": "${green}Pracovni stul",
-  "fastcraft:gui.toolbar.workbench.description.0": "${aqua}Otevre klasicky 3x3 stul"
+  "fastcraft:gui.toolbar.workbench.description.0": "${aqua}Otevre klasicky 3x3 stul",
+  "fastcraft:gui.toolbar.workbench.description.1": "${aqua}Pomocí $green/fc toggle$aqua deaktivujte FastCraft"
 }
