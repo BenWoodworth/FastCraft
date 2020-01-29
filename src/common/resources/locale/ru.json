@@ -1,53 +1,22 @@
 {
-  "localization": {
-    "language": "Русский язык",
-    "translator": {
-      "name": "RusIK",
-      "from": "spigotmc.org"
-    }
-  },
-  "gui": {
-    "title": "FastCraft",
-    "recipe": {
-      "ingredients": {
-        "label": "<green>Ингредиенты:",
-        "item": "<green> <amount>x <item>"
-      },
-      "results": {
-        "label": "<green>Результаты:",
-        "item": "<green> <amount>x <item>"
-      },
-      "id": "<dark_gray>ID: <id>"
-    },
-    "toolbar": {
-      "page": {
-        "title": "<green>Страница <page>/<total>",
-        "description": [
-          "<aqua>Левая кнопка мыши: следущая страница",
-          "<aqua>Правая кнопка мыши: предыдущая страница",
-          "<aqua>Колесико мыши: первая страница"
-        ]
-      },
-      "refresh": {
-        "title": "<green>Обновить",
-        "description": [
-          "<aqua>Обновить интерфейс FastCraft"
-        ]
-      },
-      "multiplier": {
-        "title": "<green>Создание нескольких вещей (<multiplier>x)",
-        "description": [
-          "<aqua>Правый/левый клик для увеличения/уменьшения",
-          "<aqua>Нажми Shift для увеличения на 1",
-          "<aqua>Нажми на колёсико мыши для сброса до 1"
-        ]
-      },
-      "workbench": {
-        "title": "<green>Стандартный верстак",
-        "description": [
-          "<aqua>Открыть сетку крафта 3x3"
-        ]
-      }
-    }
-  }
+    "fastcraft:localization.translator": "RusIK",
+    "fastcraft:localization.translator.from": "spigotmc.org",
+    "fastcraft:gui.title": "FastCraft",
+    "fastcraft:gui.recipe.ingredients": "$greenИнгредиенты:",
+    "fastcraft:gui.recipe.ingredients.item": "$green ${amount}x $item",
+    "fastcraft:gui.recipe.results": "$greenРезультаты:",
+    "fastcraft:gui.recipe.results.item": "$green ${amount}x $item",
+    "fastcraft:gui.recipe.id": "${dark_gray}ID: $id",
+    "fastcraft:gui.toolbar.page.title": "$greenСтраница $page/$total",
+    "fastcraft:gui.toolbar.page.description.0": "$aquaЛевая кнопка мыши: следущая страница",
+    "fastcraft:gui.toolbar.page.description.1": "$aquaПравая кнопка мыши: предыдущая страница",
+    "fastcraft:gui.toolbar.page.description.2": "$aquaКолесико мыши: первая страница",
+    "fastcraft:gui.toolbar.refresh.title": "$greenОбновить",
+    "fastcraft:gui.toolbar.refresh.description.0": "$aquaОбновить интерфейс FastCraft",
+    "fastcraft:gui.toolbar.multiplier.title": "$greenСоздание нескольких вещей (${multiplier}x)",
+    "fastcraft:gui.toolbar.multiplier.description.0": "$aquaПравый/левый клик для увеличения/уменьшения",
+    "fastcraft:gui.toolbar.multiplier.description.1": "$aquaНажми Shift для увеличения на 1",
+    "fastcraft:gui.toolbar.multiplier.description.2": "$aquaНажми на колёсико мыши для сброса до 1",
+    "fastcraft:gui.toolbar.workbench.title": "$greenСтандартный верстак",
+    "fastcraft:gui.toolbar.workbench.description.0": "$aquaОткрыть сетку крафта 3x3"
 }

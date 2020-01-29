@@ -1,54 +1,23 @@
 {
-  "localization": {
-    "language": "Tiếng Việt",
-    "translator": {
-      "name": "AnhCraft",
-      "from": "spigotmc.org"
-    }
-  },
-  "gui": {
-    "title": "FastCraft",
-    "recipe": {
-      "ingredients": {
-        "label": "<green>Các thành phần:",
-        "item": "<green> <amount>x <item>"
-      },
-      "results": {
-        "label": "<green>Các kết quả:",
-        "item": "<green> <amount>x <item>"
-      },
-      "id": "<dark_gray>ID: <id>"
-    },
-    "toolbar": {
-      "page": {
-        "title": "<green>Trang <page>/<total>",
-        "description": [
-          "<aqua>Nhấp chuột trái: trang tiếp theo",
-          "<aqua>Nhấp chuột phải: trang trước",
-          "<aqua>Nhấp chuột giữa: trang đầu tiên"
-        ]
-      },
-      "refresh": {
-        "title": "<green>Làm mới",
-        "description": [
-          "<aqua>Làm mới giao diện FastCraft"
-        ]
-      },
-      "multiplier": {
-        "title": "<green>Chế tạo nhiều (<multiplier>x)",
-        "description": [
-          "<aqua>Chuột trái/phải để tăng/giảm",
-          "<aqua>Giữ Shift để tăng 1",
-          "<aqua>Chuột giữa để trở về 1x"
-        ]
-      },
-      "workbench": {
-        "title": "<green>Bàn chế tạo",
-        "description": [
-          "<aqua>Mở bàn chế tạo 3x3",
-          "<aqua>Dùng <green>/fc toggle<aqua> để tắt FastCraft"
-        ]
-      }
-    }
-  }
+    "fastcraft:localization.translator": "AnhCraft",
+    "fastcraft:localization.translator.from": "spigotmc.org",
+    "fastcraft:gui.title": "FastCraft",
+    "fastcraft:gui.recipe.ingredients": "${green}Các thành phần:",
+    "fastcraft:gui.recipe.ingredients.item": "$green ${amount}x $item",
+    "fastcraft:gui.recipe.results": "${green}Các kết quả:",
+    "fastcraft:gui.recipe.results.item": "$green ${amount}x $item",
+    "fastcraft:gui.recipe.id": "${dark_gray}ID: $id",
+    "fastcraft:gui.toolbar.page.title": "${green}Trang $page/$total",
+    "fastcraft:gui.toolbar.page.description.0": "${aqua}Nhấp chuột trái: trang tiếp theo",
+    "fastcraft:gui.toolbar.page.description.1": "${aqua}Nhấp chuột phải: trang trước",
+    "fastcraft:gui.toolbar.page.description.2": "${aqua}Nhấp chuột giữa: trang đầu tiên",
+    "fastcraft:gui.toolbar.refresh.title": "${green}Làm mới",
+    "fastcraft:gui.toolbar.refresh.description.0": "${aqua}Làm mới giao diện FastCraft",
+    "fastcraft:gui.toolbar.multiplier.title": "${green}Chế tạo nhiều (${multiplier}x)",
+    "fastcraft:gui.toolbar.multiplier.description.0": "${aqua}Chuột trái/phải để tăng/giảm",
+    "fastcraft:gui.toolbar.multiplier.description.1": "${aqua}Giữ Shift để tăng 1",
+    "fastcraft:gui.toolbar.multiplier.description.2": "${aqua}Chuột giữa để trở về 1x",
+    "fastcraft:gui.toolbar.workbench.title": "${green}Bàn chế tạo",
+    "fastcraft:gui.toolbar.workbench.description.0": "${aqua}Mở bàn chế tạo 3x3",
+    "fastcraft:gui.toolbar.workbench.description.1": "${aqua}Dùng $green/fc toggle$aqua để tắt FastCraft"
 }

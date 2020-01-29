@@ -1,51 +1,22 @@
 {
-  "localization": {
-    "language": "Español",
-    "translator": {
-      "name": "C4BR3R4",
-      "from": "c4br3r4.es/index.php?topic=534"
-    }
-  },
-  "gui": {
-    "title": "FastCraft",
-    "ingredients": {
-      "label": "<green>Ingredientes:",
-      "item": "<green> <amount>x <item>"
-    },
-    "results": {
-      "label": "<green>Resultados:",
-      "item": "<green> <amount>x <item>"
-    },
-    "toolbar": {
-      "page": {
-        "title": "<green>Página <page>/<total>",
-        "description": [
-          "<aqua>Clic izquierdo: siguiente página",
-          "<aqua>Clic derecho: pagina anterior",
-          "<aqua>Clic central: primera página"
-        ]
-      },
-      "refresh": {
-        "title": "<green>Actualizar",
-        "description": [
-          "<aqua>Actualizar la interfaz de FastCraft"
-        ]
-      },
-      "multiplier": {
-        "title": "<green>Multiplicador (<multiplier>x)",
-        "description": [
-          "<aqua>Clic Izquierdo Aumentar / Clic Derecho Disminuir",
-          "<aqua>Shift + Clic incrementar de 1 en 1",
-          "<aqua>Clic Central restablecer valor en 1x"
-        ]
-      },
-      "workbench": {
-        "title": "<green>Banco de trabajo",
-        "description": [
-          "<aqua>Abre un banco de trabajo de 3x3",
-          "<aqua>Usa <green>/fc toggle<aqua> para desactivar FastCraft"
-        ]
-      }
-    }
-  }
+    "fastcraft:localization.translator": "C4BR3R4",
+    "fastcraft:localization.translator.from": "c4br3r4.es/index.php?topic=534",
+    "fastcraft:gui.title": "FastCraft",
+    "fastcraft:gui.ingredients.label": "${green}Ingredientes:",
+    "fastcraft:gui.ingredients.item": "$green ${amount}x $item",
+    "fastcraft:gui.results.label": "${green}Resultados:",
+    "fastcraft:gui.results.item": "$green ${amount}x $item",
+    "fastcraft:gui.toolbar.page.title": "${green}Página $page/$total",
+    "fastcraft:gui.toolbar.page.description.0": "${aqua}Clic izquierdo: siguiente página",
+    "fastcraft:gui.toolbar.page.description.1": "${aqua}Clic derecho: pagina anterior",
+    "fastcraft:gui.toolbar.page.description.2": "${aqua}Clic central: primera página",
+    "fastcraft:gui.toolbar.refresh.title": "${green}Actualizar",
+    "fastcraft:gui.toolbar.refresh.description.0": "${aqua}Actualizar la interfaz de FastCraft",
+    "fastcraft:gui.toolbar.multiplier.title": "${green}Multiplicador (${multiplier}x)",
+    "fastcraft:gui.toolbar.multiplier.description.0": "${aqua}Clic Izquierdo Aumentar / Clic Derecho Disminuir",
+    "fastcraft:gui.toolbar.multiplier.description.1": "${aqua}Shift + Clic incrementar de 1 en 1",
+    "fastcraft:gui.toolbar.multiplier.description.2": "${aqua}Clic Central restablecer valor en 1x",
+    "fastcraft:gui.toolbar.workbench.title": "${green}Banco de trabajo",
+    "fastcraft:gui.toolbar.workbench.description.0": "${aqua}Abre un banco de trabajo de 3x3",
+    "fastcraft:gui.toolbar.workbench.description.1": "${aqua}Usa $green/fc toggle$aqua para desactivar FastCraft"
 }

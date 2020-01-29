@@ -1,54 +1,23 @@
 {
-  "localization": {
-    "language": "English (US)",
-    "translator": {
-      "name": "Ben Woodworth",
-      "from": "benwoodworth.net"
-    }
-  },
-  "gui": {
-    "title": "FastCraft",
-    "recipe": {
-      "ingredients": {
-        "label": "<green>Ingredients:",
-        "item": "<green> <amount>x <item>"
-      },
-      "results": {
-        "label": "<green>Results:",
-        "item": "<green> <amount>x <item>"
-      },
-      "id": "<dark_gray>ID: <id>"
-    },
-    "toolbar": {
-      "page": {
-        "title": "<green>Page <page>/<total>",
-        "description": [
-          "<aqua>Left click: next page",
-          "<aqua>Right click: previous page",
-          "<aqua>Middle click: first page"
-        ]
-      },
-      "refresh": {
-        "title": "<green>Refresh",
-        "description": [
-          "<aqua>Refresh the FastCraft interface"
-        ]
-      },
-      "multiplier": {
-        "title": "<green>Crafting Multiplier (<multiplier>x)",
-        "description": [
-          "<aqua>Left/right click to increase/decrease",
-          "<aqua>Shift click to increment by 1",
-          "<aqua>Middle click to reset to 1x"
-        ]
-      },
-      "workbench": {
-        "title": "<green>Crafting Grid",
-        "description": [
-          "<aqua>Open a 3x3 crafting grid",
-          "<aqua>Use <green>/fc toggle<aqua> to disable FastCraft"
-        ]
-      }
-    }
-  }
+    "fastcraft:localization.translator": "Ben Woodworth",
+    "fastcraft:localization.translator.from": "benwoodworth.net",
+    "fastcraft:gui.title": "FastCraft",
+    "fastcraft:gui.recipe.ingredients": "${green}Ingredients:",
+    "fastcraft:gui.recipe.ingredients.item": "$green ${amount}x $item",
+    "fastcraft:gui.recipe.results": "${green}Results:",
+    "fastcraft:gui.recipe.results.item": "$green ${amount}x $item",
+    "fastcraft:gui.recipe.id": "${dark_gray}ID: $id",
+    "fastcraft:gui.toolbar.page.title": "${green}Page $page/$total",
+    "fastcraft:gui.toolbar.page.description.0": "${aqua}Left click: next page",
+    "fastcraft:gui.toolbar.page.description.1": "${aqua}Right click: previous page",
+    "fastcraft:gui.toolbar.page.description.2": "${aqua}Middle click: first page",
+    "fastcraft:gui.toolbar.refresh.title": "${green}Refresh",
+    "fastcraft:gui.toolbar.refresh.description.0": "${aqua}Refresh the FastCraft interface",
+    "fastcraft:gui.toolbar.multiplier.title": "${green}Crafting Multiplier (${multiplier}x)",
+    "fastcraft:gui.toolbar.multiplier.description.0": "${aqua}Left/right click to increase/decrease",
+    "fastcraft:gui.toolbar.multiplier.description.1": "${aqua}Shift click to increment by 1",
+    "fastcraft:gui.toolbar.multiplier.description.2": "${aqua}Middle click to reset to 1x",
+    "fastcraft:gui.toolbar.workbench.title": "${green}Crafting Grid",
+    "fastcraft:gui.toolbar.workbench.description.0": "${aqua}Open a 3x3 crafting grid",
+    "fastcraft:gui.toolbar.workbench.description.1": "${aqua}Use $green/fc toggle$aqua to disable FastCraft"
 }
