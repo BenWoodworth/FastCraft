@@ -17,6 +17,10 @@ class FastCraft @Inject internal constructor(
     }
 
     private fun onPlayerOpenWorkbench(event: FcPlayerOpenWorkbenchEvent) {
+        if (!event.player.hasPermission(Permissions.FASTCRAFT_USE)) {
+            return
+        }
+
         event.cancel()
 
         fastCraftGuiFactory
