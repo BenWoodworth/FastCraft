@@ -3,13 +3,11 @@ package net.benwoodworth.fastcraft.bukkit.player
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.bukkit.item.toItemStack
-import net.benwoodworth.fastcraft.bukkit.text.BukkitFcLocale_1_15_00_R01
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcText
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextConverter
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcPlayerInventory
-import net.benwoodworth.fastcraft.platform.text.FcLocale
 import net.benwoodworth.fastcraft.platform.text.FcText
 import org.bukkit.Server
 import org.bukkit.entity.Player
@@ -35,8 +33,8 @@ class BukkitFcPlayer_1_15_00_R01(
     override val uuid: UUID
         get() = player.uniqueId
 
-    override val locale: FcLocale
-        get() = BukkitFcLocale_1_15_00_R01(player.locale)
+    override val locale: Locale
+        get() = Locale.forLanguageTag(player.locale)
 
     override val isOnline: Boolean
         get() = player.isOnline

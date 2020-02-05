@@ -10,7 +10,6 @@ import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
-import net.benwoodworth.fastcraft.platform.text.FcLocale
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.Material
@@ -18,6 +17,7 @@ import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.Damageable
+import java.util.*
 import kotlin.math.roundToInt
 import kotlin.properties.Delegates.observable
 
@@ -25,7 +25,7 @@ import kotlin.properties.Delegates.observable
 class BukkitFcGuiButton_1_15_00_R01(
     private val inventory: Inventory,
     private val slotIndex: Int,
-    locale: FcLocale,
+    locale: Locale,
     @Provided private val itemTypes: FcItemTypes,
     @Provided private val textFactory: FcTextFactory,
     @Provided private val textConverter: BukkitFcTextConverter
@@ -66,7 +66,7 @@ class BukkitFcGuiButton_1_15_00_R01(
         updateSlot()
     }
 
-    override var locale: FcLocale by observable(locale) { _, _, _ ->
+    override var locale: Locale by observable(locale) { _, _, _ ->
         updateDisplayName()
         updateLore()
         updateSlot()

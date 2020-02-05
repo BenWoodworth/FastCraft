@@ -1,9 +1,9 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
-import net.benwoodworth.fastcraft.platform.text.FcLocale
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.util.JsonStringBuilder
 import org.bukkit.ChatColor
+import java.util.*
 import javax.inject.Inject
 
 class BukkitFcTextConverter_1_15_00_R01 @Inject constructor(
@@ -71,7 +71,7 @@ class BukkitFcTextConverter_1_15_00_R01 @Inject constructor(
         return this
     }
 
-    override fun toLegacy(text: FcText, locale: FcLocale): String {
+    override fun toLegacy(text: FcText, locale: Locale): String {
         text as BukkitFcText
         return when (text) {
             is BukkitFcText.Legacy ->
@@ -93,7 +93,7 @@ class BukkitFcTextConverter_1_15_00_R01 @Inject constructor(
     )
 
     private inner class LegacyTextBuilder(
-        private val locale: FcLocale
+        private val locale: Locale
     ) {
         private val stringBuilder = StringBuilder().append(ChatColor.RESET)
 

@@ -1,14 +1,14 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
-import net.benwoodworth.fastcraft.platform.text.FcLocale
 import org.bukkit.inventory.Inventory
+import java.util.*
 
 abstract class BukkitFcGuiLayout_1_15_00_R01(
     override val inventory: Inventory,
     private val guiButtonFactory: BukkitFcGuiButton_1_15_00_R01Factory
 ) : BukkitFcGuiLayout {
-    protected abstract val locale: FcLocale
+    protected abstract val locale: Locale
 
     private val buttons: MutableMap<Int, FcGuiButton> = mutableMapOf()
 

@@ -1,11 +1,11 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
-import net.benwoodworth.fastcraft.platform.text.FcLocale
+import java.util.*
 
 interface BukkitFcGuiButton : FcGuiButton {
-    var locale: FcLocale
+    var locale: Locale
 }
 
-val FcGuiButton.locale: FcLocale
+val FcGuiButton.locale: Locale
     get() = (this as BukkitFcGuiButton).locale

@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
-import net.benwoodworth.fastcraft.platform.text.FcLocale
 import org.bukkit.Bukkit
+import java.util.*
 import javax.inject.Inject
 
 class BukkitLocalizer_1_15_00_R01 @Inject constructor(
@@ -24,7 +24,7 @@ class BukkitLocalizer_1_15_00_R01 @Inject constructor(
             ?: emptyMap()
     }
 
-    override fun localize(key: String, locale: FcLocale): String? {
+    override fun localize(key: String, locale: Locale): String? {
         return defaultLocale[key] // TODO Use locale
     }
 }
