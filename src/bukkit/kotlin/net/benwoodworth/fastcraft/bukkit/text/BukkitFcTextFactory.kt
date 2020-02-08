@@ -15,10 +15,6 @@ interface BukkitFcTextFactory : FcTextFactory {
         obfuscate: Boolean? = null,
         extra: List<FcText> = emptyList()
     ): FcText
-
-    fun createFcTextLegacy(
-        legacyText: String
-    ): FcText
 }
 
 fun FcTextFactory.createFcTextTranslate(
@@ -34,8 +30,4 @@ fun FcTextFactory.createFcTextTranslate(
     return (this as BukkitFcTextFactory).createFcTextTranslate(
         translate, color, bold, italic, underline, strikethrough, obfuscate, extra
     )
-}
-
-fun FcTextFactory.createFcTextLegacy(legacyText: String): FcText {
-    return (this as BukkitFcTextFactory).createFcTextLegacy(legacyText)
 }
