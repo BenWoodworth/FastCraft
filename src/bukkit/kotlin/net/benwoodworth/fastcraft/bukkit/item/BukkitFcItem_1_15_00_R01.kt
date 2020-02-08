@@ -23,6 +23,7 @@ class BukkitFcItem_1_15_00_R01(
         itemTypes.fromMaterial(itemStack.type)
     }
 
+    @Suppress("DEPRECATION")
     override val amount: Int
         get() = itemStack.amount
 

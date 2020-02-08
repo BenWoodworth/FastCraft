@@ -43,10 +43,8 @@ class BukkitFcGui_1_15_00_R01<TLayout : FcGuiLayout>(
     }
 
     override fun close() {
-        player.player.openInventory?.let {
-            if (it.topInventory.holder === this) {
-                player.player.closeInventory()
-            }
+        if (player.player.openInventory.topInventory.holder === this) {
+            player.player.closeInventory()
         }
     }
 
