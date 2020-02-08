@@ -9,8 +9,6 @@ buildscript {
     version = PluginVersion.version
 
     repositories {
-        maven { url "https://dl.bintray.com/kotlin/kotlin-eap" }
-        maven { url "https://plugins.gradle.org/m2/" }
         jcenter()
     }
 
@@ -22,7 +20,6 @@ buildscript {
 
 repositories {
     jcenter()
-    mavenCentral()
     maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots" }
 }
 
