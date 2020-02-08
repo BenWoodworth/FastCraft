@@ -22,6 +22,7 @@ buildscript {
 
 repositories {
     jcenter()
+    mavenCentral()
     maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots" }
 }
 
@@ -55,6 +56,7 @@ dependencies {
     allImplementation "com.google.dagger:dagger:$version_dagger"
     allImplementation "javax.inject:javax.inject:$version_javax_inject"
     allImplementation "com.google.auto.factory:auto-factory:$version_auto_factory"
+    allImplementation "net.benwoodworth.localeconfig:localeconfig-api:0.1.0"
 
     kaptAll "com.google.dagger:dagger-compiler:$version_dagger"
     kaptAll "com.google.auto.factory:auto-factory:$version_auto_factory"
@@ -87,12 +89,14 @@ shadowJar {
         include dependency("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
         include dependency("com.google.dagger:dagger")
         include dependency("javax.inject:javax.inject")
+        include dependency("net.benwoodworth.localeconfig:localeconfig-api")
     }
 
     def libPackage = "net.benwoodworth.fastcraft.lib"
     relocate("kotlin", "${libPackage}.kotlin")
     relocate("dagger", "${libPackage}.dagger")
     relocate("javax", "${libPackage}.javax")
+    relocate("net.benwoodworth.localeconfig", "${libPackage}.localeconfig")
 
     minimize {
         exclude(project(":"))
