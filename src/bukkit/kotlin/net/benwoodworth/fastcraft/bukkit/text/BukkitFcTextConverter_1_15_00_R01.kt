@@ -254,4 +254,40 @@ class BukkitFcTextConverter_1_15_00_R01 @Inject constructor(
             }
         }
     }
+
+    override fun toPlaintext(text: FcText, locale: Locale): String {
+        return buildString {
+            fun appendLegacy(text: String) {
+                var i = 0;
+                while (i < text.length) {
+                    when (val ch = text[i]) {
+                        '§' -> i += 2
+                        else -> {
+                            append(ch)
+                            i++
+                        }
+                    }
+                }
+            }
+
+            fun appendText(text: FcText) {
+                text as BukkitFcText
+                when (text) {
+                    is BukkitFcText.Legacy -> appendLegacy(text.legacyText)
+                    is BukkitFcText.Component -> {
+                        when (text) {
+                            is BukkitFcText.Component.Text -> appendLegacy(text.text)
+                            is BukkitFcText.Component.Translate -> appendLegacy(
+                                localizer.localize(text.translate, locale) ?: text.translate
+                            )
+                        }
+
+                        text.extra.forEach { appendText(it) }
+                    }
+                }
+            }
+
+            appendText(text)
+        }
+    }
 }

@@ -27,7 +27,6 @@ class FastCraftGuiModel(
         val recipeComparator = compareBy<FcCraftingRecipePrepared>(
             { it.recipe.group },
             { it.resultsPreview.first().type.id },
-            { it.resultsPreview.first().type.name.toPlaintext().toLowerCase() },
             { it.resultsPreview.first().amount }
         )
     }

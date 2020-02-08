@@ -23,6 +23,7 @@ import net.benwoodworth.fastcraft.platform.server.FcLogger
 import net.benwoodworth.fastcraft.platform.server.FcPluginData
 import net.benwoodworth.fastcraft.platform.server.FcTaskFactory
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
+import net.benwoodworth.fastcraft.platform.text.FcTextConverter
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.Server
 import org.bukkit.inventory.ItemFactory
@@ -141,7 +142,7 @@ class BukkitDaggerModule_1_15_00_R01(
 
     @Provides
     @Singleton
-    fun provideBukkitFcTextConverter(instance: BukkitFcTextConverter_1_15_00_R01): BukkitFcTextConverter {
+    fun provideFcTextConverter(instance: BukkitFcTextConverter_1_15_00_R01): FcTextConverter {
         return instance
     }
 

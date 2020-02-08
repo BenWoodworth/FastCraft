@@ -1,16 +1,16 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
-import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextConverter
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiLayoutGrid
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.text.FcTextConverter
 import org.bukkit.Server
 import javax.inject.Inject
 
 class BukkitFcGuiFactory_1_15_00_R01 @Inject constructor(
     private val server: Server,
-    private val textConverter: BukkitFcTextConverter,
+    private val textConverter: FcTextConverter,
     private val guiFactory: BukkitFcGui_1_15_00_R01Factory,
     private val guiLayoutGridFactory: BukkitFcGuiLayoutGrid_1_15_00_R01Factory
 ) : BukkitFcGuiFactory {

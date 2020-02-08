@@ -36,12 +36,12 @@ class RefreshButtonView(
             if (enabled) {
                 itemType = itemTypes.netherStar
 
-                text = textFactory.createFcText(
+                text = textFactory.createLegacy(
                     Strings.guiToolbarRefreshTitle(locale)
                 )
 
                 description = listOf(
-                    textFactory.createFcText(
+                    textFactory.createLegacy(
                         Strings.guiToolbarRefreshDescription0(locale)
                     )
                 )

@@ -4,13 +4,13 @@ import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.bukkit.item.material
 import net.benwoodworth.fastcraft.bukkit.item.toItemStack
-import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextConverter
 import net.benwoodworth.fastcraft.bukkit.util.updateMeta
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.text.FcTextConverter
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.Material
 import org.bukkit.inventory.Inventory
@@ -28,7 +28,7 @@ class BukkitFcGuiButton_1_15_00_R01(
     locale: Locale,
     @Provided private val itemTypes: FcItemTypes,
     @Provided private val textFactory: FcTextFactory,
-    @Provided private val textConverter: BukkitFcTextConverter
+    @Provided private val textConverter: FcTextConverter
 ) : BukkitFcGuiButton {
     private var hideItemDetails: Boolean = false
 

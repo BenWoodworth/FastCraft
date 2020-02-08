@@ -27,15 +27,15 @@ class WorkbenchButtonView(
 
             itemType = itemTypes.craftingTable
 
-            text = textFactory.createFcText(
+            text = textFactory.createLegacy(
                 Strings.guiToolbarWorkbenchTitle(locale)
             )
 
             description = listOf(
-                textFactory.createFcText(
+                textFactory.createLegacy(
                     Strings.guiToolbarWorkbenchDescription0(locale)
                 ),
-                textFactory.createFcText(
+                textFactory.createLegacy(
                     Strings.guiToolbarWorkbenchDescription1(locale)
                 )
             )

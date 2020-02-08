@@ -20,7 +20,7 @@ class FastCraftGuiView(
 ) {
     val gui = guiFactory.createChestGui(
         player = player,
-        title = textFactory.createFcText(Strings.guiTitle(player.locale)),
+        title = textFactory.createLegacy(Strings.guiTitle(player.locale)),
         height = 6
     )
 

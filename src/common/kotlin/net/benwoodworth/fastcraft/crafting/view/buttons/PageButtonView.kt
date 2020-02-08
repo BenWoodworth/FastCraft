@@ -32,13 +32,13 @@ class PageButtonView(
             itemType = itemTypes.ironSword
 
             description = listOf(
-                textFactory.createFcText(
+                textFactory.createLegacy(
                     Strings.guiToolbarPageDescription0(locale)
                 ),
-                textFactory.createFcText(
+                textFactory.createLegacy(
                     Strings.guiToolbarPageDescription1(locale)
                 ),
-                textFactory.createFcText(
+                textFactory.createLegacy(
                     Strings.guiToolbarPageDescription2(locale)
                 )
             )
@@ -51,7 +51,7 @@ class PageButtonView(
 
     fun update() {
         button.apply {
-            text = textFactory.createFcText(
+            text = textFactory.createLegacy(
                 Strings.guiToolbarPageTitle(locale, page, pageCount)
             )
 

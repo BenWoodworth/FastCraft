@@ -1,10 +1,12 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
 import net.benwoodworth.fastcraft.platform.text.FcText
-import java.util.*
+import net.benwoodworth.fastcraft.platform.text.FcTextConverter
 
-interface BukkitFcTextConverter {
+interface BukkitFcTextConverter : FcTextConverter {
     fun toRaw(text: FcText): String
+}
 
-    fun toLegacy(text: FcText, locale: Locale): String
+fun FcTextConverter.toRaw(text: FcText): String {
+    return (this as BukkitFcTextConverter).toRaw(text)
 }

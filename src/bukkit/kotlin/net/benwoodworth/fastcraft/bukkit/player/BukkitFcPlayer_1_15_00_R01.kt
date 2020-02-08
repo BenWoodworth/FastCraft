@@ -4,11 +4,12 @@ import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.bukkit.item.toItemStack
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcText
-import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextConverter
+import net.benwoodworth.fastcraft.bukkit.text.toRaw
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcPlayerInventory
 import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.text.FcTextConverter
 import org.bukkit.Server
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
@@ -17,7 +18,7 @@ import java.util.*
 @AutoFactory
 class BukkitFcPlayer_1_15_00_R01(
     override val player: Player,
-    @Provided private val textConverter: BukkitFcTextConverter,
+    @Provided private val textConverter: FcTextConverter,
     @Provided private val server: Server,
     @Provided private val playerInventoryFactory: BukkitFcPlayerInventory_1_15_00_R01Factory
 ) : BukkitFcPlayer {
