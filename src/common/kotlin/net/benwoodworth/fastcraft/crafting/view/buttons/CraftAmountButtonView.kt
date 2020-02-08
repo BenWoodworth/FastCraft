@@ -31,18 +31,18 @@ class CraftAmountButtonView(
             itemType = itemTypes.anvil
 
             text = textFactory.createFcText(
-                Strings.guiToolbarMultiplierTitle(locale, -1 /* TODO */)
+                Strings.guiToolbarAmountTitle(locale, -1 /* TODO */)
             )
 
             description = listOf(
                 textFactory.createFcText(
-                    Strings.guiToolbarMultiplierDescription0(locale)
+                    Strings.guiToolbarAmountDescription0(locale)
                 ),
                 textFactory.createFcText(
-                    Strings.guiToolbarMultiplierDescription1(locale)
+                    Strings.guiToolbarAmountDescription1(locale)
                 ),
                 textFactory.createFcText(
-                    Strings.guiToolbarMultiplierDescription2(locale)
+                    Strings.guiToolbarAmountDescription2(locale)
                 )
             )
 

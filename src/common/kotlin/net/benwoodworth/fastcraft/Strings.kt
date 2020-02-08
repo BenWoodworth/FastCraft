@@ -19,10 +19,10 @@ object Strings {
     private const val GUI_TOOLBAR_PAGE_DESCRIPTION_2 = "gui.toolbar.page.description.2"
     private const val GUI_TOOLBAR_REFRESH_TITLE = "gui.toolbar.refresh.title"
     private const val GUI_TOOLBAR_REFRESH_DESCRIPTION_0 = "gui.toolbar.refresh.description.0"
-    private const val GUI_TOOLBAR_MULTIPLIER_TITLE = "gui.toolbar.multiplier.title"
-    private const val GUI_TOOLBAR_MULTIPLIER_DESCRIPTION_0 = "gui.toolbar.multiplier.description.0"
-    private const val GUI_TOOLBAR_MULTIPLIER_DESCRIPTION_1 = "gui.toolbar.multiplier.description.1"
-    private const val GUI_TOOLBAR_MULTIPLIER_DESCRIPTION_2 = "gui.toolbar.multiplier.description.2"
+    private const val GUI_TOOLBAR_AMOUNT_TITLE = "gui.toolbar.amount.title"
+    private const val GUI_TOOLBAR_AMOUNT_DESCRIPTION_0 = "gui.toolbar.amount.description.0"
+    private const val GUI_TOOLBAR_AMOUNT_DESCRIPTION_1 = "gui.toolbar.amount.description.1"
+    private const val GUI_TOOLBAR_AMOUNT_DESCRIPTION_2 = "gui.toolbar.amount.description.2"
     private const val GUI_TOOLBAR_WORKBENCH_TITLE = "gui.toolbar.workbench.title"
     private const val GUI_TOOLBAR_WORKBENCH_DESCRIPTION_0 = "gui.toolbar.workbench.description.0"
     private const val GUI_TOOLBAR_WORKBENCH_DESCRIPTION_1 = "gui.toolbar.workbench.description.1"
@@ -127,30 +127,30 @@ object Strings {
             ?: GUI_TOOLBAR_REFRESH_DESCRIPTION_0
     }
 
-    fun guiToolbarMultiplierTitle(locale: Locale, multiplier: Int): String {
-        return LocaleApi.getText(locale, GUI_TOOLBAR_MULTIPLIER_TITLE)
+    fun guiToolbarAmountTitle(locale: Locale, amount: Int): String {
+        return LocaleApi.getText(locale, GUI_TOOLBAR_AMOUNT_TITLE)
             ?.substitute(
-                "multiplier", multiplier
+                "amount", amount
             )
-            ?: "$GUI_TOOLBAR_MULTIPLIER_TITLE(multiplier=$multiplier)"
+            ?: "$GUI_TOOLBAR_AMOUNT_TITLE(amount=$amount)"
     }
 
-    fun guiToolbarMultiplierDescription0(locale: Locale): String {
-        return LocaleApi.getText(locale, GUI_TOOLBAR_MULTIPLIER_DESCRIPTION_0)
+    fun guiToolbarAmountDescription0(locale: Locale): String {
+        return LocaleApi.getText(locale, GUI_TOOLBAR_AMOUNT_DESCRIPTION_0)
             ?.substitute()
-            ?: GUI_TOOLBAR_MULTIPLIER_DESCRIPTION_0
+            ?: GUI_TOOLBAR_AMOUNT_DESCRIPTION_0
     }
 
-    fun guiToolbarMultiplierDescription1(locale: Locale): String {
-        return LocaleApi.getText(locale, GUI_TOOLBAR_MULTIPLIER_DESCRIPTION_1)
+    fun guiToolbarAmountDescription1(locale: Locale): String {
+        return LocaleApi.getText(locale, GUI_TOOLBAR_AMOUNT_DESCRIPTION_1)
             ?.substitute()
-            ?: GUI_TOOLBAR_MULTIPLIER_DESCRIPTION_1
+            ?: GUI_TOOLBAR_AMOUNT_DESCRIPTION_1
     }
 
-    fun guiToolbarMultiplierDescription2(locale: Locale): String {
-        return LocaleApi.getText(locale, GUI_TOOLBAR_MULTIPLIER_DESCRIPTION_2)
+    fun guiToolbarAmountDescription2(locale: Locale): String {
+        return LocaleApi.getText(locale, GUI_TOOLBAR_AMOUNT_DESCRIPTION_2)
             ?.substitute()
-            ?: GUI_TOOLBAR_MULTIPLIER_DESCRIPTION_2
+            ?: GUI_TOOLBAR_AMOUNT_DESCRIPTION_2
     }
 
     fun guiToolbarWorkbenchTitle(locale: Locale): String {
