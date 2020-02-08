@@ -25,18 +25,22 @@ class WorkbenchButtonView(
         button.apply {
             listener = ButtonListener()
 
-            itemType = itemTypes.craftingTable
+            setItemType(itemTypes.craftingTable)
 
-            text = textFactory.createLegacy(
-                Strings.guiToolbarWorkbenchTitle(locale)
+            setText(
+                textFactory.createLegacy(
+                    Strings.guiToolbarWorkbenchTitle(locale)
+                )
             )
 
-            description = listOf(
-                textFactory.createLegacy(
-                    Strings.guiToolbarWorkbenchDescription0(locale)
-                ),
-                textFactory.createLegacy(
-                    Strings.guiToolbarWorkbenchDescription1(locale)
+            setDescription(
+                listOf(
+                    textFactory.createLegacy(
+                        Strings.guiToolbarWorkbenchDescription0(locale)
+                    ),
+                    textFactory.createLegacy(
+                        Strings.guiToolbarWorkbenchDescription1(locale)
+                    )
                 )
             )
 

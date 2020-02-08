@@ -39,7 +39,7 @@ class RecipeButtonView(
         fastCraftRecipe.preparedRecipe.let { preparedRecipe ->
             val previewItem = preparedRecipe.resultsPreview.first()
             button.copyItem(previewItem)
-            button.amount = previewItem.amount * fastCraftRecipe.multiplier
+            button.setAmount(previewItem.amount * fastCraftRecipe.multiplier)
 
             val newDescription = mutableListOf<FcText>()
 
@@ -98,7 +98,7 @@ class RecipeButtonView(
                 newDescription += previewItem.lore
             }
 
-            button.description = newDescription
+            button.setDescription(newDescription)
         }
     }
 

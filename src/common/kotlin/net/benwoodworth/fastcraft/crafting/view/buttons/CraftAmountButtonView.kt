@@ -28,21 +28,25 @@ class CraftAmountButtonView(
         button.apply {
             listener = ButtonClickListener()
 
-            itemType = itemTypes.anvil
+            setItemType(itemTypes.anvil)
 
-            text = textFactory.createLegacy(
-                Strings.guiToolbarAmountTitle(locale)
+            setText(
+                textFactory.createLegacy(
+                    Strings.guiToolbarAmountTitle(locale)
+                )
             )
 
-            description = listOf(
-                textFactory.createLegacy(
-                    Strings.guiToolbarAmountDescription0(locale)
-                ),
-                textFactory.createLegacy(
-                    Strings.guiToolbarAmountDescription1(locale)
-                ),
-                textFactory.createLegacy(
-                    Strings.guiToolbarAmountDescription2(locale)
+            setDescription(
+                listOf(
+                    textFactory.createLegacy(
+                        Strings.guiToolbarAmountDescription0(locale)
+                    ),
+                    textFactory.createLegacy(
+                        Strings.guiToolbarAmountDescription1(locale)
+                    ),
+                    textFactory.createLegacy(
+                        Strings.guiToolbarAmountDescription2(locale)
+                    )
                 )
             )
 
@@ -51,7 +55,7 @@ class CraftAmountButtonView(
     }
 
     fun update() {
-        button.amount = craftAmount ?: 1
+        button.setAmount(craftAmount ?: 1)
     }
 
     interface Listener {

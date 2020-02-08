@@ -31,6 +31,11 @@ class BukkitFcGuiButton_1_15_00_R01(
     @Provided private val textConverter: FcTextConverter
 ) : BukkitFcGuiButton {
     private var hideItemDetails: Boolean = false
+    private var text: FcText? = null
+    private var description: List<FcText>? = null
+
+    private var isProgressSet = false
+    private var progress: Double? = null
 
     private var itemStack: ItemStack by observable(ItemStack(Material.AIR)) { _, _, _ ->
         updateSlot()
@@ -38,30 +43,38 @@ class BukkitFcGuiButton_1_15_00_R01(
 
     override var listener: FcGuiButton.Listener = FcGuiButton.Listener.Default
 
-    override var itemType: FcItemType by observable(itemTypes.air) { _, _, newType ->
-        itemStack.type = newType.material
+    override fun setItemType(itemType: FcItemType) {
+        itemStack.type = itemType.material
+
         updateDisplayName()
         updateLore()
         updateItemDetails()
         updateSlot()
     }
 
-    override var amount: Int by observable(1) { _, _, newAmount ->
-        itemStack.amount = newAmount
+    override fun setAmount(amount: Int) {
+        itemStack.amount = amount
         updateSlot()
     }
 
-    override var text: FcText by observable(textFactory.createFcText()) { _, _, _ ->
+    override fun setText(text: FcText) {
+        this.text = text
+
         updateDisplayName()
         updateSlot()
     }
 
-    override var description: List<FcText> by observable(emptyList()) { _, _, _ ->
+    override fun setDescription(description: List<FcText>) {
+        this.description = description
+
         updateLore()
         updateSlot()
     }
 
-    override var progress: Double? by observable(null as Double?) { _, _, newProgress ->
+    override fun setProgress(progress: Double?) {
+        isProgressSet = true
+        this.progress = progress
+
         updateDamage()
         updateSlot()
     }
@@ -82,10 +95,9 @@ class BukkitFcGuiButton_1_15_00_R01(
 
     override fun clear() {
         itemStack = ItemStack(Material.AIR)
-        amount = 1
         text = textFactory.createFcText()
         description = emptyList()
-        progress = 0.0
+        progress = null
         hideItemDetails = false
     }
 
@@ -111,6 +123,8 @@ class BukkitFcGuiButton_1_15_00_R01(
     }
 
     private fun updateDamage() {
+        if (!isProgressSet) return
+
         val maxDamage = itemStack.type.maxDurability.toInt()
 
         itemStack.updateMeta {
@@ -129,15 +143,19 @@ class BukkitFcGuiButton_1_15_00_R01(
     }
 
     private fun updateDisplayName() {
-        itemStack.updateMeta {
-            setDisplayName(textConverter.toLegacy(text, locale))
+        text?.let { text ->
+            itemStack.updateMeta {
+                setDisplayName(textConverter.toLegacy(text, locale))
+            }
         }
     }
 
     private fun updateLore() {
-        itemStack.updateMeta {
-            lore = description.map {
-                textConverter.toLegacy(it, locale)
+        description?.let { description ->
+            itemStack.updateMeta {
+                lore = description.map {
+                    textConverter.toLegacy(it, locale)
+                }
             }
         }
     }

@@ -29,17 +29,19 @@ class PageButtonView(
         button.apply {
             listener = ButtonListener()
 
-            itemType = itemTypes.ironSword
+            setItemType(itemTypes.ironSword)
 
-            description = listOf(
-                textFactory.createLegacy(
-                    Strings.guiToolbarPageDescription0(locale)
-                ),
-                textFactory.createLegacy(
-                    Strings.guiToolbarPageDescription1(locale)
-                ),
-                textFactory.createLegacy(
-                    Strings.guiToolbarPageDescription2(locale)
+            setDescription(
+                listOf(
+                    textFactory.createLegacy(
+                        Strings.guiToolbarPageDescription0(locale)
+                    ),
+                    textFactory.createLegacy(
+                        Strings.guiToolbarPageDescription1(locale)
+                    ),
+                    textFactory.createLegacy(
+                        Strings.guiToolbarPageDescription2(locale)
+                    )
                 )
             )
 
@@ -51,11 +53,13 @@ class PageButtonView(
 
     fun update() {
         button.apply {
-            text = textFactory.createLegacy(
-                Strings.guiToolbarPageTitle(locale, page, pageCount)
+            setText(
+                textFactory.createLegacy(
+                    Strings.guiToolbarPageTitle(locale, page, pageCount)
+                )
             )
 
-            progress = page.toDouble() / pageCount
+            setProgress(page.toDouble() / pageCount)
         }
     }
 
