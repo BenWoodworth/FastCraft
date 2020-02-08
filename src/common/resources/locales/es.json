@@ -13,7 +13,7 @@
   "gui.toolbar.page.description.2": "${aqua}Clic central: primera página",
   "gui.toolbar.refresh.title": "${green}Actualizar",
   "gui.toolbar.refresh.description.0": "${aqua}Actualizar la interfaz de FastCraft",
-  "gui.toolbar.amount.title": "${green}Multiplicador",
+  "gui.toolbar.amount.title": "${green}Cantidad Fabrique",
   "gui.toolbar.amount.description.0": "${aqua}Clic Izquierdo Aumentar / Clic Derecho Disminuir",
   "gui.toolbar.amount.description.1": "${aqua}Shift + Clic incrementar de 1 en 1",
   "gui.toolbar.amount.description.2": "${aqua}Clic Central restablecer valor en 1x",
