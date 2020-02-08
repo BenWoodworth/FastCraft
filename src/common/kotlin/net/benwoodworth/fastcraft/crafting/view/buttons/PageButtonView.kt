@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft.crafting.view.buttons
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
+import net.benwoodworth.fastcraft.Strings
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
@@ -9,10 +10,12 @@ import net.benwoodworth.fastcraft.platform.gui.FcGuiClickModifier
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
+import java.util.*
 
 @AutoFactory
 class PageButtonView(
     private val button: FcGuiButton,
+    private val locale: Locale,
     @Provided private val itemTypes: FcItemTypes,
     @Provided private val textFactory: FcTextFactory,
     @Provided private val textColors: FcTextColors
@@ -29,9 +32,15 @@ class PageButtonView(
             itemType = itemTypes.ironSword
 
             description = listOf(
-                textFactory.createFcText("Left click: next page", color = textColors.aqua),
-                textFactory.createFcText("Right click: previous page", color = textColors.aqua),
-                textFactory.createFcText("Shift click: first page", color = textColors.aqua)
+                textFactory.createFcText(
+                    Strings.guiToolbarPageDescription0(locale)
+                ),
+                textFactory.createFcText(
+                    Strings.guiToolbarPageDescription1(locale)
+                ),
+                textFactory.createFcText(
+                    Strings.guiToolbarPageDescription2(locale)
+                )
             )
 
             hideItemDetails()
@@ -43,8 +52,7 @@ class PageButtonView(
     fun update() {
         button.apply {
             text = textFactory.createFcText(
-                text = "Page ${page}/${pageCount}",
-                color = textColors.green
+                Strings.guiToolbarPageTitle(locale, page, pageCount)
             )
 
             progress = page.toDouble() / pageCount

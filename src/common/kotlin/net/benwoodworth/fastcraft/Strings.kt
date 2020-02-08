@@ -71,12 +71,13 @@ object Strings {
             ?: GUI_RECIPE_RESULTS
     }
 
-    fun guiRecipeResultsItem(locale: Locale, amount: Int): String {
+    fun guiRecipeResultsItem(locale: Locale, amount: Int, item: String): String {
         return LocaleApi.getText(locale, GUI_RECIPE_RESULTS_ITEM)
             ?.substitute(
-                "amount", amount
+                "amount", amount,
+                "item", item
             )
-            ?: "$GUI_RECIPE_RESULTS_ITEM(amount=$amount)"
+            ?: "$GUI_RECIPE_RESULTS_ITEM(amount=$amount, item=$item)"
     }
 
     fun guiRecipeId(locale: Locale, id: String): String {

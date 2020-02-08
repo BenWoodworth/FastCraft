@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft.crafting.view.buttons
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
+import net.benwoodworth.fastcraft.Strings
 import net.benwoodworth.fastcraft.crafting.model.FastCraftRecipe
 import net.benwoodworth.fastcraft.crafting.model.ItemAmounts
 import net.benwoodworth.fastcraft.platform.gui.FcGui
@@ -9,11 +10,13 @@ import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
+import java.util.*
 import javax.inject.Provider
 
 @AutoFactory
 class RecipeButtonView(
     private val button: FcGuiButton,
+    private val locale: Locale,
     @Provided private val textFactory: FcTextFactory,
     @Provided private val itemAmountsProvider: Provider<ItemAmounts>
 ) {
@@ -40,7 +43,9 @@ class RecipeButtonView(
 
             // Results
             if (preparedRecipe.resultsPreview.count() > 1) {
-                newDescription += textFactory.createFcText("Results:")
+                newDescription += textFactory.createFcText(
+                    Strings.guiRecipeResults(locale)
+                )
 
                 val results = itemAmountsProvider.get()
                 preparedRecipe.resultsPreview.forEach { result ->
@@ -51,8 +56,11 @@ class RecipeButtonView(
                     .sortedByDescending { (_, amount) -> amount } // TODO List primary result first
                     .forEach { (item, amount) ->
                         newDescription += textFactory.createFcText(
-                            text = "- ${amount * fastCraftRecipe.multiplier}x ",
-                            extra = listOf(item.name)
+                            Strings.guiRecipeResultsItem(
+                                locale,
+                                amount = amount * fastCraftRecipe.multiplier,
+                                item = item.name.toPlaintext() // TODO
+                            )
                         )
                     }
 
@@ -61,7 +69,9 @@ class RecipeButtonView(
 
             // Ingredients
             run {
-                textFactory.createFcText("Ingredients:")
+                textFactory.createFcText(
+                    Strings.guiRecipeIngredients(locale)
+                )
 
                 val ingredients = itemAmountsProvider.get()
                 preparedRecipe.ingredients.values.forEach { ingredient ->
@@ -72,8 +82,11 @@ class RecipeButtonView(
                     .sortedByDescending { (_, amount) -> amount }
                     .forEach { (item, amount) ->
                         newDescription += textFactory.createFcText(
-                            text = "- ${amount * fastCraftRecipe.multiplier}x ",
-                            extra = listOf(item.name)
+                            Strings.guiRecipeIngredientsItem(
+                                locale,
+                                amount = amount * fastCraftRecipe.multiplier,
+                                item = item.name.toPlaintext() // TODO
+                            )
                         )
                     }
             }
