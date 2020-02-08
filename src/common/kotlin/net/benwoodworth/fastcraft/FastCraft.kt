@@ -10,6 +10,7 @@ class FastCraft @Inject internal constructor(
     private val fastCraftGuiFactory: FastCraftGuiFactory
 ) {
     init {
+        Strings.load()
         playerEventsListeners.onPlayerOpenWorkbench += ::onPlayerOpenWorkbench
     }
 
