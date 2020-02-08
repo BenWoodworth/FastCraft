@@ -13,7 +13,7 @@
   "gui.toolbar.page.description.2": "$aqua中间点击: 第一页",
   "gui.toolbar.refresh.title": "$green刷新",
   "gui.toolbar.refresh.description.0": "$aqua刷新 FastCraft",
-  "gui.toolbar.amount.title": "$green合成份数: (${amount}x)",
+  "gui.toolbar.amount.title": "$green合成份数:",
   "gui.toolbar.amount.description.0": "$aqua左键来增加/右键来减少",
   "gui.toolbar.amount.description.1": "$aqua按住Shift增加1",
   "gui.toolbar.amount.description.2": "$aqua中键回到1x",

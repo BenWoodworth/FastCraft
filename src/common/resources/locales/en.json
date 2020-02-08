@@ -13,7 +13,7 @@
   "gui.toolbar.page.description.2": "${aqua}Middle click: first page",
   "gui.toolbar.refresh.title": "${green}Refresh",
   "gui.toolbar.refresh.description.0": "${aqua}Refresh the FastCraft interface",
-  "gui.toolbar.amount.title": "${green}Crafting Multiplier (${amount}x)",
+  "gui.toolbar.amount.title": "${green}Crafting Multiplier",
   "gui.toolbar.amount.description.0": "${aqua}Left/right click to increase/decrease",
   "gui.toolbar.amount.description.1": "${aqua}Shift click to increment by 1",
   "gui.toolbar.amount.description.2": "${aqua}Middle click to reset to 1x",

@@ -127,12 +127,10 @@ object Strings {
             ?: GUI_TOOLBAR_REFRESH_DESCRIPTION_0
     }
 
-    fun guiToolbarAmountTitle(locale: Locale, amount: Int): String {
+    fun guiToolbarAmountTitle(locale: Locale): String {
         return LocaleApi.getText(locale, GUI_TOOLBAR_AMOUNT_TITLE)
-            ?.substitute(
-                "amount", amount
-            )
-            ?: "$GUI_TOOLBAR_AMOUNT_TITLE(amount=$amount)"
+            ?.substitute()
+            ?: GUI_TOOLBAR_AMOUNT_TITLE
     }
 
     fun guiToolbarAmountDescription0(locale: Locale): String {

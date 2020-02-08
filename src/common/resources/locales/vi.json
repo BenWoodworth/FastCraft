@@ -13,7 +13,7 @@
   "gui.toolbar.page.description.2": "${aqua}Nhấp chuột giữa: trang đầu tiên",
   "gui.toolbar.refresh.title": "${green}Làm mới",
   "gui.toolbar.refresh.description.0": "${aqua}Làm mới giao diện FastCraft",
-  "gui.toolbar.amount.title": "${green}Chế tạo nhiều (${amount}x)",
+  "gui.toolbar.amount.title": "${green}Chế tạo nhiều",
   "gui.toolbar.amount.description.0": "${aqua}Chuột trái/phải để tăng/giảm",
   "gui.toolbar.amount.description.1": "${aqua}Giữ Shift để tăng 1",
   "gui.toolbar.amount.description.2": "${aqua}Chuột giữa để trở về 1x",

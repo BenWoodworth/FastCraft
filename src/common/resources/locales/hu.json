@@ -13,7 +13,7 @@
   "gui.toolbar.page.description.2": "${aqua}Középső kattintás: első oldal",
   "gui.toolbar.refresh.title": "${green}Frissítés",
   "gui.toolbar.refresh.description.0": "${aqua}Frissítse a FastCraft interfészt",
-  "gui.toolbar.amount.title": "${green}Barkács szorzó (${amount}x)",
+  "gui.toolbar.amount.title": "${green}Barkács szorzó",
   "gui.toolbar.amount.description.0": "${aqua}Bal jobb kattintással növelheti/csökkentheti",
   "gui.toolbar.amount.description.1": "${aqua}A léptetéshez nyomja meg az 1-et 1",
   "gui.toolbar.amount.description.2": "${aqua}A középső kattintással visszaállíthatja 1x-re",

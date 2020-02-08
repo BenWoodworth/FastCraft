@@ -13,7 +13,7 @@
   "gui.toolbar.page.description.2": "$aquaКолесико мыши: первая страница",
   "gui.toolbar.refresh.title": "$greenОбновить",
   "gui.toolbar.refresh.description.0": "$aquaОбновить интерфейс FastCraft",
-  "gui.toolbar.amount.title": "$greenСоздание нескольких вещей (${amount}x)",
+  "gui.toolbar.amount.title": "$greenСоздание нескольких вещей",
   "gui.toolbar.amount.description.0": "$aquaПравый/левый клик для увеличения/уменьшения",
   "gui.toolbar.amount.description.1": "$aquaНажми Shift для увеличения на 1",
   "gui.toolbar.amount.description.2": "$aquaНажми на колёсико мыши для сброса до 1",
