@@ -1,8 +1,8 @@
 {
-    "localization.translator": "funzo88",
-    "localization.translator.from": "spigotmc.org",
-    "gui.title": "FastCraft",
-    "gui.recipe.ingredients": "${green}Ingrediënten:",
+  "localization.translator": "funzo88",
+  "localization.translator.from": "spigotmc.org",
+  "gui.title": "FastCraft",
+  "gui.recipe.ingredients": "${green}Ingrediënten:",
   "gui.recipe.ingredients.item": "$green ${amount}x $item",
   "gui.recipe.results": "${green}Results:",
   "gui.recipe.results.item": "$green ${amount}x $item",
@@ -19,5 +19,5 @@
   "gui.toolbar.amount.description.2": "${aqua}Middrl muisklik om te resetten naar 1x",
   "gui.toolbar.workbench.title": "${green}Werkbank",
   "gui.toolbar.workbench.description.0": "${aqua}Open een 3x3 werkbank",
-  "gui.toolbar.workbench.description.1": "${aqua}Gebruik $green/fc toggle$aqua om FastCraft uit te schakelen"
+  "gui.toolbar.workbench.description.1": "${aqua}Gebruik ${green}/fc toggle$aqua om FastCraft uit te schakelen"
 }

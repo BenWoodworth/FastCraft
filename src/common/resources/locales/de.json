@@ -19,5 +19,5 @@
   "gui.toolbar.amount.description.2": "${aqua}Mittelklick - zurückzusetzen",
   "gui.toolbar.workbench.title": "${green}Werkbank",
   "gui.toolbar.workbench.description.0": "${aqua}normale 3x3 Werkbank",
-  "gui.toolbar.workbench.description.1": "$aqua/fc toggle zum deaktivieren."
+  "gui.toolbar.workbench.description.1": "${aqua}/fc toggle zum deaktivieren."
 }

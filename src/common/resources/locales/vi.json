@@ -19,5 +19,5 @@
   "gui.toolbar.amount.description.2": "${aqua}Chuột giữa để trở về 1x",
   "gui.toolbar.workbench.title": "${green}Bàn chế tạo",
   "gui.toolbar.workbench.description.0": "${aqua}Mở bàn chế tạo 3x3",
-  "gui.toolbar.workbench.description.1": "${aqua}Dùng $green/fc toggle$aqua để tắt FastCraft"
+  "gui.toolbar.workbench.description.1": "${aqua}Dùng ${green}/fc toggle$aqua để tắt FastCraft"
 }

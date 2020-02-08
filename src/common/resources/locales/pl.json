@@ -10,7 +10,7 @@
   "gui.toolbar.page.title": "${green}Strona $page/$total",
   "gui.toolbar.page.description.0": "${aqua}Lewe kliknięcie: następna strona",
   "gui.toolbar.page.description.1": "${aqua}Prawe kliknięcie: poprzednia strona",
-  "gui.toolbar.page.description.2": "$aquaŚrodkowe kliknięcie: pierwsza strona",
+  "gui.toolbar.page.description.2": "${aqua}Środkowe kliknięcie: pierwsza strona",
   "gui.toolbar.refresh.title": "${green}Odswiez",
   "gui.toolbar.refresh.description.0": "${aqua}Odswiez interfejs FastCraft",
   "gui.toolbar.amount.title": "${green}Ilość tworzenia",
@@ -19,5 +19,5 @@
   "gui.toolbar.amount.description.2": "${aqua}Srodkowy resetowanie",
   "gui.toolbar.workbench.title": "${green}Stol rzemieslniczy",
   "gui.toolbar.workbench.description.0": "${aqua}Otworz zwykly stol rzemieslniczy (3x3)",
-  "gui.toolbar.workbench.description.1": "${aqua}Uzyj $green/fc toggle$aqua by wylaczyc FastCraft"
+  "gui.toolbar.workbench.description.1": "${aqua}Uzyj ${green}/fc toggle$aqua by wylaczyc FastCraft"
 }

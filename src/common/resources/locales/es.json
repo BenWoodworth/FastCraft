@@ -1,8 +1,8 @@
 {
-    "localization.translator": "C4BR3R4",
-    "localization.translator.from": "c4br3r4.es/index.php?topic=534",
-    "gui.title": "FastCraft",
-    "gui.recipe.ingredients": "${green}Ingredientes:",
+  "localization.translator": "C4BR3R4",
+  "localization.translator.from": "c4br3r4.es/index.php?topic=534",
+  "gui.title": "FastCraft",
+  "gui.recipe.ingredients": "${green}Ingredientes:",
   "gui.recipe.ingredients.item": "$green ${amount}x $item",
   "gui.recipe.results": "${green}Resultados:",
   "gui.recipe.results.item": "$green ${amount}x $item",
@@ -19,5 +19,5 @@
   "gui.toolbar.amount.description.2": "${aqua}Clic Central restablecer valor en 1x",
   "gui.toolbar.workbench.title": "${green}Banco de trabajo",
   "gui.toolbar.workbench.description.0": "${aqua}Abre un banco de trabajo de 3x3",
-  "gui.toolbar.workbench.description.1": "${aqua}Usa $green/fc toggle$aqua para desactivar FastCraft"
+  "gui.toolbar.workbench.description.1": "${aqua}Usa ${green}/fc toggle$aqua para desactivar FastCraft"
 }

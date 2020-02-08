@@ -19,5 +19,5 @@
   "gui.toolbar.amount.description.2": "${aqua}Kliknuti kolecka vyresetuje",
   "gui.toolbar.workbench.title": "${green}Pracovni stul",
   "gui.toolbar.workbench.description.0": "${aqua}Otevre klasicky 3x3 stul",
-  "gui.toolbar.workbench.description.1": "${aqua}Pomocí $green/fc toggle$aqua deaktivujte FastCraft"
+  "gui.toolbar.workbench.description.1": "${aqua}Pomocí ${green}/fc toggle$aqua deaktivujte FastCraft"
 }
