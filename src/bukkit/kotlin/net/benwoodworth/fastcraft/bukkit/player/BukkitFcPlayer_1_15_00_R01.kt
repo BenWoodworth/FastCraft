@@ -34,7 +34,7 @@ class BukkitFcPlayer_1_15_00_R01(
         get() = player.uniqueId
 
     override val locale: Locale
-        get() = Locale.forLanguageTag(player.locale)
+        get() = Locale.forLanguageTag(player.locale.replace("_", "-"))
 
     override val isOnline: Boolean
         get() = player.isOnline
