@@ -160,12 +160,6 @@ class BukkitDaggerModule_1_15_00_R01(
 
     @Provides
     @Singleton
-    fun provideBukkitRecipeConverter(instance: BukkitRecipeConverter_1_15_00_R01): BukkitRecipeConverter {
-        return instance
-    }
-
-    @Provides
-    @Singleton
     fun provideIngredientProductProvider(instance: IngredientRemnantProvider_1_15_00_R01): IngredientRemnantProvider {
         return instance
     }
