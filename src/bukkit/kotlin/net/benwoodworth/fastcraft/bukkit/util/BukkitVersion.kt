@@ -26,7 +26,7 @@ data class BukkitVersion(
     companion object {
         private val versionRegex = Regex("""^(\d+)(?:\.(\d+)(?:\.(\d+))?)?(?:-R(\d+)(?:.(\d+))?)?(?:-.*)?$""")
 
-        fun parse(version: String): BukkitVersion? {
+        fun parseOrNull(version: String): BukkitVersion? {
             val match = versionRegex.matchEntire(version) ?: return null
             val (major, minor, patch, rMajor, rMinor) = match.destructured
 
@@ -37,6 +37,11 @@ data class BukkitVersion(
                 rMajor = rMajor.toIntOrNull() ?: 0,
                 rMinor = rMinor.toIntOrNull() ?: 0
             )
+        }
+
+        fun parse(version: String): BukkitVersion {
+            return parseOrNull(version)
+                ?: throw IllegalArgumentException("Unable to parse Bukkit version '$version'")
         }
     }
 }

@@ -7,9 +7,9 @@ import org.bukkit.inventory.ShapedRecipe
 import org.bukkit.inventory.ShapelessRecipe
 import javax.inject.Inject
 
-class BukkitFcRecipeService_1_15_00_R01 @Inject constructor(
+open class BukkitFcRecipeService_1_15_00_R01 @Inject constructor(
     private val server: Server,
-    private val recipeFactory: BukkitFcCraftingRecipe_1_15_00_R01Factory
+    private val recipeFactory: BukkitFcCraftingRecipeFactory
 ) : BukkitFcRecipeService {
     override fun getCraftingRecipes(): Sequence<FcCraftingRecipe> {
         return server.recipeIterator()

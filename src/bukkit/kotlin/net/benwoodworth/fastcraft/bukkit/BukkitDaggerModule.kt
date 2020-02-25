@@ -12,6 +12,7 @@ import net.benwoodworth.fastcraft.bukkit.server.BukkitFcLogger_1_15_00_R01
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcPluginData_1_15_00_R01
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTaskFactory_1_15_00_R01
 import net.benwoodworth.fastcraft.bukkit.text.*
+import net.benwoodworth.fastcraft.bukkit.util.BukkitVersion
 import net.benwoodworth.fastcraft.platform.config.FcConfigFactory
 import net.benwoodworth.fastcraft.platform.gui.FcGuiFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemFactory
@@ -29,13 +30,21 @@ import org.bukkit.Server
 import org.bukkit.inventory.ItemFactory
 import org.bukkit.plugin.PluginManager
 import org.bukkit.scheduler.BukkitScheduler
+import javax.inject.Provider
 import javax.inject.Singleton
 
 @Suppress("unused")
 @Module
-class BukkitDaggerModule_1_15_00_R01(
+class BukkitDaggerModule(
     private val plugin: BukkitFastCraftPlugin
 ) {
+    private val bukkitVersion = BukkitVersion.parse(plugin.server.bukkitVersion)
+
+    private companion object {
+        val VERSION_1_15_00_R01 = BukkitVersion.parse("1.15-R0.1")
+        val VERSION_1_13_00_R01 = BukkitVersion.parse("1.13-R0.1")
+    }
+
     @Provides
     @Singleton
     fun providePlugin(): BukkitFastCraftPlugin {
@@ -114,6 +123,19 @@ class BukkitDaggerModule_1_15_00_R01(
     @Singleton
     fun provideFcRecipeService(instance: BukkitFcRecipeService_1_15_00_R01): FcRecipeService {
         return instance
+    }
+
+    @Provides
+    @Singleton
+    fun provideFcCraftingRecipeFactory(
+        instance_1_15: Provider<BukkitFcCraftingRecipeFactory_1_15_00_R01>,
+        instance_1_13: Provider<BukkitFcCraftingRecipeFactory_1_13_00_R01>
+    ): BukkitFcCraftingRecipeFactory {
+        return when {
+            bukkitVersion >= VERSION_1_15_00_R01 -> instance_1_15.get()
+            bukkitVersion >= VERSION_1_13_00_R01 -> instance_1_13.get()
+            else -> instance_1_13.get()
+        }
     }
 
     @Provides

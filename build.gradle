@@ -59,7 +59,8 @@ dependencies {
     kaptAll "com.google.auto.factory:auto-factory:$version_auto_factory"
 
     bukkitImplementation sourceSets.common.output
-    bukkitImplementation "org.bukkit:bukkit:$version_bukkit"
+    bukkitImplementation "org.bukkit:bukkit:1.13-R0.1-SNAPSHOT"
+    bukkitImplementation "org.bukkit:bukkit:1.15-R0.1-SNAPSHOT"
 }
 
 compileKotlin.kotlinOptions.jvmTarget = version_java

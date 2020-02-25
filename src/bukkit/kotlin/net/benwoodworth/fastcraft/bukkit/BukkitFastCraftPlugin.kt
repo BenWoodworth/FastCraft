@@ -13,8 +13,8 @@ class BukkitFastCraftPlugin : JavaPlugin() {
     override fun onEnable() {
         checkBukkitVersion()
 
-        val factory = DaggerBukkitFastCraftFactory_1_15_00_R01.builder()
-            .bukkitDaggerModule_1_15_00_R01(BukkitDaggerModule_1_15_00_R01(this))
+        val factory = DaggerBukkitFastCraftFactory.builder()
+            .bukkitDaggerModule(BukkitDaggerModule(this))
             .build()
 
         fastCraft = factory.createFastCraft()
@@ -31,14 +31,17 @@ class BukkitFastCraftPlugin : JavaPlugin() {
     }
 
     private fun checkBukkitVersion() {
-        val minSupported = BukkitVersion.parse("1.15")!!
-        val minUnsupported = BukkitVersion.parse("1.16")!!
+        val minSupported = BukkitVersion.parse("1.13")
+        val minUnsupported = BukkitVersion.parse("1.16")
 
-        val versionStr = Bukkit.getBukkitVersion()
-        val version = BukkitVersion.parse(versionStr)
+        val versionStr = server.bukkitVersion
+        val version = BukkitVersion.parseOrNull(versionStr)
 
         when {
-            version == null || version >= minUnsupported -> {
+            version == null -> {
+                logger.log(Level.WARNING, "Bukkit API $versionStr could not be parsed, and may not be supported.")
+            }
+            version >= minUnsupported -> {
                 logger.log(Level.WARNING, "Bukkit API $versionStr may not be supported.")
             }
             version < minSupported -> {

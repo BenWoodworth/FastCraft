@@ -1,7 +1,5 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
-import com.google.auto.factory.AutoFactory
-import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.bukkit.item.createFcItem
 import net.benwoodworth.fastcraft.bukkit.item.toItemStack
 import net.benwoodworth.fastcraft.bukkit.player.player
@@ -20,14 +18,13 @@ import org.bukkit.inventory.Recipe
 import org.bukkit.inventory.ShapedRecipe
 import org.bukkit.inventory.ShapelessRecipe
 
-@AutoFactory
-class BukkitFcCraftingRecipe_1_15_00_R01(
+open class BukkitFcCraftingRecipe_1_15_00_R01(
     val recipe: Recipe,
-    @Provided val server: Server,
-    @Provided val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_15_00_R01Factory,
-    @Provided val itemFactory: FcItemFactory,
-    @Provided val remnantProvider: IngredientRemnantProvider,
-    @Provided val inventoryViewFactory: PrepareCraftInventoryView_1_15_00_R01Factory
+    private val server: Server,
+    private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_15_00_R01Factory,
+    private val itemFactory: FcItemFactory,
+    private val remnantProvider: IngredientRemnantProvider,
+    private val inventoryViewFactory: PrepareCraftInventoryView_1_15_00_R01Factory
 ) : BukkitFcCraftingRecipe {
     init {
         require(recipe is ShapedRecipe || recipe is ShapelessRecipe)
@@ -36,25 +33,29 @@ class BukkitFcCraftingRecipe_1_15_00_R01(
     override val id: String
         get() = (recipe as Keyed).key.toString()
 
-    override val ingredients: List<FcIngredient> = when (recipe) {
-        is ShapedRecipe -> recipe.shape
-            .mapIndexed { row, rowString ->
-                rowString
-                    .mapIndexed { column, char ->
-                        recipe.choiceMap[char]?.let { choice ->
-                            BukkitFcIngredient_1_15_00_R01(row * 3 + column, choice)
+    override val ingredients: List<FcIngredient> = loadIngredients()
+
+    protected open fun loadIngredients(): List<FcIngredient> {
+        return when (recipe) {
+            is ShapedRecipe -> recipe.shape
+                .mapIndexed { row, rowString ->
+                    rowString
+                        .mapIndexed { column, char ->
+                            recipe.choiceMap[char]?.let { choice ->
+                                BukkitFcIngredient_1_15_00_R01(row * 3 + column, choice)
+                            }
                         }
-                    }
-                    .filterNotNull()
-            }
-            .flatten()
+                        .filterNotNull()
+                }
+                .flatten()
 
-        is ShapelessRecipe -> recipe.choiceList
-            .mapIndexed { i, recipeChoice ->
-                BukkitFcIngredient_1_15_00_R01(i, recipeChoice)
-            }
+            is ShapelessRecipe -> recipe.choiceList
+                .mapIndexed { i, recipeChoice ->
+                    BukkitFcIngredient_1_15_00_R01(i, recipeChoice)
+                }
 
-        else -> throw IllegalStateException()
+            else -> throw IllegalStateException()
+        }
     }
 
     override val group: String?
