@@ -53,7 +53,7 @@ dependencies {
     allImplementation "com.google.dagger:dagger:$version_dagger"
     allImplementation "javax.inject:javax.inject:$version_javax_inject"
     allImplementation "com.google.auto.factory:auto-factory:$version_auto_factory"
-    allImplementation "net.benwoodworth.localeconfig:localeconfig-api:0.1.0"
+    allImplementation "net.benwoodworth.localeconfig:localeconfig-api:0.2.0"
 
     kaptAll "com.google.dagger:dagger-compiler:$version_dagger"
     kaptAll "com.google.auto.factory:auto-factory:$version_auto_factory"

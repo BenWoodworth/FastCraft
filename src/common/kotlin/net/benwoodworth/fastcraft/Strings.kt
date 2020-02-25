@@ -29,35 +29,35 @@ object Strings {
     // endregion
 
     fun load() {
-        LocaleApi.loadLocales("fastcraft")
+        LocaleApi.load("fastcraft", "/locales")
     }
 
     fun localizationTranslator(locale: Locale): String {
-        return LocaleApi.getText(locale, LOCALIZATION_TRANSLATOR)
+        return LocaleApi.get(locale, LOCALIZATION_TRANSLATOR)
             ?.toString()
             ?: LOCALIZATION_TRANSLATOR
     }
 
     fun localizationTranslatorFrom(locale: Locale): String {
-        return LocaleApi.getText(locale, LOCALIZATION_TRANSLATOR_FROM)
+        return LocaleApi.get(locale, LOCALIZATION_TRANSLATOR_FROM)
             ?.toString()
             ?: LOCALIZATION_TRANSLATOR_FROM
     }
 
     fun guiTitle(locale: Locale): String {
-        return LocaleApi.getText(locale, GUI_TITLE)
+        return LocaleApi.get(locale, GUI_TITLE)
             ?.substitute()
             ?: GUI_TITLE
     }
 
     fun guiRecipeIngredients(locale: Locale): String {
-        return LocaleApi.getText(locale, GUI_RECIPE_INGREDIENTS)
+        return LocaleApi.get(locale, GUI_RECIPE_INGREDIENTS)
             ?.substitute()
             ?: GUI_RECIPE_INGREDIENTS
     }
 
     fun guiRecipeIngredientsItem(locale: Locale, amount: Int, item: String): String {
-        return LocaleApi.getText(locale, GUI_RECIPE_INGREDIENTS_ITEM)
+        return LocaleApi.get(locale, GUI_RECIPE_INGREDIENTS_ITEM)
             ?.substitute(
                 "amount", amount,
                 "item", item
@@ -66,13 +66,13 @@ object Strings {
     }
 
     fun guiRecipeResults(locale: Locale): String {
-        return LocaleApi.getText(locale, GUI_RECIPE_RESULTS)
+        return LocaleApi.get(locale, GUI_RECIPE_RESULTS)
             ?.substitute()
             ?: GUI_RECIPE_RESULTS
     }
 
     fun guiRecipeResultsItem(locale: Locale, amount: Int, item: String): String {
-        return LocaleApi.getText(locale, GUI_RECIPE_RESULTS_ITEM)
+        return LocaleApi.get(locale, GUI_RECIPE_RESULTS_ITEM)
             ?.substitute(
                 "amount", amount,
                 "item", item
@@ -81,7 +81,7 @@ object Strings {
     }
 
     fun guiRecipeId(locale: Locale, id: String): String {
-        return LocaleApi.getText(locale, GUI_RECIPE_ID)
+        return LocaleApi.get(locale, GUI_RECIPE_ID)
             ?.substitute(
                 "id", id
             )
@@ -89,7 +89,7 @@ object Strings {
     }
 
     fun guiToolbarPageTitle(locale: Locale, page: Int, total: Int): String {
-        return LocaleApi.getText(locale, GUI_TOOLBAR_PAGE_TITLE)
+        return LocaleApi.get(locale, GUI_TOOLBAR_PAGE_TITLE)
             ?.substitute(
                 "page", page,
                 "total", total
@@ -98,73 +98,73 @@ object Strings {
     }
 
     fun guiToolbarPageDescription0(locale: Locale): String {
-        return LocaleApi.getText(locale, GUI_TOOLBAR_PAGE_DESCRIPTION_0)
+        return LocaleApi.get(locale, GUI_TOOLBAR_PAGE_DESCRIPTION_0)
             ?.substitute()
             ?: GUI_TOOLBAR_PAGE_DESCRIPTION_0
     }
 
     fun guiToolbarPageDescription1(locale: Locale): String {
-        return LocaleApi.getText(locale, GUI_TOOLBAR_PAGE_DESCRIPTION_1)
+        return LocaleApi.get(locale, GUI_TOOLBAR_PAGE_DESCRIPTION_1)
             ?.substitute()
             ?: GUI_TOOLBAR_PAGE_DESCRIPTION_1
     }
 
     fun guiToolbarPageDescription2(locale: Locale): String {
-        return LocaleApi.getText(locale, GUI_TOOLBAR_PAGE_DESCRIPTION_2)
+        return LocaleApi.get(locale, GUI_TOOLBAR_PAGE_DESCRIPTION_2)
             ?.substitute()
             ?: GUI_TOOLBAR_PAGE_DESCRIPTION_2
     }
 
     fun guiToolbarRefreshTitle(locale: Locale): String {
-        return LocaleApi.getText(locale, GUI_TOOLBAR_REFRESH_TITLE)
+        return LocaleApi.get(locale, GUI_TOOLBAR_REFRESH_TITLE)
             ?.substitute()
             ?: GUI_TOOLBAR_REFRESH_TITLE
     }
 
     fun guiToolbarRefreshDescription0(locale: Locale): String {
-        return LocaleApi.getText(locale, GUI_TOOLBAR_REFRESH_DESCRIPTION_0)
+        return LocaleApi.get(locale, GUI_TOOLBAR_REFRESH_DESCRIPTION_0)
             ?.substitute()
             ?: GUI_TOOLBAR_REFRESH_DESCRIPTION_0
     }
 
     fun guiToolbarAmountTitle(locale: Locale): String {
-        return LocaleApi.getText(locale, GUI_TOOLBAR_AMOUNT_TITLE)
+        return LocaleApi.get(locale, GUI_TOOLBAR_AMOUNT_TITLE)
             ?.substitute()
             ?: GUI_TOOLBAR_AMOUNT_TITLE
     }
 
     fun guiToolbarAmountDescription0(locale: Locale): String {
-        return LocaleApi.getText(locale, GUI_TOOLBAR_AMOUNT_DESCRIPTION_0)
+        return LocaleApi.get(locale, GUI_TOOLBAR_AMOUNT_DESCRIPTION_0)
             ?.substitute()
             ?: GUI_TOOLBAR_AMOUNT_DESCRIPTION_0
     }
 
     fun guiToolbarAmountDescription1(locale: Locale): String {
-        return LocaleApi.getText(locale, GUI_TOOLBAR_AMOUNT_DESCRIPTION_1)
+        return LocaleApi.get(locale, GUI_TOOLBAR_AMOUNT_DESCRIPTION_1)
             ?.substitute()
             ?: GUI_TOOLBAR_AMOUNT_DESCRIPTION_1
     }
 
     fun guiToolbarAmountDescription2(locale: Locale): String {
-        return LocaleApi.getText(locale, GUI_TOOLBAR_AMOUNT_DESCRIPTION_2)
+        return LocaleApi.get(locale, GUI_TOOLBAR_AMOUNT_DESCRIPTION_2)
             ?.substitute()
             ?: GUI_TOOLBAR_AMOUNT_DESCRIPTION_2
     }
 
     fun guiToolbarWorkbenchTitle(locale: Locale): String {
-        return LocaleApi.getText(locale, GUI_TOOLBAR_WORKBENCH_TITLE)
+        return LocaleApi.get(locale, GUI_TOOLBAR_WORKBENCH_TITLE)
             ?.substitute()
             ?: GUI_TOOLBAR_WORKBENCH_TITLE
     }
 
     fun guiToolbarWorkbenchDescription0(locale: Locale): String {
-        return LocaleApi.getText(locale, GUI_TOOLBAR_WORKBENCH_DESCRIPTION_0)
+        return LocaleApi.get(locale, GUI_TOOLBAR_WORKBENCH_DESCRIPTION_0)
             ?.substitute()
             ?: GUI_TOOLBAR_WORKBENCH_DESCRIPTION_0
     }
 
     fun guiToolbarWorkbenchDescription1(locale: Locale): String {
-        return LocaleApi.getText(locale, GUI_TOOLBAR_WORKBENCH_DESCRIPTION_1)
+        return LocaleApi.get(locale, GUI_TOOLBAR_WORKBENCH_DESCRIPTION_1)
             ?.substitute()
             ?: GUI_TOOLBAR_WORKBENCH_DESCRIPTION_1
     }
