@@ -131,8 +131,15 @@ class BukkitDaggerModule(
 
     @Provides
     @Singleton
-    fun provideFcRecipeService(instance: BukkitFcRecipeService_1_8_R01): FcRecipeService {
-        return instance
+    fun provideFcRecipeService(
+        instance_1_13: Provider<BukkitFcRecipeService_1_13_R01>,
+        instance_1_8: Provider<BukkitFcRecipeService_1_8_R01>
+    ): FcRecipeService {
+        return when {
+            bukkitVersion >= VERSION_1_13_R01 -> instance_1_13.get()
+            bukkitVersion >= VERSION_1_8_R01 -> instance_1_8.get()
+            else -> instance_1_8.get()
+        }
     }
 
     @Provides
