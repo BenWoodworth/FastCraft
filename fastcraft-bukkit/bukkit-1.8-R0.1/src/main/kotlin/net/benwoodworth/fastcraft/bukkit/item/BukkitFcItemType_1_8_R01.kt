@@ -15,9 +15,6 @@ open class BukkitFcItemType_1_8_R01(
     override val material: Material
         get() = materialData.itemType
 
-    override val id: String
-        get() = material.toString() // TODO use a better ID
-
     override val name: FcText
         get() = textFactory.createFcTextTranslate(materialData.toString())
 

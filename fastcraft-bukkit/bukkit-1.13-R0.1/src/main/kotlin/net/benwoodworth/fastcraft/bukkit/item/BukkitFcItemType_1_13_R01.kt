@@ -13,9 +13,6 @@ class BukkitFcItemType_1_13_R01(
     override val materialData: Nothing?
         get() = null
 
-    override val id: String
-        get() = material.key.toString()
-
     private val Material.localeKey: String
         get() {
             val type = when {
