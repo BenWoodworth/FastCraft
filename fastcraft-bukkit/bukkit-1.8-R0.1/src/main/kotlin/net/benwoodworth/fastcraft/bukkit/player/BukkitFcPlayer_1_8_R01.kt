@@ -10,6 +10,7 @@ import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcPlayerInventory
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextConverter
+import net.benwoodworth.localeconfig.api.LocaleApi
 import org.bukkit.Server
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
@@ -35,7 +36,7 @@ class BukkitFcPlayer_1_8_R01(
         get() = player.uniqueId
 
     override val locale: Locale
-        get() = Locale.forLanguageTag(player.locale.replace("_", "-"))
+        get() = LocaleApi.getLocale(player)
 
     override val isOnline: Boolean
         get() = player.isOnline
