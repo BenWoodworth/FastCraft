@@ -102,8 +102,15 @@ class BukkitDaggerModule(
 
     @Provides
     @Singleton
-    fun provideFcGuiButtonFactory(instance: BukkitFcGuiButton_1_8_R01.Factory): BukkitFcGuiButton.Factory {
-        return instance
+    fun provideFcGuiButtonFactory(
+        instance_1_8: Provider<BukkitFcGuiButton_1_8_R01.Factory>,
+        instance_1_13: Provider<BukkitFcGuiButton_1_8_R01.Factory>
+    ): BukkitFcGuiButton.Factory {
+        return when {
+            bukkitVersion >= VERSION_1_13_R01 -> instance_1_13.get()
+            bukkitVersion >= VERSION_1_8_R01 -> instance_1_8.get()
+            else -> instance_1_8.get()
+        }
     }
 
     @Provides
