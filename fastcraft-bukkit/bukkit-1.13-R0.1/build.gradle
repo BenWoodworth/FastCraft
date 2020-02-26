@@ -1,0 +1,6 @@
+dependencies {
+    implementation 'org.bukkit:bukkit:1.13-R0.1-SNAPSHOT'
+
+    implementation project(':fastcraft-bukkit:bukkit-1.15-R0.1')
+    implementation project(':fastcraft-bukkit:bukkit-platform')
+}

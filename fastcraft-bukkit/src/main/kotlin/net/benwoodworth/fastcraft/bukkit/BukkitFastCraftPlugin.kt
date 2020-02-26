@@ -2,7 +2,6 @@ package net.benwoodworth.fastcraft.bukkit
 
 import net.benwoodworth.fastcraft.FastCraft
 import net.benwoodworth.fastcraft.bukkit.util.BukkitVersion
-import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 import java.util.logging.Level
 

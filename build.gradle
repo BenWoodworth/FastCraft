@@ -1,9 +1,3 @@
-group "net.benwoodworth"
-
-apply plugin: "kotlin"
-apply plugin: "kotlin-kapt"
-apply plugin: "com.github.johnrengelman.shadow"
-
 buildscript {
     PluginVersion.updateVersion()
     version = PluginVersion.version
@@ -14,112 +8,65 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin"
-        classpath "com.github.jengelman.gradle.plugins:shadow:$version_shadow"
     }
 }
 
-repositories {
-    jcenter()
-    maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots" }
-}
-
-sourceSets {
-    common {
-        java.srcDirs += "$buildDir/generated/source/kapt/common"
-    }
-
-    bukkit {
-        java.srcDirs += "$buildDir/generated/source/kapt/bukkit"
-        compileClasspath += common.compileClasspath
-        runtimeClasspath += common.runtimeClasspath
-    }
-}
-
-dependencies {
-    def allImplementation = { dependency ->
-        implementation dependency
-        commonImplementation dependency
-        bukkitImplementation dependency
-    }
-
-    def kaptAll = { dependency ->
-        kapt dependency
-        kaptCommon dependency
-        kaptBukkit dependency
-    }
-
-    allImplementation "org.jetbrains.kotlin:kotlin-stdlib:$version_kotlin"
-    allImplementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version_kotlin"
-    allImplementation "com.google.dagger:dagger:$version_dagger"
-    allImplementation "javax.inject:javax.inject:$version_javax_inject"
-    allImplementation "com.google.auto.factory:auto-factory:$version_auto_factory"
-    allImplementation "net.benwoodworth.localeconfig:localeconfig-api:0.2.0"
-
-    kaptAll "com.google.dagger:dagger-compiler:$version_dagger"
-    kaptAll "com.google.auto.factory:auto-factory:$version_auto_factory"
-
-    bukkitImplementation sourceSets.common.output
-    bukkitImplementation "org.bukkit:bukkit:1.13-R0.1-SNAPSHOT"
-    bukkitImplementation "org.bukkit:bukkit:1.15-R0.1-SNAPSHOT"
-}
-
-compileKotlin.kotlinOptions.jvmTarget = version_java
-compileTestKotlin.kotlinOptions.jvmTarget = version_java
-
-kapt {
-    correctErrorTypes = true
-    includeCompileClasspath = false
-}
-
-// Let auto factory build incrementally
-configurations.all {
-    resolutionStrategy {
-        force "com.google.auto.value:auto-value-annotations:1.6.6"
-        eachDependency { details ->
-            if (details.requested.group == "com.google.auto.value" && details.requested.name == "auto-value") {
-                details.useTarget "com.google.auto.value:auto-value-annotations:1.6.6"
+task build(group: "build", dependsOn: ":fastcraft:build") {
+    doLast {
+        copy {
+            from("${project(":fastcraft").buildDir}/libs") {
+                include "*.jar"
             }
+
+            into project.buildDir
         }
     }
 }
 
-jar {
-    enabled = false
-    dependsOn shadowJar
+task clean(group: "build") {
+    doLast {
+        delete project.buildDir
+    }
 }
 
-shadowJar {
-    archiveFileName = "FastCraft.jar"
+subprojects {
+    apply plugin: "kotlin"
+    apply plugin: "kotlin-kapt"
 
-    from sourceSets.common.output
-    from sourceSets.bukkit.output
+    repositories {
+        jcenter()
+        mavenLocal()
+    }
 
     dependencies {
-        include dependency("org.jetbrains.kotlin:kotlin-stdlib")
-        include dependency("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-        include dependency("com.google.dagger:dagger")
-        include dependency("javax.inject:javax.inject")
-        include dependency("net.benwoodworth.localeconfig:localeconfig-api")
+        implementation "org.jetbrains.kotlin:kotlin-stdlib:$version_kotlin"
+        implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version_kotlin"
+        implementation "com.google.dagger:dagger:$version_dagger"
+        implementation "javax.inject:javax.inject:$version_javax_inject"
+        implementation "com.google.auto.factory:auto-factory:$version_auto_factory"
+        implementation "net.benwoodworth.localeconfig:localeconfig-api:$version_localeconfig"
+
+        kapt "com.google.dagger:dagger-compiler:$version_dagger"
+        kapt "com.google.auto.factory:auto-factory:$version_auto_factory"
     }
 
-    def libPackage = "net.benwoodworth.fastcraft.lib"
-    relocate("kotlin", "${libPackage}.kotlin")
-    relocate("dagger", "${libPackage}.dagger")
-    relocate("javax", "${libPackage}.javax")
-    relocate("net.benwoodworth.localeconfig", "${libPackage}.localeconfig")
+    compileKotlin.kotlinOptions.jvmTarget = version_java
+    compileTestKotlin.kotlinOptions.jvmTarget = version_java
 
-    minimize {
-        exclude(project(":"))
+    kapt {
+        correctErrorTypes = true
+        includeCompileClasspath = false
     }
-}
 
-processBukkitResources {
-    include "plugin.yml"
-
-    expand([
-            plugin_author     : plugin_author,
-            plugin_description: plugin_description,
-            plugin_version    : version,
-            plugin_website    : plugin_website
-    ])
+    // Let auto factory build incrementally
+    configurations.all {
+        resolutionStrategy {
+            force "com.google.auto.value:auto-value-annotations:1.6.6"
+            eachDependency { details ->
+                if (details.requested.group == "com.google.auto.value" && details.requested.name == "auto-value") {
+                    details.useTarget "com.google.auto.value:auto-value-annotations:1.6.6"
+                }
+            }
+        }
+    }
 }
