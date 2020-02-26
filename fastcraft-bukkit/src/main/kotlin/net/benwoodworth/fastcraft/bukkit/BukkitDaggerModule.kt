@@ -7,6 +7,7 @@ import net.benwoodworth.fastcraft.bukkit.gui.BukkitFcGuiButton
 import net.benwoodworth.fastcraft.bukkit.gui.BukkitFcGuiButton_1_8_R01
 import net.benwoodworth.fastcraft.bukkit.gui.BukkitFcGuiFactory_1_8_R01
 import net.benwoodworth.fastcraft.bukkit.item.*
+import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerEvents_1_13_R01
 import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerEvents_1_8_R01
 import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerProvider_1_8_R01
 import net.benwoodworth.fastcraft.bukkit.recipe.*
@@ -172,8 +173,15 @@ class BukkitDaggerModule(
 
     @Provides
     @Singleton
-    fun provideFcPlayerEvents(instance: BukkitFcPlayerEvents_1_8_R01): FcPlayerEvents {
-        return instance
+    fun provideFcPlayerEvents(
+        instance_1_13: Provider<BukkitFcPlayerEvents_1_13_R01>,
+        instance_1_8: Provider<BukkitFcPlayerEvents_1_8_R01>
+    ): FcPlayerEvents {
+        return when {
+            bukkitVersion >= VERSION_1_13_R01 -> instance_1_13.get()
+            bukkitVersion >= VERSION_1_8_R01 -> instance_1_8.get()
+            else -> instance_1_8.get()
+        }
     }
 
     @Provides

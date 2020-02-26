@@ -5,6 +5,7 @@ import net.benwoodworth.fastcraft.platform.player.FcPlayerJoinEvent
 import net.benwoodworth.fastcraft.platform.player.FcPlayerOpenWorkbenchEvent
 import net.benwoodworth.fastcraft.platform.player.FcPlayerProvider
 import org.bukkit.Material
+import org.bukkit.block.Block
 import org.bukkit.event.Event
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
@@ -16,7 +17,7 @@ import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.PluginManager
 import javax.inject.Inject
 
-class BukkitFcPlayerEvents_1_8_R01 @Inject constructor(
+open class BukkitFcPlayerEvents_1_8_R01 @Inject constructor(
     plugin: Plugin,
     private val playerProvider: FcPlayerProvider,
     pluginManager: PluginManager
@@ -27,6 +28,10 @@ class BukkitFcPlayerEvents_1_8_R01 @Inject constructor(
 
     init {
         pluginManager.registerEvents(EventListener(), plugin)
+    }
+
+    open protected fun Block.isCraftingTable(): Boolean {
+        return type == Material.WORKBENCH
     }
 
     private inner class EventListener : Listener {
@@ -42,7 +47,7 @@ class BukkitFcPlayerEvents_1_8_R01 @Inject constructor(
             if (event.useInteractedBlock() == Event.Result.DENY) return
             if (event.action != Action.RIGHT_CLICK_BLOCK) return
             if (event.player.isSneaking) return
-            if (event.clickedBlock?.type != Material.CRAFTING_TABLE) return
+            if (event.clickedBlock?.isCraftingTable() != true) return
 
             onPlayerOpenWorkbench.notifyHandlers(
                 BukkitFcPlayerOpenWorkbenchEvent_1_8_R01(event, playerProvider)
