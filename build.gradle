@@ -8,28 +8,13 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin"
+        classpath "com.github.jengelman.gradle.plugins:shadow:$version_shadow"
     }
 }
 
-task build(group: "build", dependsOn: ":fastcraft-core:build") {
-    doLast {
-        copy {
-            from("${project(":fastcraft-core").buildDir}/libs") {
-                include "*.jar"
-            }
+apply plugin: "com.github.johnrengelman.shadow"
 
-            into project.buildDir
-        }
-    }
-}
-
-task clean(group: "build") {
-    doLast {
-        delete project.buildDir
-    }
-}
-
-subprojects {
+allprojects {
     apply plugin: "kotlin"
     apply plugin: "kotlin-kapt"
 
@@ -67,6 +52,44 @@ subprojects {
                     details.useTarget "com.google.auto.value:auto-value-annotations:1.6.6"
                 }
             }
+        }
+    }
+}
+
+dependencies {
+    implementation project(':fastcraft-core')
+    implementation project(':fastcraft-bukkit')
+}
+
+jar {
+    enabled = false
+    dependsOn shadowJar
+}
+
+shadowJar {
+    archiveFileName = "FastCraft.jar"
+
+    dependencies {
+        subprojects.each {
+            include dependency(it)
+        }
+
+        include dependency("org.jetbrains.kotlin:kotlin-stdlib")
+        include dependency("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+        include dependency("com.google.dagger:dagger")
+        include dependency("javax.inject:javax.inject")
+        include dependency("net.benwoodworth.localeconfig:localeconfig-api")
+    }
+
+    def libPackage = "net.benwoodworth.fastcraft.lib"
+    relocate("kotlin", "${libPackage}.kotlin")
+    relocate("dagger", "${libPackage}.dagger")
+    relocate("javax", "${libPackage}.javax")
+    relocate("net.benwoodworth.localeconfig", "${libPackage}.localeconfig")
+
+    minimize {
+        subprojects.each {
+            exclude dependency(it)
         }
     }
 }
