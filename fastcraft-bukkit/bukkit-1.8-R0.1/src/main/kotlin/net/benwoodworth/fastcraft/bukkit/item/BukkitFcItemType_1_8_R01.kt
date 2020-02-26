@@ -8,7 +8,7 @@ import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.material.MaterialData
 
-open class BukkitFcItemType_1_8_R01 private constructor(
+open class BukkitFcItemType_1_8_R01(
     override val materialData: MaterialData,
     private val textFactory: FcTextFactory
 ) : BukkitFcItemType {

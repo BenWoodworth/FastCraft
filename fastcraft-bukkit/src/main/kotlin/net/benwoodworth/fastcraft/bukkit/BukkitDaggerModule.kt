@@ -43,6 +43,8 @@ class BukkitDaggerModule(
 
     private companion object {
         val VERSION_1_15_R01 = BukkitVersion.parse("1.15-R0.1")
+        val VERSION_1_14_R01 = BukkitVersion.parse("1.14-R0.1")
+        val VERSION_1_13_R01 = BukkitVersion.parse("1.13-R0.1")
         val VERSION_1_8_R01 = BukkitVersion.parse("1.8-R0.1")
     }
 
@@ -104,8 +106,15 @@ class BukkitDaggerModule(
 
     @Provides
     @Singleton
-    fun provideFcItemTypes(instance: BukkitFcItemTypes_1_8_R01): FcItemTypes {
-        return instance
+    fun provideFcItemTypes(
+        instance_1_13: Provider<BukkitFcItemTypes_1_13_R01>,
+        instance_1_8: Provider<BukkitFcItemTypes_1_8_R01>
+    ): FcItemTypes {
+        return when {
+            bukkitVersion >= VERSION_1_13_R01 -> instance_1_13.get()
+            bukkitVersion >= VERSION_1_8_R01 -> instance_1_8.get()
+            else -> instance_1_8.get()
+        }
     }
 
     @Provides

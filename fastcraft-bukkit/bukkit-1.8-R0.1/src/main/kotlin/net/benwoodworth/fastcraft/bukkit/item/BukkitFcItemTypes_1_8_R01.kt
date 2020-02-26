@@ -6,18 +6,28 @@ import org.bukkit.Material
 import org.bukkit.material.MaterialData
 import javax.inject.Inject
 
-class BukkitFcItemTypes_1_8_R01 @Inject constructor(
+open class BukkitFcItemTypes_1_8_R01 @Inject constructor(
     private val textFactory: FcTextFactory
 ) : BukkitFcItemTypes {
-    override val air = fromMaterial(Material.AIR)
+    override val air: FcItemType by lazy {
+        fromMaterial(Material.AIR)
+    }
 
-    override val ironSword = fromMaterial(Material.IRON_SWORD)
+    override val ironSword: FcItemType by lazy {
+        fromMaterial(Material.IRON_SWORD)
+    }
 
-    override val craftingTable = fromMaterial(Material.WORKBENCH)
+    override val craftingTable: FcItemType by lazy {
+        fromMaterial(Material.WORKBENCH)
+    }
 
-    override val anvil = fromMaterial(Material.ANVIL)
+    override val anvil: FcItemType by lazy {
+        fromMaterial(Material.ANVIL)
+    }
 
-    override val netherStar = fromMaterial(Material.NETHER_STAR)
+    override val netherStar: FcItemType by lazy {
+        fromMaterial(Material.NETHER_STAR)
+    }
 
     override fun fromMaterial(material: Material): FcItemType {
         return fromMaterialData(MaterialData(material))

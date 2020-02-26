@@ -7,18 +7,18 @@ import javax.inject.Inject
 
 class BukkitFcItemTypes_1_13_R01 @Inject constructor(
     private val textFactory: FcTextFactory
-) : BukkitFcItemTypes {
-    override val air = fromMaterial(Material.AIR)
-
-    override val ironSword = fromMaterial(Material.IRON_SWORD)
-
-    override val craftingTable = fromMaterial(Material.CRAFTING_TABLE)
-
-    override val anvil = fromMaterial(Material.ANVIL)
-
-    override val netherStar = fromMaterial(Material.NETHER_STAR)
+) : BukkitFcItemTypes_1_8_R01(
+    textFactory = textFactory
+) {
+    override val craftingTable: FcItemType by lazy {
+        fromMaterial(Material.CRAFTING_TABLE)
+    }
 
     override fun fromMaterial(material: Material): FcItemType {
-        return BukkitFcItemType_1_8_R01(material, textFactory)
+        return BukkitFcItemType_1_13_R01(material, textFactory)
+    }
+
+    override fun fromMaterialData(materialData: Any): FcItemType {
+        throw UnsupportedOperationException()
     }
 }
