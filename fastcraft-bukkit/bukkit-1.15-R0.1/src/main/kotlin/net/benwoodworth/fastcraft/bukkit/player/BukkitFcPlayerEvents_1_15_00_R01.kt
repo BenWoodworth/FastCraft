@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft.bukkit.player
 
-import net.benwoodworth.fastcraft.bukkit.BukkitFastCraftPlugin
 import net.benwoodworth.fastcraft.events.HandlerSet
 import net.benwoodworth.fastcraft.platform.player.FcPlayerJoinEvent
 import net.benwoodworth.fastcraft.platform.player.FcPlayerOpenWorkbenchEvent
@@ -13,11 +12,12 @@ import org.bukkit.event.Listener
 import org.bukkit.event.block.Action
 import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.event.player.PlayerJoinEvent
+import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.PluginManager
 import javax.inject.Inject
 
 class BukkitFcPlayerEvents_1_15_00_R01 @Inject constructor(
-    plugin: BukkitFastCraftPlugin,
+    plugin: Plugin,
     private val playerProvider: FcPlayerProvider,
     pluginManager: PluginManager
 ) : BukkitFcPlayerEvents {

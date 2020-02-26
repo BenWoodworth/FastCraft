@@ -2,7 +2,6 @@ package net.benwoodworth.fastcraft.bukkit.gui
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.bukkit.BukkitFastCraftPlugin
 import net.benwoodworth.fastcraft.bukkit.player.player
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
@@ -17,6 +16,7 @@ import org.bukkit.event.inventory.*
 import org.bukkit.event.server.PluginDisableEvent
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.InventoryHolder
+import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.PluginManager
 
 @AutoFactory
@@ -24,7 +24,7 @@ class BukkitFcGui_1_15_00_R01<TLayout : FcGuiLayout>(
     override val player: FcPlayer,
     createInventory: (owner: InventoryHolder) -> Inventory,
     createLayout: (inventory: Inventory) -> TLayout,
-    @Provided plugin: BukkitFastCraftPlugin,
+    @Provided plugin: Plugin,
     @Provided pluginManager: PluginManager
 ) : BukkitFcGui<TLayout>, InventoryHolder {
     override var listener: FcGui.Listener = FcGui.Listener.Default

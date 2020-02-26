@@ -1,11 +1,11 @@
 package net.benwoodworth.fastcraft.bukkit.server
 
-import net.benwoodworth.fastcraft.bukkit.BukkitFastCraftPlugin
 import net.benwoodworth.fastcraft.platform.server.FcTask
+import org.bukkit.plugin.Plugin
 import org.bukkit.scheduler.BukkitScheduler
 
 class BukkitFcTask_1_15_00_R01(
-    private val plugin: BukkitFastCraftPlugin,
+    private val plugin: Plugin,
     private val async: Boolean,
     private val delay: Long,
     private val interval: Long,

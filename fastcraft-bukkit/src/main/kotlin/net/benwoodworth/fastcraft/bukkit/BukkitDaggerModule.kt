@@ -28,6 +28,7 @@ import net.benwoodworth.fastcraft.platform.text.FcTextConverter
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.Server
 import org.bukkit.inventory.ItemFactory
+import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.PluginManager
 import org.bukkit.scheduler.BukkitScheduler
 import javax.inject.Provider
@@ -47,12 +48,12 @@ class BukkitDaggerModule(
 
     @Provides
     @Singleton
-    fun providePlugin(): BukkitFastCraftPlugin {
+    fun providePlugin(): Plugin {
         return plugin
     }
 
     @Provides
-    fun provideServer(plugin: BukkitFastCraftPlugin): Server {
+    fun provideServer(plugin: Plugin): Server {
         return plugin.server
     }
 
