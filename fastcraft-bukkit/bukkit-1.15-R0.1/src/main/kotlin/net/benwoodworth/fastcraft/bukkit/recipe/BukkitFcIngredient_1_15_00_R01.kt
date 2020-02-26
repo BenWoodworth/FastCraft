@@ -5,12 +5,17 @@ import net.benwoodworth.fastcraft.platform.item.FcItem
 import org.bukkit.inventory.RecipeChoice
 import java.util.*
 
-class BukkitFcIngredient_1_15_00_R01(
-    val slotIndex: Int,
-    val recipeChoice: RecipeChoice
+open class BukkitFcIngredient_1_15_00_R01 protected constructor(
+    val slotIndex: Int
 ) : BukkitFcIngredient {
+    private lateinit var recipeChoice: RecipeChoice
+
     init {
         require(slotIndex in 0..8)
+    }
+
+    constructor(slotIndex: Int, recipeChoice: RecipeChoice) : this(slotIndex) {
+        this.recipeChoice = recipeChoice
     }
 
     override fun matches(item: FcItem): Boolean {

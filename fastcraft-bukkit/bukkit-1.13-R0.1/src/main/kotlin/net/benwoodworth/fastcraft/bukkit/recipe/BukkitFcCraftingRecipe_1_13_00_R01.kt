@@ -15,7 +15,7 @@ class BukkitFcCraftingRecipe_1_13_00_R01(
     preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_15_00_R01Factory,
     itemFactory: FcItemFactory,
     remnantProvider: IngredientRemnantProvider,
-    inventoryViewFactory: PrepareCraftInventoryView.Factory
+    inventoryViewFactory: PrepareCraftInventoryView_1_13_00_R01.Factory
 ) : BukkitFcCraftingRecipe_1_15_00_R01(
     recipe = recipe,
     server = server,
@@ -29,7 +29,7 @@ class BukkitFcCraftingRecipe_1_13_00_R01(
         private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_15_00_R01Factory,
         private val itemFactory: FcItemFactory,
         private val remnantProvider: IngredientRemnantProvider,
-        private val inventoryViewFactory: PrepareCraftInventoryView.Factory
+        private val inventoryViewFactory: PrepareCraftInventoryView_1_13_00_R01.Factory
     ) : BukkitFcCraftingRecipe.Factory {
         override fun create(recipe: Recipe): FcCraftingRecipe {
             return BukkitFcCraftingRecipe_1_13_00_R01(

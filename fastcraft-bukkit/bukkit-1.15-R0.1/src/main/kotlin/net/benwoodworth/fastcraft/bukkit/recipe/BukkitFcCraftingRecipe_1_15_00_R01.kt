@@ -14,6 +14,7 @@ import org.bukkit.Keyed
 import org.bukkit.Material
 import org.bukkit.Server
 import org.bukkit.event.inventory.PrepareItemCraftEvent
+import org.bukkit.inventory.CraftingInventory
 import org.bukkit.inventory.Recipe
 import org.bukkit.inventory.ShapedRecipe
 import org.bukkit.inventory.ShapelessRecipe
@@ -25,14 +26,14 @@ open class BukkitFcCraftingRecipe_1_15_00_R01(
     private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_15_00_R01Factory,
     private val itemFactory: FcItemFactory,
     private val remnantProvider: IngredientRemnantProvider,
-    private val inventoryViewFactory: PrepareCraftInventoryView.Factory
+    private val inventoryViewFactory: PrepareCraftInventoryView_1_15_00_R01.Factory
 ) : BukkitFcCraftingRecipe {
     class Factory @Inject constructor(
         private val server: Server,
         private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_15_00_R01Factory,
         private val itemFactory: FcItemFactory,
         private val remnantProvider: IngredientRemnantProvider,
-        private val inventoryViewFactory: PrepareCraftInventoryView.Factory
+        private val inventoryViewFactory: PrepareCraftInventoryView_1_15_00_R01.Factory
     ) : BukkitFcCraftingRecipe.Factory {
         override fun create(recipe: Recipe): FcCraftingRecipe {
             return BukkitFcCraftingRecipe_1_15_00_R01(
@@ -91,7 +92,7 @@ open class BukkitFcCraftingRecipe_1_15_00_R01(
     ): CancellableResult<FcCraftingRecipePrepared> {
         // TODO Inventory owner
         val prepareView = inventoryViewFactory.create(player.player, null, recipe)
-        val craftingGrid = prepareView.topInventory
+        val craftingGrid = prepareView.topInventory as CraftingInventory
 
         ingredients.forEach { (ingredient, item) ->
             ingredient as BukkitFcIngredient_1_15_00_R01

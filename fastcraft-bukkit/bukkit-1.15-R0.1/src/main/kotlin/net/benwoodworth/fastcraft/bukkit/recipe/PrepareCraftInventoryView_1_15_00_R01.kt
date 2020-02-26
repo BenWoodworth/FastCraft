@@ -3,9 +3,7 @@ package net.benwoodworth.fastcraft.bukkit.recipe
 import org.bukkit.Server
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryType
-import org.bukkit.inventory.Inventory
-import org.bukkit.inventory.InventoryHolder
-import org.bukkit.inventory.Recipe
+import org.bukkit.inventory.*
 import javax.inject.Inject
 
 class PrepareCraftInventoryView_1_15_00_R01 private constructor(
@@ -13,15 +11,15 @@ class PrepareCraftInventoryView_1_15_00_R01 private constructor(
     inventoryHolder: InventoryHolder?,
     recipe: Recipe?,
     private val server: Server
-) : PrepareCraftInventoryView() {
+) : InventoryView() {
     open class Factory @Inject constructor(
         private val server: Server
-    ) : PrepareCraftInventoryView.Factory {
-        override fun create(
+    ) {
+        open fun create(
             player: Player,
             inventoryHolder: InventoryHolder?,
             recipe: Recipe?
-        ): PrepareCraftInventoryView {
+        ): InventoryView {
             return PrepareCraftInventoryView_1_15_00_R01(
                 player = player,
                 inventoryHolder = inventoryHolder,
@@ -31,7 +29,7 @@ class PrepareCraftInventoryView_1_15_00_R01 private constructor(
         }
     }
 
-    private val topInventory = PrepareCraftInventoryView.PreparedInventory(
+    private val topInventory = PreparedInventory(
         inventory = server.createInventory(inventoryHolder, InventoryType.WORKBENCH),
         recipe = recipe
     )
@@ -52,7 +50,34 @@ class PrepareCraftInventoryView_1_15_00_R01 private constructor(
         return "FastCraft"
     }
 
-    override fun getTopInventory(): PreparedInventory {
+    override fun getTopInventory(): Inventory {
         return topInventory
+    }
+
+    class PreparedInventory(
+        private val inventory: Inventory,
+        private val recipe: Recipe?
+    ) : CraftingInventory, Inventory by inventory {
+        override fun getMatrix(): Array<ItemStack?> {
+            return Array(size - 1) { slot -> getItem(slot) }
+        }
+
+        override fun setResult(newResult: ItemStack?) {
+            setItem(size - 1, newResult)
+        }
+
+        override fun getRecipe(): Recipe? {
+            return recipe
+        }
+
+        override fun getResult(): ItemStack? {
+            return getItem(9)
+        }
+
+        override fun setMatrix(contents: Array<out ItemStack>) {
+            contents.forEachIndexed { i, item ->
+                setItem(i, item)
+            }
+        }
     }
 }

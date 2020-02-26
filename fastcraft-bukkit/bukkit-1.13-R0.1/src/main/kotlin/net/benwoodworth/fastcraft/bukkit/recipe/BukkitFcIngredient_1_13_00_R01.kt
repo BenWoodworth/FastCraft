@@ -8,9 +8,11 @@ import java.util.*
 
 
 class BukkitFcIngredient_1_13_00_R01(
-    val slotIndex: Int,
-    val ingredientItem: ItemStack
-) : BukkitFcIngredient {
+    slotIndex: Int,
+    private val ingredientItem: ItemStack
+) : BukkitFcIngredient_1_15_00_R01(
+    slotIndex = slotIndex
+) {
     init {
         require(slotIndex in 0..8)
     }

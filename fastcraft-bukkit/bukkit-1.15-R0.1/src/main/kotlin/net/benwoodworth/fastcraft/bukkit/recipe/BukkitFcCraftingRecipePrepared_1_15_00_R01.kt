@@ -13,6 +13,8 @@ import org.bukkit.event.inventory.ClickType
 import org.bukkit.event.inventory.CraftItemEvent
 import org.bukkit.event.inventory.InventoryAction
 import org.bukkit.event.inventory.InventoryType
+import org.bukkit.inventory.CraftingInventory
+import org.bukkit.inventory.InventoryView
 
 @AutoFactory
 class BukkitFcCraftingRecipePrepared_1_15_00_R01(
@@ -20,7 +22,7 @@ class BukkitFcCraftingRecipePrepared_1_15_00_R01(
     override val ingredients: Map<FcIngredient, FcItem>,
     private val ingredientRemnants: List<FcItem>,
     override val resultsPreview: List<FcItem>,
-    private val preparedCraftingView: PrepareCraftInventoryView,
+    private val preparedCraftingView: InventoryView,
     @Provided private val itemFactory: FcItemFactory,
     @Provided private val server: Server
 ) : BukkitFcCraftingRecipePrepared {
@@ -30,8 +32,10 @@ class BukkitFcCraftingRecipePrepared_1_15_00_R01(
         require(!craftCalled) { "Only callable once" }
         craftCalled = true
 
+        val craftingInventory = preparedCraftingView.topInventory as CraftingInventory
+
         val craftEvent = CraftItemEvent(
-            preparedCraftingView.topInventory.recipe!!,
+            craftingInventory.recipe!!,
             preparedCraftingView,
             InventoryType.SlotType.RESULT,
             9,
@@ -41,7 +45,7 @@ class BukkitFcCraftingRecipePrepared_1_15_00_R01(
 
         server.pluginManager.callEvent(craftEvent)
 
-        val resultItem = preparedCraftingView.topInventory.result
+        val resultItem = craftingInventory.result
         val isCancelled = craftEvent.isCancelled || resultItem == null || resultItem.amount < 1
 
         return if (isCancelled) {

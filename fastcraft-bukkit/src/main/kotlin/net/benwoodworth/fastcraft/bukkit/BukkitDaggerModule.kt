@@ -141,19 +141,6 @@ class BukkitDaggerModule(
 
     @Provides
     @Singleton
-    fun providePrepareCraftInventoryViewFactory(
-        instance_1_15: Provider<PrepareCraftInventoryView_1_15_00_R01.Factory>,
-        instance_1_13: Provider<PrepareCraftInventoryView_1_13_00_R01.Factory>
-    ): PrepareCraftInventoryView.Factory {
-        return when {
-            bukkitVersion >= VERSION_1_15_00_R01 -> instance_1_15.get()
-            bukkitVersion >= VERSION_1_13_00_R01 -> instance_1_13.get()
-            else -> instance_1_13.get()
-        }
-    }
-
-    @Provides
-    @Singleton
     fun provideFcPlayerEvents(instance: BukkitFcPlayerEvents_1_15_00_R01): FcPlayerEvents {
         return instance
     }
