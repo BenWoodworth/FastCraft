@@ -49,7 +49,7 @@ class PrepareCraftInventoryView_1_14_R01 private constructor(
     }
 
     override fun getTitle(): String {
-        return "FastCraft"
+        return topInventory.title
     }
 
     override fun getTopInventory(): Inventory {
