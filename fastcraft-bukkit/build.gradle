@@ -11,3 +11,14 @@ dependencies {
     implementation project(':fastcraft-bukkit:bukkit-1.13-R0.1')
     implementation project(':fastcraft-bukkit:bukkit-1.15-R0.1')
 }
+
+processResources {
+    include "plugin.yml"
+
+    expand([
+            plugin_author     : plugin_author,
+            plugin_description: plugin_description,
+            plugin_version    : version,
+            plugin_website    : plugin_website
+    ])
+}
