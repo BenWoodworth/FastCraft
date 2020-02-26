@@ -7,9 +7,9 @@ allprojects {
 dependencies {
     compileOnly 'org.bukkit:bukkit:1.8-R0.1-SNAPSHOT'
 
-    implementation project(':fastcraft-bukkit:bukkit-platform')
-    implementation project(':fastcraft-bukkit:bukkit-1.13-R0.1')
-    implementation project(':fastcraft-bukkit:bukkit-1.15-R0.1')
+    subprojects.each {
+        implementation it
+    }
 }
 
 processResources {
