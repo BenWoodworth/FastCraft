@@ -20,7 +20,7 @@ class BukkitFcCraftingRecipePrepared_1_15_00_R01(
     override val ingredients: Map<FcIngredient, FcItem>,
     private val ingredientRemnants: List<FcItem>,
     override val resultsPreview: List<FcItem>,
-    private val preparedCraftingView: PrepareCraftInventoryView_1_15_00_R01,
+    private val preparedCraftingView: PrepareCraftInventoryView,
     @Provided private val itemFactory: FcItemFactory,
     @Provided private val server: Server
 ) : BukkitFcCraftingRecipePrepared {

@@ -128,9 +128,22 @@ class BukkitDaggerModule(
     @Provides
     @Singleton
     fun provideFcCraftingRecipeFactory(
-        instance_1_15: Provider<BukkitFcCraftingRecipeFactory_1_15_00_R01>,
-        instance_1_13: Provider<BukkitFcCraftingRecipeFactory_1_13_00_R01>
-    ): BukkitFcCraftingRecipeFactory {
+        instance_1_15: Provider<BukkitFcCraftingRecipe_1_15_00_R01.Factory>,
+        instance_1_13: Provider<BukkitFcCraftingRecipe_1_13_00_R01.Factory>
+    ): BukkitFcCraftingRecipe.Factory {
+        return when {
+            bukkitVersion >= VERSION_1_15_00_R01 -> instance_1_15.get()
+            bukkitVersion >= VERSION_1_13_00_R01 -> instance_1_13.get()
+            else -> instance_1_13.get()
+        }
+    }
+
+    @Provides
+    @Singleton
+    fun providePrepareCraftInventoryViewFactory(
+        instance_1_15: Provider<PrepareCraftInventoryView_1_15_00_R01.Factory>,
+        instance_1_13: Provider<PrepareCraftInventoryView_1_13_00_R01.Factory>
+    ): PrepareCraftInventoryView.Factory {
         return when {
             bukkitVersion >= VERSION_1_15_00_R01 -> instance_1_15.get()
             bukkitVersion >= VERSION_1_13_00_R01 -> instance_1_13.get()

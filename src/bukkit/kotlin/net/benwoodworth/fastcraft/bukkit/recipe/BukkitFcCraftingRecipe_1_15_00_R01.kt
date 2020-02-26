@@ -17,6 +17,7 @@ import org.bukkit.event.inventory.PrepareItemCraftEvent
 import org.bukkit.inventory.Recipe
 import org.bukkit.inventory.ShapedRecipe
 import org.bukkit.inventory.ShapelessRecipe
+import javax.inject.Inject
 
 open class BukkitFcCraftingRecipe_1_15_00_R01(
     val recipe: Recipe,
@@ -24,8 +25,27 @@ open class BukkitFcCraftingRecipe_1_15_00_R01(
     private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_15_00_R01Factory,
     private val itemFactory: FcItemFactory,
     private val remnantProvider: IngredientRemnantProvider,
-    private val inventoryViewFactory: PrepareCraftInventoryView_1_15_00_R01Factory
+    private val inventoryViewFactory: PrepareCraftInventoryView.Factory
 ) : BukkitFcCraftingRecipe {
+    class Factory @Inject constructor(
+        private val server: Server,
+        private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_15_00_R01Factory,
+        private val itemFactory: FcItemFactory,
+        private val remnantProvider: IngredientRemnantProvider,
+        private val inventoryViewFactory: PrepareCraftInventoryView.Factory
+    ) : BukkitFcCraftingRecipe.Factory {
+        override fun create(recipe: Recipe): FcCraftingRecipe {
+            return BukkitFcCraftingRecipe_1_15_00_R01(
+                recipe = recipe,
+                server = server,
+                preparedRecipeFactory = preparedRecipeFactory,
+                itemFactory = itemFactory,
+                remnantProvider = remnantProvider,
+                inventoryViewFactory = inventoryViewFactory
+            )
+        }
+    }
+
     init {
         require(recipe is ShapedRecipe || recipe is ShapelessRecipe)
     }

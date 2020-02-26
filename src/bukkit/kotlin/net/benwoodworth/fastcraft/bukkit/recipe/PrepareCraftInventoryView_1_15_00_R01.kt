@@ -1,26 +1,42 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
-import com.google.auto.factory.AutoFactory
-import com.google.auto.factory.Provided
 import org.bukkit.Server
-import org.bukkit.entity.HumanEntity
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryType
-import org.bukkit.inventory.*
+import org.bukkit.inventory.Inventory
+import org.bukkit.inventory.InventoryHolder
+import org.bukkit.inventory.Recipe
+import javax.inject.Inject
 
-@AutoFactory
-class PrepareCraftInventoryView_1_15_00_R01(
+class PrepareCraftInventoryView_1_15_00_R01 private constructor(
     private val player: Player,
     inventoryHolder: InventoryHolder?,
     recipe: Recipe?,
-    @Provided private val server: Server
-) : InventoryView() {
-    private val topInventory = PreparedCraftingInventory(
+    private val server: Server
+) : PrepareCraftInventoryView() {
+    open class Factory @Inject constructor(
+        private val server: Server
+    ) : PrepareCraftInventoryView.Factory {
+        override fun create(
+            player: Player,
+            inventoryHolder: InventoryHolder?,
+            recipe: Recipe?
+        ): PrepareCraftInventoryView {
+            return PrepareCraftInventoryView_1_15_00_R01(
+                player = player,
+                inventoryHolder = inventoryHolder,
+                recipe = recipe,
+                server = server
+            )
+        }
+    }
+
+    private val topInventory = PrepareCraftInventoryView.PreparedInventory(
         inventory = server.createInventory(inventoryHolder, InventoryType.WORKBENCH),
         recipe = recipe
     )
 
-    override fun getPlayer(): HumanEntity {
+    override fun getPlayer(): Player {
         return player
     }
 
@@ -36,34 +52,7 @@ class PrepareCraftInventoryView_1_15_00_R01(
         return "FastCraft"
     }
 
-    override fun getTopInventory(): CraftingInventory {
+    override fun getTopInventory(): PreparedInventory {
         return topInventory
-    }
-
-    private class PreparedCraftingInventory(
-        private val inventory: Inventory,
-        private val recipe: Recipe?
-    ) : CraftingInventory, Inventory by inventory {
-        override fun getMatrix(): Array<ItemStack?> {
-            return Array(size - 1) { slot -> getItem(slot) }
-        }
-
-        override fun setResult(newResult: ItemStack?) {
-            setItem(size - 1, newResult)
-        }
-
-        override fun getRecipe(): Recipe? {
-            return recipe
-        }
-
-        override fun getResult(): ItemStack? {
-            return getItem(9)
-        }
-
-        override fun setMatrix(contents: Array<out ItemStack>) {
-            contents.forEachIndexed { i, item ->
-                setItem(i, item)
-            }
-        }
     }
 }
