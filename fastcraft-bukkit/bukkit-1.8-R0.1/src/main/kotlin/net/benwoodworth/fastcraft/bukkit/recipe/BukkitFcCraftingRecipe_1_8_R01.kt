@@ -17,6 +17,7 @@ import org.bukkit.inventory.CraftingInventory
 import org.bukkit.inventory.Recipe
 import org.bukkit.inventory.ShapedRecipe
 import org.bukkit.inventory.ShapelessRecipe
+import java.util.*
 import javax.inject.Inject
 
 open class BukkitFcCraftingRecipe_1_8_R01(
@@ -50,10 +51,13 @@ open class BukkitFcCraftingRecipe_1_8_R01(
         require(recipe is ShapedRecipe || recipe is ShapelessRecipe)
     }
 
-    override val id: String
-        get() = (recipe as Keyed).key.toString()
+    override val id: String by lazy {
+        "#" + (hashCode().toLong() - Int.MIN_VALUE).toString(36)
+    }
 
-    override val ingredients: List<FcIngredient> = loadIngredients()
+    override val ingredients: List<FcIngredient> by lazy {
+        loadIngredients()
+    }
 
     protected open fun loadIngredients(): List<FcIngredient> {
         return when (recipe) {
@@ -79,11 +83,7 @@ open class BukkitFcCraftingRecipe_1_8_R01(
     }
 
     override val group: String?
-        get() = when (recipe) {
-            is ShapedRecipe -> recipe.group.takeUnless { it == "" }
-            is ShapelessRecipe -> recipe.group.takeUnless { it == "" }
-            else -> throw IllegalStateException()
-        }
+        get() = null
 
     override fun prepare(
         player: FcPlayer,
@@ -122,11 +122,45 @@ open class BukkitFcCraftingRecipe_1_8_R01(
     }
 
     override fun equals(other: Any?): Boolean {
-        return other is FcCraftingRecipe && id == other.id
+        if (other !is BukkitFcCraftingRecipe_1_8_R01) {
+            return false
+        }
+
+        val otherRecipe = other.recipe
+
+        return when {
+            recipe is ShapedRecipe && otherRecipe is ShapedRecipe -> {
+                recipe.ingredientMap == otherRecipe.ingredientMap &&
+                        recipe.shape!!.contentEquals(otherRecipe.shape) &&
+                        recipe.result == otherRecipe.result
+
+            }
+            recipe is ShapelessRecipe && otherRecipe is ShapelessRecipe -> {
+                recipe.ingredientList == otherRecipe.ingredientList &&
+                        recipe.result == otherRecipe.result
+            }
+            else -> {
+                return false
+            }
+        }
     }
 
     override fun hashCode(): Int {
-        return id.hashCode()
+        return when (recipe) {
+            is ShapedRecipe -> {
+                Objects.hash(
+                    recipe.result,
+                    recipe.shape,
+                    recipe.ingredientMap
+                )
+            }
+            is ShapelessRecipe -> {
+                Objects.hash(
+                    recipe.result,
+                    recipe.ingredientList
+                )
+            }
+            else -> throw UnsupportedOperationException()
+        }
     }
 }
-
