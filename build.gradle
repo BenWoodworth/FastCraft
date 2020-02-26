@@ -11,10 +11,10 @@ buildscript {
     }
 }
 
-task build(group: "build", dependsOn: ":fastcraft:build") {
+task build(group: "build", dependsOn: ":fastcraft-core:build") {
     doLast {
         copy {
-            from("${project(":fastcraft").buildDir}/libs") {
+            from("${project(":fastcraft-core").buildDir}/libs") {
                 include "*.jar"
             }
 
