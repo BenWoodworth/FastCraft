@@ -1,6 +1,5 @@
 dependencies {
     compileOnly 'org.bukkit:bukkit:1.14-R0.1-SNAPSHOT'
 
-    implementation project(':fastcraft-bukkit:bukkit-1.8-R0.1')
-    implementation project(':fastcraft-bukkit:bukkit-platform')
+    api project(':fastcraft-bukkit:bukkit-1.13-R0.1')
 }
