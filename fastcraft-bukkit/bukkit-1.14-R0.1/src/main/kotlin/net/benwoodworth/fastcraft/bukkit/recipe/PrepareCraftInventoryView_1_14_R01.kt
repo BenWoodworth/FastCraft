@@ -49,7 +49,8 @@ class PrepareCraftInventoryView_1_14_R01 private constructor(
     }
 
     override fun getTitle(): String {
-        return topInventory.title
+        @Suppress("UsePropertyAccessSyntax")
+        return topInventory.getTitle()
     }
 
     override fun getTopInventory(): Inventory {
