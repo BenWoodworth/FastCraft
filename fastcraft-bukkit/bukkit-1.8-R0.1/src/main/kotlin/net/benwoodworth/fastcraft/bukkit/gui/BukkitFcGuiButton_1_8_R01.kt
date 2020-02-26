@@ -18,18 +18,35 @@ import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.Damageable
 import java.util.*
+import javax.inject.Inject
 import kotlin.math.roundToInt
 import kotlin.properties.Delegates.observable
 
-@AutoFactory
-class BukkitFcGuiButton_1_8_R01(
+open class BukkitFcGuiButton_1_8_R01(
     private val inventory: Inventory,
     private val slotIndex: Int,
     locale: Locale,
-    @Provided private val itemTypes: FcItemTypes,
-    @Provided private val textFactory: FcTextFactory,
-    @Provided private val textConverter: FcTextConverter
+    private val itemTypes: FcItemTypes,
+    private val textFactory: FcTextFactory,
+    private val textConverter: FcTextConverter
 ) : BukkitFcGuiButton {
+    class Factory @Inject constructor(
+        private val itemTypes: FcItemTypes,
+        private val textFactory: FcTextFactory,
+        private val textConverter: FcTextConverter
+    ) : BukkitFcGuiButton.Factory {
+        override fun create(inventory: Inventory, slotIndex: Int, locale: Locale): FcGuiButton {
+            return BukkitFcGuiButton_1_8_R01(
+                inventory = inventory,
+                slotIndex = slotIndex,
+                locale = locale,
+                itemTypes = itemTypes,
+                textFactory = textFactory,
+                textConverter = textConverter
+            )
+        }
+    }
+
     private var hideItemDetails: Boolean = false
     private var text: FcText? = null
     private var description: List<FcText>? = null

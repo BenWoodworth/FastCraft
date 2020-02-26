@@ -3,6 +3,8 @@ package net.benwoodworth.fastcraft.bukkit
 import dagger.Module
 import dagger.Provides
 import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfigFactory_1_8_R01
+import net.benwoodworth.fastcraft.bukkit.gui.BukkitFcGuiButton
+import net.benwoodworth.fastcraft.bukkit.gui.BukkitFcGuiButton_1_8_R01
 import net.benwoodworth.fastcraft.bukkit.gui.BukkitFcGuiFactory_1_8_R01
 import net.benwoodworth.fastcraft.bukkit.item.*
 import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerEvents_1_8_R01
@@ -95,6 +97,12 @@ class BukkitDaggerModule(
     @Provides
     @Singleton
     fun provideFcGuiFactory(instance: BukkitFcGuiFactory_1_8_R01): FcGuiFactory {
+        return instance
+    }
+
+    @Provides
+    @Singleton
+    fun provideFcGuiButtonFactory(instance: BukkitFcGuiButton_1_8_R01.Factory): BukkitFcGuiButton.Factory {
         return instance
     }
 
