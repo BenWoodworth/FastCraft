@@ -4,41 +4,34 @@ import net.benwoodworth.fastcraft.bukkit.text.createFcTextTranslate
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
+import org.bukkit.Bukkit
 import org.bukkit.Material
+import org.bukkit.material.MaterialData
 
-class BukkitFcItemType_1_8_R01(
-    override val material: Material,
+open class BukkitFcItemType_1_8_R01 private constructor(
+    override val materialData: MaterialData,
     private val textFactory: FcTextFactory
 ) : BukkitFcItemType {
-    override val id: String
-        get() = material.key.toString()
+    override val material: Material
+        get() = materialData.itemType
 
-    private val Material.localeKey: String
-        get() {
-            val type = when {
-                isBlock -> "block"
-                isItem -> "item"
-                else -> "?"
-            }
-            return "$type.${key.namespace}.${key.key}"
-        }
+    override val id: String
+        get() = material.toString() // TODO use a better ID
 
     override val name: FcText
-        get() = textFactory.createFcTextTranslate(material.localeKey)
+        get() = textFactory.createFcTextTranslate(materialData.toString())
 
     override val description: FcText
-        get() = textFactory.createFcTextTranslate(
-            "${material.localeKey}.description"
-        )
+        get() = textFactory.createLegacy("")
 
     override val maxAmount: Int
         get() = material.maxStackSize
 
     override fun equals(other: Any?): Boolean {
-        return other is FcItemType && material == other.material
+        return other is FcItemType && materialData == other.materialData
     }
 
     override fun hashCode(): Int {
-        return material.hashCode()
+        return materialData.hashCode()
     }
 }
