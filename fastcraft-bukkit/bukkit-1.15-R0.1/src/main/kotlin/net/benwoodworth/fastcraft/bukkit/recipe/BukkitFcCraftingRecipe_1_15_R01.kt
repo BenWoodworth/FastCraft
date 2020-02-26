@@ -21,19 +21,26 @@ import org.bukkit.inventory.ShapelessRecipe
 import javax.inject.Inject
 
 open class BukkitFcCraftingRecipe_1_15_R01(
-    val recipe: Recipe,
-    private val server: Server,
-    private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_15_R01Factory,
-    private val itemFactory: FcItemFactory,
-    private val remnantProvider: IngredientRemnantProvider,
-    private val inventoryViewFactory: PrepareCraftInventoryView_1_15_R01.Factory
-) : BukkitFcCraftingRecipe {
+    recipe: Recipe,
+    server: Server,
+    preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_8_R01Factory,
+    itemFactory: FcItemFactory,
+    remnantProvider: IngredientRemnantProvider,
+    inventoryViewFactory: PrepareCraftInventoryView_1_14_R01.Factory
+) : BukkitFcCraftingRecipe_1_8_R01(
+    recipe = recipe,
+    server = server,
+    preparedRecipeFactory = preparedRecipeFactory,
+    itemFactory = itemFactory,
+    remnantProvider = remnantProvider,
+    inventoryViewFactory = inventoryViewFactory
+) {
     class Factory @Inject constructor(
         private val server: Server,
-        private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_15_R01Factory,
+        private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_8_R01Factory,
         private val itemFactory: FcItemFactory,
         private val remnantProvider: IngredientRemnantProvider,
-        private val inventoryViewFactory: PrepareCraftInventoryView_1_15_R01.Factory
+        private val inventoryViewFactory: PrepareCraftInventoryView_1_14_R01.Factory
     ) : BukkitFcCraftingRecipe.Factory {
         override fun create(recipe: Recipe): FcCraftingRecipe {
             return BukkitFcCraftingRecipe_1_15_R01(
@@ -47,16 +54,7 @@ open class BukkitFcCraftingRecipe_1_15_R01(
         }
     }
 
-    init {
-        require(recipe is ShapedRecipe || recipe is ShapelessRecipe)
-    }
-
-    override val id: String
-        get() = (recipe as Keyed).key.toString()
-
-    override val ingredients: List<FcIngredient> = loadIngredients()
-
-    protected open fun loadIngredients(): List<FcIngredient> {
+    override fun loadIngredients(): List<FcIngredient> {
         return when (recipe) {
             is ShapedRecipe -> recipe.shape
                 .mapIndexed { row, rowString ->
@@ -77,59 +75,6 @@ open class BukkitFcCraftingRecipe_1_15_R01(
 
             else -> throw IllegalStateException()
         }
-    }
-
-    override val group: String?
-        get() = when (recipe) {
-            is ShapedRecipe -> recipe.group.takeUnless { it == "" }
-            is ShapelessRecipe -> recipe.group.takeUnless { it == "" }
-            else -> throw IllegalStateException()
-        }
-
-    override fun prepare(
-        player: FcPlayer,
-        ingredients: Map<FcIngredient, FcItem>
-    ): CancellableResult<FcCraftingRecipePrepared> {
-        // TODO Inventory owner
-        val prepareView = inventoryViewFactory.create(player.player, null, recipe)
-        val craftingGrid = prepareView.topInventory as CraftingInventory
-
-        ingredients.forEach { (ingredient, item) ->
-            ingredient as BukkitFcIngredient_1_15_R01
-
-            craftingGrid.setItem(ingredient.slotIndex, item.toItemStack())
-        }
-
-        val validIngredients = ingredients.all { (ingredient, item) -> ingredient.matches(item) }
-        if (validIngredients) {
-            craftingGrid.result = recipe.result
-        }
-
-        val prepareEvent = PrepareItemCraftEvent(craftingGrid, prepareView, false)
-        server.pluginManager.callEvent(prepareEvent)
-
-        val resultItem = craftingGrid.result
-        if (resultItem == null || resultItem.type == Material.AIR || resultItem.amount < 1) {
-            return CancellableResult.Cancelled
-        }
-
-        val ingredientRemnants = ingredients.values
-            .flatMap { remnantProvider.getRemnants(it.toItemStack()) }
-            .map { itemFactory.createFcItem(it) }
-
-        val resultsPreview = listOf(itemFactory.createFcItem(resultItem)) + ingredientRemnants
-
-        return CancellableResult(
-            preparedRecipeFactory.create(this, ingredients, ingredientRemnants, resultsPreview, prepareView)
-        )
-    }
-
-    override fun equals(other: Any?): Boolean {
-        return other is FcCraftingRecipe && id == other.id
-    }
-
-    override fun hashCode(): Int {
-        return id.hashCode()
     }
 }
 

@@ -43,7 +43,7 @@ class BukkitDaggerModule(
 
     private companion object {
         val VERSION_1_15_R01 = BukkitVersion.parse("1.15-R0.1")
-        val VERSION_1_13_R01 = BukkitVersion.parse("1.13-R0.1")
+        val VERSION_1_8_R01 = BukkitVersion.parse("1.8-R0.1")
     }
 
     @Provides
@@ -130,12 +130,12 @@ class BukkitDaggerModule(
     @Singleton
     fun provideFcCraftingRecipeFactory(
         instance_1_15: Provider<BukkitFcCraftingRecipe_1_15_R01.Factory>,
-        instance_1_13: Provider<BukkitFcCraftingRecipe_1_13_R01.Factory>
+        instance_1_8: Provider<BukkitFcCraftingRecipe_1_8_R01.Factory>
     ): BukkitFcCraftingRecipe.Factory {
         return when {
             bukkitVersion >= VERSION_1_15_R01 -> instance_1_15.get()
-            bukkitVersion >= VERSION_1_13_R01 -> instance_1_13.get()
-            else -> instance_1_13.get()
+            bukkitVersion >= VERSION_1_8_R01 -> instance_1_8.get()
+            else -> instance_1_8.get()
         }
     }
 

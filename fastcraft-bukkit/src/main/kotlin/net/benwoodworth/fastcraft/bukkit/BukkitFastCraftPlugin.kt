@@ -30,7 +30,7 @@ class BukkitFastCraftPlugin : JavaPlugin() {
     }
 
     private fun checkBukkitVersion() {
-        val minSupported = BukkitVersion.parse("1.13")
+        val minSupported = BukkitVersion.parse("1.8")
         val minUnsupported = BukkitVersion.parse("1.16")
 
         val versionStr = server.bukkitVersion

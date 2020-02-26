@@ -7,12 +7,10 @@ import org.bukkit.inventory.ItemStack
 import java.util.*
 
 
-class BukkitFcIngredient_1_13_R01(
-    slotIndex: Int,
+class BukkitFcIngredient_1_8_R01(
+    override val slotIndex: Int,
     private val ingredientItem: ItemStack
-) : BukkitFcIngredient_1_15_R01(
-    slotIndex = slotIndex
-) {
+) : BukkitFcIngredient {
     init {
         require(slotIndex in 0..8)
     }
@@ -33,7 +31,9 @@ class BukkitFcIngredient_1_13_R01(
                 ingredientItem.durability = bukkitItem.durability
 
                 ingredientItem.isSimilar(bukkitItem)
-                    .also { ingredientItem.durability = WILDCARD_DATA }
+                    .also { ingredientItem.durability =
+                        WILDCARD_DATA
+                    }
             }
             else -> {
                 ingredientItem.isSimilar(bukkitItem)
@@ -42,7 +42,7 @@ class BukkitFcIngredient_1_13_R01(
     }
 
     override fun equals(other: Any?): Boolean {
-        return other is BukkitFcIngredient_1_13_R01 &&
+        return other is BukkitFcIngredient_1_8_R01 &&
                 slotIndex == other.slotIndex &&
                 ingredientItem == other.ingredientItem
     }
