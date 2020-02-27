@@ -11,7 +11,6 @@ import net.benwoodworth.fastcraft.platform.text.FcTextConverter
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.Material
 import org.bukkit.inventory.Inventory
-import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 import java.util.*
 import javax.inject.Inject
@@ -118,18 +117,6 @@ open class BukkitFcGuiButton_1_7_5_R01(
     }
 
     protected open fun updateItemDetails() {
-        if (hideItemDetails) {
-            itemStack.updateMeta {
-                addItemFlags(
-                    ItemFlag.HIDE_ENCHANTS,
-                    ItemFlag.HIDE_ATTRIBUTES,
-                    ItemFlag.HIDE_UNBREAKABLE,
-                    ItemFlag.HIDE_DESTROYS,
-                    ItemFlag.HIDE_PLACED_ON,
-                    ItemFlag.HIDE_POTION_EFFECTS
-                )
-            }
-        }
     }
 
     protected fun calculateDurability(progress: Double?, maxDurability: Int): Int {

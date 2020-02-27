@@ -3,9 +3,7 @@ package net.benwoodworth.fastcraft.bukkit
 import dagger.Module
 import dagger.Provides
 import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfigFactory_1_7_5_R01
-import net.benwoodworth.fastcraft.bukkit.gui.BukkitFcGuiButton
-import net.benwoodworth.fastcraft.bukkit.gui.BukkitFcGuiButton_1_7_5_R01
-import net.benwoodworth.fastcraft.bukkit.gui.BukkitFcGuiFactory_1_7_5_R01
+import net.benwoodworth.fastcraft.bukkit.gui.*
 import net.benwoodworth.fastcraft.bukkit.item.*
 import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerEvents_1_13_R01
 import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerEvents_1_7_5_R01
@@ -48,6 +46,7 @@ class BukkitDaggerModule(
         val VERSION_1_15_R01 = BukkitVersion.parse("1.15-R0.1")
         val VERSION_1_14_R01 = BukkitVersion.parse("1.14-R0.1")
         val VERSION_1_13_R01 = BukkitVersion.parse("1.13-R0.1")
+        val VERSION_1_8_R01 = BukkitVersion.parse("1.8-R0.1")
         val VERSION_1_7_5_R01 = BukkitVersion.parse("1.7.5-R0.1")
     }
 
@@ -105,10 +104,12 @@ class BukkitDaggerModule(
     @Singleton
     fun provideFcGuiButtonFactory(
         instance_1_7_5: Provider<BukkitFcGuiButton_1_7_5_R01.Factory>,
-        instance_1_13: Provider<BukkitFcGuiButton_1_7_5_R01.Factory>
+        instance_1_8: Provider<BukkitFcGuiButton_1_8_R01.Factory>,
+        instance_1_13: Provider<BukkitFcGuiButton_1_13_R01.Factory>
     ): BukkitFcGuiButton.Factory {
         return when {
             bukkitVersion >= VERSION_1_13_R01 -> instance_1_13.get()
+            bukkitVersion >= VERSION_1_8_R01 -> instance_1_8.get()
             bukkitVersion >= VERSION_1_7_5_R01 -> instance_1_7_5.get()
             else -> instance_1_7_5.get()
         }
