@@ -47,13 +47,29 @@ open class BukkitFcCraftingRecipe_1_7_5_R01(
         }
     }
 
+    private companion object {
+        private const val recipeIdAlphabet = "23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefhkmnorsuvwxz"
+        private const val recipeIdLength = 6 // ceil(log_50(2^32))
+
+        fun Int.toRecipeId(): String {
+            var idNum = this.toLong() - Int.MIN_VALUE
+
+            val recipeId = CharArray(recipeIdLength)
+            for (i in 0 until recipeIdLength) {
+                recipeId[i] = recipeIdAlphabet[(idNum % recipeIdAlphabet.length).toInt()]
+                idNum /= recipeIdAlphabet.length
+            }
+
+            return String(recipeId)
+        }
+    }
+
     init {
         require(recipe is ShapedRecipe || recipe is ShapelessRecipe)
     }
 
-    override val id: String by lazy {
-        "#" + (hashCode().toLong() - Int.MIN_VALUE).toString(36)
-    }
+    override val id: String
+        get() = hashCode().toRecipeId()
 
     override val ingredients: List<FcIngredient> by lazy {
         loadIngredients()
