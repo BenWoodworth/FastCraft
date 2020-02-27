@@ -167,8 +167,8 @@ class BukkitFastCraftModule(
         instance_1_7_5: Provider<BukkitFcCraftingRecipe_1_7_5_R01.Factory>
     ): BukkitFcCraftingRecipe.Factory {
         return when {
-            bukkitVersion >= VERSION_1_15_R01 -> instance_1_13.get()
-            bukkitVersion >= VERSION_1_13_R01 -> instance_1_15.get()
+            bukkitVersion >= VERSION_1_15_R01 -> instance_1_15.get()
+            bukkitVersion >= VERSION_1_13_R01 -> instance_1_13.get()
             bukkitVersion >= VERSION_1_7_5_R01 -> instance_1_7_5.get()
             else -> instance_1_7_5.get()
         }
