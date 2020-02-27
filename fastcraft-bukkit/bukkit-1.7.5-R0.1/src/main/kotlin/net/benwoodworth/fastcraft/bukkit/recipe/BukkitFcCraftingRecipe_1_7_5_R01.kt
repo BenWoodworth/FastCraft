@@ -150,7 +150,7 @@ open class BukkitFcCraftingRecipe_1_7_5_R01(
             is ShapedRecipe -> {
                 Objects.hash(
                     recipe.result,
-                    recipe.shape,
+                    Arrays.hashCode(recipe.shape),
                     recipe.ingredientMap
                 )
             }
