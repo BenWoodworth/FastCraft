@@ -6,7 +6,7 @@
   "gui.recipe.ingredients.item": "$green ${amount}x $item",
   "gui.recipe.results": "${green}Các kết quả:",
   "gui.recipe.results.item": "$green ${amount}x $item",
-  "gui.recipe.id": "${dark_gray}Recipe ID: $id",
+  "gui.recipe.id": "${dark_gray}ID: $id",
   "gui.toolbar.page.title": "${green}Trang $page/$total",
   "gui.toolbar.page.description.0": "${aqua}Nhấp chuột trái: trang tiếp theo",
   "gui.toolbar.page.description.1": "${aqua}Nhấp chuột phải: trang trước",
