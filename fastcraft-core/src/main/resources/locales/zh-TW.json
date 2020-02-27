@@ -6,7 +6,7 @@
   "gui.recipe.ingredients.item": "$green ${amount}x $item",
   "gui.recipe.results": "${green}獲得:",
   "gui.recipe.results.item": "$green ${amount}x $item",
-  "gui.recipe.id": "${dark_gray}ID: $id",
+  "gui.recipe.id": "${dark_gray}Recipe ID: $id",
   "gui.toolbar.page.title": "${green}第 $page/$total 頁",
   "gui.toolbar.page.description.0": "${aqua}左鍵單擊: 下一頁",
   "gui.toolbar.page.description.1": "${aqua}右鍵點擊: 上一頁",

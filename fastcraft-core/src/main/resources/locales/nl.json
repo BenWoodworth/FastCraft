@@ -6,7 +6,7 @@
   "gui.recipe.ingredients.item": "$green ${amount}x $item",
   "gui.recipe.results": "${green}Results:",
   "gui.recipe.results.item": "$green ${amount}x $item",
-  "gui.recipe.id": "${dark_gray}ID: $id",
+  "gui.recipe.id": "${dark_gray}Recipe ID: $id",
   "gui.toolbar.page.title": "${green}Pagina $page/$total",
   "gui.toolbar.page.description.0": "${aqua}Linker muisklik: volgende bladzijde",
   "gui.toolbar.page.description.1": "${aqua}Rechter muisklik: vorige bladzijde",

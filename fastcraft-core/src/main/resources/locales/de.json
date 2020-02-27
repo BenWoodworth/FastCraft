@@ -6,7 +6,7 @@
   "gui.recipe.ingredients.item": "$aqua ${amount}x $item",
   "gui.recipe.results": "${green}Ergebnisse:",
   "gui.recipe.results.item": "$aqua ${amount}x $item",
-  "gui.recipe.id": "${dark_gray}ID: $id",
+  "gui.recipe.id": "${dark_gray}Recipe ID: $id",
   "gui.toolbar.page.title": "${green}Seite $page/$total",
   "gui.toolbar.page.description.0": "${aqua}Linksklick: nächste Seite",
   "gui.toolbar.page.description.1": "${aqua}Rechtsklick: vorherige Seite",

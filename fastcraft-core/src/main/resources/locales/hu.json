@@ -6,7 +6,7 @@
   "gui.recipe.ingredients.item": "$green ${amount}x $item",
   "gui.recipe.results": "${green}Eredmények:",
   "gui.recipe.results.item": "$green ${amount}x $item",
-  "gui.recipe.id": "${dark_gray}ID: $id",
+  "gui.recipe.id": "${dark_gray}Recipe ID: $id",
   "gui.toolbar.page.title": "${green}Oldal $page/$total",
   "gui.toolbar.page.description.0": "${aqua}Bal egérgomb: következő oldal",
   "gui.toolbar.page.description.1": "${aqua}Jobb egérgomb: előző oldal",

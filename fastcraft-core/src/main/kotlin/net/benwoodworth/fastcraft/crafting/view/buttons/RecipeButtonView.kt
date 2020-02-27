@@ -93,6 +93,9 @@ class RecipeButtonView(
                     }
             }
 
+            val recipeId = fastCraftRecipe.preparedRecipe.recipe.id
+            newDescription += textFactory.createLegacy(Strings.guiRecipeId(locale, recipeId))
+
             if (previewItem.lore.any()) {
                 newDescription += textFactory.createFcText()
                 newDescription += previewItem.lore
