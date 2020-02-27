@@ -1,12 +1,12 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
-import net.benwoodworth.fastcraft.bukkit.text.createFcTextTranslate
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
-import org.bukkit.Bukkit
+import org.apache.commons.lang.WordUtils
 import org.bukkit.Material
 import org.bukkit.material.MaterialData
+
 
 open class BukkitFcItemType_1_8_R01(
     override val materialData: MaterialData,
@@ -16,7 +16,7 @@ open class BukkitFcItemType_1_8_R01(
         get() = materialData.itemType
 
     override val name: FcText
-        get() = textFactory.createFcTextTranslate(materialData.toString())
+        get() = textFactory.createLegacy(materialData.getName())
 
     override val description: FcText
         get() = textFactory.createLegacy("")
@@ -30,5 +30,19 @@ open class BukkitFcItemType_1_8_R01(
 
     override fun hashCode(): Int {
         return materialData.hashCode()
+    }
+
+    private fun MaterialData.getName(): String {
+        var name = toString()
+
+        // Trim data number from end
+        val nameEnd = name.lastIndexOf('(')
+        if (nameEnd != -1) {
+            name = name.substring(0 until nameEnd)
+        }
+
+        name = name.replace('_', ' ')
+
+        return WordUtils.capitalizeFully(name)
     }
 }
