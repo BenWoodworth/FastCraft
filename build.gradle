@@ -21,6 +21,7 @@ allprojects {
     repositories {
         jcenter()
         maven { url "https://repo.codemc.org/repository/maven-public" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     }
 
     dependencies {
@@ -29,7 +30,7 @@ allprojects {
         implementation "com.google.dagger:dagger:$version_dagger"
         implementation "javax.inject:javax.inject:$version_javax_inject"
         implementation "com.google.auto.factory:auto-factory:$version_auto_factory"
-        implementation files("${rootDir}/libs/localeconfig-api-0.3.0.jar")
+        implementation "net.benwoodworth.localeconfig:localeconfig-api:$version_localeconfig"
         implementation "org.bstats:bstats-bukkit:$version_bstats"
 
         kapt "com.google.dagger:dagger-compiler:$version_dagger"
@@ -79,7 +80,7 @@ shadowJar {
         include dependency("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
         include dependency("com.google.dagger:dagger")
         include dependency("javax.inject:javax.inject")
-        include dependency(files("${rootDir}/libs/localeconfig-api-0.3.0.jar"))
+        include dependency("net.benwoodworth.localeconfig:localeconfig-api")
         include dependency("org.bstats:bstats-bukkit")
     }
 
