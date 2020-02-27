@@ -71,7 +71,7 @@ class RecipeButtonView(
 
             // Ingredients
             run {
-                textFactory.createLegacy(
+                newDescription += textFactory.createLegacy(
                     Strings.guiRecipeIngredients(locale)
                 )
 
