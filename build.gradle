@@ -20,6 +20,7 @@ allprojects {
 
     repositories {
         jcenter()
+        maven { url "https://repo.codemc.org/repository/maven-public" }
     }
 
     dependencies {
@@ -29,6 +30,7 @@ allprojects {
         implementation "javax.inject:javax.inject:$version_javax_inject"
         implementation "com.google.auto.factory:auto-factory:$version_auto_factory"
         implementation files("${rootDir}/libs/localeconfig-api-0.3.0.jar")
+        implementation "org.bstats:bstats-bukkit:$version_bstats"
 
         kapt "com.google.dagger:dagger-compiler:$version_dagger"
         kapt "com.google.auto.factory:auto-factory:$version_auto_factory"
@@ -78,6 +80,7 @@ shadowJar {
         include dependency("com.google.dagger:dagger")
         include dependency("javax.inject:javax.inject")
         include dependency(files("${rootDir}/libs/localeconfig-api-0.3.0.jar"))
+        include dependency("org.bstats:bstats-bukkit")
     }
 
     def libPackage = "net.benwoodworth.fastcraft.lib"
@@ -85,6 +88,7 @@ shadowJar {
     relocate("dagger", "${libPackage}.dagger")
     relocate("javax", "${libPackage}.javax")
     relocate("net.benwoodworth.localeconfig", "${libPackage}.localeconfig")
+    relocate("org.bstats", "${libPackage}.bstats")
 
     minimize {
         subprojects.each {
