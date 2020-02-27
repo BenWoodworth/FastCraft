@@ -26,11 +26,6 @@ class BukkitFcItemType_1_13_R01(
     override val name: FcText
         get() = textFactory.createFcTextTranslate(material.localeKey)
 
-    override val description: FcText
-        get() = textFactory.createFcTextTranslate(
-            "${material.localeKey}.description"
-        )
-
     override val maxAmount: Int
         get() = material.maxStackSize
 
