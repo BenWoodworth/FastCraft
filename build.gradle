@@ -31,7 +31,7 @@ allprojects {
         implementation "javax.inject:javax.inject:$version_javax_inject"
         implementation "com.google.auto.factory:auto-factory:$version_auto_factory"
         implementation "net.benwoodworth.localeconfig:localeconfig-api:$version_localeconfig"
-        implementation "org.bstats:bstats-bukkit:$version_bstats"
+        implementation "org.bstats:bstats-bukkit-lite:$version_bstats"
 
         kapt "com.google.dagger:dagger-compiler:$version_dagger"
         kapt "com.google.auto.factory:auto-factory:$version_auto_factory"
@@ -81,7 +81,7 @@ shadowJar {
         include dependency("com.google.dagger:dagger")
         include dependency("javax.inject:javax.inject")
         include dependency("net.benwoodworth.localeconfig:localeconfig-api")
-        include dependency("org.bstats:bstats-bukkit")
+        include dependency("org.bstats:bstats-bukkit-lite")
     }
 
     def libPackage = "net.benwoodworth.fastcraft.lib"

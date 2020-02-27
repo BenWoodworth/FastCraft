@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.bukkit
 
 import net.benwoodworth.fastcraft.FastCraft
 import net.benwoodworth.fastcraft.bukkit.util.BukkitVersion
-import org.bstats.bukkit.Metrics
+import org.bstats.bukkit.MetricsLite
 import org.bukkit.plugin.java.JavaPlugin
 import java.util.logging.Level
 
@@ -19,7 +19,7 @@ class BukkitFastCraftPlugin : JavaPlugin() {
 
         fastCraft = factory.createFastCraft()
 
-        Metrics(this, 1381)
+        MetricsLite(this)
     }
 
     override fun onDisable() {
