@@ -21,7 +21,6 @@ allprojects {
     repositories {
         jcenter()
         maven { url "https://repo.codemc.org/repository/maven-public" }
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     }
 
     dependencies {
