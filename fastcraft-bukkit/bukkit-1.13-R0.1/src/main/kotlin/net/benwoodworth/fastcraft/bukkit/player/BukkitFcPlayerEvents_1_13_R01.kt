@@ -11,7 +11,7 @@ open class BukkitFcPlayerEvents_1_13_R01 @Inject constructor(
     plugin: Plugin,
     playerProvider: FcPlayerProvider,
     pluginManager: PluginManager
-) : BukkitFcPlayerEvents_1_8_R01(
+) : BukkitFcPlayerEvents_1_7_5_R01(
     plugin = plugin,
     playerProvider = playerProvider,
     pluginManager = pluginManager

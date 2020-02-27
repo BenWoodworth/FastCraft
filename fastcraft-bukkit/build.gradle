@@ -1,11 +1,16 @@
 allprojects {
     repositories {
         maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots" }
+
+        maven {
+            url 'https://maven.sk89q.com/repo'
+            metadataSources { artifact() }
+        }
     }
 }
 
 dependencies {
-    compileOnly 'org.bukkit:bukkit:1.8-R0.1-SNAPSHOT'
+    compileOnly 'org.bukkit:bukkit:1.7.5-R0.1-20140408.014432-7'
 
     subprojects.each {
         implementation it

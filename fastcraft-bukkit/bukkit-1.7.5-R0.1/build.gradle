@@ -1,5 +1,5 @@
 dependencies {
     compileOnly 'org.bukkit:bukkit:1.7.5-R0.1-20140408.014432-7'
 
-    api project(':fastcraft-core')
+    api project(':fastcraft-bukkit:bukkit-platform')
 }

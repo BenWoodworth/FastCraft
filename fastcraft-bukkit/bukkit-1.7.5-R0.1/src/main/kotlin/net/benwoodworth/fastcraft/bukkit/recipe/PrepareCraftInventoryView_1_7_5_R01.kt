@@ -6,7 +6,7 @@ import org.bukkit.event.inventory.InventoryType
 import org.bukkit.inventory.*
 import javax.inject.Inject
 
-class PrepareCraftInventoryView_1_14_R01 private constructor(
+class PrepareCraftInventoryView_1_7_5_R01 private constructor(
     private val player: Player,
     inventoryHolder: InventoryHolder?,
     recipe: Recipe?,
@@ -14,15 +14,13 @@ class PrepareCraftInventoryView_1_14_R01 private constructor(
 ) : InventoryView() {
     open class Factory @Inject constructor(
         private val server: Server
-    ) : PrepareCraftInventoryView_1_7_5_R01.Factory(
-        server = server
-    ){
-        override fun create(
+    ) {
+        open fun create(
             player: Player,
             inventoryHolder: InventoryHolder?,
             recipe: Recipe?
         ): InventoryView {
-            return PrepareCraftInventoryView_1_14_R01(
+            return PrepareCraftInventoryView_1_7_5_R01(
                 player = player,
                 inventoryHolder = inventoryHolder,
                 recipe = recipe,
@@ -48,12 +46,34 @@ class PrepareCraftInventoryView_1_14_R01 private constructor(
         return player.inventory
     }
 
-    override fun getTitle(): String {
-        @Suppress("UsePropertyAccessSyntax")
-        return topInventory.getTitle()
-    }
-
     override fun getTopInventory(): Inventory {
         return topInventory
+    }
+
+    class PreparedInventory(
+        private val inventory: Inventory,
+        private val recipe: Recipe?
+    ) : CraftingInventory, Inventory by inventory {
+        override fun getMatrix(): Array<ItemStack?> {
+            return Array(size - 1) { slot -> getItem(slot) }
+        }
+
+        override fun setResult(newResult: ItemStack?) {
+            setItem(size - 1, newResult)
+        }
+
+        override fun getRecipe(): Recipe? {
+            return recipe
+        }
+
+        override fun getResult(): ItemStack? {
+            return getItem(9)
+        }
+
+        override fun setMatrix(contents: Array<out ItemStack>) {
+            contents.forEachIndexed { i, item ->
+                setItem(i, item)
+            }
+        }
     }
 }

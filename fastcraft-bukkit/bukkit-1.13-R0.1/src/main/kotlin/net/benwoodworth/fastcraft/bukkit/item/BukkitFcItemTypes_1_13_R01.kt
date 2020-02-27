@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class BukkitFcItemTypes_1_13_R01 @Inject constructor(
     private val textFactory: FcTextFactory
-) : BukkitFcItemTypes_1_8_R01(
+) : BukkitFcItemTypes_1_7_5_R01(
     textFactory = textFactory
 ) {
     override val craftingTable: FcItemType by lazy {

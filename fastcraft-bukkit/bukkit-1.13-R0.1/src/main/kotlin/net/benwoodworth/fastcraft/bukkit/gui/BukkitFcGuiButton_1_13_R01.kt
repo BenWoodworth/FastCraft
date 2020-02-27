@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
-import net.benwoodworth.fastcraft.bukkit.util.updateMeta
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.text.FcTextConverter
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
@@ -15,7 +14,7 @@ open class BukkitFcGuiButton_1_13_R01(
     locale: Locale,
     textFactory: FcTextFactory,
     textConverter: FcTextConverter
-) : BukkitFcGuiButton_1_8_R01(
+) : BukkitFcGuiButton_1_7_5_R01(
     inventory = inventory,
     slotIndex = slotIndex,
     locale = locale,

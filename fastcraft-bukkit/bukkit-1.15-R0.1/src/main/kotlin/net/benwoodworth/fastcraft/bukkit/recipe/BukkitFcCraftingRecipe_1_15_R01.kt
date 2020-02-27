@@ -1,20 +1,9 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
-import net.benwoodworth.fastcraft.bukkit.item.createFcItem
-import net.benwoodworth.fastcraft.bukkit.item.toItemStack
-import net.benwoodworth.fastcraft.bukkit.player.player
-import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemFactory
-import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
-import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 import net.benwoodworth.fastcraft.platform.recipe.FcIngredient
-import net.benwoodworth.fastcraft.util.CancellableResult
-import org.bukkit.Keyed
-import org.bukkit.Material
 import org.bukkit.Server
-import org.bukkit.event.inventory.PrepareItemCraftEvent
-import org.bukkit.inventory.CraftingInventory
 import org.bukkit.inventory.Recipe
 import org.bukkit.inventory.ShapedRecipe
 import org.bukkit.inventory.ShapelessRecipe
@@ -23,11 +12,11 @@ import javax.inject.Inject
 open class BukkitFcCraftingRecipe_1_15_R01(
     recipe: Recipe,
     server: Server,
-    preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_8_R01Factory,
+    preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_7_5_R01Factory,
     itemFactory: FcItemFactory,
     remnantProvider: IngredientRemnantProvider,
     inventoryViewFactory: PrepareCraftInventoryView_1_14_R01.Factory
-) : BukkitFcCraftingRecipe_1_8_R01(
+) : BukkitFcCraftingRecipe_1_7_5_R01(
     recipe = recipe,
     server = server,
     preparedRecipeFactory = preparedRecipeFactory,
@@ -37,7 +26,7 @@ open class BukkitFcCraftingRecipe_1_15_R01(
 ) {
     class Factory @Inject constructor(
         private val server: Server,
-        private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_8_R01Factory,
+        private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_7_5_R01Factory,
         private val itemFactory: FcItemFactory,
         private val remnantProvider: IngredientRemnantProvider,
         private val inventoryViewFactory: PrepareCraftInventoryView_1_14_R01.Factory
