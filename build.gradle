@@ -77,7 +77,7 @@ shadowJar {
         include dependency("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
         include dependency("com.google.dagger:dagger")
         include dependency("javax.inject:javax.inject")
-        include dependency("net.benwoodworth.localeconfig:localeconfig-api")
+        include dependency(files("${rootDir}/libs/localeconfig-api-0.3.0.jar"))
     }
 
     def libPackage = "net.benwoodworth.fastcraft.lib"
