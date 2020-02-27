@@ -1,6 +1,8 @@
+[![CircleCI](https://img.shields.io/circleci/build/github/BenWoodworth/FastCraft/master)](https://circleci.com/gh/BenWoodworth/FastCraft/)
+[![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/BenWoodworth/FastCraft?include_prereleases)](https://github.com/BenWoodworth/FastCraft/releases)
 [![Downloads](https://img.shields.io/github/downloads/BenWoodworth/FastCraft/total.svg)](https://github.com/BenWoodworth/FastCraft/releases)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-yellow)](https://paypal.me/BenWoodworth)
 
-# FastCraft v2 [![CircleCI](https://circleci.com/gh/BenWoodworth/FastCraft/tree/v2%2Fstable.svg?style=svg)](https://circleci.com/gh/BenWoodworth/FastCraft/tree/v2%2Fstable)
 Looking for FastCraft v2? [Click here!](https://github.com/BenWoodworth/FastCraft/tree/v2/dev)
 
 # FastCraft v3 [![CircleCI](https://circleci.com/gh/BenWoodworth/FastCraft/tree/master.svg?style=svg)](https://circleci.com/gh/BenWoodworth/FastCraft/tree/master)
