@@ -22,10 +22,10 @@ class FastCraft @Inject internal constructor(
             return
         }
 
-        event.cancel()
-
         fastCraftGuiFactory
             .createFastCraftGui(event.player)
             .open()
+
+        event.cancel()
     }
 }
