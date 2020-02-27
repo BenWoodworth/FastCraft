@@ -37,8 +37,8 @@ import javax.inject.Singleton
 
 @Suppress("unused")
 @Module
-class BukkitDaggerModule(
-    private val plugin: BukkitFastCraftPlugin
+class BukkitFastCraftModule(
+    private val plugin: BukkitFastCraft
 ) {
     private val bukkitVersion = BukkitVersion.parse(plugin.server.bukkitVersion)
 

@@ -5,5 +5,5 @@ import net.benwoodworth.fastcraft.FastCraftFactory
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [BukkitDaggerModule::class])
+@Component(modules = [BukkitFastCraftModule::class])
 interface BukkitFastCraftFactory : FastCraftFactory

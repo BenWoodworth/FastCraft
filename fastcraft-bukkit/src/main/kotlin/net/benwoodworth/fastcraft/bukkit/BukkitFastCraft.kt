@@ -7,14 +7,14 @@ import org.bukkit.plugin.java.JavaPlugin
 import java.util.logging.Level
 
 @Suppress("unused")
-class BukkitFastCraftPlugin : JavaPlugin() {
+class BukkitFastCraft : JavaPlugin() {
     private var fastCraft: FastCraft? = null
 
     override fun onEnable() {
         checkBukkitVersion()
 
         val factory = DaggerBukkitFastCraftFactory.builder()
-            .bukkitDaggerModule(BukkitDaggerModule(this))
+            .bukkitFastCraftModule(BukkitFastCraftModule(this))
             .build()
 
         fastCraft = factory.createFastCraft()
