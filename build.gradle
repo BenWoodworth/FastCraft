@@ -20,7 +20,6 @@ allprojects {
 
     repositories {
         jcenter()
-        mavenLocal()
     }
 
     dependencies {
@@ -29,7 +28,7 @@ allprojects {
         implementation "com.google.dagger:dagger:$version_dagger"
         implementation "javax.inject:javax.inject:$version_javax_inject"
         implementation "com.google.auto.factory:auto-factory:$version_auto_factory"
-        implementation "net.benwoodworth.localeconfig:localeconfig-api:$version_localeconfig"
+        implementation files("${rootDir}/libs/localeconfig-api-0.3.0.jar")
 
         kapt "com.google.dagger:dagger-compiler:$version_dagger"
         kapt "com.google.auto.factory:auto-factory:$version_auto_factory"
