@@ -16,7 +16,7 @@ open class BukkitFcCraftingRecipe_1_15_R01(
     itemFactory: FcItemFactory,
     remnantProvider: IngredientRemnantProvider,
     inventoryViewFactory: PrepareCraftInventoryView_1_14_R01.Factory
-) : BukkitFcCraftingRecipe_1_7_5_R01(
+) : BukkitFcCraftingRecipe_1_13_R01(
     recipe = recipe,
     server = server,
     preparedRecipeFactory = preparedRecipeFactory,
