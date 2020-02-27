@@ -87,7 +87,7 @@ shadowJar {
     def libPackage = "net.benwoodworth.fastcraft.lib"
     relocate("kotlin", "${libPackage}.kotlin")
     relocate("dagger", "${libPackage}.dagger")
-    relocate("javax", "${libPackage}.javax")
+    relocate("javax.inject", "${libPackage}.javax.inject")
     relocate("net.benwoodworth.localeconfig", "${libPackage}.localeconfig")
     relocate("org.bstats", "${libPackage}.bstats")
 
