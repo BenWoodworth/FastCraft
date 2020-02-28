@@ -1,12 +1,12 @@
-[![CircleCI](https://img.shields.io/circleci/build/github/BenWoodworth/FastCraft/master)](https://circleci.com/gh/BenWoodworth/FastCraft/)
 [![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/BenWoodworth/FastCraft?include_prereleases)](https://github.com/BenWoodworth/FastCraft/releases)
+[![CircleCI](https://img.shields.io/circleci/build/github/BenWoodworth/FastCraft/master)](https://circleci.com/gh/BenWoodworth/FastCraft/)
 [![Downloads](https://img.shields.io/github/downloads/BenWoodworth/FastCraft/total.svg)](https://github.com/BenWoodworth/FastCraft/releases)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-yellow)](https://paypal.me/BenWoodworth)
 
 Looking for FastCraft v2? Click [here](https://github.com/BenWoodworth/FastCraft/tree/v2/dev)!
 
-# FastCraft v3 [![CircleCI](https://circleci.com/gh/BenWoodworth/FastCraft/tree/master.svg?style=svg)](https://circleci.com/gh/BenWoodworth/FastCraft/tree/master)
-FastCraft is a Minecraft Bukkit plugin that changes the
+# FastCraft
+FastCraft is a Minecraft server plugin that changes the
 way players craft their items.
 With FastCraft, players can craft items faster than ever!
 Instead of the usual 3x3 crafting grid, players will be shown
