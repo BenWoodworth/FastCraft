@@ -54,8 +54,13 @@ class RecipeButtonView(
                     results += result
                 }
 
+                val primaryResult = preparedRecipe.resultsPreview.first()
+                val primaryResultAmount = results[primaryResult]
+                results[primaryResult] = 0
+
                 results.asMap().entries
-                    .sortedByDescending { (_, amount) -> amount } // TODO List primary result first
+                    .sortedByDescending { (_, amount) -> amount }
+                    .let { listOf(AbstractMap.SimpleEntry(primaryResult, primaryResultAmount)) + it }
                     .forEach { (item, amount) ->
                         newDescription += textFactory.createLegacy(
                             Strings.guiRecipeResultsItem(
@@ -93,8 +98,8 @@ class RecipeButtonView(
                     }
             }
 
-            val recipeId = fastCraftRecipe.preparedRecipe.recipe.id
-            newDescription += textFactory.createLegacy(Strings.guiRecipeId(locale, recipeId))
+//            val recipeId = fastCraftRecipe.preparedRecipe.recipe.id
+//            newDescription += textFactory.createLegacy(Strings.guiRecipeId(locale, recipeId))
 
             if (previewItem.lore.any()) {
                 newDescription += textFactory.createFcText()
