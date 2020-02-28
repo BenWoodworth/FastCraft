@@ -17,6 +17,6 @@ class ItemStackNameProvider_1_7_5_R01 @Inject constructor(
             ?.takeIf { it.hasDisplayName() }
             ?.displayName
             ?.let { textFactory.createFcText(it) }
-            ?: itemTypes.fromMaterial(itemStack.type).name
+            ?: itemTypes.fromMaterial(itemStack.type).itemName
     }
 }

@@ -13,18 +13,29 @@ class BukkitFcItemType_1_13_R01(
     override val materialData: Nothing?
         get() = null
 
-    private val Material.localeKey: String
+    private fun Material.getNameLocaleKey(prefix: String): String {
+        return "$prefix.${key.namespace}.${key.key}"
+    }
+
+    override val itemName: FcText
         get() {
-            val type = when {
-                isBlock -> "block"
-                isItem -> "item"
-                else -> "?"
+            val prefix = when {
+                material.isItem -> "item"
+                material.isBlock -> "block"
+                else -> "item"
             }
-            return "$type.${key.namespace}.${key.key}"
+            return textFactory.createFcTextTranslate(material.getNameLocaleKey(prefix))
         }
 
-    override val name: FcText
-        get() = textFactory.createFcTextTranslate(material.localeKey)
+    override val blockName: FcText
+        get() {
+            val prefix = when {
+                material.isBlock -> "block"
+                material.isItem -> "item"
+                else -> "block"
+            }
+            return textFactory.createFcTextTranslate(material.getNameLocaleKey(prefix))
+        }
 
     override val maxAmount: Int
         get() = material.maxStackSize
