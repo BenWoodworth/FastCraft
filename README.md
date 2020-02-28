@@ -34,35 +34,5 @@ Commands have not yet been implemented
 |---------------|-----------------------|
 | fastcraft.use | Use the FastCraft GUI |
 
-## Building
-#### Requirements
-- Java JDK 8
-- Git
-
-#### Clone the repo
-```
-git clone https://github.com/BenWoodworth/FastCraft.git
-cd FastCraft
-```
-
-#### Choose a FastCraft Version
-List available versions:
-```
-git tag --sort=-v:refname --column
-
-```
-
-Replace `<VERSION>` with the desired version:
-```
-git checkout tags/<VERSION>
-```
-
-#### Build
-
-| OS            | Command             |
-|---------------|---------------------|
-| Linux / macOS | `./gradlew build`   |
-| Windows       | `gradlew.bat build` |
-
-#### Output
-The newly built plugin jar will be in the `build/libs/` folder.
+## Building FastCraft
+A guide on how to build FastCraft can be found [here](https://github.com/BenWoodworth/FastCraft/wiki/Building-FastCraft).
