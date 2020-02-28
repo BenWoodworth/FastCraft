@@ -1,14 +1,18 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
+import net.benwoodworth.fastcraft.bukkit.text.BukkitLocalizer
 import net.benwoodworth.fastcraft.bukkit.text.createFcTextTranslate
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
+import net.benwoodworth.localeconfig.api.LocaleApi
 import org.bukkit.Material
+import java.util.*
 
 class BukkitFcItemType_1_13_R01(
     override val material: Material,
-    val textFactory: FcTextFactory
+    private val textFactory: FcTextFactory,
+    private val localizer: BukkitLocalizer
 ) : BukkitFcItemType {
     override val materialData: Nothing?
         get() = null
@@ -19,22 +23,30 @@ class BukkitFcItemType_1_13_R01(
 
     override val itemName: FcText
         get() {
-            val prefix = when {
-                material.isItem -> "item"
-                material.isBlock -> "block"
-                else -> "item"
+            var localeKey = material.getNameLocaleKey("item")
+
+            if (localizer.localize(localeKey, Locale.ENGLISH) == null) {
+                val blockKey = material.getNameLocaleKey("block")
+                if (localizer.localize(blockKey, Locale.ENGLISH) != null) {
+                    localeKey = blockKey
+                }
             }
-            return textFactory.createFcTextTranslate(material.getNameLocaleKey(prefix))
+
+            return textFactory.createFcTextTranslate(localeKey)
         }
 
     override val blockName: FcText
         get() {
-            val prefix = when {
-                material.isBlock -> "block"
-                material.isItem -> "item"
-                else -> "block"
+            var localeKey = material.getNameLocaleKey("block")
+
+            if (localizer.localize(localeKey, Locale.ENGLISH) == null) {
+                val itemKey = material.getNameLocaleKey("item")
+                if (localizer.localize(itemKey, Locale.ENGLISH) != null) {
+                    localeKey = itemKey
+                }
             }
-            return textFactory.createFcTextTranslate(material.getNameLocaleKey(prefix))
+
+            return textFactory.createFcTextTranslate(localeKey)
         }
 
     override val maxAmount: Int
