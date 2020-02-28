@@ -1,9 +1,9 @@
 [![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/BenWoodworth/FastCraft?include_prereleases)](https://github.com/BenWoodworth/FastCraft/releases)
-[![CircleCI](https://img.shields.io/circleci/build/github/BenWoodworth/FastCraft/master)](https://circleci.com/gh/BenWoodworth/FastCraft/)
 [![Downloads](https://img.shields.io/github/downloads/BenWoodworth/FastCraft/total.svg)](https://github.com/BenWoodworth/FastCraft/releases)
-[![Donate](https://img.shields.io/badge/Donate-PayPal-yellow)](https://paypal.me/BenWoodworth)
+[![Donate](https://img.shields.io/badge/stats-Bukkit-blue)](https://bstats.org/plugin/bukkit/FastCraft/1381)
+[![Donate](https://img.shields.io/badge/donate-PayPal-yellow)](https://paypal.me/BenWoodworth)
 
-Looking for FastCraft v2? Click [here](https://github.com/BenWoodworth/FastCraft/tree/v2/dev)!
+Looking for FastCraft v2? Click [here](https://github.com/BenWoodworth/FastCraft/tree/v2/master)!
 
 # FastCraft
 FastCraft is a Minecraft server plugin that changes the
