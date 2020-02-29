@@ -1,0 +1,23 @@
+{
+  "localization.translator": "Sangha Lee",
+  "localization.translator.from": "github.com/toriato",
+  "gui.title": "FastCraft",
+  "gui.recipe.ingredients": "${green}재료:",
+  "gui.recipe.ingredients.item": "$green $item ${amount}개",
+  "gui.recipe.results": "${green}결과:",
+  "gui.recipe.results.item": "$green $item ${amount}개",
+  "gui.recipe.id": "${dark_gray}아이디: $id",
+  "gui.toolbar.page.title": "${green}페이지 $total 중 $page",
+  "gui.toolbar.page.description.0": "${aqua}좌 클릭: 다음 페이지",
+  "gui.toolbar.page.description.1": "${aqua}우 클릭: 이전 페이지",
+  "gui.toolbar.page.description.2": "${aqua}중간 클릭: 첫 페이지",
+  "gui.toolbar.refresh.title": "${green}새로고침",
+  "gui.toolbar.refresh.description.0": "${aqua}FastCraft 인터페이스를 새로고칩니다",
+  "gui.toolbar.amount.title": "${green}제작 수량",
+  "gui.toolbar.amount.description.0": "${aqua}좌/우 클릭으로 증가/감소",
+  "gui.toolbar.amount.description.1": "${aqua}쉬프트를 눌러 한개씩 증가/감소",
+  "gui.toolbar.amount.description.2": "${aqua}중간 클릭으로 초기화",
+  "gui.toolbar.workbench.title": "${green}조합 격자판",
+  "gui.toolbar.workbench.description.0": "${aqua}3x3 조합 격자판 열기",
+  "gui.toolbar.workbench.description.1": "${aqua}${green}/fc toggle$aqua 명령어로 FastCraft 를 비활성화 할 수 있습니다"
+}
