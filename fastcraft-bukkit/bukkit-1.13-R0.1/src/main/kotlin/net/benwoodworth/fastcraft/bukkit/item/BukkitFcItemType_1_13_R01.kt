@@ -5,7 +5,6 @@ import net.benwoodworth.fastcraft.bukkit.text.createFcTextTranslate
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
-import net.benwoodworth.localeconfig.api.LocaleApi
 import org.bukkit.Material
 import java.util.*
 

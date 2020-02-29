@@ -3,7 +3,10 @@ package net.benwoodworth.fastcraft.bukkit.recipe
 import org.bukkit.Server
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryType
-import org.bukkit.inventory.*
+import org.bukkit.inventory.Inventory
+import org.bukkit.inventory.InventoryHolder
+import org.bukkit.inventory.InventoryView
+import org.bukkit.inventory.Recipe
 import javax.inject.Inject
 
 class PrepareCraftInventoryView_1_14_R01 private constructor(
@@ -16,7 +19,7 @@ class PrepareCraftInventoryView_1_14_R01 private constructor(
         private val server: Server
     ) : PrepareCraftInventoryView_1_7_5_R01.Factory(
         server = server
-    ){
+    ) {
         override fun create(
             player: Player,
             inventoryHolder: InventoryHolder?,

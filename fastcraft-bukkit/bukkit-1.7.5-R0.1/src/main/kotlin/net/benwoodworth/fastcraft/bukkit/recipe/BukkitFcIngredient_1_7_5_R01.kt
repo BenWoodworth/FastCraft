@@ -31,9 +31,7 @@ class BukkitFcIngredient_1_7_5_R01(
                 ingredientItem.durability = bukkitItem.durability
 
                 ingredientItem.isSimilar(bukkitItem)
-                    .also { ingredientItem.durability =
-                        WILDCARD_DATA
-                    }
+                    .also { ingredientItem.durability = WILDCARD_DATA }
             }
             else -> {
                 ingredientItem.isSimilar(bukkitItem)
