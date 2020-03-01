@@ -49,8 +49,7 @@ class PrepareCraftInventoryView_1_14_R01 private constructor(
     }
 
     override fun getTitle(): String {
-        @Suppress("UsePropertyAccessSyntax")
-        return "FastCraft"
+        return "Crafting"
     }
 
     override fun getTopInventory(): Inventory {
