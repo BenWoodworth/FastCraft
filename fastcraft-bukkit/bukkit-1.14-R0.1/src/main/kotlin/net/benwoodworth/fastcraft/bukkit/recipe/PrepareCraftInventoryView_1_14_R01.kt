@@ -1,11 +1,9 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
-import net.benwoodworth.localeconfig.api.LocaleApi
 import org.bukkit.Server
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryType
 import org.bukkit.inventory.*
-import java.util.*
 import javax.inject.Inject
 
 class PrepareCraftInventoryView_1_14_R01 private constructor(
@@ -51,7 +49,7 @@ class PrepareCraftInventoryView_1_14_R01 private constructor(
     }
 
     override fun getTitle(): String {
-        return LocaleApi.get(Locale.ENGLISH, "container.crafting").toString()
+        return "Crafting"
     }
 
     override fun getTopInventory(): Inventory {
