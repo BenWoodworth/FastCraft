@@ -29,7 +29,7 @@ class PrepareCraftInventoryView_1_7_5_R01 private constructor(
         }
     }
 
-    private val topInventory = PrepareCraftInventoryView_1_7_5_R01.PreparedInventory(
+    private val topInventory = PreparedInventory(
         inventory = server.createInventory(inventoryHolder, InventoryType.WORKBENCH),
         recipe = recipe
     )
@@ -50,7 +50,7 @@ class PrepareCraftInventoryView_1_7_5_R01 private constructor(
         return topInventory
     }
 
-    class PreparedInventory(
+    private class PreparedInventory(
         private val inventory: Inventory,
         private val recipe: Recipe?
     ) : CraftingInventory, Inventory by inventory {
