@@ -1,5 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
+import org.bukkit.Material
 import org.bukkit.Server
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryType
@@ -41,32 +42,69 @@ class CraftingInventoryViewFactory_1_7_5_R01 @Inject constructor(
         }
     }
 
-    private inner class CustomCraftingInventory(
-        private val inventoryHolder: InventoryHolder?,
-        private val recipe: Recipe?
-    ) : CraftingInventory,
-        Inventory by server.createInventory(inventoryHolder, InventoryType.WORKBENCH) {
+    private inner class CustomCraftingInventory private constructor(
+        private val recipe: Recipe?,
+        private val baseInventory: Inventory
+    ) : CraftingInventory, Inventory by baseInventory {
+        constructor(inventoryHolder: InventoryHolder?, recipe: Recipe?) : this(
+            recipe = recipe,
+            baseInventory = server.createInventory(inventoryHolder, InventoryType.WORKBENCH)
+        )
 
-        override fun getMatrix(): Array<ItemStack?> {
-            return Array(size - 1) { slot -> getItem(slot) }
+        private fun air() = ItemStack(Material.AIR)
+
+        override fun getItem(index: Int): ItemStack? {
+            return baseInventory.getItem(index) ?: air()
         }
 
-        override fun setResult(newResult: ItemStack?) {
-            setItem(size - 1, newResult)
+        override fun getContents(): Array<ItemStack> {
+            val contents = baseInventory.contents
+            for (i in contents.indices) {
+                contents[i] = contents[i] ?: air()
+            }
+
+            return contents
         }
 
         override fun getRecipe(): Recipe? {
             return recipe
         }
 
+        override fun getMatrix(): Array<ItemStack?> {
+            return Array(size - 1) { slot -> getItem(slot) }
+        }
+
+        override fun setMatrix(contents: Array<out ItemStack>) {
+            if (contents.size > baseInventory.size - 1) {
+                throw IllegalArgumentException("matrix contents too large")
+            }
+
+            setContents(contents)
+        }
+
         override fun getResult(): ItemStack? {
             return getItem(9)
         }
 
-        override fun setMatrix(contents: Array<out ItemStack>) {
-            contents.forEachIndexed { i, item ->
-                setItem(i, item)
+        override fun setResult(newResult: ItemStack?) {
+            setItem(size - 1, newResult)
+        }
+
+        override fun iterator(index: Int): MutableListIterator<ItemStack> {
+            val baseIterator = baseInventory.iterator(index)
+            return object : MutableListIterator<ItemStack> by baseIterator {
+                override fun next(): ItemStack {
+                    return baseIterator.next() ?: air()
+                }
+
+                override fun previous(): ItemStack {
+                    return baseIterator.previous() ?: air()
+                }
             }
+        }
+
+        override fun iterator(): MutableListIterator<ItemStack> {
+            return iterator(0)
         }
     }
 }
