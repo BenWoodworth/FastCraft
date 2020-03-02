@@ -26,14 +26,14 @@ open class BukkitFcCraftingRecipe_1_7_5_R01(
     private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_7_5_R01Factory,
     private val itemFactory: FcItemFactory,
     private val remnantProvider: IngredientRemnantProvider,
-    private val inventoryViewFactory: PrepareCraftInventoryView_1_7_5_R01.Factory
+    private val inventoryViewFactory: CraftingInventoryViewFactory
 ) : BukkitFcCraftingRecipe {
     class Factory @Inject constructor(
         private val server: Server,
         private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_7_5_R01Factory,
         private val itemFactory: FcItemFactory,
         private val remnantProvider: IngredientRemnantProvider,
-        private val inventoryViewFactory: PrepareCraftInventoryView_1_7_5_R01.Factory
+        private val inventoryViewFactory: CraftingInventoryViewFactory
     ) : BukkitFcCraftingRecipe.Factory {
         override fun create(recipe: Recipe): FcCraftingRecipe {
             return BukkitFcCraftingRecipe_1_7_5_R01(
