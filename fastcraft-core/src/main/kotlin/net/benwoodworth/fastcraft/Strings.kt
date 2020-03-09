@@ -29,7 +29,7 @@ object Strings {
     // endregion
 
     fun load() {
-        LocaleApi.load("fastcraft", "/locales")
+        LocaleApi.load("fastcraft", "/lang")
     }
 
     fun localizationTranslator(locale: Locale): String {
