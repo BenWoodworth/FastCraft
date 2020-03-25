@@ -69,6 +69,7 @@ class FastCraftGuiModel(
             return false
         }
 
+        recipes[recipeIndex] = null // Prevent preparedRecipe.craft() from being crafted twice
         val craftedItems = when (val craftResult = recipe.preparedRecipe.craft()) {
             is CancellableResult.Cancelled -> return false
             is CancellableResult.Result -> craftResult.result
