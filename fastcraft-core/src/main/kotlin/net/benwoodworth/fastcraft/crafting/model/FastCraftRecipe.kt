@@ -4,7 +4,7 @@ import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 import kotlin.math.ceil
 
 class FastCraftRecipe(
-    val fastCraftGuiModel: FastCraftGuiModel,
+    private val fastCraftGuiModel: FastCraftGuiModel,
     val preparedRecipe: FcCraftingRecipePrepared
 ) {
     var multiplier: Int = 1
