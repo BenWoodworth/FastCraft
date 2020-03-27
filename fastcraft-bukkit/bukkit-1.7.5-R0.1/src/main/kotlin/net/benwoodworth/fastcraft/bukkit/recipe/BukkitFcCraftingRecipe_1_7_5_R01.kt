@@ -17,7 +17,6 @@ import org.bukkit.inventory.CraftingInventory
 import org.bukkit.inventory.Recipe
 import org.bukkit.inventory.ShapedRecipe
 import org.bukkit.inventory.ShapelessRecipe
-import org.bukkit.plugin.Plugin
 import java.util.*
 import javax.inject.Inject
 
@@ -30,23 +29,14 @@ open class BukkitFcCraftingRecipe_1_7_5_R01(
     private val inventoryViewFactory: CraftingInventoryViewFactory
 ) : BukkitFcCraftingRecipe {
     class Factory @Inject constructor(
-        plugin: Plugin,
         private val server: Server,
         private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_7_5_R01Factory,
         private val itemFactory: FcItemFactory,
         private val remnantProvider: IngredientRemnantProvider,
         private val inventoryViewFactory: CraftingInventoryViewFactory
     ) : BukkitFcCraftingRecipe.Factory {
-        private val complexRecipeIds = plugin
-            .getResource("bukkit-complex-recipe-ids.txt")
-            .reader()
-            .readLines()
-            .map { it.split("//").first().trim() }
-            .filter { it.isNotBlank() }
-            .toHashSet()
-
         override fun create(recipe: Recipe): FcCraftingRecipe {
-            val result = BukkitFcCraftingRecipe_1_7_5_R01(
+            return BukkitFcCraftingRecipe_1_7_5_R01(
                 recipe = recipe,
                 server = server,
                 preparedRecipeFactory = preparedRecipeFactory,
@@ -54,26 +44,6 @@ open class BukkitFcCraftingRecipe_1_7_5_R01(
                 remnantProvider = remnantProvider,
                 inventoryViewFactory = inventoryViewFactory
             )
-
-            if (result.id in complexRecipeIds) {
-                return Complex(result)
-            }
-
-            return result
-        }
-    }
-
-    private class Complex(
-        private val recipe: BukkitFcCraftingRecipe
-    ) : BukkitFcCraftingRecipe by recipe {
-        override val ingredients: List<FcIngredient>
-            get() = emptyList()
-
-        override fun prepare(
-            player: FcPlayer,
-            ingredients: Map<FcIngredient, FcItem>
-        ): CancellableResult<FcCraftingRecipePrepared> {
-            return CancellableResult.Cancelled
         }
     }
 
