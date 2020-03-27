@@ -18,7 +18,7 @@ open class BukkitFcRecipeService_1_7_5_R01 @Inject constructor(
     private val server: Server,
     private val recipeFactory: BukkitFcCraftingRecipe.Factory
 ) : BukkitFcRecipeService {
-    private val complexRecipeIds: Set<String> by lazy {
+    protected val complexRecipeIds: Set<String> by lazy {
         plugin.getResource("bukkit-complex-recipe-ids.txt")
             .reader().useLines { lines ->
                 lines.map { it.split("//").first().trim() }
@@ -41,7 +41,7 @@ open class BukkitFcRecipeService_1_7_5_R01 @Inject constructor(
             }
     }
 
-    protected fun Recipe.isCraftingRecipe(): Boolean {
+    protected open fun Recipe.isCraftingRecipe(): Boolean {
         return when (this) {
             is ShapedRecipe,
             is ShapelessRecipe -> true
@@ -49,7 +49,7 @@ open class BukkitFcRecipeService_1_7_5_R01 @Inject constructor(
         }
     }
 
-    protected fun FcCraftingRecipe.isComplexRecipe(): Boolean {
+    protected open fun FcCraftingRecipe.isComplexRecipe(): Boolean {
         return id in complexRecipeIds
     }
 
