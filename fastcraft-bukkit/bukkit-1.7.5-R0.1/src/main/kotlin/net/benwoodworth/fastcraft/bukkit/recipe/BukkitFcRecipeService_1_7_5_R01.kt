@@ -1,5 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
+import net.benwoodworth.fastcraft.bukkit.util.BukkitVersion
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
@@ -7,24 +8,30 @@ import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 import net.benwoodworth.fastcraft.platform.recipe.FcIngredient
 import net.benwoodworth.fastcraft.util.CancellableResult
 import org.bukkit.Server
+import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.inventory.Recipe
 import org.bukkit.inventory.ShapedRecipe
 import org.bukkit.inventory.ShapelessRecipe
 import org.bukkit.plugin.Plugin
+import java.io.InputStream
 import javax.inject.Inject
 
 open class BukkitFcRecipeService_1_7_5_R01 @Inject constructor(
     plugin: Plugin,
+    bukkitVersion: BukkitVersion,
     private val server: Server,
     private val recipeFactory: BukkitFcCraftingRecipe.Factory
 ) : BukkitFcRecipeService {
     protected val complexRecipeIds: Set<String> by lazy {
-        plugin.getResource("bukkit-complex-recipe-ids.txt")
-            .reader().useLines { lines ->
-                lines.map { it.split("//").first().trim() }
-                    .filter { it.isNotBlank() }
-                    .toHashSet()
-            }
+        plugin.getResource("bukkit/complex-recipes.yml")
+            .toYamlConfiguration()
+            .getStringList(bukkitVersion.run { "$major.$minor" })
+            ?.toHashSet()
+            ?: emptySet<String>()
+    }
+
+    protected open fun InputStream.toYamlConfiguration(): YamlConfiguration {
+        return this.use { YamlConfiguration.loadConfiguration(this) }
     }
 
     override fun getCraftingRecipes(): Sequence<FcCraftingRecipe> {

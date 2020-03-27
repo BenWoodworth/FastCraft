@@ -1,5 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
+import net.benwoodworth.fastcraft.bukkit.util.BukkitVersion
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import org.bukkit.Server
 import org.bukkit.inventory.ComplexRecipe
@@ -11,10 +12,12 @@ import javax.inject.Inject
 
 open class BukkitFcRecipeService_1_15_R01 @Inject constructor(
     plugin: Plugin,
+    bukkitVersion: BukkitVersion,
     server: Server,
     recipeFactory: BukkitFcCraftingRecipe.Factory
-) : BukkitFcRecipeService_1_7_5_R01(
+) : BukkitFcRecipeService_1_8_R01(
     plugin = plugin,
+    bukkitVersion = bukkitVersion,
     server = server,
     recipeFactory = recipeFactory
 ) {
