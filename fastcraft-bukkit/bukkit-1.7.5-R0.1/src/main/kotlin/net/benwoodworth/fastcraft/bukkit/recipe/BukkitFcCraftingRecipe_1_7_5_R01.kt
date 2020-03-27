@@ -30,7 +30,7 @@ open class BukkitFcCraftingRecipe_1_7_5_R01(
     private val inventoryViewFactory: CraftingInventoryViewFactory
 ) : BukkitFcCraftingRecipe {
     class Factory @Inject constructor(
-        private val plugin: Plugin,
+        plugin: Plugin,
         private val server: Server,
         private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_7_5_R01Factory,
         private val itemFactory: FcItemFactory,
@@ -41,6 +41,8 @@ open class BukkitFcCraftingRecipe_1_7_5_R01(
             .getResource("bukkit-complex-recipe-ids.txt")
             .reader()
             .readLines()
+            .map { it.split("//").first().trim() }
+            .filter { it.isNotBlank() }
             .toHashSet()
 
         override fun create(recipe: Recipe): FcCraftingRecipe {
