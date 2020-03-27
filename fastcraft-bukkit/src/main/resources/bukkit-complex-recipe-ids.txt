@@ -107,5 +107,5 @@ minecraft:armor_dye
 minecraft:map_cloning
 minecraft:banner_duplicate
 
-// 1.15+
-// Not needed since the addition of ComplexRecipe
+// 1.15
+minecraft:map_extending

@@ -28,6 +28,6 @@ open class BukkitFcRecipeService_1_15_R01 @Inject constructor(
     }
 
     override fun FcCraftingRecipe.isComplexRecipe(): Boolean {
-        return this is ComplexRecipe
+        return this is ComplexRecipe || this.id in complexRecipeIds
     }
 }
