@@ -13,13 +13,7 @@ dependencies {
 }
 
 processResources {
-    with copySpec {
-        exclude "plugin.yml"
-    }
-
-    with copySpec {
-        include "plugin.yml"
-
+    filesMatching("plugin.yml") {
         expand([
                 plugin_author     : plugin_author,
                 plugin_description: plugin_description,
