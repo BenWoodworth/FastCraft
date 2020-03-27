@@ -1,0 +1,12 @@
+minecraft:shulker_box_coloring
+minecraft:repair_item
+minecraft:shield_decoration
+minecraft:firework_star_fade
+minecraft:banner_duplicate
+minecraft:book_cloning
+minecraft:map_cloning
+minecraft:firework_star
+minecraft:armor_dye
+minecraft:suspicious_stew
+minecraft:firework_rocket
+minecraft:tipped_arrow
