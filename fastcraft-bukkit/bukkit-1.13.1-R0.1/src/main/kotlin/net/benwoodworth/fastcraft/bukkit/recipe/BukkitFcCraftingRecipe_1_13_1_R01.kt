@@ -9,7 +9,7 @@ import org.bukkit.inventory.ShapedRecipe
 import org.bukkit.inventory.ShapelessRecipe
 import javax.inject.Inject
 
-open class BukkitFcCraftingRecipe_1_15_R01(
+open class BukkitFcCraftingRecipe_1_13_1_R01(
     recipe: Recipe,
     server: Server,
     preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_7_5_R01Factory,
@@ -32,7 +32,7 @@ open class BukkitFcCraftingRecipe_1_15_R01(
         private val inventoryViewFactory: CraftingInventoryViewFactory
     ) : BukkitFcCraftingRecipe.Factory {
         override fun create(recipe: Recipe): FcCraftingRecipe {
-            return BukkitFcCraftingRecipe_1_15_R01(
+            return BukkitFcCraftingRecipe_1_13_1_R01(
                 recipe = recipe,
                 server = server,
                 preparedRecipeFactory = preparedRecipeFactory,
@@ -50,7 +50,7 @@ open class BukkitFcCraftingRecipe_1_15_R01(
                     rowString
                         .mapIndexed { column, char ->
                             recipe.choiceMap[char]?.let { choice ->
-                                BukkitFcIngredient_1_15_R01(row * 3 + column, choice)
+                                BukkitFcIngredient_1_13_1_R01(row * 3 + column, choice)
                             }
                         }
                         .filterNotNull()
@@ -59,7 +59,7 @@ open class BukkitFcCraftingRecipe_1_15_R01(
 
             is ShapelessRecipe -> recipe.choiceList
                 .mapIndexed { i, recipeChoice ->
-                    BukkitFcIngredient_1_15_R01(i, recipeChoice)
+                    BukkitFcIngredient_1_13_1_R01(i, recipeChoice)
                 }
 
             else -> throw IllegalStateException()

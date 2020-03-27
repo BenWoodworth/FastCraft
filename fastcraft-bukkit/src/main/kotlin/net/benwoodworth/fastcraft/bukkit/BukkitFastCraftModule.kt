@@ -46,6 +46,7 @@ class BukkitFastCraftModule(
         val VERSION_1_15_R01 = BukkitVersion.parse("1.15-R0.1")
         val VERSION_1_14_R01 = BukkitVersion.parse("1.14-R0.1")
         val VERSION_1_13_R01 = BukkitVersion.parse("1.13-R0.1")
+        val VERSION_1_13_1_R01 = BukkitVersion.parse("1.13.1-R0.1")
         val VERSION_1_8_R01 = BukkitVersion.parse("1.8-R0.1")
         val VERSION_1_7_5_R01 = BukkitVersion.parse("1.7.5-R0.1")
     }
@@ -176,12 +177,12 @@ class BukkitFastCraftModule(
     @Provides
     @Singleton
     fun provideFcCraftingRecipeFactory(
-        instance_1_15: Provider<BukkitFcCraftingRecipe_1_15_R01.Factory>,
+        instance_1_13_1: Provider<BukkitFcCraftingRecipe_1_13_1_R01.Factory>,
         instance_1_13: Provider<BukkitFcCraftingRecipe_1_13_R01.Factory>,
         instance_1_7_5: Provider<BukkitFcCraftingRecipe_1_7_5_R01.Factory>
     ): BukkitFcCraftingRecipe.Factory {
         return when {
-            bukkitVersion >= VERSION_1_15_R01 -> instance_1_15.get()
+            bukkitVersion >= VERSION_1_13_1_R01 -> instance_1_13_1.get()
             bukkitVersion >= VERSION_1_13_R01 -> instance_1_13.get()
             bukkitVersion >= VERSION_1_7_5_R01 -> instance_1_7_5.get()
             else -> instance_1_7_5.get()
