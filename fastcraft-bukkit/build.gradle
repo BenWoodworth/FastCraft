@@ -13,12 +13,18 @@ dependencies {
 }
 
 processResources {
-    include "plugin.yml"
+    with copySpec {
+        exclude "plugin.yml"
+    }
 
-    expand([
-            plugin_author     : plugin_author,
-            plugin_description: plugin_description,
-            plugin_version    : rootProject.version,
-            plugin_website    : plugin_website
-    ])
+    with copySpec {
+        include "plugin.yml"
+
+        expand([
+                plugin_author     : plugin_author,
+                plugin_description: plugin_description,
+                plugin_version    : rootProject.version,
+                plugin_website    : plugin_website
+        ])
+    }
 }
