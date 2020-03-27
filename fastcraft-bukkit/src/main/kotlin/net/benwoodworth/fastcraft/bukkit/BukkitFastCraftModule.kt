@@ -43,7 +43,6 @@ class BukkitFastCraftModule(
     private val bukkitVersion = BukkitVersion.parse(plugin.server.bukkitVersion)
 
     private companion object {
-        val VERSION_1_15_R01 = BukkitVersion.parse("1.15-R0.1")
         val VERSION_1_14_R01 = BukkitVersion.parse("1.14-R0.1")
         val VERSION_1_13_R01 = BukkitVersion.parse("1.13-R0.1")
         val VERSION_1_13_1_R01 = BukkitVersion.parse("1.13.1-R0.1")
