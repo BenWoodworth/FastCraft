@@ -1,12 +1,111 @@
-minecraft:shulker_box_coloring
-minecraft:repair_item
-minecraft:shield_decoration
-minecraft:firework_star_fade
-minecraft:banner_duplicate
-minecraft:book_cloning
-minecraft:map_cloning
-minecraft:firework_star
-minecraft:armor_dye
-minecraft:suspicious_stew
-minecraft:firework_rocket
+// 1.7
+FWwTf2 //RecipeMapExtend
+VeZ3s9 //RecipeArmorDye
+xxnwAA //RecipeFireworks
+DfKPKA //RecipeBookClone
+P9EBFA //RecipeMapClone
+
+// 1.8
+FWwTf2 //RecipeMapExtend
+VeZ3s9 //RecipeArmorDye
+xxnwAA //RecipeFireworks
+sXvkEA //RecipesBannerInnerClass2
+DfKPKA //RecipeBookClone
+xEYaLA //RecipeMapClone
+m2Ekr9 //RecipeRepair
+RKW9FA //RecipesBannerInnerClass1
+
+// 1.9
+FWwTf2 //RecipeMapExtend
+oBM8o6 //RecipeTippedArrow
+VeZ3s9 //RecipeArmorDye
+xxnwAA //RecipeFireworks
+RKW9FA //RecipesBanner$AddRecipe
+DfKPKA //RecipeBookClone
+xEYaLA //RecipeMapClone
+m2Ekr9 //RecipeRepair
+sXvkEA //RecipesBanner$DuplicateRecipe
+YGAbHA //RecipiesShield$Decoration
+
+// 1.10
+FWwTf2 //RecipeMapExtend
+oBM8o6 //RecipeTippedArrow
+VeZ3s9 //RecipeArmorDye
+xxnwAA //RecipeFireworks
+RKW9FA //RecipesBanner$AddRecipe
+DfKPKA //RecipeBookClone
+xEYaLA //RecipeMapClone
+m2Ekr9 //RecipeRepair
+sXvkEA //RecipesBanner$DuplicateRecipe
+YGAbHA //RecipiesShield$Decoration
+
+// 1.11
+cxJbf2 //RecipeMapExtend
+rUf3Y6 //RecipeTippedArrow
+F39NA9 //RecipeArmorDye
+F39NA9 //RecipeFireworks
+bPPPC9 //RecipesBanner$AddRecipe
+F39NA9 //RecipeShulkerBox$Dye
+Ax8NA9 //RecipeBookClone
+Ax8NA9 //RecipeMapClone
+m2Ekr9 //RecipeRepair
+F39NA9 //RecipesBanner$DuplicateRecipe
+Ax8NA9 //RecipiesShield$Decoration
+
+// 1.12
+UvuDC9 //RecipeArmorDye
+D2FNC9 //RecipeBookClone
+YENQC9 //RecipeMapClone
+cxJbf2 //RecipeMapExtend
+c79wB9 //RecipeFireworks
+KJLwr9 //RecipeRepair
+7DUXr6 //RecipeTippedArrow
+UvuDC9 //RecipesBanner$DuplicateRecipe
+CfVXC9 //RecipesBanner$AddRecipe
+CfVXC9 //RecipiesShield$Decoration
+UvuDC9 //RecipeShulkerBox$Dye
+
+// 1.12.1
+minecraft:armordye
+minecraft:bookcloning
+minecraft:mapcloning
+minecraft:mapextending
+minecraft:fireworks
+minecraft:repairitem
+minecraft:tippedarrow
+minecraft:bannerduplicate
+minecraft:banneraddpattern
+minecraft:shielddecoration
+minecraft:shulkerboxcoloring
+
+// 1.13
 minecraft:tipped_arrow
+minecraft:shulker_box_coloring
+minecraft:shield_decoration
+minecraft:repair_item
+minecraft:map_extending
+minecraft:map_cloning
+minecraft:firework_star_fade
+minecraft:firework_star
+minecraft:firework_rocket
+minecraft:book_cloning
+minecraft:banner_duplicate
+minecraft:banner_add_pattern
+minecraft:armor_dye
+
+// 1.14
+minecraft:firework_rocket
+minecraft:firework_star_fade
+minecraft:map_extending
+minecraft:suspicious_stew
+minecraft:tipped_arrow
+minecraft:book_cloning
+minecraft:firework_star
+minecraft:shulker_box_coloring
+minecraft:shield_decoration
+minecraft:armor_dye
+minecraft:map_cloning
+minecraft:banner_duplicate
+
+// 1.15+
+// Not needed since the addition of ComplexRecipe
