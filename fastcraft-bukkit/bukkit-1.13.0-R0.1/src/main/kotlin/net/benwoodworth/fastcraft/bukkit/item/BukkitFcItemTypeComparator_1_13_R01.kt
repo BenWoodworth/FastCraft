@@ -27,6 +27,5 @@ class BukkitFcItemTypeComparator_1_13_R01 @Inject constructor(
 
     override fun compare(type0: FcItemType, type1: FcItemType): Int {
         return comparator.compare(type0, type1)
-            .also { println("${type0.id} vs ${type1.id} = $it") }
     }
 }
