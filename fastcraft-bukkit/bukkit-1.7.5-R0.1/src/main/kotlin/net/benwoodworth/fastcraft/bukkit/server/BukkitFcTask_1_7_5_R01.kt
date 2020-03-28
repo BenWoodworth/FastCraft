@@ -5,54 +5,48 @@ import org.bukkit.plugin.Plugin
 import org.bukkit.scheduler.BukkitScheduler
 
 class BukkitFcTask_1_7_5_R01(
-    private val plugin: Plugin,
-    private val async: Boolean,
-    private val delay: Long,
-    private val interval: Long,
+    plugin: Plugin,
+    async: Boolean,
+    delay: Long,
+    interval: Long,
     action: (task: FcTask) -> Unit,
     private val scheduler: BukkitScheduler
 ) : BukkitFcTask {
-    private val action = { action(this) }
+    override val taskId: Int
 
-    private var taskId: Int? = null
-
-    override val isScheduled: Boolean
-        get() = taskId != null
-
-    override fun schedule() {
-        if (isScheduled) {
-            return
-        }
+    init {
+        val runnable = Runnable { action(this) }
 
         @Suppress("DEPRECATION")
         taskId = scheduler.run {
             when {
                 async && interval != 0L ->
-                    scheduleAsyncRepeatingTask(plugin, action, delay, interval)
+                    scheduleAsyncRepeatingTask(plugin, runnable, delay, interval)
                 async ->
-                    scheduleAsyncDelayedTask(plugin, action, delay)
+                    scheduleAsyncDelayedTask(plugin, runnable, delay)
                 interval != 0L ->
-                    scheduleSyncRepeatingTask(plugin, action, delay, interval)
+                    scheduleSyncRepeatingTask(plugin, runnable, delay, interval)
                 delay != 0L ->
-                    scheduleSyncDelayedTask(plugin, action, delay)
+                    scheduleSyncDelayedTask(plugin, runnable, delay)
                 else ->
-                    scheduleSyncDelayedTask(plugin, action)
+                    scheduleSyncDelayedTask(plugin, runnable)
             }
         }
     }
 
+    override val isCancelled: Boolean
+        get() = !scheduler.isCurrentlyRunning(taskId)
+
     override fun cancel() {
-        taskId?.let {
-            scheduler.cancelTask(it)
-            taskId = null
-        }
+        scheduler.cancelTask(taskId)
     }
 
     override fun equals(other: Any?): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return other is BukkitFcTask &&
+                taskId == other.taskId
     }
 
     override fun hashCode(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return taskId
     }
 }

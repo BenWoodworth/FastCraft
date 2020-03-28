@@ -9,19 +9,19 @@ class BukkitFcTaskFactory_1_7_5_R01 @Inject constructor(
     private val plugin: Plugin,
     private val scheduler: BukkitScheduler
 ) : BukkitFcTaskFactory {
-    override fun createFcTask(
+    override fun startTask(
         async: Boolean,
         delaySeconds: Double,
         intervalSeconds: Double,
         action: (task: FcTask) -> Unit
     ): FcTask {
         return BukkitFcTask_1_7_5_R01(
-            plugin,
-            async,
-            (delaySeconds * 20.0).toLong(),
-            (intervalSeconds * 20.0).toLong(),
-            action,
-            scheduler
+            plugin = plugin,
+            async = async,
+            delay = (delaySeconds * 20.0).toLong(),
+            interval = (intervalSeconds * 20.0).toLong(),
+            action = action,
+            scheduler = scheduler
         )
     }
 }
