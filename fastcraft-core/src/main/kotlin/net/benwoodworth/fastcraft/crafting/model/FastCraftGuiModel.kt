@@ -4,6 +4,8 @@ import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemFactory
+import net.benwoodworth.fastcraft.platform.item.FcItemType
+import net.benwoodworth.fastcraft.platform.item.FcItemTypeComparator
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 import net.benwoodworth.fastcraft.util.CancellableResult
@@ -15,7 +17,8 @@ class FastCraftGuiModel(
     val player: FcPlayer,
     @Provided private val itemAmountsProvider: Provider<ItemAmounts>,
     @Provided private val craftableRecipeFinder: CraftableRecipeFinder,
-    @Provided private val itemFactory: FcItemFactory
+    @Provided private val itemFactory: FcItemFactory,
+    @Provided private val itemTypeComparator: FcItemTypeComparator
 ) {
     var craftAmount: Int? = null
 
@@ -23,13 +26,12 @@ class FastCraftGuiModel(
 
     val inventoryItemAmounts: ItemAmounts = itemAmountsProvider.get()
 
-    private companion object {
-        val recipeComparator = compareBy<FcCraftingRecipePrepared>(
-            { it.recipe.group },
-            { it.resultsPreview.first().type.id },
-            { it.resultsPreview.first().amount }
-        )
-    }
+    private val recipeComparator: Comparator<FcCraftingRecipePrepared> =
+        compareBy<FcCraftingRecipePrepared, FcItemType>(itemTypeComparator) {
+            it.resultsPreview.first().type
+        }.thenBy {
+            it.resultsPreview.first().amount
+        }
 
     fun updateInventoryItemAmounts() {
         inventoryItemAmounts.clear()
