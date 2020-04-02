@@ -14,7 +14,7 @@ open class BukkitFcRecipeService_1_15_R01 @Inject constructor(
     plugin: Plugin,
     bukkitVersion: BukkitVersion,
     server: Server,
-    recipeFactory: BukkitFcCraftingRecipe.Factory
+    recipeFactory: BukkitFcCraftingRecipe.Factory,
 ) : BukkitFcRecipeService_1_8_R01(
     plugin = plugin,
     bukkitVersion = bukkitVersion,
@@ -25,7 +25,9 @@ open class BukkitFcRecipeService_1_15_R01 @Inject constructor(
         return when (this) {
             is ShapedRecipe,
             is ShapelessRecipe,
-            is ComplexRecipe -> true
+            is ComplexRecipe,
+            -> true
+
             else -> false
         }
     }

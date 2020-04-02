@@ -8,8 +8,8 @@ import javax.inject.Inject
 
 class FastCraft @Inject internal constructor(
     playerEventsListeners: FcPlayerEvents,
-    private val fastCraftGuiFactory: FastCraftGuiFactory,
-    private val logger: FcLogger
+    logger: FcLogger,
+    private val fastCraftGuiFactory: FastCraftGuiFactory
 ) {
     init {
         Strings.load()

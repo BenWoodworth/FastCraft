@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 open class BukkitFcItemFactory_1_13_R01 @Inject constructor(
     itemTypes: FcItemTypes,
-    textFactory: FcTextFactory
+    textFactory: FcTextFactory,
 ) : BukkitFcItemFactory_1_7_5_R01(
     itemTypes = itemTypes,
     textFactory = textFactory

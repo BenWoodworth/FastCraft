@@ -14,7 +14,7 @@ import java.util.*
 class BukkitFcInventorySlot(
     val inventory: Inventory,
     val slotIndex: Int,
-    @Provided val itemFactory: FcItemFactory
+    @Provided val itemFactory: FcItemFactory,
 ) : FcInventorySlot {
     override var item: FcItem?
         get() = inventory.getItem(slotIndex).fromInventoryItem()

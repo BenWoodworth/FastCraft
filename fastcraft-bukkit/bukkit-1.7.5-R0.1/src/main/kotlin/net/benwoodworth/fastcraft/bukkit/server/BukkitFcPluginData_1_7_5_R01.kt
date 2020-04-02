@@ -5,7 +5,7 @@ import java.nio.file.Path
 import javax.inject.Inject
 
 class BukkitFcPluginData_1_7_5_R01 @Inject constructor(
-    plugin: Plugin
+    plugin: Plugin,
 ) : BukkitFcPluginData {
     override val dataFolder: Path = plugin.dataFolder.toPath()
 

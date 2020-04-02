@@ -6,7 +6,7 @@ import java.util.*
 
 sealed class BukkitFcText : FcText {
     class Legacy(
-        val legacyText: String
+        val legacyText: String,
     ) : BukkitFcText() {
         override fun equals(other: Any?): Boolean {
             return other is Legacy && legacyText == other.legacyText
@@ -34,7 +34,7 @@ sealed class BukkitFcText : FcText {
             override val underline: Boolean? = null,
             override val strikethrough: Boolean? = null,
             override val obfuscate: Boolean? = null,
-            override val extra: List<FcText> = emptyList()
+            override val extra: List<FcText> = emptyList(),
         ) : Component() {
             override fun equals(other: Any?): Boolean {
                 return other is Text &&
@@ -69,7 +69,7 @@ sealed class BukkitFcText : FcText {
             override val underline: Boolean? = null,
             override val strikethrough: Boolean? = null,
             override val obfuscate: Boolean? = null,
-            override val extra: List<FcText> = emptyList()
+            override val extra: List<FcText> = emptyList(),
         ) : Component() {
             override fun equals(other: Any?): Boolean {
                 return other is Translate &&

@@ -12,7 +12,7 @@ class BukkitFcGuiLayoutGrid_1_7_5_R01(
     override val height: Int,
     inventory: Inventory,
     override val locale: Locale,
-    @Provided private val guiButtonFactory: BukkitFcGuiButton_1_7_5_R01.Factory
+    @Provided private val guiButtonFactory: BukkitFcGuiButton_1_7_5_R01.Factory,
 ) : BukkitFcGuiLayout_1_7_5_R01(inventory, guiButtonFactory), BukkitFcGuiLayoutGrid {
     override fun getButton(column: Int, row: Int): FcGuiButton {
         return getSlotButtonOrCreate(row * width + column)

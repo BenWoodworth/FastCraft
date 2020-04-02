@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class BukkitFcItemTypes_1_13_R01 @Inject constructor(
     private val textFactory: FcTextFactory,
-    private val localizer: BukkitLocalizer
+    private val localizer: BukkitLocalizer,
 ) : BukkitFcItemTypes_1_7_5_R01(
     textFactory = textFactory
 ) {

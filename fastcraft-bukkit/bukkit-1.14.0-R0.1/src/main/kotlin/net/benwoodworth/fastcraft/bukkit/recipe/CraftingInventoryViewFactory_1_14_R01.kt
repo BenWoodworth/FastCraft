@@ -8,12 +8,12 @@ import org.bukkit.inventory.*
 import javax.inject.Inject
 
 class CraftingInventoryViewFactory_1_14_R01 @Inject constructor(
-    private val server: Server
+    private val server: Server,
 ) : CraftingInventoryViewFactory {
     override fun create(
         player: Player,
         inventoryHolder: InventoryHolder?,
-        recipe: Recipe?
+        recipe: Recipe?,
     ): InventoryView {
         return CustomInventoryView(
             player = player,
@@ -23,7 +23,7 @@ class CraftingInventoryViewFactory_1_14_R01 @Inject constructor(
 
     private inner class CustomInventoryView(
         private val player: Player,
-        private val topInventory: Inventory
+        private val topInventory: Inventory,
     ) : InventoryView() {
         override fun getPlayer(): Player {
             return player
@@ -48,7 +48,7 @@ class CraftingInventoryViewFactory_1_14_R01 @Inject constructor(
 
     private inner class CustomCraftingInventory private constructor(
         private val recipe: Recipe?,
-        private val baseInventory: Inventory
+        private val baseInventory: Inventory,
     ) : CraftingInventory, Inventory by baseInventory {
         constructor(inventoryHolder: InventoryHolder?, recipe: Recipe?) : this(
             recipe = recipe,

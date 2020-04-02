@@ -6,7 +6,7 @@ import java.util.*
 
 abstract class BukkitFcGuiLayout_1_7_5_R01(
     override val inventory: Inventory,
-    private val guiButtonFactory: BukkitFcGuiButton.Factory
+    private val guiButtonFactory: BukkitFcGuiButton.Factory,
 ) : BukkitFcGuiLayout {
     protected abstract val locale: Locale
 

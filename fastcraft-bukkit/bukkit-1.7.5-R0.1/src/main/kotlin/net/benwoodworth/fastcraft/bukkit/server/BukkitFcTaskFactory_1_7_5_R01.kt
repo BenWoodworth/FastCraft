@@ -7,13 +7,13 @@ import javax.inject.Inject
 
 class BukkitFcTaskFactory_1_7_5_R01 @Inject constructor(
     private val plugin: Plugin,
-    private val scheduler: BukkitScheduler
+    private val scheduler: BukkitScheduler,
 ) : BukkitFcTaskFactory {
     override fun startTask(
         async: Boolean,
         delaySeconds: Double,
         intervalSeconds: Double,
-        action: (task: FcTask) -> Unit
+        action: (task: FcTask) -> Unit,
     ): FcTask {
         return BukkitFcTask_1_7_5_R01(
             plugin = plugin,

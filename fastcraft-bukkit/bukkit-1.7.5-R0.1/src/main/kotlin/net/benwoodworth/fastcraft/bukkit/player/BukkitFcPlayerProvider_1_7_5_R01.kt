@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class BukkitFcPlayerProvider_1_7_5_R01 @Inject constructor(
     private val server: Server,
-    private val playerFactory: BukkitFcPlayer_1_7_5_R01Factory
+    private val playerFactory: BukkitFcPlayer_1_7_5_R01Factory,
 ) : BukkitFcPlayerProvider {
     override fun getOnlinePlayers(): List<FcPlayer> {
         return server.onlinePlayers.map { player ->

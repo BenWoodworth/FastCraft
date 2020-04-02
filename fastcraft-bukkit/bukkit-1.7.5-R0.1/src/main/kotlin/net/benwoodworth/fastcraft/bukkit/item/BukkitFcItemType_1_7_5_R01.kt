@@ -10,7 +10,7 @@ import org.bukkit.material.MaterialData
 
 open class BukkitFcItemType_1_7_5_R01(
     override val materialData: MaterialData,
-    private val textFactory: FcTextFactory
+    private val textFactory: FcTextFactory,
 ) : BukkitFcItemType {
     @Suppress("DEPRECATION")
     override val id: String

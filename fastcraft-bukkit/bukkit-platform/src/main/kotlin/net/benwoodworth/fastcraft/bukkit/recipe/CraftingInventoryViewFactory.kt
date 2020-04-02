@@ -9,6 +9,6 @@ interface CraftingInventoryViewFactory {
     fun create(
         player: Player,
         inventoryHolder: InventoryHolder?,
-        recipe: Recipe?
+        recipe: Recipe?,
     ): InventoryView
 }

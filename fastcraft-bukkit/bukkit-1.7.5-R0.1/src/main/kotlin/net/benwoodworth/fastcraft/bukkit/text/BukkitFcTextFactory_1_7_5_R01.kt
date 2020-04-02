@@ -14,7 +14,7 @@ class BukkitFcTextFactory_1_7_5_R01 @Inject constructor(
         underline: Boolean?,
         strikethrough: Boolean?,
         obfuscate: Boolean?,
-        extra: List<FcText>
+        extra: List<FcText>,
     ): FcText {
         return BukkitFcText.Component.Text(
             text = text,
@@ -36,7 +36,7 @@ class BukkitFcTextFactory_1_7_5_R01 @Inject constructor(
         underline: Boolean?,
         strikethrough: Boolean?,
         obfuscate: Boolean?,
-        extra: List<FcText>
+        extra: List<FcText>,
     ): FcText {
         return BukkitFcText.Component.Translate(
             translate = translate,

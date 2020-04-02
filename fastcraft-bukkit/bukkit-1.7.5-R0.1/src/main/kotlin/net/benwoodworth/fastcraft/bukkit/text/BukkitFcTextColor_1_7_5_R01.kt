@@ -5,7 +5,7 @@ import org.bukkit.ChatColor
 
 class BukkitFcTextColor_1_7_5_R01(
     override val id: String,
-    override val chatColor: ChatColor
+    override val chatColor: ChatColor,
 ) : BukkitFcTextColor {
     override fun equals(other: Any?): Boolean {
         return other is FcTextColor && id == other.id

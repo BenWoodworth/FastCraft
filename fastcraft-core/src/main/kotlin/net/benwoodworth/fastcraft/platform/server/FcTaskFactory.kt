@@ -5,6 +5,6 @@ interface FcTaskFactory {
         async: Boolean = false,
         delaySeconds: Double = 0.0,
         intervalSeconds: Double = 0.0,
-        action: (task: FcTask) -> Unit
+        action: (task: FcTask) -> Unit,
     ): FcTask
 }

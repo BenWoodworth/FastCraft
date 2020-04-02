@@ -14,7 +14,7 @@ open class BukkitFcGuiButton_1_13_R01(
     slotIndex: Int,
     locale: Locale,
     textFactory: FcTextFactory,
-    textConverter: FcTextConverter
+    textConverter: FcTextConverter,
 ) : BukkitFcGuiButton_1_8_R01(
     inventory = inventory,
     slotIndex = slotIndex,
@@ -24,7 +24,7 @@ open class BukkitFcGuiButton_1_13_R01(
 ) {
     class Factory @Inject constructor(
         private val textFactory: FcTextFactory,
-        private val textConverter: FcTextConverter
+        private val textConverter: FcTextConverter,
     ) : BukkitFcGuiButton.Factory {
         override fun create(inventory: Inventory, slotIndex: Int, locale: Locale): FcGuiButton {
             return BukkitFcGuiButton_1_13_R01(

@@ -5,7 +5,7 @@ import kotlin.math.ceil
 
 class FastCraftRecipe(
     private val fastCraftGuiModel: FastCraftGuiModel,
-    val preparedRecipe: FcCraftingRecipePrepared
+    val preparedRecipe: FcCraftingRecipePrepared,
 ) {
     var multiplier: Int = 1
         private set

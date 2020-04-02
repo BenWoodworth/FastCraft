@@ -20,14 +20,14 @@ open class BukkitFcRecipeService_1_7_5_R01 @Inject constructor(
     plugin: Plugin,
     bukkitVersion: BukkitVersion,
     private val server: Server,
-    private val recipeFactory: BukkitFcCraftingRecipe.Factory
+    private val recipeFactory: BukkitFcCraftingRecipe.Factory,
 ) : BukkitFcRecipeService {
     protected val complexRecipeIds: Set<String> by lazy {
         plugin.getResource("bukkit/complex-recipes.yml")
             .toYamlConfiguration()
             .getStringList(bukkitVersion.run { "$major.$minor" })
             ?.toHashSet()
-            ?: emptySet<String>()
+            ?: emptySet()
     }
 
     protected open fun InputStream.toYamlConfiguration(): YamlConfiguration {
@@ -51,7 +51,9 @@ open class BukkitFcRecipeService_1_7_5_R01 @Inject constructor(
     protected open fun Recipe.isCraftingRecipe(): Boolean {
         return when (this) {
             is ShapedRecipe,
-            is ShapelessRecipe -> true
+            is ShapelessRecipe,
+            -> true
+
             else -> false
         }
     }
@@ -61,14 +63,14 @@ open class BukkitFcRecipeService_1_7_5_R01 @Inject constructor(
     }
 
     private class ComplexFcCraftingRecipe(
-        private val recipe: BukkitFcCraftingRecipe
+        private val recipe: BukkitFcCraftingRecipe,
     ) : BukkitFcCraftingRecipe by recipe {
         override val ingredients: List<FcIngredient>
             get() = emptyList()
 
         override fun prepare(
             player: FcPlayer,
-            ingredients: Map<FcIngredient, FcItem>
+            ingredients: Map<FcIngredient, FcItem>,
         ): CancellableResult<FcCraftingRecipePrepared> {
             return CancellableResult.Cancelled
         }

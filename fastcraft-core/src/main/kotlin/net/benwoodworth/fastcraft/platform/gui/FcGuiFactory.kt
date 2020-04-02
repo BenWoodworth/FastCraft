@@ -7,6 +7,6 @@ interface FcGuiFactory {
     fun createChestGui(
         player: FcPlayer,
         title: FcText? = null,
-        height: Int = 3
+        height: Int = 3,
     ): FcGui<FcGuiLayoutGrid>
 }

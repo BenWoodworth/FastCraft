@@ -5,7 +5,7 @@ data class BukkitVersion(
     val minor: Int,
     val patch: Int,
     val rMajor: Int,
-    val rMinor: Int
+    val rMinor: Int,
 ) : Comparable<BukkitVersion> {
     override fun compareTo(other: BukkitVersion): Int {
         return compareValuesBy(

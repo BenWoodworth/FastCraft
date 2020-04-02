@@ -20,7 +20,7 @@ class RecipeButtonView(
     private val locale: Locale,
     @Provided private val textFactory: FcTextFactory,
     @Provided private val itemAmountsProvider: Provider<ItemAmounts>,
-    @Provided private val textConverter: FcTextConverter
+    @Provided private val textConverter: FcTextConverter,
 ) {
     var fastCraftRecipe: FastCraftRecipe? = null
 

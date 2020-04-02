@@ -6,7 +6,7 @@ import org.bukkit.inventory.RecipeChoice
 import java.util.*
 
 open class BukkitFcIngredient_1_13_1_R01 protected constructor(
-    final override val slotIndex: Int
+    final override val slotIndex: Int,
 ) : BukkitFcIngredient {
     private lateinit var recipeChoice: RecipeChoice
 

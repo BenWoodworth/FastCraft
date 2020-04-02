@@ -4,7 +4,7 @@ sealed class CancellableResult<out T> {
     object Cancelled : CancellableResult<Nothing>()
 
     data class Result<out T>(
-        val result: T
+        val result: T,
     ) : CancellableResult<T>()
 }
 

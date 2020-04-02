@@ -7,7 +7,7 @@ import org.bukkit.configuration.ConfigurationSection
 class BukkitFcConfigEntry_1_7_5_R01(
     key: String,
     override val config: Configuration,
-    override val parentEntry: FcConfigEntry?
+    override val parentEntry: FcConfigEntry?,
 ) : BukkitFcConfigEntry {
     private val escapedKey = key.escapeKey()
 

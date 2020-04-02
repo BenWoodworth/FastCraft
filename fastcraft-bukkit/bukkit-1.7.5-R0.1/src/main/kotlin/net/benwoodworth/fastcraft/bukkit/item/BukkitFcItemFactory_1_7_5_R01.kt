@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 open class BukkitFcItemFactory_1_7_5_R01 @Inject constructor(
     protected val itemTypes: FcItemTypes,
-    protected val textFactory: FcTextFactory
+    protected val textFactory: FcTextFactory,
 ) : BukkitFcItemFactory {
     override fun copyItem(item: FcItem, amount: Int): FcItem {
         if (amount == item.amount) {

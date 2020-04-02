@@ -12,7 +12,7 @@ class BukkitFcGuiFactory_1_7_5_R01 @Inject constructor(
     private val server: Server,
     private val textConverter: FcTextConverter,
     private val guiFactory: BukkitFcGui_1_7_5_R01Factory,
-    private val guiLayoutGridFactory: BukkitFcGuiLayoutGrid_1_7_5_R01Factory
+    private val guiLayoutGridFactory: BukkitFcGuiLayoutGrid_1_7_5_R01Factory,
 ) : BukkitFcGuiFactory {
     override fun createChestGui(player: FcPlayer, title: FcText?, height: Int): FcGui<FcGuiLayoutGrid> {
         val legacyTitle = title?.let {

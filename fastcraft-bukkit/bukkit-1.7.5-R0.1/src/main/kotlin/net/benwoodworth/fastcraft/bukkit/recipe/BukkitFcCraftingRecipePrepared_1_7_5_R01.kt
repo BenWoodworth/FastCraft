@@ -24,7 +24,7 @@ class BukkitFcCraftingRecipePrepared_1_7_5_R01(
     override val resultsPreview: List<FcItem>,
     private val preparedCraftingView: InventoryView,
     @Provided private val itemFactory: FcItemFactory,
-    @Provided private val server: Server
+    @Provided private val server: Server,
 ) : BukkitFcCraftingRecipePrepared {
     private var craftCalled = false
 

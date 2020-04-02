@@ -18,7 +18,7 @@ class FastCraftGuiModel(
     @Provided private val itemAmountsProvider: Provider<ItemAmounts>,
     @Provided private val craftableRecipeFinder: CraftableRecipeFinder,
     @Provided private val itemFactory: FcItemFactory,
-    @Provided private val itemTypeComparator: FcItemTypeComparator
+    @Provided private val itemTypeComparator: FcItemTypeComparator,
 ) {
     var craftAmount: Int? = null
 

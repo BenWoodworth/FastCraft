@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class FastCraftGuiFactory @Inject constructor(
     private val fastCraftGuiModelFactory: FastCraftGuiModelFactory,
-    private val fastCraftGuiViewFactory: FastCraftGuiViewFactory
+    private val fastCraftGuiViewFactory: FastCraftGuiViewFactory,
 ) {
     fun createFastCraftGui(player: FcPlayer): FastCraftGui {
         val model = fastCraftGuiModelFactory.create(player)

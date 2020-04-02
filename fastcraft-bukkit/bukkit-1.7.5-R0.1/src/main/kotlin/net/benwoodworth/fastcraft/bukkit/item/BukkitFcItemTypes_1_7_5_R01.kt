@@ -7,7 +7,7 @@ import org.bukkit.material.MaterialData
 import javax.inject.Inject
 
 open class BukkitFcItemTypes_1_7_5_R01 @Inject constructor(
-    private val textFactory: FcTextFactory
+    private val textFactory: FcTextFactory,
 ) : BukkitFcItemTypes {
     override val air: FcItemType by lazy {
         fromMaterial(Material.AIR)

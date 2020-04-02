@@ -9,7 +9,7 @@ import java.util.*
 
 class BukkitFcIngredient_1_7_5_R01(
     override val slotIndex: Int,
-    private val ingredientItem: ItemStack
+    private val ingredientItem: ItemStack,
 ) : BukkitFcIngredient {
     @Suppress("DEPRECATION")
     private val hasWildcardData: Boolean = ingredientItem.data.data == WILDCARD_DATA

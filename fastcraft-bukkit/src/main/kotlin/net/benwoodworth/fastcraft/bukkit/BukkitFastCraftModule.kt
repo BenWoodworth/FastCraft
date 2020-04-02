@@ -39,7 +39,7 @@ import javax.inject.Singleton
 @Suppress("unused")
 @Module
 class BukkitFastCraftModule(
-    private val plugin: BukkitFastCraft
+    private val plugin: BukkitFastCraft,
 ) {
     private val bukkitVersion = BukkitVersion.parse(plugin.server.bukkitVersion)
 
@@ -114,7 +114,7 @@ class BukkitFastCraftModule(
     fun provideFcGuiButtonFactory(
         instance_1_13: Provider<BukkitFcGuiButton_1_13_R01.Factory>,
         instance_1_8: Provider<BukkitFcGuiButton_1_8_R01.Factory>,
-        instance_1_7_5: Provider<BukkitFcGuiButton_1_7_5_R01.Factory>
+        instance_1_7_5: Provider<BukkitFcGuiButton_1_7_5_R01.Factory>,
     ): BukkitFcGuiButton.Factory {
         return when {
             bukkitVersion >= VERSION_1_13_R01 -> instance_1_13.get()
@@ -128,7 +128,7 @@ class BukkitFastCraftModule(
     @Singleton
     fun provideFcItemFactory(
         instance_1_13: Provider<BukkitFcItemFactory_1_13_R01>,
-        instance_1_7_5: Provider<BukkitFcItemFactory_1_7_5_R01>
+        instance_1_7_5: Provider<BukkitFcItemFactory_1_7_5_R01>,
     ): FcItemFactory {
         return when {
             bukkitVersion >= VERSION_1_13_R01 -> instance_1_13.get()
@@ -141,7 +141,7 @@ class BukkitFastCraftModule(
     @Singleton
     fun provideFcItemTypes(
         instance_1_13: Provider<BukkitFcItemTypes_1_13_R01>,
-        instance_1_7_5: Provider<BukkitFcItemTypes_1_7_5_R01>
+        instance_1_7_5: Provider<BukkitFcItemTypes_1_7_5_R01>,
     ): FcItemTypes {
         return when {
             bukkitVersion >= VERSION_1_13_R01 -> instance_1_13.get()
@@ -154,7 +154,7 @@ class BukkitFastCraftModule(
     @Singleton
     fun provideFcItemTypesComparator(
         instance_1_13: Provider<BukkitFcItemTypeComparator_1_13_R01>,
-        instance_1_7_5: Provider<BukkitFcItemTypeComparator_1_7_5_R01>
+        instance_1_7_5: Provider<BukkitFcItemTypeComparator_1_7_5_R01>,
     ): FcItemTypeComparator {
         return when {
             bukkitVersion >= VERSION_1_13_R01 -> instance_1_13.get()
@@ -174,7 +174,7 @@ class BukkitFastCraftModule(
     fun provideFcRecipeService(
         instance_1_15: Provider<BukkitFcRecipeService_1_15_R01>,
         instance_1_8: Provider<BukkitFcRecipeService_1_8_R01>,
-        instance_1_7_5: Provider<BukkitFcRecipeService_1_7_5_R01>
+        instance_1_7_5: Provider<BukkitFcRecipeService_1_7_5_R01>,
     ): FcRecipeService {
         return when {
             bukkitVersion >= VERSION_1_15_R01 -> instance_1_15.get()
@@ -188,7 +188,7 @@ class BukkitFastCraftModule(
     @Singleton
     fun provideCraftingInventoryViewFactory(
         instance_1_14: Provider<CraftingInventoryViewFactory_1_14_R01>,
-        instance_1_7_5: Provider<CraftingInventoryViewFactory_1_7_5_R01>
+        instance_1_7_5: Provider<CraftingInventoryViewFactory_1_7_5_R01>,
     ): CraftingInventoryViewFactory {
         return when {
             bukkitVersion >= VERSION_1_14_R01 -> instance_1_14.get()
@@ -205,7 +205,7 @@ class BukkitFastCraftModule(
         instance_1_13_1: Provider<BukkitFcCraftingRecipe_1_13_1_R01.Factory>,
         instance_1_13: Provider<BukkitFcCraftingRecipe_1_13_R01.Factory>,
         instance_1_12_1: Provider<BukkitFcCraftingRecipe_1_12_1_R01.Factory>,
-        instance_1_7_5: Provider<BukkitFcCraftingRecipe_1_7_5_R01.Factory>
+        instance_1_7_5: Provider<BukkitFcCraftingRecipe_1_7_5_R01.Factory>,
     ): BukkitFcCraftingRecipe.Factory {
         return when {
             bukkitVersion >= VERSION_1_15_R01 -> instance_1_15.get()
@@ -221,7 +221,7 @@ class BukkitFastCraftModule(
     @Singleton
     fun provideFcPlayerEvents(
         instance_1_13: Provider<BukkitFcPlayerEvents_1_13_R01>,
-        instance_1_7_5: Provider<BukkitFcPlayerEvents_1_7_5_R01>
+        instance_1_7_5: Provider<BukkitFcPlayerEvents_1_7_5_R01>,
     ): FcPlayerEvents {
         return when {
             bukkitVersion >= VERSION_1_13_R01 -> instance_1_13.get()

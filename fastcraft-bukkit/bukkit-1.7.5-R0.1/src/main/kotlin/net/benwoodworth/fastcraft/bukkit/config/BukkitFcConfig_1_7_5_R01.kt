@@ -5,7 +5,7 @@ import org.bukkit.configuration.file.YamlConfiguration
 import java.nio.file.Path
 
 class BukkitFcConfig_1_7_5_R01(
-    override val config: YamlConfiguration
+    override val config: YamlConfiguration,
 ) : BukkitFcConfig {
     override var header: String?
         get() = config.options().header()

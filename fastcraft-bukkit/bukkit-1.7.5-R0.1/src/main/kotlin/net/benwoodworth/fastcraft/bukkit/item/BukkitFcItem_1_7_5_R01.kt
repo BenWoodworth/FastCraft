@@ -10,7 +10,7 @@ import org.bukkit.inventory.ItemStack
 open class BukkitFcItem_1_7_5_R01(
     override val itemStack: ItemStack,
     protected val itemTypes: FcItemTypes,
-    protected val textFactory: FcTextFactory
+    protected val textFactory: FcTextFactory,
 ) : BukkitFcItem {
     override val type: FcItemType
         get() = itemTypes.fromMaterialData(itemStack.data)

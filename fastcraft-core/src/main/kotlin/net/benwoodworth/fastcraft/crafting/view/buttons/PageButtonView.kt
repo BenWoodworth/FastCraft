@@ -18,7 +18,7 @@ class PageButtonView(
     private val locale: Locale,
     @Provided private val itemTypes: FcItemTypes,
     @Provided private val textFactory: FcTextFactory,
-    @Provided private val textColors: FcTextColors
+    @Provided private val textColors: FcTextColors,
 ) {
     var page: Int = 1
     var pageCount: Int = 1

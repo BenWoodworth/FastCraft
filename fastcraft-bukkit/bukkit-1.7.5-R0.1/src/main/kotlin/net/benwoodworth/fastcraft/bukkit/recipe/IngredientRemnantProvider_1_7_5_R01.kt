@@ -10,9 +10,8 @@ class IngredientRemnantProvider_1_7_5_R01 @Inject constructor(
         return when (ingredient.type) {
             Material.LAVA_BUCKET,
             Material.MILK_BUCKET,
-            Material.WATER_BUCKET -> {
-                List(ingredient.amount) { ItemStack(Material.BUCKET) }
-            }
+            Material.WATER_BUCKET,
+            -> List(ingredient.amount) { ItemStack(Material.BUCKET) }
 
             else -> emptyList()
         }

@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack
 class BukkitFcItem_1_13_R01(
     itemStack: ItemStack,
     @Provided itemTypes: FcItemTypes,
-    @Provided textFactory: FcTextFactory
+    @Provided textFactory: FcTextFactory,
 ) : BukkitFcItem_1_7_5_R01(
     itemStack = itemStack,
     itemTypes = itemTypes,

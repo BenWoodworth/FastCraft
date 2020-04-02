@@ -26,14 +26,14 @@ open class BukkitFcCraftingRecipe_1_7_5_R01(
     private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_7_5_R01Factory,
     private val itemFactory: FcItemFactory,
     private val remnantProvider: IngredientRemnantProvider,
-    private val inventoryViewFactory: CraftingInventoryViewFactory
+    private val inventoryViewFactory: CraftingInventoryViewFactory,
 ) : BukkitFcCraftingRecipe {
     class Factory @Inject constructor(
         private val server: Server,
         private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_7_5_R01Factory,
         private val itemFactory: FcItemFactory,
         private val remnantProvider: IngredientRemnantProvider,
-        private val inventoryViewFactory: CraftingInventoryViewFactory
+        private val inventoryViewFactory: CraftingInventoryViewFactory,
     ) : BukkitFcCraftingRecipe.Factory {
         override fun create(recipe: Recipe): FcCraftingRecipe {
             return BukkitFcCraftingRecipe_1_7_5_R01(
@@ -107,7 +107,7 @@ open class BukkitFcCraftingRecipe_1_7_5_R01(
 
     override fun prepare(
         player: FcPlayer,
-        ingredients: Map<FcIngredient, FcItem>
+        ingredients: Map<FcIngredient, FcItem>,
     ): CancellableResult<FcCraftingRecipePrepared> {
         // TODO Inventory owner
         val prepareView = inventoryViewFactory.create(player.player, null, recipe)

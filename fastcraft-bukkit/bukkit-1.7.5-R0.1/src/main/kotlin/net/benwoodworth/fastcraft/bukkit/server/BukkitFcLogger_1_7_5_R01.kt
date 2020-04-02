@@ -4,7 +4,7 @@ import java.util.logging.Level
 import java.util.logging.Logger
 
 class BukkitFcLogger_1_7_5_R01(
-    private val logger: Logger
+    private val logger: Logger,
 ) : BukkitFcLogger {
     override fun error(error: String) {
         logger.log(Level.SEVERE, error)

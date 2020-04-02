@@ -10,7 +10,7 @@ import org.bukkit.inventory.PlayerInventory
 @AutoFactory
 class BukkitFcPlayerInventory_1_7_5_R01(
     override val inventory: PlayerInventory,
-    @Provided private val slotFactory: net.benwoodworth.fastcraft.bukkit.item.BukkitFcInventorySlotFactory
+    @Provided private val slotFactory: net.benwoodworth.fastcraft.bukkit.item.BukkitFcInventorySlotFactory,
 ) : BukkitFcPlayerInventory {
     override val storage: Collection<FcInventorySlot> = List(36) { slotIndex ->
         slotFactory.create(inventory, slotIndex)

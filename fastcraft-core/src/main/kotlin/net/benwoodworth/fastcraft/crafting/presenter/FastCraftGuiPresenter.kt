@@ -8,7 +8,7 @@ import kotlin.math.ceil
 
 class FastCraftGuiPresenter(
     private val model: FastCraftGuiModel,
-    private val view: FastCraftGuiView
+    private val view: FastCraftGuiView,
 ) {
     private var recipesPage = 1
 
@@ -155,7 +155,7 @@ class FastCraftGuiPresenter(
     }
 
     private inner class RecipeButtonListener(
-        private val recipeButtonIndex: Int
+        private val recipeButtonIndex: Int,
     ) : RecipeButtonView.Listener {
         override fun onCraft(button: RecipeButtonView, recipe: FastCraftRecipe, dropResults: Boolean) {
             val recipeIndex = recipeButtonIndex + firstRecipeIndex

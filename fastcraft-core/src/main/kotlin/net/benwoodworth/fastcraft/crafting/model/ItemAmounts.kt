@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class ItemAmounts private constructor(
     private val amounts: MutableMap<FcItem, Int>,
-    private val itemFactory: FcItemFactory
+    private val itemFactory: FcItemFactory,
 ) {
     private companion object {
         val keys = WeakHashMap<FcItem, FcItem>()

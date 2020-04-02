@@ -7,7 +7,7 @@ import org.bukkit.event.player.PlayerInteractEvent
 
 class BukkitFcPlayerOpenWorkbenchEvent_1_7_5_R01(
     override val event: PlayerInteractEvent,
-    private val playerProvider: FcPlayerProvider
+    private val playerProvider: FcPlayerProvider,
 ) : BukkitFcPlayerOpenWorkbenchEvent {
     override val player: FcPlayer
         get() = playerProvider.getPlayer(event.player)

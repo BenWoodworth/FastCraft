@@ -11,11 +11,11 @@ import javax.inject.Provider
 
 class CraftableRecipeFinder @Inject constructor(
     private val recipeService: FcRecipeService,
-    private val itemAmountsProvider: Provider<ItemAmounts>
+    private val itemAmountsProvider: Provider<ItemAmounts>,
 ) {
     fun getCraftableRecipes(
         player: FcPlayer,
-        availableItems: ItemAmounts
+        availableItems: ItemAmounts,
     ): Sequence<FcCraftingRecipePrepared> {
         return recipeService.getCraftingRecipes()
             .flatMap { prepareCraftableRecipes(player, availableItems, it) }
@@ -24,7 +24,7 @@ class CraftableRecipeFinder @Inject constructor(
     private fun prepareCraftableRecipes(
         player: FcPlayer,
         availableItems: ItemAmounts,
-        recipe: FcCraftingRecipe
+        recipe: FcCraftingRecipe,
     ): Sequence<FcCraftingRecipePrepared> = sequence {
         val ingredients = recipe.ingredients
 

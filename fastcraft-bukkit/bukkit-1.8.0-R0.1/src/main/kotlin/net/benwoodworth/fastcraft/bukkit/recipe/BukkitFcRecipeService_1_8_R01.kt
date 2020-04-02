@@ -11,7 +11,7 @@ open class BukkitFcRecipeService_1_8_R01 @Inject constructor(
     plugin: Plugin,
     bukkitVersion: BukkitVersion,
     server: Server,
-    recipeFactory: BukkitFcCraftingRecipe.Factory
+    recipeFactory: BukkitFcCraftingRecipe.Factory,
 ) : BukkitFcRecipeService_1_7_5_R01(
     plugin = plugin,
     bukkitVersion = bukkitVersion,

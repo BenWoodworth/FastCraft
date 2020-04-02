@@ -22,11 +22,11 @@ open class BukkitFcGuiButton_1_7_5_R01(
     private val slotIndex: Int,
     locale: Locale,
     private val textFactory: FcTextFactory,
-    private val textConverter: FcTextConverter
+    private val textConverter: FcTextConverter,
 ) : BukkitFcGuiButton {
     class Factory @Inject constructor(
         private val textFactory: FcTextFactory,
-        private val textConverter: FcTextConverter
+        private val textConverter: FcTextConverter,
     ) : BukkitFcGuiButton.Factory {
         override fun create(inventory: Inventory, slotIndex: Int, locale: Locale): FcGuiButton {
             return BukkitFcGuiButton_1_7_5_R01(

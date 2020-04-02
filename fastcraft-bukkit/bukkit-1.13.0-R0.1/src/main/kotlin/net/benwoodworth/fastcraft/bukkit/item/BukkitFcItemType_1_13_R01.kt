@@ -11,7 +11,7 @@ import java.util.*
 class BukkitFcItemType_1_13_R01(
     override val material: Material,
     private val textFactory: FcTextFactory,
-    private val localizer: BukkitLocalizer
+    private val localizer: BukkitLocalizer,
 ) : BukkitFcItemType {
     override val id: String
         get() = material.key.toString()

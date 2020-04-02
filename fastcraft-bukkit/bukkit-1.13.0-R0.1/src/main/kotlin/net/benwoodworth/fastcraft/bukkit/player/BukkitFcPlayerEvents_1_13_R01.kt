@@ -10,7 +10,7 @@ import javax.inject.Inject
 open class BukkitFcPlayerEvents_1_13_R01 @Inject constructor(
     plugin: Plugin,
     playerProvider: FcPlayerProvider,
-    pluginManager: PluginManager
+    pluginManager: PluginManager,
 ) : BukkitFcPlayerEvents_1_7_5_R01(
     plugin = plugin,
     playerProvider = playerProvider,

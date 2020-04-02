@@ -7,7 +7,7 @@ import org.bukkit.plugin.Plugin
 import javax.inject.Inject
 
 class BukkitFcItemTypeComparator_1_13_R01 @Inject constructor(
-    plugin: Plugin
+    plugin: Plugin,
 ) : BukkitFcItemTypeComparator {
     private val materialIndices: Map<Material, Int> = plugin
         .getResource("bukkit/material-order.txt")

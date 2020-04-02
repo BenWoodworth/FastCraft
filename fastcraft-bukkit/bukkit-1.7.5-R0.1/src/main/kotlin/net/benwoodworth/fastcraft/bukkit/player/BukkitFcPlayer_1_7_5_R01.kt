@@ -21,7 +21,7 @@ class BukkitFcPlayer_1_7_5_R01(
     override val player: Player,
     @Provided private val textConverter: FcTextConverter,
     @Provided private val server: Server,
-    @Provided private val playerInventoryFactory: BukkitFcPlayerInventory_1_7_5_R01Factory
+    @Provided private val playerInventoryFactory: BukkitFcPlayerInventory_1_7_5_R01Factory,
 ) : BukkitFcPlayer {
     override val username: String
         get() = player.name

@@ -20,7 +20,7 @@ import javax.inject.Inject
 open class BukkitFcPlayerEvents_1_7_5_R01 @Inject constructor(
     plugin: Plugin,
     private val playerProvider: FcPlayerProvider,
-    pluginManager: PluginManager
+    pluginManager: PluginManager,
 ) : BukkitFcPlayerEvents {
     override val onPlayerJoin: HandlerSet<FcPlayerJoinEvent> = HandlerSet()
 

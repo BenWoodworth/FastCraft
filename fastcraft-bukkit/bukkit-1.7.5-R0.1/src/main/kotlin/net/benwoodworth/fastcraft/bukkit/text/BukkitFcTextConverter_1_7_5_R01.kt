@@ -7,7 +7,7 @@ import java.util.*
 import javax.inject.Inject
 
 class BukkitFcTextConverter_1_7_5_R01 @Inject constructor(
-    private val localizer: BukkitLocalizer
+    private val localizer: BukkitLocalizer,
 ) : BukkitFcTextConverter {
     override fun toRaw(text: FcText): String {
         return JsonStringBuilder()
@@ -89,11 +89,11 @@ class BukkitFcTextConverter_1_7_5_R01 @Inject constructor(
         var italic: Boolean = false,
         var underline: Boolean = false,
         var strikethrough: Boolean = false,
-        var obfuscate: Boolean = false
+        var obfuscate: Boolean = false,
     )
 
     private inner class LegacyTextBuilder(
-        private val locale: Locale
+        private val locale: Locale,
     ) {
         private val stringBuilder = StringBuilder().append(ChatColor.RESET)
 
@@ -258,7 +258,7 @@ class BukkitFcTextConverter_1_7_5_R01 @Inject constructor(
     override fun toPlaintext(text: FcText, locale: Locale): String {
         return buildString {
             fun appendLegacy(text: String) {
-                var i = 0;
+                var i = 0
                 while (i < text.length) {
                     when (val ch = text[i]) {
                         '§' -> i += 2

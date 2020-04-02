@@ -25,7 +25,7 @@ class BukkitFcGui_1_7_5_R01<TLayout : FcGuiLayout>(
     createInventory: (owner: InventoryHolder) -> Inventory,
     createLayout: (inventory: Inventory) -> TLayout,
     @Provided plugin: Plugin,
-    @Provided pluginManager: PluginManager
+    @Provided pluginManager: PluginManager,
 ) : BukkitFcGui<TLayout>, InventoryHolder {
     override var listener: FcGui.Listener = FcGui.Listener.Default
 
@@ -118,12 +118,14 @@ class BukkitFcGui_1_7_5_R01<TLayout : FcGuiLayout>(
                     ClickType.DOUBLE_CLICK,
                     ClickType.DROP,
                     ClickType.CONTROL_DROP,
-                    ClickType.CREATIVE -> false
+                    ClickType.CREATIVE,
+                    -> false
 
                     // Clicks disallowed
                     ClickType.SHIFT_LEFT,
                     ClickType.SHIFT_RIGHT,
-                    ClickType.UNKNOWN -> true
+                    ClickType.UNKNOWN,
+                    -> true
 
                     // Unhandled clicks
                     else -> true

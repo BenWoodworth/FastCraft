@@ -10,7 +10,7 @@ class BukkitFcTask_1_7_5_R01(
     delay: Long,
     interval: Long,
     action: (task: FcTask) -> Unit,
-    private val scheduler: BukkitScheduler
+    private val scheduler: BukkitScheduler,
 ) : BukkitFcTask {
     override val taskId: Int
 
