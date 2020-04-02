@@ -1,17 +1,10 @@
 ## Description
-DESCRIBE ISSUE
-
-## Reproduction
-- STEP 1
-- STEP 2
-- ...
-
-## Output/Files
-- Stack Trace: https://gist.github.com/
-- `/fcadmin debug`: https://gist.github.com/
-- RELEVANT CONFIGS: https://gist.github.com/
+<!-- Describe the issue and how to reproduce it -->
 
 ## Server Details
-- FastCraft Version: #.#.#
-- Server Version: BUKKIT/SPIGOT/SPONGE #.#.#
-- RELEVANT PLUGINS: #.#.#
+- Server: <!-- type/version -->
+- FastCraft: v3.?
+<!-- List any related plugins, with versions and links -->
+
+## Errors
+<!-- If you have any errors, put them here -->
