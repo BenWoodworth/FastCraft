@@ -64,14 +64,6 @@ open class BukkitFcCraftingRecipe_1_7_5_R01(
         }
     }
 
-    init {
-        require(recipe.isCraftingRecipe()) { "Recipe must be a crafting recipe" }
-    }
-
-    protected open fun Recipe.isCraftingRecipe(): Boolean {
-        return this is ShapedRecipe || this is ShapelessRecipe
-    }
-
     override val id: String
         get() = hashCode().toRecipeId()
 

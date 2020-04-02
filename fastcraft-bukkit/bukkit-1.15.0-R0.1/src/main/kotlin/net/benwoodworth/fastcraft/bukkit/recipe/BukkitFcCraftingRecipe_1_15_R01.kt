@@ -6,8 +6,6 @@ import net.benwoodworth.fastcraft.platform.recipe.FcIngredient
 import org.bukkit.Server
 import org.bukkit.inventory.ComplexRecipe
 import org.bukkit.inventory.Recipe
-import org.bukkit.inventory.ShapedRecipe
-import org.bukkit.inventory.ShapelessRecipe
 import javax.inject.Inject
 
 open class BukkitFcCraftingRecipe_1_15_R01(
@@ -42,10 +40,6 @@ open class BukkitFcCraftingRecipe_1_15_R01(
                 inventoryViewFactory = inventoryViewFactory
             )
         }
-    }
-
-    override fun Recipe.isCraftingRecipe(): Boolean {
-        return this is ShapedRecipe || this is ShapelessRecipe || this is ComplexRecipe
     }
 
     override fun loadIngredients(): List<FcIngredient> {
