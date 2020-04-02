@@ -23,8 +23,6 @@ internal object MaterialOrderGenerator {
 
         val itemRegistry = IRegistry_ITEM.get(null) as Iterable<*>
 
-        val Item = Class.forName("$nms.Item")
-
         val Material_getKey = Material::class.java.getDeclaredMethod("getKey")
 
         val itemIdsToMaterials = Material.values()
