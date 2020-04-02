@@ -11,12 +11,15 @@ class BukkitFcIngredient_1_7_5_R01(
     override val slotIndex: Int,
     private val ingredientItem: ItemStack
 ) : BukkitFcIngredient {
+    @Suppress("DEPRECATION")
+    private val hasWildcardData: Boolean = ingredientItem.data.data == WILDCARD_DATA
+
     init {
         require(slotIndex in 0..8)
     }
 
     private companion object {
-        const val WILDCARD_DATA: Short = -1
+        const val WILDCARD_DATA: Byte = -1
     }
 
     @Suppress("DEPRECATION")
@@ -27,11 +30,9 @@ class BukkitFcIngredient_1_7_5_R01(
             bukkitItem.type === Material.AIR -> {
                 ingredientItem.type == Material.AIR
             }
-            ingredientItem.durability == WILDCARD_DATA -> {
+            hasWildcardData -> {
                 ingredientItem.durability = bukkitItem.durability
-
                 ingredientItem.isSimilar(bukkitItem)
-                    .also { ingredientItem.durability = WILDCARD_DATA }
             }
             else -> {
                 ingredientItem.isSimilar(bukkitItem)
