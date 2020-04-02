@@ -19,7 +19,6 @@ open class BukkitFcIngredient_1_13_1_R01 protected constructor(
     }
 
     override fun matches(item: FcItem): Boolean {
-        @Suppress("DEPRECATION")
         return recipeChoice.test(item.itemStack)
     }
 

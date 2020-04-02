@@ -13,3 +13,7 @@ interface BukkitFcItemTypes : FcItemTypes {
 fun FcItemTypes.fromMaterial(material: Material): FcItemType {
     return (this as BukkitFcItemTypes).fromMaterial(material)
 }
+
+fun FcItemTypes.fromMaterialData(materialData: Any): FcItemType {
+    return (this as BukkitFcItemTypes).fromMaterialData(materialData)
+}

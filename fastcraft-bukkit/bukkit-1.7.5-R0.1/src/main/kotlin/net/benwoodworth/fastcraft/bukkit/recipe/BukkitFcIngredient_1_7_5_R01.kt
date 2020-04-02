@@ -22,7 +22,6 @@ class BukkitFcIngredient_1_7_5_R01(
         const val WILDCARD_DATA: Byte = -1
     }
 
-    @Suppress("DEPRECATION")
     override fun matches(item: FcItem): Boolean {
         val bukkitItem = item.itemStack
 

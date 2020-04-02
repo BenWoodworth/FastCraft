@@ -126,8 +126,15 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun provideBukkitFcItemFactory(instance: BukkitFcItemFactory_1_7_5_R01): BukkitFcItemFactory {
-        return instance
+    fun provideFcItemFactory(
+        instance_1_13: Provider<BukkitFcItemFactory_1_13_R01>,
+        instance_1_7_5: Provider<BukkitFcItemFactory_1_7_5_R01>
+    ): FcItemFactory {
+        return when {
+            bukkitVersion >= VERSION_1_13_R01 -> instance_1_13.get()
+            bukkitVersion >= VERSION_1_7_5_R01 -> instance_1_7_5.get()
+            else -> instance_1_7_5.get()
+        }
     }
 
     @Provides
@@ -154,12 +161,6 @@ class BukkitFastCraftModule(
             bukkitVersion >= VERSION_1_7_5_R01 -> instance_1_7_5.get()
             else -> instance_1_7_5.get()
         }
-    }
-
-    @Provides
-    @Singleton
-    fun provideItemStackNameProvider(instance: ItemStackNameProvider_1_7_5_R01): ItemStackNameProvider {
-        return instance
     }
 
     @Provides
@@ -256,12 +257,6 @@ class BukkitFastCraftModule(
     @Provides
     @Singleton
     fun provideBukkitLocalizer(instance: BukkitLocalizer_1_7_5_R01): BukkitLocalizer {
-        return instance
-    }
-
-    @Provides
-    @Singleton
-    fun provideFcItemFactory(instance: BukkitFcItemFactory_1_7_5_R01): FcItemFactory {
         return instance
     }
 
