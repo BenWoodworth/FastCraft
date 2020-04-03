@@ -5,6 +5,8 @@ import org.bukkit.configuration.file.YamlConfiguration
 
 interface BukkitFcConfig : FcConfig {
     val config: YamlConfiguration
+
+    interface Factory : FcConfig.Factory
 }
 
 val FcConfig.config: YamlConfiguration

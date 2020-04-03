@@ -8,4 +8,10 @@ interface FcConfig {
     fun save(path: Path)
 
     operator fun get(key: String): FcConfigEntry
+
+    interface Factory {
+        fun createEmpty(): FcConfig
+
+        fun createFromPath(value: Path): FcConfig
+    }
 }

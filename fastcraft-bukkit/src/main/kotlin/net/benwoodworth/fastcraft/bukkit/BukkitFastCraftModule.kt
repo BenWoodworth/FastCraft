@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.bukkit
 
 import dagger.Module
 import dagger.Provides
-import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfigFactory_1_7_5_R01
+import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfig_1_7_5_R01
 import net.benwoodworth.fastcraft.bukkit.gui.*
 import net.benwoodworth.fastcraft.bukkit.item.*
 import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerEvents_1_13_R01
@@ -14,7 +14,7 @@ import net.benwoodworth.fastcraft.bukkit.server.BukkitFcPluginData_1_7_5_R01
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTaskFactory_1_7_5_R01
 import net.benwoodworth.fastcraft.bukkit.text.*
 import net.benwoodworth.fastcraft.bukkit.util.BukkitVersion
-import net.benwoodworth.fastcraft.platform.config.FcConfigFactory
+import net.benwoodworth.fastcraft.platform.config.FcConfig
 import net.benwoodworth.fastcraft.platform.gui.FcGuiFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemTypeComparator
@@ -99,7 +99,7 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun provideFcConfigFactory(instance: BukkitFcConfigFactory_1_7_5_R01): FcConfigFactory {
+    fun provideFcConfigFactory(instance: BukkitFcConfig_1_7_5_R01.Factory): FcConfig.Factory {
         return instance
     }
 
