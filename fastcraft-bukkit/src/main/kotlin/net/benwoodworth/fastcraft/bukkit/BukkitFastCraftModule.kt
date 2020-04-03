@@ -11,7 +11,7 @@ import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayer_1_7_5_R01
 import net.benwoodworth.fastcraft.bukkit.recipe.*
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcLogger_1_7_5_R01
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcPluginData_1_7_5_R01
-import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTaskFactory_1_7_5_R01
+import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTask_1_7_5_R01
 import net.benwoodworth.fastcraft.bukkit.text.*
 import net.benwoodworth.fastcraft.bukkit.util.BukkitVersion
 import net.benwoodworth.fastcraft.platform.config.FcConfig
@@ -24,7 +24,7 @@ import net.benwoodworth.fastcraft.platform.player.FcPlayerEvents
 import net.benwoodworth.fastcraft.platform.recipe.FcRecipeProvider
 import net.benwoodworth.fastcraft.platform.server.FcLogger
 import net.benwoodworth.fastcraft.platform.server.FcPluginData
-import net.benwoodworth.fastcraft.platform.server.FcTaskFactory
+import net.benwoodworth.fastcraft.platform.server.FcTask
 import net.benwoodworth.fastcraft.platform.text.FcTextColors
 import net.benwoodworth.fastcraft.platform.text.FcTextConverter
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
@@ -238,7 +238,7 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun provideFcTaskFactory(instance: BukkitFcTaskFactory_1_7_5_R01): FcTaskFactory {
+    fun provideFcTaskFactory(instance: BukkitFcTask_1_7_5_R01.Factory): FcTask.Factory {
         return instance
     }
 
