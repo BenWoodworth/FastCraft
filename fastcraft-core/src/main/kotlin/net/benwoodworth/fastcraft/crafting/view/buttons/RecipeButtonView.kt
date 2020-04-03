@@ -62,11 +62,16 @@ class RecipeButtonView(
                     .sortedByDescending { (_, amount) -> amount }
                     .let { listOf(AbstractMap.SimpleEntry(primaryResult, primaryResultAmount)) + it }
                     .forEach { (item, amount) ->
+                        var itemName = textConverter.toPlaintext(item.name, locale)
+                        if (item.hasMetadata) {
+                            itemName += "*"
+                        }
+
                         newDescription += textFactory.createLegacy(
                             Strings.guiRecipeResultsItem(
                                 locale,
                                 amount = amount * fastCraftRecipe.multiplier,
-                                item = textConverter.toPlaintext(item.name, locale)
+                                item = itemName
                             )
                         )
                     }
@@ -88,11 +93,16 @@ class RecipeButtonView(
                 ingredients.asMap().entries
                     .sortedByDescending { (_, amount) -> amount }
                     .forEach { (item, amount) ->
+                        var itemName = textConverter.toPlaintext(item.name, locale)
+                        if (item.hasMetadata) {
+                            itemName += "*"
+                        }
+
                         newDescription += textFactory.createLegacy(
                             Strings.guiRecipeIngredientsItem(
                                 locale,
                                 amount = amount * fastCraftRecipe.multiplier,
-                                item = textConverter.toPlaintext(item.name, locale)
+                                item = itemName
                             )
                         )
                     }
