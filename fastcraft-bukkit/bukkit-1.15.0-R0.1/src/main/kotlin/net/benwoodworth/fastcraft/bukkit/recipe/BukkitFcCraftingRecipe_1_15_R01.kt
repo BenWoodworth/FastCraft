@@ -23,6 +23,13 @@ open class BukkitFcCraftingRecipe_1_15_R01(
     remnantProvider = remnantProvider,
     inventoryViewFactory = inventoryViewFactory
 ) {
+    override fun loadIngredients(): List<FcIngredient> {
+        return when (recipe) {
+            is ComplexRecipe -> emptyList()
+            else -> super.loadIngredients()
+        }
+    }
+
     class Factory @Inject constructor(
         private val server: Server,
         private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_7_5_R01Factory,
@@ -39,13 +46,6 @@ open class BukkitFcCraftingRecipe_1_15_R01(
                 remnantProvider = remnantProvider,
                 inventoryViewFactory = inventoryViewFactory
             )
-        }
-    }
-
-    override fun loadIngredients(): List<FcIngredient> {
-        return when (recipe) {
-            is ComplexRecipe -> emptyList()
-            else -> super.loadIngredients()
         }
     }
 }

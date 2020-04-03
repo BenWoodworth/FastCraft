@@ -22,21 +22,6 @@ open class BukkitFcGuiButton_1_8_R01(
     textFactory = textFactory,
     textConverter = textConverter
 ) {
-    class Factory @Inject constructor(
-        private val textFactory: FcTextFactory,
-        private val textConverter: FcTextConverter,
-    ) : BukkitFcGuiButton.Factory {
-        override fun create(inventory: Inventory, slotIndex: Int, locale: Locale): FcGuiButton {
-            return BukkitFcGuiButton_1_8_R01(
-                inventory = inventory,
-                slotIndex = slotIndex,
-                locale = locale,
-                textFactory = textFactory,
-                textConverter = textConverter
-            )
-        }
-    }
-
     override fun updateItemDetails() {
         if (hideItemDetails) {
             itemStack.updateMeta {
@@ -49,6 +34,21 @@ open class BukkitFcGuiButton_1_8_R01(
                     ItemFlag.HIDE_POTION_EFFECTS
                 )
             }
+        }
+    }
+
+    class Factory @Inject constructor(
+        private val textFactory: FcTextFactory,
+        private val textConverter: FcTextConverter,
+    ) : BukkitFcGuiButton.Factory {
+        override fun create(inventory: Inventory, slotIndex: Int, locale: Locale): FcGuiButton {
+            return BukkitFcGuiButton_1_8_R01(
+                inventory = inventory,
+                slotIndex = slotIndex,
+                locale = locale,
+                textFactory = textFactory,
+                textConverter = textConverter
+            )
         }
     }
 }

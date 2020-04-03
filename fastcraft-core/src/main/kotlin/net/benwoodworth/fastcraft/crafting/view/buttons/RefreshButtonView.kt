@@ -55,14 +55,14 @@ class RefreshButtonView(
         }
     }
 
+    private companion object {
+        val CLICK_REFRESH = FcGuiClick.Primary()
+    }
+
     interface Listener {
         object Default : Listener
 
         fun onRefresh() {}
-    }
-
-    private companion object {
-        val CLICK_REFRESH = FcGuiClick.Primary()
     }
 
     private inner class ButtonListener : FcGuiButton.Listener {

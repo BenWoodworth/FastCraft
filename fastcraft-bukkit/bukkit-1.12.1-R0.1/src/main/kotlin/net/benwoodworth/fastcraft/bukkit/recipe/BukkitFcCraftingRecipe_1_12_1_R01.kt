@@ -22,6 +22,9 @@ open class BukkitFcCraftingRecipe_1_12_1_R01(
     remnantProvider = remnantProvider,
     inventoryViewFactory = inventoryViewFactory
 ) {
+    override val id: String
+        get() = (recipe as Keyed).key.toString()
+
     class Factory @Inject constructor(
         private val server: Server,
         private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_7_5_R01Factory,
@@ -40,7 +43,4 @@ open class BukkitFcCraftingRecipe_1_12_1_R01(
             )
         }
     }
-
-    override val id: String
-        get() = (recipe as Keyed).key.toString()
 }

@@ -28,25 +28,6 @@ open class BukkitFcCraftingRecipe_1_7_5_R01(
     private val remnantProvider: IngredientRemnantProvider,
     private val inventoryViewFactory: CraftingInventoryViewFactory,
 ) : BukkitFcCraftingRecipe {
-    class Factory @Inject constructor(
-        private val server: Server,
-        private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_7_5_R01Factory,
-        private val itemFactory: FcItem.Factory,
-        private val remnantProvider: IngredientRemnantProvider,
-        private val inventoryViewFactory: CraftingInventoryViewFactory,
-    ) : BukkitFcCraftingRecipe.Factory {
-        override fun create(recipe: Recipe): FcCraftingRecipe {
-            return BukkitFcCraftingRecipe_1_7_5_R01(
-                recipe = recipe,
-                server = server,
-                preparedRecipeFactory = preparedRecipeFactory,
-                itemFactory = itemFactory,
-                remnantProvider = remnantProvider,
-                inventoryViewFactory = inventoryViewFactory
-            )
-        }
-    }
-
     private companion object {
         private const val recipeIdAlphabet = "23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefhkmnorsuvwxz"
         private const val recipeIdLength = 6 // ceil(log_50(2^32))
@@ -173,6 +154,25 @@ open class BukkitFcCraftingRecipe_1_7_5_R01(
                 )
             }
             else -> throw UnsupportedOperationException()
+        }
+    }
+
+    class Factory @Inject constructor(
+        private val server: Server,
+        private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_7_5_R01Factory,
+        private val itemFactory: FcItem.Factory,
+        private val remnantProvider: IngredientRemnantProvider,
+        private val inventoryViewFactory: CraftingInventoryViewFactory,
+    ) : BukkitFcCraftingRecipe.Factory {
+        override fun create(recipe: Recipe): FcCraftingRecipe {
+            return BukkitFcCraftingRecipe_1_7_5_R01(
+                recipe = recipe,
+                server = server,
+                preparedRecipeFactory = preparedRecipeFactory,
+                itemFactory = itemFactory,
+                remnantProvider = remnantProvider,
+                inventoryViewFactory = inventoryViewFactory
+            )
         }
     }
 }

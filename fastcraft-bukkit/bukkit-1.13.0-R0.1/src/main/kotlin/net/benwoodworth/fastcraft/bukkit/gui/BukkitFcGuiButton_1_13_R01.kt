@@ -22,6 +22,18 @@ open class BukkitFcGuiButton_1_13_R01(
     textFactory = textFactory,
     textConverter = textConverter
 ) {
+    override fun updateDamage() {
+        if (!isProgressSet) return
+
+        val maxDurability = itemStack.type.maxDurability.toInt()
+
+        itemStack.updateMeta {
+            if (this is Damageable) {
+                damage = calculateDurability(_progress, maxDurability)
+            }
+        }
+    }
+
     class Factory @Inject constructor(
         private val textFactory: FcTextFactory,
         private val textConverter: FcTextConverter,
@@ -34,18 +46,6 @@ open class BukkitFcGuiButton_1_13_R01(
                 textFactory = textFactory,
                 textConverter = textConverter
             )
-        }
-    }
-
-    override fun updateDamage() {
-        if (!isProgressSet) return
-
-        val maxDurability = itemStack.type.maxDurability.toInt()
-
-        itemStack.updateMeta {
-            if (this is Damageable) {
-                damage = calculateDurability(_progress, maxDurability)
-            }
         }
     }
 }

@@ -48,14 +48,14 @@ class WorkbenchButtonView(
         }
     }
 
+    private companion object {
+        val CLICK_OPEN_WORKBENCH = FcGuiClick.Primary()
+    }
+
     interface Listener {
         object Default : Listener
 
         fun onOpenWorkbench() {}
-    }
-
-    private companion object {
-        val CLICK_OPEN_WORKBENCH = FcGuiClick.Primary()
     }
 
     private inner class ButtonListener : FcGuiButton.Listener {

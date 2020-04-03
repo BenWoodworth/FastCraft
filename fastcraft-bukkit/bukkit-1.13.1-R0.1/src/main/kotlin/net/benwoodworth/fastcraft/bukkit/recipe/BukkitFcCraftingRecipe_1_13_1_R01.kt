@@ -24,25 +24,6 @@ open class BukkitFcCraftingRecipe_1_13_1_R01(
     remnantProvider = remnantProvider,
     inventoryViewFactory = inventoryViewFactory
 ) {
-    class Factory @Inject constructor(
-        private val server: Server,
-        private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_7_5_R01Factory,
-        private val itemFactory: FcItem.Factory,
-        private val remnantProvider: IngredientRemnantProvider,
-        private val inventoryViewFactory: CraftingInventoryViewFactory,
-    ) : BukkitFcCraftingRecipe.Factory {
-        override fun create(recipe: Recipe): FcCraftingRecipe {
-            return BukkitFcCraftingRecipe_1_13_1_R01(
-                recipe = recipe,
-                server = server,
-                preparedRecipeFactory = preparedRecipeFactory,
-                itemFactory = itemFactory,
-                remnantProvider = remnantProvider,
-                inventoryViewFactory = inventoryViewFactory
-            )
-        }
-    }
-
     override fun loadIngredients(): List<FcIngredient> {
         return when (recipe) {
             is ShapedRecipe -> recipe.shape
@@ -63,6 +44,25 @@ open class BukkitFcCraftingRecipe_1_13_1_R01(
                 }
 
             else -> throw IllegalStateException()
+        }
+    }
+
+    class Factory @Inject constructor(
+        private val server: Server,
+        private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_7_5_R01Factory,
+        private val itemFactory: FcItem.Factory,
+        private val remnantProvider: IngredientRemnantProvider,
+        private val inventoryViewFactory: CraftingInventoryViewFactory,
+    ) : BukkitFcCraftingRecipe.Factory {
+        override fun create(recipe: Recipe): FcCraftingRecipe {
+            return BukkitFcCraftingRecipe_1_13_1_R01(
+                recipe = recipe,
+                server = server,
+                preparedRecipeFactory = preparedRecipeFactory,
+                itemFactory = itemFactory,
+                remnantProvider = remnantProvider,
+                inventoryViewFactory = inventoryViewFactory
+            )
         }
     }
 }

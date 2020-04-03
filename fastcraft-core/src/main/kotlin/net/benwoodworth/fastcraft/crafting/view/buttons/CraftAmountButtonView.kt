@@ -58,6 +58,14 @@ class CraftAmountButtonView(
         button.setAmount(craftAmount ?: 1)
     }
 
+    private companion object {
+        val CLICK_INCREMENT = FcGuiClick.Primary()
+        val CLICK_INCREMENT_ONE = FcGuiClick.Primary(FcGuiClickModifier.Shift)
+        val CLICK_DECREMENT = FcGuiClick.Secondary()
+        val CLICK_DECREMENT_ONE = FcGuiClick.Secondary(FcGuiClickModifier.Shift)
+        val CLICK_RESET = FcGuiClick.Middle()
+    }
+
     interface Listener {
         object Default : Listener
 
@@ -66,14 +74,6 @@ class CraftAmountButtonView(
         fun onDecrement() {}
         fun onDecrementByOne() {}
         fun onReset() {}
-    }
-
-    private companion object {
-        val CLICK_INCREMENT = FcGuiClick.Primary()
-        val CLICK_INCREMENT_ONE = FcGuiClick.Primary(FcGuiClickModifier.Shift)
-        val CLICK_DECREMENT = FcGuiClick.Secondary()
-        val CLICK_DECREMENT_ONE = FcGuiClick.Secondary(FcGuiClickModifier.Shift)
-        val CLICK_RESET = FcGuiClick.Middle()
     }
 
     private inner class ButtonClickListener : FcGuiButton.Listener {

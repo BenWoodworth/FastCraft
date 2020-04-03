@@ -63,18 +63,18 @@ class PageButtonView(
         }
     }
 
+    private companion object {
+        val CLICK_PAGE_NEXT = FcGuiClick.Primary()
+        val CLICK_PAGE_PREVIOUS = FcGuiClick.Secondary()
+        val CLICK_PAGE_FIRST = FcGuiClick.Primary(FcGuiClickModifier.Shift)
+    }
+
     interface Listener {
         object Default : Listener
 
         fun onPageNext() {}
         fun onPagePrevious() {}
         fun onPageFirst() {}
-    }
-
-    private companion object {
-        val CLICK_PAGE_NEXT = FcGuiClick.Primary()
-        val CLICK_PAGE_PREVIOUS = FcGuiClick.Secondary()
-        val CLICK_PAGE_FIRST = FcGuiClick.Primary(FcGuiClickModifier.Shift)
     }
 
     private inner class ButtonListener : FcGuiButton.Listener {

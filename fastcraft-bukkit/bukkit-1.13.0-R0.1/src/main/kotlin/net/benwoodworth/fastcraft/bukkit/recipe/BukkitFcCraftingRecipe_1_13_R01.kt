@@ -23,6 +23,13 @@ open class BukkitFcCraftingRecipe_1_13_R01(
     remnantProvider = remnantProvider,
     inventoryViewFactory = inventoryViewFactory
 ) {
+    override val group: String?
+        get() = when (recipe) {
+            is ShapedRecipe -> recipe.group.takeUnless { it == "" }
+            is ShapelessRecipe -> recipe.group.takeUnless { it == "" }
+            else -> throw IllegalStateException()
+        }
+
     class Factory @Inject constructor(
         private val server: Server,
         private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_7_5_R01Factory,
@@ -41,11 +48,4 @@ open class BukkitFcCraftingRecipe_1_13_R01(
             )
         }
     }
-
-    override val group: String?
-        get() = when (recipe) {
-            is ShapedRecipe -> recipe.group.takeUnless { it == "" }
-            is ShapelessRecipe -> recipe.group.takeUnless { it == "" }
-            else -> throw IllegalStateException()
-        }
 }

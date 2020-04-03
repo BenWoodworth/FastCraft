@@ -110,15 +110,15 @@ class RecipeButtonView(
         }
     }
 
+    private companion object {
+        val CLICK_CRAFT = FcGuiClick.Primary()
+        val CLICK_CRAFT_DROP = FcGuiClick.Drop()
+    }
+
     interface Listener {
         object Default : Listener
 
         fun onCraft(button: RecipeButtonView, recipe: FastCraftRecipe, dropResults: Boolean) {}
-    }
-
-    private companion object {
-        val CLICK_CRAFT = FcGuiClick.Primary()
-        val CLICK_CRAFT_DROP = FcGuiClick.Drop()
     }
 
     private inner class ButtonListener : FcGuiButton.Listener {
