@@ -1,5 +1,6 @@
 package net.benwoodworth.fastcraft.crafting.model
 
+import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
@@ -13,6 +14,13 @@ class CraftableRecipeFinder @Inject constructor(
     private val recipeProvider: FcRecipeProvider,
     private val itemAmountsProvider: Provider<ItemAmounts>,
 ) {
+    private companion object {
+        val ingredientComparator = compareBy<Map.Entry<FcItem, Int>>(
+            { (item, _) -> item.hasMetadata }, // Items with meta last
+            { (_, amount) -> -amount }, // Greatest amount first
+        )
+    }
+
     fun getCraftableRecipes(
         player: FcPlayer,
         availableItems: ItemAmounts,
@@ -29,9 +37,11 @@ class CraftableRecipeFinder @Inject constructor(
         val ingredients = recipe.ingredients
 
         val possibleIngredientItems = ingredients.map { ingredient ->
-            availableItems.asMap().keys.filter { item ->
-                ingredient.matches(item)
-            }
+            availableItems
+                .asMap().entries
+                .filter { (item, _) -> ingredient.matches(item) }
+                .sortedWith(ingredientComparator)
+                .map { (item, _) -> item }
         }
 
         val itemsUsed = itemAmountsProvider.get()
