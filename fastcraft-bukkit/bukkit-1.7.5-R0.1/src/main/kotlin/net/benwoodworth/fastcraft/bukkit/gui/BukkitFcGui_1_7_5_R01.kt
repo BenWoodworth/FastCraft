@@ -1,7 +1,10 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
 import net.benwoodworth.fastcraft.bukkit.player.player
-import net.benwoodworth.fastcraft.platform.gui.*
+import net.benwoodworth.fastcraft.platform.gui.FcGui
+import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
+import net.benwoodworth.fastcraft.platform.gui.FcGuiClickModifier
+import net.benwoodworth.fastcraft.platform.gui.FcGuiLayout
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextConverter
@@ -165,9 +168,9 @@ class BukkitFcGui_1_7_5_R01<TLayout : FcGuiLayout>(
         private val pluginManager: PluginManager,
         private val server: Server,
         private val textConverter: FcTextConverter,
-        private val guiLayoutGridFactory: BukkitFcGuiLayoutGrid_1_7_5_R01Factory,
+        private val guiLayoutFactory: BukkitFcGuiLayout.Factory,
     ) : BukkitFcGui.Factory {
-        override fun createChestGui(player: FcPlayer, title: FcText?, height: Int): FcGui<FcGuiLayoutGrid> {
+        override fun createChestGui(player: FcPlayer, title: FcText?, height: Int): FcGui<FcGuiLayout.Grid> {
             val legacyTitle = title?.let {
                 textConverter.toLegacy(it, player.locale)
             }
@@ -180,7 +183,7 @@ class BukkitFcGui_1_7_5_R01<TLayout : FcGuiLayout>(
                         else -> server.createInventory(owner, 9 * height, legacyTitle)
                     }
                 },
-                { inventory -> guiLayoutGridFactory.create(9, height, inventory, player.locale) },
+                { inventory -> guiLayoutFactory.createGridLayout(9, height, inventory, player.locale) },
                 plugin = plugin,
                 pluginManager = pluginManager
             )

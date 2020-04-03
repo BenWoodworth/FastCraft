@@ -23,6 +23,6 @@ interface FcGui<TLayout : FcGuiLayout> {
             player: FcPlayer,
             title: FcText? = null,
             height: Int = 3,
-        ): FcGui<FcGuiLayoutGrid>
+        ): FcGui<FcGuiLayout.Grid>
     }
 }

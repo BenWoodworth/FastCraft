@@ -126,6 +126,12 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
+    fun provideFcGuiLayoutFactory(instance: BukkitFcGuiLayout_1_7_5_R01.Factory): BukkitFcGuiLayout.Factory {
+        return instance
+    }
+
+    @Provides
+    @Singleton
     fun provideFcItemFactory(
         instance_1_13: Provider<BukkitFcItemFactory_1_13_R01>,
         instance_1_7_5: Provider<BukkitFcItemFactory_1_7_5_R01>,
