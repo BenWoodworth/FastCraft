@@ -15,7 +15,7 @@ import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTaskFactory_1_7_5_R01
 import net.benwoodworth.fastcraft.bukkit.text.*
 import net.benwoodworth.fastcraft.bukkit.util.BukkitVersion
 import net.benwoodworth.fastcraft.platform.config.FcConfig
-import net.benwoodworth.fastcraft.platform.gui.FcGuiFactory
+import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.item.FcItemFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemTypeComparator
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
@@ -105,7 +105,7 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun provideFcGuiFactory(instance: BukkitFcGuiFactory_1_7_5_R01): FcGuiFactory {
+    fun provideFcGuiFactory(instance: BukkitFcGui_1_7_5_R01.Factory): FcGui.Factory {
         return instance
     }
 

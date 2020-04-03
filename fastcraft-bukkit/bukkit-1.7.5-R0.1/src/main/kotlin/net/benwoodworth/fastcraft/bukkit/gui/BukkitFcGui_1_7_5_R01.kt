@@ -1,13 +1,11 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
-import com.google.auto.factory.AutoFactory
-import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.bukkit.player.player
-import net.benwoodworth.fastcraft.platform.gui.FcGui
-import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
-import net.benwoodworth.fastcraft.platform.gui.FcGuiClickModifier
-import net.benwoodworth.fastcraft.platform.gui.FcGuiLayout
+import net.benwoodworth.fastcraft.platform.gui.*
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.text.FcTextConverter
+import org.bukkit.Server
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.HandlerList
@@ -18,14 +16,14 @@ import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.InventoryHolder
 import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.PluginManager
+import javax.inject.Inject
 
-@AutoFactory
 class BukkitFcGui_1_7_5_R01<TLayout : FcGuiLayout>(
     override val player: FcPlayer,
     createInventory: (owner: InventoryHolder) -> Inventory,
     createLayout: (inventory: Inventory) -> TLayout,
-    @Provided plugin: Plugin,
-    @Provided pluginManager: PluginManager,
+    plugin: Plugin,
+    pluginManager: PluginManager,
 ) : BukkitFcGui<TLayout>, InventoryHolder {
     override var listener: FcGui.Listener = FcGui.Listener.Default
 
@@ -159,6 +157,33 @@ class BukkitFcGui_1_7_5_R01<TLayout : FcGuiLayout>(
         @EventHandler(ignoreCancelled = true)
         private fun onPluginDisable(event: PluginDisableEvent) {
             close()
+        }
+    }
+
+    class Factory @Inject constructor(
+        private val plugin: Plugin,
+        private val pluginManager: PluginManager,
+        private val server: Server,
+        private val textConverter: FcTextConverter,
+        private val guiLayoutGridFactory: BukkitFcGuiLayoutGrid_1_7_5_R01Factory,
+    ) : BukkitFcGui.Factory {
+        override fun createChestGui(player: FcPlayer, title: FcText?, height: Int): FcGui<FcGuiLayoutGrid> {
+            val legacyTitle = title?.let {
+                textConverter.toLegacy(it, player.locale)
+            }
+
+            return BukkitFcGui_1_7_5_R01(
+                player,
+                { owner ->
+                    when (legacyTitle) {
+                        null -> server.createInventory(owner, 9 * height)
+                        else -> server.createInventory(owner, 9 * height, legacyTitle)
+                    }
+                },
+                { inventory -> guiLayoutGridFactory.create(9, height, inventory, player.locale) },
+                plugin = plugin,
+                pluginManager = pluginManager
+            )
         }
     }
 }

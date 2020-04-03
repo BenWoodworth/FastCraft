@@ -3,14 +3,14 @@ package net.benwoodworth.fastcraft.crafting.view
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.Strings
-import net.benwoodworth.fastcraft.platform.gui.FcGuiFactory
+import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 
 @AutoFactory
 class FastCraftGuiView(
     player: FcPlayer,
-    @Provided guiFactory: FcGuiFactory,
+    @Provided guiFactory: FcGui.Factory,
     @Provided workbenchButtonFactory: net.benwoodworth.fastcraft.crafting.view.buttons.WorkbenchButtonViewFactory,
     @Provided pageButtonFactory: net.benwoodworth.fastcraft.crafting.view.buttons.PageButtonViewFactory,
     @Provided recipeButtonFactory: net.benwoodworth.fastcraft.crafting.view.buttons.RecipeButtonViewFactory,
