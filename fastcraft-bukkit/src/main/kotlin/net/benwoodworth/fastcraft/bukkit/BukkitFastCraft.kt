@@ -1,10 +1,13 @@
 package net.benwoodworth.fastcraft.bukkit
 
+import dagger.Component
 import net.benwoodworth.fastcraft.FastCraft
+import net.benwoodworth.fastcraft.FastCraftFactory
 import net.benwoodworth.fastcraft.bukkit.util.BukkitVersion
 import org.bstats.bukkit.MetricsLite
 import org.bukkit.plugin.java.JavaPlugin
 import java.util.logging.Level
+import javax.inject.Singleton
 
 @Suppress("unused")
 class BukkitFastCraft : JavaPlugin() {
@@ -13,7 +16,7 @@ class BukkitFastCraft : JavaPlugin() {
     override fun onEnable() {
         checkBukkitVersion()
 
-        val factory = DaggerBukkitFastCraftFactory.builder()
+        val factory = DaggerBukkitFastCraft_Factory.builder()
             .bukkitFastCraftModule(BukkitFastCraftModule(this))
             .build()
 
@@ -51,4 +54,8 @@ class BukkitFastCraft : JavaPlugin() {
             }
         }
     }
+
+    @Singleton
+    @Component(modules = [BukkitFastCraftModule::class])
+    interface Factory : FastCraftFactory
 }
