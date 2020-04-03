@@ -1,5 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.player
 
+import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayer.Provider.Companion.getPlayer
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import org.bukkit.event.player.PlayerJoinEvent
 

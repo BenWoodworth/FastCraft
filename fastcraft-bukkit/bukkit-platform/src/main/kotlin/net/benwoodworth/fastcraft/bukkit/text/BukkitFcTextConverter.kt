@@ -5,8 +5,10 @@ import net.benwoodworth.fastcraft.platform.text.FcTextConverter
 
 interface BukkitFcTextConverter : FcTextConverter {
     fun toRaw(text: FcText): String
-}
 
-fun FcTextConverter.toRaw(text: FcText): String {
-    return (this as BukkitFcTextConverter).toRaw(text)
+    companion object {
+        fun FcTextConverter.toRaw(text: FcText): String {
+            return (this as BukkitFcTextConverter).toRaw(text)
+        }
+    }
 }

@@ -6,14 +6,18 @@ import org.bukkit.entity.Player
 interface BukkitFcPlayer : FcPlayer {
     val player: Player
 
+    companion object {
+        val FcPlayer.player: Player
+            get() = (this as BukkitFcPlayer).player
+    }
+
     interface Provider : FcPlayer.Provider {
         fun getPlayer(player: Player): FcPlayer
+
+        companion object {
+            fun FcPlayer.Provider.getPlayer(player: Player): FcPlayer {
+                return (this as Provider).getPlayer(player)
+            }
+        }
     }
-}
-
-val FcPlayer.player: Player
-    get() = (this as BukkitFcPlayer).player
-
-fun FcPlayer.Provider.getPlayer(player: Player): FcPlayer {
-    return (this as BukkitFcPlayer.Provider).getPlayer(player)
 }

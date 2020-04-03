@@ -1,5 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
+import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemType.Companion.materialData
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory

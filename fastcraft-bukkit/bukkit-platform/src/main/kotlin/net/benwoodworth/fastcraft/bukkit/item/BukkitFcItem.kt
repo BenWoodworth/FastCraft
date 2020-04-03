@@ -8,18 +8,22 @@ interface BukkitFcItem : FcItem {
 
     fun toItemStack(): ItemStack
 
+    companion object {
+        val FcItem.itemStack: ItemStack
+            get() = (this as BukkitFcItem).itemStack
+
+        fun FcItem.toItemStack(): ItemStack {
+            return (this as BukkitFcItem).toItemStack()
+        }
+    }
+
     interface Factory : FcItem.Factory {
         fun createFcItem(itemStack: ItemStack): FcItem
+
+        companion object {
+            fun FcItem.Factory.createFcItem(itemStack: ItemStack): FcItem {
+                return (this as Factory).createFcItem(itemStack)
+            }
+        }
     }
-}
-
-val FcItem.itemStack: ItemStack
-    get() = (this as BukkitFcItem).itemStack
-
-fun FcItem.toItemStack(): ItemStack {
-    return (this as BukkitFcItem).toItemStack()
-}
-
-fun FcItem.Factory.createFcItem(itemStack: ItemStack): FcItem {
-    return (this as BukkitFcItem.Factory).createFcItem(itemStack)
 }

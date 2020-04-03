@@ -8,12 +8,14 @@ interface BukkitFcItemTypes : FcItemTypes {
     fun fromMaterial(material: Material): FcItemType
 
     fun fromMaterialData(materialData: Any): FcItemType
-}
 
-fun FcItemTypes.fromMaterial(material: Material): FcItemType {
-    return (this as BukkitFcItemTypes).fromMaterial(material)
-}
+    companion object {
+        fun FcItemTypes.fromMaterial(material: Material): FcItemType {
+            return (this as BukkitFcItemTypes).fromMaterial(material)
+        }
 
-fun FcItemTypes.fromMaterialData(materialData: Any): FcItemType {
-    return (this as BukkitFcItemTypes).fromMaterialData(materialData)
+        fun FcItemTypes.fromMaterialData(materialData: Any): FcItemType {
+            return (this as BukkitFcItemTypes).fromMaterialData(materialData)
+        }
+    }
 }

@@ -1,8 +1,9 @@
 package net.benwoodworth.fastcraft.bukkit.player
 
-import net.benwoodworth.fastcraft.bukkit.item.toItemStack
+import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItem.Companion.toItemStack
+import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayer.Companion.player
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcText
-import net.benwoodworth.fastcraft.bukkit.text.toRaw
+import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextConverter.Companion.toRaw
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcPlayerInventory

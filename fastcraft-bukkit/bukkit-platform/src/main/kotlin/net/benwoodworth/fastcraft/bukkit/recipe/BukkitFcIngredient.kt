@@ -4,7 +4,9 @@ import net.benwoodworth.fastcraft.platform.recipe.FcIngredient
 
 interface BukkitFcIngredient : FcIngredient {
     val slotIndex: Int
-}
 
-val FcIngredient.slotIndex: Int
-    get() = (this as BukkitFcIngredient).slotIndex
+    companion object {
+        val FcIngredient.slotIndex: Int
+            get() = (this as BukkitFcIngredient).slotIndex
+    }
+}

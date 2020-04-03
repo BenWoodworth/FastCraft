@@ -1,5 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.text
 
+import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextColor.Companion.id
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
 import org.bukkit.ChatColor
 

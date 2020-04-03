@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
-import net.benwoodworth.fastcraft.bukkit.item.material
-import net.benwoodworth.fastcraft.bukkit.item.toItemStack
+import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItem.Companion.toItemStack
+import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemType.Companion.material
 import net.benwoodworth.fastcraft.bukkit.util.updateMeta
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.item.FcItem

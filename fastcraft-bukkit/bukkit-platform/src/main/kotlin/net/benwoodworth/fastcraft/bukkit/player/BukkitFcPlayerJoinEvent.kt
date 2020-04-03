@@ -5,7 +5,9 @@ import org.bukkit.event.player.PlayerJoinEvent
 
 interface BukkitFcPlayerJoinEvent : FcPlayerJoinEvent {
     val event: PlayerJoinEvent
-}
 
-val FcPlayerJoinEvent.event: PlayerJoinEvent
-    get() = (this as BukkitFcPlayerJoinEvent).event
+    companion object {
+        val FcPlayerJoinEvent.event: PlayerJoinEvent
+            get() = (this as BukkitFcPlayerJoinEvent).event
+    }
+}

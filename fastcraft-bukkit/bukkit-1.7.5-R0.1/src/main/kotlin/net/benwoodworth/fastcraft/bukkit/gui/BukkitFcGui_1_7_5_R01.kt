@@ -1,6 +1,8 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
-import net.benwoodworth.fastcraft.bukkit.player.player
+import net.benwoodworth.fastcraft.bukkit.gui.BukkitFcGuiLayout.Companion.getSlotButton
+import net.benwoodworth.fastcraft.bukkit.gui.BukkitFcGuiLayout.Companion.inventory
+import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayer.Companion.player
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClickModifier

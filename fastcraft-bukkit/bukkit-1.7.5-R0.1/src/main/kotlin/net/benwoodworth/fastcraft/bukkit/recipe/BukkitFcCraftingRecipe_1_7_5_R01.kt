@@ -1,8 +1,9 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
-import net.benwoodworth.fastcraft.bukkit.item.createFcItem
-import net.benwoodworth.fastcraft.bukkit.item.toItemStack
-import net.benwoodworth.fastcraft.bukkit.player.player
+import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItem.Companion.toItemStack
+import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItem.Factory.Companion.createFcItem
+import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayer.Companion.player
+import net.benwoodworth.fastcraft.bukkit.recipe.BukkitFcIngredient.Companion.slotIndex
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe

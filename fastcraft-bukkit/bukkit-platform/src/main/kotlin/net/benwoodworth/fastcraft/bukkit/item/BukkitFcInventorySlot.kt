@@ -2,6 +2,8 @@ package net.benwoodworth.fastcraft.bukkit.item
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
+import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItem.Companion.toItemStack
+import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItem.Factory.Companion.createFcItem
 import net.benwoodworth.fastcraft.platform.item.FcInventorySlot
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import org.bukkit.Material
@@ -42,10 +44,12 @@ class BukkitFcInventorySlot(
     override fun hashCode(): Int {
         return Objects.hash(inventory, slotIndex)
     }
+
+    companion object {
+        val FcInventorySlot.inventory: Inventory
+            get() = (this as BukkitFcInventorySlot).inventory
+
+        val FcInventorySlot.slotIndex: Int
+            get() = (this as BukkitFcInventorySlot).slotIndex
+    }
 }
-
-val FcInventorySlot.inventory: Inventory
-    get() = (this as BukkitFcInventorySlot).inventory
-
-val FcInventorySlot.slotIndex: Int
-    get() = (this as BukkitFcInventorySlot).slotIndex
