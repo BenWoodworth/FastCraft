@@ -3,7 +3,6 @@ package net.benwoodworth.fastcraft.crafting.model
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.platform.item.FcItem
-import net.benwoodworth.fastcraft.platform.item.FcItemFactory
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.item.FcItemTypeComparator
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
@@ -17,7 +16,7 @@ class FastCraftGuiModel(
     val player: FcPlayer,
     @Provided private val itemAmountsProvider: Provider<ItemAmounts>,
     @Provided private val craftableRecipeFinder: CraftableRecipeFinder,
-    @Provided private val itemFactory: FcItemFactory,
+    @Provided private val itemFactory: FcItem.Factory,
     @Provided private val itemTypeComparator: FcItemTypeComparator,
 ) {
     var craftAmount: Int? = null

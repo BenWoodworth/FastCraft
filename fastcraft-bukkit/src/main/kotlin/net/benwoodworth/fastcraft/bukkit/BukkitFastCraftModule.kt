@@ -16,7 +16,7 @@ import net.benwoodworth.fastcraft.bukkit.text.*
 import net.benwoodworth.fastcraft.bukkit.util.BukkitVersion
 import net.benwoodworth.fastcraft.platform.config.FcConfig
 import net.benwoodworth.fastcraft.platform.gui.FcGui
-import net.benwoodworth.fastcraft.platform.item.FcItemFactory
+import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemTypeComparator
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.player.FcPlayerEvents
@@ -133,9 +133,9 @@ class BukkitFastCraftModule(
     @Provides
     @Singleton
     fun provideFcItemFactory(
-        instance_1_13: Provider<BukkitFcItemFactory_1_13_R01>,
-        instance_1_7_5: Provider<BukkitFcItemFactory_1_7_5_R01>,
-    ): FcItemFactory {
+        instance_1_13: Provider<BukkitFcItem_1_13_R01.Factory>,
+        instance_1_7_5: Provider<BukkitFcItem_1_7_5_R01.Factory>,
+    ): FcItem.Factory {
         return when {
             bukkitVersion >= VERSION_1_13_R01 -> instance_1_13.get()
             bukkitVersion >= VERSION_1_7_5_R01 -> instance_1_7_5.get()

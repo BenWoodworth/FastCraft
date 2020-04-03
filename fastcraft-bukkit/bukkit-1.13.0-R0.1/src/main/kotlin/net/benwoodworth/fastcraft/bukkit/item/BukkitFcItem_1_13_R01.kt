@@ -1,17 +1,16 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
-import com.google.auto.factory.AutoFactory
-import com.google.auto.factory.Provided
+import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.inventory.ItemStack
+import javax.inject.Inject
 
-@AutoFactory
 class BukkitFcItem_1_13_R01(
     itemStack: ItemStack,
-    @Provided itemTypes: FcItemTypes,
-    @Provided textFactory: FcTextFactory,
+    itemTypes: FcItemTypes,
+    textFactory: FcTextFactory,
 ) : BukkitFcItem_1_7_5_R01(
     itemStack = itemStack,
     itemTypes = itemTypes,
@@ -19,4 +18,20 @@ class BukkitFcItem_1_13_R01(
 ) {
     override val type: FcItemType
         get() = itemTypes.fromMaterial(itemStack.type)
+
+    open class Factory @Inject constructor(
+        itemTypes: FcItemTypes,
+        textFactory: FcTextFactory,
+    ) : BukkitFcItem_1_7_5_R01.Factory(
+        itemTypes = itemTypes,
+        textFactory = textFactory
+    ) {
+        override fun createFcItem(itemStack: ItemStack): FcItem {
+            return BukkitFcItem_1_13_R01(
+                itemStack = itemStack,
+                itemTypes = itemTypes,
+                textFactory = textFactory
+            )
+        }
+    }
 }

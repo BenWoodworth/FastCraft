@@ -1,20 +1,19 @@
 package net.benwoodworth.fastcraft.crafting.model
 
 import net.benwoodworth.fastcraft.platform.item.FcItem
-import net.benwoodworth.fastcraft.platform.item.FcItemFactory
 import java.util.*
 import javax.inject.Inject
 
 class ItemAmounts private constructor(
     private val amounts: MutableMap<FcItem, Int>,
-    private val itemFactory: FcItemFactory,
+    private val itemFactory: FcItem.Factory,
 ) {
     private companion object {
         val keys = WeakHashMap<FcItem, FcItem>()
     }
 
     @Inject
-    constructor(itemFactory: FcItemFactory) : this(mutableMapOf(), itemFactory)
+    constructor(itemFactory: FcItem.Factory) : this(mutableMapOf(), itemFactory)
 
     private fun FcItem.asKey(): FcItem {
         return when (amount) {

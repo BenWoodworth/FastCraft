@@ -4,7 +4,6 @@ import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.bukkit.item.createFcItem
 import net.benwoodworth.fastcraft.platform.item.FcItem
-import net.benwoodworth.fastcraft.platform.item.FcItemFactory
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcIngredient
 import net.benwoodworth.fastcraft.util.CancellableResult
@@ -23,7 +22,7 @@ class BukkitFcCraftingRecipePrepared_1_7_5_R01(
     private val ingredientRemnants: List<FcItem>,
     override val resultsPreview: List<FcItem>,
     private val preparedCraftingView: InventoryView,
-    @Provided private val itemFactory: FcItemFactory,
+    @Provided private val itemFactory: FcItem.Factory,
     @Provided private val server: Server,
 ) : BukkitFcCraftingRecipePrepared {
     private var craftCalled = false

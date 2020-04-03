@@ -6,6 +6,7 @@ import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.inventory.ItemStack
+import javax.inject.Inject
 
 open class BukkitFcItem_1_7_5_R01(
     override val itemStack: ItemStack,
@@ -46,5 +47,29 @@ open class BukkitFcItem_1_7_5_R01(
 
     override fun hashCode(): Int {
         return itemStack.hashCode()
+    }
+
+    open class Factory @Inject constructor(
+        protected val itemTypes: FcItemTypes,
+        protected val textFactory: FcTextFactory,
+    ) : BukkitFcItem.Factory {
+        override fun copyItem(item: FcItem, amount: Int): FcItem {
+            if (amount == item.amount) {
+                return item
+            }
+
+            val itemStack = item.toItemStack()
+            itemStack.amount = amount
+
+            return createFcItem(itemStack)
+        }
+
+        override fun createFcItem(itemStack: ItemStack): FcItem {
+            return BukkitFcItem_1_7_5_R01(
+                itemStack = itemStack,
+                itemTypes = itemTypes,
+                textFactory = textFactory
+            )
+        }
     }
 }

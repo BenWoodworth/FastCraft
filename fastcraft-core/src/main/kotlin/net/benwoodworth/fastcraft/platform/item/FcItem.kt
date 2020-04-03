@@ -11,4 +11,11 @@ interface FcItem {
     override fun equals(other: Any?): Boolean
 
     override fun hashCode(): Int
+
+    interface Factory {
+        fun copyItem(
+            item: FcItem,
+            amount: Int = item.amount,
+        ): FcItem
+    }
 }

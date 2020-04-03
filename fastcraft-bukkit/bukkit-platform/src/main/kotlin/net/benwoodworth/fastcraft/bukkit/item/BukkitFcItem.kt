@@ -7,6 +7,10 @@ interface BukkitFcItem : FcItem {
     val itemStack: ItemStack
 
     fun toItemStack(): ItemStack
+
+    interface Factory : FcItem.Factory {
+        fun createFcItem(itemStack: ItemStack): FcItem
+    }
 }
 
 val FcItem.itemStack: ItemStack
@@ -14,4 +18,8 @@ val FcItem.itemStack: ItemStack
 
 fun FcItem.toItemStack(): ItemStack {
     return (this as BukkitFcItem).toItemStack()
+}
+
+fun FcItem.Factory.createFcItem(itemStack: ItemStack): FcItem {
+    return (this as BukkitFcItem.Factory).createFcItem(itemStack)
 }

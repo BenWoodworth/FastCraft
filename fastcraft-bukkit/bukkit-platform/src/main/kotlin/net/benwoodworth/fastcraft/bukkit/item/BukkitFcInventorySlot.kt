@@ -4,7 +4,6 @@ import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.platform.item.FcInventorySlot
 import net.benwoodworth.fastcraft.platform.item.FcItem
-import net.benwoodworth.fastcraft.platform.item.FcItemFactory
 import org.bukkit.Material
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
@@ -14,7 +13,7 @@ import java.util.*
 class BukkitFcInventorySlot(
     val inventory: Inventory,
     val slotIndex: Int,
-    @Provided val itemFactory: FcItemFactory,
+    @Provided val itemFactory: FcItem.Factory,
 ) : FcInventorySlot {
     override var item: FcItem?
         get() = inventory.getItem(slotIndex).fromInventoryItem()
