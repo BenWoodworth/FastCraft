@@ -34,6 +34,8 @@ class CraftableRecipeFinder @Inject constructor(
         availableItems: ItemAmounts,
         recipe: FcCraftingRecipe,
     ): Sequence<FcCraftingRecipePrepared> = sequence {
+        val results = mutableSetOf<List<FcItem>>()
+
         val ingredients = recipe.ingredients
 
         val possibleIngredientItems = ingredients.map { ingredient ->
@@ -61,7 +63,11 @@ class CraftableRecipeFinder @Inject constructor(
                 val prepared = recipe.prepare(player, ingredientItems)
 
                 if (prepared is CancellableResult.Result) {
-                    yield(prepared.result)
+                    val resultPreview = prepared.result.resultsPreview
+                    if (resultPreview !in results) {
+                        results += resultPreview
+                        yield(prepared.result)
+                    }
                 }
             }
         }
