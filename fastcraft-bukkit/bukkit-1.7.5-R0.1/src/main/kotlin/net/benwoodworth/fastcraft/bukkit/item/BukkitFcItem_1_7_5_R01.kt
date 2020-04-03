@@ -40,6 +40,9 @@ open class BukkitFcItem_1_7_5_R01(
             ?.map { textFactory.createFcText(it ?: "") }
             ?: emptyList()
 
+    override val hasMetadata: Boolean
+        get() = itemStack.hasItemMeta()
+
     override fun toItemStack(): ItemStack {
         return itemStack.clone()
     }
