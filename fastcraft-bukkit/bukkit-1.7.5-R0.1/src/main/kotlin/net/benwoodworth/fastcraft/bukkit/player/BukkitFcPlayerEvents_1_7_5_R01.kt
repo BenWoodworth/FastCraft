@@ -1,9 +1,9 @@
 package net.benwoodworth.fastcraft.bukkit.player
 
 import net.benwoodworth.fastcraft.events.HandlerSet
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcPlayerJoinEvent
 import net.benwoodworth.fastcraft.platform.player.FcPlayerOpenWorkbenchEvent
-import net.benwoodworth.fastcraft.platform.player.FcPlayerProvider
 import org.bukkit.Material
 import org.bukkit.block.Block
 import org.bukkit.event.Event
@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 open class BukkitFcPlayerEvents_1_7_5_R01 @Inject constructor(
     plugin: Plugin,
-    private val playerProvider: FcPlayerProvider,
+    private val playerProvider: FcPlayer.Provider,
     pluginManager: PluginManager,
 ) : BukkitFcPlayerEvents {
     override val onPlayerJoin: HandlerSet<FcPlayerJoinEvent> = HandlerSet()

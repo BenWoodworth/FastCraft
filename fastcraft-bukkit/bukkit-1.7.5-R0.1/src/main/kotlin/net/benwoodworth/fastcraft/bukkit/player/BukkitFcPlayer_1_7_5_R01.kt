@@ -1,7 +1,5 @@
 package net.benwoodworth.fastcraft.bukkit.player
 
-import com.google.auto.factory.AutoFactory
-import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.bukkit.item.toItemStack
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcText
 import net.benwoodworth.fastcraft.bukkit.text.toRaw
@@ -15,13 +13,13 @@ import org.bukkit.Server
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import java.util.*
+import javax.inject.Inject
 
-@AutoFactory
 class BukkitFcPlayer_1_7_5_R01(
     override val player: Player,
-    @Provided private val textConverter: FcTextConverter,
-    @Provided private val server: Server,
-    @Provided private val playerInventoryFactory: BukkitFcPlayerInventory_1_7_5_R01Factory,
+    private val textConverter: FcTextConverter,
+    private val server: Server,
+    private val playerInventoryFactory: BukkitFcPlayerInventory_1_7_5_R01Factory,
 ) : BukkitFcPlayer {
     override val username: String
         get() = player.name
@@ -88,5 +86,32 @@ class BukkitFcPlayer_1_7_5_R01(
 
     override fun hashCode(): Int {
         return player.hashCode()
+    }
+
+    class Provider @Inject constructor(
+        private val server: Server,
+        private val textConverter: FcTextConverter,
+        private val playerInventoryFactory: BukkitFcPlayerInventory_1_7_5_R01Factory,
+    ) : BukkitFcPlayer.Provider {
+        override fun getOnlinePlayers(): List<FcPlayer> {
+            return server.onlinePlayers.map { player ->
+                getPlayer(player)
+            }
+        }
+
+        override fun getPlayer(uuid: UUID): FcPlayer? {
+            return server.getPlayer(uuid)?.let { player ->
+                getPlayer(player)
+            }
+        }
+
+        override fun getPlayer(player: Player): FcPlayer {
+            return BukkitFcPlayer_1_7_5_R01(
+                player = player,
+                textConverter = textConverter,
+                server = server,
+                playerInventoryFactory = playerInventoryFactory,
+            )
+        }
     }
 }

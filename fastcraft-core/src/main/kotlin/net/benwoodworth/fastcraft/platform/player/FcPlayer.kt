@@ -23,4 +23,10 @@ interface FcPlayer {
     override fun equals(other: Any?): Boolean
 
     override fun hashCode(): Int
+
+    interface Provider {
+        fun getOnlinePlayers(): List<FcPlayer>
+
+        fun getPlayer(uuid: UUID): FcPlayer?
+    }
 }

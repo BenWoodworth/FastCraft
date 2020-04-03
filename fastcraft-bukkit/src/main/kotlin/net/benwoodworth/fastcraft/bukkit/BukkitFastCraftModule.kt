@@ -7,7 +7,7 @@ import net.benwoodworth.fastcraft.bukkit.gui.*
 import net.benwoodworth.fastcraft.bukkit.item.*
 import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerEvents_1_13_R01
 import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerEvents_1_7_5_R01
-import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerProvider_1_7_5_R01
+import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayer_1_7_5_R01
 import net.benwoodworth.fastcraft.bukkit.recipe.*
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcLogger_1_7_5_R01
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcPluginData_1_7_5_R01
@@ -19,8 +19,8 @@ import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemTypeComparator
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcPlayerEvents
-import net.benwoodworth.fastcraft.platform.player.FcPlayerProvider
 import net.benwoodworth.fastcraft.platform.recipe.FcRecipeProvider
 import net.benwoodworth.fastcraft.platform.server.FcLogger
 import net.benwoodworth.fastcraft.platform.server.FcPluginData
@@ -171,7 +171,7 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun provideFcPlayerProvider(instance: BukkitFcPlayerProvider_1_7_5_R01): FcPlayerProvider {
+    fun provideFcPlayerProvider(instance: BukkitFcPlayer_1_7_5_R01.Provider): FcPlayer.Provider {
         return instance
     }
 
