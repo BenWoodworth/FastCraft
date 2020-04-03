@@ -16,12 +16,12 @@ import org.bukkit.plugin.Plugin
 import java.io.InputStream
 import javax.inject.Inject
 
-open class BukkitFcRecipeService_1_7_5_R01 @Inject constructor(
+open class BukkitFcRecipeProvider_1_7_5_R01 @Inject constructor(
     plugin: Plugin,
     bukkitVersion: BukkitVersion,
     private val server: Server,
     private val recipeFactory: BukkitFcCraftingRecipe.Factory,
-) : BukkitFcRecipeService {
+) : BukkitFcRecipeProvider {
     protected val complexRecipeIds: Set<String> by lazy {
         plugin.getResource("bukkit/complex-recipes.yml")
             .toYamlConfiguration()

@@ -21,7 +21,7 @@ import net.benwoodworth.fastcraft.platform.item.FcItemTypeComparator
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.player.FcPlayerEvents
 import net.benwoodworth.fastcraft.platform.player.FcPlayerProvider
-import net.benwoodworth.fastcraft.platform.recipe.FcRecipeService
+import net.benwoodworth.fastcraft.platform.recipe.FcRecipeProvider
 import net.benwoodworth.fastcraft.platform.server.FcLogger
 import net.benwoodworth.fastcraft.platform.server.FcPluginData
 import net.benwoodworth.fastcraft.platform.server.FcTaskFactory
@@ -177,11 +177,11 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun provideFcRecipeService(
-        instance_1_15: Provider<BukkitFcRecipeService_1_15_R01>,
-        instance_1_8: Provider<BukkitFcRecipeService_1_8_R01>,
-        instance_1_7_5: Provider<BukkitFcRecipeService_1_7_5_R01>,
-    ): FcRecipeService {
+    fun provideFcRecipeProvider(
+        instance_1_15: Provider<BukkitFcRecipeProvider_1_15_R01>,
+        instance_1_8: Provider<BukkitFcRecipeProvider_1_8_R01>,
+        instance_1_7_5: Provider<BukkitFcRecipeProvider_1_7_5_R01>,
+    ): FcRecipeProvider {
         return when {
             bukkitVersion >= VERSION_1_15_R01 -> instance_1_15.get()
             bukkitVersion >= VERSION_1_8_R01 -> instance_1_8.get()

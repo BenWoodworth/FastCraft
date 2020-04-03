@@ -7,12 +7,12 @@ import org.bukkit.plugin.Plugin
 import java.io.InputStream
 import javax.inject.Inject
 
-open class BukkitFcRecipeService_1_8_R01 @Inject constructor(
+open class BukkitFcRecipeProvider_1_8_R01 @Inject constructor(
     plugin: Plugin,
     bukkitVersion: BukkitVersion,
     server: Server,
     recipeFactory: BukkitFcCraftingRecipe.Factory,
-) : BukkitFcRecipeService_1_7_5_R01(
+) : BukkitFcRecipeProvider_1_7_5_R01(
     plugin = plugin,
     bukkitVersion = bukkitVersion,
     server = server,
