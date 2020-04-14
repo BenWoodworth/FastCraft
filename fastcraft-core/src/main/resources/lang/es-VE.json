@@ -1,0 +1,23 @@
+{
+  "localization.translator": "Rubenicos",
+  "localization.translator.from": "minelatino.com",
+  "gui.title": "FastCraft",
+  "gui.recipe.ingredients": "${green}Necesita:",
+  "gui.recipe.ingredients.item": "$green ${amount}x $item",
+  "gui.recipe.results": "${green}Resultado:",
+  "gui.recipe.results.item": "$green ${amount}x $item",
+  "gui.recipe.id": "${dark_gray}ID: $id",
+  "gui.toolbar.page.title": "${green}Página $page/$total",
+  "gui.toolbar.page.description.0": "${aqua}Click Izquierdo: siguiente página",
+  "gui.toolbar.page.description.1": "${aqua}Click Derecho: página anterior",
+  "gui.toolbar.page.description.2": "${aqua}Click Del Medio: primer página",
+  "gui.toolbar.refresh.title": "${green}Refrescar",
+  "gui.toolbar.refresh.description.0": "${aqua}Dale click para refrescar el menú",
+  "gui.toolbar.amount.title": "${green}Cantidad por crafteo",
+  "gui.toolbar.amount.description.0": "${aqua}Click ${green}Izquiero o ${yellow}Derecho para ${green}Bajar o ${yellow}Aumentar",
+  "gui.toolbar.amount.description.1": "${aqua}Shift+Click para ponerlo en 1",
+  "gui.toolbar.amount.description.2": "${aqua}Click Del medio para restaurar",
+  "gui.toolbar.workbench.title": "${green}Mesa Normal",
+  "gui.toolbar.workbench.description.0": "${aqua}Dale click para abrir los crafteos 3x3",
+  "gui.toolbar.workbench.description.1": "${aqua}Debes usar ${green}/fc toggle${aqua} para apagar o encender el FastCraft"
+}
