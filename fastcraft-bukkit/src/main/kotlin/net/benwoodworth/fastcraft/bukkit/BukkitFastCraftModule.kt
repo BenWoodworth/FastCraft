@@ -262,8 +262,15 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun provideBukkitLocalizer(instance: BukkitLocalizer_1_7_5_R01): BukkitLocalizer {
-        return instance
+    fun provideBukkitLocalizer(
+        instance_1_13: Provider<BukkitLocalizer_1_13_R01>,
+        instance_1_7_5: Provider<BukkitLocalizer_1_7_5_R01>,
+    ): BukkitLocalizer {
+        return when {
+            bukkitVersion >= VERSION_1_13_R01 -> instance_1_13.get()
+            bukkitVersion >= VERSION_1_7_5_R01 -> instance_1_7_5.get()
+            else -> instance_1_7_5.get()
+        }
     }
 
     @Provides
