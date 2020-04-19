@@ -3,10 +3,7 @@ package net.benwoodworth.fastcraft.crafting.model
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.platform.item.FcItem
-import net.benwoodworth.fastcraft.platform.item.FcItemType
-import net.benwoodworth.fastcraft.platform.item.FcItemTypeComparator
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
-import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 import net.benwoodworth.fastcraft.util.CancellableResult
 import net.benwoodworth.fastcraft.util.uniqueBy
 import javax.inject.Provider
@@ -17,20 +14,12 @@ class FastCraftGuiModel(
     @Provided private val itemAmountsProvider: Provider<ItemAmounts>,
     @Provided private val craftableRecipeFinder: CraftableRecipeFinder,
     @Provided private val itemFactory: FcItem.Factory,
-    @Provided private val itemTypeComparator: FcItemTypeComparator,
 ) {
     var craftAmount: Int? = null
 
     val recipes: MutableList<FastCraftRecipe?> = mutableListOf()
 
     val inventoryItemAmounts: ItemAmounts = itemAmountsProvider.get()
-
-    private val recipeComparator: Comparator<FcCraftingRecipePrepared> =
-        compareBy<FcCraftingRecipePrepared, FcItemType>(itemTypeComparator) {
-            it.resultsPreview.first().type
-        }.thenBy {
-            it.resultsPreview.first().amount
-        }
 
     fun updateInventoryItemAmounts() {
         inventoryItemAmounts.clear()
@@ -53,7 +42,6 @@ class FastCraftGuiModel(
         craftableRecipeFinder
             .getCraftableRecipes(player, inventoryItemAmounts)
             .uniqueBy { it.ingredients.values.toSet() to it.resultsPreview.toSet() }
-            .sortedWith(recipeComparator)
             .map { FastCraftRecipe(this, it) }
             .forEach { recipes += it }
     }

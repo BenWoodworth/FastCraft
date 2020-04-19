@@ -1,6 +1,8 @@
 package net.benwoodworth.fastcraft.crafting.model
 
 import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemType
+import net.benwoodworth.fastcraft.platform.item.FcItemTypeComparator
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
@@ -13,19 +15,26 @@ import javax.inject.Provider
 class CraftableRecipeFinder @Inject constructor(
     private val recipeProvider: FcRecipeProvider,
     private val itemAmountsProvider: Provider<ItemAmounts>,
+    itemTypeComparator: FcItemTypeComparator,
 ) {
-    private companion object {
-        val ingredientComparator = compareBy<Map.Entry<FcItem, Int>>(
-            { (item, _) -> item.hasMetadata }, // Items with meta last
-            { (_, amount) -> -amount }, // Greatest amount first
-        )
-    }
+    private val recipeComparator: Comparator<FcCraftingRecipe> =
+        compareBy<FcCraftingRecipe, FcItemType>(itemTypeComparator) {
+            it.exemplaryResult.type
+        }.thenBy {
+            it.exemplaryResult.amount
+        }
+
+    private val ingredientComparator = compareBy<Map.Entry<FcItem, Int>>(
+        { (item, _) -> item.hasMetadata }, // Items with meta last
+        { (_, amount) -> -amount }, // Greatest amount first
+    )
 
     fun getCraftableRecipes(
         player: FcPlayer,
         availableItems: ItemAmounts,
     ): Sequence<FcCraftingRecipePrepared> {
         return recipeProvider.getCraftingRecipes()
+            .sortedWith(recipeComparator)
             .flatMap { prepareCraftableRecipes(player, availableItems, it) }
     }
 
