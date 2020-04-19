@@ -72,7 +72,6 @@ class FastCraftGuiPresenter(
     private inner class ModelListener : FastCraftGuiModel.Listener {
         override fun onRecipesChange(recipes: List<FastCraftRecipe?>) {
             updatePage()
-            println("recipes changed")
         }
     }
 
