@@ -7,16 +7,22 @@ import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 import net.benwoodworth.fastcraft.platform.recipe.FcRecipeProvider
+import net.benwoodworth.fastcraft.platform.server.FcTask
 import net.benwoodworth.fastcraft.util.CancellableResult
 import net.benwoodworth.fastcraft.util.getPermutations
 import javax.inject.Inject
 import javax.inject.Provider
+import javax.inject.Singleton
 
-class CraftableRecipeFinder @Inject constructor(
+class CraftableRecipeFinder(
+    private val player: FcPlayer,
     private val recipeProvider: FcRecipeProvider,
     private val itemAmountsProvider: Provider<ItemAmounts>,
     itemTypeComparator: FcItemTypeComparator,
+    private val taskFactory: FcTask.Factory,
 ) {
+    private var recipeLoadTask: FcTask? = null
+
     private val recipeComparator: Comparator<FcCraftingRecipe> =
         compareBy<FcCraftingRecipe, FcItemType>(itemTypeComparator) {
             it.exemplaryResult.type
@@ -29,20 +35,59 @@ class CraftableRecipeFinder @Inject constructor(
         { (_, amount) -> -amount }, // Greatest amount first
     )
 
-    fun getCraftableRecipes(
-        player: FcPlayer,
-        availableItems: ItemAmounts,
-    ): Sequence<FcCraftingRecipePrepared> {
-        return recipeProvider.getCraftingRecipes()
+    var listener: Listener? = null
+
+    private companion object {
+        val MAX_LOAD_TIME_PER_TICK = 1000 / 20 / 10
+    }
+
+    fun loadRecipes() {
+        cancel()
+
+        val availableItems = itemAmountsProvider.get()
+        player.inventory.storage.forEach { slot ->
+            slot.item?.let { item -> availableItems += item }
+        }
+
+        val recipeIterator = recipeProvider.getCraftingRecipes()
             .sortedWith(recipeComparator)
             .flatMap { prepareCraftableRecipes(player, availableItems, it) }
+            .iterator()
+
+        recipeLoadTask = taskFactory.startTask(delaySeconds = 1.0 / 20.0, intervalSeconds = 1.0 / 20.0) { task ->
+            val startTime = System.currentTimeMillis()
+            val newRecipes = mutableListOf<FcCraftingRecipePrepared>()
+
+            for (recipe in recipeIterator) {
+                if (recipe != null) {
+                    newRecipes += recipe
+                }
+
+                val timeElapsed = System.currentTimeMillis() - startTime
+                if (timeElapsed > MAX_LOAD_TIME_PER_TICK) {
+                    break
+                }
+            }
+
+            if (newRecipes.isNotEmpty()) {
+                listener?.onNewRecipesLoaded(newRecipes)
+            }
+
+            if (!recipeIterator.hasNext()) {
+                task.cancel()
+            }
+        }
+    }
+
+    fun cancel() {
+        recipeLoadTask?.cancel()
     }
 
     private fun prepareCraftableRecipes(
         player: FcPlayer,
         availableItems: ItemAmounts,
         recipe: FcCraftingRecipe,
-    ): Sequence<FcCraftingRecipePrepared> = sequence {
+    ): Sequence<FcCraftingRecipePrepared?> = sequence {
         val results = mutableSetOf<List<FcItem>>()
 
         val ingredients = recipe.ingredients
@@ -79,6 +124,30 @@ class CraftableRecipeFinder @Inject constructor(
                     }
                 }
             }
+
+            yield(null)
+        }
+    }
+
+    interface Listener {
+        fun onNewRecipesLoaded(newRecipes: List<FcCraftingRecipePrepared>) {}
+    }
+
+    @Singleton
+    class Factory @Inject constructor(
+        private val recipeProvider: FcRecipeProvider,
+        private val itemAmountsProvider: Provider<ItemAmounts>,
+        private val itemTypeComparator: FcItemTypeComparator,
+        private val taskFactory: FcTask.Factory,
+    ) {
+        fun create(player: FcPlayer): CraftableRecipeFinder {
+            return CraftableRecipeFinder(
+                player = player,
+                recipeProvider = recipeProvider,
+                itemAmountsProvider = itemAmountsProvider,
+                itemTypeComparator = itemTypeComparator,
+                taskFactory = taskFactory,
+            )
         }
     }
 }

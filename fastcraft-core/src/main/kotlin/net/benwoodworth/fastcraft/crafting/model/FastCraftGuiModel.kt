@@ -4,22 +4,25 @@ import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 import net.benwoodworth.fastcraft.util.CancellableResult
-import net.benwoodworth.fastcraft.util.uniqueBy
 import javax.inject.Provider
 
 @AutoFactory
 class FastCraftGuiModel(
     val player: FcPlayer,
     @Provided private val itemAmountsProvider: Provider<ItemAmounts>,
-    @Provided private val craftableRecipeFinder: CraftableRecipeFinder,
+    @Provided private val craftableRecipeFinderFactory: CraftableRecipeFinder.Factory,
     @Provided private val itemFactory: FcItem.Factory,
 ) {
     var craftAmount: Int? = null
-
     val recipes: MutableList<FastCraftRecipe?> = mutableListOf()
 
+    private val craftableRecipeFinder = craftableRecipeFinderFactory.create(player)
+        .apply { listener = CraftableRecipeFinderListener() }
+
     val inventoryItemAmounts: ItemAmounts = itemAmountsProvider.get()
+    var listener: Listener? = null
 
     fun updateInventoryItemAmounts() {
         inventoryItemAmounts.clear()
@@ -38,14 +41,21 @@ class FastCraftGuiModel(
     fun refreshRecipes() {
         updateInventoryItemAmounts()
 
+        craftableRecipeFinder.cancel()
         recipes.clear()
-        craftableRecipeFinder
-            .getCraftableRecipes(player, inventoryItemAmounts)
-            .uniqueBy { it.ingredients.values.toSet() to it.resultsPreview.toSet() }
-            .map { FastCraftRecipe(this, it) }
-            .forEach { recipes += it }
+        craftableRecipeFinder.loadRecipes()
     }
 
+    private inner class CraftableRecipeFinderListener : CraftableRecipeFinder.Listener {
+        override fun onNewRecipesLoaded(newRecipes: List<FcCraftingRecipePrepared>) {
+            newRecipes
+//                .uniqueBy { it.ingredients.values.toSet() to it.resultsPreview.toSet() }
+                .map { FastCraftRecipe(this@FastCraftGuiModel, it) }
+                .forEach { recipes += it }
+
+            listener?.onRecipesChange(recipes)
+        }
+    }
 
     /**
      * @return `true` iff successful.
@@ -118,5 +128,9 @@ class FastCraftGuiModel(
 
     fun openCraftingTable() {
         player.openCraftingTable()
+    }
+
+    interface Listener {
+        fun onRecipesChange(recipes: List<FastCraftRecipe?>) {}
     }
 }
