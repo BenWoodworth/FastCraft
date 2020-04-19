@@ -57,15 +57,15 @@ class BukkitFcTask_1_7_5_R01(
     ) : BukkitFcTask.Factory {
         override fun startTask(
             async: Boolean,
-            delaySeconds: Double,
-            intervalSeconds: Double,
+            delayTicks: Long,
+            intervalTicks: Long,
             action: (task: FcTask) -> Unit,
         ): FcTask {
             return BukkitFcTask_1_7_5_R01(
                 plugin = plugin,
                 async = async,
-                delay = (delaySeconds * 20.0).toLong(),
-                interval = (intervalSeconds * 20.0).toLong(),
+                delay = delayTicks,
+                interval = intervalTicks,
                 action = action,
                 scheduler = scheduler
             )

@@ -54,7 +54,7 @@ class CraftableRecipeFinder(
             .flatMap { prepareCraftableRecipes(player, availableItems, it) }
             .iterator()
 
-        recipeLoadTask = taskFactory.startTask(delaySeconds = 1.0 / 20.0, intervalSeconds = 1.0 / 20.0) { task ->
+        recipeLoadTask = taskFactory.startTask(delayTicks = 1, intervalTicks = 1) { task ->
             val startTime = System.currentTimeMillis()
             val newRecipes = mutableListOf<FcCraftingRecipePrepared>()
 
