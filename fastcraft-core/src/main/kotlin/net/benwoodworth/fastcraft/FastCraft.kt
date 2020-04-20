@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft
 
-import net.benwoodworth.fastcraft.crafting.FastCraftGuiFactory
+import net.benwoodworth.fastcraft.crafting.FastCraftGui
 import net.benwoodworth.fastcraft.platform.player.FcPlayerEvents
 import net.benwoodworth.fastcraft.platform.player.FcPlayerOpenWorkbenchEvent
 import net.benwoodworth.fastcraft.platform.server.FcLogger
@@ -9,7 +9,7 @@ import javax.inject.Inject
 class FastCraft @Inject internal constructor(
     playerEventsListeners: FcPlayerEvents,
     logger: FcLogger,
-    private val fastCraftGuiFactory: FastCraftGuiFactory
+    private val fastCraftGuiFactory: FastCraftGui.Factory,
 ) {
     init {
         Strings.load()
