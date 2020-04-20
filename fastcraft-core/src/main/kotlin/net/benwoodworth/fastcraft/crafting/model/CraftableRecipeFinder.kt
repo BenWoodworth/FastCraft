@@ -44,37 +44,39 @@ class CraftableRecipeFinder(
     fun loadRecipes() {
         cancel()
 
-        val availableItems = itemAmountsProvider.get()
-        player.inventory.storage.forEach { slot ->
-            slot.item?.let { item -> availableItems += item }
-        }
-
-        val recipeIterator = recipeProvider.getCraftingRecipes()
-            .sortedWith(recipeComparator)
-            .flatMap { prepareCraftableRecipes(player, availableItems, it) }
-            .iterator()
-
-        recipeLoadTask = taskFactory.startTask(delayTicks = 1, intervalTicks = 1) { task ->
-            val startTime = System.currentTimeMillis()
-            val newRecipes = mutableListOf<FcCraftingRecipePrepared>()
-
-            for (recipe in recipeIterator) {
-                if (recipe != null) {
-                    newRecipes += recipe
-                }
-
-                val timeElapsed = System.currentTimeMillis() - startTime
-                if (timeElapsed > MAX_LOAD_TIME_PER_TICK) {
-                    break
-                }
+        recipeLoadTask = taskFactory.startTask(delayTicks = 1) {
+            val availableItems = itemAmountsProvider.get()
+            player.inventory.storage.forEach { slot ->
+                slot.item?.let { item -> availableItems += item }
             }
 
-            if (newRecipes.isNotEmpty()) {
-                listener?.onNewRecipesLoaded(newRecipes)
-            }
+            val recipeIterator = recipeProvider.getCraftingRecipes()
+                .sortedWith(recipeComparator)
+                .flatMap { prepareCraftableRecipes(player, availableItems, it) }
+                .iterator()
 
-            if (!recipeIterator.hasNext()) {
-                task.cancel()
+            recipeLoadTask = taskFactory.startTask(delayTicks = 1, intervalTicks = 1) { task ->
+                val startTime = System.currentTimeMillis()
+                val newRecipes = mutableListOf<FcCraftingRecipePrepared>()
+
+                for (recipe in recipeIterator) {
+                    if (recipe != null) {
+                        newRecipes += recipe
+                    }
+
+                    val timeElapsed = System.currentTimeMillis() - startTime
+                    if (timeElapsed > MAX_LOAD_TIME_PER_TICK) {
+                        break
+                    }
+                }
+
+                if (newRecipes.isNotEmpty()) {
+                    listener?.onNewRecipesLoaded(newRecipes)
+                }
+
+                if (!recipeIterator.hasNext()) {
+                    task.cancel()
+                }
             }
         }
     }
