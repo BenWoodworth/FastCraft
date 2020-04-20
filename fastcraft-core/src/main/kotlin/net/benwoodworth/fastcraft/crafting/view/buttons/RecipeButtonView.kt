@@ -31,10 +31,11 @@ class RecipeButtonView(
     }
 
     fun update() {
-        button.clear()
-
-        val fastCraftRecipe = fastCraftRecipe ?: return
-        if (!fastCraftRecipe.canCraft()) return
+        val fastCraftRecipe = fastCraftRecipe
+        if (fastCraftRecipe == null || !fastCraftRecipe.canCraft()) {
+            button.clear()
+            return
+        }
 
         fastCraftRecipe.preparedRecipe.let { preparedRecipe ->
             val previewItem = preparedRecipe.resultsPreview.first()
