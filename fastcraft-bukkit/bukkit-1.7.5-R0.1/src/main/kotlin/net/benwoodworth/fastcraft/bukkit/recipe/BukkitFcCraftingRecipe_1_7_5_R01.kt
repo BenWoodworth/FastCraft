@@ -23,7 +23,7 @@ import javax.inject.Inject
 open class BukkitFcCraftingRecipe_1_7_5_R01(
     val recipe: Recipe,
     private val server: Server,
-    private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_7_5_R01Factory,
+    private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
     private val itemFactory: FcItem.Factory,
     private val remnantProvider: IngredientRemnantProvider,
     private val inventoryViewFactory: CraftingInventoryViewFactory,
@@ -110,7 +110,12 @@ open class BukkitFcCraftingRecipe_1_7_5_R01(
         val resultsPreview = listOf(itemFactory.createFcItem(resultItem)) + ingredientRemnants
 
         return CancellableResult(
-            preparedRecipeFactory.create(this, ingredients, ingredientRemnants, resultsPreview, prepareView)
+            preparedRecipeFactory.create(player.player,
+                this,
+                ingredients,
+                ingredientRemnants,
+                resultsPreview,
+                prepareView)
         )
     }
 
@@ -159,7 +164,7 @@ open class BukkitFcCraftingRecipe_1_7_5_R01(
 
     class Factory @Inject constructor(
         private val server: Server,
-        private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_7_5_R01Factory,
+        private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
         private val itemFactory: FcItem.Factory,
         private val remnantProvider: IngredientRemnantProvider,
         private val inventoryViewFactory: CraftingInventoryViewFactory,

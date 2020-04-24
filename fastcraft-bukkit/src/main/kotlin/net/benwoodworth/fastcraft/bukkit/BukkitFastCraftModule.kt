@@ -177,6 +177,19 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
+    fun provideFcCraftingRecipePreparedFactory(
+        instance_1_12: Provider<BukkitFcCraftingRecipePrepared_1_12_1_R01.Factory>,
+        instance_1_7_5: Provider<BukkitFcCraftingRecipePrepared_1_7_5_R01.Factory>,
+    ): BukkitFcCraftingRecipePrepared.Factory {
+        return when {
+            bukkitVersion >= VERSION_1_12_1_R01 -> instance_1_12.get()
+            bukkitVersion >= VERSION_1_7_5_R01 -> instance_1_7_5.get()
+            else -> instance_1_7_5.get()
+        }
+    }
+
+    @Provides
+    @Singleton
     fun provideFcRecipeProvider(
         instance_1_15: Provider<BukkitFcRecipeProvider_1_15_R01>,
         instance_1_8: Provider<BukkitFcRecipeProvider_1_8_R01>,
