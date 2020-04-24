@@ -23,6 +23,9 @@ class BukkitFastCraft : JavaPlugin() {
         fastCraft = factory.createFastCraft()
 
         MetricsLite(this)
+
+        // Initial iteration can be slow, so do it now instead of when FastCraft is opened
+        server.recipeIterator().forEach { _ -> }
     }
 
     override fun onDisable() {

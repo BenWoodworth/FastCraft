@@ -13,10 +13,7 @@ import net.benwoodworth.fastcraft.util.CancellableResult
 import org.bukkit.Material
 import org.bukkit.Server
 import org.bukkit.event.inventory.PrepareItemCraftEvent
-import org.bukkit.inventory.CraftingInventory
-import org.bukkit.inventory.Recipe
-import org.bukkit.inventory.ShapedRecipe
-import org.bukkit.inventory.ShapelessRecipe
+import org.bukkit.inventory.*
 import java.util.*
 import javax.inject.Inject
 
@@ -77,6 +74,11 @@ open class BukkitFcCraftingRecipe_1_7_5_R01(
 
     override val group: String?
         get() = null
+
+    override val exemplaryResult: FcItem
+        get() = recipe.result
+            ?.let { itemFactory.createFcItem(it) }
+            ?: itemFactory.createFcItem(ItemStack(Material.AIR))
 
     override fun prepare(
         player: FcPlayer,

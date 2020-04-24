@@ -8,6 +8,7 @@ interface FcCraftingRecipe {
     val id: String
     val ingredients: List<FcIngredient>
     val group: String?
+    val exemplaryResult: FcItem
 
     fun prepare(player: FcPlayer, ingredients: Map<FcIngredient, FcItem>): CancellableResult<FcCraftingRecipePrepared>
 

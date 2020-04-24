@@ -22,6 +22,8 @@ class FastCraftGuiPresenter(
         get() = (recipesPage - 1) * recipesPerPage
 
     init {
+        model.listener = ModelListener()
+
         view.workbenchButton.listener = WorkbenchButtonListener()
         view.craftAmountButton.listener = CraftAmountButtonListener()
         view.pageButton.listener = PageButtonListener()
@@ -65,6 +67,12 @@ class FastCraftGuiPresenter(
         }
 
         updateRecipes()
+    }
+
+    private inner class ModelListener : FastCraftGuiModel.Listener {
+        override fun onRecipesChange(recipes: List<FastCraftRecipe?>) {
+            updatePage()
+        }
     }
 
     private inner class WorkbenchButtonListener : WorkbenchButtonView.Listener {

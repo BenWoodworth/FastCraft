@@ -3,34 +3,26 @@ package net.benwoodworth.fastcraft.crafting.model
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.platform.item.FcItem
-import net.benwoodworth.fastcraft.platform.item.FcItemType
-import net.benwoodworth.fastcraft.platform.item.FcItemTypeComparator
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 import net.benwoodworth.fastcraft.util.CancellableResult
-import net.benwoodworth.fastcraft.util.uniqueBy
 import javax.inject.Provider
 
 @AutoFactory
 class FastCraftGuiModel(
     val player: FcPlayer,
     @Provided private val itemAmountsProvider: Provider<ItemAmounts>,
-    @Provided private val craftableRecipeFinder: CraftableRecipeFinder,
+    @Provided private val craftableRecipeFinderFactory: CraftableRecipeFinder.Factory,
     @Provided private val itemFactory: FcItem.Factory,
-    @Provided private val itemTypeComparator: FcItemTypeComparator,
 ) {
     var craftAmount: Int? = null
-
     val recipes: MutableList<FastCraftRecipe?> = mutableListOf()
 
-    val inventoryItemAmounts: ItemAmounts = itemAmountsProvider.get()
+    private val craftableRecipeFinder = craftableRecipeFinderFactory.create(player)
+        .apply { listener = CraftableRecipeFinderListener() }
 
-    private val recipeComparator: Comparator<FcCraftingRecipePrepared> =
-        compareBy<FcCraftingRecipePrepared, FcItemType>(itemTypeComparator) {
-            it.resultsPreview.first().type
-        }.thenBy {
-            it.resultsPreview.first().amount
-        }
+    val inventoryItemAmounts: ItemAmounts = itemAmountsProvider.get()
+    var listener: Listener? = null
 
     fun updateInventoryItemAmounts() {
         inventoryItemAmounts.clear()
@@ -49,15 +41,21 @@ class FastCraftGuiModel(
     fun refreshRecipes() {
         updateInventoryItemAmounts()
 
+        craftableRecipeFinder.cancel()
         recipes.clear()
-        craftableRecipeFinder
-            .getCraftableRecipes(player, inventoryItemAmounts)
-            .uniqueBy { it.ingredients.values.toSet() to it.resultsPreview.toSet() }
-            .sortedWith(recipeComparator)
-            .map { FastCraftRecipe(this, it) }
-            .forEach { recipes += it }
+        craftableRecipeFinder.loadRecipes()
     }
 
+    private inner class CraftableRecipeFinderListener : CraftableRecipeFinder.Listener {
+        override fun onNewRecipesLoaded(newRecipes: List<FcCraftingRecipePrepared>) {
+            newRecipes
+//                .uniqueBy { it.ingredients.values.toSet() to it.resultsPreview.toSet() }
+                .map { FastCraftRecipe(this@FastCraftGuiModel, it) }
+                .forEach { recipes += it }
+
+            listener?.onRecipesChange(recipes)
+        }
+    }
 
     /**
      * @return `true` iff successful.
@@ -130,5 +128,9 @@ class FastCraftGuiModel(
 
     fun openCraftingTable() {
         player.openCraftingTable()
+    }
+
+    interface Listener {
+        fun onRecipesChange(recipes: List<FastCraftRecipe?>) {}
     }
 }

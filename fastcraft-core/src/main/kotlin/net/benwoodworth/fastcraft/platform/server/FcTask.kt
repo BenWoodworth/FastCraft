@@ -12,8 +12,8 @@ interface FcTask {
     interface Factory {
         fun startTask(
             async: Boolean = false,
-            delaySeconds: Double = 0.0,
-            intervalSeconds: Double = 0.0,
+            delayTicks: Long = 0L,
+            intervalTicks: Long = 0L,
             action: (task: FcTask) -> Unit,
         ): FcTask
     }
