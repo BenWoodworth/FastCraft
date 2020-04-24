@@ -2,16 +2,16 @@ package net.benwoodworth.fastcraft.bukkit
 
 import dagger.Module
 import dagger.Provides
-import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfig_1_7_5_R01
+import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfig_1_7
 import net.benwoodworth.fastcraft.bukkit.gui.*
 import net.benwoodworth.fastcraft.bukkit.item.*
-import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerEvents_1_13_R01
-import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerEvents_1_7_5_R01
-import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayer_1_7_5_R01
+import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerEvents_1_13
+import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerEvents_1_7
+import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayer_1_7
 import net.benwoodworth.fastcraft.bukkit.recipe.*
-import net.benwoodworth.fastcraft.bukkit.server.BukkitFcLogger_1_7_5_R01
-import net.benwoodworth.fastcraft.bukkit.server.BukkitFcPluginData_1_7_5_R01
-import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTask_1_7_5_R01
+import net.benwoodworth.fastcraft.bukkit.server.BukkitFcLogger_1_7
+import net.benwoodworth.fastcraft.bukkit.server.BukkitFcPluginData_1_7
+import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTask_1_7
 import net.benwoodworth.fastcraft.bukkit.text.*
 import net.benwoodworth.fastcraft.bukkit.util.BukkitVersion
 import net.benwoodworth.fastcraft.platform.config.FcConfig
@@ -44,13 +44,12 @@ class BukkitFastCraftModule(
     private val bukkitVersion = BukkitVersion.parse(plugin.server.bukkitVersion)
 
     private companion object {
-        val VERSION_1_15_R01 = BukkitVersion.parse("1.15-R0.1")
-        val VERSION_1_14_R01 = BukkitVersion.parse("1.14-R0.1")
-        val VERSION_1_13_R01 = BukkitVersion.parse("1.13-R0.1")
-        val VERSION_1_13_1_R01 = BukkitVersion.parse("1.13.1-R0.1")
-        val VERSION_1_12_1_R01 = BukkitVersion.parse("1.12.1-R0.1")
-        val VERSION_1_8_R01 = BukkitVersion.parse("1.8-R0.1")
-        val VERSION_1_7_5_R01 = BukkitVersion.parse("1.7.5-R0.1")
+        val VERSION_1_15 = BukkitVersion.parse("1.15")
+        val VERSION_1_14 = BukkitVersion.parse("1.14")
+        val VERSION_1_13 = BukkitVersion.parse("1.13")
+        val VERSION_1_12 = BukkitVersion.parse("1.12")
+        val VERSION_1_8 = BukkitVersion.parse("1.8")
+        val VERSION_1_7 = BukkitVersion.parse("1.7")
     }
 
     @Provides
@@ -88,118 +87,118 @@ class BukkitFastCraftModule(
     @Provides
     @Singleton
     fun provideFcLogger(): FcLogger {
-        return BukkitFcLogger_1_7_5_R01(plugin.logger)
+        return BukkitFcLogger_1_7(plugin.logger)
     }
 
     @Provides
     @Singleton
-    fun provideFcPluginData(instance: BukkitFcPluginData_1_7_5_R01): FcPluginData {
+    fun provideFcPluginData(instance: BukkitFcPluginData_1_7): FcPluginData {
         return instance
     }
 
     @Provides
     @Singleton
-    fun provideFcConfigFactory(instance: BukkitFcConfig_1_7_5_R01.Factory): FcConfig.Factory {
+    fun provideFcConfigFactory(instance: BukkitFcConfig_1_7.Factory): FcConfig.Factory {
         return instance
     }
 
     @Provides
     @Singleton
-    fun provideFcGuiFactory(instance: BukkitFcGui_1_7_5_R01.Factory): FcGui.Factory {
+    fun provideFcGuiFactory(instance: BukkitFcGui_1_7.Factory): FcGui.Factory {
         return instance
     }
 
     @Provides
     @Singleton
     fun provideFcGuiButtonFactory(
-        instance_1_13: Provider<BukkitFcGuiButton_1_13_R01.Factory>,
-        instance_1_8: Provider<BukkitFcGuiButton_1_8_R01.Factory>,
-        instance_1_7_5: Provider<BukkitFcGuiButton_1_7_5_R01.Factory>,
+        instance_1_13: Provider<BukkitFcGuiButton_1_13.Factory>,
+        instance_1_8: Provider<BukkitFcGuiButton_1_8.Factory>,
+        instance_1_7: Provider<BukkitFcGuiButton_1_7.Factory>,
     ): BukkitFcGuiButton.Factory {
         return when {
-            bukkitVersion >= VERSION_1_13_R01 -> instance_1_13.get()
-            bukkitVersion >= VERSION_1_8_R01 -> instance_1_8.get()
-            bukkitVersion >= VERSION_1_7_5_R01 -> instance_1_7_5.get()
-            else -> instance_1_7_5.get()
+            bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
+            bukkitVersion >= VERSION_1_8 -> instance_1_8.get()
+            bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
+            else -> instance_1_7.get()
         }
     }
 
     @Provides
     @Singleton
-    fun provideFcGuiLayoutFactory(instance: BukkitFcGuiLayout_1_7_5_R01.Factory): BukkitFcGuiLayout.Factory {
+    fun provideFcGuiLayoutFactory(instance: BukkitFcGuiLayout_1_7.Factory): BukkitFcGuiLayout.Factory {
         return instance
     }
 
     @Provides
     @Singleton
     fun provideFcItemFactory(
-        instance_1_13: Provider<BukkitFcItem_1_13_R01.Factory>,
-        instance_1_7_5: Provider<BukkitFcItem_1_7_5_R01.Factory>,
+        instance_1_13: Provider<BukkitFcItem_1_13.Factory>,
+        instance_1_7: Provider<BukkitFcItem_1_7.Factory>,
     ): FcItem.Factory {
         return when {
-            bukkitVersion >= VERSION_1_13_R01 -> instance_1_13.get()
-            bukkitVersion >= VERSION_1_7_5_R01 -> instance_1_7_5.get()
-            else -> instance_1_7_5.get()
+            bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
+            bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
+            else -> instance_1_7.get()
         }
     }
 
     @Provides
     @Singleton
     fun provideFcItemTypes(
-        instance_1_13: Provider<BukkitFcItemTypes_1_13_R01>,
-        instance_1_7_5: Provider<BukkitFcItemTypes_1_7_5_R01>,
+        instance_1_13: Provider<BukkitFcItemTypes_1_13>,
+        instance_1_7: Provider<BukkitFcItemTypes_1_7>,
     ): FcItemTypes {
         return when {
-            bukkitVersion >= VERSION_1_13_R01 -> instance_1_13.get()
-            bukkitVersion >= VERSION_1_7_5_R01 -> instance_1_7_5.get()
-            else -> instance_1_7_5.get()
+            bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
+            bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
+            else -> instance_1_7.get()
         }
     }
 
     @Provides
     @Singleton
     fun provideFcItemTypesComparator(
-        instance_1_13: Provider<BukkitFcItemTypeComparator_1_13_R01>,
-        instance_1_7_5: Provider<BukkitFcItemTypeComparator_1_7_5_R01>,
+        instance_1_13: Provider<BukkitFcItemTypeComparator_1_13>,
+        instance_1_7: Provider<BukkitFcItemTypeComparator_1_7>,
     ): FcItemTypeComparator {
         return when {
-            bukkitVersion >= VERSION_1_13_R01 -> instance_1_13.get()
-            bukkitVersion >= VERSION_1_7_5_R01 -> instance_1_7_5.get()
-            else -> instance_1_7_5.get()
+            bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
+            bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
+            else -> instance_1_7.get()
         }
     }
 
     @Provides
     @Singleton
-    fun provideFcPlayerProvider(instance: BukkitFcPlayer_1_7_5_R01.Provider): FcPlayer.Provider {
+    fun provideFcPlayerProvider(instance: BukkitFcPlayer_1_7.Provider): FcPlayer.Provider {
         return instance
     }
 
     @Provides
     @Singleton
     fun provideFcRecipeProvider(
-        instance_1_15: Provider<BukkitFcRecipeProvider_1_15_R01>,
-        instance_1_8: Provider<BukkitFcRecipeProvider_1_8_R01>,
-        instance_1_7_5: Provider<BukkitFcRecipeProvider_1_7_5_R01>,
+        instance_1_15: Provider<BukkitFcRecipeProvider_1_15>,
+        instance_1_8: Provider<BukkitFcRecipeProvider_1_8>,
+        instance_1_7: Provider<BukkitFcRecipeProvider_1_7>,
     ): FcRecipeProvider {
         return when {
-            bukkitVersion >= VERSION_1_15_R01 -> instance_1_15.get()
-            bukkitVersion >= VERSION_1_8_R01 -> instance_1_8.get()
-            bukkitVersion >= VERSION_1_7_5_R01 -> instance_1_7_5.get()
-            else -> instance_1_7_5.get()
+            bukkitVersion >= VERSION_1_15 -> instance_1_15.get()
+            bukkitVersion >= VERSION_1_8 -> instance_1_8.get()
+            bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
+            else -> instance_1_7.get()
         }
     }
 
     @Provides
     @Singleton
     fun provideCraftingInventoryViewFactory(
-        instance_1_14: Provider<CraftingInventoryViewFactory_1_14_R01>,
-        instance_1_7_5: Provider<CraftingInventoryViewFactory_1_7_5_R01>,
+        instance_1_14: Provider<CraftingInventoryViewFactory_1_14>,
+        instance_1_7: Provider<CraftingInventoryViewFactory_1_7>,
     ): CraftingInventoryViewFactory {
         return when {
-            bukkitVersion >= VERSION_1_14_R01 -> instance_1_14.get()
-            bukkitVersion >= VERSION_1_7_5_R01 -> instance_1_7_5.get()
-            else -> instance_1_7_5.get()
+            bukkitVersion >= VERSION_1_14 -> instance_1_14.get()
+            bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
+            else -> instance_1_7.get()
         }
     }
 
@@ -207,68 +206,66 @@ class BukkitFastCraftModule(
     @Provides
     @Singleton
     fun provideFcCraftingRecipeFactory(
-        instance_1_15: Provider<BukkitFcCraftingRecipe_1_15_R01.Factory>,
-        instance_1_13_1: Provider<BukkitFcCraftingRecipe_1_13_1_R01.Factory>,
-        instance_1_13: Provider<BukkitFcCraftingRecipe_1_13_R01.Factory>,
-        instance_1_12_1: Provider<BukkitFcCraftingRecipe_1_12_1_R01.Factory>,
-        instance_1_7_5: Provider<BukkitFcCraftingRecipe_1_7_5_R01.Factory>,
+        instance_1_15: Provider<BukkitFcCraftingRecipe_1_15.Factory>,
+        instance_1_13: Provider<BukkitFcCraftingRecipe_1_13.Factory>,
+        instance_1_12: Provider<BukkitFcCraftingRecipe_1_12.Factory>,
+        instance_1_7: Provider<BukkitFcCraftingRecipe_1_7.Factory>,
     ): BukkitFcCraftingRecipe.Factory {
         return when {
-            bukkitVersion >= VERSION_1_15_R01 -> instance_1_15.get()
-            bukkitVersion >= VERSION_1_13_1_R01 -> instance_1_13_1.get()
-            bukkitVersion >= VERSION_1_13_R01 -> instance_1_13.get()
-            bukkitVersion >= VERSION_1_12_1_R01 -> instance_1_12_1.get()
-            bukkitVersion >= VERSION_1_7_5_R01 -> instance_1_7_5.get()
-            else -> instance_1_7_5.get()
+            bukkitVersion >= VERSION_1_15 -> instance_1_15.get()
+            bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
+            bukkitVersion >= VERSION_1_12 -> instance_1_12.get()
+            bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
+            else -> instance_1_7.get()
         }
     }
 
     @Provides
     @Singleton
     fun provideFcPlayerEvents(
-        instance_1_13: Provider<BukkitFcPlayerEvents_1_13_R01>,
-        instance_1_7_5: Provider<BukkitFcPlayerEvents_1_7_5_R01>,
+        instance_1_13: Provider<BukkitFcPlayerEvents_1_13>,
+        instance_1_7: Provider<BukkitFcPlayerEvents_1_7>,
     ): FcPlayerEvents {
         return when {
-            bukkitVersion >= VERSION_1_13_R01 -> instance_1_13.get()
-            bukkitVersion >= VERSION_1_7_5_R01 -> instance_1_7_5.get()
-            else -> instance_1_7_5.get()
+            bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
+            bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
+            else -> instance_1_7.get()
         }
     }
 
     @Provides
     @Singleton
-    fun provideFcTaskFactory(instance: BukkitFcTask_1_7_5_R01.Factory): FcTask.Factory {
+    fun provideFcTaskFactory(instance: BukkitFcTask_1_7.Factory): FcTask.Factory {
         return instance
     }
 
     @Provides
     @Singleton
-    fun provideFcTextFactory(instance: BukkitFcTextFactory_1_7_5_R01): FcTextFactory {
+    fun provideFcTextFactory(instance: BukkitFcTextFactory_1_7): FcTextFactory {
         return instance
     }
 
     @Provides
     @Singleton
-    fun provideFcTextColors(instance: BukkitFcTextColors_1_7_5_R01): FcTextColors {
+    fun provideFcTextColors(instance: BukkitFcTextColors_1_7): FcTextColors {
         return instance
     }
 
     @Provides
     @Singleton
-    fun provideFcTextConverter(instance: BukkitFcTextConverter_1_7_5_R01): FcTextConverter {
+    fun provideFcTextConverter(instance: BukkitFcTextConverter_1_7): FcTextConverter {
         return instance
     }
 
     @Provides
     @Singleton
-    fun provideBukkitLocalizer(instance: BukkitLocalizer_1_7_5_R01): BukkitLocalizer {
+    fun provideBukkitLocalizer(instance: BukkitLocalizer_1_7): BukkitLocalizer {
         return instance
     }
 
     @Provides
     @Singleton
-    fun provideIngredientProductProvider(instance: IngredientRemnantProvider_1_7_5_R01): IngredientRemnantProvider {
+    fun provideIngredientProductProvider(instance: IngredientRemnantProvider_1_7): IngredientRemnantProvider {
         return instance
     }
 }

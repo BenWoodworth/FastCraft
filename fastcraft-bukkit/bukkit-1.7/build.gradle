@@ -1,0 +1,12 @@
+repositories {
+    maven {
+        url 'https://maven.sk89q.com/repo'
+        metadataSources { artifact() }
+    }
+}
+
+dependencies {
+    compileOnly 'org.bukkit:bukkit:1.7.10-R0.1-20140817.175650-8'
+
+    api project(':fastcraft-bukkit:bukkit-platform')
+}
