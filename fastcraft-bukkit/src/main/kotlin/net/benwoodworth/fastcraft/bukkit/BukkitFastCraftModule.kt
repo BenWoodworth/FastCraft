@@ -146,11 +146,15 @@ class BukkitFastCraftModule(
     @Provides
     @Singleton
     fun provideFcItemTypes(
-        instance_1_13: Provider<BukkitFcItemTypes_1_13>,
+        instance_1_15: Provider<BukkitFcItemTypes_1_15>,
+        instance_1_13: Provider<BukkitFcItemTypes_1_15>,
+        instance_1_9: Provider<BukkitFcItemTypes_1_15>,
         instance_1_7: Provider<BukkitFcItemTypes_1_7>,
     ): FcItemTypes {
         return when {
+            bukkitVersion >= VERSION_1_15 -> instance_1_15.get()
             bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
+            bukkitVersion >= VERSION_1_9 -> instance_1_9.get()
             bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
             else -> instance_1_7.get()
         }
@@ -277,21 +281,6 @@ class BukkitFastCraftModule(
     ): BukkitLocalizer {
         return when {
             bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
-            bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
-            else -> instance_1_7.get()
-        }
-    }
-
-    @Provides
-    @Singleton
-    fun provideIngredientRemnantProvider(
-        instance_1_15: Provider<IngredientRemnantProvider_1_15>,
-        instance_1_9: Provider<IngredientRemnantProvider_1_9>,
-        instance_1_7: Provider<IngredientRemnantProvider_1_7>,
-    ): IngredientRemnantProvider {
-        return when {
-            bukkitVersion >= VERSION_1_15 -> instance_1_15.get()
-            bukkitVersion >= VERSION_1_9 -> instance_1_9.get()
             bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
             else -> instance_1_7.get()
         }

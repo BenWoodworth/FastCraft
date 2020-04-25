@@ -1,13 +1,16 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
 import net.benwoodworth.fastcraft.platform.item.FcItemType
+import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.Material
 import org.bukkit.material.MaterialData
 import javax.inject.Inject
+import javax.inject.Provider
 
 open class BukkitFcItemTypes_1_7 @Inject constructor(
-    private val textFactory: FcTextFactory,
+    protected val textFactory: FcTextFactory,
+    protected val itemTypes: Provider<FcItemTypes>,
 ) : BukkitFcItemTypes {
     override val air: FcItemType by lazy {
         fromMaterial(Material.AIR)
@@ -35,6 +38,6 @@ open class BukkitFcItemTypes_1_7 @Inject constructor(
 
     override fun fromMaterialData(materialData: Any): FcItemType {
         require(materialData is MaterialData)
-        return BukkitFcItemType_1_7(materialData, textFactory)
+        return BukkitFcItemType_1_7(materialData, textFactory, itemTypes.get())
     }
 }

@@ -8,23 +8,16 @@ import org.bukkit.Material
 import javax.inject.Inject
 import javax.inject.Provider
 
-open class BukkitFcItemTypes_1_13 @Inject constructor(
+class BukkitFcItemTypes_1_15 @Inject constructor(
     textFactory: FcTextFactory,
+    localizer: BukkitLocalizer,
     itemTypes: Provider<FcItemTypes>,
-    protected val localizer: BukkitLocalizer,
-) : BukkitFcItemTypes_1_7(
+) : BukkitFcItemTypes_1_13(
     textFactory = textFactory,
+    localizer = localizer,
     itemTypes = itemTypes,
 ) {
-    override val craftingTable: FcItemType by lazy {
-        fromMaterial(Material.CRAFTING_TABLE)
-    }
-
     override fun fromMaterial(material: Material): FcItemType {
-        return BukkitFcItemType_1_13(material, textFactory, localizer, itemTypes.get())
-    }
-
-    override fun fromMaterialData(materialData: Any): FcItemType {
-        throw UnsupportedOperationException()
+        return BukkitFcItemType_1_15(material, textFactory, localizer, itemTypes.get())
     }
 }

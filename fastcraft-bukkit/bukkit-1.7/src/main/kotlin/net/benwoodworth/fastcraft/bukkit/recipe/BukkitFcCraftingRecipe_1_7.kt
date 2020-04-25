@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft.bukkit.recipe
 
 import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItem.Companion.toItemStack
 import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItem.Factory.Companion.createFcItem
+import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemType.Companion.material
 import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayer.Companion.player
 import net.benwoodworth.fastcraft.bukkit.recipe.BukkitFcIngredient.Companion.slotIndex
 import net.benwoodworth.fastcraft.platform.item.FcItem
@@ -22,7 +23,6 @@ open class BukkitFcCraftingRecipe_1_7(
     private val server: Server,
     private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
     private val itemFactory: FcItem.Factory,
-    private val remnantProvider: IngredientRemnantProvider,
     private val inventoryViewFactory: CraftingInventoryViewFactory,
 ) : BukkitFcCraftingRecipe {
     private companion object {
@@ -106,8 +106,10 @@ open class BukkitFcCraftingRecipe_1_7(
         }
 
         val ingredientRemnants = ingredients.values
-            .flatMap { remnantProvider.getRemnants(it.toItemStack()) }
-            .map { itemFactory.createFcItem(it) }
+            .mapNotNull { ingredient ->
+                ingredient.type.craftingResult
+                    ?.let { itemFactory.createFcItem(ItemStack(it.material, ingredient.amount)) }
+            }
 
         val resultsPreview = listOf(itemFactory.createFcItem(resultItem)) + ingredientRemnants
 
@@ -118,7 +120,8 @@ open class BukkitFcCraftingRecipe_1_7(
                 ingredients,
                 ingredientRemnants,
                 resultsPreview,
-                prepareView)
+                prepareView
+            )
         )
     }
 
@@ -169,7 +172,6 @@ open class BukkitFcCraftingRecipe_1_7(
         private val server: Server,
         private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
         private val itemFactory: FcItem.Factory,
-        private val remnantProvider: IngredientRemnantProvider,
         private val inventoryViewFactory: CraftingInventoryViewFactory,
     ) : BukkitFcCraftingRecipe.Factory {
         override fun create(recipe: Recipe): FcCraftingRecipe {
@@ -178,7 +180,6 @@ open class BukkitFcCraftingRecipe_1_7(
                 server = server,
                 preparedRecipeFactory = preparedRecipeFactory,
                 itemFactory = itemFactory,
-                remnantProvider = remnantProvider,
                 inventoryViewFactory = inventoryViewFactory
             )
         }

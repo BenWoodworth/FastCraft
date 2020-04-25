@@ -7,6 +7,7 @@ interface FcItemType {
     val itemName: FcText
     val blockName: FcText
     val maxAmount: Int
+    val craftingResult: FcItemType?
 
     override fun equals(other: Any?): Boolean
 
