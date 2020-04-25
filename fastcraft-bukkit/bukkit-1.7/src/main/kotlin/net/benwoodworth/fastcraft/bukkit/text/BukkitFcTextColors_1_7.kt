@@ -6,23 +6,23 @@ import javax.inject.Inject
 
 class BukkitFcTextColors_1_7 @Inject constructor(
 ) : BukkitFcTextColors {
-    override val black = BukkitFcTextColor_1_7("black", ChatColor.BLACK)
-    override val darkBlue = BukkitFcTextColor_1_7("dark_blue", ChatColor.DARK_BLUE)
-    override val darkGreen = BukkitFcTextColor_1_7("dark_green", ChatColor.DARK_GREEN)
-    override val darkAqua = BukkitFcTextColor_1_7("dark_aqua", ChatColor.DARK_AQUA)
-    override val darkRed = BukkitFcTextColor_1_7("dark_red", ChatColor.DARK_RED)
-    override val darkPurple = BukkitFcTextColor_1_7("dark_purple", ChatColor.DARK_PURPLE)
-    override val gold = BukkitFcTextColor_1_7("gold", ChatColor.GOLD)
-    override val gray = BukkitFcTextColor_1_7("gray", ChatColor.GRAY)
-    override val darkGray = BukkitFcTextColor_1_7("dark_gray", ChatColor.DARK_GRAY)
-    override val blue = BukkitFcTextColor_1_7("blue", ChatColor.BLUE)
-    override val green = BukkitFcTextColor_1_7("green", ChatColor.GREEN)
-    override val aqua = BukkitFcTextColor_1_7("aqua", ChatColor.AQUA)
-    override val red = BukkitFcTextColor_1_7("red", ChatColor.RED)
-    override val lightPurple = BukkitFcTextColor_1_7("light_purple", ChatColor.LIGHT_PURPLE)
-    override val yellow = BukkitFcTextColor_1_7("yellow", ChatColor.YELLOW)
-    override val white = BukkitFcTextColor_1_7("white", ChatColor.WHITE)
-    override val default = BukkitFcTextColor_1_7("reset", ChatColor.RESET)
+    override val black: FcTextColor by lazy { create("black", ChatColor.BLACK) }
+    override val darkBlue: FcTextColor by lazy { create("dark_blue", ChatColor.DARK_BLUE) }
+    override val darkGreen: FcTextColor by lazy { create("dark_green", ChatColor.DARK_GREEN) }
+    override val darkAqua: FcTextColor by lazy { create("dark_aqua", ChatColor.DARK_AQUA) }
+    override val darkRed: FcTextColor by lazy { create("dark_red", ChatColor.DARK_RED) }
+    override val darkPurple: FcTextColor by lazy { create("dark_purple", ChatColor.DARK_PURPLE) }
+    override val gold: FcTextColor by lazy { create("gold", ChatColor.GOLD) }
+    override val gray: FcTextColor by lazy { create("gray", ChatColor.GRAY) }
+    override val darkGray: FcTextColor by lazy { create("dark_gray", ChatColor.DARK_GRAY) }
+    override val blue: FcTextColor by lazy { create("blue", ChatColor.BLUE) }
+    override val green: FcTextColor by lazy { create("green", ChatColor.GREEN) }
+    override val aqua: FcTextColor by lazy { create("aqua", ChatColor.AQUA) }
+    override val red: FcTextColor by lazy { create("red", ChatColor.RED) }
+    override val lightPurple: FcTextColor by lazy { create("light_purple", ChatColor.LIGHT_PURPLE) }
+    override val yellow: FcTextColor by lazy { create("yellow", ChatColor.YELLOW) }
+    override val white: FcTextColor by lazy { create("white", ChatColor.WHITE) }
+    override val default: FcTextColor by lazy { create("reset", ChatColor.RESET) }
 
     override fun fromId(id: String): FcTextColor {
         return when (id) {
@@ -45,5 +45,9 @@ class BukkitFcTextColors_1_7 @Inject constructor(
             "reset" -> default
             else -> throw IllegalArgumentException("Invalid color ID: $id")
         }
+    }
+
+    override fun create(id: String, chatColor: ChatColor): FcTextColor {
+        return BukkitFcTextColor_1_7(id, chatColor)
     }
 }
