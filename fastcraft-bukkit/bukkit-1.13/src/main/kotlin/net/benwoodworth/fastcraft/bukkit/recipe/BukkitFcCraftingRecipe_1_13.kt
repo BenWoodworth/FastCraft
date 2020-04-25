@@ -12,7 +12,7 @@ import javax.inject.Inject
 open class BukkitFcCraftingRecipe_1_13(
     recipe: Recipe,
     server: Server,
-    preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_7Factory,
+    preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
     itemFactory: FcItem.Factory,
     remnantProvider: IngredientRemnantProvider,
     inventoryViewFactory: CraftingInventoryViewFactory,
@@ -56,7 +56,7 @@ open class BukkitFcCraftingRecipe_1_13(
 
     class Factory @Inject constructor(
         private val server: Server,
-        private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared_1_7Factory,
+        private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
         private val itemFactory: FcItem.Factory,
         private val remnantProvider: IngredientRemnantProvider,
         private val inventoryViewFactory: CraftingInventoryViewFactory,

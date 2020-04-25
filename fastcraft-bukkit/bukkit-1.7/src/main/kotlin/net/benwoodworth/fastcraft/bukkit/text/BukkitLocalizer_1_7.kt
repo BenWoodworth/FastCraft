@@ -9,10 +9,10 @@ class BukkitLocalizer_1_7 @Inject constructor(
     private val defaultLocale: Map<String, String>
 
     init {
-        val entryRegex = Regex(""".*?"(.*)"\s*:\s*"(.*)".*""")
+        val entryRegex = Regex("^([^=]*)=(.*)$")
 
         defaultLocale = Bukkit::class.java
-            .getResource("/assets/minecraft/lang/en_us.json")
+            .getResource("/assets/minecraft/lang/en_us.lang")
             ?.openStream()
             ?.reader()
             ?.useLines { lines ->

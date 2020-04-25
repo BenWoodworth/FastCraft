@@ -2,16 +2,16 @@ package net.benwoodworth.fastcraft.bukkit
 
 import dagger.Module
 import dagger.Provides
-import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfig_1_7
+import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfig_1_7_5_R01
 import net.benwoodworth.fastcraft.bukkit.gui.*
 import net.benwoodworth.fastcraft.bukkit.item.*
-import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerEvents_1_13
-import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerEvents_1_7
-import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayer_1_7
+import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerEvents_1_13_R01
+import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerEvents_1_7_5_R01
+import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayer_1_7_5_R01
 import net.benwoodworth.fastcraft.bukkit.recipe.*
-import net.benwoodworth.fastcraft.bukkit.server.BukkitFcLogger_1_7
-import net.benwoodworth.fastcraft.bukkit.server.BukkitFcPluginData_1_7
-import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTask_1_7
+import net.benwoodworth.fastcraft.bukkit.server.BukkitFcLogger_1_7_5_R01
+import net.benwoodworth.fastcraft.bukkit.server.BukkitFcPluginData_1_7_5_R01
+import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTask_1_7_5_R01
 import net.benwoodworth.fastcraft.bukkit.text.*
 import net.benwoodworth.fastcraft.bukkit.util.BukkitVersion
 import net.benwoodworth.fastcraft.platform.config.FcConfig
@@ -176,6 +176,19 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
+    fun provideFcCraftingRecipePreparedFactory(
+        instance_1_12: Provider<BukkitFcCraftingRecipePrepared_1_12_1_R01.Factory>,
+        instance_1_7_5: Provider<BukkitFcCraftingRecipePrepared_1_7_5_R01.Factory>,
+    ): BukkitFcCraftingRecipePrepared.Factory {
+        return when {
+            bukkitVersion >= VERSION_1_12_1_R01 -> instance_1_12.get()
+            bukkitVersion >= VERSION_1_7_5_R01 -> instance_1_7_5.get()
+            else -> instance_1_7_5.get()
+        }
+    }
+
+    @Provides
+    @Singleton
     fun provideFcRecipeProvider(
         instance_1_15: Provider<BukkitFcRecipeProvider_1_15>,
         instance_1_7: Provider<BukkitFcRecipeProvider_1_7>,
@@ -257,8 +270,15 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun provideBukkitLocalizer(instance: BukkitLocalizer_1_7): BukkitLocalizer {
-        return instance
+    fun provideBukkitLocalizer(
+        instance_1_13: Provider<BukkitLocalizer_1_13_R01>,
+        instance_1_7_5: Provider<BukkitLocalizer_1_7_5_R01>,
+    ): BukkitLocalizer {
+        return when {
+            bukkitVersion >= VERSION_1_13_R01 -> instance_1_13.get()
+            bukkitVersion >= VERSION_1_7_5_R01 -> instance_1_7_5.get()
+            else -> instance_1_7_5.get()
+        }
     }
 
     @Provides
