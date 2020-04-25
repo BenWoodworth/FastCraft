@@ -178,12 +178,10 @@ class BukkitFastCraftModule(
     @Singleton
     fun provideFcRecipeProvider(
         instance_1_15: Provider<BukkitFcRecipeProvider_1_15>,
-        instance_1_8: Provider<BukkitFcRecipeProvider_1_8>,
         instance_1_7: Provider<BukkitFcRecipeProvider_1_7>,
     ): FcRecipeProvider {
         return when {
             bukkitVersion >= VERSION_1_15 -> instance_1_15.get()
-            bukkitVersion >= VERSION_1_8 -> instance_1_8.get()
             bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
             else -> instance_1_7.get()
         }

@@ -31,7 +31,7 @@ open class BukkitFcRecipeProvider_1_7 @Inject constructor(
     }
 
     protected open fun InputStream.toYamlConfiguration(): YamlConfiguration {
-        return this.use { YamlConfiguration.loadConfiguration(this) }
+        return this.use { YamlConfiguration.loadConfiguration(this.reader()) }
     }
 
     override fun getCraftingRecipes(): Sequence<FcCraftingRecipe> {
