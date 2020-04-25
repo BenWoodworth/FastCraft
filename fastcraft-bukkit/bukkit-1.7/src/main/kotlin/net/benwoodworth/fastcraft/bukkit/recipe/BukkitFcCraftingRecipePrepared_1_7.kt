@@ -115,7 +115,7 @@ open class BukkitFcCraftingRecipePrepared_1_7(
             resultsPreview: List<FcItem>,
             preparedCraftingView: InventoryView,
         ): FcCraftingRecipePrepared {
-            return BukkitFcCraftingRecipePrepared_1_7_5_R01(
+            return BukkitFcCraftingRecipePrepared_1_7(
                 player = player,
                 recipe = recipe,
                 ingredients = ingredients,

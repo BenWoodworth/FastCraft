@@ -10,7 +10,7 @@ import org.bukkit.inventory.InventoryView
 import org.bukkit.inventory.ItemStack
 import javax.inject.Inject
 
-open class BukkitFcCraftingRecipePrepared_1_12_1_R01(
+open class BukkitFcCraftingRecipePrepared_1_12(
     player: Player,
     recipe: FcCraftingRecipe,
     ingredients: Map<FcIngredient, FcItem>,
@@ -19,7 +19,7 @@ open class BukkitFcCraftingRecipePrepared_1_12_1_R01(
     preparedCraftingView: InventoryView,
     itemFactory: FcItem.Factory,
     server: Server,
-) : BukkitFcCraftingRecipePrepared_1_7_5_R01(
+) : BukkitFcCraftingRecipePrepared_1_7(
     player = player,
     recipe = recipe,
     ingredients = ingredients,
@@ -45,7 +45,7 @@ open class BukkitFcCraftingRecipePrepared_1_12_1_R01(
             resultsPreview: List<FcItem>,
             preparedCraftingView: InventoryView,
         ): FcCraftingRecipePrepared {
-            return BukkitFcCraftingRecipePrepared_1_12_1_R01(
+            return BukkitFcCraftingRecipePrepared_1_12(
                 player = player,
                 recipe = recipe,
                 ingredients = ingredients,

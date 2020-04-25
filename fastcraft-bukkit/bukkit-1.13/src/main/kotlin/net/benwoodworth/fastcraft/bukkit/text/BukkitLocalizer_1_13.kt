@@ -5,7 +5,7 @@ import org.json.simple.parser.JSONParser
 import java.util.*
 import javax.inject.Inject
 
-class BukkitLocalizer_1_13_R01 @Inject constructor(
+class BukkitLocalizer_1_13 @Inject constructor(
 ) : BukkitLocalizer {
     private val defaultLocale: Map<String, String> =
         Bukkit::class.java
