@@ -48,6 +48,7 @@ class BukkitFastCraftModule(
         val VERSION_1_14 = BukkitVersion.parse("1.14")
         val VERSION_1_13 = BukkitVersion.parse("1.13")
         val VERSION_1_12 = BukkitVersion.parse("1.12")
+        val VERSION_1_9 = BukkitVersion.parse("1.9")
         val VERSION_1_8 = BukkitVersion.parse("1.8")
         val VERSION_1_7 = BukkitVersion.parse("1.7")
     }
@@ -283,7 +284,16 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun provideIngredientProductProvider(instance: IngredientRemnantProvider_1_7): IngredientRemnantProvider {
-        return instance
+    fun provideIngredientRemnantProvider(
+        instance_1_15: Provider<IngredientRemnantProvider_1_15>,
+        instance_1_9: Provider<IngredientRemnantProvider_1_9>,
+        instance_1_7: Provider<IngredientRemnantProvider_1_7>,
+    ): IngredientRemnantProvider {
+        return when {
+            bukkitVersion >= VERSION_1_15 -> instance_1_15.get()
+            bukkitVersion >= VERSION_1_9 -> instance_1_9.get()
+            bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
+            else -> instance_1_7.get()
+        }
     }
 }

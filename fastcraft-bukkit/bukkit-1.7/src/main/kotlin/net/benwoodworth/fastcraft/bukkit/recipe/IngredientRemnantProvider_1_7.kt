@@ -4,7 +4,7 @@ import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import javax.inject.Inject
 
-class IngredientRemnantProvider_1_7 @Inject constructor(
+open class IngredientRemnantProvider_1_7 @Inject constructor(
 ) : IngredientRemnantProvider {
     override fun getRemnants(ingredient: ItemStack): List<ItemStack> {
         return when (ingredient.type) {
