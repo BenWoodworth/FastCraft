@@ -1,5 +1,5 @@
 package net.benwoodworth.fastcraft.platform.command
 
 interface FcCommandRegistry {
-    fun register(executor: FcCommand, name: String, vararg aliases: String)
+    fun register(command: FcCommand, name: String, vararg aliases: String)
 }
