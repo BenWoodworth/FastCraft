@@ -60,14 +60,23 @@ open class BukkitFcItem_1_7(
         protected val textFactory: FcTextFactory,
     ) : BukkitFcItem.Factory {
         override fun copyItem(item: FcItem, amount: Int): FcItem {
-            if (amount == item.amount) {
-                return item
+            try {
+                if (amount == item.amount) {
+                    return item
+                }
+
+                val itemStack = item.toItemStack()
+                itemStack.amount = amount
+
+                return createFcItem(itemStack)
+            } catch (e: AssertionError) {
+                System.err.println("""
+                    Share this with Kepler:
+                    - item = ${item.itemStack}
+                    - amount = $amount
+                """.trimIndent())
+                throw e
             }
-
-            val itemStack = item.toItemStack()
-            itemStack.amount = amount
-
-            return createFcItem(itemStack)
         }
 
         override fun createFcItem(itemStack: ItemStack): FcItem {
