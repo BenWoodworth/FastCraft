@@ -36,6 +36,17 @@ allprojects {
 
         kapt "com.google.dagger:dagger-compiler:$dagger_version"
         kapt "com.google.auto.factory:auto-factory:$auto_factory_version"
+
+        testImplementation "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
+        testImplementation "org.spekframework.spek2:spek-dsl-jvm:$spek_version"
+        testRuntimeOnly "org.spekframework.spek2:spek-runner-junit5:$spek_version"
+        testRuntimeOnly "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    }
+
+    test {
+        useJUnitPlatform {
+            includeEngines 'spek2'
+        }
     }
 
     compileKotlin.kotlinOptions.jvmTarget = java_version
