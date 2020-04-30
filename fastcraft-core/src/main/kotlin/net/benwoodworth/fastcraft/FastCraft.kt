@@ -25,7 +25,9 @@ class FastCraft @Inject internal constructor(
     }
 
     private fun onPlayerOpenWorkbench(event: FcPlayerOpenWorkbenchEvent) {
-        if (!event.player.hasPermission(Permissions.FASTCRAFT_USE)) {
+        if (!event.player.hasPermission(Permissions.FASTCRAFT_USE) ||
+            !playerPrefs.getFastCraftEnabled(event.player)
+        ) {
             return
         }
 
