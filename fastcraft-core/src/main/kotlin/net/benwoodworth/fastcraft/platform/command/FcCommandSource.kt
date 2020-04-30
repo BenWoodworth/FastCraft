@@ -1,11 +1,13 @@
 package net.benwoodworth.fastcraft.platform.command
 
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.text.FcText
 
-sealed class FcCommandSource {
-    abstract class Player : FcCommandSource() {
-        abstract val player: FcPlayer
-    }
+interface FcCommandSource {
+    val player: FcPlayer?
+    val isConsole: Boolean
 
-    abstract class Console : FcCommandSource()
+    fun hasPermission(permission: String): Boolean
+
+    fun sendMessage(message: FcText)
 }
