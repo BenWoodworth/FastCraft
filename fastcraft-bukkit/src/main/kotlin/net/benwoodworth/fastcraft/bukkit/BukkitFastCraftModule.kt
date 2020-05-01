@@ -9,6 +9,7 @@ import net.benwoodworth.fastcraft.bukkit.item.*
 import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerEvents_1_13
 import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerEvents_1_7
 import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayer_1_7
+import net.benwoodworth.fastcraft.bukkit.player.BukkitFcSound_1_7
 import net.benwoodworth.fastcraft.bukkit.recipe.*
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcLogger_1_7
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcPluginData_1_7
@@ -23,6 +24,7 @@ import net.benwoodworth.fastcraft.platform.item.FcItemTypeComparator
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcPlayerEvents
+import net.benwoodworth.fastcraft.platform.player.FcSound
 import net.benwoodworth.fastcraft.platform.recipe.FcRecipeProvider
 import net.benwoodworth.fastcraft.platform.server.FcLogger
 import net.benwoodworth.fastcraft.platform.server.FcPluginData
@@ -309,6 +311,14 @@ class BukkitFastCraftModule(
     fun provideCommandSourceFactory(
         instance: BukkitFcCommandSource_1_7.Factory,
     ): BukkitFcCommandSource.Factory {
+        return instance
+    }
+
+    @Provides
+    @Singleton
+    fun provideSounds(
+        instance: BukkitFcSound_1_7.Sounds,
+    ): FcSound.Sounds {
         return instance
     }
 }
