@@ -19,6 +19,8 @@ class FastCraftCommand @Inject constructor(
     private val playerPrefs: PlayerSettings,
     private val fastCraftGuiFactory: FastCraftGui.Factory,
 ) : FcCommand {
+    override val description = textFactory.createFcText("FastCraft command")
+
     override val usage = textFactory.createFcText(
         text = "/fastcraft [set|craft|help] ...",
         color = textColors.red,
