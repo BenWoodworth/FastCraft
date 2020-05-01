@@ -19,5 +19,14 @@
   "gui.toolbar.amount.description.2": "${aqua}Click Del medio para restaurar",
   "gui.toolbar.workbench.title": "${green}Mesa Normal",
   "gui.toolbar.workbench.description.0": "${aqua}Dale click para abrir los crafteos 3x3",
-  "gui.toolbar.workbench.description.1": "${aqua}Debes usar ${green}/fc set enabled${aqua} para apagar o encender el FastCraft"
+  "gui.toolbar.workbench.description.1": "${aqua}Debes usar ${green}/fc set enabled${aqua} para apagar o encender el FastCraft",
+  "command.error.usage": null,
+  "command.error.permission": null,
+  "command.error.console.only": null,
+  "command.error.player.only": null,
+  "command.error.player.unknown": null,
+  "command.set.enabled.true": null,
+  "command.set.enabled.false": null,
+  "command.set.enabled.true.player": null,
+  "command.set.enabled.false.player": null
 }

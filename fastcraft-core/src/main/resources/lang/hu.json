@@ -19,5 +19,14 @@
   "gui.toolbar.amount.description.2": "${aqua}A középső kattintással visszaállíthatja 1x-re",
   "gui.toolbar.workbench.title": "${green}Barkács rács",
   "gui.toolbar.workbench.description.0": "${aqua}Nyisson meg egy 3x3-as varróhálót",
-  "gui.toolbar.workbench.description.1": "${aqua}Használd ${green}/fc set enabled$aqua a FastCraft letiltásához"
+  "gui.toolbar.workbench.description.1": "${aqua}Használd ${green}/fc set enabled$aqua a FastCraft letiltásához",
+  "command.error.usage": null,
+  "command.error.permission": null,
+  "command.error.console.only": null,
+  "command.error.player.only": null,
+  "command.error.player.unknown": null,
+  "command.set.enabled.true": null,
+  "command.set.enabled.false": null,
+  "command.set.enabled.true.player": null,
+  "command.set.enabled.false.player": null
 }

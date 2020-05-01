@@ -19,5 +19,14 @@
   "gui.toolbar.amount.description.2": "${aqua}중간 클릭으로 초기화",
   "gui.toolbar.workbench.title": "${green}조합 격자판",
   "gui.toolbar.workbench.description.0": "${aqua}3x3 조합 격자판 열기",
-  "gui.toolbar.workbench.description.1": "${aqua}${green}/fc set enabled$aqua 명령어로 FastCraft 를 비활성화 할 수 있습니다"
+  "gui.toolbar.workbench.description.1": "${aqua}${green}/fc set enabled$aqua 명령어로 FastCraft 를 비활성화 할 수 있습니다",
+  "command.error.usage": null,
+  "command.error.permission": null,
+  "command.error.console.only": null,
+  "command.error.player.only": null,
+  "command.error.player.unknown": null,
+  "command.set.enabled.true": null,
+  "command.set.enabled.false": null,
+  "command.set.enabled.true.player": null,
+  "command.set.enabled.false.player": null
 }
