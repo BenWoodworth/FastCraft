@@ -21,7 +21,7 @@
   "gui.toolbar.workbench.description.0": "${aqua}Открыть сетку крафта 3x3",
   "gui.toolbar.workbench.description.1": "${aqua}Используйте ${green}/fc set enabled$aqua для отключения FastCraft",
   "command.error.usage": "${red}Используй команду: ${usage}",
-  "command.error.permission": "${red}У тебя нет прв для использования данной команды: ${perm}",
+  "command.error.permission": "${red}У тебя нет прв для использования данной команды: ${permission}",
   "command.error.player.only": "${red}Ты должен быть игроком, чтобы использовать эту команду",
   "command.set.enabled.true": "${green}Интерфейс FastCraft включён",
   "command.set.enabled.false": "${green}Интерфейс FastCraft выключен",

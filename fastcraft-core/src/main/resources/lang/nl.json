@@ -21,7 +21,7 @@
   "gui.toolbar.workbench.description.0": "${aqua}Open een 3x3 werkbank",
   "gui.toolbar.workbench.description.1": "${aqua}Gebruik ${green}/fc set enabled$aqua om FastCraft uit te schakelen",
   "command.error.usage": "${red}Commando gebruik: ${usage}",
-  "command.error.permission": "${red}Je hebt geen permissie voor dit commando: ${perm}",
+  "command.error.permission": "${red}Je hebt geen permissie voor dit commando: ${permission}",
   "command.error.console.only": "${red}Dit commando kan alleen gebruikt worden in de server console",
   "command.error.player.only": "${red}Je moet een speler zijn om dit commando te gebruiken",
   "command.error.player.unknown": "${red}Onbekende speler: ${player}",

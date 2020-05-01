@@ -21,7 +21,7 @@
   "gui.toolbar.workbench.description.0": "${aqua}Abre un banco de trabajo de 3x3",
   "gui.toolbar.workbench.description.1": "${aqua}Usa ${green}/fc set enabled$aqua para desactivar FastCraft",
   "command.error.usage": "${red}Usar el comando: ${usage}",
-  "command.error.permission": "${red}No tienes el permiso necesario para usar este comando: ${perm}",
+  "command.error.permission": "${red}No tienes el permiso necesario para usar este comando: ${permission}",
   "command.error.console.only": "${red}Este comando solo puede ser usado en consola",
   "command.error.player.only": "${red}Debes ser un jugador para usar este comando",
   "command.error.player.unknown": "${red}Jugador desconocido: ${player}",

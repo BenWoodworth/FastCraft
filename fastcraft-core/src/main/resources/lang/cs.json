@@ -21,7 +21,7 @@
   "gui.toolbar.workbench.description.0": "${aqua}Otevre klasicky 3x3 stul",
   "gui.toolbar.workbench.description.1": "${aqua}Pomocí ${green}/fc set enabled$aqua deaktivujte FastCraft",
   "command.error.usage": "${red}Spravne pouziti prikazu: ${usage}",
-  "command.error.permission": "${red}Nemas dostatecna opravneni opravneni pro tento prikaz: ${perm}",
+  "command.error.permission": "${red}Nemas dostatecna opravneni opravneni pro tento prikaz: ${permission}",
   "command.error.console.only": "${red}Tento prikaz muze vyt pouzit pouze z konsole",
   "command.error.player.only": "${red}Tento prikaz jde pouzit pouze ve hre",
   "command.error.player.unknown": "${red}Neznamy hrac: ${player}",

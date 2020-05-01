@@ -21,7 +21,7 @@
   "gui.toolbar.workbench.description.0": "${aqua}normale 3x3 Werkbank",
   "gui.toolbar.workbench.description.1": "${aqua}/fc set enabled zum deaktivieren",
   "command.error.usage": "${red}Nutzes des Befehl: ${usage}",
-  "command.error.permission": "${red}Du hast nicht die benötigte Berechtigung für diesen Befehl: ${perm}",
+  "command.error.permission": "${red}Du hast nicht die benötigte Berechtigung für diesen Befehl: ${permission}",
   "command.error.console.only": "${red}Dieser Befehl kann nur von der Konsole ausgeführt werden",
   "command.error.player.only": "${red}Du musst ein Spieler sein um diesen Befehl benutzen zu können",
   "command.error.player.unknown": "${red}Unbekannter Spieler: ${player}",

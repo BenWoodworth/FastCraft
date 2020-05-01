@@ -21,7 +21,7 @@
   "gui.toolbar.workbench.description.0": "${aqua}打开 3x3 合成台",
   "gui.toolbar.workbench.description.1": "${aqua}使用 ${green}/fc set enabled$aqua 来关闭 FastCraft",
   "command.error.usage": "${red}正确的使用方式: ${usage}",
-  "command.error.permission": "${red}你没有权限: ${perm}",
+  "command.error.permission": "${red}你没有权限: ${permission}",
   "command.error.console.only": "${red}控制台才能使用",
   "command.error.player.only": "${red}玩家才能使用",
   "command.error.player.unknown": "${red}未知玩家: ${player}",

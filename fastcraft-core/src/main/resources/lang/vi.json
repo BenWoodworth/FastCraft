@@ -21,7 +21,7 @@
   "gui.toolbar.workbench.description.0": "${aqua}Mở bàn chế tạo 3x3",
   "gui.toolbar.workbench.description.1": "${aqua}Dùng ${green}/fc set enabled$aqua để tắt FastCraft",
   "command.error.usage": "${red}Sử dụng lệnh: ${usage}",
-  "command.error.permission": "${red}Bạn không có quyền hạn để dùng lệnh này: ${perm}",
+  "command.error.permission": "${red}Bạn không có quyền hạn để dùng lệnh này: ${permission}",
   "command.error.console.only": "${red}Lệnh này chỉ có thể được thực hiện trong giao diện điều khiển (console) của mày chủ",
   "command.error.player.only": "${red}Bạn phải là một người để dùng lệnh này",
   "command.error.player.unknown": "${red}Không tìm thấy người chơi: ${player}",
