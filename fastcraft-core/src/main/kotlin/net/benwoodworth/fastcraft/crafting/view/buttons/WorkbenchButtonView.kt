@@ -66,7 +66,7 @@ class WorkbenchButtonView(
             }
 
             action?.let {
-                gui.player.playSound(sounds.click)
+                gui.player.playSound(sounds.uiButtonClick)
                 action()
             }
         }

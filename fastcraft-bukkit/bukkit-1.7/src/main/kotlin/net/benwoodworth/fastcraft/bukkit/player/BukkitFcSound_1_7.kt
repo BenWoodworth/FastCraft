@@ -9,7 +9,7 @@ class BukkitFcSound_1_7(
 ) : BukkitFcSound {
     class Sounds @Inject constructor(
     ) : BukkitFcSound.Sounds {
-        override val click: FcSound by lazy { fromSound(Sound.CLICK) }
+        override val uiButtonClick: FcSound by lazy { fromSound(Sound.CLICK) }
 
         override fun fromSound(sound: Sound): FcSound {
             return BukkitFcSound_1_7(sound)
