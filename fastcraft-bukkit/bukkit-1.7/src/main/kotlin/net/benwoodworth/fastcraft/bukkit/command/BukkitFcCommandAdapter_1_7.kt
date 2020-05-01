@@ -41,7 +41,7 @@ class BukkitFcCommandAdapter_1_7(
         override fun create(command: FcCommand): BukkitFcCommandAdapter {
             return BukkitFcCommandAdapter_1_7(
                 command = command,
-                commandSourceFactory = commandSourceFactory
+                commandSourceFactory = commandSourceFactory,
             )
         }
     }

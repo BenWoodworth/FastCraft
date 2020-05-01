@@ -1,6 +1,8 @@
 package net.benwoodworth.fastcraft.commands
 
 import net.benwoodworth.fastcraft.Permissions
+import net.benwoodworth.fastcraft.crafting.FastCraftGui
+import net.benwoodworth.fastcraft.data.PlayerSettings
 import net.benwoodworth.fastcraft.platform.command.FcCommand
 import net.benwoodworth.fastcraft.platform.command.FcCommandRegistry
 import net.benwoodworth.fastcraft.platform.command.FcCommandSource
@@ -14,10 +16,9 @@ class FastCraftCommand @Inject constructor(
     private val textFactory: FcTextFactory,
     private val textColors: FcTextColors,
     private val playerProvider: FcPlayer.Provider,
+    private val playerPrefs: PlayerSettings,
+    private val fastCraftGuiFactory: FastCraftGui.Factory,
 ) : FcCommand {
-    override val permission: String?
-        get() = Permissions.FASTCRAFT_COMMAND
-
     override val usage = textFactory.createFcText(
         text = "/fastcraft [set|craft|help] ...",
         color = textColors.red,
@@ -34,13 +35,27 @@ class FastCraftCommand @Inject constructor(
     )
 
     private val usageCraft = textFactory.createFcText(
-        text = "/fastcraft craft [fastcraft|grid|-] [player]",
+        text = "/fastcraft craft [fastcraft|grid|default] [player]",
         color = textColors.red,
     )
 
-    private fun FcPlayer.sendPermissionMessage(permission: String) {
+    private fun FcCommandSource.sendPermissionMessage(permission: String) {
         sendMessage(textFactory.createFcText(
-            text = "Missing permission: $permission",
+            text = "Missing permission: $permission", // TODO Localize
+            color = textColors.red,
+        ))
+    }
+
+    private fun FcCommandSource.sendMustBePlayerMessage() {
+        sendMessage(textFactory.createFcText(
+            text = "Must be a player to use this command", // TODO Localize
+            color = textColors.red,
+        ))
+    }
+
+    private fun FcCommandSource.sendPlayerNotFoundMessage(player: String) {
+        sendMessage(textFactory.createFcText(
+            text = "Player not found: $player", // TODO Localize
             color = textColors.red,
         ))
     }
@@ -54,17 +69,17 @@ class FastCraftCommand @Inject constructor(
     override fun process(source: FcCommandSource, arguments: String) {
         val args = arguments.split(argSplitExpr)
 
-        val x: Unit = when (args.getOrNull(0)?.toLowerCase()) {
+        when (args.getOrNull(0)?.toLowerCase()) {
             "set" -> when (args.getOrNull(1)?.toLowerCase()) {
                 "enabled" -> when (val enabled = args.getOrNull(2)?.toLowerCase()) {
                     "true",
                     "false",
                     -> when (val player = args.getOrNull(3)) {
                         null -> {
-                            fcSetEnabled(source, enabled.toBoolean(), player)
+                            fcSetEnabled(source, enabled.toBoolean())
                         }
                         else -> when (args.getOrNull(4)) {
-                            null -> fcSetEnabled(source, enabled.toBoolean(), player)
+                            null -> fcSetEnabledAdmin(source, enabled.toBoolean(), player)
                             else -> source.sendMessage(usageSetEnabled)
                         }
                     }
@@ -76,17 +91,17 @@ class FastCraftCommand @Inject constructor(
                     source.sendMessage(usageSet)
                 }
             }
-            "craft" -> when (val type = args.getOrNull(1)?.toLowerCase() ?: "preferred") {
+            "craft" -> when (val type = args.getOrNull(1)?.toLowerCase() ?: "default") {
                 "fastcraft",
                 "grid",
-                "preferred",
+                "default",
                 -> when (val player = args.getOrNull(2)) {
                     null -> {
-                        fcCraft(source, type, player)
+                        fcCraft(source, type)
                     }
                     else -> when (args.getOrNull(3)) {
                         null -> {
-                            fcCraft(source, type, player)
+                            fcCraftAdmin(source, type, player)
                         }
                         else -> {
                             source.sendMessage(usageCraft)
@@ -137,7 +152,7 @@ class FastCraftCommand @Inject constructor(
                 else -> emptyList()
             }
             "craft" -> when (args.getOrNull(1)?.toLowerCase()) {
-                null -> suggestions("fastcraft", "grid", "preferred")
+                null -> suggestions("fastcraft", "grid", "default")
                 else -> when (args.getOrNull(2)) {
                     null -> suggestPlayers()
                     else -> emptyList()
@@ -147,11 +162,92 @@ class FastCraftCommand @Inject constructor(
         }
     }
 
-    fun fcSetEnabled(source: FcCommandSource, enabled: Boolean, player: String?) {
+    fun fcSetEnabled(source: FcCommandSource, enabled: Boolean) {
+        println("fcSetEnabled $enabled")
+    }
+
+    fun fcSetEnabledAdmin(source: FcCommandSource, enabled: Boolean, player: String) {
         println("fcSetEnabled $enabled $player")
     }
 
-    fun fcCraft(source: FcCommandSource, type: String, player: String?) {
-        println("fcCraft $type $player")
+    fun fcCraft(source: FcCommandSource, type: String) {
+        val targetPlayer = source.player
+
+        if (targetPlayer == null) {
+            source.sendMustBePlayerMessage()
+            return
+        }
+
+        val hasFcPerm = source.hasPermission(Permissions.FASTCRAFT_COMMAND_CRAFT_FASTCRAFT)
+        val hasGridPerm = source.hasPermission(Permissions.FASTCRAFT_COMMAND_CRAFT_GRID)
+        val prefersFc = playerPrefs.getFastCraftEnabled(targetPlayer)
+
+        val craftType = when (type) {
+            "default" -> when (prefersFc) {
+                true -> when {
+                    hasFcPerm -> "fastcraft"
+                    hasGridPerm -> "grid"
+                    else -> "fastcraft"
+                }
+                false -> when {
+                    hasGridPerm -> "grid"
+                    hasFcPerm -> "fastcraft"
+                    else -> "grid"
+                }
+            }
+            else -> type
+        }
+
+        when (craftType) {
+            "fastcraft" -> {
+                fastCraftGuiFactory
+                    .createFastCraftGui(targetPlayer)
+                    .open()
+            }
+            "grid" -> {
+                targetPlayer.openCraftingTable()
+            }
+            else -> {
+                throw IllegalStateException()
+            }
+        }
+    }
+
+    fun fcCraftAdmin(source: FcCommandSource, type: String, player: String) {
+        if (!source.hasPermission(Permissions.FASTCRAFT_ADMIN_COMMAND_CRAFT)) {
+            source.sendPermissionMessage(Permissions.FASTCRAFT_ADMIN_COMMAND_CRAFT)
+            return
+        }
+
+        val targetPlayer = playerProvider
+            .getOnlinePlayers()
+            .firstOrNull { it.username.equals(player, true) }
+
+        if (targetPlayer == null) {
+            source.sendPlayerNotFoundMessage(player)
+            return
+        }
+
+        val craftType = when (type) {
+            "default" -> when (playerPrefs.getFastCraftEnabled(targetPlayer)) {
+                true -> "fastcraft"
+                false -> "grid"
+            }
+            else -> type
+        }
+
+        when (craftType) {
+            "fastcraft" -> {
+                fastCraftGuiFactory
+                    .createFastCraftGui(targetPlayer)
+                    .open()
+            }
+            "grid" -> {
+                targetPlayer.openCraftingTable()
+            }
+            else -> {
+                throw IllegalStateException()
+            }
+        }
     }
 }
