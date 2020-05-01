@@ -1,16 +1,8 @@
 package net.benwoodworth.fastcraft.platform.command
 
-import net.benwoodworth.fastcraft.platform.text.FcText
-
 interface FcCommand {
-    val description: FcText?
-        get() = null
-
-    val usage: FcText?
-        get() = null
-
-    val permission: String?
-        get() = null
+    val description: String
+    val usage: String
 
     fun process(source: FcCommandSource, arguments: String)
 
