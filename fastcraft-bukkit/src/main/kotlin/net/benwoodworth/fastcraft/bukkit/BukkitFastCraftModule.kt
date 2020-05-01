@@ -6,10 +6,7 @@ import net.benwoodworth.fastcraft.bukkit.command.*
 import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfig_1_7
 import net.benwoodworth.fastcraft.bukkit.gui.*
 import net.benwoodworth.fastcraft.bukkit.item.*
-import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerEvents_1_13
-import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayerEvents_1_7
-import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayer_1_7
-import net.benwoodworth.fastcraft.bukkit.player.BukkitFcSound_1_7
+import net.benwoodworth.fastcraft.bukkit.player.*
 import net.benwoodworth.fastcraft.bukkit.recipe.*
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcLogger_1_7
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcPluginData_1_7
@@ -317,8 +314,13 @@ class BukkitFastCraftModule(
     @Provides
     @Singleton
     fun provideSounds(
-        instance: BukkitFcSound_1_7.Sounds,
+        instance_1_9: Provider<BukkitFcSound_1_9.Sounds>,
+        instance_1_7: Provider<BukkitFcSound_1_7.Sounds>,
     ): FcSound.Sounds {
-        return instance
+        return when {
+            bukkitVersion >= VERSION_1_9 -> instance_1_9.get()
+            bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
+            else -> instance_1_7.get()
+        }
     }
 }
