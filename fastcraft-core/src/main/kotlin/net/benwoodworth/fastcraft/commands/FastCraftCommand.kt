@@ -167,9 +167,12 @@ class FastCraftCommand @Inject constructor(
         }
 
         playerSettings.setFastCraftEnabled(targetPlayer, enabled)
-        source.sendMessage(textFactory.createFcText(
-            text = "Enabled = $enabled", // TODO localize
-            color = textColors.green,
+        source.sendMessage(textFactory.createLegacy(
+            if (enabled) {
+                Strings.commandSetEnabledTrue()
+            } else {
+                Strings.commandSetEnabledFalse()
+            }
         ))
     }
 
@@ -194,9 +197,12 @@ class FastCraftCommand @Inject constructor(
         }
 
         playerSettings.setFastCraftEnabled(targetPlayer, enabled)
-        source.sendMessage(textFactory.createFcText(
-            text = "${targetPlayer.username}: Enabled = $enabled", // TODO localize
-            color = textColors.green,
+        source.sendMessage(textFactory.createLegacy(
+            if (enabled) {
+                Strings.commandSetEnabledTruePlayer(targetPlayer.username)
+            } else {
+                Strings.commandSetEnabledFalsePlayer(targetPlayer.username)
+            }
         ))
     }
 
