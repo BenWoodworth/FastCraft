@@ -83,8 +83,8 @@ class BukkitFcPlayer_1_7(
         player.openWorkbench(null, true)
     }
 
-    override fun playSound(sound: FcSound) {
-        player.playSound(player.location, sound.sound, 1.0F, 1.0F)
+    override fun playSound(sound: FcSound, volume: Double, pitch: Double) {
+        player.playSound(player.location, sound.sound, volume.toFloat(), pitch.toFloat())
     }
 
     override fun equals(other: Any?): Boolean {

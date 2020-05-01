@@ -20,7 +20,7 @@ interface FcPlayer {
 
     fun openCraftingTable() // TODO Location
 
-    fun playSound(sound: FcSound)
+    fun playSound(sound: FcSound, volume: Double = 1.0, pitch: Double = 1.0)
 
     override fun equals(other: Any?): Boolean
 
