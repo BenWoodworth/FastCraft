@@ -10,20 +10,20 @@ import java.nio.file.Path
  *
  * File Structure:
  * ```
- * | Offset           | Length | Description                            |
- * |------------------|--------|----------------------------------------|
- * | 0x00             | 18     | Header: "FastCraft Storage\n" in UTF-8 |
- * | 0x12             | 2      | Row Length (RL, unsigned)              |
- * | 0x14             | 2      | Metadata Length (ML, unsigned)         |
- * | 0x16             | ML     | Metadata                               |
- * | 0x16 + ML + N*RL | RL     | Nth Row                                |
+ * | Offset           | Length | Description                                |
+ * |------------------|--------|--------------------------------------------|
+ * | 0x00             | 18     | Header: "FastCraft Storage\u0000" in UTF-8 |
+ * | 0x12             | 2      | Row Length (RL, unsigned)                  |
+ * | 0x14             | 2      | Metadata Length (ML, unsigned)             |
+ * | 0x16             | ML     | Metadata                                   |
+ * | 0x16 + ML + N*RL | RL     | Nth Row                                    |
  * ```
  */
 class RowStorageFile private constructor(
     private val file: RandomAccessFile,
 ) : Closeable {
     companion object {
-        private const val HEADER = "FastCraft Storage\n"
+        private const val HEADER = "FastCraft Storage\u0000"
         private const val RL_ADDR = 0x14
         private const val RL_LEN = 2
         private const val ML_ADDR = 0x12
