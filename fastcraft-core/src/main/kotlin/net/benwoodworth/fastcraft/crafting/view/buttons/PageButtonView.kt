@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft.crafting.view.buttons
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
+import net.benwoodworth.fastcraft.Config
 import net.benwoodworth.fastcraft.Strings
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
@@ -87,7 +88,7 @@ class PageButtonView(
             }
 
             action?.let {
-                gui.player.playSound(sounds.uiButtonClick)
+                gui.player.playSound(sounds.uiButtonClick, Config.buttonVolume)
                 action()
             }
         }
