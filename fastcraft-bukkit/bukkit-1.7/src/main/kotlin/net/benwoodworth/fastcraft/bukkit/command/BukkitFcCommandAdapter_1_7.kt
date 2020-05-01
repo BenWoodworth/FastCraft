@@ -3,6 +3,7 @@ package net.benwoodworth.fastcraft.bukkit.command
 import net.benwoodworth.fastcraft.platform.command.FcCommand
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
+import javax.inject.Inject
 
 class BukkitFcCommandAdapter_1_7(
     override val command: FcCommand,
@@ -16,7 +17,7 @@ class BukkitFcCommandAdapter_1_7(
     ): Boolean {
         this.command.process(
             source = commandSourceFactory.create(sender),
-            args = args.joinToString(" "),
+            arguments = args.joinToString(" "),
         )
 
         return true
@@ -30,11 +31,11 @@ class BukkitFcCommandAdapter_1_7(
     ): List<String> {
         return this.command.getSuggestions(
             source = commandSourceFactory.create(sender),
-            args = args.joinToString(" "),
+            arguments = args.joinToString(" "),
         )
     }
 
-    class Factory(
+    class Factory @Inject constructor(
         private val commandSourceFactory: BukkitFcCommandSource.Factory,
     ) : BukkitFcCommandAdapter.Factory {
         override fun create(command: FcCommand): BukkitFcCommandAdapter {

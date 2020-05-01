@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft.bukkit
 
 import dagger.Module
 import dagger.Provides
+import net.benwoodworth.fastcraft.bukkit.command.*
 import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfig_1_7
 import net.benwoodworth.fastcraft.bukkit.gui.*
 import net.benwoodworth.fastcraft.bukkit.item.*
@@ -14,6 +15,7 @@ import net.benwoodworth.fastcraft.bukkit.server.BukkitFcPluginData_1_7
 import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTask_1_7
 import net.benwoodworth.fastcraft.bukkit.text.*
 import net.benwoodworth.fastcraft.bukkit.util.BukkitVersion
+import net.benwoodworth.fastcraft.platform.command.FcCommandRegistry
 import net.benwoodworth.fastcraft.platform.config.FcConfig
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.item.FcItem
@@ -284,5 +286,29 @@ class BukkitFastCraftModule(
             bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
             else -> instance_1_7.get()
         }
+    }
+
+    @Provides
+    @Singleton
+    fun provideCommandAdapterFactory(
+        instance: BukkitFcCommandAdapter_1_7.Factory,
+    ): BukkitFcCommandAdapter.Factory {
+        return instance
+    }
+
+    @Provides
+    @Singleton
+    fun provideCommandRegistry(
+        instance: BukkitFcCommandRegistry_1_7,
+    ): FcCommandRegistry {
+        return instance
+    }
+
+    @Provides
+    @Singleton
+    fun provideCommandSourceFactory(
+        instance: BukkitFcCommandSource_1_7.Factory,
+    ): BukkitFcCommandSource.Factory {
+        return instance
     }
 }

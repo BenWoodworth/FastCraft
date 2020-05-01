@@ -1,5 +1,6 @@
 package net.benwoodworth.fastcraft
 
+import net.benwoodworth.fastcraft.commands.FastCraftCommand
 import net.benwoodworth.fastcraft.crafting.FastCraftGui
 import net.benwoodworth.fastcraft.data.PlayerPreferences
 import net.benwoodworth.fastcraft.platform.player.FcPlayerEvents
@@ -12,10 +13,12 @@ class FastCraft @Inject internal constructor(
     logger: FcLogger,
     private val fastCraftGuiFactory: FastCraftGui.Factory,
     private val playerPrefs: PlayerPreferences,
+    fastCraftCommand: FastCraftCommand,
 ) {
     init {
         Strings.load()
         playerEventsListeners.onPlayerOpenWorkbench += ::onPlayerOpenWorkbench
+        fastCraftCommand.register()
 
         logger.info("Note: Commands and configuration have not been implemented yet, and will be added in a future release.")
     }
