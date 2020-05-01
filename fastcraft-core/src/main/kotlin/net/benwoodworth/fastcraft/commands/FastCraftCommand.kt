@@ -141,7 +141,7 @@ class FastCraftCommand @Inject constructor(
         }
 
         return when (args.getOrNull(0)?.toLowerCase()) {
-            null -> suggestions("help", "set", "craft")
+            null -> suggestions("set", "craft")
             "set" -> when (args.getOrNull(1)?.toLowerCase()) {
                 null -> suggestions("enabled")
                 "enabled" -> when (args.getOrNull(2)?.toLowerCase()) {
