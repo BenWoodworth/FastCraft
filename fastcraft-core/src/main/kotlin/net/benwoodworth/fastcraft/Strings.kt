@@ -26,6 +26,15 @@ object Strings {
     private const val GUI_TOOLBAR_WORKBENCH_TITLE = "gui.toolbar.workbench.title"
     private const val GUI_TOOLBAR_WORKBENCH_DESCRIPTION_0 = "gui.toolbar.workbench.description.0"
     private const val GUI_TOOLBAR_WORKBENCH_DESCRIPTION_1 = "gui.toolbar.workbench.description.1"
+    private const val COMMAND_ERROR_USAGE = "command.error.usage"
+    private const val COMMAND_ERROR_PERMISSION = "command.error.permission"
+    private const val COMMAND_ERROR_CONSOLE_ONLY = "command.error.console.only"
+    private const val COMMAND_ERROR_PLAYER_ONLY = "command.error.player.only"
+    private const val COMMAND_ERROR_PLAYER_UNKNOWN = "command.error.player.unknown"
+    private const val COMMAND_SET_ENABLED_TRUE = "command.set.enabled.true"
+    private const val COMMAND_SET_ENABLED_FALSE = "command.set.enabled.false"
+    private const val COMMAND_SET_ENABLED_TRUE_PLAYER = "command.set.enabled.true.player"
+    private const val COMMAND_SET_ENABLED_FALSE_PLAYER = "command.set.enabled.false.player"
     // endregion
 
     fun load() {
@@ -60,7 +69,7 @@ object Strings {
         return LocaleApi.get(locale, GUI_RECIPE_INGREDIENTS_ITEM)
             ?.substitute(
                 "amount", amount,
-                "item", item
+                "item", item,
             )
             ?: "$GUI_RECIPE_INGREDIENTS_ITEM(amount=$amount, item=$item)"
     }
@@ -75,7 +84,7 @@ object Strings {
         return LocaleApi.get(locale, GUI_RECIPE_RESULTS_ITEM)
             ?.substitute(
                 "amount", amount,
-                "item", item
+                "item", item,
             )
             ?: "$GUI_RECIPE_RESULTS_ITEM(amount=$amount, item=$item)"
     }
@@ -83,7 +92,7 @@ object Strings {
     fun guiRecipeId(locale: Locale, id: String): String {
         return LocaleApi.get(locale, GUI_RECIPE_ID)
             ?.substitute(
-                "id", id
+                "id", id,
             )
             ?: "$GUI_RECIPE_ID(id=$id)"
     }
@@ -92,7 +101,7 @@ object Strings {
         return LocaleApi.get(locale, GUI_TOOLBAR_PAGE_TITLE)
             ?.substitute(
                 "page", page,
-                "total", total
+                "total", total,
             )
             ?: "$GUI_TOOLBAR_PAGE_TITLE(page=$page, total=$total)"
     }
@@ -168,4 +177,69 @@ object Strings {
             ?.substitute()
             ?: GUI_TOOLBAR_WORKBENCH_DESCRIPTION_1
     }
+
+    fun commandErrorUsage(usage: String): String {
+        return LocaleApi.get(COMMAND_ERROR_USAGE)
+            ?.substitute(
+                "usage", usage,
+            )
+            ?: COMMAND_ERROR_USAGE
+    }
+
+    fun commandErrorPermission(permission: String): String {
+        return LocaleApi.get(COMMAND_ERROR_PERMISSION)
+            ?.substitute(
+                "permission", permission,
+            )
+            ?: COMMAND_ERROR_PERMISSION
+    }
+
+    fun commandErrorConsoleOnly(): String {
+        return LocaleApi.get(COMMAND_ERROR_CONSOLE_ONLY)
+            ?.substitute()
+            ?: COMMAND_ERROR_CONSOLE_ONLY
+    }
+
+    fun commandErrorPlayerOnly(): String {
+        return LocaleApi.get(COMMAND_ERROR_PLAYER_ONLY)
+            ?.substitute()
+            ?: COMMAND_ERROR_PLAYER_ONLY
+    }
+
+    fun commandErrorPlayerUnknown(player: String): String {
+        return LocaleApi.get(COMMAND_ERROR_PLAYER_UNKNOWN)
+            ?.substitute(
+                "player", player,
+            )
+            ?: COMMAND_ERROR_PLAYER_UNKNOWN
+    }
+
+    fun commandSetEnabledTrue(): String {
+        return LocaleApi.get(COMMAND_SET_ENABLED_TRUE)
+            ?.substitute()
+            ?: COMMAND_SET_ENABLED_TRUE
+    }
+
+    fun commandSetEnabledFalse(): String {
+        return LocaleApi.get(COMMAND_SET_ENABLED_FALSE)
+            ?.substitute()
+            ?: COMMAND_SET_ENABLED_FALSE
+    }
+
+    fun commandSetEnabledTruePlayer(player: String): String {
+        return LocaleApi.get(COMMAND_SET_ENABLED_TRUE_PLAYER)
+            ?.substitute(
+                "player", player,
+            )
+            ?: COMMAND_SET_ENABLED_TRUE_PLAYER
+    }
+
+    fun commandSetEnabledFalsePlayer(player: String): String {
+        return LocaleApi.get(COMMAND_SET_ENABLED_FALSE_PLAYER)
+            ?.substitute(
+                "player", player,
+            )
+            ?: COMMAND_SET_ENABLED_FALSE_PLAYER
+    }
+
 }
