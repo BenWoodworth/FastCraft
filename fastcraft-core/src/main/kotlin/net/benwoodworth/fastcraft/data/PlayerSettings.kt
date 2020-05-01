@@ -10,7 +10,7 @@ import kotlin.experimental.and
 import kotlin.experimental.inv
 import kotlin.experimental.or
 
-class PlayerPreferences @Inject constructor(
+class PlayerSettings @Inject constructor(
     pluginData: FcPluginData,
 ) : Closeable {
     private companion object {
@@ -48,7 +48,7 @@ class PlayerPreferences @Inject constructor(
     private val defaultFcEnabled = true
 
     init {
-        val prefsFilePath = pluginData.dataFolder.resolve("player-preferences.bin")
+        val prefsFilePath = pluginData.dataFolder.resolve("player-settings.dat")
         if (!Files.exists(prefsFilePath)) {
             Files.createDirectories(prefsFilePath.parent)
             RowStorageFile.create(prefsFilePath, ROW_LEN, 0)
