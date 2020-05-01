@@ -2,11 +2,13 @@ package net.benwoodworth.fastcraft.bukkit.player
 
 import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItem.Companion.toItemStack
 import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayer.Companion.player
+import net.benwoodworth.fastcraft.bukkit.player.BukkitFcSound.Companion.sound
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcText
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextConverter.Companion.toRaw
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcPlayerInventory
+import net.benwoodworth.fastcraft.platform.player.FcSound
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextConverter
 import net.benwoodworth.localeconfig.api.LocaleApi
@@ -79,6 +81,10 @@ class BukkitFcPlayer_1_7(
 
     override fun openCraftingTable() {
         player.openWorkbench(null, true)
+    }
+
+    override fun playSound(sound: FcSound) {
+        player.playSound(player.location, sound.sound, 1.0F, 1.0F)
     }
 
     override fun equals(other: Any?): Boolean {
