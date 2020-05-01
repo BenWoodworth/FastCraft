@@ -21,7 +21,7 @@ the GUI, and the item will be crafted automatically!
 
 ## Server Requirements
 - Java 8+
-- Bukkit 1.7.5 - 1.15+
+- Bukkit 1.7 - 1.15+
 
 ## Configuration
 A configuration has not yet been implemented
