@@ -163,11 +163,45 @@ class FastCraftCommand @Inject constructor(
     }
 
     fun fcSetEnabled(source: FcCommandSource, enabled: Boolean) {
-        println("fcSetEnabled $enabled")
+        val targetPlayer = source.player
+
+        if (targetPlayer == null) {
+            source.sendMustBePlayerMessage()
+            return
+        }
+
+        if (!source.hasPermission(Permissions.FASTCRAFT_COMMAND_SET_ENABLED)) {
+            source.sendMissingPermissionMessage(Permissions.FASTCRAFT_COMMAND_SET_ENABLED)
+            return
+        }
+
+        playerPrefs.setFastCraftEnabled(targetPlayer, enabled)
+        source.sendMessage(textFactory.createFcText(
+            text = "Enabled = $enabled", // TODO localize
+            color = textColors.green,
+        ))
     }
 
     fun fcSetEnabledAdmin(source: FcCommandSource, enabled: Boolean, player: String) {
-        println("fcSetEnabled $enabled $player")
+        if (!source.hasPermission(Permissions.FASTCRAFT_ADMIN_COMMAND_SET_ENABLED)) {
+            source.sendMissingPermissionMessage(Permissions.FASTCRAFT_ADMIN_COMMAND_SET_ENABLED)
+            return
+        }
+
+        val targetPlayer = playerProvider
+            .getOnlinePlayers()
+            .firstOrNull { it.username.equals(player, true) }
+
+        if (targetPlayer == null) {
+            source.sendPlayerNotFoundMessage(player)
+            return
+        }
+
+        playerPrefs.setFastCraftEnabled(targetPlayer, enabled)
+        source.sendMessage(textFactory.createFcText(
+            text = "${targetPlayer.username}: Enabled = $enabled", // TODO localize
+            color = textColors.green,
+        ))
     }
 
     fun fcCraft(source: FcCommandSource, type: String) {
