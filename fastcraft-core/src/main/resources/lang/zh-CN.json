@@ -23,10 +23,10 @@
   "command.error.usage": "${red}正确的使用方式: ${usage}",
   "command.error.permission": "${red}你没有权限: ${perm}",
   "command.error.console.only": "${red}控制台才能使用",
-  "command.error.player.only": "${red}玩家才能使用.",
+  "command.error.player.only": "${red}玩家才能使用",
   "command.error.player.unknown": "${red}未知玩家: ${player}",
-  "command.set.enabled.true": "${green}开启 FastCraft.",
-  "command.set.enabled.false": "${green}关闭 FastCraft.",
-  "command.set.enabled.true.player": "${green}开启 ${player} 的 FastCraft.",
-  "command.set.enabled.false.player": "${green}关闭 ${player} 的 FastCraft."
+  "command.set.enabled.true": "${green}开启 FastCraft",
+  "command.set.enabled.false": "${green}关闭 FastCraft",
+  "command.set.enabled.true.player": "${green}开启 ${player} 的 FastCraft",
+  "command.set.enabled.false.player": "${green}关闭 ${player} 的 FastCraft"
 }

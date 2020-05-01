@@ -23,10 +23,10 @@
   "command.error.usage": "${red}Usar el comando: ${usage}",
   "command.error.permission": "${red}No tienes el permiso necesario para usar este comando: ${perm}",
   "command.error.console.only": "${red}Este comando solo puede ser usado en consola",
-  "command.error.player.only": "${red}Debes ser un jugador para usar este comando.",
+  "command.error.player.only": "${red}Debes ser un jugador para usar este comando",
   "command.error.player.unknown": "${red}Jugador desconocido: ${player}",
-  "command.set.enabled.true": "${green}Interfaz de FastCraft Activada.",
-  "command.set.enabled.false": "${green}Interfaz de FastCraft Desactivada.",
-  "command.set.enabled.true.player": "${green}Activar la interfaz de FastCraft a ${player}.",
-  "command.set.enabled.false.player": "${green}Desactivar la interfaz de FastCraft a ${player}."
+  "command.set.enabled.true": "${green}Interfaz de FastCraft Activada",
+  "command.set.enabled.false": "${green}Interfaz de FastCraft Desactivada",
+  "command.set.enabled.true.player": "${green}Activar la interfaz de FastCraft a ${player}",
+  "command.set.enabled.false.player": "${green}Desactivar la interfaz de FastCraft a ${player}"
 }

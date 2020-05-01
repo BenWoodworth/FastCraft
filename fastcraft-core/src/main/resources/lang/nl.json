@@ -23,10 +23,10 @@
   "command.error.usage": "${red}Commando gebruik: ${usage}",
   "command.error.permission": "${red}Je hebt geen permissie voor dit commando: ${perm}",
   "command.error.console.only": "${red}Dit commando kan alleen gebruikt worden in de server console",
-  "command.error.player.only": "${red}Je moet een speler zijn om dit commando te gebruiken.",
+  "command.error.player.only": "${red}Je moet een speler zijn om dit commando te gebruiken",
   "command.error.player.unknown": "${red}Onbekende speler: ${player}",
-  "command.set.enabled.true": "${green}FastCraft interface ingeschakeld.",
-  "command.set.enabled.false": "${green}FastCraft interface uitgeschakeld.",
-  "command.set.enabled.true.player": "${green}FastCraft interface ingeschakeld voor ${player}.",
-  "command.set.enabled.false.player": "${green}FastCraft interface uitgeschakeld voor ${player}."
+  "command.set.enabled.true": "${green}FastCraft interface ingeschakeld",
+  "command.set.enabled.false": "${green}FastCraft interface uitgeschakeld",
+  "command.set.enabled.true.player": "${green}FastCraft interface ingeschakeld voor ${player}",
+  "command.set.enabled.false.player": "${green}FastCraft interface uitgeschakeld voor ${player}"
 }

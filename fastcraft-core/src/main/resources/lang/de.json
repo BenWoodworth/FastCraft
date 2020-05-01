@@ -19,14 +19,14 @@
   "gui.toolbar.amount.description.2": "${aqua}Mittelklick - zurückzusetzen",
   "gui.toolbar.workbench.title": "${green}Werkbank",
   "gui.toolbar.workbench.description.0": "${aqua}normale 3x3 Werkbank",
-  "gui.toolbar.workbench.description.1": "${aqua}/fc set enabled zum deaktivieren.",
+  "gui.toolbar.workbench.description.1": "${aqua}/fc set enabled zum deaktivieren",
   "command.error.usage": "${red}Nutzes des Befehl: ${usage}",
   "command.error.permission": "${red}Du hast nicht die benötigte Berechtigung für diesen Befehl: ${perm}",
-  "command.error.console.only": "${red}Dieser Befehl kann nur von der Konsole ausgeführt werden.",
-  "command.error.player.only": "${red}Du musst ein Spieler sein um diesen Befehl benutzen zu können.",
+  "command.error.console.only": "${red}Dieser Befehl kann nur von der Konsole ausgeführt werden",
+  "command.error.player.only": "${red}Du musst ein Spieler sein um diesen Befehl benutzen zu können",
   "command.error.player.unknown": "${red}Unbekannter Spieler: ${player}",
-  "command.set.enabled.true": "${green}Das Interface von FastCraft wurde aktiviert.",
-  "command.set.enabled.false": "${green}Das Interface von FastCraft wurde deaktiviert.",
-  "command.set.enabled.true.player": "${green}Das Interface von FastCraft wurde für ${player} aktiviert.",
-  "command.set.enabled.false.player": "${green}Das Interface von FastCraft wurde für ${player} deaktiviert."
+  "command.set.enabled.true": "${green}Das Interface von FastCraft wurde aktiviert",
+  "command.set.enabled.false": "${green}Das Interface von FastCraft wurde deaktiviert",
+  "command.set.enabled.true.player": "${green}Das Interface von FastCraft wurde für ${player} aktiviert",
+  "command.set.enabled.false.player": "${green}Das Interface von FastCraft wurde für ${player} deaktiviert"
 }

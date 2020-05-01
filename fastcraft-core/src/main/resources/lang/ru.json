@@ -22,9 +22,9 @@
   "gui.toolbar.workbench.description.1": "${aqua}Используйте ${green}/fc set enabled$aqua для отключения FastCraft",
   "command.error.usage": "${red}Используй команду: ${usage}",
   "command.error.permission": "${red}У тебя нет прв для использования данной команды: ${perm}",
-  "command.error.player.only": "${red}Ты должен быть игроком, чтобы использовать эту команду.",
-  "command.set.enabled.true": "${green}Интерфейс FastCraft включён.",
-  "command.set.enabled.false": "${green}Интерфейс FastCraft выключен.",
-  "command.set.enabled.true.player": "${green}Интерфейс FastCraft включён для игрока ${player}.",
-  "command.set.enabled.false.player": "${green}Интерфейс FastCraft выключён для игрока ${player}."
+  "command.error.player.only": "${red}Ты должен быть игроком, чтобы использовать эту команду",
+  "command.set.enabled.true": "${green}Интерфейс FastCraft включён",
+  "command.set.enabled.false": "${green}Интерфейс FastCraft выключен",
+  "command.set.enabled.true.player": "${green}Интерфейс FastCraft включён для игрока ${player}",
+  "command.set.enabled.false.player": "${green}Интерфейс FastCraft выключён для игрока ${player}"
 }

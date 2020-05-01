@@ -12,7 +12,7 @@
   "gui.toolbar.page.description.1": "${aqua}Prave kliknutí: předchozí stránka",
   "gui.toolbar.page.description.2": "${aqua}Střední kliknutí: první strana",
   "gui.toolbar.refresh.title": "${green}Znovunacist",
-  "gui.toolbar.refresh.description.0": "${aqua}Znovu nacte predmety v menu.",
+  "gui.toolbar.refresh.description.0": "${aqua}Znovu nacte predmety v menu",
   "gui.toolbar.amount.title": "${green}Vytvářet množství",
   "gui.toolbar.amount.description.0": "${aqua}Leve/prave kliknuti zvysuje/snizuje nasobic",
   "gui.toolbar.amount.description.1": "${aqua}Shift klik zvyuje nasobic o 1",
@@ -23,10 +23,10 @@
   "command.error.usage": "${red}Spravne pouziti prikazu: ${usage}",
   "command.error.permission": "${red}Nemas dostatecna opravneni opravneni pro tento prikaz: ${perm}",
   "command.error.console.only": "${red}Tento prikaz muze vyt pouzit pouze z konsole",
-  "command.error.player.only": "${red}Tento prikaz jde pouzit pouze ve hre.",
+  "command.error.player.only": "${red}Tento prikaz jde pouzit pouze ve hre",
   "command.error.player.unknown": "${red}Neznamy hrac: ${player}",
-  "command.set.enabled.true": "${green}FastCraft interface zapnut.",
-  "command.set.enabled.false": "${green}FastCraft interface vypnut.",
-  "command.set.enabled.true.player": "${green}FastCraft interface zapnut pro hrace ${player}.",
-  "command.set.enabled.false.player": "${green}FastCraft interface vypnut pro hrace ${player}."
+  "command.set.enabled.true": "${green}FastCraft interface zapnut",
+  "command.set.enabled.false": "${green}FastCraft interface vypnut",
+  "command.set.enabled.true.player": "${green}FastCraft interface zapnut pro hrace ${player}",
+  "command.set.enabled.false.player": "${green}FastCraft interface vypnut pro hrace ${player}"
 }
