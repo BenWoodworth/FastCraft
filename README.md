@@ -27,12 +27,23 @@ the GUI, and the item will be crafted automatically!
 A configuration has not yet been implemented
 
 ## Commands
-Commands have not yet been implemented
+| Command                             | Permission                          | Description                           |
+|-------------------------------------|-------------------------------------|---------------------------------------|
+| `/fastcraft set enabled`            | fastcraft.command.set.enabled       | Enable/disable FastCraft for crafting |
+| `/fastcraft set enabled * <player>` | fastcraft.admin.command.set.enabled | Enable/disable FastCraft for a player |
+| `/fastcraft craft fastcraft`        | fastcraft.command.craft.fastcraft   | Open FastCraft                        |
+| `/fastcraft craft grid`             | fastcraft.command.craft.grid        | Open a crafting grid                  |
+| `/fastcraft craft * <player>`       | fastcraft.admin.command.craft       | Open crafting for a player            |
 
 ## Permissions
-| Permission    | Description           |
-|---------------|-----------------------|
-| fastcraft.use | Use the FastCraft GUI |
+| Permission                          | Description                         |
+|-------------------------------------|-------------------------------------|
+| fastcraft.use                       | Use FastCraft for crafting          |
+| fastcraft.command.set.enabled       | `/fastcraft set enabled`            |
+| fastcraft.command.craft.grid        | `/fastcraft craft grid`             |
+| fastcraft.command.craft.fastcraft   | `/fastcraft craft fastcraft`        |
+| fastcraft.admin.command.set.enabled | `/fastcraft set enabled * <player>` |
+| fastcraft.admin.command.craft       | `/fastcraft craft * <player>`       |
 
 ## Building FastCraft
 A guide on how to build FastCraft can be found [here](https://github.com/BenWoodworth/FastCraft/wiki/Building-FastCraft).
