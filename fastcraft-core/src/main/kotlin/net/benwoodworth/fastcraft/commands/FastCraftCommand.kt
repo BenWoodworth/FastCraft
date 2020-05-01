@@ -183,14 +183,19 @@ class FastCraftCommand @Inject constructor(
     }
 
     fun fcSetEnabledAdmin(source: FcCommandSource, enabled: Boolean, player: String) {
+        val targetPlayer = playerProvider
+            .getOnlinePlayers()
+            .firstOrNull { it.username.equals(player, true) }
+
+        if (targetPlayer != null && targetPlayer == source.player) {
+            fcSetEnabled(source, enabled)
+            return
+        }
+
         if (!source.hasPermission(Permissions.FASTCRAFT_ADMIN_COMMAND_SET_ENABLED)) {
             source.sendMissingPermissionMessage(Permissions.FASTCRAFT_ADMIN_COMMAND_SET_ENABLED)
             return
         }
-
-        val targetPlayer = playerProvider
-            .getOnlinePlayers()
-            .firstOrNull { it.username.equals(player, true) }
 
         if (targetPlayer == null) {
             source.sendPlayerNotFoundMessage(player)
@@ -258,14 +263,19 @@ class FastCraftCommand @Inject constructor(
     }
 
     fun fcCraftAdmin(source: FcCommandSource, type: String, player: String) {
+        val targetPlayer = playerProvider
+            .getOnlinePlayers()
+            .firstOrNull { it.username.equals(player, true) }
+
+        if (targetPlayer != null && targetPlayer == source.player) {
+            fcCraft(source, type)
+            return
+        }
+
         if (!source.hasPermission(Permissions.FASTCRAFT_ADMIN_COMMAND_CRAFT)) {
             source.sendMissingPermissionMessage(Permissions.FASTCRAFT_ADMIN_COMMAND_CRAFT)
             return
         }
-
-        val targetPlayer = playerProvider
-            .getOnlinePlayers()
-            .firstOrNull { it.username.equals(player, true) }
 
         if (targetPlayer == null) {
             source.sendPlayerNotFoundMessage(player)
