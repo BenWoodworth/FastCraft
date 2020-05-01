@@ -19,5 +19,14 @@
   "gui.toolbar.amount.description.2": "${aqua}Sıfırlamak için farenin orta tuşuna tıkla",
   "gui.toolbar.workbench.title": "${green}Klasik Üretim",
   "gui.toolbar.workbench.description.0": "${aqua}Klasik üretim masasını aç",
-  "gui.toolbar.workbench.description.1": "${aqua}devre dışı FastCraft Kullanım ${green}/fc set enabled"
+  "gui.toolbar.workbench.description.1": "${aqua}devre dışı FastCraft Kullanım ${green}/fc set enabled",
+  "command.error.usage": "${red}Komut kullanımı: ${usage}",
+  "command.error.permission": "${red}Bunu için gerekli yetkin yok.",
+  "command.error.player.only": "${red}Bu komutu sadece oyuncular kullanabilir.",
+  "command.error.console.only": "${red}Bu komutu sadece konsol kullanabilir.",
+  "command.error.player.unknown": "${red}Bilinmeyen oyuncu: ${player}",
+  "command.set.enabled.true": "${green}FastCraft üretimi aktif hale getirildi.",
+  "command.set.enabled.false": "${green}FastCraft üretimi pasif hale getirildi.",
+  "command.set.enabled.true.player": "${green}FastCraft ${player} için aktif hale getirildi.",
+  "command.set.enabled.false.player": "${green}FastCraft ${player} için pasif hale getirildi."
 }

@@ -19,5 +19,14 @@
   "gui.toolbar.amount.description.2": "${aqua}中鍵回到1x",
   "gui.toolbar.workbench.title": "${green}合成台",
   "gui.toolbar.workbench.description.0": "${aqua}打開 3x3 合成台",
-  "gui.toolbar.workbench.description.1": "${aqua}使用 ${green}/fc set enabled $aqua 來關閉 FastCraft"
+  "gui.toolbar.workbench.description.1": "${aqua}使用 ${green}/fc set enabled $aqua 來關閉 FastCraft",
+  "command.error.usage": "${red}正確的使用方式: ${usage}",
+  "command.error.permission": "${red}你沒有權限: ${perm}",
+  "command.error.player.only": "${red}玩家才能使用.",
+  "command.error.console.only": "${red}控制台才能使用",
+  "command.error.player.unknown": "${red}未知玩家: ${player}",
+  "command.set.enabled.true": "${green}開啟快速合成+",
+  "command.set.enabled.false": "${green}關閉快速合成+",
+  "command.set.enabled.true.player": "${green}開啟 ${player} 的快速合成+ .",
+  "command.set.enabled.false.player": "${green}關閉 ${player} 的快速合成+."
 }

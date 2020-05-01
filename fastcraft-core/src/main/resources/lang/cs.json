@@ -19,5 +19,14 @@
   "gui.toolbar.amount.description.2": "${aqua}Kliknuti kolecka vyresetuje",
   "gui.toolbar.workbench.title": "${green}Pracovni stul",
   "gui.toolbar.workbench.description.0": "${aqua}Otevre klasicky 3x3 stul",
-  "gui.toolbar.workbench.description.1": "${aqua}Pomocí ${green}/fc set enabled$aqua deaktivujte FastCraft"
+  "gui.toolbar.workbench.description.1": "${aqua}Pomocí ${green}/fc set enabled$aqua deaktivujte FastCraft",
+  "command.error.usage": "${red}Spravne pouziti prikazu: ${usage}",
+  "command.error.permission": "${red}Nemas dostatecna opravneni opravneni pro tento prikaz: ${perm}",
+  "command.error.player.only": "${red}Tento prikaz jde pouzit pouze ve hre.",
+  "command.error.console.only": "${red}Tento prikaz muze vyt pouzit pouze z konsole",
+  "command.error.player.unknown": "${red}Neznamy hrac: ${player}",
+  "command.set.enabled.true": "${green}FastCraft interface zapnut.",
+  "command.set.enabled.false": "${green}FastCraft interface vypnut.",
+  "command.set.enabled.true.player": "${green}FastCraft interface zapnut pro hrace ${player}.",
+  "command.set.enabled.false.player": "${green}FastCraft interface vypnut pro hrace ${player}."
 }

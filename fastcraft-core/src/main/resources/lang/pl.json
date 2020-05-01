@@ -19,5 +19,14 @@
   "gui.toolbar.amount.description.2": "${aqua}Srodkowy resetowanie",
   "gui.toolbar.workbench.title": "${green}Stol rzemieslniczy",
   "gui.toolbar.workbench.description.0": "${aqua}Otworz zwykly stol rzemieslniczy (3x3)",
-  "gui.toolbar.workbench.description.1": "${aqua}Uzyj ${green}/fc set enabled$aqua by wylaczyc FastCraft"
+  "gui.toolbar.workbench.description.1": "${aqua}Uzyj ${green}/fc set enabled$aqua by wylaczyc FastCraft",
+  "command.error.usage": "${red}Uzycie polecenia: ${usage}",
+  "command.error.permission": "${red}Nie masz uprawnien aby uzyc polecenia, potrzebne uprawnienia: ${perm}",
+  "command.error.player.only": "${red}Musisz byc graczem aby uzyc tego polecenia",
+  "command.error.console.only": "${red}Polecenie dostepne tylko z konsoli",
+  "command.error.player.unknown": "${red}Nieznany gracz: ${player}",
+  "command.set.enabled.true": "${green}Interfejs FastCraft aktywny.",
+  "command.set.enabled.false": "${green}Interfejs FastCraft nieaktywny.",
+  "command.set.enabled.true.player": "${green}Interfejs FastCraft aktywny dla gracza ${player}.",
+  "command.set.enabled.false.player": "${green}Interfejs FastCraft nieaktywny dla gracza ${player}."
 }
