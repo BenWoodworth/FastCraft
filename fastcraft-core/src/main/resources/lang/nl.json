@@ -19,5 +19,5 @@
   "gui.toolbar.amount.description.2": "${aqua}Middrl muisklik om te resetten naar 1x",
   "gui.toolbar.workbench.title": "${green}Werkbank",
   "gui.toolbar.workbench.description.0": "${aqua}Open een 3x3 werkbank",
-  "gui.toolbar.workbench.description.1": "${aqua}Gebruik ${green}/fc toggle$aqua om FastCraft uit te schakelen"
+  "gui.toolbar.workbench.description.1": "${aqua}Gebruik ${green}/fc set enabled$aqua om FastCraft uit te schakelen"
 }

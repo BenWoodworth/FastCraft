@@ -19,5 +19,5 @@
   "gui.toolbar.amount.description.2": "${aqua}Clic Central restablecer valor en 1x",
   "gui.toolbar.workbench.title": "${green}Banco de trabajo",
   "gui.toolbar.workbench.description.0": "${aqua}Abre un banco de trabajo de 3x3",
-  "gui.toolbar.workbench.description.1": "${aqua}Usa ${green}/fc toggle$aqua para desactivar FastCraft"
+  "gui.toolbar.workbench.description.1": "${aqua}Usa ${green}/fc set enabled$aqua para desactivar FastCraft"
 }

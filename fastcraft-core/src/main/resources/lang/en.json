@@ -19,5 +19,5 @@
   "gui.toolbar.amount.description.2": "${aqua}Middle click to reset",
   "gui.toolbar.workbench.title": "${green}Crafting Grid",
   "gui.toolbar.workbench.description.0": "${aqua}Open a 3x3 crafting grid",
-  "gui.toolbar.workbench.description.1": "${aqua}Use ${green}/fc toggle$aqua to disable FastCraft"
+  "gui.toolbar.workbench.description.1": "${aqua}Use ${green}/fc set enabled$aqua to disable FastCraft"
 }

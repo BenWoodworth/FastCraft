@@ -19,5 +19,5 @@
   "gui.toolbar.amount.description.2": "${aqua}Sıfırlamak için farenin orta tuşuna tıkla",
   "gui.toolbar.workbench.title": "${green}Klasik Üretim",
   "gui.toolbar.workbench.description.0": "${aqua}Klasik üretim masasını aç",
-  "gui.toolbar.workbench.description.1": "${aqua}devre dışı FastCraft Kullanım ${green}/fc toggle"
+  "gui.toolbar.workbench.description.1": "${aqua}devre dışı FastCraft Kullanım ${green}/fc set enabled"
 }

@@ -19,5 +19,5 @@
   "gui.toolbar.amount.description.2": "${aqua}Srodkowy resetowanie",
   "gui.toolbar.workbench.title": "${green}Stol rzemieslniczy",
   "gui.toolbar.workbench.description.0": "${aqua}Otworz zwykly stol rzemieslniczy (3x3)",
-  "gui.toolbar.workbench.description.1": "${aqua}Uzyj ${green}/fc toggle$aqua by wylaczyc FastCraft"
+  "gui.toolbar.workbench.description.1": "${aqua}Uzyj ${green}/fc set enabled$aqua by wylaczyc FastCraft"
 }

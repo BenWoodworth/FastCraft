@@ -19,5 +19,5 @@
   "gui.toolbar.amount.description.2": "${aqua}Нажми на колёсико мыши для сброса до 1",
   "gui.toolbar.workbench.title": "${green}Стандартный верстак",
   "gui.toolbar.workbench.description.0": "${aqua}Открыть сетку крафта 3x3",
-  "gui.toolbar.workbench.description.1": "${aqua}Используйте ${green}/fc toggle$aqua для отключения FastCraft"
+  "gui.toolbar.workbench.description.1": "${aqua}Используйте ${green}/fc set enabled$aqua для отключения FastCraft"
 }

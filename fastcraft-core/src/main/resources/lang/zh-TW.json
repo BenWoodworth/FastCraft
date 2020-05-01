@@ -19,5 +19,5 @@
   "gui.toolbar.amount.description.2": "${aqua}中鍵回到1x",
   "gui.toolbar.workbench.title": "${green}合成台",
   "gui.toolbar.workbench.description.0": "${aqua}打開 3x3 合成台",
-  "gui.toolbar.workbench.description.1": "${aqua}使用 ${green}/fc toggle $aqua 來關閉 FastCraft"
+  "gui.toolbar.workbench.description.1": "${aqua}使用 ${green}/fc set enabled $aqua 來關閉 FastCraft"
 }
