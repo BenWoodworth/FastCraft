@@ -25,8 +25,8 @@
   "command.error.player.only": "${red}玩家才能使用.",
   "command.error.console.only": "${red}控制台才能使用",
   "command.error.player.unknown": "${red}未知玩家: ${player}",
-  "command.set.enabled.true": "${green}開啟快速合成+",
-  "command.set.enabled.false": "${green}關閉快速合成+",
-  "command.set.enabled.true.player": "${green}開啟 ${player} 的快速合成+ .",
-  "command.set.enabled.false.player": "${green}關閉 ${player} 的快速合成+."
+  "command.set.enabled.true": "${green}開啟 FastCraft",
+  "command.set.enabled.false": "${green}關閉 FastCraft",
+  "command.set.enabled.true.player": "${green}開啟 ${player} 的 FastCraft.",
+  "command.set.enabled.false.player": "${green}關閉 ${player} 的 FastCraft."
 }
