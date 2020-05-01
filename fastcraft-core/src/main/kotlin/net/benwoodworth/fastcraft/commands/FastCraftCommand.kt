@@ -39,7 +39,7 @@ class FastCraftCommand @Inject constructor(
         color = textColors.red,
     )
 
-    private fun FcCommandSource.sendPermissionMessage(permission: String) {
+    private fun FcCommandSource.sendMissingPermissionMessage(permission: String) {
         sendMessage(textFactory.createFcText(
             text = "Missing permission: $permission", // TODO Localize
             color = textColors.red,
@@ -200,11 +200,21 @@ class FastCraftCommand @Inject constructor(
 
         when (craftType) {
             "fastcraft" -> {
+                if (!hasFcPerm) {
+                    source.sendMissingPermissionMessage(Permissions.FASTCRAFT_COMMAND_CRAFT_FASTCRAFT)
+                    return
+                }
+
                 fastCraftGuiFactory
                     .createFastCraftGui(targetPlayer)
                     .open()
             }
             "grid" -> {
+                if (!hasGridPerm) {
+                    source.sendMissingPermissionMessage(Permissions.FASTCRAFT_COMMAND_CRAFT_GRID)
+                    return
+                }
+
                 targetPlayer.openCraftingTable()
             }
             else -> {
@@ -215,7 +225,7 @@ class FastCraftCommand @Inject constructor(
 
     fun fcCraftAdmin(source: FcCommandSource, type: String, player: String) {
         if (!source.hasPermission(Permissions.FASTCRAFT_ADMIN_COMMAND_CRAFT)) {
-            source.sendPermissionMessage(Permissions.FASTCRAFT_ADMIN_COMMAND_CRAFT)
+            source.sendMissingPermissionMessage(Permissions.FASTCRAFT_ADMIN_COMMAND_CRAFT)
             return
         }
 
