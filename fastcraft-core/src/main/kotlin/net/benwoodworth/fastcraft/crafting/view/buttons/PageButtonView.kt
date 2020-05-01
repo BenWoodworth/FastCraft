@@ -8,7 +8,7 @@ import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClickModifier
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
-import net.benwoodworth.fastcraft.platform.text.FcTextColors
+import net.benwoodworth.fastcraft.platform.player.FcSound
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import java.util.*
 
@@ -18,7 +18,7 @@ class PageButtonView(
     private val locale: Locale,
     @Provided private val itemTypes: FcItemTypes,
     @Provided private val textFactory: FcTextFactory,
-    @Provided private val textColors: FcTextColors,
+    @Provided private val sounds: FcSound.Sounds,
 ) {
     var page: Int = 1
     var pageCount: Int = 1
@@ -79,10 +79,16 @@ class PageButtonView(
 
     private inner class ButtonListener : FcGuiButton.Listener {
         override fun onClick(gui: FcGui<*>, button: FcGuiButton, click: FcGuiClick) {
-            when (click) {
-                CLICK_PAGE_NEXT -> listener.onPageNext()
-                CLICK_PAGE_PREVIOUS -> listener.onPagePrevious()
-                CLICK_PAGE_FIRST -> listener.onPageFirst()
+            val action = when (click) {
+                CLICK_PAGE_NEXT -> listener::onPageNext
+                CLICK_PAGE_PREVIOUS -> listener::onPagePrevious
+                CLICK_PAGE_FIRST -> listener::onPageFirst
+                else -> null
+            }
+
+            action?.let {
+                gui.player.playSound(sounds.click)
+                action()
             }
         }
     }

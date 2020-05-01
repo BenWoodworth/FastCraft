@@ -7,7 +7,7 @@ import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
-import net.benwoodworth.fastcraft.platform.text.FcTextColors
+import net.benwoodworth.fastcraft.platform.player.FcSound
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import java.util.*
 
@@ -17,7 +17,7 @@ class RefreshButtonView(
     private val locale: Locale,
     @Provided private val itemTypes: FcItemTypes,
     @Provided private val textFactory: FcTextFactory,
-    @Provided private val textColors: FcTextColors,
+    @Provided private val sounds: FcSound.Sounds,
 ) {
     var enabled: Boolean = true
 
@@ -68,8 +68,14 @@ class RefreshButtonView(
     private inner class ButtonListener : FcGuiButton.Listener {
         override fun onClick(gui: FcGui<*>, button: FcGuiButton, click: FcGuiClick) {
             if (enabled) {
-                when (click) {
-                    CLICK_REFRESH -> listener.onRefresh()
+                val action = when (click) {
+                    CLICK_REFRESH -> listener::onRefresh
+                    else -> null
+                }
+
+                action?.let {
+                    gui.player.playSound(sounds.click)
+                    action()
                 }
             }
         }

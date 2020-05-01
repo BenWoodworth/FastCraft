@@ -8,6 +8,7 @@ import net.benwoodworth.fastcraft.crafting.model.ItemAmounts
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
+import net.benwoodworth.fastcraft.platform.player.FcSound
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextConverter
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
@@ -21,6 +22,7 @@ class RecipeButtonView(
     @Provided private val textFactory: FcTextFactory,
     @Provided private val itemAmountsProvider: Provider<ItemAmounts>,
     @Provided private val textConverter: FcTextConverter,
+    @Provided private val sounds: FcSound.Sounds,
 ) {
     var fastCraftRecipe: FastCraftRecipe? = null
 
@@ -136,9 +138,19 @@ class RecipeButtonView(
         override fun onClick(gui: FcGui<*>, button: FcGuiButton, click: FcGuiClick) {
             val recipe = fastCraftRecipe
             if (recipe != null) {
-                when (click) {
-                    CLICK_CRAFT -> listener.onCraft(this@RecipeButtonView, recipe, false)
-                    CLICK_CRAFT_DROP -> listener.onCraft(this@RecipeButtonView, recipe, true)
+                val action = when (click) {
+                    CLICK_CRAFT -> {
+                        { listener.onCraft(this@RecipeButtonView, recipe, false) }
+                    }
+                    CLICK_CRAFT_DROP -> {
+                        { listener.onCraft(this@RecipeButtonView, recipe, true) }
+                    }
+                    else -> null
+                }
+
+                action?.let {
+                    gui.player.playSound(sounds.click)
+                    action()
                 }
             }
         }

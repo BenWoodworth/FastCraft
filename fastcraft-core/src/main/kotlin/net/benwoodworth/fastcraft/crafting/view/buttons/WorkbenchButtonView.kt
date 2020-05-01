@@ -7,7 +7,7 @@ import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
-import net.benwoodworth.fastcraft.platform.text.FcTextColors
+import net.benwoodworth.fastcraft.platform.player.FcSound
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import java.util.*
 
@@ -17,7 +17,7 @@ class WorkbenchButtonView(
     private val locale: Locale,
     @Provided private val itemTypes: FcItemTypes,
     @Provided private val textFactory: FcTextFactory,
-    @Provided private val textColors: FcTextColors,
+    @Provided private val sounds: FcSound.Sounds,
 ) {
     var listener: Listener = Listener.Default
 
@@ -60,8 +60,14 @@ class WorkbenchButtonView(
 
     private inner class ButtonListener : FcGuiButton.Listener {
         override fun onClick(gui: FcGui<*>, button: FcGuiButton, click: FcGuiClick) {
-            when (click) {
-                CLICK_OPEN_WORKBENCH -> listener.onOpenWorkbench()
+            val action = when (click) {
+                CLICK_OPEN_WORKBENCH -> listener::onOpenWorkbench
+                else -> null
+            }
+
+            action?.let {
+                gui.player.playSound(sounds.click)
+                action()
             }
         }
     }

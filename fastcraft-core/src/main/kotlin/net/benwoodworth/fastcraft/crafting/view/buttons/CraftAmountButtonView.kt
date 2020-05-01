@@ -8,7 +8,7 @@ import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClickModifier
 import net.benwoodworth.fastcraft.platform.item.FcItemTypes
-import net.benwoodworth.fastcraft.platform.text.FcTextColors
+import net.benwoodworth.fastcraft.platform.player.FcSound
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import java.util.*
 
@@ -18,7 +18,7 @@ class CraftAmountButtonView(
     private val locale: Locale,
     @Provided private val itemTypes: FcItemTypes,
     @Provided private val textFactory: FcTextFactory,
-    @Provided private val textColors: FcTextColors,
+    @Provided private val sounds: FcSound.Sounds,
 ) {
     var craftAmount: Int? = null
 
@@ -78,12 +78,18 @@ class CraftAmountButtonView(
 
     private inner class ButtonClickListener : FcGuiButton.Listener {
         override fun onClick(gui: FcGui<*>, button: FcGuiButton, click: FcGuiClick) {
-            when (click) {
-                CLICK_INCREMENT -> listener.onIncrement()
-                CLICK_INCREMENT_ONE -> listener.onIncrementByOne()
-                CLICK_DECREMENT -> listener.onDecrement()
-                CLICK_DECREMENT_ONE -> listener.onDecrementByOne()
-                CLICK_RESET -> listener.onReset()
+            val action = when (click) {
+                CLICK_INCREMENT -> listener::onIncrement
+                CLICK_INCREMENT_ONE -> listener::onIncrementByOne
+                CLICK_DECREMENT -> listener::onDecrement
+                CLICK_DECREMENT_ONE -> listener::onDecrementByOne
+                CLICK_RESET -> listener::onReset
+                else -> null
+            }
+
+            action?.let {
+                gui.player.playSound(sounds.click)
+                action()
             }
         }
     }
