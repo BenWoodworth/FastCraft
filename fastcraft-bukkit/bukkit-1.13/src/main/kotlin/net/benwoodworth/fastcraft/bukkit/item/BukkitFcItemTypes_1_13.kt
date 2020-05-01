@@ -12,7 +12,7 @@ open class BukkitFcItemTypes_1_13 @Inject constructor(
     textFactory: FcTextFactory,
     itemTypes: Provider<FcItemTypes>,
     protected val localizer: BukkitLocalizer,
-) : BukkitFcItemTypes_1_7(
+) : BukkitFcItemTypes_1_9(
     textFactory = textFactory,
     itemTypes = itemTypes,
 ) {

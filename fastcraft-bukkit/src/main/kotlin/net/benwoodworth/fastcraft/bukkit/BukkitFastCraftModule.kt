@@ -149,8 +149,8 @@ class BukkitFastCraftModule(
     @Singleton
     fun provideFcItemTypes(
         instance_1_15: Provider<BukkitFcItemTypes_1_15>,
-        instance_1_13: Provider<BukkitFcItemTypes_1_15>,
-        instance_1_9: Provider<BukkitFcItemTypes_1_15>,
+        instance_1_13: Provider<BukkitFcItemTypes_1_13>,
+        instance_1_9: Provider<BukkitFcItemTypes_1_9>,
         instance_1_7: Provider<BukkitFcItemTypes_1_7>,
     ): FcItemTypes {
         return when {
