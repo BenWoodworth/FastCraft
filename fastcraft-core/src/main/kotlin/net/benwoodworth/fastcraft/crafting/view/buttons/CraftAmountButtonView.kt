@@ -8,7 +8,7 @@ import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClickModifier
-import net.benwoodworth.fastcraft.platform.item.FcItemTypes
+import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.player.FcSound
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import java.util.*
@@ -17,7 +17,7 @@ import java.util.*
 class CraftAmountButtonView(
     private val button: FcGuiButton,
     private val locale: Locale,
-    @Provided private val itemTypes: FcItemTypes,
+    @Provided private val itemTypes: FcItemType.Factory,
     @Provided private val textFactory: FcTextFactory,
     @Provided private val sounds: FcSound.Sounds,
 ) {

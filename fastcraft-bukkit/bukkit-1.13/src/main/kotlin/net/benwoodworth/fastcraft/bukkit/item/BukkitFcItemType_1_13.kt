@@ -2,21 +2,22 @@ package net.benwoodworth.fastcraft.bukkit.item
 
 import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemType.Companion.material
 import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemType.Companion.materialData
-import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemTypes.Companion.fromMaterial
+import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemType.Factory.Companion.fromMaterial
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcTextFactory.Companion.createFcTextTranslate
 import net.benwoodworth.fastcraft.bukkit.text.BukkitLocalizer
 import net.benwoodworth.fastcraft.platform.item.FcItemType
-import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.Material
 import java.util.*
+import javax.inject.Inject
+import javax.inject.Provider
 
 open class BukkitFcItemType_1_13(
     override val material: Material,
     private val textFactory: FcTextFactory,
     private val localizer: BukkitLocalizer,
-    protected val itemTypes: FcItemTypes,
+    protected val itemTypes: FcItemType.Factory,
 ) : BukkitFcItemType {
     override val id: String
         get() = material.key.toString()
@@ -80,5 +81,26 @@ open class BukkitFcItemType_1_13(
 
     override fun hashCode(): Int {
         return material.hashCode()
+    }
+
+    open class Factory @Inject constructor(
+        textFactory: FcTextFactory,
+        itemTypes: Provider<FcItemType.Factory>,
+        protected val localizer: BukkitLocalizer,
+    ) : BukkitFcItemType_1_9.Factory(
+        textFactory = textFactory,
+        itemTypes = itemTypes,
+    ) {
+        override val craftingTable: FcItemType by lazy {
+            fromMaterial(Material.CRAFTING_TABLE)
+        }
+
+        override fun fromMaterial(material: Material): FcItemType {
+            return BukkitFcItemType_1_13(material, textFactory, localizer, itemTypes.get())
+        }
+
+        override fun fromMaterialData(materialData: Any): FcItemType {
+            throw UnsupportedOperationException()
+        }
     }
 }

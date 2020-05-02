@@ -1,20 +1,21 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
 import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemType.Companion.materialData
-import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemTypes.Companion.fromMaterial
+import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemType.Factory.Companion.fromMaterial
 import net.benwoodworth.fastcraft.platform.item.FcItemType
-import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.apache.commons.lang.WordUtils
 import org.bukkit.Material
 import org.bukkit.material.MaterialData
+import javax.inject.Inject
+import javax.inject.Provider
 
 
 open class BukkitFcItemType_1_7(
     override val materialData: MaterialData,
     protected val textFactory: FcTextFactory,
-    protected val itemTypes: FcItemTypes,
+    protected val itemTypes: FcItemType.Factory,
 ) : BukkitFcItemType {
     @Suppress("DEPRECATION")
     override val id: String
@@ -62,5 +63,25 @@ open class BukkitFcItemType_1_7(
         name = name.replace('_', ' ')
 
         return WordUtils.capitalizeFully(name)
+    }
+
+    open class Factory @Inject constructor(
+        protected val textFactory: FcTextFactory,
+        protected val itemTypes: Provider<FcItemType.Factory>,
+    ) : BukkitFcItemType.Factory {
+        override val air: FcItemType by lazy { fromMaterial(Material.AIR) }
+        override val ironSword: FcItemType by lazy { fromMaterial(Material.IRON_SWORD) }
+        override val craftingTable: FcItemType by lazy { fromMaterial(Material.WORKBENCH) }
+        override val anvil: FcItemType by lazy { fromMaterial(Material.ANVIL) }
+        override val netherStar: FcItemType by lazy { fromMaterial(Material.NETHER_STAR) }
+
+        override fun fromMaterial(material: Material): FcItemType {
+            return fromMaterialData(MaterialData(material))
+        }
+
+        override fun fromMaterialData(materialData: Any): FcItemType {
+            require(materialData is MaterialData)
+            return BukkitFcItemType_1_7(materialData, textFactory, itemTypes.get())
+        }
     }
 }

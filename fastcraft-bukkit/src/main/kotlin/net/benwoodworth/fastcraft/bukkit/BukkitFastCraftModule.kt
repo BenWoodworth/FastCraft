@@ -17,8 +17,8 @@ import net.benwoodworth.fastcraft.platform.command.FcCommandRegistry
 import net.benwoodworth.fastcraft.platform.config.FcConfig
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.item.FcItemTypeComparator
-import net.benwoodworth.fastcraft.platform.item.FcItemTypes
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcPlayerEvents
 import net.benwoodworth.fastcraft.platform.player.FcSound
@@ -146,12 +146,12 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun provideFcItemTypes(
-        instance_1_15: Provider<BukkitFcItemTypes_1_15>,
-        instance_1_13: Provider<BukkitFcItemTypes_1_13>,
-        instance_1_9: Provider<BukkitFcItemTypes_1_9>,
-        instance_1_7: Provider<BukkitFcItemTypes_1_7>,
-    ): FcItemTypes {
+    fun provideFcItemTypeFactory(
+        instance_1_15: Provider<BukkitFcItemType_1_15.Factory>,
+        instance_1_13: Provider<BukkitFcItemType_1_13.Factory>,
+        instance_1_9: Provider<BukkitFcItemType_1_9.Factory>,
+        instance_1_7: Provider<BukkitFcItemType_1_7.Factory>,
+    ): FcItemType.Factory {
         return when {
             bukkitVersion >= VERSION_1_15 -> instance_1_15.get()
             bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
@@ -163,7 +163,7 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun provideFcItemTypesComparator(
+    fun provideFcItemTypeComparator(
         instance_1_13: Provider<BukkitFcItemTypeComparator_1_13>,
         instance_1_7: Provider<BukkitFcItemTypeComparator_1_7>,
     ): FcItemTypeComparator {

@@ -14,4 +14,20 @@ interface BukkitFcItemType : FcItemType {
         val FcItemType.materialData: Any?
             get() = (this as BukkitFcItemType).materialData
     }
+
+    interface Factory : FcItemType.Factory {
+        fun fromMaterial(material: Material): FcItemType
+
+        fun fromMaterialData(materialData: Any): FcItemType
+
+        companion object {
+            fun FcItemType.Factory.fromMaterial(material: Material): FcItemType {
+                return (this as Factory).fromMaterial(material)
+            }
+
+            fun FcItemType.Factory.fromMaterialData(materialData: Any): FcItemType {
+                return (this as Factory).fromMaterialData(materialData)
+            }
+        }
+    }
 }

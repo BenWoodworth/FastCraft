@@ -12,4 +12,12 @@ interface FcItemType {
     override fun equals(other: Any?): Boolean
 
     override fun hashCode(): Int
+
+    interface Factory {
+        val air: FcItemType
+        val ironSword: FcItemType
+        val craftingTable: FcItemType
+        val anvil: FcItemType
+        val netherStar: FcItemType
+    }
 }
