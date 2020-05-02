@@ -26,7 +26,7 @@ import net.benwoodworth.fastcraft.platform.recipe.FcRecipeProvider
 import net.benwoodworth.fastcraft.platform.server.FcLogger
 import net.benwoodworth.fastcraft.platform.server.FcPluginData
 import net.benwoodworth.fastcraft.platform.server.FcTask
-import net.benwoodworth.fastcraft.platform.text.FcTextColors
+import net.benwoodworth.fastcraft.platform.text.FcTextColor
 import net.benwoodworth.fastcraft.platform.text.FcTextConverter
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.Server
@@ -264,7 +264,7 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun provideFcTextColors(instance: BukkitFcTextColors_1_7): FcTextColors {
+    fun provideFcTextColorFactory(instance: BukkitFcTextColor_1_7.Factory): FcTextColor.Factory {
         return instance
     }
 

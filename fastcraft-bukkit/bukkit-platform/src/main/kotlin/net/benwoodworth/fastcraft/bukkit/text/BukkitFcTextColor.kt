@@ -14,4 +14,20 @@ interface BukkitFcTextColor : FcTextColor {
         val FcTextColor.chatColor: ChatColor
             get() = (this as BukkitFcTextColor).chatColor
     }
+
+    interface Factory : FcTextColor.Factory {
+        fun fromId(id: String): FcTextColor
+
+        fun create(id: String, chatColor: ChatColor): FcTextColor
+
+        companion object {
+            fun FcTextColor.Factory.fromId(id: String): FcTextColor {
+                return (this as Factory).fromId(id)
+            }
+
+            fun FcTextColor.Factory.create(id: String, chatColor: ChatColor): FcTextColor {
+                return (this as Factory).create(id, chatColor)
+            }
+        }
+    }
 }
