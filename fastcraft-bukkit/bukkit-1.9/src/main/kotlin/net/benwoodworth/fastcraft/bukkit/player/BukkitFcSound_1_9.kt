@@ -5,8 +5,8 @@ import org.bukkit.Sound
 import javax.inject.Inject
 
 object BukkitFcSound_1_9 {
-    class Sounds @Inject constructor(
-    ) : BukkitFcSound.Sounds {
+    class Factory @Inject constructor(
+    ) : BukkitFcSound.Factory {
         override val uiButtonClick: FcSound by lazy { fromSound(Sound.UI_BUTTON_CLICK) }
 
         override fun fromSound(sound: Sound): FcSound {

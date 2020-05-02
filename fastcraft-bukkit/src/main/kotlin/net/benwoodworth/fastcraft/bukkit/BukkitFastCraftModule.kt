@@ -313,10 +313,10 @@ class BukkitFastCraftModule(
 
     @Provides
     @Singleton
-    fun provideSounds(
-        instance_1_9: Provider<BukkitFcSound_1_9.Sounds>,
-        instance_1_7: Provider<BukkitFcSound_1_7.Sounds>,
-    ): FcSound.Sounds {
+    fun provideSoundFactory(
+        instance_1_9: Provider<BukkitFcSound_1_9.Factory>,
+        instance_1_7: Provider<BukkitFcSound_1_7.Factory>,
+    ): FcSound.Factory {
         return when {
             bukkitVersion >= VERSION_1_9 -> instance_1_9.get()
             bukkitVersion >= VERSION_1_7 -> instance_1_7.get()

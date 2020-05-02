@@ -11,12 +11,12 @@ interface BukkitFcSound : FcSound {
             get() = (this as BukkitFcSound).sound
     }
 
-    interface Sounds : FcSound.Sounds {
+    interface Factory : FcSound.Factory {
         fun fromSound(sound: Sound): FcSound
 
         companion object {
-            fun FcSound.Sounds.fromSound(sound: Sound): FcSound {
-                return (this as Sounds).fromSound(sound)
+            fun FcSound.Factory.fromSound(sound: Sound): FcSound {
+                return (this as Factory).fromSound(sound)
             }
         }
     }

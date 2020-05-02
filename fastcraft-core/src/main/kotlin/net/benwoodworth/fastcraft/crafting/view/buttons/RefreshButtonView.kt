@@ -18,7 +18,7 @@ class RefreshButtonView(
     private val locale: Locale,
     @Provided private val itemTypes: FcItemType.Factory,
     @Provided private val textFactory: FcTextFactory,
-    @Provided private val sounds: FcSound.Sounds,
+    @Provided private val sounds: FcSound.Factory,
 ) {
     var enabled: Boolean = true
 

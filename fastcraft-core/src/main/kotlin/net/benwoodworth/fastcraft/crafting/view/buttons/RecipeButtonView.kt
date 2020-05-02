@@ -23,7 +23,7 @@ class RecipeButtonView(
     @Provided private val textFactory: FcTextFactory,
     @Provided private val itemAmountsProvider: Provider<ItemAmounts>,
     @Provided private val textConverter: FcTextConverter,
-    @Provided private val sounds: FcSound.Sounds,
+    @Provided private val sounds: FcSound.Factory,
 ) {
     var fastCraftRecipe: FastCraftRecipe? = null
 

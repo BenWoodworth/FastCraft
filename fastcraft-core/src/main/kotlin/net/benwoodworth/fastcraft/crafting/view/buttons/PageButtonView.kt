@@ -19,7 +19,7 @@ class PageButtonView(
     private val locale: Locale,
     @Provided private val itemTypes: FcItemType.Factory,
     @Provided private val textFactory: FcTextFactory,
-    @Provided private val sounds: FcSound.Sounds,
+    @Provided private val sounds: FcSound.Factory,
 ) {
     var page: Int = 1
     var pageCount: Int = 1
