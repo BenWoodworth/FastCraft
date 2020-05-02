@@ -5,9 +5,7 @@ import org.bukkit.event.player.PlayerInteractEvent
 
 interface BukkitFcPlayerOpenWorkbenchEvent : FcPlayerOpenWorkbenchEvent {
     val event: PlayerInteractEvent
-
-    companion object {
-        val FcPlayerOpenWorkbenchEvent.event: PlayerInteractEvent
-            get() = (this as BukkitFcPlayerOpenWorkbenchEvent).event
-    }
 }
+
+val FcPlayerOpenWorkbenchEvent.event: PlayerInteractEvent
+    get() = (this as BukkitFcPlayerOpenWorkbenchEvent).event

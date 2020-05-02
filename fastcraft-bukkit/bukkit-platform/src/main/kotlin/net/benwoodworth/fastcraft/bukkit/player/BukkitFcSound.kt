@@ -6,18 +6,14 @@ import org.bukkit.Sound
 interface BukkitFcSound : FcSound {
     val sound: Sound
 
-    companion object {
-        val FcSound.sound: Sound
-            get() = (this as BukkitFcSound).sound
-    }
-
     interface Factory : FcSound.Factory {
         fun fromSound(sound: Sound): FcSound
-
-        companion object {
-            fun FcSound.Factory.fromSound(sound: Sound): FcSound {
-                return (this as Factory).fromSound(sound)
-            }
-        }
     }
+}
+
+val FcSound.sound: Sound
+    get() = (this as BukkitFcSound).sound
+
+fun FcSound.Factory.fromSound(sound: Sound): FcSound {
+    return (this as BukkitFcSound.Factory).fromSound(sound)
 }

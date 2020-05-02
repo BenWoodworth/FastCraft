@@ -6,12 +6,10 @@ import org.bukkit.configuration.Configuration
 interface BukkitFcConfigEntry : FcConfigEntry {
     val config: Configuration
     val parentEntry: FcConfigEntry?
-
-    companion object {
-        val FcConfigEntry.config: Configuration
-            get() = (this as BukkitFcConfigEntry).config
-
-        val FcConfigEntry.parentEntry: FcConfigEntry?
-            get() = (this as BukkitFcConfigEntry).parentEntry
-    }
 }
+
+val FcConfigEntry.config: Configuration
+    get() = (this as BukkitFcConfigEntry).config
+
+val FcConfigEntry.parentEntry: FcConfigEntry?
+    get() = (this as BukkitFcConfigEntry).parentEntry

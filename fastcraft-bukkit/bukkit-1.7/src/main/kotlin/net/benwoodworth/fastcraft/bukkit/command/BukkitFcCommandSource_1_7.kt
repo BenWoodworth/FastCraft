@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.command
 
-import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayer.Provider.Companion.getPlayer
+import net.benwoodworth.fastcraft.bukkit.player.getPlayer
 import net.benwoodworth.fastcraft.platform.command.FcCommandSource
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcText

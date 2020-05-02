@@ -12,15 +12,6 @@ interface BukkitFcGuiLayout : FcGuiLayout {
 
     interface Grid : FcGuiLayout.Grid
 
-    companion object {
-        val FcGuiLayout.inventory: Inventory
-            get() = (this as BukkitFcGuiLayout).inventory
-
-        fun FcGuiLayout.getSlotButton(slot: Int): FcGuiButton? {
-            return (this as BukkitFcGuiLayout).getSlotButton(slot)
-        }
-    }
-
     interface Factory {
         fun createGridLayout(
             width: Int,
@@ -29,4 +20,11 @@ interface BukkitFcGuiLayout : FcGuiLayout {
             locale: Locale,
         ): FcGuiLayout.Grid
     }
+}
+
+val FcGuiLayout.inventory: Inventory
+    get() = (this as BukkitFcGuiLayout).inventory
+
+fun FcGuiLayout.getSlotButton(slot: Int): FcGuiButton? {
+    return (this as BukkitFcGuiLayout).getSlotButton(slot)
 }

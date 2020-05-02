@@ -1,7 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
 import com.google.common.base.Enums
-import net.benwoodworth.fastcraft.bukkit.item.BukkitFcItemType.Companion.material
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import org.bukkit.Material
 import org.bukkit.plugin.Plugin

@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.bukkit.player
 
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
-import net.benwoodworth.fastcraft.bukkit.item.BukkitFcInventory.Companion.inventory
+import net.benwoodworth.fastcraft.bukkit.item.inventory
 import net.benwoodworth.fastcraft.platform.item.FcInventorySlot
 import net.benwoodworth.fastcraft.platform.player.FcPlayerInventory
 import org.bukkit.inventory.PlayerInventory
