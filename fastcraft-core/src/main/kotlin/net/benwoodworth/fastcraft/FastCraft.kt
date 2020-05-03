@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft
 
-import net.benwoodworth.fastcraft.commands.FastCraftCommand
 import net.benwoodworth.fastcraft.crafting.FastCraftGui
 import net.benwoodworth.fastcraft.data.PlayerSettings
 import net.benwoodworth.fastcraft.platform.player.FcPlayerEvents

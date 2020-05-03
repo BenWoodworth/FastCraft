@@ -1,7 +1,5 @@
-package net.benwoodworth.fastcraft.commands
+package net.benwoodworth.fastcraft
 
-import net.benwoodworth.fastcraft.Permissions
-import net.benwoodworth.fastcraft.Strings
 import net.benwoodworth.fastcraft.crafting.FastCraftGui
 import net.benwoodworth.fastcraft.data.PlayerSettings
 import net.benwoodworth.fastcraft.platform.command.FcCommand
