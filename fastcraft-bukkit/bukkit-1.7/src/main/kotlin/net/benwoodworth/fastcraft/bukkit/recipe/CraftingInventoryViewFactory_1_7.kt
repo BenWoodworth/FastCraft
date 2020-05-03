@@ -6,7 +6,9 @@ import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryType
 import org.bukkit.inventory.*
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class CraftingInventoryViewFactory_1_7 @Inject constructor(
     private val server: Server,
 ) : CraftingInventoryViewFactory {

@@ -14,6 +14,7 @@ import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
 import java.util.*
 import javax.inject.Inject
+import javax.inject.Singleton
 import kotlin.math.roundToInt
 import kotlin.properties.Delegates.observable
 
@@ -142,6 +143,7 @@ open class BukkitFcGuiButton_1_7(
         }
     }
 
+    @Singleton
     class Factory @Inject constructor(
         private val textFactory: FcTextFactory,
         private val textConverter: FcTextConverter,

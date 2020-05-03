@@ -3,7 +3,9 @@ package net.benwoodworth.fastcraft.bukkit.server
 import org.bukkit.plugin.Plugin
 import java.nio.file.Path
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class BukkitFcPluginData_1_7 @Inject constructor(
     plugin: Plugin,
 ) : BukkitFcPluginData {

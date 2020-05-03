@@ -16,7 +16,9 @@ import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.PluginManager
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 open class BukkitFcPlayerEvents_1_7 @Inject constructor(
     plugin: Plugin,
     private val playerProvider: FcPlayer.Provider,

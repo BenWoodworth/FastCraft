@@ -6,7 +6,9 @@ import org.bukkit.block.Block
 import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.PluginManager
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 open class BukkitFcPlayerEvents_1_13 @Inject constructor(
     plugin: Plugin,
     playerProvider: FcPlayer.Provider,

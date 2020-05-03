@@ -6,6 +6,7 @@ import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.Material
 import javax.inject.Inject
 import javax.inject.Provider
+import javax.inject.Singleton
 
 open class BukkitFcItemType_1_15(
     material: Material,
@@ -24,6 +25,7 @@ open class BukkitFcItemType_1_15(
             else -> super.craftingResult
         }
 
+    @Singleton
     class Factory @Inject constructor(
         textFactory: FcTextFactory,
         localizer: BukkitLocalizer,

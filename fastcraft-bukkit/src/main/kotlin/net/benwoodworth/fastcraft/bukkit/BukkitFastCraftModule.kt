@@ -31,7 +31,6 @@ import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.PluginManager
 import org.bukkit.scheduler.BukkitScheduler
 import javax.inject.Provider
-import javax.inject.Singleton
 
 @Suppress("unused")
 @Module
@@ -51,13 +50,11 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    @Singleton
     fun providePlugin(): Plugin {
         return plugin
     }
 
     @Provides
-    @Singleton
     fun provideBukkitVersion(): BukkitVersion {
         return bukkitVersion
     }
@@ -83,31 +80,26 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    @Singleton
     fun provideFcLogger(): FcLogger {
         return BukkitFcLogger_1_7(plugin.logger)
     }
 
     @Provides
-    @Singleton
     fun provideFcPluginData(instance: BukkitFcPluginData_1_7): FcPluginData {
         return instance
     }
 
     @Provides
-    @Singleton
     fun provideFcConfigFactory(instance: BukkitFcConfig_1_7.Factory): FcConfig.Factory {
         return instance
     }
 
     @Provides
-    @Singleton
     fun provideFcGuiFactory(instance: BukkitFcGui_1_7.Factory): FcGui.Factory {
         return instance
     }
 
     @Provides
-    @Singleton
     fun provideFcGuiButtonFactory(
         instance_1_13: Provider<BukkitFcGuiButton_1_13.Factory>,
         instance_1_8: Provider<BukkitFcGuiButton_1_8.Factory>,
@@ -122,13 +114,11 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    @Singleton
     fun provideFcGuiLayoutFactory(instance: BukkitFcGuiLayout_1_7.Factory): BukkitFcGuiLayout.Factory {
         return instance
     }
 
     @Provides
-    @Singleton
     fun provideFcItemFactory(
         instance_1_13: Provider<BukkitFcItem_1_13.Factory>,
         instance_1_7: Provider<BukkitFcItem_1_7.Factory>,
@@ -141,7 +131,6 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    @Singleton
     fun provideFcItemTypeFactory(
         instance_1_15: Provider<BukkitFcItemType_1_15.Factory>,
         instance_1_13: Provider<BukkitFcItemType_1_13.Factory>,
@@ -158,7 +147,6 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    @Singleton
     fun provideFcItemTypeComparator(
         instance_1_13: Provider<BukkitFcItemTypeComparator_1_13>,
         instance_1_7: Provider<BukkitFcItemTypeComparator_1_7>,
@@ -171,13 +159,11 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    @Singleton
     fun provideFcPlayerProvider(instance: BukkitFcPlayer_1_7.Provider): FcPlayer.Provider {
         return instance
     }
 
     @Provides
-    @Singleton
     fun provideFcCraftingRecipePreparedFactory(
         instance_1_12: Provider<BukkitFcCraftingRecipePrepared_1_12.Factory>,
         instance_1_7: Provider<BukkitFcCraftingRecipePrepared_1_7.Factory>,
@@ -190,7 +176,6 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    @Singleton
     fun provideFcRecipeProvider(
         instance_1_15: Provider<BukkitFcRecipeProvider_1_15>,
         instance_1_7: Provider<BukkitFcRecipeProvider_1_7>,
@@ -203,7 +188,6 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    @Singleton
     fun provideCraftingInventoryViewFactory(
         instance_1_14: Provider<CraftingInventoryViewFactory_1_14>,
         instance_1_7: Provider<CraftingInventoryViewFactory_1_7>,
@@ -217,7 +201,6 @@ class BukkitFastCraftModule(
 
 
     @Provides
-    @Singleton
     fun provideFcCraftingRecipeFactory(
         instance_1_15: Provider<BukkitFcCraftingRecipe_1_15.Factory>,
         instance_1_13: Provider<BukkitFcCraftingRecipe_1_13.Factory>,
@@ -234,7 +217,6 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    @Singleton
     fun provideFcPlayerEvents(
         instance_1_13: Provider<BukkitFcPlayerEvents_1_13>,
         instance_1_7: Provider<BukkitFcPlayerEvents_1_7>,
@@ -247,31 +229,26 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    @Singleton
     fun provideFcTaskFactory(instance: BukkitFcTask_1_7.Factory): FcTask.Factory {
         return instance
     }
 
     @Provides
-    @Singleton
     fun provideFcTextFactory(instance: BukkitFcTextFactory_1_7): FcTextFactory {
         return instance
     }
 
     @Provides
-    @Singleton
     fun provideFcTextColorFactory(instance: BukkitFcTextColor_1_7.Factory): FcTextColor.Factory {
         return instance
     }
 
     @Provides
-    @Singleton
     fun provideFcTextConverter(instance: BukkitFcTextConverter_1_7): FcTextConverter {
         return instance
     }
 
     @Provides
-    @Singleton
     fun provideBukkitLocalizer(
         instance_1_13: Provider<BukkitLocalizer_1_13>,
         instance_1_7: Provider<BukkitLocalizer_1_7>,
@@ -284,7 +261,6 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    @Singleton
     fun provideCommandAdapterFactory(
         instance: BukkitFcCommandAdapter_1_7.Factory,
     ): BukkitFcCommandAdapter.Factory {
@@ -292,7 +268,6 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    @Singleton
     fun provideCommandRegistry(
         instance: BukkitFcCommandRegistry_1_7,
     ): FcCommandRegistry {
@@ -300,7 +275,6 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    @Singleton
     fun provideCommandSourceFactory(
         instance: BukkitFcCommandSource_1_7.Factory,
     ): BukkitFcCommandSource.Factory {
@@ -308,7 +282,6 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    @Singleton
     fun provideSoundFactory(
         instance_1_9: Provider<BukkitFcSound_1_9.Factory>,
         instance_1_7: Provider<BukkitFcSound_1_7.Factory>,
@@ -321,7 +294,6 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    @Singleton
     fun provideFcServer(
         instance: BukkitFcServer_1_7,
     ): FcServer {
@@ -329,7 +301,6 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    @Singleton
     fun provideFcPermissionFactory(
         instance: BukkitFcPermission_1_7.Factory,
     ): FcPermission.Factory {

@@ -16,6 +16,7 @@ import org.bukkit.event.inventory.PrepareItemCraftEvent
 import org.bukkit.inventory.*
 import java.util.*
 import javax.inject.Inject
+import javax.inject.Singleton
 
 open class BukkitFcCraftingRecipe_1_7(
     val recipe: Recipe,
@@ -167,6 +168,7 @@ open class BukkitFcCraftingRecipe_1_7(
         }
     }
 
+    @Singleton
     class Factory @Inject constructor(
         private val server: Server,
         private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,

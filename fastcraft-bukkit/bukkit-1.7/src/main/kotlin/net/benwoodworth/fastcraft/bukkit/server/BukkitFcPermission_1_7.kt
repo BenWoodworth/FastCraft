@@ -4,6 +4,7 @@ import net.benwoodworth.fastcraft.platform.server.FcPermission
 import org.bukkit.permissions.Permission
 import org.bukkit.plugin.PluginManager
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class BukkitFcPermission_1_7(
     override val permission: Permission,
@@ -11,6 +12,7 @@ class BukkitFcPermission_1_7(
     override val name: String
         get() = permission.name
 
+    @Singleton
     class Factory @Inject constructor(
         private val pluginManager: PluginManager,
     ) : BukkitFcPermission.Factory {

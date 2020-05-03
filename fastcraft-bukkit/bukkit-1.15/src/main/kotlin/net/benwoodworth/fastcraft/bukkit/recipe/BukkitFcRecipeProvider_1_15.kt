@@ -9,7 +9,9 @@ import org.bukkit.inventory.ShapedRecipe
 import org.bukkit.inventory.ShapelessRecipe
 import org.bukkit.plugin.Plugin
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 open class BukkitFcRecipeProvider_1_15 @Inject constructor(
     plugin: Plugin,
     bukkitVersion: BukkitVersion,

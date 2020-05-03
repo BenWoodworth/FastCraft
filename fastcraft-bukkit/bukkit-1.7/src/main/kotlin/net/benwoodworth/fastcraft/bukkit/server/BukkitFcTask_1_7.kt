@@ -4,6 +4,7 @@ import net.benwoodworth.fastcraft.platform.server.FcTask
 import org.bukkit.plugin.Plugin
 import org.bukkit.scheduler.BukkitScheduler
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class BukkitFcTask_1_7(
     plugin: Plugin,
@@ -51,6 +52,7 @@ class BukkitFcTask_1_7(
         return taskId
     }
 
+    @Singleton
     class Factory @Inject constructor(
         private val plugin: Plugin,
         private val scheduler: BukkitScheduler,

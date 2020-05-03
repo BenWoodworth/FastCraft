@@ -5,7 +5,9 @@ import net.benwoodworth.fastcraft.util.JsonStringBuilder
 import org.bukkit.ChatColor
 import java.util.*
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class BukkitFcTextConverter_1_7 @Inject constructor(
     private val localizer: BukkitLocalizer,
 ) : BukkitFcTextConverter {

@@ -2,7 +2,9 @@ package net.benwoodworth.fastcraft.bukkit.server
 
 import java.util.logging.Level
 import java.util.logging.Logger
+import javax.inject.Singleton
 
+@Singleton
 class BukkitFcLogger_1_7(
     private val logger: Logger,
 ) : BukkitFcLogger {

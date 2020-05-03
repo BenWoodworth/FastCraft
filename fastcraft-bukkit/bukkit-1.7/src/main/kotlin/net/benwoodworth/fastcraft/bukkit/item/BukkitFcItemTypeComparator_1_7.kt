@@ -2,7 +2,9 @@ package net.benwoodworth.fastcraft.bukkit.item
 
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class BukkitFcItemTypeComparator_1_7 @Inject constructor(
 ) : BukkitFcItemTypeComparator {
     override fun compare(type0: FcItemType, type1: FcItemType): Int {

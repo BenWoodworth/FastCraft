@@ -4,6 +4,7 @@ import net.benwoodworth.fastcraft.platform.command.FcCommand
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class BukkitFcCommandAdapter_1_7(
     override val command: FcCommand,
@@ -35,6 +36,7 @@ class BukkitFcCommandAdapter_1_7(
         )
     }
 
+    @Singleton
     class Factory @Inject constructor(
         private val commandSourceFactory: BukkitFcCommandSource.Factory,
     ) : BukkitFcCommandAdapter.Factory {

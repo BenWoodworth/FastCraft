@@ -8,6 +8,7 @@ import org.bukkit.Material
 import org.bukkit.material.MaterialData
 import javax.inject.Inject
 import javax.inject.Provider
+import javax.inject.Singleton
 
 
 open class BukkitFcItemType_1_7(
@@ -63,6 +64,7 @@ open class BukkitFcItemType_1_7(
         return WordUtils.capitalizeFully(name)
     }
 
+    @Singleton
     open class Factory @Inject constructor(
         protected val textFactory: FcTextFactory,
         protected val itemTypes: Provider<FcItemType.Factory>,

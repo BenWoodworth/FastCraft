@@ -20,6 +20,7 @@ import org.bukkit.inventory.InventoryHolder
 import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.PluginManager
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class BukkitFcGui_1_7<TLayout : FcGuiLayout>(
     override val player: FcPlayer,
@@ -163,6 +164,7 @@ class BukkitFcGui_1_7<TLayout : FcGuiLayout>(
         }
     }
 
+    @Singleton
     class Factory @Inject constructor(
         private val plugin: Plugin,
         private val pluginManager: PluginManager,

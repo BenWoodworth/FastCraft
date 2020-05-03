@@ -6,7 +6,9 @@ import net.benwoodworth.fastcraft.platform.text.FcTextConverter
 import org.bukkit.Server
 import org.bukkit.plugin.Plugin
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class BukkitFcCommandRegistry_1_7 @Inject constructor(
     private val plugin: Plugin,
     private val server: Server,

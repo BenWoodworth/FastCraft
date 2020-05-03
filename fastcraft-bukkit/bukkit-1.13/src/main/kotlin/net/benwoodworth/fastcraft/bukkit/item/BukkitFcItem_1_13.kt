@@ -5,6 +5,7 @@ import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.inventory.ItemStack
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class BukkitFcItem_1_13(
     itemStack: ItemStack,
@@ -18,6 +19,7 @@ class BukkitFcItem_1_13(
     override val type: FcItemType
         get() = itemTypes.fromMaterial(itemStack.type)
 
+    @Singleton
     open class Factory @Inject constructor(
         itemTypes: FcItemType.Factory,
         textFactory: FcTextFactory,

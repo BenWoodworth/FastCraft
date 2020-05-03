@@ -5,6 +5,7 @@ import net.benwoodworth.fastcraft.platform.config.FcConfigEntry
 import org.bukkit.configuration.file.YamlConfiguration
 import java.nio.file.Path
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class BukkitFcConfig_1_7(
     override val config: YamlConfiguration,
@@ -23,6 +24,7 @@ class BukkitFcConfig_1_7(
         return BukkitFcConfigEntry_1_7(key, config, null)
     }
 
+    @Singleton
     class Factory @Inject constructor(
     ) : BukkitFcConfig.Factory {
         override fun createEmpty(): FcConfig {

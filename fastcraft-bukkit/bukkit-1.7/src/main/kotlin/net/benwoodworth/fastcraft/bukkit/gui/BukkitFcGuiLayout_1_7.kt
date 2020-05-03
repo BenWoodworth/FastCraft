@@ -5,6 +5,7 @@ import net.benwoodworth.fastcraft.platform.gui.FcGuiLayout
 import org.bukkit.inventory.Inventory
 import java.util.*
 import javax.inject.Inject
+import javax.inject.Singleton
 
 abstract class BukkitFcGuiLayout_1_7(
     override val inventory: Inventory,
@@ -36,6 +37,7 @@ abstract class BukkitFcGuiLayout_1_7(
         }
     }
 
+    @Singleton
     class Factory @Inject constructor(
         private val guiButtonFactory: BukkitFcGuiButton_1_7.Factory,
     ) : BukkitFcGuiLayout.Factory {

@@ -9,7 +9,9 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.util.*
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class BukkitLocalizer_1_7 @Inject constructor(
     pluginInfo: FcPluginData,
     logger: FcLogger,

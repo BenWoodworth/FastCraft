@@ -7,6 +7,7 @@ import org.bukkit.Server
 import org.bukkit.inventory.ComplexRecipe
 import org.bukkit.inventory.Recipe
 import javax.inject.Inject
+import javax.inject.Singleton
 
 open class BukkitFcCraftingRecipe_1_15(
     recipe: Recipe,
@@ -28,6 +29,7 @@ open class BukkitFcCraftingRecipe_1_15(
         }
     }
 
+    @Singleton
     class Factory @Inject constructor(
         private val server: Server,
         private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,

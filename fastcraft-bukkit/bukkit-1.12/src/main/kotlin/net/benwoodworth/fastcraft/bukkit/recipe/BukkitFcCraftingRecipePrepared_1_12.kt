@@ -9,6 +9,7 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.InventoryView
 import org.bukkit.inventory.ItemStack
 import javax.inject.Inject
+import javax.inject.Singleton
 
 open class BukkitFcCraftingRecipePrepared_1_12(
     player: Player,
@@ -33,6 +34,7 @@ open class BukkitFcCraftingRecipePrepared_1_12(
         incrementCraftStats(result)
     }
 
+    @Singleton
     class Factory @Inject constructor(
         private val itemFactory: FcItem.Factory,
         private val server: Server,

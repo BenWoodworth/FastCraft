@@ -5,7 +5,9 @@ import net.benwoodworth.fastcraft.platform.item.FcItemType
 import org.bukkit.Material
 import org.bukkit.plugin.Plugin
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class BukkitFcItemTypeComparator_1_13 @Inject constructor(
     plugin: Plugin,
 ) : BukkitFcItemTypeComparator {

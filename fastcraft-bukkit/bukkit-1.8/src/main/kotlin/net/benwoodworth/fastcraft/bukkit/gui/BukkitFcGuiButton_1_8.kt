@@ -8,6 +8,7 @@ import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemFlag
 import java.util.*
 import javax.inject.Inject
+import javax.inject.Singleton
 
 open class BukkitFcGuiButton_1_8(
     inventory: Inventory,
@@ -37,6 +38,7 @@ open class BukkitFcGuiButton_1_8(
         }
     }
 
+    @Singleton
     class Factory @Inject constructor(
         private val textFactory: FcTextFactory,
         private val textConverter: FcTextConverter,

@@ -17,6 +17,7 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import java.util.*
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class BukkitFcPlayer_1_7(
     override val player: Player,
@@ -95,6 +96,7 @@ class BukkitFcPlayer_1_7(
         return player.hashCode()
     }
 
+    @Singleton
     class Provider @Inject constructor(
         private val server: Server,
         private val textConverter: FcTextConverter,

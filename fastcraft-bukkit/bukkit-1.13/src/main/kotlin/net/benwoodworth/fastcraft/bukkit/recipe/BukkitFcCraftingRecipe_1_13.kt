@@ -8,6 +8,7 @@ import org.bukkit.inventory.Recipe
 import org.bukkit.inventory.ShapedRecipe
 import org.bukkit.inventory.ShapelessRecipe
 import javax.inject.Inject
+import javax.inject.Singleton
 
 open class BukkitFcCraftingRecipe_1_13(
     recipe: Recipe,
@@ -52,6 +53,7 @@ open class BukkitFcCraftingRecipe_1_13(
         }
     }
 
+    @Singleton
     class Factory @Inject constructor(
         private val server: Server,
         private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,

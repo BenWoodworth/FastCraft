@@ -6,6 +6,7 @@ import org.bukkit.Material
 import org.bukkit.material.MaterialData
 import javax.inject.Inject
 import javax.inject.Provider
+import javax.inject.Singleton
 
 
 open class BukkitFcItemType_1_9(
@@ -23,6 +24,7 @@ open class BukkitFcItemType_1_9(
             else -> super.craftingResult
         }
 
+    @Singleton
     open class Factory @Inject constructor(
         textFactory: FcTextFactory,
         itemTypes: Provider<FcItemType.Factory>,

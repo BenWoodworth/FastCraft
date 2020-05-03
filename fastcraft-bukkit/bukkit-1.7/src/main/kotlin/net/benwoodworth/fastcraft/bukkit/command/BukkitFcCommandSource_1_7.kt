@@ -12,6 +12,7 @@ import org.bukkit.command.ConsoleCommandSender
 import org.bukkit.entity.Player
 import java.util.*
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class BukkitFcCommandSource_1_7(
     override val commandSender: CommandSender,
@@ -33,6 +34,7 @@ class BukkitFcCommandSource_1_7(
         }
     }
 
+    @Singleton
     class Factory @Inject constructor(
         private val playerProvider: FcPlayer.Provider,
         private val textConverter: FcTextConverter,

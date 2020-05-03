@@ -3,7 +3,9 @@ package net.benwoodworth.fastcraft.bukkit.text
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class BukkitFcTextFactory_1_7 @Inject constructor(
 ) : BukkitFcTextFactory {
     override fun createFcText(

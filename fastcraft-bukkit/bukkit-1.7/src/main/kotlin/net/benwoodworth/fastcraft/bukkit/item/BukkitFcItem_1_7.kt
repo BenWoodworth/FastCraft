@@ -6,6 +6,7 @@ import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.inventory.ItemStack
 import javax.inject.Inject
+import javax.inject.Singleton
 
 open class BukkitFcItem_1_7(
     override val itemStack: ItemStack,
@@ -51,6 +52,7 @@ open class BukkitFcItem_1_7(
         return itemStack.hashCode()
     }
 
+    @Singleton
     open class Factory @Inject constructor(
         protected val itemTypes: FcItemType.Factory,
         protected val textFactory: FcTextFactory,

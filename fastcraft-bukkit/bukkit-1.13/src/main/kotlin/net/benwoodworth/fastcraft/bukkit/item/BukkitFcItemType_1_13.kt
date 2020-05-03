@@ -9,6 +9,7 @@ import org.bukkit.Material
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Provider
+import javax.inject.Singleton
 
 open class BukkitFcItemType_1_13(
     override val material: Material,
@@ -80,6 +81,7 @@ open class BukkitFcItemType_1_13(
         return material.hashCode()
     }
 
+    @Singleton
     open class Factory @Inject constructor(
         textFactory: FcTextFactory,
         itemTypes: Provider<FcItemType.Factory>,

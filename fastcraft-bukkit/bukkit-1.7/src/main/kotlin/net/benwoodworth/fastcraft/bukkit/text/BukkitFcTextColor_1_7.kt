@@ -3,6 +3,7 @@ package net.benwoodworth.fastcraft.bukkit.text
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
 import org.bukkit.ChatColor
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class BukkitFcTextColor_1_7(
     override val id: String,
@@ -16,6 +17,7 @@ class BukkitFcTextColor_1_7(
         return id.hashCode()
     }
 
+    @Singleton
     class Factory @Inject constructor(
     ) : BukkitFcTextColor.Factory {
         override val black: FcTextColor by lazy { create("black", ChatColor.BLACK) }
