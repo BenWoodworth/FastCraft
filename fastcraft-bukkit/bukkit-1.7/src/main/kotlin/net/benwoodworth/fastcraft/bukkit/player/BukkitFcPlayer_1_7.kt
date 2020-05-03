@@ -35,7 +35,7 @@ class BukkitFcPlayer_1_7(
         get() = player.uniqueId
 
     override val locale: Locale
-        get() = LocaleApi.getLocale(player)
+        get() = LocaleApi.getLocale(player) ?: Locale.ENGLISH // TODO Don't default to English
 
     override val isOnline: Boolean
         get() = player.isOnline
