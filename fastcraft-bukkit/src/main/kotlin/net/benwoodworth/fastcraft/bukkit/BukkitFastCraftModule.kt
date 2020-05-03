@@ -30,6 +30,7 @@ import org.bukkit.inventory.ItemFactory
 import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.PluginManager
 import org.bukkit.scheduler.BukkitScheduler
+import java.util.logging.Logger
 import javax.inject.Provider
 
 @Suppress("unused")
@@ -80,8 +81,13 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    fun provideFcLogger(): FcLogger {
-        return BukkitFcLogger_1_7(plugin.logger)
+    fun provideLogger(): Logger {
+        return plugin.logger
+    }
+
+    @Provides
+    fun provideFcLogger(instance: BukkitFcLogger_1_7): FcLogger {
+        return instance
     }
 
     @Provides
