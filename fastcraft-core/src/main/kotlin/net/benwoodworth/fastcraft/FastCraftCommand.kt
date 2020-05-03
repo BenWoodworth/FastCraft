@@ -20,10 +20,10 @@ class FastCraftCommand @Inject constructor(
 ) : FcCommand {
     override val description = "FastCraft command"
 
-    override val usage = "/fastcraft [set|craft] ..."
-    private val usageSet = "/fastcraft set (enabled) <option> [player]"
-    private val usageSetEnabled = "/fastcraft set enabled (true|false) [player]"
-    private val usageCraft = "/fastcraft craft [fastcraft|grid|default] [player]"
+    override val usage = "/fastcraft (set|craft) ..."
+    private val usageSet = "/fastcraft set (enabled) <option> [<player>]"
+    private val usageSetEnabled = "/fastcraft set enabled (true|false) [<player>]"
+    private val usageCraft = "/fastcraft craft [fastcraft|grid|default] [<player>]"
 
     private fun FcCommandSource.sendMissingPermissionMessage(permission: FcPermission) {
         sendMessage(textFactory.createFcText(
