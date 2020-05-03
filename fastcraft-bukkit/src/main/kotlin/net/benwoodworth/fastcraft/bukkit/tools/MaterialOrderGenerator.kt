@@ -25,7 +25,7 @@ internal object MaterialOrderGenerator {
 
         val Material_getKey = Material::class.java.getDeclaredMethod("getKey")
 
-        val itemIdsToMaterials = Material.values()
+        val itemIdsToMaterials = enumValues<Material>()
             .map { Material_getKey.invoke(it).toString() to it }
             .toMap()
 
