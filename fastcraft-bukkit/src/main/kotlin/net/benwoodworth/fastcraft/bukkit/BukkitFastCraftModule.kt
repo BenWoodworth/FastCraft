@@ -8,10 +8,7 @@ import net.benwoodworth.fastcraft.bukkit.gui.*
 import net.benwoodworth.fastcraft.bukkit.item.*
 import net.benwoodworth.fastcraft.bukkit.player.*
 import net.benwoodworth.fastcraft.bukkit.recipe.*
-import net.benwoodworth.fastcraft.bukkit.server.BukkitFcLogger_1_7
-import net.benwoodworth.fastcraft.bukkit.server.BukkitFcPluginData_1_7
-import net.benwoodworth.fastcraft.bukkit.server.BukkitFcServer_1_7
-import net.benwoodworth.fastcraft.bukkit.server.BukkitFcTask_1_7
+import net.benwoodworth.fastcraft.bukkit.server.*
 import net.benwoodworth.fastcraft.bukkit.text.*
 import net.benwoodworth.fastcraft.bukkit.util.BukkitVersion
 import net.benwoodworth.fastcraft.platform.command.FcCommandRegistry
@@ -24,10 +21,7 @@ import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcPlayerEvents
 import net.benwoodworth.fastcraft.platform.player.FcSound
 import net.benwoodworth.fastcraft.platform.recipe.FcRecipeProvider
-import net.benwoodworth.fastcraft.platform.server.FcLogger
-import net.benwoodworth.fastcraft.platform.server.FcPluginData
-import net.benwoodworth.fastcraft.platform.server.FcServer
-import net.benwoodworth.fastcraft.platform.server.FcTask
+import net.benwoodworth.fastcraft.platform.server.*
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
 import net.benwoodworth.fastcraft.platform.text.FcTextConverter
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
@@ -331,6 +325,14 @@ class BukkitFastCraftModule(
     fun provideFcServer(
         instance: BukkitFcServer_1_7,
     ): FcServer {
+        return instance
+    }
+
+    @Provides
+    @Singleton
+    fun provideFcPermissionFactory(
+        instance: BukkitFcPermission_1_7.Factory,
+    ): FcPermission.Factory {
         return instance
     }
 }
