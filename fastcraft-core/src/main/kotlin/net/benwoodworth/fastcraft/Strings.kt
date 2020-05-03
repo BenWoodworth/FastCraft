@@ -1,5 +1,6 @@
 package net.benwoodworth.fastcraft
 
+import net.benwoodworth.fastcraft.platform.server.FcPermission
 import net.benwoodworth.localeconfig.api.LocaleApi
 import java.util.*
 
@@ -186,10 +187,10 @@ object Strings {
             ?: COMMAND_ERROR_USAGE
     }
 
-    fun commandErrorPermission(permission: String): String {
+    fun commandErrorPermission(permission: FcPermission): String {
         return LocaleApi.get(COMMAND_ERROR_PERMISSION)
             ?.substitute(
-                "permission", permission,
+                "permission", permission.name,
             )
             ?: COMMAND_ERROR_PERMISSION
     }

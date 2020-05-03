@@ -6,6 +6,7 @@ import net.benwoodworth.fastcraft.platform.command.FcCommand
 import net.benwoodworth.fastcraft.platform.command.FcCommandRegistry
 import net.benwoodworth.fastcraft.platform.command.FcCommandSource
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.server.FcPermission
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import javax.inject.Inject
 
@@ -15,6 +16,7 @@ class FastCraftCommand @Inject constructor(
     private val playerProvider: FcPlayer.Provider,
     private val playerSettings: PlayerSettings,
     private val fastCraftGuiFactory: FastCraftGui.Factory,
+    private val permissions: Permissions,
 ) : FcCommand {
     override val description = "FastCraft command"
 
@@ -23,7 +25,7 @@ class FastCraftCommand @Inject constructor(
     private val usageSetEnabled = "/fastcraft set enabled (true|false) [player]"
     private val usageCraft = "/fastcraft craft [fastcraft|grid|default] [player]"
 
-    private fun FcCommandSource.sendMissingPermissionMessage(permission: String) {
+    private fun FcCommandSource.sendMissingPermissionMessage(permission: FcPermission) {
         sendMessage(textFactory.createFcText(
             text = Strings.commandErrorPermission(permission),
         ))
@@ -157,8 +159,8 @@ class FastCraftCommand @Inject constructor(
             return
         }
 
-        if (!source.hasPermission(Permissions.FASTCRAFT_COMMAND_SET_ENABLED)) {
-            source.sendMissingPermissionMessage(Permissions.FASTCRAFT_COMMAND_SET_ENABLED)
+        if (!source.hasPermission(permissions.FASTCRAFT_COMMAND_SET_ENABLED)) {
+            source.sendMissingPermissionMessage(permissions.FASTCRAFT_COMMAND_SET_ENABLED)
             return
         }
 
@@ -182,8 +184,8 @@ class FastCraftCommand @Inject constructor(
             return
         }
 
-        if (!source.hasPermission(Permissions.FASTCRAFT_ADMIN_COMMAND_SET_ENABLED)) {
-            source.sendMissingPermissionMessage(Permissions.FASTCRAFT_ADMIN_COMMAND_SET_ENABLED)
+        if (!source.hasPermission(permissions.FASTCRAFT_ADMIN_COMMAND_SET_ENABLED)) {
+            source.sendMissingPermissionMessage(permissions.FASTCRAFT_ADMIN_COMMAND_SET_ENABLED)
             return
         }
 
@@ -210,8 +212,8 @@ class FastCraftCommand @Inject constructor(
             return
         }
 
-        val hasFcPerm = source.hasPermission(Permissions.FASTCRAFT_COMMAND_CRAFT_FASTCRAFT)
-        val hasGridPerm = source.hasPermission(Permissions.FASTCRAFT_COMMAND_CRAFT_GRID)
+        val hasFcPerm = source.hasPermission(permissions.FASTCRAFT_COMMAND_CRAFT_FASTCRAFT)
+        val hasGridPerm = source.hasPermission(permissions.FASTCRAFT_COMMAND_CRAFT_GRID)
         val prefersFc = playerSettings.getFastCraftEnabled(targetPlayer)
 
         val craftType = when (type) {
@@ -233,7 +235,7 @@ class FastCraftCommand @Inject constructor(
         when (craftType) {
             "fastcraft" -> {
                 if (!hasFcPerm) {
-                    source.sendMissingPermissionMessage(Permissions.FASTCRAFT_COMMAND_CRAFT_FASTCRAFT)
+                    source.sendMissingPermissionMessage(permissions.FASTCRAFT_COMMAND_CRAFT_FASTCRAFT)
                     return
                 }
 
@@ -243,7 +245,7 @@ class FastCraftCommand @Inject constructor(
             }
             "grid" -> {
                 if (!hasGridPerm) {
-                    source.sendMissingPermissionMessage(Permissions.FASTCRAFT_COMMAND_CRAFT_GRID)
+                    source.sendMissingPermissionMessage(permissions.FASTCRAFT_COMMAND_CRAFT_GRID)
                     return
                 }
 
@@ -265,8 +267,8 @@ class FastCraftCommand @Inject constructor(
             return
         }
 
-        if (!source.hasPermission(Permissions.FASTCRAFT_ADMIN_COMMAND_CRAFT)) {
-            source.sendMissingPermissionMessage(Permissions.FASTCRAFT_ADMIN_COMMAND_CRAFT)
+        if (!source.hasPermission(permissions.FASTCRAFT_ADMIN_COMMAND_CRAFT)) {
+            source.sendMissingPermissionMessage(permissions.FASTCRAFT_ADMIN_COMMAND_CRAFT)
             return
         }
 

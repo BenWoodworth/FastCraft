@@ -1,8 +1,10 @@
 package net.benwoodworth.fastcraft.bukkit.command
 
 import net.benwoodworth.fastcraft.bukkit.player.getPlayer
+import net.benwoodworth.fastcraft.bukkit.server.permission
 import net.benwoodworth.fastcraft.platform.command.FcCommandSource
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.server.FcPermission
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextConverter
 import org.bukkit.command.CommandSender
@@ -19,8 +21,8 @@ class BukkitFcCommandSource_1_7(
     override val isConsole: Boolean
         get() = commandSender is ConsoleCommandSender
 
-    override fun hasPermission(permission: String): Boolean {
-        return commandSender.hasPermission(permission)
+    override fun hasPermission(permission: FcPermission): Boolean {
+        return commandSender.hasPermission(permission.permission)
     }
 
     override fun sendMessage(message: FcText) {

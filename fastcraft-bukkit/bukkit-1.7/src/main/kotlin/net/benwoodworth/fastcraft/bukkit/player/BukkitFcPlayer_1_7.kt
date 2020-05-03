@@ -1,12 +1,14 @@
 package net.benwoodworth.fastcraft.bukkit.player
 
 import net.benwoodworth.fastcraft.bukkit.item.toItemStack
+import net.benwoodworth.fastcraft.bukkit.server.permission
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcText
 import net.benwoodworth.fastcraft.bukkit.text.toRaw
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcPlayerInventory
 import net.benwoodworth.fastcraft.platform.player.FcSound
+import net.benwoodworth.fastcraft.platform.server.FcPermission
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextConverter
 import net.benwoodworth.localeconfig.api.LocaleApi
@@ -58,8 +60,8 @@ class BukkitFcPlayer_1_7(
         }
     }
 
-    override fun hasPermission(permission: String): Boolean {
-        return player.hasPermission(permission)
+    override fun hasPermission(permission: FcPermission): Boolean {
+        return player.hasPermission(permission.permission)
     }
 
     override fun giveItems(items: List<FcItem>, dropAll: Boolean) {
