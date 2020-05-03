@@ -20,7 +20,7 @@ class FastCraft @Inject internal constructor(
         playerEventsListeners.onPlayerOpenWorkbench += ::onPlayerOpenWorkbench
         fastCraftCommand.register()
 
-        logger.info("Note: Commands and configuration have not been implemented yet, and will be added in a future release.")
+        logger.info("Note: A configuration has not been implemented yet, and will be added in a future release.")
     }
 
     fun disable() {
