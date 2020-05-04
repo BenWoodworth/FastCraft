@@ -26,6 +26,9 @@ class BukkitFcCommandSource_1_7(
         return commandSender.hasPermission(permission.permission)
     }
 
+    override val locale: Locale
+        get() = player?.locale ?: Locale.ENGLISH // TODO Don't default to English
+
     override fun sendMessage(message: FcText) {
         if (player != null) {
             player.sendMessage(message)

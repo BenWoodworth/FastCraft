@@ -179,64 +179,64 @@ object Strings {
             ?: GUI_TOOLBAR_WORKBENCH_DESCRIPTION_1
     }
 
-    fun commandErrorUsage(usage: String): String {
-        return LocaleApi.get(COMMAND_ERROR_USAGE)
+    fun commandErrorUsage(locale: Locale, usage: String): String {
+        return LocaleApi.get(locale, COMMAND_ERROR_USAGE)
             ?.substitute(
                 "usage", usage,
             )
             ?: COMMAND_ERROR_USAGE
     }
 
-    fun commandErrorPermission(permission: FcPermission): String {
-        return LocaleApi.get(COMMAND_ERROR_PERMISSION)
+    fun commandErrorPermission(locale: Locale, permission: FcPermission): String {
+        return LocaleApi.get(locale, COMMAND_ERROR_PERMISSION)
             ?.substitute(
                 "permission", permission.name,
             )
             ?: COMMAND_ERROR_PERMISSION
     }
 
-    fun commandErrorConsoleOnly(): String {
-        return LocaleApi.get(COMMAND_ERROR_CONSOLE_ONLY)
+    fun commandErrorConsoleOnly(locale: Locale): String {
+        return LocaleApi.get(locale, COMMAND_ERROR_CONSOLE_ONLY)
             ?.substitute()
             ?: COMMAND_ERROR_CONSOLE_ONLY
     }
 
-    fun commandErrorPlayerOnly(): String {
-        return LocaleApi.get(COMMAND_ERROR_PLAYER_ONLY)
+    fun commandErrorPlayerOnly(locale: Locale): String {
+        return LocaleApi.get(locale, COMMAND_ERROR_PLAYER_ONLY)
             ?.substitute()
             ?: COMMAND_ERROR_PLAYER_ONLY
     }
 
-    fun commandErrorPlayerUnknown(player: String): String {
-        return LocaleApi.get(COMMAND_ERROR_PLAYER_UNKNOWN)
+    fun commandErrorPlayerUnknown(locale: Locale, player: String): String {
+        return LocaleApi.get(locale, COMMAND_ERROR_PLAYER_UNKNOWN)
             ?.substitute(
                 "player", player,
             )
             ?: COMMAND_ERROR_PLAYER_UNKNOWN
     }
 
-    fun commandSetEnabledTrue(): String {
-        return LocaleApi.get(COMMAND_SET_ENABLED_TRUE)
+    fun commandSetEnabledTrue(locale: Locale): String {
+        return LocaleApi.get(locale, COMMAND_SET_ENABLED_TRUE)
             ?.substitute()
             ?: COMMAND_SET_ENABLED_TRUE
     }
 
-    fun commandSetEnabledFalse(): String {
-        return LocaleApi.get(COMMAND_SET_ENABLED_FALSE)
+    fun commandSetEnabledFalse(locale: Locale): String {
+        return LocaleApi.get(locale, COMMAND_SET_ENABLED_FALSE)
             ?.substitute()
             ?: COMMAND_SET_ENABLED_FALSE
     }
 
-    fun commandSetEnabledTruePlayer(player: String): String {
-        return LocaleApi.get(COMMAND_SET_ENABLED_TRUE_PLAYER)
+    fun commandSetEnabledTruePlayer(locale: Locale, player: String): String {
+        return LocaleApi.get(locale, COMMAND_SET_ENABLED_TRUE_PLAYER)
             ?.substitute(
                 "player", player,
             )
             ?: COMMAND_SET_ENABLED_TRUE_PLAYER
     }
 
-    fun commandSetEnabledFalsePlayer(player: String): String {
-        return LocaleApi.get(COMMAND_SET_ENABLED_FALSE_PLAYER)
+    fun commandSetEnabledFalsePlayer(locale: Locale, player: String): String {
+        return LocaleApi.get(locale, COMMAND_SET_ENABLED_FALSE_PLAYER)
             ?.substitute(
                 "player", player,
             )

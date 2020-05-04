@@ -27,25 +27,25 @@ class FastCraftCommand @Inject constructor(
 
     private fun FcCommandSource.sendMissingPermissionMessage(permission: FcPermission) {
         sendMessage(textFactory.createFcText(
-            text = Strings.commandErrorPermission(permission),
+            text = Strings.commandErrorPermission(locale, permission),
         ))
     }
 
     private fun FcCommandSource.sendMustBePlayerMessage() {
         sendMessage(textFactory.createFcText(
-            text = Strings.commandErrorPlayerOnly(),
+            text = Strings.commandErrorPlayerOnly(locale),
         ))
     }
 
     private fun FcCommandSource.sendPlayerNotFoundMessage(player: String) {
         sendMessage(textFactory.createFcText(
-            text = Strings.commandErrorPlayerUnknown(player),
+            text = Strings.commandErrorPlayerUnknown(locale, player),
         ))
     }
 
     private fun FcCommandSource.sendUsageMessage(usage: String) {
         sendMessage(textFactory.createFcText(
-            text = Strings.commandErrorUsage(usage),
+            text = Strings.commandErrorUsage(locale, usage),
         ))
     }
 
@@ -167,9 +167,9 @@ class FastCraftCommand @Inject constructor(
         playerSettings.setFastCraftEnabled(targetPlayer, enabled)
         source.sendMessage(textFactory.createLegacy(
             if (enabled) {
-                Strings.commandSetEnabledTrue()
+                Strings.commandSetEnabledTrue(source.locale)
             } else {
-                Strings.commandSetEnabledFalse()
+                Strings.commandSetEnabledFalse(source.locale)
             }
         ))
     }
@@ -197,9 +197,9 @@ class FastCraftCommand @Inject constructor(
         playerSettings.setFastCraftEnabled(targetPlayer, enabled)
         source.sendMessage(textFactory.createLegacy(
             if (enabled) {
-                Strings.commandSetEnabledTruePlayer(targetPlayer.username)
+                Strings.commandSetEnabledTruePlayer(source.locale, targetPlayer.username)
             } else {
-                Strings.commandSetEnabledFalsePlayer(targetPlayer.username)
+                Strings.commandSetEnabledFalsePlayer(source.locale, targetPlayer.username)
             }
         ))
     }
