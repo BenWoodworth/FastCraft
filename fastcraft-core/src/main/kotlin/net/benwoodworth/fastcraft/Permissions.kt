@@ -31,11 +31,9 @@ class Permissions @Inject constructor(
     val FASTCRAFT_ADMIN_COMMAND_SET_ENABLED = permissionFactory.create(
         name = "fastcraft.admin.command.set.enabled",
         description = "Permission to use '/fastcraft set enabled * <player>'",
-    )
-
-    val FASTCRAFT_ADMIN_COMMAND_CRAFT = permissionFactory.create(
-        name = "fastcraft.admin.command.craft",
-        description = "Permission to use '/fastcraft craft * <player>'",
+        listOf(
+            FASTCRAFT_COMMAND_SET_ENABLED,
+        )
     )
 
     val FASTCRAFT_COMMAND_CRAFT_ALL = permissionFactory.create(
@@ -45,6 +43,14 @@ class Permissions @Inject constructor(
             FASTCRAFT_COMMAND_CRAFT_FASTCRAFT,
             FASTCRAFT_COMMAND_CRAFT_GRID,
         ),
+    )
+
+    val FASTCRAFT_ADMIN_COMMAND_CRAFT = permissionFactory.create(
+        name = "fastcraft.admin.command.craft",
+        description = "Permission to use '/fastcraft craft * <player>'",
+        children = listOf(
+            FASTCRAFT_COMMAND_CRAFT_ALL,
+        )
     )
 
     val FASTCRAFT_COMMAND_SET_ALL = permissionFactory.create(
@@ -69,6 +75,7 @@ class Permissions @Inject constructor(
         description = "All 'fastcraft.admin.command.set' permissions",
         children = listOf(
             FASTCRAFT_ADMIN_COMMAND_SET_ENABLED,
+            FASTCRAFT_COMMAND_SET_ALL,
         ),
     )
 
@@ -78,6 +85,7 @@ class Permissions @Inject constructor(
         children = listOf(
             FASTCRAFT_ADMIN_COMMAND_SET_ALL,
             FASTCRAFT_ADMIN_COMMAND_CRAFT,
+            FASTCRAFT_COMMAND_ALL,
         ),
     )
 
