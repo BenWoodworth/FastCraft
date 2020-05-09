@@ -1,22 +1,21 @@
 package net.benwoodworth.fastcraft.crafting.view
 
-import com.google.auto.factory.AutoFactory
-import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.Strings
+import net.benwoodworth.fastcraft.crafting.view.buttons.*
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
+import javax.inject.Inject
 
-@AutoFactory
 class FastCraftGuiView(
     player: FcPlayer,
-    @Provided guiFactory: FcGui.Factory,
-    @Provided workbenchButtonFactory: net.benwoodworth.fastcraft.crafting.view.buttons.WorkbenchButtonViewFactory,
-    @Provided pageButtonFactory: net.benwoodworth.fastcraft.crafting.view.buttons.PageButtonViewFactory,
-    @Provided recipeButtonFactory: net.benwoodworth.fastcraft.crafting.view.buttons.RecipeButtonViewFactory,
-    @Provided craftAmountButtonFactory: net.benwoodworth.fastcraft.crafting.view.buttons.CraftAmountButtonViewFactory,
-    @Provided refreshButtonFactory: net.benwoodworth.fastcraft.crafting.view.buttons.RefreshButtonViewFactory,
-    @Provided private val textFactory: FcTextFactory,
+    guiFactory: FcGui.Factory,
+    workbenchButtonFactory: WorkbenchButtonViewFactory,
+    pageButtonFactory: PageButtonViewFactory,
+    recipeButtonFactory: RecipeButtonViewFactory,
+    craftAmountButtonFactory: CraftAmountButtonViewFactory,
+    refreshButtonFactory: RefreshButtonViewFactory,
+    textFactory: FcTextFactory,
 ) {
     val gui = guiFactory.createChestGui(
         player = player,
@@ -47,5 +46,28 @@ class FastCraftGuiView(
             ),
             player.locale
         )
+    }
+
+    class Factory @Inject constructor(
+        private val guiFactory: FcGui.Factory,
+        private val workbenchButtonFactory: WorkbenchButtonViewFactory,
+        private val pageButtonFactory: PageButtonViewFactory,
+        private val recipeButtonFactory: RecipeButtonViewFactory,
+        private val craftAmountButtonFactory: CraftAmountButtonViewFactory,
+        private val refreshButtonFactory: RefreshButtonViewFactory,
+        private val textFactory: FcTextFactory,
+    ) {
+        fun create(player: FcPlayer): FastCraftGuiView {
+            return FastCraftGuiView(
+                player = player,
+                guiFactory = guiFactory,
+                workbenchButtonFactory = workbenchButtonFactory,
+                pageButtonFactory = pageButtonFactory,
+                recipeButtonFactory = recipeButtonFactory,
+                craftAmountButtonFactory = craftAmountButtonFactory,
+                refreshButtonFactory = refreshButtonFactory,
+                textFactory = textFactory,
+            )
+        }
     }
 }
