@@ -1,8 +1,8 @@
 package net.benwoodworth.fastcraft.crafting.model
 
 import net.benwoodworth.fastcraft.platform.item.FcItemStack
-import net.benwoodworth.fastcraft.platform.item.FcItemType
-import net.benwoodworth.fastcraft.platform.item.FcItemTypeComparator
+import net.benwoodworth.fastcraft.platform.item.FcMaterial
+import net.benwoodworth.fastcraft.platform.item.FcMaterialComparator
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
@@ -18,13 +18,13 @@ class CraftableRecipeFinder(
     private val player: FcPlayer,
     private val recipeProvider: FcRecipeProvider,
     private val itemAmountsProvider: Provider<ItemAmounts>,
-    itemTypeComparator: FcItemTypeComparator,
+    materialComparator: FcMaterialComparator,
     private val taskFactory: FcTask.Factory,
 ) {
     private var recipeLoadTask: FcTask? = null
 
     private val recipeComparator: Comparator<FcCraftingRecipe> =
-        compareBy<FcCraftingRecipe, FcItemType>(itemTypeComparator) {
+        compareBy<FcCraftingRecipe, FcMaterial>(materialComparator) {
             it.exemplaryResult.type
         }.thenBy {
             it.exemplaryResult.amount
@@ -139,7 +139,7 @@ class CraftableRecipeFinder(
     class Factory @Inject constructor(
         private val recipeProvider: FcRecipeProvider,
         private val itemAmountsProvider: Provider<ItemAmounts>,
-        private val itemTypeComparator: FcItemTypeComparator,
+        private val materialComparator: FcMaterialComparator,
         private val taskFactory: FcTask.Factory,
     ) {
         fun create(player: FcPlayer): CraftableRecipeFinder {
@@ -147,7 +147,7 @@ class CraftableRecipeFinder(
                 player = player,
                 recipeProvider = recipeProvider,
                 itemAmountsProvider = itemAmountsProvider,
-                itemTypeComparator = itemTypeComparator,
+                materialComparator = materialComparator,
                 taskFactory = taskFactory,
             )
         }

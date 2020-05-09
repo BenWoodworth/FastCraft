@@ -1,16 +1,16 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
 import com.google.common.base.Enums
-import net.benwoodworth.fastcraft.platform.item.FcItemType
+import net.benwoodworth.fastcraft.platform.item.FcMaterial
 import org.bukkit.Material
 import org.bukkit.plugin.Plugin
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class BukkitFcItemTypeComparator_1_13 @Inject constructor(
+class BukkitFcMaterialComparator_1_13 @Inject constructor(
     plugin: Plugin,
-) : BukkitFcItemTypeComparator {
+) : BukkitFcMaterialComparator {
     private val materialIndices: Map<Material, Int> = plugin
         .getResource("bukkit/material-order.txt")!!
         .reader()
@@ -22,12 +22,12 @@ class BukkitFcItemTypeComparator_1_13 @Inject constructor(
                 .toMap()
         }
 
-    private val comparator = compareBy<FcItemType>(
+    private val comparator = compareBy<FcMaterial>(
         { materialIndices[it.material] ?: Int.MAX_VALUE },
         { it.id }
     )
 
-    override fun compare(type0: FcItemType, type1: FcItemType): Int {
+    override fun compare(type0: FcMaterial, type1: FcMaterial): Int {
         return comparator.compare(type0, type1)
     }
 }

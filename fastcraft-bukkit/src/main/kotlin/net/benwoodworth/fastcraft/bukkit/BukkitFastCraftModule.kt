@@ -15,8 +15,8 @@ import net.benwoodworth.fastcraft.platform.command.FcCommandRegistry
 import net.benwoodworth.fastcraft.platform.config.FcConfig
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.item.FcItemStack
-import net.benwoodworth.fastcraft.platform.item.FcItemType
-import net.benwoodworth.fastcraft.platform.item.FcItemTypeComparator
+import net.benwoodworth.fastcraft.platform.item.FcMaterial
+import net.benwoodworth.fastcraft.platform.item.FcMaterialComparator
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcPlayerEvents
 import net.benwoodworth.fastcraft.platform.player.FcSound
@@ -137,12 +137,12 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    fun provideFcItemTypeFactory(
-        instance_1_15: Provider<BukkitFcItemType_1_15.Factory>,
-        instance_1_13: Provider<BukkitFcItemType_1_13.Factory>,
-        instance_1_9: Provider<BukkitFcItemType_1_9.Factory>,
-        instance_1_7: Provider<BukkitFcItemType_1_7.Factory>,
-    ): FcItemType.Factory {
+    fun provideFcMaterialFactory(
+        instance_1_15: Provider<BukkitFcMaterial_1_15.Factory>,
+        instance_1_13: Provider<BukkitFcMaterial_1_13.Factory>,
+        instance_1_9: Provider<BukkitFcMaterial_1_9.Factory>,
+        instance_1_7: Provider<BukkitFcMaterial_1_7.Factory>,
+    ): FcMaterial.Factory {
         return when {
             bukkitVersion >= VERSION_1_15 -> instance_1_15.get()
             bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
@@ -153,10 +153,10 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    fun provideFcItemTypeComparator(
-        instance_1_13: Provider<BukkitFcItemTypeComparator_1_13>,
-        instance_1_7: Provider<BukkitFcItemTypeComparator_1_7>,
-    ): FcItemTypeComparator {
+    fun provideFcMaterialComparator(
+        instance_1_13: Provider<BukkitFcMaterialComparator_1_13>,
+        instance_1_7: Provider<BukkitFcMaterialComparator_1_7>,
+    ): FcMaterialComparator {
         return when {
             bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
             bukkitVersion >= VERSION_1_7 -> instance_1_7.get()

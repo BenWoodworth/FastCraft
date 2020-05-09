@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.Strings
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
-import net.benwoodworth.fastcraft.platform.item.FcItemType
+import net.benwoodworth.fastcraft.platform.item.FcMaterial
 import net.benwoodworth.fastcraft.platform.player.FcSound
 import net.benwoodworth.fastcraft.platform.text.FcText
 import java.util.*
@@ -14,7 +14,7 @@ import javax.inject.Inject
 class WorkbenchButtonView(
     button: FcGuiButton,
     private val locale: Locale,
-    private val itemTypes: FcItemType.Factory,
+    private val materials: FcMaterial.Factory,
     private val textFactory: FcText.Factory,
     private val sounds: FcSound.Factory,
 ) {
@@ -24,7 +24,7 @@ class WorkbenchButtonView(
         button.apply {
             listener = ButtonListener()
 
-            setItemType(itemTypes.craftingTable)
+            setMaterial(materials.craftingTable)
 
             setText(
                 textFactory.createLegacy(
@@ -72,7 +72,7 @@ class WorkbenchButtonView(
     }
 
     class Factory @Inject constructor(
-        private val itemTypes: FcItemType.Factory,
+        private val materials: FcMaterial.Factory,
         private val textFactory: FcText.Factory,
         private val sounds: FcSound.Factory,
     ) {
@@ -80,7 +80,7 @@ class WorkbenchButtonView(
             return WorkbenchButtonView(
                 button = button,
                 locale = locale,
-                itemTypes = itemTypes,
+                materials = materials,
                 textFactory = textFactory,
                 sounds = sounds,
             )

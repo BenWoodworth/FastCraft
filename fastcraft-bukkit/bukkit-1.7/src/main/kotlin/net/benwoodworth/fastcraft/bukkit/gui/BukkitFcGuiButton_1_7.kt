@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.bukkit.item.toBukkitItemStack
 import net.benwoodworth.fastcraft.bukkit.util.updateMeta
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.item.FcItemStack
-import net.benwoodworth.fastcraft.platform.item.FcItemType
+import net.benwoodworth.fastcraft.platform.item.FcMaterial
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextConverter
 import org.bukkit.Material
@@ -38,8 +38,8 @@ open class BukkitFcGuiButton_1_7(
 
     override var listener: FcGuiButton.Listener = FcGuiButton.Listener.Default
 
-    override fun setItemType(itemType: FcItemType) {
-        itemStack.type = itemType.material
+    override fun setMaterial(material: FcMaterial) {
+        itemStack.type = material.material
 
         updateDisplayName()
         updateLore()

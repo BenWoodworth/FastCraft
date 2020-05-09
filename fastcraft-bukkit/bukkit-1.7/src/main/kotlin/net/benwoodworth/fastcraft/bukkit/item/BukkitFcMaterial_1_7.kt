@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
-import net.benwoodworth.fastcraft.platform.item.FcItemType
+import net.benwoodworth.fastcraft.platform.item.FcMaterial
 import net.benwoodworth.fastcraft.platform.text.FcText
 import org.apache.commons.lang.WordUtils
 import org.bukkit.Material
@@ -10,11 +10,11 @@ import javax.inject.Provider
 import javax.inject.Singleton
 
 
-open class BukkitFcItemType_1_7(
+open class BukkitFcMaterial_1_7(
     override val materialData: MaterialData,
     protected val textFactory: FcText.Factory,
-    protected val itemTypes: FcItemType.Factory,
-) : BukkitFcItemType {
+    protected val materials: FcMaterial.Factory,
+) : BukkitFcMaterial {
     @Suppress("DEPRECATION")
     override val id: String
         get() = "${materialData.itemTypeId}:${materialData.data}"
@@ -31,18 +31,18 @@ open class BukkitFcItemType_1_7(
     override val maxAmount: Int
         get() = material.maxStackSize
 
-    override val craftingResult: FcItemType?
+    override val craftingResult: FcMaterial?
         get() = when (material) {
             Material.LAVA_BUCKET,
             Material.MILK_BUCKET,
             Material.WATER_BUCKET,
-            -> itemTypes.fromMaterial(Material.BUCKET)
+            -> materials.fromMaterial(Material.BUCKET)
 
             else -> null
         }
 
     override fun equals(other: Any?): Boolean {
-        return other is FcItemType && materialData == other.materialData
+        return other is FcMaterial && materialData == other.materialData
     }
 
     override fun hashCode(): Int {
@@ -66,21 +66,21 @@ open class BukkitFcItemType_1_7(
     @Singleton
     open class Factory @Inject constructor(
         protected val textFactory: FcText.Factory,
-        protected val itemTypes: Provider<FcItemType.Factory>,
-    ) : BukkitFcItemType.Factory {
-        override val air: FcItemType by lazy { fromMaterial(Material.AIR) }
-        override val ironSword: FcItemType by lazy { fromMaterial(Material.IRON_SWORD) }
-        override val craftingTable: FcItemType by lazy { fromMaterial(Material.WORKBENCH) }
-        override val anvil: FcItemType by lazy { fromMaterial(Material.ANVIL) }
-        override val netherStar: FcItemType by lazy { fromMaterial(Material.NETHER_STAR) }
+        protected val materials: Provider<FcMaterial.Factory>,
+    ) : BukkitFcMaterial.Factory {
+        override val air: FcMaterial by lazy { fromMaterial(Material.AIR) }
+        override val ironSword: FcMaterial by lazy { fromMaterial(Material.IRON_SWORD) }
+        override val craftingTable: FcMaterial by lazy { fromMaterial(Material.WORKBENCH) }
+        override val anvil: FcMaterial by lazy { fromMaterial(Material.ANVIL) }
+        override val netherStar: FcMaterial by lazy { fromMaterial(Material.NETHER_STAR) }
 
-        override fun fromMaterial(material: Material): FcItemType {
+        override fun fromMaterial(material: Material): FcMaterial {
             return fromMaterialData(MaterialData(material))
         }
 
-        override fun fromMaterialData(materialData: Any): FcItemType {
+        override fun fromMaterialData(materialData: Any): FcMaterial {
             require(materialData is MaterialData)
-            return BukkitFcItemType_1_7(materialData, textFactory, itemTypes.get())
+            return BukkitFcMaterial_1_7(materialData, textFactory, materials.get())
         }
     }
 }

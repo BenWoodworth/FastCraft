@@ -6,7 +6,7 @@ import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClickModifier
-import net.benwoodworth.fastcraft.platform.item.FcItemType
+import net.benwoodworth.fastcraft.platform.item.FcMaterial
 import net.benwoodworth.fastcraft.platform.player.FcSound
 import net.benwoodworth.fastcraft.platform.text.FcText
 import java.util.*
@@ -15,7 +15,7 @@ import javax.inject.Inject
 class PageButtonView(
     private val button: FcGuiButton,
     private val locale: Locale,
-    private val itemTypes: FcItemType.Factory,
+    private val materials: FcMaterial.Factory,
     private val textFactory: FcText.Factory,
     private val sounds: FcSound.Factory,
 ) {
@@ -28,7 +28,7 @@ class PageButtonView(
         button.apply {
             listener = ButtonListener()
 
-            setItemType(itemTypes.ironSword)
+            setMaterial(materials.ironSword)
 
             setDescription(
                 listOf(
@@ -93,7 +93,7 @@ class PageButtonView(
     }
 
     class Factory @Inject constructor(
-        private val itemTypes: FcItemType.Factory,
+        private val materials: FcMaterial.Factory,
         private val textFactory: FcText.Factory,
         private val sounds: FcSound.Factory,
     ) {
@@ -101,7 +101,7 @@ class PageButtonView(
             return PageButtonView(
                 button = button,
                 locale = locale,
-                itemTypes = itemTypes,
+                materials = materials,
                 textFactory = textFactory,
                 sounds = sounds,
             )

@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
-import net.benwoodworth.fastcraft.platform.item.FcItemType
+import net.benwoodworth.fastcraft.platform.item.FcMaterial
 import net.benwoodworth.fastcraft.platform.text.FcText
 import org.bukkit.Material
 import org.bukkit.material.MaterialData
@@ -9,32 +9,32 @@ import javax.inject.Provider
 import javax.inject.Singleton
 
 
-open class BukkitFcItemType_1_9(
+open class BukkitFcMaterial_1_9(
     materialData: MaterialData,
     textFactory: FcText.Factory,
-    itemTypes: FcItemType.Factory,
-) : BukkitFcItemType_1_7(
+    materials: FcMaterial.Factory,
+) : BukkitFcMaterial_1_7(
     materialData = materialData,
     textFactory = textFactory,
-    itemTypes = itemTypes,
+    materials = materials,
 ) {
-    override val craftingResult: FcItemType?
+    override val craftingResult: FcMaterial?
         get() = when (material) {
-            Material.DRAGONS_BREATH -> itemTypes.fromMaterial(Material.GLASS_BOTTLE)
+            Material.DRAGONS_BREATH -> materials.fromMaterial(Material.GLASS_BOTTLE)
             else -> super.craftingResult
         }
 
     @Singleton
     open class Factory @Inject constructor(
         textFactory: FcText.Factory,
-        itemTypes: Provider<FcItemType.Factory>,
-    ) : BukkitFcItemType_1_7.Factory(
+        materials: Provider<FcMaterial.Factory>,
+    ) : BukkitFcMaterial_1_7.Factory(
         textFactory = textFactory,
-        itemTypes = itemTypes,
+        materials = materials,
     ) {
-        override fun fromMaterialData(materialData: Any): FcItemType {
+        override fun fromMaterialData(materialData: Any): FcMaterial {
             require(materialData is MaterialData)
-            return BukkitFcItemType_1_9(materialData, textFactory, itemTypes.get())
+            return BukkitFcMaterial_1_9(materialData, textFactory, materials.get())
         }
     }
 }
