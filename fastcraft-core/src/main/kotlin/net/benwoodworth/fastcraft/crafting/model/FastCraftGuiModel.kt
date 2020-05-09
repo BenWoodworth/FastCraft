@@ -1,19 +1,18 @@
 package net.benwoodworth.fastcraft.crafting.model
 
-import com.google.auto.factory.AutoFactory
-import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 import net.benwoodworth.fastcraft.util.CancellableResult
+import javax.inject.Inject
 import javax.inject.Provider
+import javax.inject.Singleton
 
-@AutoFactory
 class FastCraftGuiModel(
     val player: FcPlayer,
-    @Provided private val itemAmountsProvider: Provider<ItemAmounts>,
-    @Provided private val craftableRecipeFinderFactory: CraftableRecipeFinder.Factory,
-    @Provided private val itemFactory: FcItem.Factory,
+    private val itemAmountsProvider: Provider<ItemAmounts>,
+    craftableRecipeFinderFactory: CraftableRecipeFinder.Factory,
+    private val itemFactory: FcItem.Factory,
 ) {
     var craftAmount: Int? = null
     val recipes: MutableList<FastCraftRecipe?> = mutableListOf()
@@ -132,5 +131,21 @@ class FastCraftGuiModel(
 
     interface Listener {
         fun onRecipesChange(recipes: List<FastCraftRecipe?>) {}
+    }
+
+    @Singleton
+    class Factory @Inject constructor(
+        private val itemAmountsProvider: Provider<ItemAmounts>,
+        private val craftableRecipeFinderFactory: CraftableRecipeFinder.Factory,
+        private val itemFactory: FcItem.Factory,
+    ) {
+        fun create(player: FcPlayer): FastCraftGuiModel {
+            return FastCraftGuiModel(
+                player = player,
+                itemAmountsProvider = itemAmountsProvider,
+                craftableRecipeFinderFactory = craftableRecipeFinderFactory,
+                itemFactory = itemFactory,
+            )
+        }
     }
 }

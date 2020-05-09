@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.crafting
 
-import net.benwoodworth.fastcraft.crafting.model.FastCraftGuiModelFactory
+import net.benwoodworth.fastcraft.crafting.model.FastCraftGuiModel
 import net.benwoodworth.fastcraft.crafting.presenter.FastCraftGuiPresenter
 import net.benwoodworth.fastcraft.crafting.view.FastCraftGuiViewFactory
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
@@ -14,7 +14,7 @@ class FastCraftGui(
     }
 
     class Factory @Inject constructor(
-        private val fastCraftGuiModelFactory: FastCraftGuiModelFactory,
+        private val fastCraftGuiModelFactory: FastCraftGuiModel.Factory,
         private val fastCraftGuiViewFactory: FastCraftGuiViewFactory,
     ) {
         fun createFastCraftGui(player: FcPlayer): FastCraftGui {
