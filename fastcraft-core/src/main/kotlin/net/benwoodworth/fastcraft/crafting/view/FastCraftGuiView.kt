@@ -13,7 +13,7 @@ class FastCraftGuiView(
     workbenchButtonFactory: WorkbenchButtonView.Factory,
     pageButtonFactory: PageButtonViewFactory,
     recipeButtonFactory: RecipeButtonViewFactory,
-    craftAmountButtonFactory: CraftAmountButtonViewFactory,
+    craftAmountButtonFactory: CraftAmountButtonView.Factory,
     refreshButtonFactory: RefreshButtonViewFactory,
     textFactory: FcTextFactory,
 ) {
@@ -53,7 +53,7 @@ class FastCraftGuiView(
         private val workbenchButtonFactory: WorkbenchButtonView.Factory,
         private val pageButtonFactory: PageButtonViewFactory,
         private val recipeButtonFactory: RecipeButtonViewFactory,
-        private val craftAmountButtonFactory: CraftAmountButtonViewFactory,
+        private val craftAmountButtonFactory: CraftAmountButtonView.Factory,
         private val refreshButtonFactory: RefreshButtonViewFactory,
         private val textFactory: FcTextFactory,
     ) {
