@@ -4,7 +4,7 @@ import net.benwoodworth.fastcraft.Strings
 import net.benwoodworth.fastcraft.crafting.view.buttons.*
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
-import net.benwoodworth.fastcraft.platform.text.FcTextFactory
+import net.benwoodworth.fastcraft.platform.text.FcText
 import javax.inject.Inject
 
 class FastCraftGuiView(
@@ -15,7 +15,7 @@ class FastCraftGuiView(
     recipeButtonFactory: RecipeButtonView.Factory,
     craftAmountButtonFactory: CraftAmountButtonView.Factory,
     refreshButtonFactory: RefreshButtonView.Factory,
-    textFactory: FcTextFactory,
+    textFactory: FcText.Factory,
 ) {
     val gui = guiFactory.createChestGui(
         player = player,
@@ -55,7 +55,7 @@ class FastCraftGuiView(
         private val recipeButtonFactory: RecipeButtonView.Factory,
         private val craftAmountButtonFactory: CraftAmountButtonView.Factory,
         private val refreshButtonFactory: RefreshButtonView.Factory,
-        private val textFactory: FcTextFactory,
+        private val textFactory: FcText.Factory,
     ) {
         fun create(player: FcPlayer): FastCraftGuiView {
             return FastCraftGuiView(

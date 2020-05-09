@@ -8,7 +8,7 @@ import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClickModifier
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.player.FcSound
-import net.benwoodworth.fastcraft.platform.text.FcTextFactory
+import net.benwoodworth.fastcraft.platform.text.FcText
 import java.util.*
 import javax.inject.Inject
 
@@ -16,7 +16,7 @@ class PageButtonView(
     private val button: FcGuiButton,
     private val locale: Locale,
     private val itemTypes: FcItemType.Factory,
-    private val textFactory: FcTextFactory,
+    private val textFactory: FcText.Factory,
     private val sounds: FcSound.Factory,
 ) {
     var page: Int = 1
@@ -94,7 +94,7 @@ class PageButtonView(
 
     class Factory @Inject constructor(
         private val itemTypes: FcItemType.Factory,
-        private val textFactory: FcTextFactory,
+        private val textFactory: FcText.Factory,
         private val sounds: FcSound.Factory,
     ) {
         fun create(button: FcGuiButton, locale: Locale): PageButtonView {

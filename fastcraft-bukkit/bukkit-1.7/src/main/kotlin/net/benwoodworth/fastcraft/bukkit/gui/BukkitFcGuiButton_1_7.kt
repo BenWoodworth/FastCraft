@@ -8,7 +8,6 @@ import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextConverter
-import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.Material
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
@@ -22,7 +21,7 @@ open class BukkitFcGuiButton_1_7(
     private val inventory: Inventory,
     private val slotIndex: Int,
     locale: Locale,
-    private val textFactory: FcTextFactory,
+    private val textFactory: FcText.Factory,
     private val textConverter: FcTextConverter,
 ) : BukkitFcGuiButton {
 
@@ -145,7 +144,7 @@ open class BukkitFcGuiButton_1_7(
 
     @Singleton
     class Factory @Inject constructor(
-        private val textFactory: FcTextFactory,
+        private val textFactory: FcText.Factory,
         private val textConverter: FcTextConverter,
     ) : BukkitFcGuiButton.Factory {
         override fun create(inventory: Inventory, slotIndex: Int, locale: Locale): FcGuiButton {

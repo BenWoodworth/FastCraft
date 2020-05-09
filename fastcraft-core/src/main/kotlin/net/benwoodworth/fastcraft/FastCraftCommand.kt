@@ -7,12 +7,12 @@ import net.benwoodworth.fastcraft.platform.command.FcCommandRegistry
 import net.benwoodworth.fastcraft.platform.command.FcCommandSource
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.server.FcPermission
-import net.benwoodworth.fastcraft.platform.text.FcTextFactory
+import net.benwoodworth.fastcraft.platform.text.FcText
 import javax.inject.Inject
 
 class FastCraftCommand @Inject constructor(
     private val commandRegistry: FcCommandRegistry,
-    private val textFactory: FcTextFactory,
+    private val textFactory: FcText.Factory,
     private val playerProvider: FcPlayer.Provider,
     private val playerSettings: PlayerSettings,
     private val fastCraftGuiFactory: FastCraftGui.Factory,

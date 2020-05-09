@@ -3,7 +3,6 @@ package net.benwoodworth.fastcraft.bukkit.item
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.inventory.ItemStack
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -11,7 +10,7 @@ import javax.inject.Singleton
 open class BukkitFcItem_1_7(
     override val itemStack: ItemStack,
     protected val itemTypes: FcItemType.Factory,
-    protected val textFactory: FcTextFactory,
+    protected val textFactory: FcText.Factory,
 ) : BukkitFcItem {
     override val type: FcItemType
         get() = itemTypes.fromMaterialData(itemStack.data)
@@ -55,7 +54,7 @@ open class BukkitFcItem_1_7(
     @Singleton
     open class Factory @Inject constructor(
         protected val itemTypes: FcItemType.Factory,
-        protected val textFactory: FcTextFactory,
+        protected val textFactory: FcText.Factory,
     ) : BukkitFcItem.Factory {
         override fun copyItem(item: FcItem, amount: Int): FcItem {
             try {

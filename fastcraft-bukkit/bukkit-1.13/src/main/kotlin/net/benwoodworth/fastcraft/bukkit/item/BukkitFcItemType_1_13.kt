@@ -4,7 +4,6 @@ import net.benwoodworth.fastcraft.bukkit.text.BukkitLocalizer
 import net.benwoodworth.fastcraft.bukkit.text.createFcTextTranslate
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.Material
 import java.util.*
 import javax.inject.Inject
@@ -13,7 +12,7 @@ import javax.inject.Singleton
 
 open class BukkitFcItemType_1_13(
     override val material: Material,
-    private val textFactory: FcTextFactory,
+    private val textFactory: FcText.Factory,
     private val localizer: BukkitLocalizer,
     protected val itemTypes: FcItemType.Factory,
 ) : BukkitFcItemType {
@@ -83,7 +82,7 @@ open class BukkitFcItemType_1_13(
 
     @Singleton
     open class Factory @Inject constructor(
-        textFactory: FcTextFactory,
+        textFactory: FcText.Factory,
         itemTypes: Provider<FcItemType.Factory>,
         protected val localizer: BukkitLocalizer,
     ) : BukkitFcItemType_1_9.Factory(

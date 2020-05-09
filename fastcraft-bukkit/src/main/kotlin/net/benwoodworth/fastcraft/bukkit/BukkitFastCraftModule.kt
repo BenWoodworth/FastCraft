@@ -22,9 +22,9 @@ import net.benwoodworth.fastcraft.platform.player.FcPlayerEvents
 import net.benwoodworth.fastcraft.platform.player.FcSound
 import net.benwoodworth.fastcraft.platform.recipe.FcRecipeProvider
 import net.benwoodworth.fastcraft.platform.server.*
+import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
 import net.benwoodworth.fastcraft.platform.text.FcTextConverter
-import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.bukkit.Server
 import org.bukkit.inventory.ItemFactory
 import org.bukkit.plugin.Plugin
@@ -240,7 +240,7 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    fun provideFcTextFactory(instance: BukkitFcTextFactory_1_7): FcTextFactory {
+    fun provideFcTextFactory(instance: BukkitFcText_1_7.Factory): FcText.Factory {
         return instance
     }
 

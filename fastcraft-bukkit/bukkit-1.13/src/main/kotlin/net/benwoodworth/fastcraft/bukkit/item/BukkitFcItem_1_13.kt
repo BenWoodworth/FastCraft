@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.bukkit.item
 
 import net.benwoodworth.fastcraft.platform.item.FcItem
 import net.benwoodworth.fastcraft.platform.item.FcItemType
-import net.benwoodworth.fastcraft.platform.text.FcTextFactory
+import net.benwoodworth.fastcraft.platform.text.FcText
 import org.bukkit.inventory.ItemStack
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -10,7 +10,7 @@ import javax.inject.Singleton
 class BukkitFcItem_1_13(
     itemStack: ItemStack,
     itemTypes: FcItemType.Factory,
-    textFactory: FcTextFactory,
+    textFactory: FcText.Factory,
 ) : BukkitFcItem_1_7(
     itemStack = itemStack,
     itemTypes = itemTypes,
@@ -22,7 +22,7 @@ class BukkitFcItem_1_13(
     @Singleton
     open class Factory @Inject constructor(
         itemTypes: FcItemType.Factory,
-        textFactory: FcTextFactory,
+        textFactory: FcText.Factory,
     ) : BukkitFcItem_1_7.Factory(
         itemTypes = itemTypes,
         textFactory = textFactory

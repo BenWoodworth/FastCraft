@@ -10,7 +10,6 @@ import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.player.FcSound
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextConverter
-import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Provider
@@ -18,7 +17,7 @@ import javax.inject.Provider
 class RecipeButtonView(
     private val button: FcGuiButton,
     private val locale: Locale,
-    private val textFactory: FcTextFactory,
+    private val textFactory: FcText.Factory,
     private val itemAmountsProvider: Provider<ItemAmounts>,
     private val textConverter: FcTextConverter,
     private val sounds: FcSound.Factory,
@@ -156,7 +155,7 @@ class RecipeButtonView(
     }
 
     class Factory @Inject constructor(
-        private val textFactory: FcTextFactory,
+        private val textFactory: FcText.Factory,
         private val itemAmountsProvider: Provider<ItemAmounts>,
         private val textConverter: FcTextConverter,
         private val sounds: FcSound.Factory,

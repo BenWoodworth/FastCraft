@@ -2,7 +2,6 @@ package net.benwoodworth.fastcraft.bukkit.item
 
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import org.apache.commons.lang.WordUtils
 import org.bukkit.Material
 import org.bukkit.material.MaterialData
@@ -13,7 +12,7 @@ import javax.inject.Singleton
 
 open class BukkitFcItemType_1_7(
     override val materialData: MaterialData,
-    protected val textFactory: FcTextFactory,
+    protected val textFactory: FcText.Factory,
     protected val itemTypes: FcItemType.Factory,
 ) : BukkitFcItemType {
     @Suppress("DEPRECATION")
@@ -66,7 +65,7 @@ open class BukkitFcItemType_1_7(
 
     @Singleton
     open class Factory @Inject constructor(
-        protected val textFactory: FcTextFactory,
+        protected val textFactory: FcText.Factory,
         protected val itemTypes: Provider<FcItemType.Factory>,
     ) : BukkitFcItemType.Factory {
         override val air: FcItemType by lazy { fromMaterial(Material.AIR) }

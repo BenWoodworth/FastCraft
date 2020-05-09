@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.bukkit.item
 
 import net.benwoodworth.fastcraft.bukkit.text.BukkitLocalizer
 import net.benwoodworth.fastcraft.platform.item.FcItemType
-import net.benwoodworth.fastcraft.platform.text.FcTextFactory
+import net.benwoodworth.fastcraft.platform.text.FcText
 import org.bukkit.Material
 import javax.inject.Inject
 import javax.inject.Provider
@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 open class BukkitFcItemType_1_15(
     material: Material,
-    textFactory: FcTextFactory,
+    textFactory: FcText.Factory,
     localizer: BukkitLocalizer,
     itemTypes: FcItemType.Factory,
 ) : BukkitFcItemType_1_13(
@@ -27,7 +27,7 @@ open class BukkitFcItemType_1_15(
 
     @Singleton
     class Factory @Inject constructor(
-        textFactory: FcTextFactory,
+        textFactory: FcText.Factory,
         localizer: BukkitLocalizer,
         itemTypes: Provider<FcItemType.Factory>,
     ) : BukkitFcItemType_1_13.Factory(
