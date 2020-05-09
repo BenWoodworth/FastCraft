@@ -23,7 +23,7 @@ class BukkitFcPlayer_1_7(
     override val player: Player,
     private val textConverter: FcTextConverter,
     private val server: Server,
-    private val playerInventoryFactory: BukkitFcPlayerInventory_1_7Factory,
+    private val playerInventoryFactory: BukkitFcPlayerInventory_1_7.Factory,
 ) : BukkitFcPlayer {
     override val username: String
         get() = player.name
@@ -100,7 +100,7 @@ class BukkitFcPlayer_1_7(
     class Provider @Inject constructor(
         private val server: Server,
         private val textConverter: FcTextConverter,
-        private val playerInventoryFactory: BukkitFcPlayerInventory_1_7Factory,
+        private val playerInventoryFactory: BukkitFcPlayerInventory_1_7.Factory,
     ) : BukkitFcPlayer.Provider {
         override fun getOnlinePlayers(): List<FcPlayer> {
             return server.onlinePlayers.map { player ->

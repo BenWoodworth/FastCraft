@@ -1,16 +1,15 @@
 package net.benwoodworth.fastcraft.bukkit.player
 
-import com.google.auto.factory.AutoFactory
-import com.google.auto.factory.Provided
+import net.benwoodworth.fastcraft.bukkit.item.BukkitFcInventorySlot
 import net.benwoodworth.fastcraft.bukkit.item.inventory
 import net.benwoodworth.fastcraft.platform.item.FcInventorySlot
 import net.benwoodworth.fastcraft.platform.player.FcPlayerInventory
 import org.bukkit.inventory.PlayerInventory
+import javax.inject.Inject
 
-@AutoFactory
 class BukkitFcPlayerInventory_1_7(
     override val inventory: PlayerInventory,
-    @Provided private val slotFactory: net.benwoodworth.fastcraft.bukkit.item.BukkitFcInventorySlot.Factory,
+    private val slotFactory: BukkitFcInventorySlot.Factory,
 ) : BukkitFcPlayerInventory {
     override val storage: Collection<FcInventorySlot> = List(36) { slotIndex ->
         slotFactory.create(inventory, slotIndex)
@@ -34,5 +33,16 @@ class BukkitFcPlayerInventory_1_7(
 
     override fun hashCode(): Int {
         return inventory.hashCode()
+    }
+
+    class Factory @Inject constructor(
+        private val slotFactory: BukkitFcInventorySlot.Factory,
+    ) {
+        fun create(inventory: PlayerInventory): BukkitFcPlayerInventory_1_7 {
+            return BukkitFcPlayerInventory_1_7(
+                inventory = inventory,
+                slotFactory = slotFactory,
+            )
+        }
     }
 }
