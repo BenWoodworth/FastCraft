@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
 import net.benwoodworth.fastcraft.platform.item.FcInventorySlot
-import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemStack
 import org.bukkit.Material
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
@@ -11,24 +11,24 @@ import javax.inject.Inject
 class BukkitFcInventorySlot(
     val inventory: Inventory,
     val slotIndex: Int,
-    val itemFactory: FcItem.Factory,
+    val itemStackFactory: FcItemStack.Factory,
 ) : FcInventorySlot {
-    override var item: FcItem?
+    override var itemStack: FcItemStack?
         get() = inventory.getItem(slotIndex).fromInventoryItem()
         set(value) {
             inventory.setItem(slotIndex, value.toInventoryItem())
         }
 
-    private fun FcItem?.toInventoryItem(): ItemStack {
+    private fun FcItemStack?.toInventoryItem(): ItemStack {
         return this
-            ?.toItemStack()
+            ?.toBukkitItemStack()
             ?: ItemStack(Material.AIR, 0)
     }
 
-    private fun ItemStack?.fromInventoryItem(): FcItem? {
+    private fun ItemStack?.fromInventoryItem(): FcItemStack? {
         return this
             ?.takeUnless { it.type == Material.AIR }
-            ?.let { itemFactory.createFcItem(it) }
+            ?.let { itemStackFactory.create(it) }
     }
 
     override fun equals(other: Any?): Boolean {
@@ -42,13 +42,13 @@ class BukkitFcInventorySlot(
     }
 
     class Factory @Inject constructor(
-        val itemFactory: FcItem.Factory,
+        val itemStackFactory: FcItemStack.Factory,
     ) {
         fun create(inventory: Inventory, slotIndex: Int): BukkitFcInventorySlot {
             return BukkitFcInventorySlot(
                 inventory = inventory,
                 slotIndex = slotIndex,
-                itemFactory = itemFactory,
+                itemStackFactory = itemStackFactory,
             )
         }
     }

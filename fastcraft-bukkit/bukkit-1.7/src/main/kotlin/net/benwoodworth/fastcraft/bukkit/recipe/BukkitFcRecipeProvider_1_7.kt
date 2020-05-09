@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
 import net.benwoodworth.fastcraft.bukkit.util.BukkitVersion
-import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemStack
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
@@ -72,7 +72,7 @@ open class BukkitFcRecipeProvider_1_7 @Inject constructor(
 
         override fun prepare(
             player: FcPlayer,
-            ingredients: Map<FcIngredient, FcItem>,
+            ingredients: Map<FcIngredient, FcItemStack>,
         ): CancellableResult<FcCraftingRecipePrepared> {
             return CancellableResult.Cancelled
         }

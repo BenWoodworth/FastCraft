@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.platform.gui
 
-import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemStack
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.text.FcText
 
@@ -15,7 +15,7 @@ interface FcGuiButton {
 
     fun clear()
 
-    fun copyItem(item: FcItem)
+    fun copyItem(itemStack: FcItemStack)
 
     fun hideItemDetails()
 

@@ -1,10 +1,10 @@
 package net.benwoodworth.fastcraft.bukkit.player
 
-import net.benwoodworth.fastcraft.bukkit.item.toItemStack
+import net.benwoodworth.fastcraft.bukkit.item.toBukkitItemStack
 import net.benwoodworth.fastcraft.bukkit.server.permission
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcText
 import net.benwoodworth.fastcraft.bukkit.text.toRaw
-import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemStack
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcPlayerInventory
 import net.benwoodworth.fastcraft.platform.player.FcSound
@@ -65,16 +65,16 @@ class BukkitFcPlayer_1_7(
         return player.hasPermission(permission.permission)
     }
 
-    override fun giveItems(items: List<FcItem>, dropAll: Boolean) {
+    override fun giveItems(items: List<FcItemStack>, dropAll: Boolean) {
         fun ItemStack.drop() {
             player.world.dropItemNaturally(player.location, this)
         }
 
-        items.forEach { item ->
+        items.forEach { itemStack ->
             if (dropAll) {
-                item.toItemStack().drop()
+                itemStack.toBukkitItemStack().drop()
             } else {
-                val notAdded = player.inventory.addItem(item.toItemStack()).values
+                val notAdded = player.inventory.addItem(itemStack.toBukkitItemStack()).values
                 notAdded.forEach { it.drop() }
             }
         }

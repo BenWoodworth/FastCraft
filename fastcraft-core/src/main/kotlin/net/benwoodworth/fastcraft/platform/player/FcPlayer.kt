@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.platform.player
 
-import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemStack
 import net.benwoodworth.fastcraft.platform.server.FcPermission
 import net.benwoodworth.fastcraft.platform.text.FcText
 import java.util.*
@@ -17,7 +17,7 @@ interface FcPlayer {
 
     fun hasPermission(permission: FcPermission): Boolean
 
-    fun giveItems(items: List<FcItem>, dropAll: Boolean)
+    fun giveItems(items: List<FcItemStack>, dropAll: Boolean)
 
     fun openCraftingTable() // TODO Location
 

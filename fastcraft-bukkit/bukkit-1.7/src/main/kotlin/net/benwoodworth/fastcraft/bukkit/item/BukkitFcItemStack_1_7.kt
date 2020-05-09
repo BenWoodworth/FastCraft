@@ -1,25 +1,25 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
-import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemStack
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.text.FcText
 import org.bukkit.inventory.ItemStack
 import javax.inject.Inject
 import javax.inject.Singleton
 
-open class BukkitFcItem_1_7(
-    override val itemStack: ItemStack,
+open class BukkitFcItemStack_1_7(
+    override val bukkitItemStack: ItemStack,
     protected val itemTypes: FcItemType.Factory,
     protected val textFactory: FcText.Factory,
-) : BukkitFcItem {
+) : BukkitFcItemStack {
     override val type: FcItemType
-        get() = itemTypes.fromMaterialData(itemStack.data)
+        get() = itemTypes.fromMaterialData(bukkitItemStack.data)
 
     override val amount: Int
-        get() = itemStack.amount
+        get() = bukkitItemStack.amount
 
     override val name: FcText
-        get() = itemStack
+        get() = bukkitItemStack
             .takeIf { it.hasItemMeta() }
             ?.itemMeta
             ?.takeIf { it.hasDisplayName() }
@@ -28,7 +28,7 @@ open class BukkitFcItem_1_7(
             ?: type.blockName
 
     override val lore: List<FcText>
-        get() = itemStack
+        get() = bukkitItemStack
             .takeIf { it.hasItemMeta() }
             ?.itemMeta
             ?.takeIf { it.hasLore() }
@@ -37,48 +37,48 @@ open class BukkitFcItem_1_7(
             ?: emptyList()
 
     override val hasMetadata: Boolean
-        get() = itemStack.hasItemMeta()
+        get() = bukkitItemStack.hasItemMeta()
 
-    override fun toItemStack(): ItemStack {
-        return itemStack.clone()
+    override fun toBukkitItemStack(): ItemStack {
+        return bukkitItemStack.clone()
     }
 
     override fun equals(other: Any?): Boolean {
-        return other is FcItem && itemStack == other.itemStack
+        return other is FcItemStack && bukkitItemStack == other.bukkitItemStack
     }
 
     override fun hashCode(): Int {
-        return itemStack.hashCode()
+        return bukkitItemStack.hashCode()
     }
 
     @Singleton
     open class Factory @Inject constructor(
         protected val itemTypes: FcItemType.Factory,
         protected val textFactory: FcText.Factory,
-    ) : BukkitFcItem.Factory {
-        override fun copyItem(item: FcItem, amount: Int): FcItem {
+    ) : BukkitFcItemStack.Factory {
+        override fun copyItem(itemStack: FcItemStack, amount: Int): FcItemStack {
             try {
-                if (amount == item.amount) {
-                    return item
+                if (amount == itemStack.amount) {
+                    return itemStack
                 }
 
-                val itemStack = item.toItemStack()
-                itemStack.amount = amount
+                val bukkitItemStack = itemStack.toBukkitItemStack()
+                bukkitItemStack.amount = amount
 
-                return createFcItem(itemStack)
+                return create(bukkitItemStack)
             } catch (e: AssertionError) {
                 System.err.println("""
                     Share this with Kepler:
-                    - item = ${item.itemStack}
+                    - itemStack = ${itemStack.bukkitItemStack}
                     - amount = $amount
                 """.trimIndent())
                 throw e
             }
         }
 
-        override fun createFcItem(itemStack: ItemStack): FcItem {
-            return BukkitFcItem_1_7(
-                itemStack = itemStack,
+        override fun create(itemStack: ItemStack): FcItemStack {
+            return BukkitFcItemStack_1_7(
+                bukkitItemStack = itemStack,
                 itemTypes = itemTypes,
                 textFactory = textFactory
             )

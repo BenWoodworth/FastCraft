@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.crafting.model
 
-import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemStack
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.item.FcItemTypeComparator
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
@@ -30,8 +30,8 @@ class CraftableRecipeFinder(
             it.exemplaryResult.amount
         }
 
-    private val ingredientComparator = compareBy<Map.Entry<FcItem, Int>>(
-        { (item, _) -> item.hasMetadata }, // Items with meta last
+    private val ingredientComparator = compareBy<Map.Entry<FcItemStack, Int>>(
+        { (itemStack, _) -> itemStack.hasMetadata }, // Items with meta last
         { (_, amount) -> -amount }, // Greatest amount first
     )
 
@@ -47,7 +47,7 @@ class CraftableRecipeFinder(
         recipeLoadTask = taskFactory.startTask(delayTicks = 1) {
             val availableItems = itemAmountsProvider.get()
             player.inventory.storage.forEach { slot ->
-                slot.item?.let { item -> availableItems += item }
+                slot.itemStack?.let { itemStack -> availableItems += itemStack }
             }
 
             val recipeIterator = recipeProvider.getCraftingRecipes()
@@ -90,16 +90,16 @@ class CraftableRecipeFinder(
         availableItems: ItemAmounts,
         recipe: FcCraftingRecipe,
     ): Sequence<FcCraftingRecipePrepared?> = sequence {
-        val results = mutableSetOf<List<FcItem>>()
+        val results = mutableSetOf<List<FcItemStack>>()
 
         val ingredients = recipe.ingredients
 
         val possibleIngredientItems = ingredients.map { ingredient ->
             availableItems
                 .asMap().entries
-                .filter { (item, _) -> ingredient.matches(item) }
+                .filter { (itemStack, _) -> ingredient.matches(itemStack) }
                 .sortedWith(ingredientComparator)
-                .map { (item, _) -> item }
+                .map { (itemStack, _) -> itemStack }
         }
 
         val itemsUsed = itemAmountsProvider.get()
@@ -107,8 +107,8 @@ class CraftableRecipeFinder(
             itemsUsed.clear()
             permutation.forEach { itemsUsed += it }
 
-            val enoughItems = itemsUsed.asMap().all { (item, amount) ->
-                availableItems[item] >= amount
+            val enoughItems = itemsUsed.asMap().all { (itemStack, amount) ->
+                availableItems[itemStack] >= amount
             }
 
             if (enoughItems) {

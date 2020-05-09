@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.platform.item
 
 interface FcInventorySlot {
-    var item: FcItem?
+    var itemStack: FcItemStack?
 
     override fun equals(other: Any?): Boolean
 

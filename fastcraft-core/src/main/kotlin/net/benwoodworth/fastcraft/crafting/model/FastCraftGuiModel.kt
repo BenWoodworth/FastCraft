@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.crafting.model
 
-import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemStack
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 import net.benwoodworth.fastcraft.util.CancellableResult
@@ -12,7 +12,7 @@ class FastCraftGuiModel(
     val player: FcPlayer,
     private val itemAmountsProvider: Provider<ItemAmounts>,
     craftableRecipeFinderFactory: CraftableRecipeFinder.Factory,
-    private val itemFactory: FcItem.Factory,
+    private val itemStackFactory: FcItemStack.Factory,
 ) {
     var craftAmount: Int? = null
     val recipes: MutableList<FastCraftRecipe?> = mutableListOf()
@@ -27,7 +27,7 @@ class FastCraftGuiModel(
         inventoryItemAmounts.clear()
 
         player.inventory.storage.forEach { slot ->
-            slot.item?.let { item -> inventoryItemAmounts += item }
+            slot.itemStack?.let { itemStack -> inventoryItemAmounts += itemStack }
         }
     }
 
@@ -88,10 +88,10 @@ class FastCraftGuiModel(
         return true
     }
 
-    private fun removeItems(items: Collection<FcItem>, multiplier: Int) {
+    private fun removeItems(items: Collection<FcItemStack>, multiplier: Int) {
         val removeAmounts = itemAmountsProvider.get()
-        items.forEach { item ->
-            removeAmounts[item] += item.amount * multiplier
+        items.forEach { itemStack ->
+            removeAmounts[itemStack] += itemStack.amount * multiplier
         }
 
         if (removeAmounts.isEmpty()) {
@@ -99,25 +99,25 @@ class FastCraftGuiModel(
         }
 
         val removeFromSlots = player.inventory.storage.asSequence()
-            .filter { it.item != null && it.item!!.amount > 0 }
-            .sortedBy { it.item!!.amount }
+            .filter { it.itemStack != null && it.itemStack!!.amount > 0 }
+            .sortedBy { it.itemStack!!.amount }
 
         for (slot in removeFromSlots) {
-            val item = slot.item!!
-            val removeAmount = removeAmounts[item]
+            val itemStack = slot.itemStack!!
+            val removeAmount = removeAmounts[itemStack]
 
             when {
-                item.amount <= 0 -> Unit
+                itemStack.amount <= 0 -> Unit
                 removeAmount <= 0 -> Unit
-                removeAmount >= item.amount -> {
-                    removeAmounts[item] = removeAmount - item.amount
-                    slot.item = null
+                removeAmount >= itemStack.amount -> {
+                    removeAmounts[itemStack] = removeAmount - itemStack.amount
+                    slot.itemStack = null
                 }
-                removeAmount < item.amount -> {
-                    removeAmounts[item] = 0
-                    slot.item = itemFactory.copyItem(
-                        item = item,
-                        amount = item.amount - removeAmount
+                removeAmount < itemStack.amount -> {
+                    removeAmounts[itemStack] = 0
+                    slot.itemStack = itemStackFactory.copyItem(
+                        itemStack = itemStack,
+                        amount = itemStack.amount - removeAmount
                     )
                 }
                 else -> throw IllegalStateException()
@@ -137,14 +137,14 @@ class FastCraftGuiModel(
     class Factory @Inject constructor(
         private val itemAmountsProvider: Provider<ItemAmounts>,
         private val craftableRecipeFinderFactory: CraftableRecipeFinder.Factory,
-        private val itemFactory: FcItem.Factory,
+        private val itemStackFactory: FcItemStack.Factory,
     ) {
         fun create(player: FcPlayer): FastCraftGuiModel {
             return FastCraftGuiModel(
                 player = player,
                 itemAmountsProvider = itemAmountsProvider,
                 craftableRecipeFinderFactory = craftableRecipeFinderFactory,
-                itemFactory = itemFactory,
+                itemStackFactory = itemStackFactory,
             )
         }
     }

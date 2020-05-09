@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
-import net.benwoodworth.fastcraft.bukkit.item.createFcItem
-import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.bukkit.item.create
+import net.benwoodworth.fastcraft.platform.item.FcItemStack
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 import net.benwoodworth.fastcraft.platform.recipe.FcIngredient
@@ -24,16 +24,16 @@ import javax.inject.Singleton
 open class BukkitFcCraftingRecipePrepared_1_7(
     protected val player: Player,
     override val recipe: FcCraftingRecipe,
-    override val ingredients: Map<FcIngredient, FcItem>,
-    private val ingredientRemnants: List<FcItem>,
-    override val resultsPreview: List<FcItem>,
+    override val ingredients: Map<FcIngredient, FcItemStack>,
+    private val ingredientRemnants: List<FcItemStack>,
+    override val resultsPreview: List<FcItemStack>,
     private val preparedCraftingView: InventoryView,
-    private val itemFactory: FcItem.Factory,
+    private val itemStackFactory: FcItemStack.Factory,
     private val server: Server,
 ) : BukkitFcCraftingRecipePrepared {
     private var craftCalled = false
 
-    override fun craft(): CancellableResult<List<FcItem>> {
+    override fun craft(): CancellableResult<List<FcItemStack>> {
         require(!craftCalled) { "Only callable once" }
         craftCalled = true
 
@@ -58,7 +58,7 @@ open class BukkitFcCraftingRecipePrepared_1_7(
         } else {
             onCraft(resultItem)
             CancellableResult(
-                listOf(itemFactory.createFcItem(resultItem!!)) + ingredientRemnants
+                listOf(itemStackFactory.create(resultItem!!)) + ingredientRemnants
             )
         }
     }
@@ -106,15 +106,15 @@ open class BukkitFcCraftingRecipePrepared_1_7(
 
     @Singleton
     class Factory @Inject constructor(
-        private val itemFactory: FcItem.Factory,
+        private val itemStackFactory: FcItemStack.Factory,
         private val server: Server,
     ) : BukkitFcCraftingRecipePrepared.Factory {
         override fun create(
             player: Player,
             recipe: FcCraftingRecipe,
-            ingredients: Map<FcIngredient, FcItem>,
-            ingredientRemnants: List<FcItem>,
-            resultsPreview: List<FcItem>,
+            ingredients: Map<FcIngredient, FcItemStack>,
+            ingredientRemnants: List<FcItemStack>,
+            resultsPreview: List<FcItemStack>,
             preparedCraftingView: InventoryView,
         ): FcCraftingRecipePrepared {
             return BukkitFcCraftingRecipePrepared_1_7(
@@ -124,7 +124,7 @@ open class BukkitFcCraftingRecipePrepared_1_7(
                 ingredientRemnants = ingredientRemnants,
                 resultsPreview = resultsPreview,
                 preparedCraftingView = preparedCraftingView,
-                itemFactory = itemFactory,
+                itemStackFactory = itemStackFactory,
                 server = server,
             )
         }

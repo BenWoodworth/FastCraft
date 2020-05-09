@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
-import net.benwoodworth.fastcraft.bukkit.item.itemStack
-import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.bukkit.item.bukkitItemStack
+import net.benwoodworth.fastcraft.platform.item.FcItemStack
 import org.bukkit.inventory.RecipeChoice
 import java.util.*
 
@@ -18,8 +18,8 @@ open class BukkitFcIngredient_1_13 protected constructor(
         this.recipeChoice = recipeChoice
     }
 
-    override fun matches(item: FcItem): Boolean {
-        return recipeChoice.test(item.itemStack)
+    override fun matches(itemStack: FcItemStack): Boolean {
+        return recipeChoice.test(itemStack.bukkitItemStack)
     }
 
     override fun equals(other: Any?): Boolean {

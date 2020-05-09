@@ -62,9 +62,9 @@ class RecipeButtonView(
                 results.asMap().entries
                     .sortedByDescending { (_, amount) -> amount }
                     .let { listOf(AbstractMap.SimpleEntry(primaryResult, primaryResultAmount)) + it }
-                    .forEach { (item, amount) ->
-                        var itemName = textConverter.toPlaintext(item.name, locale)
-                        if (item.hasMetadata) {
+                    .forEach { (itemStack, amount) ->
+                        var itemName = textConverter.toPlaintext(itemStack.name, locale)
+                        if (itemStack.hasMetadata) {
                             itemName += "*"
                         }
 
@@ -93,9 +93,9 @@ class RecipeButtonView(
 
                 ingredients.asMap().entries
                     .sortedByDescending { (_, amount) -> amount }
-                    .forEach { (item, amount) ->
-                        var itemName = textConverter.toPlaintext(item.name, locale)
-                        if (item.hasMetadata) {
+                    .forEach { (itemStack, amount) ->
+                        var itemName = textConverter.toPlaintext(itemStack.name, locale)
+                        if (itemStack.hasMetadata) {
                             itemName += "*"
                         }
 

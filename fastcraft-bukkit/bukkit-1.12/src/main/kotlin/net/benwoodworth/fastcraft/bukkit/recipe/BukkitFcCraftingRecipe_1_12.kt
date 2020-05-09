@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
-import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemStack
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import org.bukkit.Keyed
 import org.bukkit.Server
@@ -12,13 +12,13 @@ open class BukkitFcCraftingRecipe_1_12(
     recipe: Recipe,
     server: Server,
     preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
-    itemFactory: FcItem.Factory,
+    itemStackFactory: FcItemStack.Factory,
     inventoryViewFactory: CraftingInventoryViewFactory,
 ) : BukkitFcCraftingRecipe_1_7(
     recipe = recipe,
     server = server,
     preparedRecipeFactory = preparedRecipeFactory,
-    itemFactory = itemFactory,
+    itemStackFactory = itemStackFactory,
     inventoryViewFactory = inventoryViewFactory
 ) {
     override val id: String
@@ -28,7 +28,7 @@ open class BukkitFcCraftingRecipe_1_12(
     class Factory @Inject constructor(
         private val server: Server,
         private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
-        private val itemFactory: FcItem.Factory,
+        private val itemStackFactory: FcItemStack.Factory,
         private val inventoryViewFactory: CraftingInventoryViewFactory,
     ) : BukkitFcCraftingRecipe.Factory {
         override fun create(recipe: Recipe): FcCraftingRecipe {
@@ -36,7 +36,7 @@ open class BukkitFcCraftingRecipe_1_12(
                 recipe = recipe,
                 server = server,
                 preparedRecipeFactory = preparedRecipeFactory,
-                itemFactory = itemFactory,
+                itemStackFactory = itemStackFactory,
                 inventoryViewFactory = inventoryViewFactory
             )
         }

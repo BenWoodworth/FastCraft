@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
-import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemStack
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 import net.benwoodworth.fastcraft.platform.recipe.FcIngredient
@@ -14,11 +14,11 @@ import javax.inject.Singleton
 open class BukkitFcCraftingRecipePrepared_1_12(
     player: Player,
     recipe: FcCraftingRecipe,
-    ingredients: Map<FcIngredient, FcItem>,
-    ingredientRemnants: List<FcItem>,
-    resultsPreview: List<FcItem>,
+    ingredients: Map<FcIngredient, FcItemStack>,
+    ingredientRemnants: List<FcItemStack>,
+    resultsPreview: List<FcItemStack>,
     preparedCraftingView: InventoryView,
-    itemFactory: FcItem.Factory,
+    itemStackFactory: FcItemStack.Factory,
     server: Server,
 ) : BukkitFcCraftingRecipePrepared_1_7(
     player = player,
@@ -27,7 +27,7 @@ open class BukkitFcCraftingRecipePrepared_1_12(
     ingredientRemnants = ingredientRemnants,
     resultsPreview = resultsPreview,
     preparedCraftingView = preparedCraftingView,
-    itemFactory = itemFactory,
+    itemStackFactory = itemStackFactory,
     server = server,
 ) {
     override fun onCraft(result: ItemStack) {
@@ -36,15 +36,15 @@ open class BukkitFcCraftingRecipePrepared_1_12(
 
     @Singleton
     class Factory @Inject constructor(
-        private val itemFactory: FcItem.Factory,
+        private val itemStackFactory: FcItemStack.Factory,
         private val server: Server,
     ) : BukkitFcCraftingRecipePrepared.Factory {
         override fun create(
             player: Player,
             recipe: FcCraftingRecipe,
-            ingredients: Map<FcIngredient, FcItem>,
-            ingredientRemnants: List<FcItem>,
-            resultsPreview: List<FcItem>,
+            ingredients: Map<FcIngredient, FcItemStack>,
+            ingredientRemnants: List<FcItemStack>,
+            resultsPreview: List<FcItemStack>,
             preparedCraftingView: InventoryView,
         ): FcCraftingRecipePrepared {
             return BukkitFcCraftingRecipePrepared_1_12(
@@ -54,7 +54,7 @@ open class BukkitFcCraftingRecipePrepared_1_12(
                 ingredientRemnants = ingredientRemnants,
                 resultsPreview = resultsPreview,
                 preparedCraftingView = preparedCraftingView,
-                itemFactory = itemFactory,
+                itemStackFactory = itemStackFactory,
                 server = server,
             )
         }

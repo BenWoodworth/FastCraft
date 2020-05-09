@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
-import net.benwoodworth.fastcraft.bukkit.item.itemStack
-import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.bukkit.item.bukkitItemStack
+import net.benwoodworth.fastcraft.platform.item.FcItemStack
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import java.util.*
@@ -22,19 +22,19 @@ class BukkitFcIngredient_1_7(
         const val WILDCARD_DATA: Byte = -1
     }
 
-    override fun matches(item: FcItem): Boolean {
-        val bukkitItem = item.itemStack
+    override fun matches(itemStack: FcItemStack): Boolean {
+        val bukkitItemStack = itemStack.bukkitItemStack
 
         return when {
-            bukkitItem.type === Material.AIR -> {
+            bukkitItemStack.type === Material.AIR -> {
                 ingredientItem.type == Material.AIR
             }
             hasWildcardData -> {
-                ingredientItem.durability = bukkitItem.durability
-                ingredientItem.isSimilar(bukkitItem)
+                ingredientItem.durability = bukkitItemStack.durability
+                ingredientItem.isSimilar(bukkitItemStack)
             }
             else -> {
-                ingredientItem.isSimilar(bukkitItem)
+                ingredientItem.isSimilar(bukkitItemStack)
             }
         }
     }

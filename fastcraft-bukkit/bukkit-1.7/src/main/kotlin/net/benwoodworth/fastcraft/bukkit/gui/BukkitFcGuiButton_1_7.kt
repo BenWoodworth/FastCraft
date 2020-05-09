@@ -1,10 +1,10 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
 import net.benwoodworth.fastcraft.bukkit.item.material
-import net.benwoodworth.fastcraft.bukkit.item.toItemStack
+import net.benwoodworth.fastcraft.bukkit.item.toBukkitItemStack
 import net.benwoodworth.fastcraft.bukkit.util.updateMeta
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
-import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemStack
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextConverter
@@ -80,11 +80,11 @@ open class BukkitFcGuiButton_1_7(
         updateSlot()
     }
 
-    override fun copyItem(item: FcItem) {
-        itemStack = item.toItemStack()
+    override fun copyItem(itemStack: FcItemStack) {
+        this.itemStack = itemStack.toBukkitItemStack()
 
-        _text = item.name
-        _description = item.lore
+        _text = itemStack.name
+        _description = itemStack.lore
         hideItemDetails = false
     }
 

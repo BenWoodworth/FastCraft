@@ -1,9 +1,9 @@
 package net.benwoodworth.fastcraft.platform.recipe
 
-import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemStack
 
 interface FcIngredient {
-    fun matches(item: FcItem): Boolean
+    fun matches(itemStack: FcItemStack): Boolean
 
     override fun equals(other: Any?): Boolean
 

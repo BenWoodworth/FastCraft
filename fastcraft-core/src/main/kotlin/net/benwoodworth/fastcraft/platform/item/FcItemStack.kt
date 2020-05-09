@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.platform.item
 
 import net.benwoodworth.fastcraft.platform.text.FcText
 
-interface FcItem {
+interface FcItemStack {
     val type: FcItemType
     val amount: Int
     val name: FcText
@@ -16,8 +16,8 @@ interface FcItem {
 
     interface Factory {
         fun copyItem(
-            item: FcItem,
-            amount: Int = item.amount,
-        ): FcItem
+            itemStack: FcItemStack,
+            amount: Int = itemStack.amount,
+        ): FcItemStack
     }
 }

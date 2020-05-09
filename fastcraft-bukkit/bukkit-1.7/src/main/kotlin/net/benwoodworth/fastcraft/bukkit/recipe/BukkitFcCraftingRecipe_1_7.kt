@@ -1,10 +1,10 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
-import net.benwoodworth.fastcraft.bukkit.item.createFcItem
+import net.benwoodworth.fastcraft.bukkit.item.create
 import net.benwoodworth.fastcraft.bukkit.item.material
-import net.benwoodworth.fastcraft.bukkit.item.toItemStack
+import net.benwoodworth.fastcraft.bukkit.item.toBukkitItemStack
 import net.benwoodworth.fastcraft.bukkit.player.player
-import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemStack
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
@@ -22,7 +22,7 @@ open class BukkitFcCraftingRecipe_1_7(
     val recipe: Recipe,
     private val server: Server,
     private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
-    private val itemFactory: FcItem.Factory,
+    private val itemStackFactory: FcItemStack.Factory,
     private val inventoryViewFactory: CraftingInventoryViewFactory,
 ) : BukkitFcCraftingRecipe {
     private companion object {
@@ -75,24 +75,24 @@ open class BukkitFcCraftingRecipe_1_7(
     override val group: String?
         get() = null
 
-    override val exemplaryResult: FcItem
+    override val exemplaryResult: FcItemStack
         get() = recipe.result
-            ?.let { itemFactory.createFcItem(it) }
-            ?: itemFactory.createFcItem(ItemStack(Material.AIR))
+            ?.let { itemStackFactory.create(it) }
+            ?: itemStackFactory.create(ItemStack(Material.AIR))
 
     override fun prepare(
         player: FcPlayer,
-        ingredients: Map<FcIngredient, FcItem>,
+        ingredients: Map<FcIngredient, FcItemStack>,
     ): CancellableResult<FcCraftingRecipePrepared> {
         // TODO Inventory owner
         val prepareView = inventoryViewFactory.create(player.player, null, recipe)
         val craftingGrid = prepareView.topInventory as CraftingInventory
 
-        ingredients.forEach { (ingredient, item) ->
-            craftingGrid.setItem(ingredient.slotIndex, item.toItemStack())
+        ingredients.forEach { (ingredient, itemStack) ->
+            craftingGrid.setItem(ingredient.slotIndex, itemStack.toBukkitItemStack())
         }
 
-        val validIngredients = ingredients.all { (ingredient, item) -> ingredient.matches(item) }
+        val validIngredients = ingredients.all { (ingredient, itemStack) -> ingredient.matches(itemStack) }
         if (validIngredients) {
             craftingGrid.result = recipe.result
         }
@@ -108,10 +108,10 @@ open class BukkitFcCraftingRecipe_1_7(
         val ingredientRemnants = ingredients.values
             .mapNotNull { ingredient ->
                 ingredient.type.craftingResult
-                    ?.let { itemFactory.createFcItem(ItemStack(it.material, ingredient.amount)) }
+                    ?.let { itemStackFactory.create(ItemStack(it.material, ingredient.amount)) }
             }
 
-        val resultsPreview = listOf(itemFactory.createFcItem(resultItem)) + ingredientRemnants
+        val resultsPreview = listOf(itemStackFactory.create(resultItem)) + ingredientRemnants
 
         return CancellableResult(
             preparedRecipeFactory.create(
@@ -172,7 +172,7 @@ open class BukkitFcCraftingRecipe_1_7(
     class Factory @Inject constructor(
         private val server: Server,
         private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
-        private val itemFactory: FcItem.Factory,
+        private val itemStackFactory: FcItemStack.Factory,
         private val inventoryViewFactory: CraftingInventoryViewFactory,
     ) : BukkitFcCraftingRecipe.Factory {
         override fun create(recipe: Recipe): FcCraftingRecipe {
@@ -180,7 +180,7 @@ open class BukkitFcCraftingRecipe_1_7(
                 recipe = recipe,
                 server = server,
                 preparedRecipeFactory = preparedRecipeFactory,
-                itemFactory = itemFactory,
+                itemStackFactory = itemStackFactory,
                 inventoryViewFactory = inventoryViewFactory
             )
         }

@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
-import net.benwoodworth.fastcraft.platform.item.FcItem
+import net.benwoodworth.fastcraft.platform.item.FcItemStack
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 import net.benwoodworth.fastcraft.platform.recipe.FcIngredient
@@ -12,9 +12,9 @@ interface BukkitFcCraftingRecipePrepared : FcCraftingRecipePrepared {
         fun create(
             player: Player,
             recipe: FcCraftingRecipe,
-            ingredients: Map<FcIngredient, FcItem>,
-            ingredientRemnants: List<FcItem>,
-            resultsPreview: List<FcItem>,
+            ingredients: Map<FcIngredient, FcItemStack>,
+            ingredientRemnants: List<FcItemStack>,
+            resultsPreview: List<FcItemStack>,
             preparedCraftingView: InventoryView,
         ): FcCraftingRecipePrepared
     }
