@@ -11,7 +11,7 @@ class FastCraftGuiView(
     player: FcPlayer,
     guiFactory: FcGui.Factory,
     workbenchButtonFactory: WorkbenchButtonView.Factory,
-    pageButtonFactory: PageButtonViewFactory,
+    pageButtonFactory: PageButtonView.Factory,
     recipeButtonFactory: RecipeButtonViewFactory,
     craftAmountButtonFactory: CraftAmountButtonView.Factory,
     refreshButtonFactory: RefreshButtonViewFactory,
@@ -51,7 +51,7 @@ class FastCraftGuiView(
     class Factory @Inject constructor(
         private val guiFactory: FcGui.Factory,
         private val workbenchButtonFactory: WorkbenchButtonView.Factory,
-        private val pageButtonFactory: PageButtonViewFactory,
+        private val pageButtonFactory: PageButtonView.Factory,
         private val recipeButtonFactory: RecipeButtonViewFactory,
         private val craftAmountButtonFactory: CraftAmountButtonView.Factory,
         private val refreshButtonFactory: RefreshButtonViewFactory,
