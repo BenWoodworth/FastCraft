@@ -10,7 +10,7 @@ import javax.inject.Inject
 class FastCraftGuiView(
     player: FcPlayer,
     guiFactory: FcGui.Factory,
-    workbenchButtonFactory: WorkbenchButtonViewFactory,
+    workbenchButtonFactory: WorkbenchButtonView.Factory,
     pageButtonFactory: PageButtonViewFactory,
     recipeButtonFactory: RecipeButtonViewFactory,
     craftAmountButtonFactory: CraftAmountButtonViewFactory,
@@ -50,7 +50,7 @@ class FastCraftGuiView(
 
     class Factory @Inject constructor(
         private val guiFactory: FcGui.Factory,
-        private val workbenchButtonFactory: WorkbenchButtonViewFactory,
+        private val workbenchButtonFactory: WorkbenchButtonView.Factory,
         private val pageButtonFactory: PageButtonViewFactory,
         private val recipeButtonFactory: RecipeButtonViewFactory,
         private val craftAmountButtonFactory: CraftAmountButtonViewFactory,
