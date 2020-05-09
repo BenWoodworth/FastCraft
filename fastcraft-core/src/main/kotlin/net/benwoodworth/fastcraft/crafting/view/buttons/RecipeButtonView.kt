@@ -1,7 +1,5 @@
 package net.benwoodworth.fastcraft.crafting.view.buttons
 
-import com.google.auto.factory.AutoFactory
-import com.google.auto.factory.Provided
 import net.benwoodworth.fastcraft.Config
 import net.benwoodworth.fastcraft.Strings
 import net.benwoodworth.fastcraft.crafting.model.FastCraftRecipe
@@ -14,16 +12,16 @@ import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextConverter
 import net.benwoodworth.fastcraft.platform.text.FcTextFactory
 import java.util.*
+import javax.inject.Inject
 import javax.inject.Provider
 
-@AutoFactory
 class RecipeButtonView(
     private val button: FcGuiButton,
     private val locale: Locale,
-    @Provided private val textFactory: FcTextFactory,
-    @Provided private val itemAmountsProvider: Provider<ItemAmounts>,
-    @Provided private val textConverter: FcTextConverter,
-    @Provided private val sounds: FcSound.Factory,
+    private val textFactory: FcTextFactory,
+    private val itemAmountsProvider: Provider<ItemAmounts>,
+    private val textConverter: FcTextConverter,
+    private val sounds: FcSound.Factory,
 ) {
     var fastCraftRecipe: FastCraftRecipe? = null
 
@@ -154,6 +152,24 @@ class RecipeButtonView(
                     action()
                 }
             }
+        }
+    }
+
+    class Factory @Inject constructor(
+        private val textFactory: FcTextFactory,
+        private val itemAmountsProvider: Provider<ItemAmounts>,
+        private val textConverter: FcTextConverter,
+        private val sounds: FcSound.Factory,
+    ) {
+        fun create(button: FcGuiButton, locale: Locale): RecipeButtonView {
+            return RecipeButtonView(
+                button = button,
+                locale = locale,
+                textFactory = textFactory,
+                itemAmountsProvider = itemAmountsProvider,
+                textConverter = textConverter,
+                sounds = sounds,
+            )
         }
     }
 }
