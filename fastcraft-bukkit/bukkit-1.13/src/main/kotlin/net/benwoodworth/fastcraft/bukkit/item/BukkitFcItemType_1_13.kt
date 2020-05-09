@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.item
 
 import net.benwoodworth.fastcraft.bukkit.text.BukkitLocalizer
-import net.benwoodworth.fastcraft.bukkit.text.createFcTextTranslate
+import net.benwoodworth.fastcraft.bukkit.text.createTranslate
 import net.benwoodworth.fastcraft.platform.item.FcItemType
 import net.benwoodworth.fastcraft.platform.text.FcText
 import org.bukkit.Material
@@ -37,7 +37,7 @@ open class BukkitFcItemType_1_13(
                 }
             }
 
-            return textFactory.createFcTextTranslate(localeKey)
+            return textFactory.createTranslate(localeKey)
         }
 
     override val blockName: FcText
@@ -51,7 +51,7 @@ open class BukkitFcItemType_1_13(
                 }
             }
 
-            return textFactory.createFcTextTranslate(localeKey)
+            return textFactory.createTranslate(localeKey)
         }
 
     override val maxAmount: Int

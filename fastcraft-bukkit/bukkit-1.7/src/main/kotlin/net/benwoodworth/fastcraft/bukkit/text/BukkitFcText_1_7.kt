@@ -31,7 +31,7 @@ object BukkitFcText_1_7 {
             )
         }
 
-        override fun createFcTextTranslate(
+        override fun createTranslate(
             translate: String,
             color: FcTextColor?,
             bold: Boolean?,

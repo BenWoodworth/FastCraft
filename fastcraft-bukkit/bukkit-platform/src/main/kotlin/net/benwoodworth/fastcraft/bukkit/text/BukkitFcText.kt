@@ -98,7 +98,7 @@ sealed class BukkitFcText : FcText {
     }
 
     interface Factory : FcText.Factory {
-        fun createFcTextTranslate(
+        fun createTranslate(
             translate: String,
             color: FcTextColor? = null,
             bold: Boolean? = null,
@@ -111,7 +111,7 @@ sealed class BukkitFcText : FcText {
     }
 }
 
-fun FcText.Factory.createFcTextTranslate(
+fun FcText.Factory.createTranslate(
     translate: String,
     color: FcTextColor? = null,
     bold: Boolean? = null,
@@ -121,7 +121,7 @@ fun FcText.Factory.createFcTextTranslate(
     obfuscate: Boolean? = null,
     extra: List<FcText> = emptyList(),
 ): FcText {
-    return (this as BukkitFcText.Factory).createFcTextTranslate(
+    return (this as BukkitFcText.Factory).createTranslate(
         translate, color, bold, italic, underline, strikethrough, obfuscate, extra
     )
 }
