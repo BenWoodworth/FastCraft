@@ -14,7 +14,7 @@ class FastCraftGuiView(
     pageButtonFactory: PageButtonView.Factory,
     recipeButtonFactory: RecipeButtonView.Factory,
     craftAmountButtonFactory: CraftAmountButtonView.Factory,
-    refreshButtonFactory: RefreshButtonViewFactory,
+    refreshButtonFactory: RefreshButtonView.Factory,
     textFactory: FcTextFactory,
 ) {
     val gui = guiFactory.createChestGui(
@@ -54,7 +54,7 @@ class FastCraftGuiView(
         private val pageButtonFactory: PageButtonView.Factory,
         private val recipeButtonFactory: RecipeButtonView.Factory,
         private val craftAmountButtonFactory: CraftAmountButtonView.Factory,
-        private val refreshButtonFactory: RefreshButtonViewFactory,
+        private val refreshButtonFactory: RefreshButtonView.Factory,
         private val textFactory: FcTextFactory,
     ) {
         fun create(player: FcPlayer): FastCraftGuiView {
