@@ -25,5 +25,4 @@ class FastCraftGui(
             return FastCraftGui(presenter)
         }
     }
-
 }
