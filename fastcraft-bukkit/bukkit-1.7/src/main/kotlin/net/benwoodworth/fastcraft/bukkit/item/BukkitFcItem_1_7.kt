@@ -24,7 +24,7 @@ open class BukkitFcItem_1_7(
             ?.itemMeta
             ?.takeIf { it.hasDisplayName() }
             ?.displayName
-            ?.let { textFactory.createFcText(it) }
+            ?.let { textFactory.create(it) }
             ?: type.blockName
 
     override val lore: List<FcText>
@@ -33,7 +33,7 @@ open class BukkitFcItem_1_7(
             ?.itemMeta
             ?.takeIf { it.hasLore() }
             ?.lore
-            ?.map { textFactory.createFcText(it ?: "") }
+            ?.map { textFactory.create(it ?: "") }
             ?: emptyList()
 
     override val hasMetadata: Boolean

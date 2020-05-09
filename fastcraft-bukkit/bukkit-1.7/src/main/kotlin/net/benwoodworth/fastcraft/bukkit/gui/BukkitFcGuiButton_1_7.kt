@@ -90,7 +90,7 @@ open class BukkitFcGuiButton_1_7(
 
     override fun clear() {
         itemStack = ItemStack(Material.AIR)
-        _text = textFactory.createFcText()
+        _text = textFactory.create()
         _description = emptyList()
         _progress = null
         hideItemDetails = false

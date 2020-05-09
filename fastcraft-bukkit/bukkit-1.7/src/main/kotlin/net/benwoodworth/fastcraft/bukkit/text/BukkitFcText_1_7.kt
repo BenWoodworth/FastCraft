@@ -9,7 +9,7 @@ object BukkitFcText_1_7 {
     @Singleton
     class Factory @Inject constructor(
     ) : BukkitFcText.Factory {
-        override fun createFcText(
+        override fun create(
             text: String,
             color: FcTextColor?,
             bold: Boolean?,

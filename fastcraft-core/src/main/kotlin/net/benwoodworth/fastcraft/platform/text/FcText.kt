@@ -6,7 +6,7 @@ interface FcText {
     override fun hashCode(): Int
 
     interface Factory {
-        fun createFcText(
+        fun create(
             text: String = "",
             color: FcTextColor? = null,
             bold: Boolean? = null,

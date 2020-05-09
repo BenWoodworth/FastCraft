@@ -26,25 +26,25 @@ class FastCraftCommand @Inject constructor(
     private val usageCraft = "/fastcraft craft [fastcraft|grid|default] [<player>]"
 
     private fun FcCommandSource.sendMissingPermissionMessage(permission: FcPermission) {
-        sendMessage(textFactory.createFcText(
+        sendMessage(textFactory.create(
             text = Strings.commandErrorPermission(locale, permission),
         ))
     }
 
     private fun FcCommandSource.sendMustBePlayerMessage() {
-        sendMessage(textFactory.createFcText(
+        sendMessage(textFactory.create(
             text = Strings.commandErrorPlayerOnly(locale),
         ))
     }
 
     private fun FcCommandSource.sendPlayerNotFoundMessage(player: String) {
-        sendMessage(textFactory.createFcText(
+        sendMessage(textFactory.create(
             text = Strings.commandErrorPlayerUnknown(locale, player),
         ))
     }
 
     private fun FcCommandSource.sendUsageMessage(usage: String) {
-        sendMessage(textFactory.createFcText(
+        sendMessage(textFactory.create(
             text = Strings.commandErrorUsage(locale, usage),
         ))
     }

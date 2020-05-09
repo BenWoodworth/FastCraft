@@ -77,7 +77,7 @@ class RecipeButtonView(
                         )
                     }
 
-                newDescription += textFactory.createFcText()
+                newDescription += textFactory.create()
             }
 
             // Ingredients
@@ -113,7 +113,7 @@ class RecipeButtonView(
             newDescription += textFactory.createLegacy(Strings.guiRecipeId(locale, recipeId))
 
             if (previewItem.lore.any()) {
-                newDescription += textFactory.createFcText()
+                newDescription += textFactory.create()
                 newDescription += previewItem.lore
             }
 
