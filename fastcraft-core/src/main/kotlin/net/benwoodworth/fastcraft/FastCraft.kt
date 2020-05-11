@@ -14,6 +14,7 @@ class FastCraft @Inject internal constructor(
     private val playerPrefs: PlayerSettings,
     fastCraftCommand: FastCraftCommand,
     private val permissions: Permissions,
+    private val config: FastCraftConfig,
 ) {
     init {
         Strings.load()
@@ -25,6 +26,10 @@ class FastCraft @Inject internal constructor(
 
     fun disable() {
         playerPrefs.close()
+    }
+
+    fun reloadConfig() {
+        config.load()
     }
 
     private fun onPlayerOpenWorkbench(event: FcPlayerOpenWorkbenchEvent) {

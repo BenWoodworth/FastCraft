@@ -34,8 +34,7 @@ class BukkitFastCraft : JavaPlugin() {
     }
 
     override fun reloadConfig() {
-        super.reloadConfig()
-        // TODO
+        fastCraft!!.reloadConfig()
     }
 
     private fun checkBukkitVersion() {

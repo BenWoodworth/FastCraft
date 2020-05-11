@@ -5,9 +5,7 @@ interface FcConfigNode {
 
     operator fun set(key: String, value: Any?)
 
-    fun createNode(): FcConfigNode
-
-    fun removeNode()
+    fun set(value: Any?)
 
     fun getString(): String?
 

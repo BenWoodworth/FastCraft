@@ -10,20 +10,15 @@ class BukkitFcConfigNode_1_7(
     private val configFactory: FcConfig.Factory,
 ) : BukkitFcConfigNode {
     override fun get(key: String): FcConfigNode {
-        return configFactory.createNode(configSection.getConfigurationSection(key))
+        return configFactory.createNode(key, configSection.getConfigurationSection(key))
     }
 
     override fun set(key: String, value: Any?) {
+        configSection.set(key, value)
+    }
+
+    override fun set(value: Any?) {
         configSection.parent.set(key, value)
-    }
-
-    override fun createNode(): FcConfigNode {
-        configSection.parent.createSection(key)
-        return this
-    }
-
-    override fun removeNode() {
-        configSection.parent.set(key, null)
     }
 
     override fun getString(): String? {

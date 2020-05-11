@@ -10,17 +10,25 @@ import javax.inject.Provider
 import javax.inject.Singleton
 
 class BukkitFcConfig_1_7(
-    override val configSection: YamlConfiguration,
+    override val config: YamlConfiguration,
     private val configFactory: FcConfig.Factory,
-) : BukkitFcConfig, FcConfigNode by configFactory.createNode(configSection) {
+) : BukkitFcConfig {
     override var headerComment: String?
-        get() = configSection.options().header()
+        get() = config.options().header()
         set(value) {
-            configSection.options().header(value)
+            config.options().header(value)
         }
 
+    override fun get(key: String): FcConfigNode {
+        return configFactory.createNode(key, config.getConfigurationSection(key))
+    }
+
+    override fun set(key: String, value: Any?) {
+        config.set(key, value)
+    }
+
     override fun save(file: Path) {
-        configSection.save(file.toFile())
+        config.save(file.toFile())
     }
 
     @Singleton
