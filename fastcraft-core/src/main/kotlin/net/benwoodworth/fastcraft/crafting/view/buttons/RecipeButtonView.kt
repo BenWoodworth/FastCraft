@@ -1,6 +1,5 @@
 package net.benwoodworth.fastcraft.crafting.view.buttons
 
-import net.benwoodworth.fastcraft.Config
 import net.benwoodworth.fastcraft.Strings
 import net.benwoodworth.fastcraft.crafting.model.FastCraftRecipe
 import net.benwoodworth.fastcraft.crafting.model.ItemAmounts
@@ -147,7 +146,6 @@ class RecipeButtonView(
                 }
 
                 action?.let {
-                    gui.player.playSound(sounds.uiButtonClick, Config.buttonVolume)
                     action()
                 }
             }
