@@ -19,10 +19,10 @@ open class BukkitFcMaterial_1_15(
     localizer = localizer,
     materials = materials,
 ) {
-    override val craftingResult: FcMaterial?
+    override val craftingRemainingItem: FcMaterial?
         get() = when (material) {
             Material.HONEY_BOTTLE -> materials.fromMaterial(Material.GLASS_BOTTLE)
-            else -> super.craftingResult
+            else -> super.craftingRemainingItem
         }
 
     @Singleton

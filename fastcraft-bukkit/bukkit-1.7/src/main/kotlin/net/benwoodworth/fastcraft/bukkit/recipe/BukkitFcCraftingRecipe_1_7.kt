@@ -107,7 +107,7 @@ open class BukkitFcCraftingRecipe_1_7(
 
         val ingredientRemnants = ingredients.values
             .mapNotNull { ingredient ->
-                ingredient.type.craftingResult
+                ingredient.type.craftingRemainingItem
                     ?.let { itemStackFactory.create(ItemStack(it.material, ingredient.amount)) }
             }
 
