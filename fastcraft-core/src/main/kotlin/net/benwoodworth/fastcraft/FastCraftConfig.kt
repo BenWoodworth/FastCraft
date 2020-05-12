@@ -33,7 +33,7 @@ class FastCraftConfig @Inject constructor(
 
         inner class CraftingGridButton : Configuration() {
             val enabled by entry("enabled", true) { getBoolean() }
-            val item by entry("item", "minecraft:crafting_table") { getString() }
+            val item by entry("item", materials.craftingTable.id) { getString()?.let(materials::parseOrNull) }
             val row by entry("row", 0) { getInt() }
             val column by entry("column", 8) { getInt() }
         }
@@ -42,7 +42,7 @@ class FastCraftConfig @Inject constructor(
 
         inner class CraftAmountButton : Configuration() {
             val enabled by entry("enabled", true) { getBoolean() }
-            val item by entry("item", "minecraft:anvil") { getString() }
+            val item by entry("item", materials.anvil.id) { getString()?.let(materials::parseOrNull) }
             val row by entry("row", 1) { getInt() }
             val column by entry("column", 8) { getInt() }
         }
@@ -51,7 +51,7 @@ class FastCraftConfig @Inject constructor(
 
         inner class RefreshButton : Configuration() {
             val enabled by entry("enabled", true) { getBoolean() }
-            val item by entry("item", "minecraft:nether_star") { getString() }
+            val item by entry("item", materials.netherStar.id) { getString()?.let(materials::parseOrNull) }
             val row by entry("row", 2) { getInt() }
             val column by entry("column", 8) { getInt() }
         }
@@ -60,7 +60,7 @@ class FastCraftConfig @Inject constructor(
 
         inner class PageButton : Configuration() {
             val enabled by entry("enabled", true) { getBoolean() }
-            val item by entry("item", "minecraft:iron_sword") { getString() }
+            val item by entry("item", materials.ironSword.id) { getString()?.let(materials::parseOrNull) }
             val row by entry("row", 5) { getInt() }
             val column by entry("column", 8) { getInt() }
         }
@@ -68,7 +68,7 @@ class FastCraftConfig @Inject constructor(
         val background = section("background", Background())
 
         inner class Background : Configuration() {
-            val item by entry("item", "minecraft:air") { getString() }
+            val item by entry("item", materials.air.id) { getString()?.let(materials::parseOrNull) }
         }
     }
 
