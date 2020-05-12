@@ -104,8 +104,9 @@ open class BukkitFcMaterial_1_13(
             throw UnsupportedOperationException()
         }
 
-        override fun parseMaterialOrNull(material: String): Material? {
-            return Material.matchMaterial(material)
+        override fun parseOrNull(id: String): FcMaterial? {
+            return Material.matchMaterial(id)
+                ?.let { fromMaterial(it) }
         }
     }
 }

@@ -91,23 +91,34 @@ open class BukkitFcMaterial_1_7(
 
         override fun parseOrNull(id: String): FcMaterial? {
             val parts = id.split(':')
-            val material = parseMaterialOrNull(parts[0]) ?: return null
+            val material: Material
+            val data: Byte
 
-            return when (parts.size) {
-                1 -> fromMaterial(material)
-                2 -> {
-                    val data = parts[1].toByteOrNull() ?: return null
-                    @Suppress("DEPRECATION")
-                    fromMaterialData(MaterialData(material, data))
-                }
-                else -> null
+            fun parseMaterialOrNull(material: String): Material? {
+                @Suppress("DEPRECATION")
+                return Material.matchMaterial(material)
+                    ?: server.unsafe.getMaterialFromInternalName(material)
             }
-        }
 
-        protected open fun parseMaterialOrNull(material: String): Material? {
+            when (parts.size) {
+                1 -> {
+                    material = parseMaterialOrNull(id) ?: return null
+                    data = 0
+                }
+                else -> when (val parsedData = parts.last().toByteOrNull()) {
+                    null -> {
+                        material = parseMaterialOrNull(parts.dropLast(1).joinToString(":")) ?: return null
+                        data = 0
+                    }
+                    else -> {
+                        material = parseMaterialOrNull(id) ?: return null
+                        data = parsedData
+                    }
+                }
+            }
+
             @Suppress("DEPRECATION")
-            return Material.matchMaterial(material)
-                ?: server.unsafe.getMaterialFromInternalName(material)
+            return fromMaterialData(MaterialData(material, data))
         }
     }
 }
