@@ -2,12 +2,8 @@ package net.benwoodworth.fastcraft.platform.config
 
 import java.nio.file.Path
 
-interface FcConfig {
+interface FcConfig : FcConfigNode {
     var headerComment: String?
-
-    operator fun get(key: String): FcConfigNode
-
-    operator fun set(key: String, value: Any?)
 
     fun save(file: Path)
 

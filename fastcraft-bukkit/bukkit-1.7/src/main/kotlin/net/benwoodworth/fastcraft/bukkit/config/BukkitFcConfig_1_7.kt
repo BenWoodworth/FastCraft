@@ -2,7 +2,6 @@ package net.benwoodworth.fastcraft.bukkit.config
 
 import net.benwoodworth.fastcraft.platform.config.FcConfig
 import net.benwoodworth.fastcraft.platform.config.FcConfigNode
-import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.configuration.file.YamlConfiguration
 import java.nio.file.Path
 import javax.inject.Inject
@@ -12,7 +11,7 @@ import javax.inject.Singleton
 class BukkitFcConfig_1_7(
     override val config: YamlConfiguration,
     private val configFactory: FcConfig.Factory,
-) : BukkitFcConfig {
+) : BukkitFcConfig, FcConfigNode by configFactory.createNode(config, "") {
     override var headerComment: String?
         get() = config.options().header()
         set(value) {
@@ -20,11 +19,7 @@ class BukkitFcConfig_1_7(
         }
 
     override fun get(key: String): FcConfigNode {
-        return configFactory.createNode(key, config.getConfigurationSection(key))
-    }
-
-    override fun set(key: String, value: Any?) {
-        config.set(key, value)
+        return configFactory.createNode(config, key)
     }
 
     override fun save(file: Path) {
@@ -49,8 +44,8 @@ class BukkitFcConfig_1_7(
             return BukkitFcConfig_1_7(config, configFactory.get())
         }
 
-        override fun createNode(key: String, configSection: ConfigurationSection): FcConfigNode {
-            return BukkitFcConfigNode_1_7(key, configSection, configFactory.get())
+        override fun createNode(config: YamlConfiguration, path: String): FcConfigNode {
+            return BukkitFcConfigNode_1_7(config, path, configFactory.get())
         }
     }
 }

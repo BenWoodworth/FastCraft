@@ -2,54 +2,54 @@ package net.benwoodworth.fastcraft.bukkit.config
 
 import net.benwoodworth.fastcraft.platform.config.FcConfig
 import net.benwoodworth.fastcraft.platform.config.FcConfigNode
-import org.bukkit.configuration.ConfigurationSection
+import org.bukkit.configuration.file.YamlConfiguration
 
 class BukkitFcConfigNode_1_7(
-    private val key: String,
-    override val configSection: ConfigurationSection,
+    override val config: YamlConfiguration,
+    private val path: String,
     private val configFactory: FcConfig.Factory,
 ) : BukkitFcConfigNode {
     override fun get(key: String): FcConfigNode {
-        return configFactory.createNode(key, configSection.getConfigurationSection(key))
+        return configFactory.createNode(config, "$path.$key")
     }
 
     override fun set(key: String, value: Any?) {
-        configSection.set(key, value)
+        config.set(key, value)
     }
 
     override fun set(value: Any?) {
-        configSection.parent.set(key, value)
+        config.set(path, value)
     }
 
     override fun getString(): String? {
-        return configSection.parent.getString(key)
+        return config.getString(path)
     }
 
     override fun getStringList(): List<String?>? {
-        return configSection.parent.getStringList(key)
+        return config.getStringList(path)
     }
 
     override fun getInt(): Int? {
-        return configSection.parent.getInt(key)
+        return config.getInt(path)
     }
 
     override fun getIntList(): List<Int?>? {
-        return configSection.parent.getIntegerList(key)
+        return config.getIntegerList(path)
     }
 
     override fun getDouble(): Double? {
-        return configSection.parent.getDouble(key)
+        return config.getDouble(path)
     }
 
     override fun getDoubleList(): List<Double?>? {
-        return configSection.parent.getDoubleList(key)
+        return config.getDoubleList(path)
     }
 
     override fun getBoolean(): Boolean? {
-        return configSection.parent.getBoolean(key)
+        return config.getBoolean(path)
     }
 
     override fun getBooleanList(): List<Boolean?>? {
-        return configSection.parent.getBooleanList(key)
+        return config.getBooleanList(path)
     }
 }

@@ -4,8 +4,8 @@ import net.benwoodworth.fastcraft.platform.config.FcConfigNode
 import org.bukkit.configuration.ConfigurationSection
 
 interface BukkitFcConfigNode : FcConfigNode {
-    val configSection: ConfigurationSection
+    val config: ConfigurationSection
 }
 
-val FcConfigNode.section: ConfigurationSection
-    get() = (this as BukkitFcConfigNode).configSection
+val FcConfigNode.config: ConfigurationSection
+    get() = (this as BukkitFcConfigNode).config
