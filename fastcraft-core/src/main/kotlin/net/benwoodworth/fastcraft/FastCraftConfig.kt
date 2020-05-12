@@ -121,7 +121,7 @@ class FastCraftConfig @Inject constructor(
                 }
 
                 node["height"].run {
-                    val heightRange = 1..height - column
+                    val heightRange = 1..height - row
                     height = when (val newHeight = getInt()) {
                         null -> modify(height.coerceIn(heightRange))
                         !in heightRange -> {
