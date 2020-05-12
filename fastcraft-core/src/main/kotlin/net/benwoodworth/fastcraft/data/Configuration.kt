@@ -33,14 +33,7 @@ abstract class Configuration {
         }
 
         fun load(node: FcConfigNode) {
-            val newValue = node.getEntry()
-
-            value = if (newValue == null) {
-                node.set(default)
-                default()
-            } else {
-                newValue
-            }
+            value = node.getEntry() ?: default().also { node.set(it) }
         }
     }
 

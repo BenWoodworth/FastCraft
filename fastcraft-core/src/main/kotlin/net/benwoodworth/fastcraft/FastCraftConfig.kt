@@ -14,9 +14,7 @@ class FastCraftConfig @Inject constructor(
     private val pluginData: FcPluginData,
     private val materials: FcMaterial.Factory,
 ) : Configuration() {
-    val disabledRecipes: List<String> by entry("disabled-recipes", { emptyList() }) {
-        getStringList()?.filterNotNull()
-    }
+    val disabledRecipes by entry("disabled-recipes", emptyList()) { getStringList()?.filterNotNull() }
 
     val fastCraftUi = section("fastcraft-ui", FastCraftUi())
 
@@ -35,7 +33,7 @@ class FastCraftConfig @Inject constructor(
 
         inner class CraftingGridButton : Configuration() {
             val enabled by entry("enabled", true) { getBoolean() }
-            val item by entry("enabled", "minecraft:crafting_table") { getString() }
+            val item by entry("item", "minecraft:crafting_table") { getString() }
             val row by entry("row", 0) { getInt() }
             val column by entry("column", 0) { getInt() }
         }
@@ -44,7 +42,7 @@ class FastCraftConfig @Inject constructor(
 
         inner class CraftAmountButton : Configuration() {
             val enabled by entry("enabled", true) { getBoolean() }
-            val item by entry("enabled", "minecraft:anvil") { getString() }
+            val item by entry("item", "minecraft:anvil") { getString() }
             val row by entry("row", 0) { getInt() }
             val column by entry("column", 0) { getInt() }
         }
@@ -53,7 +51,7 @@ class FastCraftConfig @Inject constructor(
 
         inner class RefreshButton : Configuration() {
             val enabled by entry("enabled", true) { getBoolean() }
-            val item by entry("enabled", "minecraft:nether_star") { getString() }
+            val item by entry("item", "minecraft:nether_star") { getString() }
             val row by entry("row", 0) { getInt() }
             val column by entry("column", 0) { getInt() }
         }
@@ -62,7 +60,7 @@ class FastCraftConfig @Inject constructor(
 
         inner class PageButton : Configuration() {
             val enabled by entry("enabled", true) { getBoolean() }
-            val item by entry("enabled", "minecraft:iron_sword") { getString() }
+            val item by entry("item", "minecraft:iron_sword") { getString() }
             val row by entry("row", 0) { getInt() }
             val column by entry("column", 0) { getInt() }
         }
@@ -71,7 +69,7 @@ class FastCraftConfig @Inject constructor(
 
         inner class Background : Configuration() {
             val enabled by entry("enabled", true) { getBoolean() }
-            val item by entry("enabled", "minecraft:air") { getString() }
+            val item by entry("item", "minecraft:air") { getString() }
         }
     }
 
