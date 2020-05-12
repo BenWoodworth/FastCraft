@@ -89,8 +89,9 @@ class FastCraftConfig @Inject constructor(
                     row = when (val newRow = getInt()) {
                         null -> modify(row.coerceIn(rowRange))
                         !in rowRange -> {
-                            logErr("$newRow is not in $rowRange")
-                            modify(rowRange.first)
+                            rowRange.first.also {
+                                logErr("$newRow is not in $rowRange. Defaulting to $it.")
+                            }
                         }
                         else -> newRow
                     }
@@ -101,8 +102,9 @@ class FastCraftConfig @Inject constructor(
                     column = when (val newColumn = getInt()) {
                         null -> modify(column.coerceIn(columnRange))
                         !in columnRange -> {
-                            logErr("$newColumn is not in $columnRange")
-                            modify(columnRange.first)
+                            columnRange.first.also {
+                                logErr("$newColumn is not in $columnRange. Defaulting to $it.")
+                            }
                         }
                         else -> newColumn
                     }
@@ -113,8 +115,9 @@ class FastCraftConfig @Inject constructor(
                     width = when (val newWidth = getInt()) {
                         null -> modify(width.coerceIn(widthRange))
                         !in widthRange -> {
-                            logErr("$newWidth is not in $widthRange")
-                            modify(widthRange.first)
+                            widthRange.first.also {
+                                logErr("$newWidth is not in $widthRange. Defaulting to $it.")
+                            }
                         }
                         else -> newWidth
                     }
@@ -125,8 +128,9 @@ class FastCraftConfig @Inject constructor(
                     height = when (val newHeight = getInt()) {
                         null -> modify(height.coerceIn(heightRange))
                         !in heightRange -> {
-                            logErr("$newHeight is not in $heightRange")
-                            modify(heightRange.first)
+                            heightRange.first.also {
+                                logErr("$newHeight is not in $heightRange. Defaulting to $it.")
+                            }
                         }
                         else -> newHeight
                     }
@@ -167,8 +171,9 @@ class FastCraftConfig @Inject constructor(
                     row = when (val newRow = getInt()) {
                         null -> modify(row.coerceIn(rowRange))
                         !in rowRange -> {
-                            logErr("$newRow is not in $rowRange")
-                            modify(rowRange.first)
+                            rowRange.first.also {
+                                logErr("$newRow is not in $rowRange. Defaulting to $it.")
+                            }
                         }
                         else -> newRow
                     }
@@ -179,8 +184,9 @@ class FastCraftConfig @Inject constructor(
                     column = when (val newColumn = getInt()) {
                         null -> modify(column.coerceIn(columnRange))
                         !in columnRange -> {
-                            logErr("$newColumn is not in $columnRange")
-                            modify(columnRange.first)
+                            columnRange.first.also {
+                                logErr("$newColumn is not in $columnRange. Defaulting to $it.")
+                            }
                         }
                         else -> newColumn
                     }
@@ -194,9 +200,9 @@ class FastCraftConfig @Inject constructor(
                         }
                         else -> when (val newItem = materials.parseOrNull(newItemId)) {
                             null -> {
-                                logErr("Invalid item id: $newItemId")
-                                modify(item.id)
-                                item
+                                item.also {
+                                    logErr("Invalid item id: $newItemId. Defaulting to ${it.id}.")
+                                }
                             }
                             else -> newItem
                         }
@@ -238,8 +244,9 @@ class FastCraftConfig @Inject constructor(
                     row = when (val newRow = getInt()) {
                         null -> modify(row.coerceIn(rowRange))
                         !in rowRange -> {
-                            logErr("$newRow is not in $rowRange")
-                            modify(rowRange.first)
+                            rowRange.first.also {
+                                logErr("$newRow is not in $rowRange. Defaulting to $it.")
+                            }
                         }
                         else -> newRow
                     }
@@ -250,8 +257,9 @@ class FastCraftConfig @Inject constructor(
                     column = when (val newColumn = getInt()) {
                         null -> modify(column.coerceIn(columnRange))
                         !in columnRange -> {
-                            logErr("$newColumn is not in $columnRange")
-                            modify(columnRange.first)
+                            columnRange.first.also {
+                                logErr("$newColumn is not in $columnRange. Defaulting to $it.")
+                            }
                         }
                         else -> newColumn
                     }
@@ -265,9 +273,9 @@ class FastCraftConfig @Inject constructor(
                         }
                         else -> when (val newItem = materials.parseOrNull(newItemId)) {
                             null -> {
-                                logErr("Invalid item id: $newItemId")
-                                modify(item.id)
-                                item
+                                item.also {
+                                    logErr("Invalid item id: $newItemId. Defaulting to ${it.id}.")
+                                }
                             }
                             else -> newItem
                         }
@@ -309,8 +317,9 @@ class FastCraftConfig @Inject constructor(
                     row = when (val newRow = getInt()) {
                         null -> modify(row.coerceIn(rowRange))
                         !in rowRange -> {
-                            logErr("$newRow is not in $rowRange")
-                            modify(rowRange.first)
+                            rowRange.first.also {
+                                logErr("$newRow is not in $rowRange. Defaulting to $it.")
+                            }
                         }
                         else -> newRow
                     }
@@ -321,8 +330,9 @@ class FastCraftConfig @Inject constructor(
                     column = when (val newColumn = getInt()) {
                         null -> modify(column.coerceIn(columnRange))
                         !in columnRange -> {
-                            logErr("$newColumn is not in $columnRange")
-                            modify(columnRange.first)
+                            columnRange.first.also {
+                                logErr("$newColumn is not in $columnRange. Defaulting to $it.")
+                            }
                         }
                         else -> newColumn
                     }
@@ -336,9 +346,9 @@ class FastCraftConfig @Inject constructor(
                         }
                         else -> when (val newItem = materials.parseOrNull(newItemId)) {
                             null -> {
-                                logErr("Invalid item id: $newItemId")
-                                modify(item.id)
-                                item
+                                item.also {
+                                    logErr("Invalid item id: $newItemId. Defaulting to ${it.id}.")
+                                }
                             }
                             else -> newItem
                         }
@@ -380,8 +390,9 @@ class FastCraftConfig @Inject constructor(
                     row = when (val newRow = getInt()) {
                         null -> modify(row.coerceIn(rowRange))
                         !in rowRange -> {
-                            logErr("$newRow is not in $rowRange")
-                            modify(rowRange.first)
+                            rowRange.first.also {
+                                logErr("$newRow is not in $rowRange. Defaulting to $it.")
+                            }
                         }
                         else -> newRow
                     }
@@ -392,8 +403,9 @@ class FastCraftConfig @Inject constructor(
                     column = when (val newColumn = getInt()) {
                         null -> modify(column.coerceIn(columnRange))
                         !in columnRange -> {
-                            logErr("$newColumn is not in $columnRange")
-                            modify(columnRange.first)
+                            columnRange.first.also {
+                                logErr("$newColumn is not in $columnRange. Defaulting to $it.")
+                            }
                         }
                         else -> newColumn
                     }
@@ -407,9 +419,9 @@ class FastCraftConfig @Inject constructor(
                         }
                         else -> when (val newItem = materials.parseOrNull(newItemId)) {
                             null -> {
-                                logErr("Invalid item id: $newItemId")
-                                modify(item.id)
-                                item
+                                item.also {
+                                    logErr("Invalid item id: $newItemId. Defaulting to ${it.id}.")
+                                }
                             }
                             else -> newItem
                         }
@@ -438,9 +450,9 @@ class FastCraftConfig @Inject constructor(
                         }
                         else -> when (val newItem = materials.parseOrNull(newItemId)) {
                             null -> {
-                                logErr("Invalid item id: $newItemId")
-                                modify(item.id)
-                                item
+                                item.also {
+                                    logErr("Invalid item id: $newItemId. Defaulting to ${it.id}.")
+                                }
                             }
                             else -> newItem
                         }
