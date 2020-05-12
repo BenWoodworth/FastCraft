@@ -19,5 +19,7 @@ interface FcMaterial {
         val craftingTable: FcMaterial
         val anvil: FcMaterial
         val netherStar: FcMaterial
+
+        fun parseOrNull(id: String): FcMaterial?
     }
 }

@@ -4,6 +4,7 @@ import net.benwoodworth.fastcraft.platform.item.FcMaterial
 import net.benwoodworth.fastcraft.platform.text.FcText
 import org.apache.commons.lang.WordUtils
 import org.bukkit.Material
+import org.bukkit.Server
 import org.bukkit.material.MaterialData
 import javax.inject.Inject
 import javax.inject.Provider
@@ -17,7 +18,11 @@ open class BukkitFcMaterial_1_7(
 ) : BukkitFcMaterial {
     @Suppress("DEPRECATION")
     override val id: String
-        get() = "${materialData.itemTypeId}:${materialData.data}"
+        get() = if (materialData.data == 0.toByte()) {
+            materialData.itemType.name
+        } else {
+            "${materialData.itemType.name}:${materialData.data}"
+        }
 
     override val material: Material
         get() = materialData.itemType
@@ -67,6 +72,7 @@ open class BukkitFcMaterial_1_7(
     open class Factory @Inject constructor(
         protected val textFactory: FcText.Factory,
         protected val materials: Provider<FcMaterial.Factory>,
+        protected val server: Server,
     ) : BukkitFcMaterial.Factory {
         override val air: FcMaterial by lazy { fromMaterial(Material.AIR) }
         override val ironSword: FcMaterial by lazy { fromMaterial(Material.IRON_SWORD) }
@@ -81,6 +87,27 @@ open class BukkitFcMaterial_1_7(
         override fun fromMaterialData(materialData: Any): FcMaterial {
             require(materialData is MaterialData)
             return BukkitFcMaterial_1_7(materialData, textFactory, materials.get())
+        }
+
+        override fun parseOrNull(id: String): FcMaterial? {
+            val parts = id.split(':')
+            val material = parseMaterialOrNull(parts[0]) ?: return null
+
+            return when (parts.size) {
+                1 -> fromMaterial(material)
+                2 -> {
+                    val data = parts[1].toByteOrNull() ?: return null
+                    @Suppress("DEPRECATION")
+                    fromMaterialData(MaterialData(material, data))
+                }
+                else -> null
+            }
+        }
+
+        protected open fun parseMaterialOrNull(material: String): Material? {
+            @Suppress("DEPRECATION")
+            return Material.matchMaterial(material)
+                ?: server.unsafe.getMaterialFromInternalName(material)
         }
     }
 }

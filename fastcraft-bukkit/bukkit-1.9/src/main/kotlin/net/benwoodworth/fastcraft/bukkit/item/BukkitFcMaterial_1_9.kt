@@ -3,6 +3,7 @@ package net.benwoodworth.fastcraft.bukkit.item
 import net.benwoodworth.fastcraft.platform.item.FcMaterial
 import net.benwoodworth.fastcraft.platform.text.FcText
 import org.bukkit.Material
+import org.bukkit.Server
 import org.bukkit.material.MaterialData
 import javax.inject.Inject
 import javax.inject.Provider
@@ -28,9 +29,11 @@ open class BukkitFcMaterial_1_9(
     open class Factory @Inject constructor(
         textFactory: FcText.Factory,
         materials: Provider<FcMaterial.Factory>,
+        server: Server,
     ) : BukkitFcMaterial_1_7.Factory(
         textFactory = textFactory,
         materials = materials,
+        server = server,
     ) {
         override fun fromMaterialData(materialData: Any): FcMaterial {
             require(materialData is MaterialData)

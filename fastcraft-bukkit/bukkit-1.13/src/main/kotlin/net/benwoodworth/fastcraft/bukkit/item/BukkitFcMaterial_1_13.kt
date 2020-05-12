@@ -5,6 +5,7 @@ import net.benwoodworth.fastcraft.bukkit.text.createTranslate
 import net.benwoodworth.fastcraft.platform.item.FcMaterial
 import net.benwoodworth.fastcraft.platform.text.FcText
 import org.bukkit.Material
+import org.bukkit.Server
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Provider
@@ -85,9 +86,11 @@ open class BukkitFcMaterial_1_13(
         textFactory: FcText.Factory,
         materials: Provider<FcMaterial.Factory>,
         protected val localizer: BukkitLocalizer,
+        server: Server,
     ) : BukkitFcMaterial_1_9.Factory(
         textFactory = textFactory,
         materials = materials,
+        server = server,
     ) {
         override val craftingTable: FcMaterial by lazy {
             fromMaterial(Material.CRAFTING_TABLE)
@@ -99,6 +102,10 @@ open class BukkitFcMaterial_1_13(
 
         override fun fromMaterialData(materialData: Any): FcMaterial {
             throw UnsupportedOperationException()
+        }
+
+        override fun parseMaterialOrNull(material: String): Material? {
+            return Material.matchMaterial(material)
         }
     }
 }
