@@ -426,14 +426,16 @@ class FastCraftConfig @Inject constructor(
 
         //region fun load()
         fun load() {
-            height = run {
-                val heightNode = node["height"]
-
-                when (val newHeight = heightNode.getInt()) {
-                    null, !in 1..6 -> {
-                        modified = true
-                        heightNode.set(height)
-                        height
+            height = node["height"].run {
+                val heightRange = 1..6
+                when (val newHeight = getInt()) {
+                    null -> {
+                        modify(height)
+                    }
+                    !in heightRange -> {
+                        height.also {
+                            logErr("Invalid height: $newHeight. Must be in $heightRange. Defaulting to $it")
+                        }
                     }
                     else -> newHeight
                 }
