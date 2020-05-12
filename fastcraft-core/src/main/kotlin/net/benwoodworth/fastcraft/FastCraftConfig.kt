@@ -35,7 +35,7 @@ class FastCraftConfig @Inject constructor(
             val enabled by entry("enabled", true) { getBoolean() }
             val item by entry("item", "minecraft:crafting_table") { getString() }
             val row by entry("row", 0) { getInt() }
-            val column by entry("column", 0) { getInt() }
+            val column by entry("column", 8) { getInt() }
         }
 
         val craftAmountButton = section("craft-amount-button", CraftAmountButton())
@@ -43,8 +43,8 @@ class FastCraftConfig @Inject constructor(
         inner class CraftAmountButton : Configuration() {
             val enabled by entry("enabled", true) { getBoolean() }
             val item by entry("item", "minecraft:anvil") { getString() }
-            val row by entry("row", 0) { getInt() }
-            val column by entry("column", 0) { getInt() }
+            val row by entry("row", 1) { getInt() }
+            val column by entry("column", 8) { getInt() }
         }
 
         val refreshButton = section("refresh-button", RefreshButton())
@@ -52,8 +52,8 @@ class FastCraftConfig @Inject constructor(
         inner class RefreshButton : Configuration() {
             val enabled by entry("enabled", true) { getBoolean() }
             val item by entry("item", "minecraft:nether_star") { getString() }
-            val row by entry("row", 0) { getInt() }
-            val column by entry("column", 0) { getInt() }
+            val row by entry("row", 2) { getInt() }
+            val column by entry("column", 8) { getInt() }
         }
 
         val pageButton = section("page-button", PageButton())
@@ -61,8 +61,8 @@ class FastCraftConfig @Inject constructor(
         inner class PageButton : Configuration() {
             val enabled by entry("enabled", true) { getBoolean() }
             val item by entry("item", "minecraft:iron_sword") { getString() }
-            val row by entry("row", 0) { getInt() }
-            val column by entry("column", 0) { getInt() }
+            val row by entry("row", 5) { getInt() }
+            val column by entry("column", 8) { getInt() }
         }
 
         val background = section("background", Background())
