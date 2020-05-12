@@ -16,7 +16,6 @@ import javax.inject.Inject
 class PageButtonView(
     private val button: FcGuiButton,
     private val locale: Locale,
-    private val materials: FcMaterial.Factory,
     private val textFactory: FcText.Factory,
     private val sounds: FcSound.Factory,
     config: FastCraftConfig,
@@ -32,7 +31,7 @@ class PageButtonView(
         button.apply {
             listener = ButtonListener()
 
-            setMaterial(materials.parseOrNull(c.item)!!)
+            setMaterial(c.item)
 
             setDescription(
                 listOf(
@@ -106,7 +105,6 @@ class PageButtonView(
             return PageButtonView(
                 button = button,
                 locale = locale,
-                materials = materials,
                 textFactory = textFactory,
                 sounds = sounds,
                 config = config,

@@ -16,7 +16,6 @@ import javax.inject.Inject
 class CraftAmountButtonView(
     private val button: FcGuiButton,
     private val locale: Locale,
-    private val materials: FcMaterial.Factory,
     private val textFactory: FcText.Factory,
     private val sounds: FcSound.Factory,
     config: FastCraftConfig,
@@ -31,7 +30,7 @@ class CraftAmountButtonView(
         button.apply {
             listener = ButtonClickListener()
 
-            setMaterial(materials.parseOrNull(c.item)!!)
+            setMaterial(c.item)
 
             setText(
                 textFactory.createLegacy(
@@ -107,7 +106,6 @@ class CraftAmountButtonView(
             return CraftAmountButtonView(
                 button = button,
                 locale = locale,
-                materials = materials,
                 textFactory = textFactory,
                 sounds = sounds,
                 config = config,

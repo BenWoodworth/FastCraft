@@ -15,7 +15,6 @@ import javax.inject.Inject
 class WorkbenchButtonView(
     button: FcGuiButton,
     private val locale: Locale,
-    private val materials: FcMaterial.Factory,
     private val textFactory: FcText.Factory,
     private val sounds: FcSound.Factory,
     config: FastCraftConfig,
@@ -28,7 +27,7 @@ class WorkbenchButtonView(
         button.apply {
             listener = ButtonListener()
 
-            setMaterial(materials.parseOrNull(c.item)!!)
+            setMaterial(c.item)
 
             setText(
                 textFactory.createLegacy(
@@ -85,7 +84,6 @@ class WorkbenchButtonView(
             return WorkbenchButtonView(
                 button = button,
                 locale = locale,
-                materials = materials,
                 textFactory = textFactory,
                 sounds = sounds,
                 config = config,

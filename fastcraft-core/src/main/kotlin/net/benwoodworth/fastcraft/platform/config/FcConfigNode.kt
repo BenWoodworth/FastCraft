@@ -1,6 +1,8 @@
 package net.benwoodworth.fastcraft.platform.config
 
 interface FcConfigNode {
+    val path: String
+
     operator fun get(key: String): FcConfigNode
 
     operator fun set(key: String, value: Any?)

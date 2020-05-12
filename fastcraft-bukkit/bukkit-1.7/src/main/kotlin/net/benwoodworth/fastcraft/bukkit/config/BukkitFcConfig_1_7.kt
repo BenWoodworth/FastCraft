@@ -12,6 +12,9 @@ class BukkitFcConfig_1_7(
     override val config: YamlConfiguration,
     private val configFactory: FcConfig.Factory,
 ) : BukkitFcConfig, FcConfigNode by configFactory.createNode(config, "") {
+    override val path: String
+        get() = ""
+
     override var headerComment: String?
         get() = config.options().header()
         set(value) {

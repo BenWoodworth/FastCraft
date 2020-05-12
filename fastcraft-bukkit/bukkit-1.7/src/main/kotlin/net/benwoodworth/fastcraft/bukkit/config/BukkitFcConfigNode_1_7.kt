@@ -6,7 +6,7 @@ import org.bukkit.configuration.file.YamlConfiguration
 
 class BukkitFcConfigNode_1_7(
     override val config: YamlConfiguration,
-    private val path: String,
+    override val path: String,
     private val configFactory: FcConfig.Factory,
 ) : BukkitFcConfigNode {
     override fun get(key: String): FcConfigNode {

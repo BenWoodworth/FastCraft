@@ -19,7 +19,6 @@ class FastCraftGuiView(
     refreshButtonFactory: RefreshButtonView.Factory,
     textFactory: FcText.Factory,
     config: FastCraftConfig,
-    materials: FcMaterial.Factory,
 ) {
     val gui = guiFactory.createChestGui(
         player = player,
@@ -29,7 +28,7 @@ class FastCraftGuiView(
 
     init {
         val c = config.fastCraftUi
-        val background = materials.parseOrNull(c.background.item)!!
+        val background = c.background.item
 
         for (row in 0 until gui.layout.height) {
             for (col in 0 until gui.layout.width) {
@@ -96,7 +95,6 @@ class FastCraftGuiView(
                 refreshButtonFactory = refreshButtonFactory,
                 textFactory = textFactory,
                 config = config,
-                materials = materials,
             )
         }
     }

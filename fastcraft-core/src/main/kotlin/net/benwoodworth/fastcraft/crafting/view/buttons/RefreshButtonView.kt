@@ -15,7 +15,6 @@ import javax.inject.Inject
 class RefreshButtonView(
     private val button: FcGuiButton,
     private val locale: Locale,
-    private val materials: FcMaterial.Factory,
     private val textFactory: FcText.Factory,
     private val sounds: FcSound.Factory,
     private val config: FastCraftConfig,
@@ -37,7 +36,7 @@ class RefreshButtonView(
             clear()
 
             if (enabled) {
-                setMaterial(materials.parseOrNull(c.item)!!)
+                setMaterial(c.item)
 
                 setText(
                     textFactory.createLegacy(
@@ -94,7 +93,6 @@ class RefreshButtonView(
             return RefreshButtonView(
                 button = button,
                 locale = locale,
-                materials = materials,
                 textFactory = textFactory,
                 sounds = sounds,
                 config = config,
