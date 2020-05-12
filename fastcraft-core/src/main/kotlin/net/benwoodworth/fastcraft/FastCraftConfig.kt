@@ -85,7 +85,7 @@ class FastCraftConfig @Inject constructor(
                 }
 
                 node["row"].run {
-                    val rowRange = 0 until height
+                    val rowRange = 0 until this@FastCraftUi.height
                     row = when (val newRow = getInt()) {
                         null -> modify(row.coerceIn(rowRange))
                         !in rowRange -> {
@@ -163,7 +163,7 @@ class FastCraftConfig @Inject constructor(
                 }
 
                 node["row"].run {
-                    val rowRange = 0 until height
+                    val rowRange = 0 until this@FastCraftUi.height
                     row = when (val newRow = getInt()) {
                         null -> modify(row.coerceIn(rowRange))
                         !in rowRange -> {
@@ -234,7 +234,7 @@ class FastCraftConfig @Inject constructor(
                 }
 
                 node["row"].run {
-                    val rowRange = 0 until height
+                    val rowRange = 0 until this@FastCraftUi.height
                     row = when (val newRow = getInt()) {
                         null -> modify(row.coerceIn(rowRange))
                         !in rowRange -> {
@@ -305,7 +305,7 @@ class FastCraftConfig @Inject constructor(
                 }
 
                 node["row"].run {
-                    val rowRange = 0 until height
+                    val rowRange = 0 until this@FastCraftUi.height
                     row = when (val newRow = getInt()) {
                         null -> modify(row.coerceIn(rowRange))
                         !in rowRange -> {
@@ -376,7 +376,7 @@ class FastCraftConfig @Inject constructor(
                 }
 
                 node["row"].run {
-                    val rowRange = 0 until height
+                    val rowRange = 0 until this@FastCraftUi.height
                     row = when (val newRow = getInt()) {
                         null -> modify(row.coerceIn(rowRange))
                         !in rowRange -> {
