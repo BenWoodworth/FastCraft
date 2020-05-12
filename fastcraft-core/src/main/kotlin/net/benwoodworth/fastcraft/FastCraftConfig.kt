@@ -57,11 +57,11 @@ class FastCraftConfig @Inject constructor(
         var backgroundItem: FcMaterial = materials.air
             private set
 
-        val recipeButtons = RecipeButtons()
+        val recipes = Recipes()
 
-        inner class RecipeButtons {
+        inner class Recipes {
             private val node: FcConfigNode
-                get() = this@FastCraftUi.node["recipe-buttons"]
+                get() = this@FastCraftUi.node["recipes"]
 
             var row: Int = 0
                 private set
@@ -458,7 +458,7 @@ class FastCraftConfig @Inject constructor(
                 }
             }
 
-            recipeButtons.load()
+            recipes.load()
             craftingGridButton.load()
             craftAmountButton.load()
             refreshButton.load()

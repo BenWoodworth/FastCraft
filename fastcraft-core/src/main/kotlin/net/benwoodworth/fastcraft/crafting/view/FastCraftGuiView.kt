@@ -37,7 +37,7 @@ class FastCraftGuiView(
         }
     }
 
-    val recipeButtons = config.fastCraftUi.recipeButtons.let { c ->
+    val recipeButtons = config.fastCraftUi.recipes.let { c ->
         List(c.width * c.height) { i ->
             recipeButtonFactory.create(
                 gui.layout.getButton(
