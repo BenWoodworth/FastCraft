@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.crafting.view.buttons
 
 import net.benwoodworth.fastcraft.Config
+import net.benwoodworth.fastcraft.FastCraftConfig
 import net.benwoodworth.fastcraft.Strings
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
@@ -18,16 +19,19 @@ class CraftAmountButtonView(
     private val materials: FcMaterial.Factory,
     private val textFactory: FcText.Factory,
     private val sounds: FcSound.Factory,
+    config: FastCraftConfig,
 ) {
     var craftAmount: Int? = null
 
     var listener: Listener = Listener.Default
 
     init {
+        val c = config.fastCraftUi.craftAmountButton
+
         button.apply {
             listener = ButtonClickListener()
 
-            setMaterial(materials.anvil)
+            setMaterial(materials.parseOrNull(c.item)!!)
 
             setText(
                 textFactory.createLegacy(
@@ -97,6 +101,7 @@ class CraftAmountButtonView(
         private val materials: FcMaterial.Factory,
         private val textFactory: FcText.Factory,
         private val sounds: FcSound.Factory,
+        private val config: FastCraftConfig,
     ) {
         fun create(button: FcGuiButton, locale: Locale): CraftAmountButtonView {
             return CraftAmountButtonView(
@@ -105,6 +110,7 @@ class CraftAmountButtonView(
                 materials = materials,
                 textFactory = textFactory,
                 sounds = sounds,
+                config = config,
             )
         }
     }

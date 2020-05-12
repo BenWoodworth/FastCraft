@@ -1,8 +1,10 @@
 package net.benwoodworth.fastcraft.crafting.view
 
+import net.benwoodworth.fastcraft.FastCraftConfig
 import net.benwoodworth.fastcraft.Strings
 import net.benwoodworth.fastcraft.crafting.view.buttons.*
 import net.benwoodworth.fastcraft.platform.gui.FcGui
+import net.benwoodworth.fastcraft.platform.item.FcMaterial
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcText
 import javax.inject.Inject
@@ -16,36 +18,60 @@ class FastCraftGuiView(
     craftAmountButtonFactory: CraftAmountButtonView.Factory,
     refreshButtonFactory: RefreshButtonView.Factory,
     textFactory: FcText.Factory,
+    config: FastCraftConfig,
+    materials: FcMaterial.Factory,
 ) {
     val gui = guiFactory.createChestGui(
         player = player,
         title = textFactory.createLegacy(Strings.guiTitle(player.locale)),
-        height = 6
+        height = config.fastCraftUi.height
     )
 
-    private val width = gui.layout.width
-    private val height = gui.layout.height
+    init {
+        val c = config.fastCraftUi
+        val background = materials.parseOrNull(c.background.item)!!
 
-    val workbenchButton = workbenchButtonFactory
-        .create(gui.layout.getButton(width - 1, 0), player.locale)
+        for (row in 0 until gui.layout.height) {
+            for (col in 0 until gui.layout.width) {
+                gui.layout.getButton(col, row).setMaterial(background)
+            }
+        }
+    }
 
-    val craftAmountButton = craftAmountButtonFactory
-        .create(gui.layout.getButton(width - 1, 1), player.locale)
+    val workbenchButton = config.fastCraftUi.craftingGridButton.let { c ->
+        workbenchButtonFactory
+            .takeIf { c.enabled }
+            ?.create(gui.layout.getButton(c.column, c.row), player.locale)
+    }
 
-    val refreshButton = refreshButtonFactory
-        .create(gui.layout.getButton(width - 1, 2), player.locale)
+    val craftAmountButton = config.fastCraftUi.craftAmountButton.let { c ->
+        craftAmountButtonFactory
+            .takeIf { c.enabled }
+            ?.create(gui.layout.getButton(c.column, c.row), player.locale)
+    }
 
-    val pageButton = pageButtonFactory
-        .create(gui.layout.getButton(width - 1, height - 1), player.locale)
+    val refreshButton = config.fastCraftUi.refreshButton.let { c ->
+        refreshButtonFactory
+            .takeIf { c.enabled }
+            ?.create(gui.layout.getButton(c.column, c.row), player.locale)
+    }
 
-    val recipeButtons = List((width - 2) * height) { i ->
-        recipeButtonFactory.create(
-            gui.layout.getButton(
-                column = i % (width - 2),
-                row = i / (width - 2)
-            ),
-            player.locale
-        )
+    val pageButton = config.fastCraftUi.pageButton.let { c ->
+        pageButtonFactory
+            .takeIf { c.enabled }
+            ?.create(gui.layout.getButton(c.column, c.row), player.locale)
+    }
+
+    val recipeButtons = config.fastCraftUi.recipeButtons.let { c ->
+        List(c.width * c.height) { i ->
+            recipeButtonFactory.create(
+                gui.layout.getButton(
+                    column = c.column + i % (c.width),
+                    row = c.row + i / (c.width)
+                ),
+                player.locale
+            )
+        }
     }
 
     class Factory @Inject constructor(
@@ -56,6 +82,8 @@ class FastCraftGuiView(
         private val craftAmountButtonFactory: CraftAmountButtonView.Factory,
         private val refreshButtonFactory: RefreshButtonView.Factory,
         private val textFactory: FcText.Factory,
+        private val config: FastCraftConfig,
+        private val materials: FcMaterial.Factory,
     ) {
         fun create(player: FcPlayer): FastCraftGuiView {
             return FastCraftGuiView(
@@ -67,6 +95,8 @@ class FastCraftGuiView(
                 craftAmountButtonFactory = craftAmountButtonFactory,
                 refreshButtonFactory = refreshButtonFactory,
                 textFactory = textFactory,
+                config = config,
+                materials = materials,
             )
         }
     }

@@ -24,10 +24,10 @@ class FastCraftGuiPresenter(
     init {
         model.listener = ModelListener()
 
-        view.workbenchButton.listener = WorkbenchButtonListener()
-        view.craftAmountButton.listener = CraftAmountButtonListener()
-        view.pageButton.listener = PageButtonListener()
-        view.refreshButton.listener = RefreshButtonListener()
+        view.workbenchButton?.listener = WorkbenchButtonListener()
+        view.craftAmountButton?.listener = CraftAmountButtonListener()
+        view.pageButton?.listener = PageButtonListener()
+        view.refreshButton?.listener = RefreshButtonListener()
 
         view.recipeButtons.forEachIndexed { i, button ->
             button.listener = RecipeButtonListener(i)
@@ -49,7 +49,7 @@ class FastCraftGuiPresenter(
     }
 
     private fun updatePage() {
-        view.pageButton.apply {
+        view.pageButton?.apply {
             page = recipesPage
             pageCount = recipesPageCount
             update()
@@ -61,7 +61,7 @@ class FastCraftGuiPresenter(
     private fun updateCraftAmount() {
         model.updateCraftAmounts()
 
-        view.craftAmountButton.apply {
+        view.craftAmountButton?.apply {
             craftAmount = model.craftAmount ?: 1
             update()
         }

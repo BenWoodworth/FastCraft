@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.crafting.view.buttons
 
 import net.benwoodworth.fastcraft.Config
+import net.benwoodworth.fastcraft.FastCraftConfig
 import net.benwoodworth.fastcraft.Strings
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
@@ -17,6 +18,7 @@ class RefreshButtonView(
     private val materials: FcMaterial.Factory,
     private val textFactory: FcText.Factory,
     private val sounds: FcSound.Factory,
+    private val config: FastCraftConfig,
 ) {
     var enabled: Boolean = true
 
@@ -29,11 +31,13 @@ class RefreshButtonView(
     }
 
     fun update() {
+        val c = config.fastCraftUi.refreshButton
+
         button.apply {
             clear()
 
             if (enabled) {
-                setMaterial(materials.netherStar)
+                setMaterial(materials.parseOrNull(c.item)!!)
 
                 setText(
                     textFactory.createLegacy(
@@ -84,6 +88,7 @@ class RefreshButtonView(
         private val materials: FcMaterial.Factory,
         private val textFactory: FcText.Factory,
         private val sounds: FcSound.Factory,
+        private val config: FastCraftConfig,
     ) {
         fun create(button: FcGuiButton, locale: Locale): RefreshButtonView {
             return RefreshButtonView(
@@ -91,7 +96,8 @@ class RefreshButtonView(
                 locale = locale,
                 materials = materials,
                 textFactory = textFactory,
-                sounds = sounds
+                sounds = sounds,
+                config = config,
             )
         }
     }

@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.crafting.view.buttons
 
 import net.benwoodworth.fastcraft.Config
+import net.benwoodworth.fastcraft.FastCraftConfig
 import net.benwoodworth.fastcraft.Strings
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
@@ -17,14 +18,17 @@ class WorkbenchButtonView(
     private val materials: FcMaterial.Factory,
     private val textFactory: FcText.Factory,
     private val sounds: FcSound.Factory,
+    config: FastCraftConfig,
 ) {
     var listener: Listener = Listener.Default
 
     init {
+        val c = config.fastCraftUi.craftingGridButton
+
         button.apply {
             listener = ButtonListener()
 
-            setMaterial(materials.craftingTable)
+            setMaterial(materials.parseOrNull(c.item)!!)
 
             setText(
                 textFactory.createLegacy(
@@ -75,6 +79,7 @@ class WorkbenchButtonView(
         private val materials: FcMaterial.Factory,
         private val textFactory: FcText.Factory,
         private val sounds: FcSound.Factory,
+        private val config: FastCraftConfig,
     ) {
         fun create(button: FcGuiButton, locale: Locale): WorkbenchButtonView {
             return WorkbenchButtonView(
@@ -83,6 +88,7 @@ class WorkbenchButtonView(
                 materials = materials,
                 textFactory = textFactory,
                 sounds = sounds,
+                config = config,
             )
         }
     }

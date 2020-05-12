@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.crafting.view.buttons
 
 import net.benwoodworth.fastcraft.Config
+import net.benwoodworth.fastcraft.FastCraftConfig
 import net.benwoodworth.fastcraft.Strings
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
@@ -18,6 +19,7 @@ class PageButtonView(
     private val materials: FcMaterial.Factory,
     private val textFactory: FcText.Factory,
     private val sounds: FcSound.Factory,
+    config: FastCraftConfig,
 ) {
     var page: Int = 1
     var pageCount: Int = 1
@@ -25,10 +27,12 @@ class PageButtonView(
     var listener: Listener = Listener.Default
 
     init {
+        val c = config.fastCraftUi.pageButton
+
         button.apply {
             listener = ButtonListener()
 
-            setMaterial(materials.ironSword)
+            setMaterial(materials.parseOrNull(c.item)!!)
 
             setDescription(
                 listOf(
@@ -96,6 +100,7 @@ class PageButtonView(
         private val materials: FcMaterial.Factory,
         private val textFactory: FcText.Factory,
         private val sounds: FcSound.Factory,
+        private val config: FastCraftConfig,
     ) {
         fun create(button: FcGuiButton, locale: Locale): PageButtonView {
             return PageButtonView(
@@ -104,6 +109,7 @@ class PageButtonView(
                 materials = materials,
                 textFactory = textFactory,
                 sounds = sounds,
+                config = config,
             )
         }
     }
