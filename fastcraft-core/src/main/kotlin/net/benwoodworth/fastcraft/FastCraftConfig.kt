@@ -471,12 +471,6 @@ class FastCraftConfig @Inject constructor(
         //endregion
     }
 
-    private fun loadConfig() {
-    }
-
-    private fun saveConfig() {
-    }
-
     //region fun load()
     fun load() {
         val file = pluginData.configFile
