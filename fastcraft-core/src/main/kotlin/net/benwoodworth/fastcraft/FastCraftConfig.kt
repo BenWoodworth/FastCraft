@@ -104,7 +104,7 @@ class FastCraftConfig @Inject constructor(
                 }
 
                 node["width"].run {
-                    val widthRange = 1..8 - column
+                    val widthRange = 1..9 - column
                     width = when (val newWidth = getInt()) {
                         null -> modify(width.coerceIn(widthRange))
                         !in widthRange -> {
