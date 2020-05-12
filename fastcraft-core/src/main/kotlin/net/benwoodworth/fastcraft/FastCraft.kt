@@ -4,12 +4,10 @@ import net.benwoodworth.fastcraft.crafting.FastCraftGui
 import net.benwoodworth.fastcraft.data.PlayerSettings
 import net.benwoodworth.fastcraft.platform.player.FcPlayerEvents
 import net.benwoodworth.fastcraft.platform.player.FcPlayerOpenWorkbenchEvent
-import net.benwoodworth.fastcraft.platform.server.FcLogger
 import javax.inject.Inject
 
 class FastCraft @Inject internal constructor(
     playerEventsListeners: FcPlayerEvents,
-    logger: FcLogger,
     private val fastCraftGuiFactory: FastCraftGui.Factory,
     private val playerPrefs: PlayerSettings,
     fastCraftCommand: FastCraftCommand,
@@ -20,8 +18,6 @@ class FastCraft @Inject internal constructor(
         Strings.load()
         playerEventsListeners.onPlayerOpenWorkbench += ::onPlayerOpenWorkbench
         fastCraftCommand.register()
-
-        logger.info("Note: A configuration has not been implemented yet, and will be added in a future release.")
     }
 
     fun disable() {
