@@ -28,12 +28,24 @@ class FastCraftGuiView(
 
     init {
         val c = config.fastCraftUi
-        val background = c.background.item
+        val background = c.backgroundItem
 
         for (row in 0 until gui.layout.height) {
             for (col in 0 until gui.layout.width) {
                 gui.layout.getButton(col, row).setMaterial(background)
             }
+        }
+    }
+
+    val recipeButtons = config.fastCraftUi.recipeButtons.let { c ->
+        List(c.width * c.height) { i ->
+            recipeButtonFactory.create(
+                gui.layout.getButton(
+                    column = c.column + i % (c.width),
+                    row = c.row + i / (c.width)
+                ),
+                player.locale
+            )
         }
     }
 
@@ -59,18 +71,6 @@ class FastCraftGuiView(
         pageButtonFactory
             .takeIf { c.enabled }
             ?.create(gui.layout.getButton(c.column, c.row), player.locale)
-    }
-
-    val recipeButtons = config.fastCraftUi.recipeButtons.let { c ->
-        List(c.width * c.height) { i ->
-            recipeButtonFactory.create(
-                gui.layout.getButton(
-                    column = c.column + i % (c.width),
-                    row = c.row + i / (c.width)
-                ),
-                player.locale
-            )
-        }
     }
 
     class Factory @Inject constructor(

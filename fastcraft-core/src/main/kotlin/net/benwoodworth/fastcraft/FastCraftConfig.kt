@@ -54,14 +54,14 @@ class FastCraftConfig @Inject constructor(
         var height: Int = 6
             private set
 
+        var backgroundItem: FcMaterial = materials.air
+            private set
+
         val recipeButtons = RecipeButtons()
 
         inner class RecipeButtons {
             private val node: FcConfigNode
                 get() = this@FastCraftUi.node["recipe-buttons"]
-
-            var enabled: Boolean = true
-                private set
 
             var row: Int = 0
                 private set
@@ -77,13 +77,6 @@ class FastCraftConfig @Inject constructor(
 
             //region fun load()
             fun load() {
-                node["enabled"].run {
-                    enabled = when (val newEnabled = getBoolean()) {
-                        null -> modify(enabled)
-                        else -> newEnabled
-                    }
-                }
-
                 node["row"].run {
                     val rowRange = 0 until this@FastCraftUi.height
                     row = when (val newRow = getInt()) {
@@ -431,37 +424,6 @@ class FastCraftConfig @Inject constructor(
             //endregion
         }
 
-        val background = Background()
-
-        inner class Background {
-            private val node: FcConfigNode
-                get() = this@FastCraftUi.node["background"]
-
-            var item: FcMaterial = materials.air
-                private set
-
-            //region fun load()
-            fun load() {
-                node["item"].run {
-                    item = when (val newItemId = getString()) {
-                        null -> {
-                            modify(item.id)
-                            item
-                        }
-                        else -> when (val newItem = materials.parseOrNull(newItemId)) {
-                            null -> {
-                                item.also {
-                                    logErr("Invalid item id: $newItemId. Defaulting to ${it.id}.")
-                                }
-                            }
-                            else -> newItem
-                        }
-                    }
-                }
-            }
-            //endregion
-        }
-
         //region fun load()
         fun load() {
             height = run {
@@ -477,12 +439,28 @@ class FastCraftConfig @Inject constructor(
                 }
             }
 
+            node["background-item"].run {
+                backgroundItem = when (val newItemId = getString()) {
+                    null -> {
+                        modify(backgroundItem.id)
+                        backgroundItem
+                    }
+                    else -> when (val newItem = materials.parseOrNull(newItemId)) {
+                        null -> {
+                            backgroundItem.also {
+                                logErr("Invalid item id: $newItemId. Defaulting to ${it.id}.")
+                            }
+                        }
+                        else -> newItem
+                    }
+                }
+            }
+
             recipeButtons.load()
             craftingGridButton.load()
             craftAmountButton.load()
             refreshButton.load()
             pageButton.load()
-            background.load()
         }
         //endregion
     }
