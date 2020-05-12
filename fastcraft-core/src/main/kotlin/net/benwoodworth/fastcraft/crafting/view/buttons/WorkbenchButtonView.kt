@@ -22,7 +22,7 @@ class WorkbenchButtonView(
     var listener: Listener = Listener.Default
 
     init {
-        val c = config.fastCraftUi.craftingGridButton
+        val c = config.fastCraftUi.buttons.craftingGrid
 
         button.apply {
             listener = ButtonListener()

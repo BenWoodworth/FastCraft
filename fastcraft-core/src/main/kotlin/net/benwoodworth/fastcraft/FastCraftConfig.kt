@@ -132,294 +132,310 @@ class FastCraftConfig @Inject constructor(
             //endregion
         }
 
-        val craftingGridButton = CraftingGridButton()
+        val buttons = Buttons()
 
-        inner class CraftingGridButton {
+        inner class Buttons {
             private val node: FcConfigNode
-                get() = this@FastCraftUi.node["crafting-grid-button"]
+                get() = this@FastCraftUi.node["buttons"]
 
-            var enabled: Boolean = true
-                private set
+            val craftingGrid = CraftingGrid()
 
-            var item: FcMaterial = materials.craftingTable
-                private set
+            inner class CraftingGrid {
+                private val node: FcConfigNode
+                    get() = this@Buttons.node["crafting-grid"]
 
-            var row: Int = 0
-                private set
+                var enabled: Boolean = true
+                    private set
 
-            var column: Int = 8
-                private set
+                var item: FcMaterial = materials.craftingTable
+                    private set
 
-            //region fun load()
-            fun load() {
-                node["enabled"].run {
-                    enabled = when (val newEnabled = getBoolean()) {
-                        null -> modify(enabled)
-                        else -> newEnabled
-                    }
-                }
+                var row: Int = 0
+                    private set
 
-                node["row"].run {
-                    val rowRange = 0 until this@FastCraftUi.height
-                    row = when (val newRow = getInt()) {
-                        null -> modify(row.coerceIn(rowRange))
-                        !in rowRange -> {
-                            rowRange.first.also {
-                                logErr("$newRow is not in $rowRange. Defaulting to $it.")
-                            }
+                var column: Int = 8
+                    private set
+
+                //region fun load()
+                fun load() {
+                    node["enabled"].run {
+                        enabled = when (val newEnabled = getBoolean()) {
+                            null -> modify(enabled)
+                            else -> newEnabled
                         }
-                        else -> newRow
                     }
-                }
 
-                node["column"].run {
-                    val columnRange = 0..8
-                    column = when (val newColumn = getInt()) {
-                        null -> modify(column.coerceIn(columnRange))
-                        !in columnRange -> {
-                            columnRange.first.also {
-                                logErr("$newColumn is not in $columnRange. Defaulting to $it.")
-                            }
-                        }
-                        else -> newColumn
-                    }
-                }
-
-                node["item"].run {
-                    item = when (val newItemId = getString()) {
-                        null -> {
-                            modify(item.id)
-                            item
-                        }
-                        else -> when (val newItem = materials.parseOrNull(newItemId)) {
-                            null -> {
-                                item.also {
-                                    logErr("Invalid item id: $newItemId. Defaulting to ${it.id}.")
+                    node["row"].run {
+                        val rowRange = 0 until this@FastCraftUi.height
+                        row = when (val newRow = getInt()) {
+                            null -> modify(row.coerceIn(rowRange))
+                            !in rowRange -> {
+                                rowRange.first.also {
+                                    logErr("$newRow is not in $rowRange. Defaulting to $it.")
                                 }
                             }
-                            else -> newItem
+                            else -> newRow
+                        }
+                    }
+
+                    node["column"].run {
+                        val columnRange = 0..8
+                        column = when (val newColumn = getInt()) {
+                            null -> modify(column.coerceIn(columnRange))
+                            !in columnRange -> {
+                                columnRange.first.also {
+                                    logErr("$newColumn is not in $columnRange. Defaulting to $it.")
+                                }
+                            }
+                            else -> newColumn
+                        }
+                    }
+
+                    node["item"].run {
+                        item = when (val newItemId = getString()) {
+                            null -> {
+                                modify(item.id)
+                                item
+                            }
+                            else -> when (val newItem = materials.parseOrNull(newItemId)) {
+                                null -> {
+                                    item.also {
+                                        logErr("Invalid item id: $newItemId. Defaulting to ${it.id}.")
+                                    }
+                                }
+                                else -> newItem
+                            }
                         }
                     }
                 }
+                //endregion
             }
-            //endregion
-        }
 
-        val craftAmountButton = CraftAmountButton()
+            val craftAmount = CraftAmount()
 
-        inner class CraftAmountButton {
-            private val node: FcConfigNode
-                get() = this@FastCraftUi.node["craft-amount-button"]
+            inner class CraftAmount {
+                private val node: FcConfigNode
+                    get() = this@Buttons.node["craft-amount"]
 
-            var enabled: Boolean = true
-                private set
+                var enabled: Boolean = true
+                    private set
 
-            var item: FcMaterial = materials.anvil
-                private set
+                var item: FcMaterial = materials.anvil
+                    private set
 
-            var row: Int = 1
-                private set
+                var row: Int = 1
+                    private set
 
-            var column: Int = 8
-                private set
+                var column: Int = 8
+                    private set
 
-            //region fun load()
-            fun load() {
-                node["enabled"].run {
-                    enabled = when (val newEnabled = getBoolean()) {
-                        null -> modify(enabled)
-                        else -> newEnabled
-                    }
-                }
-
-                node["row"].run {
-                    val rowRange = 0 until this@FastCraftUi.height
-                    row = when (val newRow = getInt()) {
-                        null -> modify(row.coerceIn(rowRange))
-                        !in rowRange -> {
-                            rowRange.first.also {
-                                logErr("$newRow is not in $rowRange. Defaulting to $it.")
-                            }
+                //region fun load()
+                fun load() {
+                    node["enabled"].run {
+                        enabled = when (val newEnabled = getBoolean()) {
+                            null -> modify(enabled)
+                            else -> newEnabled
                         }
-                        else -> newRow
                     }
-                }
 
-                node["column"].run {
-                    val columnRange = 0..8
-                    column = when (val newColumn = getInt()) {
-                        null -> modify(column.coerceIn(columnRange))
-                        !in columnRange -> {
-                            columnRange.first.also {
-                                logErr("$newColumn is not in $columnRange. Defaulting to $it.")
-                            }
-                        }
-                        else -> newColumn
-                    }
-                }
-
-                node["item"].run {
-                    item = when (val newItemId = getString()) {
-                        null -> {
-                            modify(item.id)
-                            item
-                        }
-                        else -> when (val newItem = materials.parseOrNull(newItemId)) {
-                            null -> {
-                                item.also {
-                                    logErr("Invalid item id: $newItemId. Defaulting to ${it.id}.")
+                    node["row"].run {
+                        val rowRange = 0 until this@FastCraftUi.height
+                        row = when (val newRow = getInt()) {
+                            null -> modify(row.coerceIn(rowRange))
+                            !in rowRange -> {
+                                rowRange.first.also {
+                                    logErr("$newRow is not in $rowRange. Defaulting to $it.")
                                 }
                             }
-                            else -> newItem
+                            else -> newRow
+                        }
+                    }
+
+                    node["column"].run {
+                        val columnRange = 0..8
+                        column = when (val newColumn = getInt()) {
+                            null -> modify(column.coerceIn(columnRange))
+                            !in columnRange -> {
+                                columnRange.first.also {
+                                    logErr("$newColumn is not in $columnRange. Defaulting to $it.")
+                                }
+                            }
+                            else -> newColumn
+                        }
+                    }
+
+                    node["item"].run {
+                        item = when (val newItemId = getString()) {
+                            null -> {
+                                modify(item.id)
+                                item
+                            }
+                            else -> when (val newItem = materials.parseOrNull(newItemId)) {
+                                null -> {
+                                    item.also {
+                                        logErr("Invalid item id: $newItemId. Defaulting to ${it.id}.")
+                                    }
+                                }
+                                else -> newItem
+                            }
                         }
                     }
                 }
+                //endregion
             }
-            //endregion
-        }
 
-        val refreshButton = RefreshButton()
+            val refresh = Refresh()
 
-        inner class RefreshButton {
-            private val node: FcConfigNode
-                get() = this@FastCraftUi.node["refresh-button"]
+            inner class Refresh {
+                private val node: FcConfigNode
+                    get() = this@Buttons.node["refresh"]
 
-            var enabled: Boolean = true
-                private set
+                var enabled: Boolean = true
+                    private set
 
-            var item: FcMaterial = materials.netherStar
-                private set
+                var item: FcMaterial = materials.netherStar
+                    private set
 
-            var row: Int = 2
-                private set
+                var row: Int = 2
+                    private set
 
-            var column: Int = 8
-                private set
+                var column: Int = 8
+                    private set
 
-            //region fun load()
-            fun load() {
-                node["enabled"].run {
-                    enabled = when (val newEnabled = getBoolean()) {
-                        null -> modify(enabled)
-                        else -> newEnabled
-                    }
-                }
-
-                node["row"].run {
-                    val rowRange = 0 until this@FastCraftUi.height
-                    row = when (val newRow = getInt()) {
-                        null -> modify(row.coerceIn(rowRange))
-                        !in rowRange -> {
-                            rowRange.first.also {
-                                logErr("$newRow is not in $rowRange. Defaulting to $it.")
-                            }
+                //region fun load()
+                fun load() {
+                    node["enabled"].run {
+                        enabled = when (val newEnabled = getBoolean()) {
+                            null -> modify(enabled)
+                            else -> newEnabled
                         }
-                        else -> newRow
                     }
-                }
 
-                node["column"].run {
-                    val columnRange = 0..8
-                    column = when (val newColumn = getInt()) {
-                        null -> modify(column.coerceIn(columnRange))
-                        !in columnRange -> {
-                            columnRange.first.also {
-                                logErr("$newColumn is not in $columnRange. Defaulting to $it.")
-                            }
-                        }
-                        else -> newColumn
-                    }
-                }
-
-                node["item"].run {
-                    item = when (val newItemId = getString()) {
-                        null -> {
-                            modify(item.id)
-                            item
-                        }
-                        else -> when (val newItem = materials.parseOrNull(newItemId)) {
-                            null -> {
-                                item.also {
-                                    logErr("Invalid item id: $newItemId. Defaulting to ${it.id}.")
+                    node["row"].run {
+                        val rowRange = 0 until this@FastCraftUi.height
+                        row = when (val newRow = getInt()) {
+                            null -> modify(row.coerceIn(rowRange))
+                            !in rowRange -> {
+                                rowRange.first.also {
+                                    logErr("$newRow is not in $rowRange. Defaulting to $it.")
                                 }
                             }
-                            else -> newItem
+                            else -> newRow
+                        }
+                    }
+
+                    node["column"].run {
+                        val columnRange = 0..8
+                        column = when (val newColumn = getInt()) {
+                            null -> modify(column.coerceIn(columnRange))
+                            !in columnRange -> {
+                                columnRange.first.also {
+                                    logErr("$newColumn is not in $columnRange. Defaulting to $it.")
+                                }
+                            }
+                            else -> newColumn
+                        }
+                    }
+
+                    node["item"].run {
+                        item = when (val newItemId = getString()) {
+                            null -> {
+                                modify(item.id)
+                                item
+                            }
+                            else -> when (val newItem = materials.parseOrNull(newItemId)) {
+                                null -> {
+                                    item.also {
+                                        logErr("Invalid item id: $newItemId. Defaulting to ${it.id}.")
+                                    }
+                                }
+                                else -> newItem
+                            }
                         }
                     }
                 }
+                //endregion
             }
-            //endregion
-        }
 
-        val pageButton = PageButton()
+            val page = Page()
 
-        inner class PageButton {
-            private val node: FcConfigNode
-                get() = this@FastCraftUi.node["page-button"]
+            inner class Page {
+                private val node: FcConfigNode
+                    get() = this@Buttons.node["page"]
 
-            var enabled: Boolean = true
-                private set
+                var enabled: Boolean = true
+                    private set
 
-            var item: FcMaterial = materials.ironSword
-                private set
+                var item: FcMaterial = materials.ironSword
+                    private set
 
-            var row: Int = 5
-                private set
+                var row: Int = 5
+                    private set
 
-            var column: Int = 8
-                private set
+                var column: Int = 8
+                    private set
+
+                //region fun load()
+                fun load() {
+                    node["enabled"].run {
+                        enabled = when (val newEnabled = getBoolean()) {
+                            null -> modify(enabled)
+                            else -> newEnabled
+                        }
+                    }
+
+                    node["row"].run {
+                        val rowRange = 0 until this@FastCraftUi.height
+                        row = when (val newRow = getInt()) {
+                            null -> modify(row.coerceIn(rowRange))
+                            !in rowRange -> {
+                                rowRange.first.also {
+                                    logErr("$newRow is not in $rowRange. Defaulting to $it.")
+                                }
+                            }
+                            else -> newRow
+                        }
+                    }
+
+                    node["column"].run {
+                        val columnRange = 0..8
+                        column = when (val newColumn = getInt()) {
+                            null -> modify(column.coerceIn(columnRange))
+                            !in columnRange -> {
+                                columnRange.first.also {
+                                    logErr("$newColumn is not in $columnRange. Defaulting to $it.")
+                                }
+                            }
+                            else -> newColumn
+                        }
+                    }
+
+                    node["item"].run {
+                        item = when (val newItemId = getString()) {
+                            null -> {
+                                modify(item.id)
+                                item
+                            }
+                            else -> when (val newItem = materials.parseOrNull(newItemId)) {
+                                null -> {
+                                    item.also {
+                                        logErr("Invalid item id: $newItemId. Defaulting to ${it.id}.")
+                                    }
+                                }
+                                else -> newItem
+                            }
+                        }
+                    }
+                }
+                //endregion
+            }
 
             //region fun load()
             fun load() {
-                node["enabled"].run {
-                    enabled = when (val newEnabled = getBoolean()) {
-                        null -> modify(enabled)
-                        else -> newEnabled
-                    }
-                }
-
-                node["row"].run {
-                    val rowRange = 0 until this@FastCraftUi.height
-                    row = when (val newRow = getInt()) {
-                        null -> modify(row.coerceIn(rowRange))
-                        !in rowRange -> {
-                            rowRange.first.also {
-                                logErr("$newRow is not in $rowRange. Defaulting to $it.")
-                            }
-                        }
-                        else -> newRow
-                    }
-                }
-
-                node["column"].run {
-                    val columnRange = 0..8
-                    column = when (val newColumn = getInt()) {
-                        null -> modify(column.coerceIn(columnRange))
-                        !in columnRange -> {
-                            columnRange.first.also {
-                                logErr("$newColumn is not in $columnRange. Defaulting to $it.")
-                            }
-                        }
-                        else -> newColumn
-                    }
-                }
-
-                node["item"].run {
-                    item = when (val newItemId = getString()) {
-                        null -> {
-                            modify(item.id)
-                            item
-                        }
-                        else -> when (val newItem = materials.parseOrNull(newItemId)) {
-                            null -> {
-                                item.also {
-                                    logErr("Invalid item id: $newItemId. Defaulting to ${it.id}.")
-                                }
-                            }
-                            else -> newItem
-                        }
-                    }
-                }
+                craftingGrid.load()
+                craftAmount.load()
+                refresh.load()
+                page.load()
             }
             //endregion
         }
@@ -459,10 +475,7 @@ class FastCraftConfig @Inject constructor(
             }
 
             recipes.load()
-            craftingGridButton.load()
-            craftAmountButton.load()
-            refreshButton.load()
-            pageButton.load()
+            buttons.load()
         }
         //endregion
     }

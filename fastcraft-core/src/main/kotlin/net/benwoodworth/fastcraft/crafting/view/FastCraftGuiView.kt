@@ -49,25 +49,25 @@ class FastCraftGuiView(
         }
     }
 
-    val workbenchButton = config.fastCraftUi.craftingGridButton.let { c ->
+    val workbenchButton = config.fastCraftUi.buttons.craftingGrid.let { c ->
         workbenchButtonFactory
             .takeIf { c.enabled }
             ?.create(gui.layout.getButton(c.column, c.row), player.locale)
     }
 
-    val craftAmountButton = config.fastCraftUi.craftAmountButton.let { c ->
+    val craftAmountButton = config.fastCraftUi.buttons.craftAmount.let { c ->
         craftAmountButtonFactory
             .takeIf { c.enabled }
             ?.create(gui.layout.getButton(c.column, c.row), player.locale)
     }
 
-    val refreshButton = config.fastCraftUi.refreshButton.let { c ->
+    val refreshButton = config.fastCraftUi.buttons.refresh.let { c ->
         refreshButtonFactory
             .takeIf { c.enabled }
             ?.create(gui.layout.getButton(c.column, c.row), player.locale)
     }
 
-    val pageButton = config.fastCraftUi.pageButton.let { c ->
+    val pageButton = config.fastCraftUi.buttons.page.let { c ->
         pageButtonFactory
             .takeIf { c.enabled }
             ?.create(gui.layout.getButton(c.column, c.row), player.locale)
