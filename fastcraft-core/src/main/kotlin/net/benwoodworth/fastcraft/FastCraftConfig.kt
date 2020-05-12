@@ -68,7 +68,6 @@ class FastCraftConfig @Inject constructor(
         val background = section("background", Background())
 
         inner class Background : Configuration() {
-            val enabled by entry("enabled", true) { getBoolean() }
             val item by entry("item", "minecraft:air") { getString() }
         }
     }
