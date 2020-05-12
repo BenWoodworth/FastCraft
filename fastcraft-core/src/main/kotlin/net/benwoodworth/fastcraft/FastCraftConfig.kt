@@ -117,8 +117,8 @@ class FastCraftConfig @Inject constructor(
                 }
 
                 node["height"].run {
-                    val heightRange = 1..height - 1 - column
-                    width = when (val newHeight = getInt()) {
+                    val heightRange = 1..height - column
+                    height = when (val newHeight = getInt()) {
                         null -> modify(height.coerceIn(heightRange))
                         !in heightRange -> {
                             logErr("$newHeight is not in $heightRange")
