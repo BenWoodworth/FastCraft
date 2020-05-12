@@ -22,6 +22,10 @@ class FastCraftConfig @Inject constructor(
     private var modified: Boolean = false
     private var newFile: Boolean = false
 
+    private val header: String = """
+        https://github.com/BenWoodworth/FastCraft/wiki/Configuration
+    """.trimIndent()
+
     private fun wildcardToRegex(expression: String): String {
         return Regex.escape(expression)
             .replace("*", """\E.*\Q""")
@@ -490,6 +494,11 @@ class FastCraftConfig @Inject constructor(
             modified = true
             newFile = true
             configFactory.create()
+        }
+
+        if (config.headerComment != header) {
+            config.headerComment = header
+            modified = true
         }
 
         config["disabled-recipes"].run {
