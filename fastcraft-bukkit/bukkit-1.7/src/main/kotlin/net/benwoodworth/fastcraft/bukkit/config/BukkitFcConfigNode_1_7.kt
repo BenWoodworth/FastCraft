@@ -22,34 +22,50 @@ class BukkitFcConfigNode_1_7(
     }
 
     override fun getString(): String? {
-        return config.getString(path)
+        return config
+            .takeIf { it.contains(path) }
+            ?.getString(path)
     }
 
     override fun getStringList(): List<String?>? {
-        return config.getStringList(path)
+        return config
+            .takeIf { it.contains(path) }
+            ?.getStringList(path)
     }
 
     override fun getInt(): Int? {
-        return config.getInt(path)
+        return config
+            .takeIf { it.contains(path) }
+            ?.getInt(path)
     }
 
     override fun getIntList(): List<Int?>? {
-        return config.getIntegerList(path)
+        return config
+            .takeIf { it.contains(path) }
+            ?.getIntegerList(path)
     }
 
     override fun getDouble(): Double? {
-        return config.getDouble(path)
+        return config
+            .takeIf { it.contains(path) }
+            ?.getDouble(path)
     }
 
     override fun getDoubleList(): List<Double?>? {
-        return config.getDoubleList(path)
+        return config
+            .takeIf { it.contains(path) }
+            ?.getDoubleList(path)
     }
 
     override fun getBoolean(): Boolean? {
-        return config.getBoolean(path)
+        return config
+            .takeIf { it.contains(path) }
+            ?.getBoolean(path)
     }
 
     override fun getBooleanList(): List<Boolean?>? {
-        return config.getBooleanList(path)
+        return config
+            .takeIf { it.contains(path) }
+            ?.getBooleanList(path)
     }
 }
