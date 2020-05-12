@@ -16,23 +16,29 @@ class FastCraftConfig @Inject constructor(
     private val materials: FcMaterial.Factory,
     private val logger: FcLogger,
 ) {
+    private val matchNothing = Regex("(?" + "!)")
+
     private var config: FcConfig = configFactory.create()
     private var modified: Boolean = false
     private var newFile: Boolean = false
+
+    private fun wildcardToRegex(expression: String): String {
+        return Regex.escape(expression)
+            .replace("*", """\E.*\Q""")
+    }
 
     private var disabledRecipeIds: List<String> = emptyList()
         set(values) {
             field = values
 
-            disabledRecipes = values.map { recipeId ->
-                recipeId
-                    .map { if (it == '*') ".*" else "\\$it" }
-                    .joinToString("")
-                    .let { Regex("^$it$") }
-            }
+            disabledRecipes = values
+                .map { wildcardToRegex(it) }
+                .takeIf { it.any() }
+                ?.let { Regex(it.joinToString("|")) }
+                ?: matchNothing
         }
 
-    var disabledRecipes: List<Regex> = emptyList()
+    var disabledRecipes: Regex = matchNothing
         private set
 
     val fastCraftUi = FastCraftUi()
@@ -482,7 +488,8 @@ class FastCraftConfig @Inject constructor(
             try {
                 configFactory.load(file)
             } catch (e: Exception) {
-                e.printStackTrace()
+                logger.error("Error loading ${file.fileName}: ${e.message}")
+                logger.info("Using default configuration")
                 return
             }
         } else {
@@ -512,7 +519,7 @@ class FastCraftConfig @Inject constructor(
         }
 
         if (newFile) {
-            logger.info("Created ${pluginData.configFile.fileName}")
+            logger.info("Created ${file.fileName}")
         }
 
         modified = false

@@ -1,5 +1,6 @@
 package net.benwoodworth.fastcraft.crafting.model
 
+import net.benwoodworth.fastcraft.FastCraftConfig
 import net.benwoodworth.fastcraft.platform.item.FcItemStack
 import net.benwoodworth.fastcraft.platform.item.FcMaterial
 import net.benwoodworth.fastcraft.platform.item.FcMaterialComparator
@@ -20,8 +21,9 @@ class CraftableRecipeFinder(
     private val itemAmountsProvider: Provider<ItemAmounts>,
     materialComparator: FcMaterialComparator,
     private val taskFactory: FcTask.Factory,
+    private val config: FastCraftConfig,
 ) {
-    private val disabledPluginRecipes = setOf("recipemanager") //TODO Make configurable
+    private val disabledPluginRecipes = setOf("recipemanager") //TODO Fix compatibility
 
     private var recipeLoadTask: FcTask? = null
 
@@ -54,6 +56,7 @@ class CraftableRecipeFinder(
 
             val recipeIterator = recipeProvider.getCraftingRecipes()
                 .filter { !disabledPluginRecipes.contains(it.id.split(":").firstOrNull()) }
+                .filter { !config.disabledRecipes.matches(it.id) }
                 .sortedWith(recipeComparator)
                 .flatMap { prepareCraftableRecipes(player, availableItems, it) }
                 .iterator()
@@ -144,6 +147,7 @@ class CraftableRecipeFinder(
         private val itemAmountsProvider: Provider<ItemAmounts>,
         private val materialComparator: FcMaterialComparator,
         private val taskFactory: FcTask.Factory,
+        private val config: FastCraftConfig,
     ) {
         fun create(player: FcPlayer): CraftableRecipeFinder {
             return CraftableRecipeFinder(
@@ -152,6 +156,7 @@ class CraftableRecipeFinder(
                 itemAmountsProvider = itemAmountsProvider,
                 materialComparator = materialComparator,
                 taskFactory = taskFactory,
+                config = config,
             )
         }
     }
