@@ -21,6 +21,8 @@ class CraftableRecipeFinder(
     materialComparator: FcMaterialComparator,
     private val taskFactory: FcTask.Factory,
 ) {
+    private val disabledPluginRecipes = setOf("recipemanager") //TODO Make configurable
+
     private var recipeLoadTask: FcTask? = null
 
     private val recipeComparator: Comparator<FcCraftingRecipe> =
@@ -51,6 +53,7 @@ class CraftableRecipeFinder(
             }
 
             val recipeIterator = recipeProvider.getCraftingRecipes()
+                .filter { !disabledPluginRecipes.contains(it.id.split(":").firstOrNull()) }
                 .sortedWith(recipeComparator)
                 .flatMap { prepareCraftableRecipes(player, availableItems, it) }
                 .iterator()

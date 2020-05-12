@@ -58,7 +58,7 @@ open class BukkitFcMaterial_1_13(
     override val maxAmount: Int
         get() = material.maxStackSize
 
-    override val craftingResult: FcMaterial?
+    override val craftingRemainingItem: FcMaterial?
         get() = when (material) {
             Material.LAVA_BUCKET,
             Material.MILK_BUCKET,
