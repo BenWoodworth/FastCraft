@@ -79,12 +79,18 @@ class Permissions @Inject constructor(
         ),
     )
 
+    val FASTCRAFT_ADMIN_COMMAND_RELOAD = permissionFactory.create(
+        name = "fastcraft.admin.command.reload",
+        description = "Permission to use '/fastcraft reload'",
+    )
+
     val FASTCRAFT_ADMIN_COMMAND_ALL = permissionFactory.create(
         name = "fastcraft.admin.command.*",
         description = "All 'fastcraft.admin.command' permissions",
         children = listOf(
             FASTCRAFT_ADMIN_COMMAND_SET_ALL,
             FASTCRAFT_ADMIN_COMMAND_CRAFT,
+            FASTCRAFT_ADMIN_COMMAND_RELOAD,
             FASTCRAFT_COMMAND_ALL,
         ),
     )

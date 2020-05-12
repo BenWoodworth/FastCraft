@@ -17,13 +17,15 @@ class FastCraftCommand @Inject constructor(
     private val playerSettings: PlayerSettings,
     private val fastCraftGuiFactory: FastCraftGui.Factory,
     private val permissions: Permissions,
+    private val config: FastCraftConfig,
 ) : FcCommand {
     override val description = "FastCraft command"
 
-    override val usage = "/fastcraft (set|craft) ..."
+    override val usage = "/fastcraft (set|craft|reload) ..."
     private val usageSet = "/fastcraft set (enabled) <option> [<player>]"
     private val usageSetEnabled = "/fastcraft set enabled (true|false) [<player>]"
     private val usageCraft = "/fastcraft craft [fastcraft|grid|default] [<player>]"
+    private val usageReload = "/fastcraft reload"
 
     private fun FcCommandSource.sendMissingPermissionMessage(permission: FcPermission) {
         sendMessage(textFactory.create(
@@ -101,6 +103,14 @@ class FastCraftCommand @Inject constructor(
                     source.sendUsageMessage(usageCraft)
                 }
             }
+            "reload" -> when (args.getOrNull(1)?.toLowerCase()) {
+                null -> {
+                    fcReload(source)
+                }
+                else -> {
+                    source.sendUsageMessage(usageReload)
+                }
+            }
             else -> {
                 source.sendUsageMessage(usage)
             }
@@ -128,7 +138,7 @@ class FastCraftCommand @Inject constructor(
         }
 
         return when (args.getOrNull(0)?.toLowerCase()) {
-            null -> suggestions("set", "craft")
+            null -> suggestions("set", "craft", "reload")
             "set" -> when (args.getOrNull(1)?.toLowerCase()) {
                 null -> suggestions("enabled")
                 "enabled" -> when (args.getOrNull(2)?.toLowerCase()) {
@@ -298,5 +308,16 @@ class FastCraftCommand @Inject constructor(
                 throw IllegalStateException()
             }
         }
+    }
+
+
+    fun fcReload(source: FcCommandSource) {
+        if (!source.hasPermission(permissions.FASTCRAFT_ADMIN_COMMAND_RELOAD)) {
+            source.sendMissingPermissionMessage(permissions.FASTCRAFT_ADMIN_COMMAND_RELOAD)
+            return
+        }
+
+        config.load()
+        source.sendMessage(textFactory.create("Reload complete [TODO: Localize]")) //TODO localize
     }
 }
