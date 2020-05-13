@@ -6,6 +6,7 @@ import net.benwoodworth.fastcraft.platform.server.FcLogger
 import net.benwoodworth.fastcraft.platform.server.FcPluginData
 import net.benwoodworth.fastcraft.platform.world.FcItem
 import net.benwoodworth.fastcraft.platform.world.FcItemStack
+import net.benwoodworth.fastcraft.util.Expr
 import java.nio.file.Files
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -18,8 +19,6 @@ class FastCraftConfig @Inject constructor(
     private val itemStackFactory: FcItemStack.Factory,
     private val logger: FcLogger,
 ) {
-    private val matchNothing = Regex("(?" + "!)")
-
     private var config: FcConfig = configFactory.create()
     private var modified: Boolean = false
     private var newFile: Boolean = false
@@ -28,23 +27,19 @@ class FastCraftConfig @Inject constructor(
         https://github.com/BenWoodworth/FastCraft/wiki/Configuration
     """.trimIndent()
 
-    private fun wildcardToRegex(expression: String): String {
-        return Regex.escape(expression)
-            .replace("*", """\E.*\Q""")
-    }
+    private val disabledRecipesDefault = Regex("(?" + "!)") // Matches nothing
 
     private var disabledRecipeIds: List<String> = emptyList()
         set(values) {
             field = values
-
             disabledRecipes = values
-                .map { wildcardToRegex(it) }
-                .takeIf { it.any() }
-                ?.let { Regex(it.joinToString("|")) }
-                ?: matchNothing
+                .takeUnless { it.isEmpty() }
+                ?.joinToString("|") { Expr(it).toRegex().toString() }
+                ?.let { Regex(it) }
+                ?: disabledRecipesDefault
         }
 
-    var disabledRecipes: Regex = matchNothing
+    var disabledRecipes: Regex = disabledRecipesDefault
         private set
 
     val layout = Layout()
