@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.world
 
 import com.google.common.base.Enums
-import net.benwoodworth.fastcraft.platform.world.FcMaterial
+import net.benwoodworth.fastcraft.platform.world.FcItem
 import org.bukkit.Material
 import org.bukkit.plugin.Plugin
 import javax.inject.Inject
@@ -22,12 +22,12 @@ class BukkitFcMaterialComparator_1_13 @Inject constructor(
                 .toMap()
         }
 
-    private val comparator = compareBy<FcMaterial>(
+    private val comparator = compareBy<FcItem>(
         { materialIndices[it.material] ?: Int.MAX_VALUE },
         { it.id }
     )
 
-    override fun compare(type0: FcMaterial, type1: FcMaterial): Int {
+    override fun compare(type0: FcItem, type1: FcItem): Int {
         return comparator.compare(type0, type1)
     }
 }

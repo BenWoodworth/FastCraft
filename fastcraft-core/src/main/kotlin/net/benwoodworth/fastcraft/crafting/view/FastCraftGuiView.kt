@@ -6,7 +6,7 @@ import net.benwoodworth.fastcraft.crafting.view.buttons.*
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.platform.world.FcMaterial
+import net.benwoodworth.fastcraft.platform.world.FcItem
 import javax.inject.Inject
 
 class FastCraftGuiView(
@@ -82,7 +82,7 @@ class FastCraftGuiView(
         private val refreshButtonFactory: RefreshButtonView.Factory,
         private val textFactory: FcText.Factory,
         private val config: FastCraftConfig,
-        private val materials: FcMaterial.Factory,
+        private val items: FcItem.Factory,
     ) {
         fun create(player: FcPlayer): FastCraftGuiView {
             return FastCraftGuiView(

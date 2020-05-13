@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.platform.world
 import net.benwoodworth.fastcraft.platform.text.FcText
 
 interface FcItemStack {
-    val type: FcMaterial
+    val type: FcItem
     val amount: Int
     val name: FcText
     val lore: List<FcText>
@@ -16,7 +16,7 @@ interface FcItemStack {
 
     interface Factory {
         fun create(
-            material: FcMaterial,
+            item: FcItem,
             amount: Int = 1,
         ): FcItemStack
 
@@ -25,6 +25,6 @@ interface FcItemStack {
             amount: Int = itemStack.amount,
         ): FcItemStack
 
-        fun parseOrNull(item: String, amount: Int = 1): FcItemStack?
+        fun parseOrNull(itemStr: String, amount: Int = 1): FcItemStack?
     }
 }

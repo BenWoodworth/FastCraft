@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.bukkit.world
 import net.benwoodworth.fastcraft.bukkit.text.BukkitLocalizer
 import net.benwoodworth.fastcraft.bukkit.text.createTranslate
 import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.platform.world.FcMaterial
+import net.benwoodworth.fastcraft.platform.world.FcItem
 import org.bukkit.Material
 import org.bukkit.Server
 import org.bukkit.inventory.ItemStack
@@ -12,12 +12,12 @@ import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton
 
-open class BukkitFcMaterial_1_13(
+open class BukkitFcItem_1_13(
     override val material: Material,
     private val textFactory: FcText.Factory,
     private val localizer: BukkitLocalizer,
-    protected val materials: FcMaterial.Factory,
-) : BukkitFcMaterial {
+    protected val items: FcItem.Factory,
+) : BukkitFcItem {
     override val id: String
         get() = material.key.toString()
 
@@ -59,15 +59,15 @@ open class BukkitFcMaterial_1_13(
     override val maxAmount: Int
         get() = material.maxStackSize
 
-    override val craftingRemainingItem: FcMaterial?
+    override val craftingRemainingItem: FcItem?
         get() = when (material) {
             Material.LAVA_BUCKET,
             Material.MILK_BUCKET,
             Material.WATER_BUCKET,
-            -> materials.fromMaterial(Material.BUCKET)
+            -> items.fromMaterial(Material.BUCKET)
 
             Material.DRAGON_BREATH,
-            -> materials.fromMaterial(Material.GLASS_BOTTLE)
+            -> items.fromMaterial(Material.GLASS_BOTTLE)
 
             else -> null
         }
@@ -77,7 +77,7 @@ open class BukkitFcMaterial_1_13(
     }
 
     override fun equals(other: Any?): Boolean {
-        return other is FcMaterial &&
+        return other is FcItem &&
                 material == other.material &&
                 materialData == other.materialData
     }
@@ -89,27 +89,27 @@ open class BukkitFcMaterial_1_13(
     @Singleton
     open class Factory @Inject constructor(
         textFactory: FcText.Factory,
-        materials: Provider<FcMaterial.Factory>,
+        items: Provider<FcItem.Factory>,
         protected val localizer: BukkitLocalizer,
         server: Server,
-    ) : BukkitFcMaterial_1_9.Factory(
+    ) : BukkitFcItem_1_9.Factory(
         textFactory = textFactory,
-        materials = materials,
+        items = items,
         server = server,
     ) {
-        override val craftingTable: FcMaterial by lazy {
+        override val craftingTable: FcItem by lazy {
             fromMaterial(Material.CRAFTING_TABLE)
         }
 
-        override fun fromMaterial(material: Material): FcMaterial {
-            return BukkitFcMaterial_1_13(material, textFactory, localizer, materials.get())
+        override fun fromMaterial(material: Material): FcItem {
+            return BukkitFcItem_1_13(material, textFactory, localizer, items.get())
         }
 
-        override fun fromMaterialData(materialData: Any): FcMaterial {
+        override fun fromMaterialData(materialData: Any): FcItem {
             throw UnsupportedOperationException()
         }
 
-        override fun parseOrNull(id: String): FcMaterial? {
+        override fun parseOrNull(id: String): FcItem? {
             return Material.matchMaterial(id)
                 ?.let { fromMaterial(it) }
         }

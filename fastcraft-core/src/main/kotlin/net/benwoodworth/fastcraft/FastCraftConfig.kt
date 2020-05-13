@@ -4,8 +4,8 @@ import net.benwoodworth.fastcraft.platform.config.FcConfig
 import net.benwoodworth.fastcraft.platform.config.FcConfigNode
 import net.benwoodworth.fastcraft.platform.server.FcLogger
 import net.benwoodworth.fastcraft.platform.server.FcPluginData
+import net.benwoodworth.fastcraft.platform.world.FcItem
 import net.benwoodworth.fastcraft.platform.world.FcItemStack
-import net.benwoodworth.fastcraft.platform.world.FcMaterial
 import java.nio.file.Files
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -14,7 +14,7 @@ import javax.inject.Singleton
 class FastCraftConfig @Inject constructor(
     private val configFactory: FcConfig.Factory,
     private val pluginData: FcPluginData,
-    private val materials: FcMaterial.Factory,
+    private val items: FcItem.Factory,
     private val itemStackFactory: FcItemStack.Factory,
     private val logger: FcLogger,
 ) {
@@ -56,7 +56,7 @@ class FastCraftConfig @Inject constructor(
         var height: Int = 6
             private set
 
-        var backgroundItem: FcItemStack = itemStackFactory.create(materials.air)
+        var backgroundItem: FcItemStack = itemStackFactory.create(items.air)
             private set
 
         private var backgroundItemId: String = backgroundItem.type.id
@@ -151,7 +151,7 @@ class FastCraftConfig @Inject constructor(
                 var enabled: Boolean = true
                     private set
 
-                var item: FcMaterial = materials.craftingTable
+                var item: FcItem = items.craftingTable
                     private set
 
                 var row: Int = 0
@@ -201,7 +201,7 @@ class FastCraftConfig @Inject constructor(
                                 modify(item.id)
                                 item
                             }
-                            else -> when (val newItem = materials.parseOrNull(newItemId)) {
+                            else -> when (val newItem = items.parseOrNull(newItemId)) {
                                 null -> {
                                     item.also {
                                         logErr("Invalid item id: $newItemId. Defaulting to ${it.id}.")
@@ -224,7 +224,7 @@ class FastCraftConfig @Inject constructor(
                 var enabled: Boolean = true
                     private set
 
-                var item: FcMaterial = materials.anvil
+                var item: FcItem = items.anvil
                     private set
 
                 var row: Int = 1
@@ -274,7 +274,7 @@ class FastCraftConfig @Inject constructor(
                                 modify(item.id)
                                 item
                             }
-                            else -> when (val newItem = materials.parseOrNull(newItemId)) {
+                            else -> when (val newItem = items.parseOrNull(newItemId)) {
                                 null -> {
                                     item.also {
                                         logErr("Invalid item id: $newItemId. Defaulting to ${it.id}.")
@@ -297,7 +297,7 @@ class FastCraftConfig @Inject constructor(
                 var enabled: Boolean = true
                     private set
 
-                var item: FcMaterial = materials.netherStar
+                var item: FcItem = items.netherStar
                     private set
 
                 var row: Int = 2
@@ -347,7 +347,7 @@ class FastCraftConfig @Inject constructor(
                                 modify(item.id)
                                 item
                             }
-                            else -> when (val newItem = materials.parseOrNull(newItemId)) {
+                            else -> when (val newItem = items.parseOrNull(newItemId)) {
                                 null -> {
                                     item.also {
                                         logErr("Invalid item id: $newItemId. Defaulting to ${it.id}.")
@@ -370,7 +370,7 @@ class FastCraftConfig @Inject constructor(
                 var enabled: Boolean = true
                     private set
 
-                var item: FcMaterial = materials.ironSword
+                var item: FcItem = items.ironSword
                     private set
 
                 var row: Int = 5
@@ -420,7 +420,7 @@ class FastCraftConfig @Inject constructor(
                                 modify(item.id)
                                 item
                             }
-                            else -> when (val newItem = materials.parseOrNull(newItemId)) {
+                            else -> when (val newItem = items.parseOrNull(newItemId)) {
                                 null -> {
                                     item.also {
                                         logErr("Invalid item id: $newItemId. Defaulting to ${it.id}.")

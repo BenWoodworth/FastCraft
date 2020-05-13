@@ -22,8 +22,8 @@ import net.benwoodworth.fastcraft.platform.server.*
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
 import net.benwoodworth.fastcraft.platform.text.FcTextConverter
+import net.benwoodworth.fastcraft.platform.world.FcItem
 import net.benwoodworth.fastcraft.platform.world.FcItemStack
-import net.benwoodworth.fastcraft.platform.world.FcMaterial
 import net.benwoodworth.fastcraft.platform.world.FcMaterialComparator
 import org.bukkit.Server
 import org.bukkit.inventory.ItemFactory
@@ -137,12 +137,12 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    fun provideFcMaterialFactory(
-        instance_1_15: Provider<BukkitFcMaterial_1_15.Factory>,
-        instance_1_13: Provider<BukkitFcMaterial_1_13.Factory>,
-        instance_1_9: Provider<BukkitFcMaterial_1_9.Factory>,
-        instance_1_7: Provider<BukkitFcMaterial_1_7.Factory>,
-    ): FcMaterial.Factory {
+    fun provideFcItemFactory(
+        instance_1_15: Provider<BukkitFcItem_1_15.Factory>,
+        instance_1_13: Provider<BukkitFcItem_1_13.Factory>,
+        instance_1_9: Provider<BukkitFcItem_1_9.Factory>,
+        instance_1_7: Provider<BukkitFcItem_1_7.Factory>,
+    ): FcItem.Factory {
         return when {
             bukkitVersion >= VERSION_1_15 -> instance_1_15.get()
             bukkitVersion >= VERSION_1_13 -> instance_1_13.get()

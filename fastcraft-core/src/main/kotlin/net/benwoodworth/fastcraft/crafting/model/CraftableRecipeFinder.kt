@@ -6,8 +6,8 @@ import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 import net.benwoodworth.fastcraft.platform.recipe.FcRecipeProvider
 import net.benwoodworth.fastcraft.platform.server.FcTask
+import net.benwoodworth.fastcraft.platform.world.FcItem
 import net.benwoodworth.fastcraft.platform.world.FcItemStack
-import net.benwoodworth.fastcraft.platform.world.FcMaterial
 import net.benwoodworth.fastcraft.platform.world.FcMaterialComparator
 import net.benwoodworth.fastcraft.util.CancellableResult
 import net.benwoodworth.fastcraft.util.getPermutations
@@ -28,7 +28,7 @@ class CraftableRecipeFinder(
     private var recipeLoadTask: FcTask? = null
 
     private val recipeComparator: Comparator<FcCraftingRecipe> =
-        compareBy<FcCraftingRecipe, FcMaterial>(materialComparator) {
+        compareBy<FcCraftingRecipe, FcItem>(materialComparator) {
             it.exemplaryResult.type
         }.thenBy {
             it.exemplaryResult.amount

@@ -1,8 +1,8 @@
 package net.benwoodworth.fastcraft.bukkit.world
 
 import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.world.FcItem
 import net.benwoodworth.fastcraft.platform.world.FcItemStack
-import net.benwoodworth.fastcraft.platform.world.FcMaterial
 import org.bukkit.Server
 import org.bukkit.inventory.ItemStack
 import javax.inject.Inject
@@ -10,11 +10,11 @@ import javax.inject.Singleton
 
 open class BukkitFcItemStack_1_7(
     override val bukkitItemStack: ItemStack,
-    protected val materials: FcMaterial.Factory,
+    protected val items: FcItem.Factory,
     protected val textFactory: FcText.Factory,
 ) : BukkitFcItemStack {
-    override val type: FcMaterial
-        get() = materials.fromMaterialData(bukkitItemStack.data)
+    override val type: FcItem
+        get() = items.fromMaterialData(bukkitItemStack.data)
 
     override val amount: Int
         get() = bukkitItemStack.amount
@@ -54,12 +54,12 @@ open class BukkitFcItemStack_1_7(
 
     @Singleton
     open class Factory @Inject constructor(
-        protected val materials: FcMaterial.Factory,
+        protected val items: FcItem.Factory,
         protected val textFactory: FcText.Factory,
         protected val server: Server,
     ) : BukkitFcItemStack.Factory {
-        override fun create(material: FcMaterial, amount: Int): FcItemStack {
-            return create(material.toItemStack(amount))
+        override fun create(item: FcItem, amount: Int): FcItemStack {
+            return create(item.toItemStack(amount))
         }
 
         override fun copyItem(itemStack: FcItemStack, amount: Int): FcItemStack {
@@ -82,25 +82,26 @@ open class BukkitFcItemStack_1_7(
             }
         }
 
-        override fun parseOrNull(item: String, amount: Int): FcItemStack? {
+        override fun parseOrNull(itemStr: String, amount: Int): FcItemStack? {
             val materialId: String
             val data: String?
 
-            when (val dataIndex = item.indexOf('{')) {
+            when (val dataIndex = itemStr.indexOf('{')) {
                 -1 -> {
-                    materialId = item
+                    materialId = itemStr
                     data = null
                 }
                 else -> {
-                    materialId = item.substring(0 until dataIndex)
-                    data = item.substring(dataIndex)
+                    materialId = itemStr.substring(0 until dataIndex)
+                    data = itemStr.substring(dataIndex)
                 }
             }
 
-            val material = materials.parseOrNull(materialId) ?: return null
-            val itemStack = material.toItemStack(amount)
+            val item = items.parseOrNull(materialId) ?: return null
+            val itemStack = item.toItemStack(amount)
 
             if (data != null) {
+                @Suppress("DEPRECATION")
                 server.unsafe.modifyItemStack(itemStack, data)
             }
 
@@ -110,7 +111,7 @@ open class BukkitFcItemStack_1_7(
         override fun create(itemStack: ItemStack): FcItemStack {
             return BukkitFcItemStack_1_7(
                 bukkitItemStack = itemStack,
-                materials = materials,
+                items = items,
                 textFactory = textFactory
             )
         }

@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.world
 
 import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.platform.world.FcMaterial
+import net.benwoodworth.fastcraft.platform.world.FcItem
 import org.apache.commons.lang.WordUtils
 import org.bukkit.Material
 import org.bukkit.Server
@@ -12,11 +12,11 @@ import javax.inject.Provider
 import javax.inject.Singleton
 
 
-open class BukkitFcMaterial_1_7(
+open class BukkitFcItem_1_7(
     override val materialData: MaterialData,
     protected val textFactory: FcText.Factory,
-    protected val materials: FcMaterial.Factory,
-) : BukkitFcMaterial {
+    protected val items: FcItem.Factory,
+) : BukkitFcItem {
     @Suppress("DEPRECATION")
     override val id: String
         get() = if (materialData.data == 0.toByte()) {
@@ -37,12 +37,12 @@ open class BukkitFcMaterial_1_7(
     override val maxAmount: Int
         get() = material.maxStackSize
 
-    override val craftingRemainingItem: FcMaterial?
+    override val craftingRemainingItem: FcItem?
         get() = when (material) {
             Material.LAVA_BUCKET,
             Material.MILK_BUCKET,
             Material.WATER_BUCKET,
-            -> materials.fromMaterial(Material.BUCKET)
+            -> items.fromMaterial(Material.BUCKET)
 
             else -> null
         }
@@ -52,7 +52,7 @@ open class BukkitFcMaterial_1_7(
     }
 
     override fun equals(other: Any?): Boolean {
-        return other is FcMaterial && materialData == other.materialData
+        return other is FcItem && materialData == other.materialData
     }
 
     override fun hashCode(): Int {
@@ -76,25 +76,25 @@ open class BukkitFcMaterial_1_7(
     @Singleton
     open class Factory @Inject constructor(
         protected val textFactory: FcText.Factory,
-        protected val materials: Provider<FcMaterial.Factory>,
+        protected val items: Provider<FcItem.Factory>,
         protected val server: Server,
-    ) : BukkitFcMaterial.Factory {
-        override val air: FcMaterial by lazy { fromMaterial(Material.AIR) }
-        override val ironSword: FcMaterial by lazy { fromMaterial(Material.IRON_SWORD) }
-        override val craftingTable: FcMaterial by lazy { fromMaterial(Material.WORKBENCH) }
-        override val anvil: FcMaterial by lazy { fromMaterial(Material.ANVIL) }
-        override val netherStar: FcMaterial by lazy { fromMaterial(Material.NETHER_STAR) }
+    ) : BukkitFcItem.Factory {
+        override val air: FcItem by lazy { fromMaterial(Material.AIR) }
+        override val ironSword: FcItem by lazy { fromMaterial(Material.IRON_SWORD) }
+        override val craftingTable: FcItem by lazy { fromMaterial(Material.WORKBENCH) }
+        override val anvil: FcItem by lazy { fromMaterial(Material.ANVIL) }
+        override val netherStar: FcItem by lazy { fromMaterial(Material.NETHER_STAR) }
 
-        override fun fromMaterial(material: Material): FcMaterial {
+        override fun fromMaterial(material: Material): FcItem {
             return fromMaterialData(MaterialData(material))
         }
 
-        override fun fromMaterialData(materialData: Any): FcMaterial {
+        override fun fromMaterialData(materialData: Any): FcItem {
             require(materialData is MaterialData)
-            return BukkitFcMaterial_1_7(materialData, textFactory, materials.get())
+            return BukkitFcItem_1_7(materialData, textFactory, items.get())
         }
 
-        override fun parseOrNull(id: String): FcMaterial? {
+        override fun parseOrNull(id: String): FcItem? {
             val parts = id.split(':')
             val material: Material
             val data: Byte

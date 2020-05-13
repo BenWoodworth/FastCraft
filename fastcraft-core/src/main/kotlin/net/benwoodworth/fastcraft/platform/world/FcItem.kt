@@ -2,24 +2,24 @@ package net.benwoodworth.fastcraft.platform.world
 
 import net.benwoodworth.fastcraft.platform.text.FcText
 
-interface FcMaterial {
+interface FcItem {
     val id: String
     val itemName: FcText
     val blockName: FcText
     val maxAmount: Int
-    val craftingRemainingItem: FcMaterial?
+    val craftingRemainingItem: FcItem?
 
     override fun equals(other: Any?): Boolean
 
     override fun hashCode(): Int
 
     interface Factory {
-        val air: FcMaterial
-        val ironSword: FcMaterial
-        val craftingTable: FcMaterial
-        val anvil: FcMaterial
-        val netherStar: FcMaterial
+        val air: FcItem
+        val ironSword: FcItem
+        val craftingTable: FcItem
+        val anvil: FcItem
+        val netherStar: FcItem
 
-        fun parseOrNull(id: String): FcMaterial?
+        fun parseOrNull(id: String): FcItem?
     }
 }

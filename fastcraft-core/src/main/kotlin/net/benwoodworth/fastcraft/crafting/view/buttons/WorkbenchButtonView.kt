@@ -8,7 +8,6 @@ import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.player.FcSound
 import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.platform.world.FcMaterial
 import java.util.*
 import javax.inject.Inject
 
@@ -27,7 +26,7 @@ class WorkbenchButtonView(
         button.apply {
             listener = ButtonListener()
 
-            setMaterial(c.item)
+            setItem(c.item)
 
             setText(
                 textFactory.createLegacy(
@@ -75,7 +74,6 @@ class WorkbenchButtonView(
     }
 
     class Factory @Inject constructor(
-        private val materials: FcMaterial.Factory,
         private val textFactory: FcText.Factory,
         private val sounds: FcSound.Factory,
         private val config: FastCraftConfig,

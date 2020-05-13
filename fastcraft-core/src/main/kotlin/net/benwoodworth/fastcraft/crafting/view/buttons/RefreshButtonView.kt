@@ -8,7 +8,7 @@ import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.player.FcSound
 import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.platform.world.FcMaterial
+import net.benwoodworth.fastcraft.platform.world.FcItem
 import java.util.*
 import javax.inject.Inject
 
@@ -36,7 +36,7 @@ class RefreshButtonView(
             clear()
 
             if (enabled) {
-                setMaterial(c.item)
+                setItem(c.item)
 
                 setText(
                     textFactory.createLegacy(
@@ -84,7 +84,7 @@ class RefreshButtonView(
     }
 
     class Factory @Inject constructor(
-        private val materials: FcMaterial.Factory,
+        private val items: FcItem.Factory,
         private val textFactory: FcText.Factory,
         private val sounds: FcSound.Factory,
         private val config: FastCraftConfig,
