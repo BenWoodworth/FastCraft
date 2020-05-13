@@ -40,14 +40,14 @@ class RefreshButtonView(
 
                 setText(
                     textFactory.createLegacy(
-                        Strings.guiToolbarRefreshTitle(locale)
+                        Strings.guiButtonRefreshTitle(locale)
                     )
                 )
 
                 setDescription(
                     listOf(
                         textFactory.createLegacy(
-                            Strings.guiToolbarRefreshDescription0(locale)
+                            Strings.guiButtonRefreshDescription0(locale)
                         )
                     )
                 )

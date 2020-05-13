@@ -30,17 +30,17 @@ class WorkbenchButtonView(
 
             setText(
                 textFactory.createLegacy(
-                    Strings.guiToolbarWorkbenchTitle(locale)
+                    Strings.guiButtonCraftingGridTitle(locale)
                 )
             )
 
             setDescription(
                 listOf(
                     textFactory.createLegacy(
-                        Strings.guiToolbarWorkbenchDescription0(locale)
+                        Strings.guiButtonCraftingGridDescription0(locale)
                     ),
                     textFactory.createLegacy(
-                        Strings.guiToolbarWorkbenchDescription1(locale)
+                        Strings.guiButtonCraftingGridDescription1(locale)
                     )
                 )
             )

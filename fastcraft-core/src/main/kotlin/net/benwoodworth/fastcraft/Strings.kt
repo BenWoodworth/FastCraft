@@ -99,7 +99,7 @@ object Strings {
             ?: "$GUI_RECIPE_ID(id=$id)"
     }
 
-    fun guiToolbarPageTitle(locale: Locale, page: Int, total: Int): String {
+    fun guiButtonPageTitle(locale: Locale, page: Int, total: Int): String {
         return LocaleApi.get(locale, GUI_BUTTON_PAGE_TITLE)
             ?.substitute(
                 "page", page,
@@ -108,73 +108,73 @@ object Strings {
             ?: "$GUI_BUTTON_PAGE_TITLE(page=$page, total=$total)"
     }
 
-    fun guiToolbarPageDescription0(locale: Locale): String {
+    fun guiButtonPageDescription0(locale: Locale): String {
         return LocaleApi.get(locale, GUI_BUTTON_PAGE_DESCRIPTION_0)
             ?.substitute()
             ?: GUI_BUTTON_PAGE_DESCRIPTION_0
     }
 
-    fun guiToolbarPageDescription1(locale: Locale): String {
+    fun guiButtonPageDescription1(locale: Locale): String {
         return LocaleApi.get(locale, GUI_BUTTON_PAGE_DESCRIPTION_1)
             ?.substitute()
             ?: GUI_BUTTON_PAGE_DESCRIPTION_1
     }
 
-    fun guiToolbarPageDescription2(locale: Locale): String {
+    fun guiButtonPageDescription2(locale: Locale): String {
         return LocaleApi.get(locale, GUI_BUTTON_PAGE_DESCRIPTION_2)
             ?.substitute()
             ?: GUI_BUTTON_PAGE_DESCRIPTION_2
     }
 
-    fun guiToolbarRefreshTitle(locale: Locale): String {
+    fun guiButtonRefreshTitle(locale: Locale): String {
         return LocaleApi.get(locale, GUI_BUTTON_REFRESH_TITLE)
             ?.substitute()
             ?: GUI_BUTTON_REFRESH_TITLE
     }
 
-    fun guiToolbarRefreshDescription0(locale: Locale): String {
+    fun guiButtonRefreshDescription0(locale: Locale): String {
         return LocaleApi.get(locale, GUI_BUTTON_REFRESH_DESCRIPTION_0)
             ?.substitute()
             ?: GUI_BUTTON_REFRESH_DESCRIPTION_0
     }
 
-    fun guiToolbarAmountTitle(locale: Locale): String {
+    fun guiButtonCraftAmountTitle(locale: Locale): String {
         return LocaleApi.get(locale, GUI_BUTTON_CRAFT_AMOUNT_TITLE)
             ?.substitute()
             ?: GUI_BUTTON_CRAFT_AMOUNT_TITLE
     }
 
-    fun guiToolbarAmountDescription0(locale: Locale): String {
+    fun guiButtonCraftAmountDescription0(locale: Locale): String {
         return LocaleApi.get(locale, GUI_BUTTON_CRAFT_AMOUNT_DESCRIPTION_0)
             ?.substitute()
             ?: GUI_BUTTON_CRAFT_AMOUNT_DESCRIPTION_0
     }
 
-    fun guiToolbarAmountDescription1(locale: Locale): String {
+    fun guiButtonCraftAmountDescription1(locale: Locale): String {
         return LocaleApi.get(locale, GUI_BUTTON_CRAFT_AMOUNT_DESCRIPTION_1)
             ?.substitute()
             ?: GUI_BUTTON_CRAFT_AMOUNT_DESCRIPTION_1
     }
 
-    fun guiToolbarAmountDescription2(locale: Locale): String {
+    fun guiButtonCraftAmountDescription2(locale: Locale): String {
         return LocaleApi.get(locale, GUI_BUTTON_CRAFT_AMOUNT_DESCRIPTION_2)
             ?.substitute()
             ?: GUI_BUTTON_CRAFT_AMOUNT_DESCRIPTION_2
     }
 
-    fun guiToolbarWorkbenchTitle(locale: Locale): String {
+    fun guiButtonCraftingGridTitle(locale: Locale): String {
         return LocaleApi.get(locale, GUI_BUTTON_CRAFTING_GRID_TITLE)
             ?.substitute()
             ?: GUI_BUTTON_CRAFTING_GRID_TITLE
     }
 
-    fun guiToolbarWorkbenchDescription0(locale: Locale): String {
+    fun guiButtonCraftingGridDescription0(locale: Locale): String {
         return LocaleApi.get(locale, GUI_BUTTON_CRAFTING_GRID_DESCRIPTION_0)
             ?.substitute()
             ?: GUI_BUTTON_CRAFTING_GRID_DESCRIPTION_0
     }
 
-    fun guiToolbarWorkbenchDescription1(locale: Locale): String {
+    fun guiButtonCraftingGridDescription1(locale: Locale): String {
         return LocaleApi.get(locale, GUI_BUTTON_CRAFTING_GRID_DESCRIPTION_1)
             ?.substitute()
             ?: GUI_BUTTON_CRAFTING_GRID_DESCRIPTION_1

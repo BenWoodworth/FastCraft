@@ -36,13 +36,13 @@ class PageButtonView(
             setDescription(
                 listOf(
                     textFactory.createLegacy(
-                        Strings.guiToolbarPageDescription0(locale)
+                        Strings.guiButtonPageDescription0(locale)
                     ),
                     textFactory.createLegacy(
-                        Strings.guiToolbarPageDescription1(locale)
+                        Strings.guiButtonPageDescription1(locale)
                     ),
                     textFactory.createLegacy(
-                        Strings.guiToolbarPageDescription2(locale)
+                        Strings.guiButtonPageDescription2(locale)
                     )
                 )
             )
@@ -57,7 +57,7 @@ class PageButtonView(
         button.apply {
             setText(
                 textFactory.createLegacy(
-                    Strings.guiToolbarPageTitle(locale, page, pageCount)
+                    Strings.guiButtonPageTitle(locale, page, pageCount)
                 )
             )
 

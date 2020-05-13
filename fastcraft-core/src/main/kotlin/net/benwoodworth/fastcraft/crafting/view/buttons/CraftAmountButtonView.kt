@@ -33,20 +33,20 @@ class CraftAmountButtonView(
 
             setText(
                 textFactory.createLegacy(
-                    Strings.guiToolbarAmountTitle(locale)
+                    Strings.guiButtonCraftAmountTitle(locale)
                 )
             )
 
             setDescription(
                 listOf(
                     textFactory.createLegacy(
-                        Strings.guiToolbarAmountDescription0(locale)
+                        Strings.guiButtonCraftAmountDescription0(locale)
                     ),
                     textFactory.createLegacy(
-                        Strings.guiToolbarAmountDescription1(locale)
+                        Strings.guiButtonCraftAmountDescription1(locale)
                     ),
                     textFactory.createLegacy(
-                        Strings.guiToolbarAmountDescription2(locale)
+                        Strings.guiButtonCraftAmountDescription2(locale)
                     )
                 )
             )
