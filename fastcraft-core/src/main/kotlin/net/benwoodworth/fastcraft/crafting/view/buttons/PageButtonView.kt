@@ -26,7 +26,7 @@ class PageButtonView(
     var listener: Listener = Listener.Default
 
     init {
-        val c = config.fastCraftUi.buttons.page
+        val c = config.layout.buttons.page
 
         button.apply {
             listener = ButtonListener()

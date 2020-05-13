@@ -47,11 +47,11 @@ class FastCraftConfig @Inject constructor(
     var disabledRecipes: Regex = matchNothing
         private set
 
-    val fastCraftUi = FastCraftUi()
+    val layout = Layout()
 
-    inner class FastCraftUi {
+    inner class Layout {
         private val node: FcConfigNode
-            get() = config["fastcraft-ui"]
+            get() = config["layout"]
 
         var height: Int = 6
             private set
@@ -60,7 +60,7 @@ class FastCraftConfig @Inject constructor(
 
         inner class Recipes {
             private val node: FcConfigNode
-                get() = this@FastCraftUi.node["recipes"]
+                get() = this@Layout.node["recipes"]
 
             var row: Int = 0
                 private set
@@ -77,7 +77,7 @@ class FastCraftConfig @Inject constructor(
             //region fun load()
             fun load() {
                 node["row"].run {
-                    val rowRange = 0 until this@FastCraftUi.height
+                    val rowRange = 0 until this@Layout.height
                     row = when (val newRow = getInt()) {
                         null -> modify(row.coerceIn(rowRange))
                         !in rowRange -> {
@@ -135,7 +135,7 @@ class FastCraftConfig @Inject constructor(
 
         inner class Buttons {
             private val node: FcConfigNode
-                get() = this@FastCraftUi.node["buttons"]
+                get() = this@Layout.node["buttons"]
 
             val craftingGrid = Button(
                 key = "crafting-grid",
@@ -193,7 +193,7 @@ class FastCraftConfig @Inject constructor(
                     super.load()
 
                     node["row"].run {
-                        val rowRange = 0 until this@FastCraftUi.height
+                        val rowRange = 0 until this@Layout.height
                         row = when (val newRow = getInt()) {
                             null -> modify(row.coerceIn(rowRange))
                             !in rowRange -> {
@@ -238,7 +238,7 @@ class FastCraftConfig @Inject constructor(
             item = itemStackFactory.create(items.lightGrayStainedGlassPane),
         ) {
             override val node: FcConfigNode
-                get() = this@FastCraftUi.node["background"]
+                get() = this@Layout.node["background"]
         }
 
         abstract inner class EnabledItem(
@@ -349,7 +349,7 @@ class FastCraftConfig @Inject constructor(
             }
         }
 
-        fastCraftUi.load()
+        layout.load()
 
         if (modified) {
             config.save(file)

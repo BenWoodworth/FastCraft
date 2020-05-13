@@ -24,7 +24,7 @@ class CraftAmountButtonView(
     var listener: Listener = Listener.Default
 
     init {
-        val c = config.fastCraftUi.buttons.craftAmount
+        val c = config.layout.buttons.craftAmount
 
         button.apply {
             listener = ButtonClickListener()

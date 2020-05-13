@@ -30,7 +30,7 @@ class RefreshButtonView(
     }
 
     fun update() {
-        val c = config.fastCraftUi.buttons.refresh
+        val c = config.layout.buttons.refresh
 
         button.apply {
             clear()

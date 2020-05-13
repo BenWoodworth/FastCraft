@@ -23,7 +23,7 @@ class FastCraftGuiView(
     val gui = guiFactory.createChestGui(
         player = player,
         title = textFactory.createLegacy(Strings.guiTitle(player.locale)),
-        height = config.fastCraftUi.height
+        height = config.layout.height
     )
 
     private val usedButtons: MutableList<FcGuiButton> = mutableListOf()
@@ -38,7 +38,7 @@ class FastCraftGuiView(
         }
     }
 
-    val craftingGridButton = config.fastCraftUi.buttons.craftingGrid.let { c ->
+    val craftingGridButton = config.layout.buttons.craftingGrid.let { c ->
         if (c.enabled) {
             getNewButton(c.column, c.row)
                 ?.let { craftingGridButtonFactory.create(it, player.locale) }
@@ -47,7 +47,7 @@ class FastCraftGuiView(
         }
     }
 
-    val craftAmountButton = config.fastCraftUi.buttons.craftAmount.let { c ->
+    val craftAmountButton = config.layout.buttons.craftAmount.let { c ->
         if (c.enabled) {
             getNewButton(c.column, c.row)
                 ?.let { craftAmountButtonFactory.create(it, player.locale) }
@@ -56,7 +56,7 @@ class FastCraftGuiView(
         }
     }
 
-    val refreshButton = config.fastCraftUi.buttons.refresh.let { c ->
+    val refreshButton = config.layout.buttons.refresh.let { c ->
         if (c.enabled) {
             getNewButton(c.column, c.row)
                 ?.let { refreshButtonFactory.create(it, player.locale) }
@@ -65,7 +65,7 @@ class FastCraftGuiView(
         }
     }
 
-    val pageButton = config.fastCraftUi.buttons.page.let { c ->
+    val pageButton = config.layout.buttons.page.let { c ->
         if (c.enabled) {
             getNewButton(c.column, c.row)
                 ?.let { pageButtonFactory.create(it, player.locale) }
@@ -74,7 +74,7 @@ class FastCraftGuiView(
         }
     }
 
-    val recipeButtons = config.fastCraftUi.recipes.let { c ->
+    val recipeButtons = config.layout.recipes.let { c ->
         val buttons = List(c.width * c.height) { i ->
             getNewButton(
                 column = c.column + i % (c.width),
@@ -90,7 +90,7 @@ class FastCraftGuiView(
     }
 
     init {
-        val background = config.fastCraftUi.background
+        val background = config.layout.background
         if (background.enabled) {
             val item = background.item
 
