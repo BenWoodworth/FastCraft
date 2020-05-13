@@ -258,19 +258,29 @@ class FastCraftConfig @Inject constructor(
 
         val background = Background()
 
-        inner class Background {
-            private val node: FcConfigNode
+        inner class Background : EnabledItem(
+            enabled = false,
+            item = itemStackFactory.create(items.lightGrayStainedGlassPane),
+        ) {
+            override val node: FcConfigNode
                 get() = this@FastCraftUi.node["background"]
+        }
 
-            var enabled: Boolean = false
+        abstract inner class EnabledItem(
+            enabled: Boolean,
+            item: FcItemStack,
+        ) {
+            protected abstract val node: FcConfigNode
+
+            var enabled: Boolean = enabled
                 private set
 
-            var item: FcItemStack = itemStackFactory.create(items.lightGrayStainedGlassPane)
+            var item: FcItemStack = item
                 private set
 
             private var itemId: String = item.type.id
 
-            fun load() {
+            open fun load() {
                 node["enabled"].run {
                     enabled = when (val newEnabled = getBoolean()) {
                         null -> modify(enabled)
