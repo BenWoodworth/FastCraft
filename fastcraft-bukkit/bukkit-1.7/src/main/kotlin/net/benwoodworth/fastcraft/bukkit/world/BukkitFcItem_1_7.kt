@@ -114,11 +114,11 @@ open class BukkitFcItem_1_7(
                 }
                 else -> when (val parsedData = parts.last().toByteOrNull()) {
                     null -> {
-                        material = parseMaterialOrNull(parts.dropLast(1).joinToString(":")) ?: return null
+                        material = parseMaterialOrNull(id) ?: return null
                         data = 0
                     }
                     else -> {
-                        material = parseMaterialOrNull(id) ?: return null
+                        material = parseMaterialOrNull(parts.dropLast(1).joinToString(":")) ?: return null
                         data = parsedData
                     }
                 }
