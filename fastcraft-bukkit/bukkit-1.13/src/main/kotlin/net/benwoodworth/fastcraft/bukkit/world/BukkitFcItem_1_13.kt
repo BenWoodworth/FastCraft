@@ -83,9 +83,8 @@ open class BukkitFcItem_1_13(
         items = items,
         server = server,
     ) {
-        override val craftingTable: FcItem by lazy {
-            fromMaterial(Material.CRAFTING_TABLE)
-        }
+        override val craftingTable: FcItem by lazy { fromMaterial(Material.CRAFTING_TABLE) }
+        override val lightGrayStainedGlassPane by lazy { fromMaterial(Material.LIGHT_GRAY_STAINED_GLASS_PANE) }
 
         override fun fromMaterial(material: Material): FcItem {
             return BukkitFcItem_1_13(material, textFactory, localizer, items.get())

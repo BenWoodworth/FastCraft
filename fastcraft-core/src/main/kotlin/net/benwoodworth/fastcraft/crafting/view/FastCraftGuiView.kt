@@ -88,12 +88,14 @@ class FastCraftGuiView(
     }
 
     init {
-        val c = config.fastCraftUi
-        val backgroundItem = c.backgroundItem
+        val background = config.fastCraftUi.background
+        if (background.enabled) {
+            val item = background.item
 
-        for (row in 0 until gui.layout.height) {
-            for (col in 0 until gui.layout.width) {
-                getNewButton(col, row)?.copyItem(backgroundItem)
+            for (row in 0 until gui.layout.height) {
+                for (col in 0 until gui.layout.width) {
+                    getNewButton(col, row)?.copyItem(item)
+                }
             }
         }
     }

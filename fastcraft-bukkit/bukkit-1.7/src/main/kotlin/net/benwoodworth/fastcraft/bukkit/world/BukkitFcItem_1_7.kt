@@ -82,6 +82,11 @@ open class BukkitFcItem_1_7(
         override val anvil: FcItem by lazy { fromMaterial(Material.ANVIL) }
         override val netherStar: FcItem by lazy { fromMaterial(Material.NETHER_STAR) }
 
+        override val lightGrayStainedGlassPane: FcItem by lazy {
+            @Suppress("DEPRECATION")
+            fromMaterialData(MaterialData(Material.STAINED_GLASS_PANE, 8))
+        }
+
         override fun fromMaterial(material: Material): FcItem {
             return fromMaterialData(MaterialData(material))
         }

@@ -18,6 +18,7 @@ interface FcItem {
         val craftingTable: FcItem
         val anvil: FcItem
         val netherStar: FcItem
+        val lightGrayStainedGlassPane: FcItem
 
         fun parseOrNull(id: String): FcItem?
     }
