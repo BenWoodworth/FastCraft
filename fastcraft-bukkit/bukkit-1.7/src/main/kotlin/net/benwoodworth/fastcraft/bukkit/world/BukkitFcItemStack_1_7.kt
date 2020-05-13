@@ -26,7 +26,7 @@ open class BukkitFcItemStack_1_7(
             ?.takeIf { it.hasDisplayName() }
             ?.displayName
             ?.let { textFactory.create(it) }
-            ?: type.blockName
+            ?: type.name
 
     override val lore: List<FcText>
         get() = bukkitItemStack

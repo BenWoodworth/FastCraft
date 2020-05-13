@@ -4,8 +4,7 @@ import net.benwoodworth.fastcraft.platform.text.FcText
 
 interface FcItem {
     val id: String
-    val itemName: FcText
-    val blockName: FcText
+    val name: FcText
     val maxAmount: Int
     val craftingRemainingItem: FcItem?
 

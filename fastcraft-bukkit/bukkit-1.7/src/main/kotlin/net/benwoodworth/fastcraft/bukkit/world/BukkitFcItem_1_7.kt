@@ -28,11 +28,8 @@ open class BukkitFcItem_1_7(
     override val material: Material
         get() = materialData.itemType
 
-    override val itemName: FcText
+    override val name: FcText
         get() = textFactory.createLegacy(materialData.getName())
-
-    override val blockName: FcText
-        get() = itemName
 
     override val maxAmount: Int
         get() = material.maxStackSize

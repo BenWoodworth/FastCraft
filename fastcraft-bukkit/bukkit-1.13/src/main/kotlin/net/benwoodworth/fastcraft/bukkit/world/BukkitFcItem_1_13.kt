@@ -28,7 +28,7 @@ open class BukkitFcItem_1_13(
         return "$prefix.${key.namespace}.${key.key}"
     }
 
-    override val itemName: FcText
+    override val name: FcText
         get() {
             var localeKey = material.getNameLocaleKey("item")
 
@@ -36,20 +36,6 @@ open class BukkitFcItem_1_13(
                 val blockKey = material.getNameLocaleKey("block")
                 if (localizer.localize(blockKey, Locale.ENGLISH) != null) {
                     localeKey = blockKey
-                }
-            }
-
-            return textFactory.createTranslate(localeKey)
-        }
-
-    override val blockName: FcText
-        get() {
-            var localeKey = material.getNameLocaleKey("block")
-
-            if (localizer.localize(localeKey, Locale.ENGLISH) == null) {
-                val itemKey = material.getNameLocaleKey("item")
-                if (localizer.localize(itemKey, Locale.ENGLISH) != null) {
-                    localeKey = itemKey
                 }
             }
 
