@@ -14,19 +14,19 @@ object Strings {
     private const val GUI_RECIPE_RESULTS = "gui.recipe.results"
     private const val GUI_RECIPE_RESULTS_ITEM = "gui.recipe.results.item"
     private const val GUI_RECIPE_ID = "gui.recipe.id"
-    private const val GUI_TOOLBAR_PAGE_TITLE = "gui.toolbar.page.title"
-    private const val GUI_TOOLBAR_PAGE_DESCRIPTION_0 = "gui.toolbar.page.description.0"
-    private const val GUI_TOOLBAR_PAGE_DESCRIPTION_1 = "gui.toolbar.page.description.1"
-    private const val GUI_TOOLBAR_PAGE_DESCRIPTION_2 = "gui.toolbar.page.description.2"
-    private const val GUI_TOOLBAR_REFRESH_TITLE = "gui.toolbar.refresh.title"
-    private const val GUI_TOOLBAR_REFRESH_DESCRIPTION_0 = "gui.toolbar.refresh.description.0"
-    private const val GUI_TOOLBAR_AMOUNT_TITLE = "gui.toolbar.amount.title"
-    private const val GUI_TOOLBAR_AMOUNT_DESCRIPTION_0 = "gui.toolbar.amount.description.0"
-    private const val GUI_TOOLBAR_AMOUNT_DESCRIPTION_1 = "gui.toolbar.amount.description.1"
-    private const val GUI_TOOLBAR_AMOUNT_DESCRIPTION_2 = "gui.toolbar.amount.description.2"
-    private const val GUI_TOOLBAR_WORKBENCH_TITLE = "gui.toolbar.workbench.title"
-    private const val GUI_TOOLBAR_WORKBENCH_DESCRIPTION_0 = "gui.toolbar.workbench.description.0"
-    private const val GUI_TOOLBAR_WORKBENCH_DESCRIPTION_1 = "gui.toolbar.workbench.description.1"
+    private const val GUI_BUTTON_PAGE_TITLE = "gui.button.page.title"
+    private const val GUI_BUTTON_PAGE_DESCRIPTION_0 = "gui.button.page.description.0"
+    private const val GUI_BUTTON_PAGE_DESCRIPTION_1 = "gui.button.page.description.1"
+    private const val GUI_BUTTON_PAGE_DESCRIPTION_2 = "gui.button.page.description.2"
+    private const val GUI_BUTTON_REFRESH_TITLE = "gui.button.refresh.title"
+    private const val GUI_BUTTON_REFRESH_DESCRIPTION_0 = "gui.button.refresh.description.0"
+    private const val GUI_BUTTON_AMOUNT_TITLE = "gui.button.amount.title"
+    private const val GUI_BUTTON_AMOUNT_DESCRIPTION_0 = "gui.button.amount.description.0"
+    private const val GUI_BUTTON_AMOUNT_DESCRIPTION_1 = "gui.button.amount.description.1"
+    private const val GUI_BUTTON_AMOUNT_DESCRIPTION_2 = "gui.button.amount.description.2"
+    private const val GUI_BUTTON_WORKBENCH_TITLE = "gui.button.workbench.title"
+    private const val GUI_BUTTON_WORKBENCH_DESCRIPTION_0 = "gui.button.workbench.description.0"
+    private const val GUI_BUTTON_WORKBENCH_DESCRIPTION_1 = "gui.button.workbench.description.1"
     private const val COMMAND_ERROR_USAGE = "command.error.usage"
     private const val COMMAND_ERROR_PERMISSION = "command.error.permission"
     private const val COMMAND_ERROR_CONSOLE_ONLY = "command.error.console.only"
@@ -100,84 +100,84 @@ object Strings {
     }
 
     fun guiToolbarPageTitle(locale: Locale, page: Int, total: Int): String {
-        return LocaleApi.get(locale, GUI_TOOLBAR_PAGE_TITLE)
+        return LocaleApi.get(locale, GUI_BUTTON_PAGE_TITLE)
             ?.substitute(
                 "page", page,
                 "total", total,
             )
-            ?: "$GUI_TOOLBAR_PAGE_TITLE(page=$page, total=$total)"
+            ?: "$GUI_BUTTON_PAGE_TITLE(page=$page, total=$total)"
     }
 
     fun guiToolbarPageDescription0(locale: Locale): String {
-        return LocaleApi.get(locale, GUI_TOOLBAR_PAGE_DESCRIPTION_0)
+        return LocaleApi.get(locale, GUI_BUTTON_PAGE_DESCRIPTION_0)
             ?.substitute()
-            ?: GUI_TOOLBAR_PAGE_DESCRIPTION_0
+            ?: GUI_BUTTON_PAGE_DESCRIPTION_0
     }
 
     fun guiToolbarPageDescription1(locale: Locale): String {
-        return LocaleApi.get(locale, GUI_TOOLBAR_PAGE_DESCRIPTION_1)
+        return LocaleApi.get(locale, GUI_BUTTON_PAGE_DESCRIPTION_1)
             ?.substitute()
-            ?: GUI_TOOLBAR_PAGE_DESCRIPTION_1
+            ?: GUI_BUTTON_PAGE_DESCRIPTION_1
     }
 
     fun guiToolbarPageDescription2(locale: Locale): String {
-        return LocaleApi.get(locale, GUI_TOOLBAR_PAGE_DESCRIPTION_2)
+        return LocaleApi.get(locale, GUI_BUTTON_PAGE_DESCRIPTION_2)
             ?.substitute()
-            ?: GUI_TOOLBAR_PAGE_DESCRIPTION_2
+            ?: GUI_BUTTON_PAGE_DESCRIPTION_2
     }
 
     fun guiToolbarRefreshTitle(locale: Locale): String {
-        return LocaleApi.get(locale, GUI_TOOLBAR_REFRESH_TITLE)
+        return LocaleApi.get(locale, GUI_BUTTON_REFRESH_TITLE)
             ?.substitute()
-            ?: GUI_TOOLBAR_REFRESH_TITLE
+            ?: GUI_BUTTON_REFRESH_TITLE
     }
 
     fun guiToolbarRefreshDescription0(locale: Locale): String {
-        return LocaleApi.get(locale, GUI_TOOLBAR_REFRESH_DESCRIPTION_0)
+        return LocaleApi.get(locale, GUI_BUTTON_REFRESH_DESCRIPTION_0)
             ?.substitute()
-            ?: GUI_TOOLBAR_REFRESH_DESCRIPTION_0
+            ?: GUI_BUTTON_REFRESH_DESCRIPTION_0
     }
 
     fun guiToolbarAmountTitle(locale: Locale): String {
-        return LocaleApi.get(locale, GUI_TOOLBAR_AMOUNT_TITLE)
+        return LocaleApi.get(locale, GUI_BUTTON_AMOUNT_TITLE)
             ?.substitute()
-            ?: GUI_TOOLBAR_AMOUNT_TITLE
+            ?: GUI_BUTTON_AMOUNT_TITLE
     }
 
     fun guiToolbarAmountDescription0(locale: Locale): String {
-        return LocaleApi.get(locale, GUI_TOOLBAR_AMOUNT_DESCRIPTION_0)
+        return LocaleApi.get(locale, GUI_BUTTON_AMOUNT_DESCRIPTION_0)
             ?.substitute()
-            ?: GUI_TOOLBAR_AMOUNT_DESCRIPTION_0
+            ?: GUI_BUTTON_AMOUNT_DESCRIPTION_0
     }
 
     fun guiToolbarAmountDescription1(locale: Locale): String {
-        return LocaleApi.get(locale, GUI_TOOLBAR_AMOUNT_DESCRIPTION_1)
+        return LocaleApi.get(locale, GUI_BUTTON_AMOUNT_DESCRIPTION_1)
             ?.substitute()
-            ?: GUI_TOOLBAR_AMOUNT_DESCRIPTION_1
+            ?: GUI_BUTTON_AMOUNT_DESCRIPTION_1
     }
 
     fun guiToolbarAmountDescription2(locale: Locale): String {
-        return LocaleApi.get(locale, GUI_TOOLBAR_AMOUNT_DESCRIPTION_2)
+        return LocaleApi.get(locale, GUI_BUTTON_AMOUNT_DESCRIPTION_2)
             ?.substitute()
-            ?: GUI_TOOLBAR_AMOUNT_DESCRIPTION_2
+            ?: GUI_BUTTON_AMOUNT_DESCRIPTION_2
     }
 
     fun guiToolbarWorkbenchTitle(locale: Locale): String {
-        return LocaleApi.get(locale, GUI_TOOLBAR_WORKBENCH_TITLE)
+        return LocaleApi.get(locale, GUI_BUTTON_WORKBENCH_TITLE)
             ?.substitute()
-            ?: GUI_TOOLBAR_WORKBENCH_TITLE
+            ?: GUI_BUTTON_WORKBENCH_TITLE
     }
 
     fun guiToolbarWorkbenchDescription0(locale: Locale): String {
-        return LocaleApi.get(locale, GUI_TOOLBAR_WORKBENCH_DESCRIPTION_0)
+        return LocaleApi.get(locale, GUI_BUTTON_WORKBENCH_DESCRIPTION_0)
             ?.substitute()
-            ?: GUI_TOOLBAR_WORKBENCH_DESCRIPTION_0
+            ?: GUI_BUTTON_WORKBENCH_DESCRIPTION_0
     }
 
     fun guiToolbarWorkbenchDescription1(locale: Locale): String {
-        return LocaleApi.get(locale, GUI_TOOLBAR_WORKBENCH_DESCRIPTION_1)
+        return LocaleApi.get(locale, GUI_BUTTON_WORKBENCH_DESCRIPTION_1)
             ?.substitute()
-            ?: GUI_TOOLBAR_WORKBENCH_DESCRIPTION_1
+            ?: GUI_BUTTON_WORKBENCH_DESCRIPTION_1
     }
 
     fun commandErrorUsage(locale: Locale, usage: String): String {
