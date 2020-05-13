@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.platform.recipe
 
-import net.benwoodworth.fastcraft.platform.item.FcItemStack
+import net.benwoodworth.fastcraft.platform.world.FcItemStack
 import net.benwoodworth.fastcraft.util.CancellableResult
 
 interface FcCraftingRecipePrepared {

@@ -1,8 +1,8 @@
 package net.benwoodworth.fastcraft.crafting.model
 
-import net.benwoodworth.fastcraft.platform.item.FcItemStack
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
+import net.benwoodworth.fastcraft.platform.world.FcItemStack
 import net.benwoodworth.fastcraft.util.CancellableResult
 import javax.inject.Inject
 import javax.inject.Provider

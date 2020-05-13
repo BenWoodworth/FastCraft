@@ -2,10 +2,10 @@ package net.benwoodworth.fastcraft
 
 import net.benwoodworth.fastcraft.platform.config.FcConfig
 import net.benwoodworth.fastcraft.platform.config.FcConfigNode
-import net.benwoodworth.fastcraft.platform.item.FcItemStack
-import net.benwoodworth.fastcraft.platform.item.FcMaterial
 import net.benwoodworth.fastcraft.platform.server.FcLogger
 import net.benwoodworth.fastcraft.platform.server.FcPluginData
+import net.benwoodworth.fastcraft.platform.world.FcItemStack
+import net.benwoodworth.fastcraft.platform.world.FcMaterial
 import java.nio.file.Files
 import javax.inject.Inject
 import javax.inject.Singleton

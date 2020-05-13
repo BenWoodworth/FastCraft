@@ -1,6 +1,6 @@
-package net.benwoodworth.fastcraft.bukkit.item
+package net.benwoodworth.fastcraft.bukkit.world
 
-import net.benwoodworth.fastcraft.platform.item.FcInventory
+import net.benwoodworth.fastcraft.platform.world.FcInventory
 import org.bukkit.inventory.Inventory
 
 interface BukkitFcInventory : FcInventory {

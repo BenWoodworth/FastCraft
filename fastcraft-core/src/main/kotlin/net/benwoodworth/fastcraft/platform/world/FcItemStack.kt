@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform.item
+package net.benwoodworth.fastcraft.platform.world
 
 import net.benwoodworth.fastcraft.platform.text.FcText
 

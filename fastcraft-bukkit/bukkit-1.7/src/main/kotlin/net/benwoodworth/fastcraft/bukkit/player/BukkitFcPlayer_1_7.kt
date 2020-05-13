@@ -1,16 +1,16 @@
 package net.benwoodworth.fastcraft.bukkit.player
 
-import net.benwoodworth.fastcraft.bukkit.item.toBukkitItemStack
 import net.benwoodworth.fastcraft.bukkit.server.permission
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcText
 import net.benwoodworth.fastcraft.bukkit.text.toRaw
-import net.benwoodworth.fastcraft.platform.item.FcItemStack
+import net.benwoodworth.fastcraft.bukkit.world.toBukkitItemStack
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcPlayerInventory
 import net.benwoodworth.fastcraft.platform.player.FcSound
 import net.benwoodworth.fastcraft.platform.server.FcPermission
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextConverter
+import net.benwoodworth.fastcraft.platform.world.FcItemStack
 import net.benwoodworth.localeconfig.api.LocaleApi
 import org.bukkit.Server
 import org.bukkit.entity.Player

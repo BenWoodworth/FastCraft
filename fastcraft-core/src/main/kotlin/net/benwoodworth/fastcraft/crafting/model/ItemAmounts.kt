@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.crafting.model
 
-import net.benwoodworth.fastcraft.platform.item.FcItemStack
+import net.benwoodworth.fastcraft.platform.world.FcItemStack
 import java.util.*
 import javax.inject.Inject
 

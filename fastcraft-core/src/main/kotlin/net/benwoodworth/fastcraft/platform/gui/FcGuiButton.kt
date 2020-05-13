@@ -1,8 +1,8 @@
 package net.benwoodworth.fastcraft.platform.gui
 
-import net.benwoodworth.fastcraft.platform.item.FcItemStack
-import net.benwoodworth.fastcraft.platform.item.FcMaterial
 import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.world.FcItemStack
+import net.benwoodworth.fastcraft.platform.world.FcMaterial
 
 interface FcGuiButton {
     var listener: Listener

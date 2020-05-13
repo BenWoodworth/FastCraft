@@ -1,9 +1,9 @@
 package net.benwoodworth.fastcraft.bukkit.player
 
-import net.benwoodworth.fastcraft.bukkit.item.BukkitFcInventorySlot
-import net.benwoodworth.fastcraft.bukkit.item.inventory
-import net.benwoodworth.fastcraft.platform.item.FcInventorySlot
+import net.benwoodworth.fastcraft.bukkit.world.BukkitFcInventorySlot
+import net.benwoodworth.fastcraft.bukkit.world.inventory
 import net.benwoodworth.fastcraft.platform.player.FcPlayerInventory
+import net.benwoodworth.fastcraft.platform.world.FcInventorySlot
 import org.bukkit.inventory.PlayerInventory
 import javax.inject.Inject
 

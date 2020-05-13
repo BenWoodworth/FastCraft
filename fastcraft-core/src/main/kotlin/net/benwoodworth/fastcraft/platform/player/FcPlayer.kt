@@ -1,8 +1,8 @@
 package net.benwoodworth.fastcraft.platform.player
 
-import net.benwoodworth.fastcraft.platform.item.FcItemStack
 import net.benwoodworth.fastcraft.platform.server.FcPermission
 import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.world.FcItemStack
 import java.util.*
 
 interface FcPlayer {

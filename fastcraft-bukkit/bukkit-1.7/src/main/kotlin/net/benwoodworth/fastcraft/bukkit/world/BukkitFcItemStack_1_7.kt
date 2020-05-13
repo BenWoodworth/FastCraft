@@ -1,8 +1,8 @@
-package net.benwoodworth.fastcraft.bukkit.item
+package net.benwoodworth.fastcraft.bukkit.world
 
-import net.benwoodworth.fastcraft.platform.item.FcItemStack
-import net.benwoodworth.fastcraft.platform.item.FcMaterial
 import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.platform.world.FcItemStack
+import net.benwoodworth.fastcraft.platform.world.FcMaterial
 import org.bukkit.Server
 import org.bukkit.inventory.ItemStack
 import javax.inject.Inject

@@ -1,4 +1,4 @@
-package net.benwoodworth.fastcraft.platform.item
+package net.benwoodworth.fastcraft.platform.world
 
 interface FcInventorySlot {
     var itemStack: FcItemStack?

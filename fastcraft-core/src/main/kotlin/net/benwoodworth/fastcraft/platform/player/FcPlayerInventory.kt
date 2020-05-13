@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.platform.player
 
-import net.benwoodworth.fastcraft.platform.item.FcInventory
-import net.benwoodworth.fastcraft.platform.item.FcInventorySlot
+import net.benwoodworth.fastcraft.platform.world.FcInventory
+import net.benwoodworth.fastcraft.platform.world.FcInventorySlot
 
 interface FcPlayerInventory : FcInventory {
     val storage: Collection<FcInventorySlot>

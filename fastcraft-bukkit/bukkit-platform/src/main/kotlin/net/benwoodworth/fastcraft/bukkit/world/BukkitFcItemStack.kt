@@ -1,6 +1,6 @@
-package net.benwoodworth.fastcraft.bukkit.item
+package net.benwoodworth.fastcraft.bukkit.world
 
-import net.benwoodworth.fastcraft.platform.item.FcItemStack
+import net.benwoodworth.fastcraft.platform.world.FcItemStack
 import org.bukkit.inventory.ItemStack
 
 interface BukkitFcItemStack : FcItemStack {

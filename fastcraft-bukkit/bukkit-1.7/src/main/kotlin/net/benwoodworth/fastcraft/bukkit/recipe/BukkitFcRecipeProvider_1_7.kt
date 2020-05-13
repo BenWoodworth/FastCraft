@@ -1,11 +1,11 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
 import net.benwoodworth.fastcraft.bukkit.util.BukkitVersion
-import net.benwoodworth.fastcraft.platform.item.FcItemStack
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 import net.benwoodworth.fastcraft.platform.recipe.FcIngredient
+import net.benwoodworth.fastcraft.platform.world.FcItemStack
 import net.benwoodworth.fastcraft.util.CancellableResult
 import org.bukkit.Server
 import org.bukkit.configuration.file.YamlConfiguration

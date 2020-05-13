@@ -1,6 +1,6 @@
-package net.benwoodworth.fastcraft.bukkit.item
+package net.benwoodworth.fastcraft.bukkit.world
 
-import net.benwoodworth.fastcraft.platform.item.FcMaterial
+import net.benwoodworth.fastcraft.platform.world.FcMaterial
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 

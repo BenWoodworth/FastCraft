@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
-import net.benwoodworth.fastcraft.bukkit.item.bukkitItemStack
-import net.benwoodworth.fastcraft.platform.item.FcItemStack
+import net.benwoodworth.fastcraft.bukkit.world.bukkitItemStack
+import net.benwoodworth.fastcraft.platform.world.FcItemStack
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import java.util.*

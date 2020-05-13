@@ -1,7 +1,7 @@
-package net.benwoodworth.fastcraft.bukkit.item
+package net.benwoodworth.fastcraft.bukkit.world
 
 import com.google.common.base.Enums
-import net.benwoodworth.fastcraft.platform.item.FcMaterial
+import net.benwoodworth.fastcraft.platform.world.FcMaterial
 import org.bukkit.Material
 import org.bukkit.plugin.Plugin
 import javax.inject.Inject
