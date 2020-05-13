@@ -39,7 +39,7 @@ class FastCraftGuiView(
     }
 
     val craftingGridButton = config.layout.buttons.craftingGrid.let { c ->
-        if (c.enabled) {
+        if (c.enable) {
             getNewButton(c.column, c.row)
                 ?.let { craftingGridButtonFactory.create(it, player.locale) }
         } else {
@@ -48,7 +48,7 @@ class FastCraftGuiView(
     }
 
     val craftAmountButton = config.layout.buttons.craftAmount.let { c ->
-        if (c.enabled) {
+        if (c.enable) {
             getNewButton(c.column, c.row)
                 ?.let { craftAmountButtonFactory.create(it, player.locale) }
         } else {
@@ -57,7 +57,7 @@ class FastCraftGuiView(
     }
 
     val refreshButton = config.layout.buttons.refresh.let { c ->
-        if (c.enabled) {
+        if (c.enable) {
             getNewButton(c.column, c.row)
                 ?.let { refreshButtonFactory.create(it, player.locale) }
         } else {
@@ -66,7 +66,7 @@ class FastCraftGuiView(
     }
 
     val pageButton = config.layout.buttons.page.let { c ->
-        if (c.enabled) {
+        if (c.enable) {
             getNewButton(c.column, c.row)
                 ?.let { pageButtonFactory.create(it, player.locale) }
         } else {
@@ -91,7 +91,7 @@ class FastCraftGuiView(
 
     init {
         val background = config.layout.background
-        if (background.enabled) {
+        if (background.enable) {
             val item = background.item
 
             for (row in 0 until gui.layout.height) {

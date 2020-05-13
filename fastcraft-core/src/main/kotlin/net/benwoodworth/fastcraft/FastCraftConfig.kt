@@ -27,19 +27,19 @@ class FastCraftConfig @Inject constructor(
         https://github.com/BenWoodworth/FastCraft/wiki/Configuration
     """.trimIndent()
 
-    private val disabledRecipesDefault = Regex("(?" + "!)") // Matches nothing
+    private val disableRecipesDefault = Regex("(?" + "!)") // Matches nothing
 
-    private var disabledRecipeIds: List<String> = emptyList()
+    private var disableRecipeIds: List<String> = emptyList()
         set(values) {
             field = values
-            disabledRecipes = values
+            disableRecipes = values
                 .takeUnless { it.isEmpty() }
                 ?.joinToString("|") { Expr(it).toRegex().toString() }
                 ?.let { Regex(it) }
-                ?: disabledRecipesDefault
+                ?: disableRecipesDefault
         }
 
-    var disabledRecipes: Regex = disabledRecipesDefault
+    var disableRecipes: Regex = disableRecipesDefault
         private set
 
     val layout = Layout()
@@ -134,7 +134,7 @@ class FastCraftConfig @Inject constructor(
 
             val craftingGrid = Button(
                 key = "crafting-grid",
-                enabled = true,
+                enable = true,
                 item = itemStackFactory.create(items.craftingTable),
                 row = 0,
                 column = 8,
@@ -142,7 +142,7 @@ class FastCraftConfig @Inject constructor(
 
             val craftAmount = Button(
                 key = "craft-amount",
-                enabled = true,
+                enable = true,
                 item = itemStackFactory.create(items.anvil),
                 row = 1,
                 column = 8,
@@ -150,7 +150,7 @@ class FastCraftConfig @Inject constructor(
 
             val refresh = Button(
                 key = "refresh",
-                enabled = true,
+                enable = true,
                 item = itemStackFactory.create(items.netherStar),
                 row = 2,
                 column = 8,
@@ -158,7 +158,7 @@ class FastCraftConfig @Inject constructor(
 
             val page = Button(
                 key = "page",
-                enabled = true,
+                enable = true,
                 item = itemStackFactory.create(items.ironSword),
                 row = 5,
                 column = 8,
@@ -166,12 +166,12 @@ class FastCraftConfig @Inject constructor(
 
             inner class Button(
                 private val key: String,
-                enabled: Boolean,
+                enable: Boolean,
                 item: FcItemStack,
                 row: Int,
                 column: Int,
-            ) : EnabledItem(
-                enabled = enabled,
+            ) : EnableItem(
+                enable = enable,
                 item = item,
             ) {
                 override val node: FcConfigNode
@@ -228,21 +228,21 @@ class FastCraftConfig @Inject constructor(
 
         val background = Background()
 
-        inner class Background : EnabledItem(
-            enabled = false,
+        inner class Background : EnableItem(
+            enable = false,
             item = itemStackFactory.create(items.lightGrayStainedGlassPane),
         ) {
             override val node: FcConfigNode
                 get() = this@Layout.node["background"]
         }
 
-        abstract inner class EnabledItem(
-            enabled: Boolean,
+        abstract inner class EnableItem(
+            enable: Boolean,
             item: FcItemStack,
         ) {
             protected abstract val node: FcConfigNode
 
-            var enabled: Boolean = enabled
+            var enable: Boolean = enable
                 private set
 
             var item: FcItemStack = item
@@ -251,10 +251,10 @@ class FastCraftConfig @Inject constructor(
             private var itemId: String = item.type.id
 
             open fun load() {
-                node["enabled"].run {
-                    enabled = when (val newEnabled = getBoolean()) {
-                        null -> modify(enabled)
-                        else -> newEnabled
+                node["enable"].run {
+                    enable = when (val newEnable = getBoolean()) {
+                        null -> modify(enable)
+                        else -> newEnable
                     }
                 }
 
@@ -330,12 +330,12 @@ class FastCraftConfig @Inject constructor(
             modified = true
         }
 
-        config["disabled-recipes"].run {
-            disabledRecipeIds = when (val newDisabledRecipes = getStringList()) {
-                null -> modify(disabledRecipeIds)
+        config["disable-recipes"].run {
+            disableRecipeIds = when (val newDisableRecipes = getStringList()) {
+                null -> modify(disableRecipeIds)
                 else -> {
-                    val nonNulls = newDisabledRecipes.filterNotNull()
-                    if (nonNulls.size != newDisabledRecipes.size) {
+                    val nonNulls = newDisableRecipes.filterNotNull()
+                    if (nonNulls.size != newDisableRecipes.size) {
                         modify(nonNulls) { "Removed null entries" }
                     } else {
                         nonNulls
