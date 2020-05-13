@@ -24,9 +24,9 @@ object Strings {
     private const val GUI_BUTTON_AMOUNT_DESCRIPTION_0 = "gui.button.amount.description.0"
     private const val GUI_BUTTON_AMOUNT_DESCRIPTION_1 = "gui.button.amount.description.1"
     private const val GUI_BUTTON_AMOUNT_DESCRIPTION_2 = "gui.button.amount.description.2"
-    private const val GUI_BUTTON_WORKBENCH_TITLE = "gui.button.workbench.title"
-    private const val GUI_BUTTON_WORKBENCH_DESCRIPTION_0 = "gui.button.workbench.description.0"
-    private const val GUI_BUTTON_WORKBENCH_DESCRIPTION_1 = "gui.button.workbench.description.1"
+    private const val GUI_BUTTON_CRAFTING_GRID_TITLE = "gui.button.crafting-grid.title"
+    private const val GUI_BUTTON_CRAFTING_GRID_DESCRIPTION_0 = "gui.button.crafting-grid.description.0"
+    private const val GUI_BUTTON_CRAFTING_GRID_DESCRIPTION_1 = "gui.button.crafting-grid.description.1"
     private const val COMMAND_ERROR_USAGE = "command.error.usage"
     private const val COMMAND_ERROR_PERMISSION = "command.error.permission"
     private const val COMMAND_ERROR_CONSOLE_ONLY = "command.error.console.only"
@@ -163,21 +163,21 @@ object Strings {
     }
 
     fun guiToolbarWorkbenchTitle(locale: Locale): String {
-        return LocaleApi.get(locale, GUI_BUTTON_WORKBENCH_TITLE)
+        return LocaleApi.get(locale, GUI_BUTTON_CRAFTING_GRID_TITLE)
             ?.substitute()
-            ?: GUI_BUTTON_WORKBENCH_TITLE
+            ?: GUI_BUTTON_CRAFTING_GRID_TITLE
     }
 
     fun guiToolbarWorkbenchDescription0(locale: Locale): String {
-        return LocaleApi.get(locale, GUI_BUTTON_WORKBENCH_DESCRIPTION_0)
+        return LocaleApi.get(locale, GUI_BUTTON_CRAFTING_GRID_DESCRIPTION_0)
             ?.substitute()
-            ?: GUI_BUTTON_WORKBENCH_DESCRIPTION_0
+            ?: GUI_BUTTON_CRAFTING_GRID_DESCRIPTION_0
     }
 
     fun guiToolbarWorkbenchDescription1(locale: Locale): String {
-        return LocaleApi.get(locale, GUI_BUTTON_WORKBENCH_DESCRIPTION_1)
+        return LocaleApi.get(locale, GUI_BUTTON_CRAFTING_GRID_DESCRIPTION_1)
             ?.substitute()
-            ?: GUI_BUTTON_WORKBENCH_DESCRIPTION_1
+            ?: GUI_BUTTON_CRAFTING_GRID_DESCRIPTION_1
     }
 
     fun commandErrorUsage(locale: Locale, usage: String): String {
