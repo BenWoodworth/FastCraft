@@ -140,7 +140,7 @@ class FastCraftConfig @Inject constructor(
             val craftingGrid = Button(
                 key = "crafting-grid",
                 enabled = true,
-                item = items.craftingTable,
+                item = itemStackFactory.create(items.craftingTable),
                 row = 0,
                 column = 8,
             )
@@ -148,7 +148,7 @@ class FastCraftConfig @Inject constructor(
             val craftAmount = Button(
                 key = "craft-amount",
                 enabled = true,
-                item = items.anvil,
+                item = itemStackFactory.create(items.anvil),
                 row = 1,
                 column = 8,
             )
@@ -156,7 +156,7 @@ class FastCraftConfig @Inject constructor(
             val refresh = Button(
                 key = "refresh",
                 enabled = true,
-                item = items.netherStar,
+                item = itemStackFactory.create(items.netherStar),
                 row = 2,
                 column = 8,
             )
@@ -164,7 +164,7 @@ class FastCraftConfig @Inject constructor(
             val page = Button(
                 key = "page",
                 enabled = true,
-                item = items.ironSword,
+                item = itemStackFactory.create(items.ironSword),
                 row = 5,
                 column = 8,
             )
@@ -172,18 +172,15 @@ class FastCraftConfig @Inject constructor(
             inner class Button(
                 private val key: String,
                 enabled: Boolean,
-                item: FcItem,
+                item: FcItemStack,
                 row: Int,
                 column: Int,
+            ) : EnabledItem(
+                enabled = enabled,
+                item = item,
             ) {
-                private val node: FcConfigNode
+                override val node: FcConfigNode
                     get() = this@Buttons.node[key]
-
-                var enabled: Boolean = enabled
-                    private set
-
-                var item: FcItem = item
-                    private set
 
                 var row: Int = row
                     private set
@@ -192,13 +189,8 @@ class FastCraftConfig @Inject constructor(
                     private set
 
                 //region fun load()
-                fun load() {
-                    node["enabled"].run {
-                        enabled = when (val newEnabled = getBoolean()) {
-                            null -> modify(enabled)
-                            else -> newEnabled
-                        }
-                    }
+                override fun load() {
+                    super.load()
 
                     node["row"].run {
                         val rowRange = 0 until this@FastCraftUi.height
@@ -223,23 +215,6 @@ class FastCraftConfig @Inject constructor(
                                 }
                             }
                             else -> newColumn
-                        }
-                    }
-
-                    node["item"].run {
-                        item = when (val newItemId = getString()) {
-                            null -> {
-                                modify(item.id)
-                                item
-                            }
-                            else -> when (val newItem = items.parseOrNull(newItemId)) {
-                                null -> {
-                                    item.also {
-                                        logErr("Invalid item id: $newItemId. Defaulting to ${it.id}.")
-                                    }
-                                }
-                                else -> newItem
-                            }
                         }
                     }
                 }

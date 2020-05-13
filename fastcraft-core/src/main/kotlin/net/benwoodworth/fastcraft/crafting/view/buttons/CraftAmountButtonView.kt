@@ -29,7 +29,7 @@ class CraftAmountButtonView(
         button.apply {
             listener = ButtonClickListener()
 
-            setItem(c.item)
+            copyItem(c.item)
 
             setText(
                 textFactory.createLegacy(

@@ -36,7 +36,7 @@ class RefreshButtonView(
             clear()
 
             if (enabled) {
-                setItem(c.item)
+                copyItem(c.item)
 
                 setText(
                     textFactory.createLegacy(

@@ -26,7 +26,7 @@ class WorkbenchButtonView(
         button.apply {
             listener = ButtonListener()
 
-            setItem(c.item)
+            copyItem(c.item)
 
             setText(
                 textFactory.createLegacy(

@@ -31,7 +31,7 @@ class PageButtonView(
         button.apply {
             listener = ButtonListener()
 
-            setItem(c.item)
+            copyItem(c.item)
 
             setDescription(
                 listOf(
