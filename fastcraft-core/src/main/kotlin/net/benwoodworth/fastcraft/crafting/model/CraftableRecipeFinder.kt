@@ -56,7 +56,7 @@ class CraftableRecipeFinder(
 
             val recipeIterator = recipeProvider.getCraftingRecipes()
                 .filter { !disabledPluginRecipes.contains(it.id.split(":").firstOrNull()) }
-                .filter { !config.disableRecipes.matches(it.id) }
+                .filter { !config.disableRecipes.recipeIdsRegex.matches(it.id) }
                 .sortedWith(recipeComparator)
                 .flatMap { prepareCraftableRecipes(player, availableItems, it) }
                 .iterator()

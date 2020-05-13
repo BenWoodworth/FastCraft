@@ -27,20 +27,44 @@ class FastCraftConfig @Inject constructor(
         https://github.com/BenWoodworth/FastCraft/wiki/Configuration
     """.trimIndent()
 
-    private val disableRecipesDefault = Regex("(?" + "!)") // Matches nothing
+    val disableRecipes = DisableRecipes()
 
-    private var disableRecipeIds: List<String> = emptyList()
-        set(values) {
-            field = values
-            disableRecipes = values
-                .takeUnless { it.isEmpty() }
-                ?.joinToString("|") { Expr(it).toRegex().toString() }
-                ?.let { Regex(it) }
-                ?: disableRecipesDefault
+    inner class DisableRecipes {
+        private val node: FcConfigNode
+            get() = config["disable-recipes"]
+
+        private val none = Regex("(?" + "!)") // Matches nothing
+
+        private var recipeIds: List<Expr> = emptyList()
+            set(values) {
+                field = values
+                recipeIdsRegex = values
+                    .takeUnless { it.isEmpty() }
+                    ?.joinToString("|") { it.toRegex().toString() }
+                    ?.let { Regex(it) }
+                    ?: none
+            }
+
+        var recipeIdsRegex: Regex = none
+            private set
+
+        fun load() {
+            node["recipe-ids"].run {
+                recipeIds = when (val newDisableRecipes = getStringList()) {
+                    null -> recipeIds.also {
+                        modify(recipeIds.map { it.expression })
+                    }
+                    else -> {
+                        val nonNulls = newDisableRecipes.filterNotNull()
+                        if (nonNulls.size != newDisableRecipes.size) {
+                            modify(nonNulls) { "Removed null entries" }
+                        }
+                        nonNulls.map { Expr(it) }
+                    }
+                }
+            }
         }
-
-    var disableRecipes: Regex = disableRecipesDefault
-        private set
+    }
 
     val layout = Layout()
 
@@ -330,20 +354,7 @@ class FastCraftConfig @Inject constructor(
             modified = true
         }
 
-        config["disable-recipes"].run {
-            disableRecipeIds = when (val newDisableRecipes = getStringList()) {
-                null -> modify(disableRecipeIds)
-                else -> {
-                    val nonNulls = newDisableRecipes.filterNotNull()
-                    if (nonNulls.size != newDisableRecipes.size) {
-                        modify(nonNulls) { "Removed null entries" }
-                    } else {
-                        nonNulls
-                    }
-                }
-            }
-        }
-
+        disableRecipes.load()
         layout.load()
 
         if (modified) {
