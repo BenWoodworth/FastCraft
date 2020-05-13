@@ -106,7 +106,7 @@ open class BukkitFcItem_1_13(
         }
 
         override fun fromMaterialData(materialData: Any): FcItem {
-            throw UnsupportedOperationException()
+            error("MaterialData is not supported")
         }
 
         override fun parseOrNull(id: String): FcItem? {

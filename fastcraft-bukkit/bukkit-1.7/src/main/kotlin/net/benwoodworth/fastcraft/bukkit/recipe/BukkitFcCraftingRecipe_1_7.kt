@@ -164,7 +164,7 @@ open class BukkitFcCraftingRecipe_1_7(
                     recipe.ingredientList
                 )
             }
-            else -> throw UnsupportedOperationException()
+            else -> error("Only ShapedRecipe and ShapelessRecipe are supported")
         }
     }
 
