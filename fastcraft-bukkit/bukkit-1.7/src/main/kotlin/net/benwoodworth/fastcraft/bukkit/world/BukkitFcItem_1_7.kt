@@ -105,6 +105,7 @@ open class BukkitFcItem_1_7(
                 @Suppress("DEPRECATION")
                 return Material.matchMaterial(material)
                     ?: server.unsafe.getMaterialFromInternalName(material)
+                        .takeUnless { it == Material.AIR && !id.endsWith("air", true) }
             }
 
             when (parts.size) {
