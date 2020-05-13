@@ -28,11 +28,11 @@ class FastCraftGuiView(
 
     init {
         val c = config.fastCraftUi
-        val background = c.backgroundItem
+        val backgroundItem = c.backgroundItem
 
         for (row in 0 until gui.layout.height) {
             for (col in 0 until gui.layout.width) {
-                gui.layout.getButton(col, row).setMaterial(background)
+                gui.layout.getButton(col, row).copyItem(backgroundItem)
             }
         }
     }

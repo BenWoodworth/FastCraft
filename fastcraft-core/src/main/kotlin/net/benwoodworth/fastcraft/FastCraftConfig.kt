@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft
 
 import net.benwoodworth.fastcraft.platform.config.FcConfig
 import net.benwoodworth.fastcraft.platform.config.FcConfigNode
+import net.benwoodworth.fastcraft.platform.item.FcItemStack
 import net.benwoodworth.fastcraft.platform.item.FcMaterial
 import net.benwoodworth.fastcraft.platform.server.FcLogger
 import net.benwoodworth.fastcraft.platform.server.FcPluginData
@@ -14,6 +15,7 @@ class FastCraftConfig @Inject constructor(
     private val configFactory: FcConfig.Factory,
     private val pluginData: FcPluginData,
     private val materials: FcMaterial.Factory,
+    private val itemStackFactory: FcItemStack.Factory,
     private val logger: FcLogger,
 ) {
     private val matchNothing = Regex("(?" + "!)")
@@ -54,8 +56,10 @@ class FastCraftConfig @Inject constructor(
         var height: Int = 6
             private set
 
-        var backgroundItem: FcMaterial = materials.air
+        var backgroundItem: FcItemStack = itemStackFactory.create(materials.air)
             private set
+
+        private var backgroundItemId: String = backgroundItem.type.id
 
         val recipes = Recipes()
 
@@ -460,16 +464,19 @@ class FastCraftConfig @Inject constructor(
             node["background-item"].run {
                 backgroundItem = when (val newItemId = getString()) {
                     null -> {
-                        modify(backgroundItem.id)
+                        modify(backgroundItemId)
                         backgroundItem
                     }
-                    else -> when (val newItem = materials.parseOrNull(newItemId)) {
+                    else -> when (val newItem = itemStackFactory.parseOrNull(newItemId)) {
                         null -> {
                             backgroundItem.also {
-                                logErr("Invalid item id: $newItemId. Defaulting to ${it.id}.")
+                                logErr("Invalid item id: $newItemId. Defaulting to ${backgroundItemId}.")
                             }
                         }
-                        else -> newItem
+                        else -> {
+                            backgroundItemId = newItemId
+                            newItem
+                        }
                     }
                 }
             }
