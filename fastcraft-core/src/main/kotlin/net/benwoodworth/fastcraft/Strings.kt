@@ -20,10 +20,10 @@ object Strings {
     private const val GUI_BUTTON_PAGE_DESCRIPTION_2 = "gui.button.page.description.2"
     private const val GUI_BUTTON_REFRESH_TITLE = "gui.button.refresh.title"
     private const val GUI_BUTTON_REFRESH_DESCRIPTION_0 = "gui.button.refresh.description.0"
-    private const val GUI_BUTTON_AMOUNT_TITLE = "gui.button.amount.title"
-    private const val GUI_BUTTON_AMOUNT_DESCRIPTION_0 = "gui.button.amount.description.0"
-    private const val GUI_BUTTON_AMOUNT_DESCRIPTION_1 = "gui.button.amount.description.1"
-    private const val GUI_BUTTON_AMOUNT_DESCRIPTION_2 = "gui.button.amount.description.2"
+    private const val GUI_BUTTON_CRAFT_AMOUNT_TITLE = "gui.button.craft-amount.title"
+    private const val GUI_BUTTON_CRAFT_AMOUNT_DESCRIPTION_0 = "gui.button.craft-amount.description.0"
+    private const val GUI_BUTTON_CRAFT_AMOUNT_DESCRIPTION_1 = "gui.button.craft-amount.description.1"
+    private const val GUI_BUTTON_CRAFT_AMOUNT_DESCRIPTION_2 = "gui.button.craft-amount.description.2"
     private const val GUI_BUTTON_CRAFTING_GRID_TITLE = "gui.button.crafting-grid.title"
     private const val GUI_BUTTON_CRAFTING_GRID_DESCRIPTION_0 = "gui.button.crafting-grid.description.0"
     private const val GUI_BUTTON_CRAFTING_GRID_DESCRIPTION_1 = "gui.button.crafting-grid.description.1"
@@ -139,27 +139,27 @@ object Strings {
     }
 
     fun guiToolbarAmountTitle(locale: Locale): String {
-        return LocaleApi.get(locale, GUI_BUTTON_AMOUNT_TITLE)
+        return LocaleApi.get(locale, GUI_BUTTON_CRAFT_AMOUNT_TITLE)
             ?.substitute()
-            ?: GUI_BUTTON_AMOUNT_TITLE
+            ?: GUI_BUTTON_CRAFT_AMOUNT_TITLE
     }
 
     fun guiToolbarAmountDescription0(locale: Locale): String {
-        return LocaleApi.get(locale, GUI_BUTTON_AMOUNT_DESCRIPTION_0)
+        return LocaleApi.get(locale, GUI_BUTTON_CRAFT_AMOUNT_DESCRIPTION_0)
             ?.substitute()
-            ?: GUI_BUTTON_AMOUNT_DESCRIPTION_0
+            ?: GUI_BUTTON_CRAFT_AMOUNT_DESCRIPTION_0
     }
 
     fun guiToolbarAmountDescription1(locale: Locale): String {
-        return LocaleApi.get(locale, GUI_BUTTON_AMOUNT_DESCRIPTION_1)
+        return LocaleApi.get(locale, GUI_BUTTON_CRAFT_AMOUNT_DESCRIPTION_1)
             ?.substitute()
-            ?: GUI_BUTTON_AMOUNT_DESCRIPTION_1
+            ?: GUI_BUTTON_CRAFT_AMOUNT_DESCRIPTION_1
     }
 
     fun guiToolbarAmountDescription2(locale: Locale): String {
-        return LocaleApi.get(locale, GUI_BUTTON_AMOUNT_DESCRIPTION_2)
+        return LocaleApi.get(locale, GUI_BUTTON_CRAFT_AMOUNT_DESCRIPTION_2)
             ?.substitute()
-            ?: GUI_BUTTON_AMOUNT_DESCRIPTION_2
+            ?: GUI_BUTTON_CRAFT_AMOUNT_DESCRIPTION_2
     }
 
     fun guiToolbarWorkbenchTitle(locale: Locale): String {
