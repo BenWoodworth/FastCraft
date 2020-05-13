@@ -15,6 +15,11 @@ interface FcItemStack {
     override fun hashCode(): Int
 
     interface Factory {
+        fun create(
+            material: FcMaterial,
+            amount: Int = 1,
+        ): FcItemStack
+
         fun copyItem(
             itemStack: FcItemStack,
             amount: Int = itemStack.amount,

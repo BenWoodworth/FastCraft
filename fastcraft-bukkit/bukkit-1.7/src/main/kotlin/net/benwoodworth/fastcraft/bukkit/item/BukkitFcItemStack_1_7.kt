@@ -58,6 +58,10 @@ open class BukkitFcItemStack_1_7(
         protected val textFactory: FcText.Factory,
         protected val server: Server,
     ) : BukkitFcItemStack.Factory {
+        override fun create(material: FcMaterial, amount: Int): FcItemStack {
+            return create(material.toItemStack(amount))
+        }
+
         override fun copyItem(itemStack: FcItemStack, amount: Int): FcItemStack {
             try {
                 if (amount == itemStack.amount) {
