@@ -45,7 +45,7 @@ open class BukkitFcItem_1_7(
         }
 
     override fun toItemStack(amount: Int): ItemStack {
-        return materialData.toItemStack()
+        return materialData.toItemStack(amount)
     }
 
     override fun equals(other: Any?): Boolean {
