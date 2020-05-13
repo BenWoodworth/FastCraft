@@ -28,5 +28,6 @@
   "command.set.enabled.true": "${green}Bật giao diện FastCraft",
   "command.set.enabled.false": "${green}Tắt giao diện FastCraft",
   "command.set.enabled.true.player": "${green}Bật giao diện FastCraft cho người chơi ${player}",
-  "command.set.enabled.false.player": "${green}Tắt giao diện FastCraft cho người chơi ${player}"
+  "command.set.enabled.false.player": "${green}Tắt giao diện FastCraft cho người chơi ${player}",
+  "command.reload.reloaded": null
 }

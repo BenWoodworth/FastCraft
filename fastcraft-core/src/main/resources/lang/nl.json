@@ -28,5 +28,6 @@
   "command.set.enabled.true": "${green}FastCraft interface ingeschakeld",
   "command.set.enabled.false": "${green}FastCraft interface uitgeschakeld",
   "command.set.enabled.true.player": "${green}FastCraft interface ingeschakeld voor ${player}",
-  "command.set.enabled.false.player": "${green}FastCraft interface uitgeschakeld voor ${player}"
+  "command.set.enabled.false.player": "${green}FastCraft interface uitgeschakeld voor ${player}",
+  "command.reload.reloaded": null
 }

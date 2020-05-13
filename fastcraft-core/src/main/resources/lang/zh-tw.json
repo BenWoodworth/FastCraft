@@ -28,5 +28,6 @@
   "command.set.enabled.true": "${green}開啟 FastCraft",
   "command.set.enabled.false": "${green}關閉 FastCraft",
   "command.set.enabled.true.player": "${green}開啟 ${player} 的 FastCraft",
-  "command.set.enabled.false.player": "${green}關閉 ${player} 的 FastCraft"
+  "command.set.enabled.false.player": "${green}關閉 ${player} 的 FastCraft",
+  "command.reload.reloaded": null
 }

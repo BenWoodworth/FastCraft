@@ -28,5 +28,6 @@
   "command.set.enabled.true": "${green}Интерфейс FastCraft включен.",
   "command.set.enabled.false": "${red}Интерфейс FastCraft выключен.",
   "command.set.enabled.true.player": "${green}Интерфейс FastCraft включен для игрока ${player}.",
-  "command.set.enabled.false.player": "${red}Интерфейс FastCraft выключен для игрока ${player}."
+  "command.set.enabled.false.player": "${red}Интерфейс FastCraft выключен для игрока ${player}.",
+  "command.reload.reloaded": null
 }

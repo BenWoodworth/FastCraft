@@ -28,5 +28,6 @@
   "command.set.enabled.true": null,
   "command.set.enabled.false": null,
   "command.set.enabled.true.player": null,
-  "command.set.enabled.false.player": null
+  "command.set.enabled.false.player": null,
+  "command.reload.reloaded": null
 }

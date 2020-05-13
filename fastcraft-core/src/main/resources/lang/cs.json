@@ -28,5 +28,6 @@
   "command.set.enabled.true": "${green}FastCraft interface zapnut",
   "command.set.enabled.false": "${green}FastCraft interface vypnut",
   "command.set.enabled.true.player": "${green}FastCraft interface zapnut pro hrace ${player}",
-  "command.set.enabled.false.player": "${green}FastCraft interface vypnut pro hrace ${player}"
+  "command.set.enabled.false.player": "${green}FastCraft interface vypnut pro hrace ${player}",
+  "command.reload.reloaded": null
 }

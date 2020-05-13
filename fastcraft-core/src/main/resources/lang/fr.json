@@ -28,5 +28,6 @@
   "command.set.enabled.true": "${green}FastCraft activé",
   "command.set.enabled.false": "${green}FastCraft désactivé",
   "command.set.enabled.true.player": "${green}FastCraft activé pour ${player}",
-  "command.set.enabled.false.player": "${green}FastCraft désactivé pour ${player}"
+  "command.set.enabled.false.player": "${green}FastCraft désactivé pour ${player}",
+  "command.reload.reloaded": null
 }

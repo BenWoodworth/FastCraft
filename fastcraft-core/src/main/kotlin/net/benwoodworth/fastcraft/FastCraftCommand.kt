@@ -318,6 +318,6 @@ class FastCraftCommand @Inject constructor(
         }
 
         config.load()
-        source.sendMessage(textFactory.create("Reload complete [TODO: Localize]")) //TODO localize
+        source.sendMessage(textFactory.create(Strings.commandReloadReloaded(source.locale)))
     }
 }

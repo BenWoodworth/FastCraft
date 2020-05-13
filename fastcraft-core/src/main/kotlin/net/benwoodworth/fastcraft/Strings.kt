@@ -36,6 +36,7 @@ object Strings {
     private const val COMMAND_SET_ENABLED_FALSE = "command.set.enabled.false"
     private const val COMMAND_SET_ENABLED_TRUE_PLAYER = "command.set.enabled.true.player"
     private const val COMMAND_SET_ENABLED_FALSE_PLAYER = "command.set.enabled.false.player"
+    private const val COMMAND_RELOAD_RELOADED = "command.reload.reloaded"
     // endregion
 
     fun load() {
@@ -243,4 +244,9 @@ object Strings {
             ?: COMMAND_SET_ENABLED_FALSE_PLAYER
     }
 
+    fun commandReloadReloaded(locale: Locale): String {
+        return LocaleApi.get(locale, COMMAND_RELOAD_RELOADED)
+            ?.substitute()
+            ?: COMMAND_RELOAD_RELOADED
+    }
 }
