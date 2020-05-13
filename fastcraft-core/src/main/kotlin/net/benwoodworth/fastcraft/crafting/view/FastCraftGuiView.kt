@@ -82,6 +82,10 @@ class FastCraftGuiView(
             )
         }.filterNotNull()
 
+        if (buttons.isEmpty()) {
+            error("FastCraft UI does not have space for recipes. Please re-configure the layout.")
+        }
+
         buttons.map { recipeButtonFactory.create(it, player.locale) }
     }
 
