@@ -7,13 +7,12 @@ import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.platform.world.FcItem
 import javax.inject.Inject
 
 class FastCraftGuiView(
     player: FcPlayer,
     guiFactory: FcGui.Factory,
-    workbenchButtonFactory: WorkbenchButtonView.Factory,
+    craftingGridButtonFactory: WorkbenchButtonView.Factory,
     pageButtonFactory: PageButtonView.Factory,
     recipeButtonFactory: RecipeButtonView.Factory,
     craftAmountButtonFactory: CraftAmountButtonView.Factory,
@@ -21,7 +20,6 @@ class FastCraftGuiView(
     textFactory: FcText.Factory,
     config: FastCraftConfig,
 ) {
-
     val gui = guiFactory.createChestGui(
         player = player,
         title = textFactory.createLegacy(Strings.guiTitle(player.locale)),
@@ -40,10 +38,10 @@ class FastCraftGuiView(
         }
     }
 
-    val workbenchButton = config.fastCraftUi.buttons.craftingGrid.let { c ->
+    val craftingGridButton = config.fastCraftUi.buttons.craftingGrid.let { c ->
         if (c.enabled) {
             getNewButton(c.column, c.row)
-                ?.let { workbenchButtonFactory.create(it, player.locale) }
+                ?.let { craftingGridButtonFactory.create(it, player.locale) }
         } else {
             null
         }
@@ -102,20 +100,19 @@ class FastCraftGuiView(
 
     class Factory @Inject constructor(
         private val guiFactory: FcGui.Factory,
-        private val workbenchButtonFactory: WorkbenchButtonView.Factory,
+        private val craftingGridButtonFactory: WorkbenchButtonView.Factory,
         private val pageButtonFactory: PageButtonView.Factory,
         private val recipeButtonFactory: RecipeButtonView.Factory,
         private val craftAmountButtonFactory: CraftAmountButtonView.Factory,
         private val refreshButtonFactory: RefreshButtonView.Factory,
         private val textFactory: FcText.Factory,
         private val config: FastCraftConfig,
-        private val items: FcItem.Factory,
     ) {
         fun create(player: FcPlayer): FastCraftGuiView {
             return FastCraftGuiView(
                 player = player,
                 guiFactory = guiFactory,
-                workbenchButtonFactory = workbenchButtonFactory,
+                craftingGridButtonFactory = craftingGridButtonFactory,
                 pageButtonFactory = pageButtonFactory,
                 recipeButtonFactory = recipeButtonFactory,
                 craftAmountButtonFactory = craftAmountButtonFactory,
