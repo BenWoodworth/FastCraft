@@ -6,6 +6,7 @@ import net.benwoodworth.fastcraft.platform.item.FcMaterial
 import net.benwoodworth.fastcraft.platform.text.FcText
 import org.bukkit.Material
 import org.bukkit.Server
+import org.bukkit.inventory.ItemStack
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Provider
@@ -70,6 +71,10 @@ open class BukkitFcMaterial_1_13(
 
             else -> null
         }
+
+    override fun toItemStack(amount: Int): ItemStack {
+        return ItemStack(material, amount)
+    }
 
     override fun equals(other: Any?): Boolean {
         return other is FcMaterial &&

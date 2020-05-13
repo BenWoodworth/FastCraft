@@ -3,6 +3,7 @@ package net.benwoodworth.fastcraft.bukkit.item
 import net.benwoodworth.fastcraft.platform.item.FcItemStack
 import net.benwoodworth.fastcraft.platform.item.FcMaterial
 import net.benwoodworth.fastcraft.platform.text.FcText
+import org.bukkit.Server
 import org.bukkit.inventory.ItemStack
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -55,6 +56,7 @@ open class BukkitFcItemStack_1_7(
     open class Factory @Inject constructor(
         protected val materials: FcMaterial.Factory,
         protected val textFactory: FcText.Factory,
+        protected val server: Server,
     ) : BukkitFcItemStack.Factory {
         override fun copyItem(itemStack: FcItemStack, amount: Int): FcItemStack {
             try {
@@ -74,6 +76,31 @@ open class BukkitFcItemStack_1_7(
                 """.trimIndent())
                 throw e
             }
+        }
+
+        override fun parseOrNull(item: String, amount: Int): FcItemStack? {
+            val materialId: String
+            val data: String?
+
+            when (val dataIndex = item.indexOf('{')) {
+                -1 -> {
+                    materialId = item
+                    data = null
+                }
+                else -> {
+                    materialId = item.substring(0 until dataIndex)
+                    data = item.substring(dataIndex)
+                }
+            }
+
+            val material = materials.parseOrNull(materialId) ?: return null
+            val itemStack = material.toItemStack(amount)
+
+            if (data != null) {
+                server.unsafe.modifyItemStack(itemStack, data)
+            }
+
+            return create(itemStack)
         }
 
         override fun create(itemStack: ItemStack): FcItemStack {

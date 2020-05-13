@@ -19,5 +19,7 @@ interface FcItemStack {
             itemStack: FcItemStack,
             amount: Int = itemStack.amount,
         ): FcItemStack
+
+        fun parseOrNull(item: String, amount: Int = 1): FcItemStack?
     }
 }
