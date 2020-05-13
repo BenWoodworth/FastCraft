@@ -4,6 +4,7 @@ import net.benwoodworth.fastcraft.FastCraftConfig
 import net.benwoodworth.fastcraft.Strings
 import net.benwoodworth.fastcraft.crafting.view.buttons.*
 import net.benwoodworth.fastcraft.platform.gui.FcGui
+import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.world.FcItem
@@ -20,11 +21,71 @@ class FastCraftGuiView(
     textFactory: FcText.Factory,
     config: FastCraftConfig,
 ) {
+
     val gui = guiFactory.createChestGui(
         player = player,
         title = textFactory.createLegacy(Strings.guiTitle(player.locale)),
         height = config.fastCraftUi.height
     )
+
+    private val usedButtons: MutableList<FcGuiButton> = mutableListOf()
+
+    private fun getNewButton(column: Int, row: Int): FcGuiButton? {
+        return when (val button = gui.layout.getButton(column, row)) {
+            in usedButtons -> null
+            else -> {
+                usedButtons += button
+                button
+            }
+        }
+    }
+
+    val workbenchButton = config.fastCraftUi.buttons.craftingGrid.let { c ->
+        if (c.enabled) {
+            getNewButton(c.column, c.row)
+                ?.let { workbenchButtonFactory.create(it, player.locale) }
+        } else {
+            null
+        }
+    }
+
+    val craftAmountButton = config.fastCraftUi.buttons.craftAmount.let { c ->
+        if (c.enabled) {
+            getNewButton(c.column, c.row)
+                ?.let { craftAmountButtonFactory.create(it, player.locale) }
+        } else {
+            null
+        }
+    }
+
+    val refreshButton = config.fastCraftUi.buttons.refresh.let { c ->
+        if (c.enabled) {
+            getNewButton(c.column, c.row)
+                ?.let { refreshButtonFactory.create(it, player.locale) }
+        } else {
+            null
+        }
+    }
+
+    val pageButton = config.fastCraftUi.buttons.page.let { c ->
+        if (c.enabled) {
+            getNewButton(c.column, c.row)
+                ?.let { pageButtonFactory.create(it, player.locale) }
+        } else {
+            null
+        }
+    }
+
+    val recipeButtons = config.fastCraftUi.recipes.let { c ->
+        val buttons = List(c.width * c.height) { i ->
+            getNewButton(
+                column = c.column + i % (c.width),
+                row = c.row + i / (c.width)
+            )
+        }.filterNotNull()
+
+        buttons.map { recipeButtonFactory.create(it, player.locale) }
+    }
 
     init {
         val c = config.fastCraftUi
@@ -32,45 +93,9 @@ class FastCraftGuiView(
 
         for (row in 0 until gui.layout.height) {
             for (col in 0 until gui.layout.width) {
-                gui.layout.getButton(col, row).copyItem(backgroundItem)
+                getNewButton(col, row)?.copyItem(backgroundItem)
             }
         }
-    }
-
-    val recipeButtons = config.fastCraftUi.recipes.let { c ->
-        List(c.width * c.height) { i ->
-            recipeButtonFactory.create(
-                gui.layout.getButton(
-                    column = c.column + i % (c.width),
-                    row = c.row + i / (c.width)
-                ),
-                player.locale
-            )
-        }
-    }
-
-    val workbenchButton = config.fastCraftUi.buttons.craftingGrid.let { c ->
-        workbenchButtonFactory
-            .takeIf { c.enabled }
-            ?.create(gui.layout.getButton(c.column, c.row), player.locale)
-    }
-
-    val craftAmountButton = config.fastCraftUi.buttons.craftAmount.let { c ->
-        craftAmountButtonFactory
-            .takeIf { c.enabled }
-            ?.create(gui.layout.getButton(c.column, c.row), player.locale)
-    }
-
-    val refreshButton = config.fastCraftUi.buttons.refresh.let { c ->
-        refreshButtonFactory
-            .takeIf { c.enabled }
-            ?.create(gui.layout.getButton(c.column, c.row), player.locale)
-    }
-
-    val pageButton = config.fastCraftUi.buttons.page.let { c ->
-        pageButtonFactory
-            .takeIf { c.enabled }
-            ?.create(gui.layout.getButton(c.column, c.row), player.locale)
     }
 
     class Factory @Inject constructor(
