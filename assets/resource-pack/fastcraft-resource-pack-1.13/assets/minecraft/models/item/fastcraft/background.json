@@ -1,0 +1,15 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "item/fastcraft/background"
+	},
+	"display": {
+		"gui": {
+			"scale": [
+				1.125,
+				1.125,
+				1.125
+			]
+		}
+	}
+}
