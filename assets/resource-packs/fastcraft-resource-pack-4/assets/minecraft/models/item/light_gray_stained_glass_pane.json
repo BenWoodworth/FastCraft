@@ -1,0 +1,15 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "block/light_gray_stained_glass"
+  },
+  "overrides": [
+    {
+      "_item": "light_gray_stained_glass_pane{CustomModelData:0}",
+      "predicate": {
+        "custom_model_data": 0
+      },
+      "model": "item/fastcraft/background"
+    }
+  ]
+}
