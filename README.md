@@ -16,7 +16,7 @@ To craft an item, all they have to do is click on an item in
 the GUI, and the item will be crafted automatically!
 
 <p align="center">
-    <img src="assets/interface.png" alt="FastCraft GUI" />
+    <img src="assets/fastcraft-ui.png" alt="FastCraft GUI" />
 </p>
 
 ## Server Requirements
