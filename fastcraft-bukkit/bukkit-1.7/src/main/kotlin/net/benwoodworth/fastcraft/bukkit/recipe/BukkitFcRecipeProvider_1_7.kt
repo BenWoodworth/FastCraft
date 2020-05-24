@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
 import net.benwoodworth.fastcraft.bukkit.util.BukkitVersion
+import net.benwoodworth.fastcraft.bukkit.util.toYamlConfiguration
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
@@ -8,12 +9,10 @@ import net.benwoodworth.fastcraft.platform.recipe.FcIngredient
 import net.benwoodworth.fastcraft.platform.world.FcItemStack
 import net.benwoodworth.fastcraft.util.CancellableResult
 import org.bukkit.Server
-import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.inventory.Recipe
 import org.bukkit.inventory.ShapedRecipe
 import org.bukkit.inventory.ShapelessRecipe
 import org.bukkit.plugin.Plugin
-import java.io.InputStream
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -31,10 +30,6 @@ open class BukkitFcRecipeProvider_1_7 @Inject constructor(
             ?.getStringList("complex-recipe-ids")
             ?.toHashSet()
             ?: emptySet()
-    }
-
-    protected open fun InputStream.toYamlConfiguration(): YamlConfiguration {
-        return this.use { YamlConfiguration.loadConfiguration(this.reader()) }
     }
 
     override fun getCraftingRecipes(): Sequence<FcCraftingRecipe> {

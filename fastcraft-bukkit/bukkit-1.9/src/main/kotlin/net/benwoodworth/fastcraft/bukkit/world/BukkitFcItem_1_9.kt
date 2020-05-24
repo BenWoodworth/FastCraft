@@ -14,10 +14,12 @@ open class BukkitFcItem_1_9(
     materialData: MaterialData,
     textFactory: FcText.Factory,
     items: FcItem.Factory,
+    legacyMaterialInfo: LegacyMaterialInfo_1_7,
 ) : BukkitFcItem_1_7(
     materialData = materialData,
     textFactory = textFactory,
     items = items,
+    legacyMaterialInfo = legacyMaterialInfo,
 ) {
     override val craftingRemainingItem: FcItem?
         get() = when (material) {
@@ -30,14 +32,16 @@ open class BukkitFcItem_1_9(
         textFactory: FcText.Factory,
         items: Provider<FcItem.Factory>,
         server: Server,
+        legacyMaterialInfo: LegacyMaterialInfo_1_7,
     ) : BukkitFcItem_1_7.Factory(
         textFactory = textFactory,
         items = items,
         server = server,
+        legacyMaterialInfo = legacyMaterialInfo,
     ) {
         override fun fromMaterialData(materialData: Any): FcItem {
             require(materialData is MaterialData)
-            return BukkitFcItem_1_9(materialData, textFactory, items.get())
+            return BukkitFcItem_1_9(materialData, textFactory, items.get(), legacyMaterialInfo)
         }
     }
 }

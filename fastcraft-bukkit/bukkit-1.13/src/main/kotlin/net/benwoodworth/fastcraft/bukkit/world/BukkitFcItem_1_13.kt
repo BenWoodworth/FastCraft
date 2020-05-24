@@ -78,10 +78,12 @@ open class BukkitFcItem_1_13(
         items: Provider<FcItem.Factory>,
         protected val localizer: BukkitLocalizer,
         server: Server,
+        legacyMaterialInfo: LegacyMaterialInfo_1_7,
     ) : BukkitFcItem_1_9.Factory(
         textFactory = textFactory,
         items = items,
         server = server,
+        legacyMaterialInfo = legacyMaterialInfo,
     ) {
         override val craftingTable: FcItem by lazy { fromMaterial(Material.CRAFTING_TABLE) }
         override val lightGrayStainedGlassPane by lazy { fromMaterial(Material.LIGHT_GRAY_STAINED_GLASS_PANE) }
