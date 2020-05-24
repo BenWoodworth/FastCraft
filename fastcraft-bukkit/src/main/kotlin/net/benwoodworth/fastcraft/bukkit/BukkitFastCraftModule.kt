@@ -312,4 +312,16 @@ class BukkitFastCraftModule(
     ): FcPermission.Factory {
         return instance
     }
+
+    @Provides
+    fun provideLegacyMaterialInfo(
+        instance_1_7: Provider<LegacyMaterialInfo_1_7>,
+        instance_1_13: Provider<LegacyMaterialInfo_1_13>,
+    ): LegacyMaterialInfo {
+        return when {
+            bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
+            bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
+            else -> instance_1_7.get()
+        }
+    }
 }

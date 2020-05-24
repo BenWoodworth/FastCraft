@@ -1,0 +1,23 @@
+complex-recipe-ids:
+  - UvuDC9 #RecipeArmorDye
+  - D2FNC9 #RecipeBookClone
+  - YENQC9 #RecipeMapClone
+  - cxJbf2 #RecipeMapExtend
+  - c79wB9 #RecipeFireworks
+  - KJLwr9 #RecipeRepair
+  - 7DUXr6 #RecipeTippedArrow
+  - UvuDC9 #RecipesBanner$DuplicateRecipe
+  - CfVXC9 #RecipesBanner$AddRecipe
+  - CfVXC9 #RecipiesShield$Decoration
+  - UvuDC9 #RecipeShulkerBox$Dye
+  - minecraft:armordye
+  - minecraft:bookcloning
+  - minecraft:mapcloning
+  - minecraft:mapextending
+  - minecraft:fireworks
+  - minecraft:repairitem
+  - minecraft:tippedarrow
+  - minecraft:bannerduplicate
+  - minecraft:banneraddpattern
+  - minecraft:shielddecoration
+  - minecraft:shulkerboxcoloring

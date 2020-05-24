@@ -32,11 +32,13 @@ open class BukkitFcItem_1_15(
         localizer: BukkitLocalizer,
         items: Provider<FcItem.Factory>,
         server: Server,
+        legacyMaterialInfo: LegacyMaterialInfo_1_7,
     ) : BukkitFcItem_1_13.Factory(
         textFactory = textFactory,
         localizer = localizer,
         items = items,
         server = server,
+        legacyMaterialInfo = legacyMaterialInfo,
     ) {
         override fun fromMaterial(material: Material): FcItem {
             return BukkitFcItem_1_15(material, textFactory, localizer, items.get())

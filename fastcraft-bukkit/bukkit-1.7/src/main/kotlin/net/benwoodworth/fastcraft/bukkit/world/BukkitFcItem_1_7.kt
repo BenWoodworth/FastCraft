@@ -2,7 +2,6 @@ package net.benwoodworth.fastcraft.bukkit.world
 
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.world.FcItem
-import org.apache.commons.lang.WordUtils
 import org.bukkit.Material
 import org.bukkit.Server
 import org.bukkit.inventory.ItemStack
@@ -16,6 +15,7 @@ open class BukkitFcItem_1_7(
     override val materialData: MaterialData,
     protected val textFactory: FcText.Factory,
     protected val items: FcItem.Factory,
+    protected val legacyMaterialInfo: LegacyMaterialInfo_1_7,
 ) : BukkitFcItem {
     @Suppress("DEPRECATION")
     override val id: String
@@ -29,7 +29,7 @@ open class BukkitFcItem_1_7(
         get() = materialData.itemType
 
     override val name: FcText
-        get() = textFactory.createLegacy(materialData.getName())
+        get() = legacyMaterialInfo.getItemName(materialData)
 
     override val maxAmount: Int
         get() = material.maxStackSize
@@ -56,25 +56,12 @@ open class BukkitFcItem_1_7(
         return materialData.hashCode()
     }
 
-    private fun MaterialData.getName(): String {
-        var name = toString()
-
-        // Trim data number from end
-        val nameEnd = name.lastIndexOf('(')
-        if (nameEnd != -1) {
-            name = name.substring(0 until nameEnd)
-        }
-
-        name = name.replace('_', ' ')
-
-        return WordUtils.capitalizeFully(name)
-    }
-
     @Singleton
     open class Factory @Inject constructor(
         protected val textFactory: FcText.Factory,
         protected val items: Provider<FcItem.Factory>,
         protected val server: Server,
+        protected val legacyMaterialInfo: LegacyMaterialInfo_1_7,
     ) : BukkitFcItem.Factory {
         override val air: FcItem by lazy { fromMaterial(Material.AIR) }
         override val ironSword: FcItem by lazy { fromMaterial(Material.IRON_SWORD) }
@@ -93,7 +80,7 @@ open class BukkitFcItem_1_7(
 
         override fun fromMaterialData(materialData: Any): FcItem {
             require(materialData is MaterialData)
-            return BukkitFcItem_1_7(materialData, textFactory, items.get())
+            return BukkitFcItem_1_7(materialData, textFactory, items.get(), legacyMaterialInfo)
         }
 
         override fun parseOrNull(id: String): FcItem? {
