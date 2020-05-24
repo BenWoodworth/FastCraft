@@ -336,3 +336,377 @@ item-ids:
   WORKBENCH: crafting_table
   WRITTEN_BOOK: written_book
   YELLOW_FLOWER: yellow_flower
+item-names:
+  ACACIA_DOOR_ITEM: item.doorAcacia
+  ACACIA_FENCE: tile.acaciaFence
+  ACACIA_FENCE_GATE: tile.acaciaFenceGate
+  ACACIA_STAIRS: tile.stairsWoodAcacia
+  ACTIVATOR_RAIL: tile.activatorRail
+  ANVIL: tile.anvil
+  APPLE: item.apple
+  ARMOR_STAND: item.armorStand
+  ARROW: item.arrow
+  BAKED_POTATO: item.potatoBaked
+  BANNER: tile.banner
+  BARRIER: tile.barrier
+  BEACON: tile.beacon
+  BED: item.bed
+  BEDROCK: tile.bedrock
+  BIRCH_DOOR_ITEM: item.doorBirch
+  BIRCH_FENCE: tile.birchFence
+  BIRCH_FENCE_GATE: tile.birchFenceGate
+  BIRCH_WOOD_STAIRS: tile.stairsWoodBirch
+  BLAZE_POWDER: item.blazePowder
+  BLAZE_ROD: item.blazeRod
+  BOAT: item.boat
+  BONE: item.bone
+  BOOK: item.book
+  BOOKSHELF: tile.bookshelf
+  BOOK_AND_QUILL: item.writingBook
+  BOW: item.bow
+  BOWL: item.bowl
+  BREAD: item.bread
+  BREWING_STAND_ITEM: item.brewingStand
+  BRICK: tile.brick
+  BRICK_STAIRS: tile.stairsBrick
+  BROWN_MUSHROOM: tile.mushroom
+  BUCKET: item.bucket
+  BURNING_FURNACE: tile.furnace
+  CACTUS: tile.cactus
+  CAKE: item.cake
+  CARPET: tile.woolCarpet
+  CARROT_ITEM: item.carrots
+  CARROT_STICK: item.carrotOnAStick
+  CAULDRON_ITEM: item.cauldron
+  CHAINMAIL_BOOTS: item.bootsChain
+  CHAINMAIL_CHESTPLATE: item.chestplateChain
+  CHAINMAIL_HELMET: item.helmetChain
+  CHAINMAIL_LEGGINGS: item.leggingsChain
+  CHEST: tile.chest
+  CLAY: tile.clay
+  CLAY_BALL: item.clay
+  CLAY_BRICK: item.brick
+  COAL: item.coal
+  COAL_BLOCK: tile.blockCoal
+  COAL_ORE: tile.oreCoal
+  COBBLESTONE: tile.stonebrick
+  COBBLESTONE_STAIRS: tile.stairsStone
+  COBBLE_WALL: tile.cobbleWall
+  COMMAND: tile.commandBlock
+  COMMAND_MINECART: item.minecartCommandBlock
+  COMPASS: item.compass
+  COOKED_BEEF: item.beefCooked
+  COOKED_CHICKEN: item.chickenCooked
+  COOKED_FISH: item.fish
+  COOKED_MUTTON: item.muttonCooked
+  COOKED_RABBIT: item.rabbitCooked
+  COOKIE: item.cookie
+  DARK_OAK_DOOR_ITEM: item.doorDarkOak
+  DARK_OAK_FENCE: tile.darkOakFence
+  DARK_OAK_FENCE_GATE: tile.darkOakFenceGate
+  DARK_OAK_STAIRS: tile.stairsWoodDarkOak
+  DAYLIGHT_DETECTOR: tile.daylightDetector
+  DEAD_BUSH: tile.deadbush
+  DETECTOR_RAIL: tile.detectorRail
+  DIAMOND: item.diamond
+  DIAMOND_AXE: item.hatchetDiamond
+  DIAMOND_BARDING: item.horsearmordiamond
+  DIAMOND_BLOCK: tile.blockDiamond
+  DIAMOND_BOOTS: item.bootsDiamond
+  DIAMOND_CHESTPLATE: item.chestplateDiamond
+  DIAMOND_HELMET: item.helmetDiamond
+  DIAMOND_HOE: item.hoeDiamond
+  DIAMOND_LEGGINGS: item.leggingsDiamond
+  DIAMOND_ORE: tile.oreDiamond
+  DIAMOND_PICKAXE: item.pickaxeDiamond
+  DIAMOND_SPADE: item.shovelDiamond
+  DIAMOND_SWORD: item.swordDiamond
+  DIODE: item.diode
+  DIRT: tile.dirt
+  DISPENSER: tile.dispenser
+  DOUBLE_PLANT: tile.doublePlant
+  DRAGON_EGG: tile.dragonEgg
+  DROPPER: tile.dropper
+  EGG: item.egg
+  EMERALD: item.emerald
+  EMERALD_BLOCK: tile.blockEmerald
+  EMERALD_ORE: tile.oreEmerald
+  EMPTY_MAP: item.emptyMap
+  ENCHANTED_BOOK: item.enchantedBook
+  ENCHANTMENT_TABLE: tile.enchantmentTable
+  ENDER_CHEST: tile.enderChest
+  ENDER_PEARL: item.enderPearl
+  ENDER_PORTAL_FRAME: tile.endPortalFrame
+  ENDER_STONE: tile.whiteStone
+  EXPLOSIVE_MINECART: item.minecartTnt
+  EXP_BOTTLE: item.expBottle
+  EYE_OF_ENDER: item.eyeOfEnder
+  FEATHER: item.feather
+  FENCE: tile.fence
+  FENCE_GATE: tile.fenceGate
+  FERMENTED_SPIDER_EYE: item.fermentedSpiderEye
+  FIREBALL: item.fireball
+  FIREWORK: item.fireworks
+  FIREWORK_CHARGE: item.fireworksCharge
+  FISHING_ROD: item.fishingRod
+  FLINT: item.flint
+  FLINT_AND_STEEL: item.flintAndSteel
+  FLOWER_POT_ITEM: item.flowerPot
+  FURNACE: tile.furnace
+  GHAST_TEAR: item.ghastTear
+  GLASS: tile.glass
+  GLASS_BOTTLE: item.glassBottle
+  GLOWSTONE: tile.lightgem
+  GLOWSTONE_DUST: item.yellowDust
+  GOLDEN_APPLE: item.appleGold
+  GOLDEN_CARROT: item.carrotGolden
+  GOLD_AXE: item.hatchetGold
+  GOLD_BARDING: item.horsearmorgold
+  GOLD_BLOCK: tile.blockGold
+  GOLD_BOOTS: item.bootsGold
+  GOLD_CHESTPLATE: item.chestplateGold
+  GOLD_HELMET: item.helmetGold
+  GOLD_HOE: item.hoeGold
+  GOLD_INGOT: item.ingotGold
+  GOLD_LEGGINGS: item.leggingsGold
+  GOLD_NUGGET: item.goldNugget
+  GOLD_ORE: tile.oreGold
+  GOLD_PICKAXE: item.pickaxeGold
+  GOLD_PLATE: tile.weightedPlate_light
+  GOLD_RECORD: item.record
+  GOLD_SPADE: item.shovelGold
+  GOLD_SWORD: item.swordGold
+  GRASS: tile.grass
+  GRAVEL: tile.gravel
+  GREEN_RECORD: item.record
+  GRILLED_PORK: item.porkchopCooked
+  HARD_CLAY: tile.clayHardened
+  HAY_BLOCK: tile.hayBlock
+  HOPPER: tile.hopper
+  HOPPER_MINECART: item.minecartHopper
+  HUGE_MUSHROOM_1: tile.mushroom
+  HUGE_MUSHROOM_2: tile.mushroom
+  ICE: tile.ice
+  INK_SACK: item.dyePowder
+  IRON_AXE: item.hatchetIron
+  IRON_BARDING: item.horsearmormetal
+  IRON_BLOCK: tile.blockIron
+  IRON_BOOTS: item.bootsIron
+  IRON_CHESTPLATE: item.chestplateIron
+  IRON_DOOR: item.doorIron
+  IRON_FENCE: tile.fenceIron
+  IRON_HELMET: item.helmetIron
+  IRON_HOE: item.hoeIron
+  IRON_INGOT: item.ingotIron
+  IRON_LEGGINGS: item.leggingsIron
+  IRON_ORE: tile.oreIron
+  IRON_PICKAXE: item.pickaxeIron
+  IRON_PLATE: tile.weightedPlate_heavy
+  IRON_SPADE: item.shovelIron
+  IRON_SWORD: item.swordIron
+  IRON_TRAPDOOR: tile.ironTrapdoor
+  ITEM_FRAME: item.frame
+  JACK_O_LANTERN: tile.litpumpkin
+  JUKEBOX: tile.jukebox
+  JUNGLE_DOOR_ITEM: item.doorJungle
+  JUNGLE_FENCE: tile.jungleFence
+  JUNGLE_FENCE_GATE: tile.jungleFenceGate
+  JUNGLE_WOOD_STAIRS: tile.stairsWoodJungle
+  LADDER: tile.ladder
+  LAPIS_BLOCK: tile.blockLapis
+  LAPIS_ORE: tile.oreLapis
+  LAVA_BUCKET: item.bucketLava
+  LEASH: item.leash
+  LEATHER: item.leather
+  LEATHER_BOOTS: item.bootsCloth
+  LEATHER_CHESTPLATE: item.chestplateCloth
+  LEATHER_HELMET: item.helmetCloth
+  LEATHER_LEGGINGS: item.leggingsCloth
+  LEAVES: tile.leaves
+  LEAVES_2: tile.leaves
+  LEVER: tile.lever
+  LOG: tile.log
+  LOG_2: tile.log
+  LONG_GRASS: tile.tallgrass
+  MAGMA_CREAM: item.magmaCream
+  MAP: item.map
+  MELON: item.melon
+  MELON_BLOCK: tile.melon
+  MELON_SEEDS: item.seeds_melon
+  MILK_BUCKET: item.milk
+  MINECART: item.minecart
+  MOB_SPAWNER: tile.mobSpawner
+  MONSTER_EGG: item.monsterPlacer
+  MONSTER_EGGS: tile.monsterStoneEgg
+  MOSSY_COBBLESTONE: tile.stoneMoss
+  MUSHROOM_SOUP: item.mushroomStew
+  MUTTON: item.muttonRaw
+  MYCEL: tile.mycel
+  NAME_TAG: item.nameTag
+  NETHERRACK: tile.hellrock
+  NETHER_BRICK: tile.netherBrick
+  NETHER_BRICK_ITEM: item.netherbrick
+  NETHER_BRICK_STAIRS: tile.stairsNetherBrick
+  NETHER_FENCE: tile.netherFence
+  NETHER_STALK: item.netherStalkSeeds
+  NETHER_STAR: item.netherStar
+  NOTE_BLOCK: tile.musicBlock
+  OBSIDIAN: tile.obsidian
+  PACKED_ICE: tile.icePacked
+  PAINTING: item.painting
+  PAPER: item.paper
+  PISTON_BASE: tile.pistonBase
+  PISTON_STICKY_BASE: tile.pistonStickyBase
+  POISONOUS_POTATO: item.potatoPoisonous
+  PORK: item.porkchopRaw
+  POTATO_ITEM: item.potato
+  POTION: item.potion
+  POWERED_MINECART: item.minecartFurnace
+  POWERED_RAIL: tile.goldenRail
+  PRISMARINE: tile.prismarine
+  PRISMARINE_CRYSTALS: item.prismarineCrystals
+  PRISMARINE_SHARD: item.prismarineShard
+  PUMPKIN: tile.pumpkin
+  PUMPKIN_PIE: item.pumpkinPie
+  PUMPKIN_SEEDS: item.seeds_pumpkin
+  QUARTZ: item.netherquartz
+  QUARTZ_BLOCK: tile.quartzBlock
+  QUARTZ_ORE: tile.netherquartz
+  QUARTZ_STAIRS: tile.stairsQuartz
+  RABBIT: item.rabbitRaw
+  RABBIT_FOOT: item.rabbitFoot
+  RABBIT_HIDE: item.rabbitHide
+  RABBIT_STEW: item.rabbitStew
+  RAILS: tile.rail
+  RAW_BEEF: item.beefRaw
+  RAW_CHICKEN: item.chickenRaw
+  RAW_FISH: item.fish
+  RECORD_10: item.record
+  RECORD_11: item.record
+  RECORD_12: item.record
+  RECORD_3: item.record
+  RECORD_4: item.record
+  RECORD_5: item.record
+  RECORD_6: item.record
+  RECORD_7: item.record
+  RECORD_8: item.record
+  RECORD_9: item.record
+  REDSTONE: item.redstone
+  REDSTONE_BLOCK: tile.blockRedstone
+  REDSTONE_COMPARATOR: item.comparator
+  REDSTONE_LAMP_OFF: tile.redstoneLight
+  REDSTONE_ORE: tile.oreRedstone
+  REDSTONE_TORCH_ON: tile.notGate
+  RED_MUSHROOM: tile.mushroom
+  RED_ROSE: tile.flower2
+  RED_SANDSTONE: tile.redSandStone
+  RED_SANDSTONE_STAIRS: tile.stairsRedSandStone
+  ROTTEN_FLESH: item.rottenFlesh
+  SADDLE: item.saddle
+  SAND: tile.sand
+  SANDSTONE: tile.sandStone
+  SANDSTONE_STAIRS: tile.stairsSandStone
+  SAPLING: tile.sapling
+  SEA_LANTERN: tile.seaLantern
+  SEEDS: item.seeds
+  SHEARS: item.shears
+  SIGN: item.sign
+  SKULL_ITEM: item.skull
+  SLIME_BALL: item.slimeball
+  SLIME_BLOCK: tile.slime
+  SMOOTH_BRICK: tile.stonebricksmooth
+  SMOOTH_STAIRS: tile.stairsStoneBrickSmooth
+  SNOW: tile.snow
+  SNOW_BALL: item.snowball
+  SNOW_BLOCK: tile.snow
+  SOIL: tile.farmland
+  SOUL_SAND: tile.hellsand
+  SPECKLED_MELON: item.speckledMelon
+  SPIDER_EYE: item.spiderEye
+  SPONGE: tile.sponge
+  SPRUCE_DOOR_ITEM: item.doorSpruce
+  SPRUCE_FENCE: tile.spruceFence
+  SPRUCE_FENCE_GATE: tile.spruceFenceGate
+  SPRUCE_WOOD_STAIRS: tile.stairsWoodSpruce
+  STAINED_CLAY: tile.clayHardenedStained
+  STAINED_GLASS: tile.stainedGlass
+  STAINED_GLASS_PANE: tile.thinStainedGlass
+  STEP: tile.stoneSlab
+  STICK: item.stick
+  STONE: tile.stone
+  STONE_AXE: item.hatchetStone
+  STONE_BUTTON: tile.button
+  STONE_HOE: item.hoeStone
+  STONE_PICKAXE: item.pickaxeStone
+  STONE_PLATE: tile.pressurePlateStone
+  STONE_SLAB2: tile.stoneSlab2
+  STONE_SPADE: item.shovelStone
+  STONE_SWORD: item.swordStone
+  STORAGE_MINECART: item.minecartChest
+  STRING: item.string
+  SUGAR: item.sugar
+  SUGAR_CANE: item.reeds
+  SULPHUR: item.sulphur
+  THIN_GLASS: tile.thinGlass
+  TNT: tile.tnt
+  TORCH: tile.torch
+  TRAPPED_CHEST: tile.chestTrap
+  TRAP_DOOR: tile.trapdoor
+  TRIPWIRE_HOOK: tile.tripWireSource
+  VINE: tile.vine
+  WATCH: item.clock
+  WATER_BUCKET: item.bucketWater
+  WATER_LILY: tile.waterlily
+  WEB: tile.web
+  WHEAT: item.wheat
+  WOOD: tile.wood
+  WOOD_AXE: item.hatchetWood
+  WOOD_BUTTON: tile.button
+  WOOD_DOOR: item.doorOak
+  WOOD_HOE: item.hoeWood
+  WOOD_PICKAXE: item.pickaxeWood
+  WOOD_PLATE: tile.pressurePlateWood
+  WOOD_SPADE: item.shovelWood
+  WOOD_STAIRS: tile.stairsWood
+  WOOD_STEP: tile.woodSlab
+  WOOD_SWORD: item.swordWood
+  WOOL: tile.cloth
+  WORKBENCH: tile.workbench
+  WRITTEN_BOOK: item.writtenBook
+  YELLOW_FLOWER: tile.flower1
+item-variant-names:
+  ANVIL: [tile.anvil.intact, tile.anvil.slightlyDamaged, tile.anvil.veryDamaged]
+  CARPET: [tile.woolCarpet.white, tile.woolCarpet.orange, tile.woolCarpet.magenta, tile.woolCarpet.lightBlue, tile.woolCarpet.yellow, tile.woolCarpet.lime, tile.woolCarpet.pink, tile.woolCarpet.gray, tile.woolCarpet.silver, tile.woolCarpet.cyan, tile.woolCarpet.purple, tile.woolCarpet.blue, tile.woolCarpet.brown, tile.woolCarpet.green, tile.woolCarpet.red, tile.woolCarpet.black]
+  COAL: [item.coal, item.charcoal]
+  COBBLE_WALL: [tile.cobbleWall.normal, tile.cobbleWall.mossy]
+  COOKED_FISH: [item.fish.cod.cooked, item.fish.salmon.cooked, item.fish.clownfish.raw, item.fish.pufferfish.raw]
+  DIRT: [tile.dirt.default, tile.dirt.coarse, tile.dirt.podzol]
+  DOUBLE_PLANT: [tile.doublePlant.sunflower, tile.doublePlant.syringa, tile.doublePlant.grass, tile.doublePlant.fern, tile.doublePlant.rose, tile.doublePlant.paeonia]
+  INK_SACK: [item.dyePowder.black, item.dyePowder.red, item.dyePowder.green, item.dyePowder.brown, item.dyePowder.blue, item.dyePowder.purple, item.dyePowder.cyan, item.dyePowder.silver, item.dyePowder.gray, item.dyePowder.pink, item.dyePowder.lime, item.dyePowder.yellow, item.dyePowder.lightBlue, item.dyePowder.magenta, item.dyePowder.orange, item.dyePowder.white]
+  LEAVES: [tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle, tile.leaves.oak, tile.leaves.spruce, tile.leaves.birch, tile.leaves.jungle]
+  LEAVES_2: [tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak, tile.leaves.acacia, tile.leaves.big_oak, tile.leaves.oak, tile.leaves.oak]
+  LOG: [tile.log.oak, tile.log.spruce, tile.log.birch, tile.log.jungle, tile.log.acacia, tile.log.big_oak]
+  LOG_2: [tile.log.acacia, tile.log.big_oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak, tile.log.oak]
+  LONG_GRASS: [tile.tallgrass.shrub, tile.tallgrass.grass, tile.tallgrass.fern, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass, tile.tallgrass]
+  MONSTER_EGGS: [tile.monsterStoneEgg.stone, tile.monsterStoneEgg.cobble, tile.monsterStoneEgg.brick, tile.monsterStoneEgg.mossybrick, tile.monsterStoneEgg.crackedbrick, tile.monsterStoneEgg.chiseledbrick]
+  PRISMARINE: [tile.prismarine.rough, tile.prismarine.bricks, tile.prismarine.dark]
+  QUARTZ_BLOCK: [tile.quartzBlock.default, tile.quartzBlock.chiseled, tile.quartzBlock.lines]
+  RAW_FISH: [item.fish.cod.raw, item.fish.salmon.raw, item.fish.clownfish.raw, item.fish.pufferfish.raw]
+  RED_ROSE: [tile.flower2.poppy, tile.flower2.blueOrchid, tile.flower2.allium, tile.flower2.houstonia, tile.flower2.tulipRed, tile.flower2.tulipOrange, tile.flower2.tulipWhite, tile.flower2.tulipPink, tile.flower2.oxeyeDaisy]
+  RED_SANDSTONE: [tile.redSandStone.default, tile.redSandStone.chiseled, tile.redSandStone.smooth]
+  SAND: [tile.sand.default, tile.sand.red]
+  SANDSTONE: [tile.sandStone.default, tile.sandStone.chiseled, tile.sandStone.smooth]
+  SAPLING: [tile.sapling.oak, tile.sapling.spruce, tile.sapling.birch, tile.sapling.jungle, tile.sapling.acacia, tile.sapling.big_oak]
+  SKULL_ITEM: [item.skull.skeleton, item.skull.wither, item.skull.zombie, item.skull.char, item.skull.creeper]
+  SMOOTH_BRICK: [tile.stonebricksmooth.default, tile.stonebricksmooth.mossy, tile.stonebricksmooth.cracked, tile.stonebricksmooth.chiseled]
+  SPONGE: [tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet, tile.sponge.dry, tile.sponge.wet]
+  STAINED_CLAY: [tile.clayHardenedStained.white, tile.clayHardenedStained.orange, tile.clayHardenedStained.magenta, tile.clayHardenedStained.lightBlue, tile.clayHardenedStained.yellow, tile.clayHardenedStained.lime, tile.clayHardenedStained.pink, tile.clayHardenedStained.gray, tile.clayHardenedStained.silver, tile.clayHardenedStained.cyan, tile.clayHardenedStained.purple, tile.clayHardenedStained.blue, tile.clayHardenedStained.brown, tile.clayHardenedStained.green, tile.clayHardenedStained.red, tile.clayHardenedStained.black]
+  STAINED_GLASS: [tile.stainedGlass.white, tile.stainedGlass.orange, tile.stainedGlass.magenta, tile.stainedGlass.lightBlue, tile.stainedGlass.yellow, tile.stainedGlass.lime, tile.stainedGlass.pink, tile.stainedGlass.gray, tile.stainedGlass.silver, tile.stainedGlass.cyan, tile.stainedGlass.purple, tile.stainedGlass.blue, tile.stainedGlass.brown, tile.stainedGlass.green, tile.stainedGlass.red, tile.stainedGlass.black]
+  STAINED_GLASS_PANE: [tile.thinStainedGlass.white, tile.thinStainedGlass.orange, tile.thinStainedGlass.magenta, tile.thinStainedGlass.lightBlue, tile.thinStainedGlass.yellow, tile.thinStainedGlass.lime, tile.thinStainedGlass.pink, tile.thinStainedGlass.gray, tile.thinStainedGlass.silver, tile.thinStainedGlass.cyan, tile.thinStainedGlass.purple, tile.thinStainedGlass.blue, tile.thinStainedGlass.brown, tile.thinStainedGlass.green, tile.thinStainedGlass.red, tile.thinStainedGlass.black]
+  STEP: [tile.stoneSlab.stone, tile.stoneSlab.sand, tile.stoneSlab.wood, tile.stoneSlab.cobble, tile.stoneSlab.brick, tile.stoneSlab.smoothStoneBrick, tile.stoneSlab.netherBrick, tile.stoneSlab.quartz]
+  STONE: [tile.stone.stone, tile.stone.granite, tile.stone.graniteSmooth, tile.stone.diorite, tile.stone.dioriteSmooth, tile.stone.andesite, tile.stone.andesiteSmooth]
+  STONE_SLAB2: [tile.stoneSlab2.red_sandstone]
+  WOOD: [tile.wood.oak, tile.wood.spruce, tile.wood.birch, tile.wood.jungle, tile.wood.acacia, tile.wood.big_oak]
+  WOOD_STEP: [tile.woodSlab.oak, tile.woodSlab.spruce, tile.woodSlab.birch, tile.woodSlab.jungle, tile.woodSlab.acacia, tile.woodSlab.big_oak]
+  WOOL: [tile.cloth.white, tile.cloth.orange, tile.cloth.magenta, tile.cloth.lightBlue, tile.cloth.yellow, tile.cloth.lime, tile.cloth.pink, tile.cloth.gray, tile.cloth.silver, tile.cloth.cyan, tile.cloth.purple, tile.cloth.blue, tile.cloth.brown, tile.cloth.green, tile.cloth.red, tile.cloth.black]
+  YELLOW_FLOWER: [tile.flower1.dandelion]
