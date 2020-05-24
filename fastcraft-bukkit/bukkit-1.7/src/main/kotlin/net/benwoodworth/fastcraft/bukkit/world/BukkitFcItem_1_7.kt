@@ -19,11 +19,7 @@ open class BukkitFcItem_1_7(
 ) : BukkitFcItem {
     @Suppress("DEPRECATION")
     override val id: String
-        get() = if (materialData.data == 0.toByte()) {
-            materialData.itemType.name
-        } else {
-            "${materialData.itemType.name}:${materialData.data}"
-        }
+        get() = legacyMaterialInfo.getItemId(materialData)
 
     override val material: Material
         get() = materialData.itemType
