@@ -25,9 +25,10 @@ open class BukkitFcRecipeProvider_1_7 @Inject constructor(
     private val recipeFactory: BukkitFcCraftingRecipe.Factory,
 ) : BukkitFcRecipeProvider {
     protected val complexRecipeIds: Set<String> by lazy {
-        plugin.getResource("bukkit/complex-recipes.yml")
-            .toYamlConfiguration()
-            .getStringList(bukkitVersion.run { "$major.$minor" })
+        val version = bukkitVersion.run { "$major.$minor" }
+        plugin.getResource("bukkit/recipes/$version.yml")
+            ?.toYamlConfiguration()
+            ?.getStringList("complex-recipe-ids")
             ?.toHashSet()
             ?: emptySet()
     }
