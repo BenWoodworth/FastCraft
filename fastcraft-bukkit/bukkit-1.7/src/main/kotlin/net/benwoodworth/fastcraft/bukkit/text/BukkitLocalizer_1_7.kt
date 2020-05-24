@@ -21,6 +21,8 @@ class BukkitLocalizer_1_7 @Inject constructor(
 
     init {
         val langFile: URL? = Bukkit::class.java.getResource("/assets/minecraft/lang/en_us.lang")
+            ?: Bukkit::class.java.getResource("/assets/minecraft/lang/en_US.lang")
+
         val overrideFile: Path =
             pluginInfo.dataFolder.resolve("minecraft-lang-override-${server.minecraftVersion}.lang")
 
