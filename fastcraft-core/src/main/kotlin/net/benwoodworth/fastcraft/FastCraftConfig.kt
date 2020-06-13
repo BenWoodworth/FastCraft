@@ -10,6 +10,7 @@ import net.benwoodworth.fastcraft.util.Expr
 import java.nio.file.Files
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlin.reflect.KMutableProperty0
 
 @Singleton
 class FastCraftConfig @Inject constructor(
@@ -49,20 +50,7 @@ class FastCraftConfig @Inject constructor(
             private set
 
         fun load() {
-            node["recipe-ids"].run {
-                recipeIds = when (val newDisableRecipes = getStringList()) {
-                    null -> recipeIds.also {
-                        modify(recipeIds.map { it.expression })
-                    }
-                    else -> {
-                        val nonNulls = newDisableRecipes.filterNotNull()
-                        if (nonNulls.size != newDisableRecipes.size) {
-                            modify(nonNulls) { "Removed null entries" }
-                        }
-                        nonNulls.map { Expr(it) }
-                    }
-                }
-            }
+            node["recipe-ids"].loadExprList(::recipeIds)
         }
     }
 
@@ -93,61 +81,12 @@ class FastCraftConfig @Inject constructor(
             var height: Int = 6
                 private set
 
-            //region fun load()
             fun load() {
-                node["row"].run {
-                    val rowRange = 0 until this@Layout.height
-                    row = when (val newRow = getInt()) {
-                        null -> modify(row.coerceIn(rowRange))
-                        !in rowRange -> {
-                            rowRange.first.also {
-                                logErr("$newRow is not in $rowRange. Defaulting to $it.")
-                            }
-                        }
-                        else -> newRow
-                    }
-                }
-
-                node["column"].run {
-                    val columnRange = 0..8
-                    column = when (val newColumn = getInt()) {
-                        null -> modify(column.coerceIn(columnRange))
-                        !in columnRange -> {
-                            columnRange.first.also {
-                                logErr("$newColumn is not in $columnRange. Defaulting to $it.")
-                            }
-                        }
-                        else -> newColumn
-                    }
-                }
-
-                node["width"].run {
-                    val widthRange = 1..9 - column
-                    width = when (val newWidth = getInt()) {
-                        null -> modify(width.coerceIn(widthRange))
-                        !in widthRange -> {
-                            widthRange.first.also {
-                                logErr("$newWidth is not in $widthRange. Defaulting to $it.")
-                            }
-                        }
-                        else -> newWidth
-                    }
-                }
-
-                node["height"].run {
-                    val heightRange = 1..height - row
-                    height = when (val newHeight = getInt()) {
-                        null -> modify(height.coerceIn(heightRange))
-                        !in heightRange -> {
-                            heightRange.first.also {
-                                logErr("$newHeight is not in $heightRange. Defaulting to $it.")
-                            }
-                        }
-                        else -> newHeight
-                    }
-                }
+                node["row"].loadInt(::row, 0 until this@Layout.height)
+                node["column"].loadInt(::column, 0..8)
+                node["width"].loadInt(::width, 1..9 - column)
+                node["height"].loadInt(::height, 1..height - row)
             }
-            //endregion
         }
 
         val buttons = Buttons()
@@ -207,47 +146,19 @@ class FastCraftConfig @Inject constructor(
                 var column: Int = column
                     private set
 
-                //region fun load()
                 override fun load() {
                     super.load()
-
-                    node["row"].run {
-                        val rowRange = 0 until this@Layout.height
-                        row = when (val newRow = getInt()) {
-                            null -> modify(row.coerceIn(rowRange))
-                            !in rowRange -> {
-                                rowRange.first.also {
-                                    logErr("$newRow is not in $rowRange. Defaulting to $it.")
-                                }
-                            }
-                            else -> newRow
-                        }
-                    }
-
-                    node["column"].run {
-                        val columnRange = 0..8
-                        column = when (val newColumn = getInt()) {
-                            null -> modify(column.coerceIn(columnRange))
-                            !in columnRange -> {
-                                columnRange.first.also {
-                                    logErr("$newColumn is not in $columnRange. Defaulting to $it.")
-                                }
-                            }
-                            else -> newColumn
-                        }
-                    }
+                    node["row"].loadInt(::row, 0 until this@Layout.height)
+                    node["column"].loadInt(::column, 0..8)
                 }
-                //endregion
             }
 
-            //region fun load()
             fun load() {
                 craftingGrid.load()
                 craftAmount.load()
                 refresh.load()
                 page.load()
             }
-            //endregion
         }
 
         val background = Background()
@@ -275,60 +186,19 @@ class FastCraftConfig @Inject constructor(
             private var itemId: String = item.type.id
 
             open fun load() {
-                node["enable"].run {
-                    enable = when (val newEnable = getBoolean()) {
-                        null -> modify(enable)
-                        else -> newEnable
-                    }
-                }
-
-                node["item"].run {
-                    item = when (val newItemId = getString()) {
-                        null -> {
-                            modify(itemId)
-                            item
-                        }
-                        else -> when (val newItem = itemStackFactory.parseOrNull(newItemId)) {
-                            null -> {
-                                item.also {
-                                    logErr("Invalid item id: $newItemId. Defaulting to ${itemId}.")
-                                }
-                            }
-                            else -> {
-                                itemId = newItemId
-                                newItem
-                            }
-                        }
-                    }
-                }
+                node["enable"].loadBoolean(::enable)
+                node["item"].loadItem(::item, ::itemId)
             }
         }
 
-        //region fun load()
         fun load() {
-            height = node["height"].run {
-                val heightRange = 1..6
-                when (val newHeight = getInt()) {
-                    null -> {
-                        modify(height)
-                    }
-                    !in heightRange -> {
-                        height.also {
-                            logErr("Invalid height: $newHeight. Must be in $heightRange. Defaulting to $it")
-                        }
-                    }
-                    else -> newHeight
-                }
-            }
-
+            node["height"].loadInt(::height, 1..6)
             recipes.load()
             buttons.load()
             background.load()
         }
-        //endregion
     }
 
-    //region fun load()
     fun load() {
         val file = pluginData.configFile
         Files.createDirectories(file.parent)
@@ -368,7 +238,6 @@ class FastCraftConfig @Inject constructor(
         modified = false
         newFile = false
     }
-    //endregion
 
     init {
         load()
@@ -389,5 +258,59 @@ class FastCraftConfig @Inject constructor(
 
     private fun FcConfigNode.logErr(message: String) {
         logger.error("${pluginData.configFile.fileName} [$path]: $message")
+    }
+
+    private fun FcConfigNode.loadInt(
+        property: KMutableProperty0<Int>,
+        range: IntRange = Int.MIN_VALUE..Int.MAX_VALUE,
+    ) {
+        when (val newRow = getInt()) {
+            null -> modify(property.get().coerceIn(range))
+            !in range -> {
+                property.set(range.first)
+                logErr("$newRow is not in $range. Defaulting to ${property.get()}.")
+            }
+            else -> property.set(newRow)
+        }
+    }
+
+    private fun FcConfigNode.loadBoolean(
+        property: KMutableProperty0<Boolean>,
+    ) {
+        when (val newEnable = getBoolean()) {
+            null -> property.set(modify(property.get()))
+            else -> property.set(newEnable)
+        }
+    }
+
+    private fun FcConfigNode.loadItem(
+        itemProperty: KMutableProperty0<FcItemStack>,
+        itemIdProperty: KMutableProperty0<String>,
+    ) {
+        when (val newItemId = getString()) {
+            null -> modify(itemIdProperty.get())
+            else -> when (val newItem = itemStackFactory.parseOrNull(newItemId)) {
+                null -> logErr("Invalid item id: $newItemId. Defaulting to ${itemIdProperty.get()}.")
+                else -> {
+                    itemIdProperty.set(newItemId)
+                    itemProperty.set(newItem)
+                }
+            }
+        }
+    }
+
+    private fun FcConfigNode.loadExprList(
+        property: KMutableProperty0<List<Expr>>,
+    ) {
+        when (val newDisableRecipes = getStringList()) {
+            null -> modify(property.get().map { it.expression })
+            else -> {
+                val nonNulls = newDisableRecipes.filterNotNull()
+                if (nonNulls.size != newDisableRecipes.size) {
+                    modify(nonNulls) { "Removed null entries" }
+                }
+                property.set(nonNulls.map { Expr(it) })
+            }
+        }
     }
 }
