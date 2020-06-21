@@ -42,7 +42,7 @@ class CraftableRecipeFinder(
     var listener: Listener? = null
 
     private companion object {
-        val MAX_LOAD_TIME_PER_TICK = 1000 / 20 / 10
+        val NANOS_PER_TICK = 1000000000L / 20L
     }
 
     fun loadRecipes() {
@@ -62,7 +62,7 @@ class CraftableRecipeFinder(
                 .iterator()
 
             recipeLoadTask = taskFactory.startTask(delayTicks = 1, intervalTicks = 1) { task ->
-                val startTime = System.currentTimeMillis()
+                val startTime = System.nanoTime()
                 val newRecipes = mutableListOf<FcCraftingRecipePrepared>()
 
                 for (recipe in recipeIterator) {
@@ -70,8 +70,8 @@ class CraftableRecipeFinder(
                         newRecipes += recipe
                     }
 
-                    val timeElapsed = System.currentTimeMillis() - startTime
-                    if (timeElapsed > MAX_LOAD_TIME_PER_TICK) {
+                    val timeElapsed = System.nanoTime() - startTime
+                    if (timeElapsed >= NANOS_PER_TICK * config.recipeCalculations.maxTickUsage) {
                         break
                     }
                 }

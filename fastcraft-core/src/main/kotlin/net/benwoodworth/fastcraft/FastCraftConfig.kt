@@ -54,6 +54,20 @@ class FastCraftConfig @Inject constructor(
         }
     }
 
+    val recipeCalculations = RecipeCalculations()
+
+    inner class RecipeCalculations {
+        private val node: FcConfigNode
+            get() = config["recipe-calculations"]
+
+        var maxTickUsage: Double = 0.1
+            private set
+
+        fun load() {
+            node["max-tick-usage"].loadDouble(::maxTickUsage, min = 0.0)
+        }
+    }
+
     val layout = Layout()
 
     inner class Layout {
@@ -225,6 +239,7 @@ class FastCraftConfig @Inject constructor(
         }
 
         disableRecipes.load()
+        recipeCalculations.load()
         layout.load()
 
         if (modified) {
@@ -271,6 +286,22 @@ class FastCraftConfig @Inject constructor(
                 logErr("$newRow is not in $range. Defaulting to ${property.get()}.")
             }
             else -> property.set(newRow)
+        }
+    }
+
+    private fun FcConfigNode.loadDouble(
+        property: KMutableProperty0<Double>,
+        min: Double = Double.NEGATIVE_INFINITY,
+        max: Double = Double.POSITIVE_INFINITY,
+        default: Double = property.get(),
+    ) {
+        when (val newValue = getDouble()) {
+            null -> modify(default)
+            !in min..max -> {
+                property.set(default)
+                logErr("$newValue is not in $min..$max. Defaulting to ${default}.")
+            }
+            else -> property.set(newValue)
         }
     }
 
