@@ -11,21 +11,25 @@ import net.benwoodworth.fastcraft.platform.world.FcItemStack
 import net.benwoodworth.fastcraft.platform.world.FcMaterialComparator
 import net.benwoodworth.fastcraft.util.CancellableResult
 import net.benwoodworth.fastcraft.util.getPermutations
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton
+import kotlin.collections.HashMap
 
-class CraftableRecipeFinder(
-    private val player: FcPlayer,
+@Singleton
+class CraftableRecipeFinder @Inject constructor(
     private val recipeProvider: FcRecipeProvider,
     private val itemAmountsProvider: Provider<ItemAmounts>,
     materialComparator: FcMaterialComparator,
     private val taskFactory: FcTask.Factory,
     private val config: FastCraftConfig,
 ) {
+    private val NANOS_PER_TICK = 1000000000L / 20L
+
     private val disabledPluginRecipes = setOf("recipemanager") //TODO Fix compatibility
 
-    private var recipeLoadTask: FcTask? = null
+    private var recipeLoadTasks: HashMap<UUID, FcTask> = HashMap()
 
     private val recipeComparator: Comparator<FcCraftingRecipe> =
         compareBy<FcCraftingRecipe, FcItem>(materialComparator) {
@@ -39,16 +43,8 @@ class CraftableRecipeFinder(
         { (_, amount) -> -amount }, // Greatest amount first
     )
 
-    var listener: Listener? = null
-
-    private companion object {
-        val NANOS_PER_TICK = 1000000000L / 20L
-    }
-
-    fun loadRecipes() {
-        cancel()
-
-        recipeLoadTask = taskFactory.startTask(delayTicks = 1) {
+    fun loadRecipes(player: FcPlayer, listener: Listener) {
+        recipeLoadTasks[player.uuid] = taskFactory.startTask(delayTicks = 1) {
             val availableItems = itemAmountsProvider.get()
             player.inventory.storage.forEach { slot ->
                 slot.itemStack?.let { itemStack -> availableItems += itemStack }
@@ -61,7 +57,7 @@ class CraftableRecipeFinder(
                 .flatMap { prepareCraftableRecipes(player, availableItems, it) }
                 .iterator()
 
-            recipeLoadTask = taskFactory.startTask(delayTicks = 1, intervalTicks = 1) { task ->
+            recipeLoadTasks[player.uuid] = taskFactory.startTask(delayTicks = 1, intervalTicks = 1) { task ->
                 val startTime = System.nanoTime()
                 val newRecipes = mutableListOf<FcCraftingRecipePrepared>()
 
@@ -70,14 +66,15 @@ class CraftableRecipeFinder(
                         newRecipes += recipe
                     }
 
+                    val maxCalcTime = NANOS_PER_TICK * config.recipeCalculations.maxTickUsage / recipeLoadTasks.count()
                     val timeElapsed = System.nanoTime() - startTime
-                    if (timeElapsed >= NANOS_PER_TICK * config.recipeCalculations.maxTickUsage) {
+                    if (timeElapsed >= maxCalcTime) {
                         break
                     }
                 }
 
                 if (newRecipes.isNotEmpty()) {
-                    listener?.onNewRecipesLoaded(newRecipes)
+                    listener.onNewRecipesLoaded(newRecipes)
                 }
 
                 if (!recipeIterator.hasNext()) {
@@ -87,8 +84,8 @@ class CraftableRecipeFinder(
         }
     }
 
-    fun cancel() {
-        recipeLoadTask?.cancel()
+    fun cancel(player: FcPlayer) {
+        recipeLoadTasks.remove(player.uuid)?.cancel()
     }
 
     private fun prepareCraftableRecipes(
@@ -139,25 +136,5 @@ class CraftableRecipeFinder(
 
     interface Listener {
         fun onNewRecipesLoaded(newRecipes: List<FcCraftingRecipePrepared>) {}
-    }
-
-    @Singleton
-    class Factory @Inject constructor(
-        private val recipeProvider: FcRecipeProvider,
-        private val itemAmountsProvider: Provider<ItemAmounts>,
-        private val materialComparator: FcMaterialComparator,
-        private val taskFactory: FcTask.Factory,
-        private val config: FastCraftConfig,
-    ) {
-        fun create(player: FcPlayer): CraftableRecipeFinder {
-            return CraftableRecipeFinder(
-                player = player,
-                recipeProvider = recipeProvider,
-                itemAmountsProvider = itemAmountsProvider,
-                materialComparator = materialComparator,
-                taskFactory = taskFactory,
-                config = config,
-            )
-        }
     }
 }

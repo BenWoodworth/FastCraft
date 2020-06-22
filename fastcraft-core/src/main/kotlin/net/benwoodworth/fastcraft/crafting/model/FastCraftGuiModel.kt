@@ -11,17 +11,16 @@ import javax.inject.Singleton
 class FastCraftGuiModel(
     val player: FcPlayer,
     private val itemAmountsProvider: Provider<ItemAmounts>,
-    craftableRecipeFinderFactory: CraftableRecipeFinder.Factory,
+    private val craftableRecipeFinder: CraftableRecipeFinder,
     private val itemStackFactory: FcItemStack.Factory,
 ) {
     var craftAmount: Int? = null
     val recipes: MutableList<FastCraftRecipe?> = mutableListOf()
 
-    private val craftableRecipeFinder = craftableRecipeFinderFactory.create(player)
-        .apply { listener = CraftableRecipeFinderListener() }
-
     val inventoryItemAmounts: ItemAmounts = itemAmountsProvider.get()
     var listener: Listener? = null
+
+    private val craftableRecipeFinderListener = CraftableRecipeFinderListener()
 
     fun updateInventoryItemAmounts() {
         inventoryItemAmounts.clear()
@@ -40,9 +39,9 @@ class FastCraftGuiModel(
     fun refreshRecipes() {
         updateInventoryItemAmounts()
 
-        craftableRecipeFinder.cancel()
+        craftableRecipeFinder.cancel(player)
         recipes.clear()
-        craftableRecipeFinder.loadRecipes()
+        craftableRecipeFinder.loadRecipes(player, craftableRecipeFinderListener)
     }
 
     private inner class CraftableRecipeFinderListener : CraftableRecipeFinder.Listener {
@@ -136,14 +135,14 @@ class FastCraftGuiModel(
     @Singleton
     class Factory @Inject constructor(
         private val itemAmountsProvider: Provider<ItemAmounts>,
-        private val craftableRecipeFinderFactory: CraftableRecipeFinder.Factory,
+        private val craftableRecipeFinder: CraftableRecipeFinder,
         private val itemStackFactory: FcItemStack.Factory,
     ) {
         fun create(player: FcPlayer): FastCraftGuiModel {
             return FastCraftGuiModel(
                 player = player,
                 itemAmountsProvider = itemAmountsProvider,
-                craftableRecipeFinderFactory = craftableRecipeFinderFactory,
+                craftableRecipeFinder = craftableRecipeFinder,
                 itemStackFactory = itemStackFactory,
             )
         }
