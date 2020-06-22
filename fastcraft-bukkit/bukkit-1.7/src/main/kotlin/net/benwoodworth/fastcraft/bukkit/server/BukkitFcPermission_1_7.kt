@@ -21,6 +21,11 @@ class BukkitFcPermission_1_7(
                 .map { it.name to true }
                 .toMap()
 
+
+            if (pluginManager.getPermission(name) != null) {
+                pluginManager.removePermission(name)
+            }
+
             val permission = Permission(name, description, childrenMap)
             pluginManager.addPermission(permission)
 
