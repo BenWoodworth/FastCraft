@@ -96,10 +96,10 @@ class FastCraftConfig @Inject constructor(
                 private set
 
             fun load() {
-                node["row"].loadInt(::row, 0 until this@Layout.height)
-                node["column"].loadInt(::column, 0..8)
-                node["width"].loadInt(::width, 1..9 - column)
-                node["height"].loadInt(::height, 1..height - row)
+                node["row"].loadInt(::row, 0, this@Layout.height)
+                node["column"].loadInt(::column, 0, 8)
+                node["width"].loadInt(::width, 1, 9 - column)
+                node["height"].loadInt(::height, 1, height - row)
             }
         }
 
@@ -162,8 +162,8 @@ class FastCraftConfig @Inject constructor(
 
                 override fun load() {
                     super.load()
-                    node["row"].loadInt(::row, 0 until this@Layout.height)
-                    node["column"].loadInt(::column, 0..8)
+                    node["row"].loadInt(::row, 0,  this@Layout.height - 1)
+                    node["column"].loadInt(::column, 0, 8)
                 }
             }
 
@@ -206,7 +206,7 @@ class FastCraftConfig @Inject constructor(
         }
 
         fun load() {
-            node["height"].loadInt(::height, 1..6)
+            node["height"].loadInt(::height, 1, 6)
             recipes.load()
             buttons.load()
             background.load()
@@ -277,15 +277,17 @@ class FastCraftConfig @Inject constructor(
 
     private fun FcConfigNode.loadInt(
         property: KMutableProperty0<Int>,
-        range: IntRange = Int.MIN_VALUE..Int.MAX_VALUE,
+        min: Int = Int.MIN_VALUE,
+        max: Int = Int.MAX_VALUE,
+        default: Int = property.get(),
     ) {
-        when (val newRow = getInt()) {
-            null -> modify(property.get().coerceIn(range))
-            !in range -> {
-                property.set(range.first)
-                logErr("$newRow is not in $range. Defaulting to ${property.get()}.")
+        when (val newValue = getInt()) {
+            null -> modify(default.coerceIn(min, max))
+            !in min..max -> {
+                property.set(default)
+                logErr("$newValue is not in $min..$max. Defaulting to ${default}.")
             }
-            else -> property.set(newRow)
+            else -> property.set(newValue)
         }
     }
 
@@ -307,21 +309,23 @@ class FastCraftConfig @Inject constructor(
 
     private fun FcConfigNode.loadBoolean(
         property: KMutableProperty0<Boolean>,
+        default: Boolean = property.get(),
     ) {
-        when (val newEnable = getBoolean()) {
-            null -> property.set(modify(property.get()))
-            else -> property.set(newEnable)
+        when (val newValue = getBoolean()) {
+            null -> property.set(modify(default))
+            else -> property.set(newValue)
         }
     }
 
     private fun FcConfigNode.loadItem(
         itemProperty: KMutableProperty0<FcItemStack>,
         itemIdProperty: KMutableProperty0<String>,
+        default: String = itemIdProperty.get(),
     ) {
         when (val newItemId = getString()) {
-            null -> modify(itemIdProperty.get())
+            null -> modify(default)
             else -> when (val newItem = itemStackFactory.parseOrNull(newItemId)) {
-                null -> logErr("Invalid item id: $newItemId. Defaulting to ${itemIdProperty.get()}.")
+                null -> logErr("Invalid item id: $newItemId. Defaulting to $default.")
                 else -> {
                     itemIdProperty.set(newItemId)
                     itemProperty.set(newItem)
@@ -332,9 +336,10 @@ class FastCraftConfig @Inject constructor(
 
     private fun FcConfigNode.loadExprList(
         property: KMutableProperty0<List<Expr>>,
+        default: List<Expr> = property.get(),
     ) {
         when (val newDisableRecipes = getStringList()) {
-            null -> modify(property.get().map { it.expression })
+            null -> modify(default.map { it.expression })
             else -> {
                 val nonNulls = newDisableRecipes.filterNotNull()
                 if (nonNulls.size != newDisableRecipes.size) {
