@@ -39,7 +39,6 @@ class BukkitFastCraft : JavaPlugin() {
 
     private fun checkBukkitVersion() {
         val minSupported = BukkitVersion.parse("1.7.5")
-        val minUnsupported = BukkitVersion.parse("1.16")
 
         val versionStr = server.bukkitVersion
         val version = BukkitVersion.parseOrNull(versionStr)
@@ -47,9 +46,6 @@ class BukkitFastCraft : JavaPlugin() {
         when {
             version == null -> {
                 logger.log(Level.WARNING, "Bukkit API $versionStr could not be parsed, and may not be supported.")
-            }
-            version >= minUnsupported -> {
-                logger.log(Level.WARNING, "Bukkit API $versionStr may not be supported.")
             }
             version < minSupported -> {
                 logger.log(Level.SEVERE, "Not compatible with Bukkit API $versionStr.")
