@@ -21,10 +21,7 @@ open class BukkitFcItem_1_15(
     items = items,
 ) {
     override val craftingRemainingItem: FcItem?
-        get() = when (material) {
-            Material.HONEY_BOTTLE -> items.fromMaterial(Material.GLASS_BOTTLE)
-            else -> super.craftingRemainingItem
-        }
+        get() = material.craftingRemainingItem?.let { items.fromMaterial(it) }
 
     @Singleton
     class Factory @Inject constructor(
