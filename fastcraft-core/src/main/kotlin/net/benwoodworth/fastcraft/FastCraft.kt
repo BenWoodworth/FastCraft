@@ -2,8 +2,8 @@ package net.benwoodworth.fastcraft
 
 import net.benwoodworth.fastcraft.crafting.FastCraftGui
 import net.benwoodworth.fastcraft.data.PlayerSettings
+import net.benwoodworth.fastcraft.platform.player.FcOpenCraftingTableNaturallyEvent
 import net.benwoodworth.fastcraft.platform.player.FcPlayerEvents
-import net.benwoodworth.fastcraft.platform.player.FcPlayerOpenWorkbenchEvent
 import javax.inject.Inject
 
 class FastCraft @Inject internal constructor(
@@ -16,7 +16,7 @@ class FastCraft @Inject internal constructor(
 ) {
     init {
         Strings.load()
-        playerEventsListeners.onPlayerOpenWorkbench += ::onPlayerOpenWorkbench
+        playerEventsListeners.onOpenCraftingTableNaturally += ::onPlayerOpenWorkbench
         fastCraftCommand.register()
     }
 
@@ -28,17 +28,15 @@ class FastCraft @Inject internal constructor(
         config.load()
     }
 
-    private fun onPlayerOpenWorkbench(event: FcPlayerOpenWorkbenchEvent) {
-        if (!event.player.hasPermission(permissions.FASTCRAFT_USE) ||
-            !playerPrefs.getFastCraftEnabled(event.player)
+    private fun onPlayerOpenWorkbench(event: FcOpenCraftingTableNaturallyEvent) {
+        if (event.player.hasPermission(permissions.FASTCRAFT_USE) &&
+            playerPrefs.getFastCraftEnabled(event.player)
         ) {
-            return
+            event.cancel()
+
+            fastCraftGuiFactory
+                .createFastCraftGui(event.player)
+                .open()
         }
-
-        fastCraftGuiFactory
-            .createFastCraftGui(event.player)
-            .open()
-
-        event.cancel()
     }
 }

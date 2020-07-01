@@ -6,7 +6,7 @@ interface FcPlayerEvents {
     val onPlayerJoin: HandlerSet<FcPlayerJoinEvent>
 
     /**
-     * Late priority event for when a player opens a workbench block.
+     * Monitors when players interact with a crafting table block.
      */
-    val onPlayerOpenWorkbench: HandlerSet<FcPlayerOpenWorkbenchEvent>
+    val onOpenCraftingTableNaturally: HandlerSet<FcOpenCraftingTableNaturallyEvent>
 }
