@@ -8,11 +8,9 @@ import net.benwoodworth.fastcraft.platform.player.FcPlayerJoinEvent
 import org.bukkit.Material
 import org.bukkit.block.Block
 import org.bukkit.entity.Player
-import org.bukkit.event.Event
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
-import org.bukkit.event.block.Action
 import org.bukkit.event.inventory.InventoryOpenEvent
 import org.bukkit.event.inventory.InventoryType
 import org.bukkit.event.player.PlayerInteractEvent
@@ -53,12 +51,8 @@ open class BukkitFcPlayerEvents_1_7 @Inject constructor(
         }
 
         @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-        fun onCraftingTableInteract(event: PlayerInteractEvent) {
-            if (event.useInteractedBlock() != Event.Result.DENY &&
-                event.action == Action.RIGHT_CLICK_BLOCK &&
-                !event.player.isSneaking &&
-                event.clickedBlock?.isCraftingTable() == true
-            ) {
+        fun onPlayerInteract(event: PlayerInteractEvent) {
+            if (event.clickedBlock?.isCraftingTable() == true) {
                 causeTracker.trackCause(CraftingTableInteractCause(event.player))
             }
         }
