@@ -23,8 +23,8 @@ import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
 import net.benwoodworth.fastcraft.platform.text.FcTextConverter
 import net.benwoodworth.fastcraft.platform.world.FcItem
+import net.benwoodworth.fastcraft.platform.world.FcItemOrderComparator
 import net.benwoodworth.fastcraft.platform.world.FcItemStack
-import net.benwoodworth.fastcraft.platform.world.FcMaterialComparator
 import org.bukkit.Server
 import org.bukkit.inventory.ItemFactory
 import org.bukkit.plugin.Plugin
@@ -154,9 +154,9 @@ class BukkitFastCraftModule(
 
     @Provides
     fun provideFcMaterialComparator(
-        instance_1_13: Provider<BukkitFcMaterialComparator_1_13>,
-        instance_1_7: Provider<BukkitFcMaterialComparator_1_7>,
-    ): FcMaterialComparator {
+        instance_1_13: Provider<BukkitFcItemOrderComparator_1_13>,
+        instance_1_7: Provider<BukkitFcItemOrderComparator_1_7>,
+    ): FcItemOrderComparator {
         return when {
             bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
             bukkitVersion >= VERSION_1_7 -> instance_1_7.get()

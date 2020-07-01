@@ -7,8 +7,8 @@ import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 import net.benwoodworth.fastcraft.platform.recipe.FcRecipeProvider
 import net.benwoodworth.fastcraft.platform.server.FcTask
 import net.benwoodworth.fastcraft.platform.world.FcItem
+import net.benwoodworth.fastcraft.platform.world.FcItemOrderComparator
 import net.benwoodworth.fastcraft.platform.world.FcItemStack
-import net.benwoodworth.fastcraft.platform.world.FcMaterialComparator
 import net.benwoodworth.fastcraft.util.CancellableResult
 import net.benwoodworth.fastcraft.util.getPermutations
 import java.util.*
@@ -21,7 +21,7 @@ import kotlin.collections.HashMap
 class CraftableRecipeFinder @Inject constructor(
     private val recipeProvider: FcRecipeProvider,
     private val itemAmountsProvider: Provider<ItemAmounts>,
-    materialComparator: FcMaterialComparator,
+    materialComparator: FcItemOrderComparator,
     private val taskFactory: FcTask.Factory,
     private val config: FastCraftConfig,
 ) {

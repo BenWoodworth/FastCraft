@@ -8,9 +8,9 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class BukkitFcMaterialComparator_1_13 @Inject constructor(
+class BukkitFcItemOrderComparator_1_13 @Inject constructor(
     plugin: Plugin,
-) : BukkitFcMaterialComparator {
+) : BukkitFcItemOrderComparator {
     private val materialIndices: Map<Material, Int> = plugin
         .getResource("bukkit/material-order.txt")!!
         .reader()
@@ -27,7 +27,7 @@ class BukkitFcMaterialComparator_1_13 @Inject constructor(
         { it.id }
     )
 
-    override fun compare(type0: FcItem, type1: FcItem): Int {
-        return comparator.compare(type0, type1)
+    override fun compare(item0: FcItem, item1: FcItem): Int {
+        return comparator.compare(item0, item1)
     }
 }
