@@ -3,11 +3,9 @@ package net.benwoodworth.fastcraft.bukkit
 import dagger.Component
 import net.benwoodworth.fastcraft.FastCraft
 import net.benwoodworth.fastcraft.FastCraftFactory
-import net.benwoodworth.fastcraft.bukkit.tools.MaterialOrderGenerator
 import net.benwoodworth.fastcraft.bukkit.util.BukkitVersion
 import org.bstats.bukkit.MetricsLite
 import org.bukkit.plugin.java.JavaPlugin
-import java.io.File
 import java.util.logging.Level
 import javax.inject.Singleton
 
@@ -16,8 +14,6 @@ class BukkitFastCraft : JavaPlugin() {
     private var fastCraft: FastCraft? = null
 
     override fun onEnable() {
-        MaterialOrderGenerator.generate(File("/home/ben/IdeaProjects/Scratchwork/src/bukkit/material-order.txt"))
-
         checkBukkitVersion()
 
         val factory = DaggerBukkitFastCraft_Factory.builder()
