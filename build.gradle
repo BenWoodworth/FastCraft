@@ -47,7 +47,13 @@ allprojects {
         }
     }
 
-    compileKotlin.kotlinOptions.jvmTarget = java_version
+    compileKotlin {
+        kotlinOptions {
+            jvmTarget = java_version
+            freeCompilerArgs = ["-XXLanguage:+InlineClasses"]
+        }
+    }
+
     compileTestKotlin.kotlinOptions.jvmTarget = java_version
 
     kapt {

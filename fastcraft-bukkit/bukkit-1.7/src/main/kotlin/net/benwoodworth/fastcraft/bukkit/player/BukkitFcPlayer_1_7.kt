@@ -24,6 +24,7 @@ class BukkitFcPlayer_1_7(
     private val textConverter: FcTextConverter,
     private val server: Server,
     private val playerInventoryFactory: BukkitFcPlayerInventory_1_7.Factory,
+    private val tcSound: FcSound.TypeClass,
 ) : BukkitFcPlayer {
     override val username: String
         get() = player.name
@@ -85,7 +86,12 @@ class BukkitFcPlayer_1_7(
     }
 
     override fun playSound(sound: FcSound, volume: Double, pitch: Double) {
-        player.playSound(player.location, sound.sound, volume.toFloat(), pitch.toFloat())
+        player.playSound(
+            player.location,
+            tcSound.bukkit.run { sound.sound },
+            volume.toFloat(),
+            pitch.toFloat(),
+        )
     }
 
     override fun equals(other: Any?): Boolean {
@@ -101,6 +107,7 @@ class BukkitFcPlayer_1_7(
         private val server: Server,
         private val textConverter: FcTextConverter,
         private val playerInventoryFactory: BukkitFcPlayerInventory_1_7.Factory,
+        private val tcSound: FcSound.TypeClass,
     ) : BukkitFcPlayer.Provider {
         override fun getOnlinePlayers(): List<FcPlayer> {
             return server.onlinePlayers.map { player ->
@@ -120,6 +127,7 @@ class BukkitFcPlayer_1_7(
                 textConverter = textConverter,
                 server = server,
                 playerInventoryFactory = playerInventoryFactory,
+                tcSound = tcSound,
             )
         }
     }
