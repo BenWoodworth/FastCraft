@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
-import net.benwoodworth.fastcraft.bukkit.player.player
+import net.benwoodworth.fastcraft.bukkit.player.bukkit
 import net.benwoodworth.fastcraft.bukkit.world.create
 import net.benwoodworth.fastcraft.bukkit.world.material
 import net.benwoodworth.fastcraft.bukkit.world.toBukkitItemStack
@@ -24,6 +24,7 @@ open class BukkitFcCraftingRecipe_1_7(
     private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
     private val itemStackFactory: FcItemStack.Factory,
     private val inventoryViewFactory: CraftingInventoryViewFactory,
+    private val tcPlayer: FcPlayer.TypeClass,
 ) : BukkitFcCraftingRecipe {
     private companion object {
         private const val recipeIdAlphabet = "23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefhkmnorsuvwxz"
@@ -85,7 +86,7 @@ open class BukkitFcCraftingRecipe_1_7(
         ingredients: Map<FcIngredient, FcItemStack>,
     ): CancellableResult<FcCraftingRecipePrepared> {
         // TODO Inventory owner
-        val prepareView = inventoryViewFactory.create(player.player, null, recipe)
+        val prepareView = inventoryViewFactory.create(tcPlayer.bukkit.run { player.player }, null, recipe)
         val craftingGrid = prepareView.topInventory as CraftingInventory
 
         ingredients.forEach { (ingredient, itemStack) ->
@@ -115,7 +116,7 @@ open class BukkitFcCraftingRecipe_1_7(
 
         return CancellableResult(
             preparedRecipeFactory.create(
-                player.player,
+                tcPlayer.bukkit.run { player.player },
                 this,
                 ingredients,
                 ingredientRemnants,
@@ -174,6 +175,7 @@ open class BukkitFcCraftingRecipe_1_7(
         private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
         private val itemStackFactory: FcItemStack.Factory,
         private val inventoryViewFactory: CraftingInventoryViewFactory,
+        private val tcPlayer: FcPlayer.TypeClass,
     ) : BukkitFcCraftingRecipe.Factory {
         override fun create(recipe: Recipe): FcCraftingRecipe {
             return BukkitFcCraftingRecipe_1_7(
@@ -181,7 +183,8 @@ open class BukkitFcCraftingRecipe_1_7(
                 server = server,
                 preparedRecipeFactory = preparedRecipeFactory,
                 itemStackFactory = itemStackFactory,
-                inventoryViewFactory = inventoryViewFactory
+                inventoryViewFactory = inventoryViewFactory,
+                tcPlayer = tcPlayer,
             )
         }
     }

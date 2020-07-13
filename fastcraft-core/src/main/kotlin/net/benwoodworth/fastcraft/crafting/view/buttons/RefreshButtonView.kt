@@ -6,6 +6,7 @@ import net.benwoodworth.fastcraft.Strings
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcSound
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.world.FcItem
@@ -18,6 +19,7 @@ class RefreshButtonView(
     private val textFactory: FcText.Factory,
     private val sounds: FcSound.Factory,
     private val config: FastCraftConfig,
+    private val tcPlayer: FcPlayer.TypeClass,
 ) {
     var enabled: Boolean = true
 
@@ -76,7 +78,7 @@ class RefreshButtonView(
                 }
 
                 action?.let {
-                    gui.player.playSound(sounds.uiButtonClick, Config.buttonVolume)
+                    tcPlayer.run { gui.player.playSound(sounds.uiButtonClick, Config.buttonVolume) }
                     action()
                 }
             }
@@ -88,6 +90,7 @@ class RefreshButtonView(
         private val textFactory: FcText.Factory,
         private val sounds: FcSound.Factory,
         private val config: FastCraftConfig,
+        private val tcPlayer: FcPlayer.TypeClass,
     ) {
         fun create(button: FcGuiButton, locale: Locale): RefreshButtonView {
             return RefreshButtonView(
@@ -96,6 +99,7 @@ class RefreshButtonView(
                 textFactory = textFactory,
                 sounds = sounds,
                 config = config,
+                tcPlayer = tcPlayer,
             )
         }
     }

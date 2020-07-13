@@ -3,6 +3,7 @@ package net.benwoodworth.fastcraft
 import net.benwoodworth.fastcraft.crafting.FastCraftGui
 import net.benwoodworth.fastcraft.data.PlayerSettings
 import net.benwoodworth.fastcraft.platform.player.FcOpenCraftingTableNaturallyEvent
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcPlayerEvents
 import javax.inject.Inject
 
@@ -13,6 +14,7 @@ class FastCraft @Inject internal constructor(
     fastCraftCommand: FastCraftCommand,
     private val permissions: Permissions,
     private val config: FastCraftConfig,
+    private val tcPlayer: FcPlayer.TypeClass,
 ) {
     init {
         Strings.load()
@@ -29,7 +31,7 @@ class FastCraft @Inject internal constructor(
     }
 
     private fun onPlayerOpenWorkbench(event: FcOpenCraftingTableNaturallyEvent) {
-        if (event.player.hasPermission(permissions.FASTCRAFT_USE) &&
+        if (tcPlayer.run { event.player.hasPermission(permissions.FASTCRAFT_USE) } &&
             playerPrefs.getFastCraftEnabled(event.player)
         ) {
             event.cancel()

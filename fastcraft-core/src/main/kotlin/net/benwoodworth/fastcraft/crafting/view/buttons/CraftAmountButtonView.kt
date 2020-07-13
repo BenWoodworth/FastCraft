@@ -7,6 +7,7 @@ import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClickModifier
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcSound
 import net.benwoodworth.fastcraft.platform.text.FcText
 import java.util.*
@@ -18,6 +19,7 @@ class CraftAmountButtonView(
     private val textFactory: FcText.Factory,
     private val sounds: FcSound.Factory,
     config: FastCraftConfig,
+    private val tcPlayer: FcPlayer.TypeClass,
 ) {
     var craftAmount: Int? = null
 
@@ -89,7 +91,7 @@ class CraftAmountButtonView(
             }
 
             action?.let {
-                gui.player.playSound(sounds.uiButtonClick, Config.buttonVolume)
+                tcPlayer.run { gui.player.playSound(sounds.uiButtonClick, Config.buttonVolume) }
                 action()
             }
         }
@@ -99,6 +101,7 @@ class CraftAmountButtonView(
         private val textFactory: FcText.Factory,
         private val sounds: FcSound.Factory,
         private val config: FastCraftConfig,
+        private val tcPlayer: FcPlayer.TypeClass,
     ) {
         fun create(button: FcGuiButton, locale: Locale): CraftAmountButtonView {
             return CraftAmountButtonView(
@@ -107,6 +110,7 @@ class CraftAmountButtonView(
                 textFactory = textFactory,
                 sounds = sounds,
                 config = config,
+                tcPlayer = tcPlayer,
             )
         }
     }

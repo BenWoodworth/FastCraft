@@ -19,95 +19,88 @@ import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
-class BukkitFcPlayer_1_7(
-    override val player: Player,
-    private val textConverter: FcTextConverter,
-    private val server: Server,
-    private val playerInventoryFactory: BukkitFcPlayerInventory_1_7.Factory,
-    private val tcSound: FcSound.TypeClass,
-) : BukkitFcPlayer {
-    override val username: String
-        get() = player.name
+object BukkitFcPlayer_1_7 {
+    class TypeClass @Inject constructor(
+        private val textConverter: FcTextConverter,
+        private val server: Server,
+        private val playerInventoryFactory: BukkitFcPlayerInventory_1_7.Factory,
+        private val tcSound: FcSound.TypeClass,
+    ) : BukkitFcPlayer.TypeClass {
+        override val FcPlayer.player: Player
+            get() = value as Player
 
-    override var customName: String?
-        get() = player.customName
-        set(value) {
-            player.customName = value
-        }
+        override val FcPlayer.username: String
+            get() = player.name
 
-    override val uuid: UUID
-        get() = player.uniqueId
-
-    override val locale: Locale
-        get() = LocaleApi.getLocale(player) ?: Locale.ENGLISH // TODO Don't default to English
-
-    override val isOnline: Boolean
-        get() = player.isOnline
-
-    override val inventory: FcPlayerInventory
-        get() = playerInventoryFactory.create(player.inventory)
-
-    override fun sendMessage(message: FcText) {
-        message as BukkitFcText
-        when (message) {
-            is BukkitFcText.Legacy -> {
-                player.sendMessage(message.legacyText)
+        override var FcPlayer.customName: String?
+            get() = player.customName
+            set(value) {
+                player.customName = value
             }
-            is BukkitFcText.Component -> {
-                server.dispatchCommand(
-                    server.consoleSender,
-                    "tellraw $username ${textConverter.toRaw(message)}"
-                )
-            }
-        }
-    }
 
-    override fun hasPermission(permission: FcPermission): Boolean {
-        return player.hasPermission(permission.permission)
-    }
+        override val FcPlayer.uuid: UUID
+            get() = player.uniqueId
 
-    override fun giveItems(items: List<FcItemStack>, dropAll: Boolean) {
-        fun ItemStack.drop() {
-            player.world.dropItemNaturally(player.location, this)
-        }
+        override val FcPlayer.locale: Locale
+            get() = LocaleApi.getLocale(player) ?: Locale.ENGLISH // TODO Don't default to English
 
-        items.forEach { itemStack ->
-            if (dropAll) {
-                itemStack.toBukkitItemStack().drop()
-            } else {
-                val notAdded = player.inventory.addItem(itemStack.toBukkitItemStack()).values
-                notAdded.forEach { it.drop() }
+        override val FcPlayer.isOnline: Boolean
+            get() = player.isOnline
+
+        override val FcPlayer.inventory: FcPlayerInventory
+            get() = playerInventoryFactory.create(player.inventory)
+
+        override fun FcPlayer.sendMessage(message: FcText) {
+            message as BukkitFcText
+            when (message) {
+                is BukkitFcText.Legacy -> {
+                    player.sendMessage(message.legacyText)
+                }
+                is BukkitFcText.Component -> {
+                    server.dispatchCommand(
+                        server.consoleSender,
+                        "tellraw $username ${textConverter.toRaw(message)}"
+                    )
+                }
             }
         }
-    }
 
-    override fun openCraftingTable() {
-        player.openWorkbench(null, true)
-    }
+        override fun FcPlayer.hasPermission(permission: FcPermission): Boolean {
+            return player.hasPermission(permission.permission)
+        }
 
-    override fun playSound(sound: FcSound, volume: Double, pitch: Double) {
-        player.playSound(
-            player.location,
-            tcSound.bukkit.run { sound.sound },
-            volume.toFloat(),
-            pitch.toFloat(),
-        )
-    }
+        override fun FcPlayer.giveItems(items: List<FcItemStack>, dropAll: Boolean) {
+            fun ItemStack.drop() {
+                player.world.dropItemNaturally(player.location, this)
+            }
 
-    override fun equals(other: Any?): Boolean {
-        return other is FcPlayer && player == other.player
-    }
+            items.forEach { itemStack ->
+                if (dropAll) {
+                    itemStack.toBukkitItemStack().drop()
+                } else {
+                    val notAdded = player.inventory.addItem(itemStack.toBukkitItemStack()).values
+                    notAdded.forEach { it.drop() }
+                }
+            }
+        }
 
-    override fun hashCode(): Int {
-        return player.hashCode()
+        override fun FcPlayer.openCraftingTable() {
+            player.openWorkbench(null, true)
+        }
+
+        override fun FcPlayer.playSound(sound: FcSound, volume: Double, pitch: Double) {
+            player.playSound(
+                player.location,
+                tcSound.bukkit.run { sound.sound },
+                volume.toFloat(),
+                pitch.toFloat(),
+            )
+        }
     }
 
     @Singleton
     class Provider @Inject constructor(
         private val server: Server,
-        private val textConverter: FcTextConverter,
-        private val playerInventoryFactory: BukkitFcPlayerInventory_1_7.Factory,
-        private val tcSound: FcSound.TypeClass,
     ) : BukkitFcPlayer.Provider {
         override fun getOnlinePlayers(): List<FcPlayer> {
             return server.onlinePlayers.map { player ->
@@ -122,13 +115,7 @@ class BukkitFcPlayer_1_7(
         }
 
         override fun getPlayer(player: Player): FcPlayer {
-            return BukkitFcPlayer_1_7(
-                player = player,
-                textConverter = textConverter,
-                server = server,
-                playerInventoryFactory = playerInventoryFactory,
-                tcSound = tcSound,
-            )
+            return FcPlayer(player)
         }
     }
 }

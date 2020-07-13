@@ -6,6 +6,7 @@ import net.benwoodworth.fastcraft.Strings
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcSound
 import net.benwoodworth.fastcraft.platform.text.FcText
 import java.util.*
@@ -17,6 +18,7 @@ class WorkbenchButtonView(
     private val textFactory: FcText.Factory,
     private val sounds: FcSound.Factory,
     config: FastCraftConfig,
+    private val tcPlayer: FcPlayer.TypeClass,
 ) {
     var listener: Listener = Listener.Default
 
@@ -67,7 +69,7 @@ class WorkbenchButtonView(
             }
 
             action?.let {
-                gui.player.playSound(sounds.uiButtonClick, Config.buttonVolume)
+                tcPlayer.run { gui.player.playSound(sounds.uiButtonClick, Config.buttonVolume) }
                 action()
             }
         }
@@ -77,6 +79,7 @@ class WorkbenchButtonView(
         private val textFactory: FcText.Factory,
         private val sounds: FcSound.Factory,
         private val config: FastCraftConfig,
+        private val tcPlayer: FcPlayer.TypeClass,
     ) {
         fun create(button: FcGuiButton, locale: Locale): WorkbenchButtonView {
             return WorkbenchButtonView(
@@ -85,6 +88,7 @@ class WorkbenchButtonView(
                 textFactory = textFactory,
                 sounds = sounds,
                 config = config,
+                tcPlayer = tcPlayer,
             )
         }
     }

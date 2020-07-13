@@ -1,5 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcIngredient
 import net.benwoodworth.fastcraft.platform.world.FcItemStack
@@ -16,12 +17,14 @@ open class BukkitFcCraftingRecipe_1_13(
     preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
     itemStackFactory: FcItemStack.Factory,
     inventoryViewFactory: CraftingInventoryViewFactory,
+    tcPlayer: FcPlayer.TypeClass,
 ) : BukkitFcCraftingRecipe_1_12(
     recipe = recipe,
     server = server,
     preparedRecipeFactory = preparedRecipeFactory,
     itemStackFactory = itemStackFactory,
-    inventoryViewFactory = inventoryViewFactory
+    inventoryViewFactory = inventoryViewFactory,
+    tcPlayer = tcPlayer,
 ) {
     override val group: String?
         get() = when (recipe) {
@@ -59,6 +62,7 @@ open class BukkitFcCraftingRecipe_1_13(
         private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
         private val itemStackFactory: FcItemStack.Factory,
         private val inventoryViewFactory: CraftingInventoryViewFactory,
+        private val tcPlayer: FcPlayer.TypeClass,
     ) : BukkitFcCraftingRecipe.Factory {
         override fun create(recipe: Recipe): FcCraftingRecipe {
             return BukkitFcCraftingRecipe_1_13(
@@ -66,7 +70,8 @@ open class BukkitFcCraftingRecipe_1_13(
                 server = server,
                 preparedRecipeFactory = preparedRecipeFactory,
                 itemStackFactory = itemStackFactory,
-                inventoryViewFactory = inventoryViewFactory
+                inventoryViewFactory = inventoryViewFactory,
+                tcPlayer = tcPlayer,
             )
         }
     }

@@ -13,6 +13,7 @@ class FastCraftGuiModel(
     private val itemAmountsProvider: Provider<ItemAmounts>,
     private val craftableRecipeFinder: CraftableRecipeFinder,
     private val itemStackFactory: FcItemStack.Factory,
+    private val tcPlayer: FcPlayer.TypeClass,
 ) {
     var craftAmount: Int? = null
     val recipes: MutableList<FastCraftRecipe?> = mutableListOf()
@@ -25,7 +26,7 @@ class FastCraftGuiModel(
     fun updateInventoryItemAmounts() {
         inventoryItemAmounts.clear()
 
-        player.inventory.storage.forEach { slot ->
+        tcPlayer.run { player.inventory }.storage.forEach { slot ->
             slot.itemStack?.let { itemStack -> inventoryItemAmounts += itemStack }
         }
     }
@@ -75,7 +76,7 @@ class FastCraftGuiModel(
         removeItems(recipe.preparedRecipe.ingredients.values, recipe.multiplier)
 
         repeat(recipe.multiplier) {
-            player.giveItems(craftedItems, dropItems)
+            tcPlayer.run { player.giveItems(craftedItems, dropItems) }
         }
 
         val updatedRecipe = recipe.preparedRecipe.recipe.prepare(player, recipe.preparedRecipe.ingredients)
@@ -97,7 +98,7 @@ class FastCraftGuiModel(
             return
         }
 
-        val removeFromSlots = player.inventory.storage.asSequence()
+        val removeFromSlots = tcPlayer.run { player.inventory }.storage.asSequence()
             .filter { it.itemStack != null && it.itemStack!!.amount > 0 }
             .sortedBy { it.itemStack!!.amount }
 
@@ -125,7 +126,7 @@ class FastCraftGuiModel(
     }
 
     fun openCraftingTable() {
-        player.openCraftingTable()
+        tcPlayer.run { player.openCraftingTable() }
     }
 
     interface Listener {
@@ -137,6 +138,7 @@ class FastCraftGuiModel(
         private val itemAmountsProvider: Provider<ItemAmounts>,
         private val craftableRecipeFinder: CraftableRecipeFinder,
         private val itemStackFactory: FcItemStack.Factory,
+        private val tcPlayer: FcPlayer.TypeClass,
     ) {
         fun create(player: FcPlayer): FastCraftGuiModel {
             return FastCraftGuiModel(
@@ -144,6 +146,7 @@ class FastCraftGuiModel(
                 itemAmountsProvider = itemAmountsProvider,
                 craftableRecipeFinder = craftableRecipeFinder,
                 itemStackFactory = itemStackFactory,
+                tcPlayer = tcPlayer,
             )
         }
     }

@@ -12,6 +12,7 @@ import kotlin.experimental.or
 
 class PlayerSettings @Inject constructor(
     pluginData: FcPluginData,
+    private val tcPlayer: FcPlayer.TypeClass,
 ) : Closeable {
     private companion object {
         val ROW_LEN = 17
@@ -63,14 +64,15 @@ class PlayerSettings @Inject constructor(
     }
 
     private fun getPlayerRow(player: FcPlayer): Long {
-        playerRows[player.uuid]?.let { row -> return row }
+        val uuid = tcPlayer.run { player.uuid }
+        playerRows[uuid]?.let { row -> return row }
 
-        val playerUuid = player.uuid.toByteArray()
+        val playerUuid = uuid.toByteArray()
         val rowUuid = ByteArray(ROW_UUID_LEN)
         for (row in 0L until file.rowCount) {
             file.readRow(row, rowUuid, ROW_UUID_LOC)
             if (playerUuid.contentEquals(rowUuid)) {
-                playerRows[player.uuid] = row
+                playerRows[uuid] = row
                 return row
             }
         }
@@ -78,7 +80,7 @@ class PlayerSettings @Inject constructor(
         file.addRows(1L)
         val row = file.rowCount - 1
         file.writeRow(row, playerUuid, ROW_UUID_LOC)
-        playerRows[player.uuid] = row
+        playerRows[uuid] = row
         return row
     }
 

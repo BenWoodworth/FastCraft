@@ -331,4 +331,11 @@ class BukkitFastCraftModule(
     ): FcSound.TypeClass {
         return instance_1_7.get()
     }
+
+    @Provides
+    fun provideFcPlayerTypeClass(
+        instance_1_7: Provider<BukkitFcPlayer_1_7.TypeClass>,
+    ): FcPlayer.TypeClass {
+        return instance_1_7.get()
+    }
 }
