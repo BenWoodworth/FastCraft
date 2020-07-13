@@ -10,6 +10,7 @@ import javax.inject.Singleton
 @Singleton
 class BukkitFcItemOrderComparator_1_13 @Inject constructor(
     plugin: Plugin,
+    tcItem: FcItem.TypeClass,
 ) : BukkitFcItemOrderComparator {
     private val materialIndices: Map<Material, Int> = plugin
         .getResource("bukkit/material-order.txt")!!
@@ -22,10 +23,12 @@ class BukkitFcItemOrderComparator_1_13 @Inject constructor(
                 .toMap()
         }
 
-    private val comparator = compareBy<FcItem>(
-        { materialIndices[it.material] ?: Int.MAX_VALUE },
-        { it.id }
-    )
+    private val comparator = tcItem.bukkit.run {
+        compareBy<FcItem>(
+            { materialIndices[it.material] ?: Int.MAX_VALUE },
+            { it.id }
+        )
+    }
 
     override fun compare(item0: FcItem, item1: FcItem): Int {
         return comparator.compare(item0, item1)

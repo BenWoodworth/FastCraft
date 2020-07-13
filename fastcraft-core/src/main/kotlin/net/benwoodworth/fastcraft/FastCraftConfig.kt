@@ -19,6 +19,7 @@ class FastCraftConfig @Inject constructor(
     private val items: FcItem.Factory,
     private val itemStackFactory: FcItemStack.Factory,
     private val logger: FcLogger,
+    private val tcItem: FcItem.TypeClass,
 ) {
     private var config: FcConfig = configFactory.create()
     private var modified: Boolean = false
@@ -162,7 +163,7 @@ class FastCraftConfig @Inject constructor(
 
                 override fun load() {
                     super.load()
-                    node["row"].loadInt(::row, 0,  this@Layout.height - 1)
+                    node["row"].loadInt(::row, 0, this@Layout.height - 1)
                     node["column"].loadInt(::column, 0, 8)
                 }
             }
@@ -197,7 +198,7 @@ class FastCraftConfig @Inject constructor(
             var item: FcItemStack = item
                 private set
 
-            private var itemId: String = item.type.id
+            private var itemId: String = tcItem.run { item.type.id }
 
             open fun load() {
                 node["enable"].loadBoolean(::enable)

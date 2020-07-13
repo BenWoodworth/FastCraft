@@ -5,94 +5,79 @@ import net.benwoodworth.fastcraft.bukkit.text.createTranslate
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.world.FcItem
 import org.bukkit.Material
-import org.bukkit.Server
 import org.bukkit.inventory.ItemStack
+import org.bukkit.material.MaterialData
 import java.util.*
 import javax.inject.Inject
-import javax.inject.Provider
 import javax.inject.Singleton
 
-open class BukkitFcItem_1_13(
-    override val material: Material,
-    private val textFactory: FcText.Factory,
-    private val localizer: BukkitLocalizer,
-    protected val items: FcItem.Factory,
-) : BukkitFcItem {
-    override val id: String
-        get() = material.key.toString()
+open class BukkitFcItem_1_13 {
+    class TypeClass @Inject constructor(
+        private val tc: BukkitFcItem_1_7.TypeClass,
+        private val textFactory: FcText.Factory,
+        private val localizer: BukkitLocalizer,
+        private val items: FcItem.Factory,
+    ) : BukkitFcItem.TypeClass by tc {
+        override val FcItem.id: String
+            get() = (material as Material).key.toString()
 
-    override val materialData: Nothing?
-        get() = null
+        override val FcItem.material: Material
+            get() = value as Material
 
-    private fun Material.getNameLocaleKey(prefix: String): String {
-        return "$prefix.${key.namespace}.${key.key}"
-    }
+        @Suppress("DEPRECATION")
+        override val FcItem.materialData: MaterialData
+            get() = error("MaterialData not supported")
 
-    override val name: FcText
-        get() {
-            var localeKey = material.getNameLocaleKey("item")
+        private fun Material.getNameLocaleKey(prefix: String): String {
+            return "$prefix.${key.namespace}.${key.key}"
+        }
 
-            if (localizer.localize(localeKey, Locale.ENGLISH) == null) {
-                val blockKey = material.getNameLocaleKey("block")
-                if (localizer.localize(blockKey, Locale.ENGLISH) != null) {
-                    localeKey = blockKey
+        override val FcItem.name: FcText
+            get() {
+                var localeKey = material.getNameLocaleKey("item")
+
+                if (localizer.localize(localeKey, Locale.ENGLISH) == null) {
+                    val blockKey = material.getNameLocaleKey("block")
+                    if (localizer.localize(blockKey, Locale.ENGLISH) != null) {
+                        localeKey = blockKey
+                    }
                 }
+
+                return textFactory.createTranslate(localeKey)
             }
 
-            return textFactory.createTranslate(localeKey)
+        override val FcItem.maxAmount: Int
+            get() = material.maxStackSize
+
+        override val FcItem.craftingRemainingItem: FcItem?
+            get() = when (material) {
+                Material.LAVA_BUCKET,
+                Material.MILK_BUCKET,
+                Material.WATER_BUCKET,
+                -> items.fromMaterial(Material.BUCKET)
+
+                Material.DRAGON_BREATH,
+                -> items.fromMaterial(Material.GLASS_BOTTLE)
+
+                else -> null
+            }
+
+        override fun FcItem.toItemStack(amount: Int): ItemStack {
+            return ItemStack(material, amount)
         }
-
-    override val maxAmount: Int
-        get() = material.maxStackSize
-
-    override val craftingRemainingItem: FcItem?
-        get() = when (material) {
-            Material.LAVA_BUCKET,
-            Material.MILK_BUCKET,
-            Material.WATER_BUCKET,
-            -> items.fromMaterial(Material.BUCKET)
-
-            Material.DRAGON_BREATH,
-            -> items.fromMaterial(Material.GLASS_BOTTLE)
-
-            else -> null
-        }
-
-    override fun toItemStack(amount: Int): ItemStack {
-        return ItemStack(material, amount)
-    }
-
-    override fun equals(other: Any?): Boolean {
-        return other is FcItem &&
-                material == other.material &&
-                materialData == other.materialData
-    }
-
-    override fun hashCode(): Int {
-        return material.hashCode()
     }
 
     @Singleton
     open class Factory @Inject constructor(
-        textFactory: FcText.Factory,
-        items: Provider<FcItem.Factory>,
-        protected val localizer: BukkitLocalizer,
-        server: Server,
-        legacyMaterialInfo: LegacyMaterialInfo_1_7,
-    ) : BukkitFcItem_1_9.Factory(
-        textFactory = textFactory,
-        items = items,
-        server = server,
-        legacyMaterialInfo = legacyMaterialInfo,
-    ) {
-        override val craftingTable: FcItem by lazy { fromMaterial(Material.CRAFTING_TABLE) }
-        override val lightGrayStainedGlassPane by lazy { fromMaterial(Material.LIGHT_GRAY_STAINED_GLASS_PANE) }
+        private val factory: BukkitFcItem_1_7.Factory,
+    ) : BukkitFcItem.Factory by factory {
+        override val craftingTable: FcItem
+            get() = fromMaterial(Material.CRAFTING_TABLE)
 
-        override fun fromMaterial(material: Material): FcItem {
-            return BukkitFcItem_1_13(material, textFactory, localizer, items.get())
-        }
+        override val lightGrayStainedGlassPane: FcItem
+            get() = fromMaterial(Material.LIGHT_GRAY_STAINED_GLASS_PANE)
 
-        override fun fromMaterialData(materialData: Any): FcItem {
+        override fun fromMaterialData(materialData: MaterialData): FcItem {
             error("MaterialData is not supported")
         }
 

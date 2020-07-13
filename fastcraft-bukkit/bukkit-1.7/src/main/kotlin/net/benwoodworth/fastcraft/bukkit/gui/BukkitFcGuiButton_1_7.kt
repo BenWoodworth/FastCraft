@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
 import net.benwoodworth.fastcraft.bukkit.util.updateMeta
-import net.benwoodworth.fastcraft.bukkit.world.material
+import net.benwoodworth.fastcraft.bukkit.world.bukkit
 import net.benwoodworth.fastcraft.bukkit.world.toBukkitItemStack
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.text.FcText
@@ -23,6 +23,7 @@ open class BukkitFcGuiButton_1_7(
     locale: Locale,
     private val textFactory: FcText.Factory,
     private val textConverter: FcTextConverter,
+    private val tcItem: FcItem.TypeClass,
 ) : BukkitFcGuiButton {
 
     protected var hideItemDetails: Boolean = false
@@ -39,7 +40,7 @@ open class BukkitFcGuiButton_1_7(
     override var listener: FcGuiButton.Listener = FcGuiButton.Listener.Default
 
     override fun setItem(item: FcItem) {
-        itemStack.type = item.material
+        itemStack.type = tcItem.bukkit.run { item.material }
 
         updateDisplayName()
         updateLore()
@@ -146,6 +147,7 @@ open class BukkitFcGuiButton_1_7(
     class Factory @Inject constructor(
         private val textFactory: FcText.Factory,
         private val textConverter: FcTextConverter,
+        private val tcItem: FcItem.TypeClass,
     ) : BukkitFcGuiButton.Factory {
         override fun create(inventory: Inventory, slotIndex: Int, locale: Locale): FcGuiButton {
             return BukkitFcGuiButton_1_7(
@@ -153,7 +155,8 @@ open class BukkitFcGuiButton_1_7(
                 slotIndex = slotIndex,
                 locale = locale,
                 textFactory = textFactory,
-                textConverter = textConverter
+                textConverter = textConverter,
+                tcItem = tcItem,
             )
         }
     }

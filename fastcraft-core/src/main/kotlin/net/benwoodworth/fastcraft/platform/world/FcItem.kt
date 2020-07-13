@@ -2,15 +2,13 @@ package net.benwoodworth.fastcraft.platform.world
 
 import net.benwoodworth.fastcraft.platform.text.FcText
 
-interface FcItem {
-    val id: String
-    val name: FcText
-    val maxAmount: Int
-    val craftingRemainingItem: FcItem?
-
-    override fun equals(other: Any?): Boolean
-
-    override fun hashCode(): Int
+class FcItem(val value: Any) { // TODO inline (causes bug in Kotlin 1.4-M3)
+    interface TypeClass {
+        val FcItem.id: String
+        val FcItem.name: FcText
+        val FcItem.maxAmount: Int
+        val FcItem.craftingRemainingItem: FcItem?
+    }
 
     interface Factory {
         val air: FcItem

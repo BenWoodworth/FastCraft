@@ -12,6 +12,7 @@ open class BukkitFcItemStack_1_7(
     override val bukkitItemStack: ItemStack,
     protected val items: FcItem.Factory,
     protected val textFactory: FcText.Factory,
+    private val tcItem: FcItem.TypeClass,
 ) : BukkitFcItemStack {
     override val type: FcItem
         get() = items.fromMaterialData(bukkitItemStack.data)
@@ -26,7 +27,7 @@ open class BukkitFcItemStack_1_7(
             ?.takeIf { it.hasDisplayName() }
             ?.displayName
             ?.let { textFactory.create(it) }
-            ?: type.name
+            ?: tcItem.run { type.name }
 
     override val lore: List<FcText>
         get() = bukkitItemStack
@@ -57,9 +58,10 @@ open class BukkitFcItemStack_1_7(
         protected val items: FcItem.Factory,
         protected val textFactory: FcText.Factory,
         protected val server: Server,
+        private val tcItem: FcItem.TypeClass,
     ) : BukkitFcItemStack.Factory {
         override fun create(item: FcItem, amount: Int): FcItemStack {
-            return create(item.toItemStack(amount))
+            return tcItem.bukkit.run { create(item.toItemStack(amount)) }
         }
 
         override fun copyItem(itemStack: FcItemStack, amount: Int): FcItemStack {
@@ -98,7 +100,7 @@ open class BukkitFcItemStack_1_7(
             }
 
             val item = items.parseOrNull(materialId) ?: return null
-            val itemStack = item.toItemStack(amount)
+            val itemStack = tcItem.bukkit.run { item.toItemStack(amount) }
 
             if (data != null) {
                 @Suppress("DEPRECATION")
@@ -112,7 +114,8 @@ open class BukkitFcItemStack_1_7(
             return BukkitFcItemStack_1_7(
                 bukkitItemStack = itemStack,
                 items = items,
-                textFactory = textFactory
+                textFactory = textFactory,
+                tcItem = tcItem,
             )
         }
     }

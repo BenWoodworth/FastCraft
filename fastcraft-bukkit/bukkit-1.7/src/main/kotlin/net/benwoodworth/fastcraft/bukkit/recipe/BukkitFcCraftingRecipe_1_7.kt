@@ -1,13 +1,14 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
 import net.benwoodworth.fastcraft.bukkit.player.bukkit
+import net.benwoodworth.fastcraft.bukkit.world.bukkit
 import net.benwoodworth.fastcraft.bukkit.world.create
-import net.benwoodworth.fastcraft.bukkit.world.material
 import net.benwoodworth.fastcraft.bukkit.world.toBukkitItemStack
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 import net.benwoodworth.fastcraft.platform.recipe.FcIngredient
+import net.benwoodworth.fastcraft.platform.world.FcItem
 import net.benwoodworth.fastcraft.platform.world.FcItemStack
 import net.benwoodworth.fastcraft.util.CancellableResult
 import org.bukkit.Material
@@ -25,6 +26,7 @@ open class BukkitFcCraftingRecipe_1_7(
     private val itemStackFactory: FcItemStack.Factory,
     private val inventoryViewFactory: CraftingInventoryViewFactory,
     private val tcPlayer: FcPlayer.TypeClass,
+    private val tcItem: FcItem.TypeClass,
 ) : BukkitFcCraftingRecipe {
     private companion object {
         private const val recipeIdAlphabet = "23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefhkmnorsuvwxz"
@@ -108,8 +110,10 @@ open class BukkitFcCraftingRecipe_1_7(
 
         val ingredientRemnants = ingredients.values
             .mapNotNull { ingredient ->
-                ingredient.type.craftingRemainingItem
-                    ?.let { itemStackFactory.create(ItemStack(it.material, ingredient.amount)) }
+                tcItem.bukkit.run {
+                    ingredient.type.craftingRemainingItem
+                        ?.let { itemStackFactory.create(ItemStack(it.material, ingredient.amount)) }
+                }
             }
 
         val resultsPreview = listOf(itemStackFactory.create(resultItem)) + ingredientRemnants
@@ -176,6 +180,7 @@ open class BukkitFcCraftingRecipe_1_7(
         private val itemStackFactory: FcItemStack.Factory,
         private val inventoryViewFactory: CraftingInventoryViewFactory,
         private val tcPlayer: FcPlayer.TypeClass,
+        private val tcItem: FcItem.TypeClass,
     ) : BukkitFcCraftingRecipe.Factory {
         override fun create(recipe: Recipe): FcCraftingRecipe {
             return BukkitFcCraftingRecipe_1_7(
@@ -185,6 +190,7 @@ open class BukkitFcCraftingRecipe_1_7(
                 itemStackFactory = itemStackFactory,
                 inventoryViewFactory = inventoryViewFactory,
                 tcPlayer = tcPlayer,
+                tcItem = tcItem,
             )
         }
     }
