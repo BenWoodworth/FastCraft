@@ -2,7 +2,7 @@ package net.benwoodworth.fastcraft.platform.world
 
 import net.benwoodworth.fastcraft.platform.text.FcText
 
-class FcItem(val value: Any) { // TODO inline (causes bug in Kotlin 1.4-M3)
+inline class FcItem(val value: Any) { // TODO inline (causes bug in Kotlin 1.4-M3)
     interface TypeClass {
         val FcItem.id: String
         val FcItem.name: FcText

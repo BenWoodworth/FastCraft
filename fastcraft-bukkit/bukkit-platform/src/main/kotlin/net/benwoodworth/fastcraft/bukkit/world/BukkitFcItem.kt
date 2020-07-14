@@ -8,7 +8,7 @@ import org.bukkit.material.MaterialData
 object BukkitFcItem {
     interface TypeClass : FcItem.TypeClass {
         val FcItem.material: Material
-        val FcItem.materialData: MaterialData?
+        val FcItem.materialData: MaterialData
 
         fun FcItem.toItemStack(amount: Int = 1): ItemStack
     }
@@ -27,6 +27,6 @@ fun FcItem.Factory.fromMaterial(material: Material): FcItem {
     return (this as BukkitFcItem.Factory).fromMaterial(material)
 }
 
-fun FcItem.Factory.fromMaterialData(materialData: Any): FcItem {
+fun FcItem.Factory.fromMaterialData(materialData: MaterialData): FcItem {
     return (this as BukkitFcItem.Factory).fromMaterialData(materialData)
 }

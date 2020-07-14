@@ -11,6 +11,7 @@ import javax.inject.Singleton
 
 
 object BukkitFcItem_1_7 {
+    @Singleton
     class TypeClass @Inject constructor(
         private val items: FcItem.Factory,
         private val legacyMaterialInfo: LegacyMaterialInfo_1_7,
@@ -75,10 +76,9 @@ object BukkitFcItem_1_7 {
         override val netherStar: FcItem
             get() = fromMaterial(Material.NETHER_STAR)
 
-        override val lightGrayStainedGlassPane: FcItem by lazy {
-            @Suppress("DEPRECATION")
-            fromMaterialData(MaterialData(Material.STAINED_GLASS_PANE, 8))
-        }
+        @Suppress("DEPRECATION")
+        override val lightGrayStainedGlassPane: FcItem
+            get() = fromMaterialData(MaterialData(Material.STAINED_GLASS_PANE, 8))
 
         override fun fromMaterial(material: Material): FcItem {
             return FcItem(material)

@@ -6,6 +6,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 object BukkitFcSound_1_7 {
+    @Singleton
     class TypeClass @Inject constructor(
     ) : BukkitFcSound.TypeClass {
         override val FcSound.sound: Sound

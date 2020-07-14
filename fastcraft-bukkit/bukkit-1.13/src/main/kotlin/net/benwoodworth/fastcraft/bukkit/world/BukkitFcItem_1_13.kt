@@ -11,7 +11,8 @@ import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
-open class BukkitFcItem_1_13 {
+object BukkitFcItem_1_13 {
+    @Singleton
     class TypeClass @Inject constructor(
         private val tc: BukkitFcItem_1_7.TypeClass,
         private val textFactory: FcText.Factory,
@@ -77,6 +78,7 @@ open class BukkitFcItem_1_13 {
         override val lightGrayStainedGlassPane: FcItem
             get() = fromMaterial(Material.LIGHT_GRAY_STAINED_GLASS_PANE)
 
+        @Suppress("DEPRECATION")
         override fun fromMaterialData(materialData: MaterialData): FcItem {
             error("MaterialData is not supported")
         }

@@ -20,6 +20,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 object BukkitFcPlayer_1_7 {
+    @Singleton
     class TypeClass @Inject constructor(
         private val textConverter: FcTextConverter,
         private val server: Server,
