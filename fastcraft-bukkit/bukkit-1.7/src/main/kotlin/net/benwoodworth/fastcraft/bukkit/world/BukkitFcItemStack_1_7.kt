@@ -3,6 +3,7 @@ package net.benwoodworth.fastcraft.bukkit.world
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.world.FcItem
 import net.benwoodworth.fastcraft.platform.world.FcItemStack
+import org.bukkit.Material
 import org.bukkit.Server
 import org.bukkit.inventory.ItemStack
 import javax.inject.Inject
@@ -63,23 +64,14 @@ open class BukkitFcItemStack_1_7(
         }
 
         override fun copyItem(itemStack: FcItemStack, amount: Int): FcItemStack {
-            try {
-                if (amount == itemStack.amount) {
-                    return itemStack
-                }
-
-                val bukkitItemStack = itemStack.toBukkitItemStack()
-                bukkitItemStack.amount = amount
-
-                return create(bukkitItemStack)
-            } catch (e: AssertionError) {
-                System.err.println("""
-                    Share this with Kepler:
-                    - itemStack = ${itemStack.bukkitItemStack}
-                    - amount = $amount
-                """.trimIndent())
-                throw e
+            if (amount == itemStack.amount || itemStack.bukkitItemStack.type == Material.AIR) {
+                return itemStack
             }
+
+            val bukkitItemStack = itemStack.toBukkitItemStack()
+            bukkitItemStack.amount = amount
+
+            return create(bukkitItemStack)
         }
 
         override fun parseOrNull(itemStr: String, amount: Int): FcItemStack? {
