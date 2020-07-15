@@ -311,7 +311,6 @@ class FastCraftCommand @Inject constructor(
         }
     }
 
-
     fun fcReload(source: FcCommandSource) {
         if (!source.hasPermission(permissions.FASTCRAFT_ADMIN_COMMAND_RELOAD)) {
             source.sendMissingPermissionMessage(permissions.FASTCRAFT_ADMIN_COMMAND_RELOAD)

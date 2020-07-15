@@ -201,7 +201,6 @@ class BukkitFastCraftModule(
         }
     }
 
-
     @Provides
     fun provideFcCraftingRecipeFactory(
         instance_1_15: Provider<BukkitFcCraftingRecipe_1_15.Factory>,

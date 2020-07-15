@@ -5,7 +5,6 @@ import org.bukkit.Material
 import javax.inject.Inject
 import javax.inject.Singleton
 
-
 object BukkitFcItem_1_9  {
     @Singleton
     class TypeClass @Inject constructor(

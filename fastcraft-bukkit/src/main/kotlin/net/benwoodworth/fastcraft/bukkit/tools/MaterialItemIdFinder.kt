@@ -60,7 +60,6 @@ internal object MaterialItemIdFinder {
                 .invoke(item, itemStack.itemStack) as String
     }
 
-
     private data class RegistryMaterials(val registry: Any) {
         companion object : ClassCompanion("$nms.RegistryMaterials")
 

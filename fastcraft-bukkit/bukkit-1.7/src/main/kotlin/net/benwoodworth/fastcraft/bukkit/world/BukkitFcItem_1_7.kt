@@ -9,12 +9,11 @@ import org.bukkit.material.MaterialData
 import javax.inject.Inject
 import javax.inject.Singleton
 
-
 object BukkitFcItem_1_7 {
     @Singleton
-    class TypeClass @Inject constructor(
+    open class TypeClass @Inject constructor(
         private val items: FcItem.Factory,
-        private val legacyMaterialInfo: LegacyMaterialInfo_1_7,
+        private val legacyMaterialInfo: LegacyMaterialInfo,
     ) : BukkitFcItem.TypeClass {
         @Suppress("DEPRECATION")
         override val FcItem.id: String

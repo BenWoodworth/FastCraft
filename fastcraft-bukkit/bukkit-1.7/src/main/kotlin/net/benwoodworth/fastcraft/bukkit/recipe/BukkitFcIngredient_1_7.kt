@@ -6,7 +6,6 @@ import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import java.util.*
 
-
 class BukkitFcIngredient_1_7(
     override val slotIndex: Int,
     private val ingredientItem: ItemStack,
