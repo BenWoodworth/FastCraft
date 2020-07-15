@@ -11,7 +11,7 @@ import javax.inject.Singleton
 
 object BukkitFcItem_1_7 {
     @Singleton
-    open class TypeClass @Inject constructor(
+    class TypeClass @Inject constructor(
         private val items: FcItem.Factory,
         private val legacyMaterialInfo: LegacyMaterialInfo,
     ) : BukkitFcItem.TypeClass {
