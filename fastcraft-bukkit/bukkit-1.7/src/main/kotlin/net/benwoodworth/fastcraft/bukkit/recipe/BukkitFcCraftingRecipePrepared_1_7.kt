@@ -101,7 +101,10 @@ open class BukkitFcCraftingRecipePrepared_1_7(
     }
 
     protected open fun incrementCraftStats(result: ItemStack) {
-        player.incrementStatistic(Statistic.CRAFT_ITEM, result.type, result.amount)
+        try {
+            player.incrementStatistic(Statistic.CRAFT_ITEM, result.type, result.amount)
+        } catch (exception: IllegalArgumentException) {
+        }
     }
 
     @Singleton
