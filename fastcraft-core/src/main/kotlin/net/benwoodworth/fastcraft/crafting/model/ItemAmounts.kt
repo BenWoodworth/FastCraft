@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class ItemAmounts private constructor(
     private val amounts: MutableMap<FcItemStack, Int>,
-    private val itemStackFactory: FcItemStack.Factory,
+    private val fcItemStackFactory: FcItemStack.Factory,
     private val fcItemStackTypeClass: FcItemStack.TypeClass,
 ) {
     private companion object {
@@ -19,7 +19,7 @@ class ItemAmounts private constructor(
         fcItemStackTypeClass: FcItemStack.TypeClass,
     ) : this(
         amounts = mutableMapOf(),
-        itemStackFactory = itemStackFactory,
+        fcItemStackFactory = itemStackFactory,
         fcItemStackTypeClass = fcItemStackTypeClass,
     )
 
@@ -68,7 +68,7 @@ class ItemAmounts private constructor(
     }
 
     fun copy(): ItemAmounts {
-        return ItemAmounts(amounts.toMutableMap(), itemStackFactory, fcItemStackTypeClass)
+        return ItemAmounts(amounts.toMutableMap(), fcItemStackFactory, fcItemStackTypeClass)
     }
 
     fun asMap(): Map<FcItemStack, Int> {

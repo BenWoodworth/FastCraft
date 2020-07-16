@@ -28,7 +28,7 @@ open class BukkitFcCraftingRecipePrepared_1_7(
     private val ingredientRemnants: List<FcItemStack>,
     override val resultsPreview: List<FcItemStack>,
     private val preparedCraftingView: InventoryView,
-    private val itemStackFactory: FcItemStack.Factory,
+    private val fcItemStackFactory: FcItemStack.Factory,
     private val server: Server,
 ) : BukkitFcCraftingRecipePrepared {
     private var craftCalled = false
@@ -58,7 +58,7 @@ open class BukkitFcCraftingRecipePrepared_1_7(
         } else {
             onCraft(resultItem)
             CancellableResult(
-                listOf(itemStackFactory.create(resultItem!!)) + ingredientRemnants
+                listOf(fcItemStackFactory.create(resultItem!!)) + ingredientRemnants
             )
         }
     }
@@ -109,7 +109,7 @@ open class BukkitFcCraftingRecipePrepared_1_7(
 
     @Singleton
     class Factory @Inject constructor(
-        private val itemStackFactory: FcItemStack.Factory,
+        private val fcItemStackFactory: FcItemStack.Factory,
         private val server: Server,
     ) : BukkitFcCraftingRecipePrepared.Factory {
         override fun create(
@@ -127,7 +127,7 @@ open class BukkitFcCraftingRecipePrepared_1_7(
                 ingredientRemnants = ingredientRemnants,
                 resultsPreview = resultsPreview,
                 preparedCraftingView = preparedCraftingView,
-                itemStackFactory = itemStackFactory,
+                fcItemStackFactory = fcItemStackFactory,
                 server = server,
             )
         }

@@ -15,8 +15,8 @@ import javax.inject.Inject
 class WorkbenchButtonView(
     button: FcGuiButton,
     private val locale: Locale,
-    private val textFactory: FcText.Factory,
-    private val sounds: FcSound.Factory,
+    private val fcTextFactory: FcText.Factory,
+    private val fcSounds: FcSound.Factory,
     config: FastCraftConfig,
     private val fcPlayerTypeClass: FcPlayer.TypeClass,
 ) {
@@ -31,17 +31,17 @@ class WorkbenchButtonView(
             copyItem(c.item)
 
             setText(
-                textFactory.createLegacy(
+                fcTextFactory.createLegacy(
                     Strings.guiButtonCraftingGridTitle(locale)
                 )
             )
 
             setDescription(
                 listOf(
-                    textFactory.createLegacy(
+                    fcTextFactory.createLegacy(
                         Strings.guiButtonCraftingGridDescription0(locale)
                     ),
-                    textFactory.createLegacy(
+                    fcTextFactory.createLegacy(
                         Strings.guiButtonCraftingGridDescription1(locale)
                     )
                 )
@@ -69,25 +69,25 @@ class WorkbenchButtonView(
             }
 
             action?.let {
-                fcPlayerTypeClass.run { gui.player.playSound(sounds.uiButtonClick, Config.buttonVolume) }
+                fcPlayerTypeClass.run { gui.player.playSound(fcSounds.uiButtonClick, Config.buttonVolume) }
                 action()
             }
         }
     }
 
     class Factory @Inject constructor(
-        private val textFactory: FcText.Factory,
-        private val sounds: FcSound.Factory,
-        private val config: FastCraftConfig,
+        private val fcTextFactory: FcText.Factory,
+        private val fcSoundFactory: FcSound.Factory,
+        private val fastCraftConfig: FastCraftConfig,
         private val fcPlayerTypeClass: FcPlayer.TypeClass,
     ) {
         fun create(button: FcGuiButton, locale: Locale): WorkbenchButtonView {
             return WorkbenchButtonView(
                 button = button,
                 locale = locale,
-                textFactory = textFactory,
-                sounds = sounds,
-                config = config,
+                fcTextFactory = fcTextFactory,
+                fcSounds = fcSoundFactory,
+                config = fastCraftConfig,
                 fcPlayerTypeClass = fcPlayerTypeClass,
             )
         }

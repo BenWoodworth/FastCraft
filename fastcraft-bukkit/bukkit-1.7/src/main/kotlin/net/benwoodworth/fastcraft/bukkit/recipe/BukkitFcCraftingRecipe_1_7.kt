@@ -22,7 +22,7 @@ open class BukkitFcCraftingRecipe_1_7(
     val recipe: Recipe,
     private val server: Server,
     private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
-    private val itemStackFactory: FcItemStack.Factory,
+    private val fcItemStackFactory: FcItemStack.Factory,
     private val inventoryViewFactory: CraftingInventoryViewFactory,
     private val fcPlayerTypeClass: FcPlayer.TypeClass,
     private val fcItemTypeClass: FcItem.TypeClass,
@@ -80,8 +80,8 @@ open class BukkitFcCraftingRecipe_1_7(
 
     override val exemplaryResult: FcItemStack
         get() = recipe.result
-            ?.let { itemStackFactory.create(it) }
-            ?: itemStackFactory.create(ItemStack(Material.AIR))
+            ?.let { fcItemStackFactory.create(it) }
+            ?: fcItemStackFactory.create(ItemStack(Material.AIR))
 
     override fun prepare(
         player: FcPlayer,
@@ -115,12 +115,12 @@ open class BukkitFcCraftingRecipe_1_7(
                 fcItemTypeClass.bukkit.run {
                     fcItemStackTypeClass.run {
                         ingredient.type.craftingRemainingItem
-                            ?.let { itemStackFactory.create(ItemStack(it.material, ingredient.amount)) }
+                            ?.let { fcItemStackFactory.create(ItemStack(it.material, ingredient.amount)) }
                     }
                 }
             }
 
-        val resultsPreview = listOf(itemStackFactory.create(resultItem)) + ingredientRemnants
+        val resultsPreview = listOf(fcItemStackFactory.create(resultItem)) + ingredientRemnants
 
         return CancellableResult(
             preparedRecipeFactory.create(
@@ -180,9 +180,9 @@ open class BukkitFcCraftingRecipe_1_7(
     @Singleton
     class Factory @Inject constructor(
         private val server: Server,
-        private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
-        private val itemStackFactory: FcItemStack.Factory,
-        private val inventoryViewFactory: CraftingInventoryViewFactory,
+        private val fcCraftingRecipePreparedFactory: BukkitFcCraftingRecipePrepared.Factory,
+        private val fcItemStackFactory: FcItemStack.Factory,
+        private val craftingInventoryViewFactory: CraftingInventoryViewFactory,
         private val fcPlayerTypeClass: FcPlayer.TypeClass,
         private val fcItemTypeClass: FcItem.TypeClass,
         private val fcItemStackTypeClass: FcItemStack.TypeClass,
@@ -191,9 +191,9 @@ open class BukkitFcCraftingRecipe_1_7(
             return BukkitFcCraftingRecipe_1_7(
                 recipe = recipe,
                 server = server,
-                preparedRecipeFactory = preparedRecipeFactory,
-                itemStackFactory = itemStackFactory,
-                inventoryViewFactory = inventoryViewFactory,
+                preparedRecipeFactory = fcCraftingRecipePreparedFactory,
+                fcItemStackFactory = fcItemStackFactory,
+                inventoryViewFactory = craftingInventoryViewFactory,
                 fcPlayerTypeClass = fcPlayerTypeClass,
                 fcItemTypeClass = fcItemTypeClass,
                 fcItemStackTypeClass = fcItemStackTypeClass,

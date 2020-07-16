@@ -21,7 +21,7 @@ open class BukkitFcRecipeProvider_1_7 @Inject constructor(
     plugin: Plugin,
     bukkitVersion: BukkitVersion,
     private val server: Server,
-    private val recipeFactory: BukkitFcCraftingRecipe.Factory,
+    private val fcCraftingRecipeFactory: BukkitFcCraftingRecipe.Factory,
 ) : BukkitFcRecipeProvider {
     protected val complexRecipeIds: Set<String> by lazy {
         val version = bukkitVersion.run { "$major.$minor" }
@@ -36,7 +36,7 @@ open class BukkitFcRecipeProvider_1_7 @Inject constructor(
         return server.recipeIterator()
             .asSequence()
             .filter { it.isCraftingRecipe() }
-            .mapNotNull { recipeFactory.create(it) }
+            .mapNotNull { fcCraftingRecipeFactory.create(it) }
             .map {
                 if (it.isComplexRecipe()) {
                     ComplexFcCraftingRecipe(it as BukkitFcCraftingRecipe)

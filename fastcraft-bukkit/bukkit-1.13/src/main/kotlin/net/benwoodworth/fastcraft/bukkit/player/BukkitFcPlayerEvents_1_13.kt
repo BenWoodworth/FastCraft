@@ -12,12 +12,12 @@ import javax.inject.Singleton
 @Singleton
 open class BukkitFcPlayerEvents_1_13 @Inject constructor(
     plugin: Plugin,
-    playerProvider: FcPlayer.Provider,
+    fcPlayerProvider: FcPlayer.Provider,
     pluginManager: PluginManager,
     causeTracker: CauseTracker,
 ) : BukkitFcPlayerEvents_1_7(
     plugin = plugin,
-    playerProvider = playerProvider,
+    fcPlayerProvider = fcPlayerProvider,
     pluginManager = pluginManager,
     causeTracker = causeTracker,
 ) {

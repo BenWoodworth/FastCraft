@@ -12,7 +12,7 @@ import javax.inject.Singleton
 object BukkitFcItem_1_7 {
     @Singleton
     open class TypeClass @Inject constructor(
-        private val items: FcItem.Factory,
+        private val fcItemFactory: FcItem.Factory,
         private val legacyMaterialInfo: LegacyMaterialInfo,
     ) : BukkitFcItem.TypeClass {
         @Suppress("DEPRECATION")
@@ -46,7 +46,7 @@ object BukkitFcItem_1_7 {
                 Material.LAVA_BUCKET,
                 Material.MILK_BUCKET,
                 Material.WATER_BUCKET,
-                -> items.fromMaterial(Material.BUCKET)
+                -> fcItemFactory.fromMaterial(Material.BUCKET)
 
                 else -> null
             }

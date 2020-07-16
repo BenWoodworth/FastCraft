@@ -11,17 +11,17 @@ import javax.inject.Singleton
 class BukkitFcCommandRegistry_1_7 @Inject constructor(
     private val plugin: Plugin,
     private val server: Server,
-    private val logger: FcLogger,
-    private val commandAdapterFactory: BukkitFcCommandAdapter.Factory,
+    private val fcLogger: FcLogger,
+    private val fcCommandAdapterFactory: BukkitFcCommandAdapter.Factory,
 ) : BukkitFcCommandRegistry {
     override fun register(command: FcCommand, name: String, vararg aliases: String) {
         val pluginCommand = server.getPluginCommand("${plugin.name}:$name")
 
         if (pluginCommand == null) {
-            logger.error("Command not registered in plugin.yml: $name")
+            fcLogger.error("Command not registered in plugin.yml: $name")
         }
 
-        val wrapper = commandAdapterFactory.create(command)
+        val wrapper = fcCommandAdapterFactory.create(command)
 
         pluginCommand.aliases = aliases.toList()
         pluginCommand.executor = wrapper

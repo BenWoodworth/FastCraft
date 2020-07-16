@@ -20,8 +20,8 @@ open class BukkitFcGuiButton_1_7(
     private val inventory: Inventory,
     private val slotIndex: Int,
     locale: Locale,
-    private val textFactory: FcText.Factory,
-    private val textConverter: FcTextConverter,
+    private val fcTextFactory: FcText.Factory,
+    private val fcTextConverter: FcTextConverter,
     private val fcItemTypeClass: FcItem.TypeClass,
     private val fcItemStackTypeClass: FcItemStack.TypeClass,
 ) : BukkitFcGuiButton {
@@ -93,7 +93,7 @@ open class BukkitFcGuiButton_1_7(
 
     override fun clear() {
         itemStack = ItemStack(Material.AIR)
-        _text = textFactory.create()
+        _text = fcTextFactory.create()
         _description = emptyList()
         _progress = null
         hideItemDetails = false
@@ -130,7 +130,7 @@ open class BukkitFcGuiButton_1_7(
     protected open fun updateDisplayName() {
         _text?.let { text ->
             itemStack.updateMeta {
-                setDisplayName(textConverter.toLegacy(text, locale))
+                setDisplayName(fcTextConverter.toLegacy(text, locale))
             }
         }
     }
@@ -139,7 +139,7 @@ open class BukkitFcGuiButton_1_7(
         _description?.let { description ->
             itemStack.updateMeta {
                 lore = description.map {
-                    textConverter.toLegacy(it, locale)
+                    fcTextConverter.toLegacy(it, locale)
                 }
             }
         }
@@ -147,8 +147,8 @@ open class BukkitFcGuiButton_1_7(
 
     @Singleton
     class Factory @Inject constructor(
-        private val textFactory: FcText.Factory,
-        private val textConverter: FcTextConverter,
+        private val fcTextFactory: FcText.Factory,
+        private val fcTextConverter: FcTextConverter,
         private val fcItemTypeClass: FcItem.TypeClass,
         private val fcItemStackTypeClass: FcItemStack.TypeClass,
     ) : BukkitFcGuiButton.Factory {
@@ -157,8 +157,8 @@ open class BukkitFcGuiButton_1_7(
                 inventory = inventory,
                 slotIndex = slotIndex,
                 locale = locale,
-                textFactory = textFactory,
-                textConverter = textConverter,
+                fcTextFactory = fcTextFactory,
+                fcTextConverter = fcTextConverter,
                 fcItemTypeClass = fcItemTypeClass,
                 fcItemStackTypeClass = fcItemStackTypeClass,
             )

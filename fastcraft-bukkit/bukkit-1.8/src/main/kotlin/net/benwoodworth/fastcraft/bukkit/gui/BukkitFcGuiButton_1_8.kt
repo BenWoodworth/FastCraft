@@ -16,16 +16,16 @@ open class BukkitFcGuiButton_1_8(
     inventory: Inventory,
     slotIndex: Int,
     locale: Locale,
-    textFactory: FcText.Factory,
-    textConverter: FcTextConverter,
+    fcTextFactory: FcText.Factory,
+    fcTextConverter: FcTextConverter,
     fcItemTypeClass: FcItem.TypeClass,
     fcItemStackTypeClass: FcItemStack.TypeClass,
 ) : BukkitFcGuiButton_1_7(
     inventory = inventory,
     slotIndex = slotIndex,
     locale = locale,
-    textFactory = textFactory,
-    textConverter = textConverter,
+    fcTextFactory = fcTextFactory,
+    fcTextConverter = fcTextConverter,
     fcItemTypeClass = fcItemTypeClass,
     fcItemStackTypeClass = fcItemStackTypeClass,
 ) {
@@ -46,8 +46,8 @@ open class BukkitFcGuiButton_1_8(
 
     @Singleton
     class Factory @Inject constructor(
-        private val textFactory: FcText.Factory,
-        private val textConverter: FcTextConverter,
+        private val fcTextFactory: FcText.Factory,
+        private val fcTextConverter: FcTextConverter,
         private val fcItemTypeClass: FcItem.TypeClass,
         private val fcItemStackTypeClass: FcItemStack.TypeClass,
     ) : BukkitFcGuiButton.Factory {
@@ -56,8 +56,8 @@ open class BukkitFcGuiButton_1_8(
                 inventory = inventory,
                 slotIndex = slotIndex,
                 locale = locale,
-                textFactory = textFactory,
-                textConverter = textConverter,
+                fcTextFactory = fcTextFactory,
+                fcTextConverter = fcTextConverter,
                 fcItemTypeClass = fcItemTypeClass,
                 fcItemStackTypeClass = fcItemStackTypeClass,
             )

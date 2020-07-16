@@ -9,18 +9,18 @@ import javax.inject.Singleton
 class BukkitFcItemStack_1_13 {
     @Singleton
     class TypeClass @Inject constructor(
-        private val items: FcItem.Factory,
-        textFactory: FcText.Factory,
+        private val fcItemFactory: FcItem.Factory,
+        fcTextFactory: FcText.Factory,
         private val fcItemTypeClass: FcItem.TypeClass,
         fcItemStackFactory: FcItemStack.Factory,
     ) : BukkitFcItemStack_1_7.TypeClass(
-        items = items,
-        textFactory = textFactory,
+        fcItemFactory = fcItemFactory,
+        fcTextFactory = fcTextFactory,
         fcItemTypeClass = fcItemTypeClass,
         fcItemStackFactory = fcItemStackFactory,
     ) {
         override var FcItemStack.type: FcItem
-            get() = items.fromMaterial(itemStack.type)
+            get() = fcItemFactory.fromMaterial(itemStack.type)
             set(value) {
                 itemStack.type = fcItemTypeClass.bukkit.run { value.material }
             }

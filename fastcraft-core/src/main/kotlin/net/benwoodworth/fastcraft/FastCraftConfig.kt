@@ -14,15 +14,15 @@ import kotlin.reflect.KMutableProperty0
 
 @Singleton
 class FastCraftConfig @Inject constructor(
-    private val configFactory: FcConfig.Factory,
-    private val pluginData: FcPluginData,
-    private val items: FcItem.Factory,
-    private val itemStackFactory: FcItemStack.Factory,
-    private val logger: FcLogger,
+    private val fcConfigFactory: FcConfig.Factory,
+    private val fcPluginData: FcPluginData,
+    private val fcItemFactory: FcItem.Factory,
+    private val fcItemStackFactory: FcItemStack.Factory,
+    private val fcLogger: FcLogger,
     private val fcItemTypeClass: FcItem.TypeClass,
     private val fcItemStackTypeClass: FcItemStack.TypeClass,
 ) {
-    private var config: FcConfig = configFactory.create()
+    private var config: FcConfig = fcConfigFactory.create()
     private var modified: Boolean = false
     private var newFile: Boolean = false
 
@@ -114,7 +114,7 @@ class FastCraftConfig @Inject constructor(
             val craftingGrid = Button(
                 key = "crafting-grid",
                 enable = true,
-                item = itemStackFactory.create(items.craftingTable),
+                item = fcItemStackFactory.create(fcItemFactory.craftingTable),
                 row = 0,
                 column = 8,
             )
@@ -122,7 +122,7 @@ class FastCraftConfig @Inject constructor(
             val craftAmount = Button(
                 key = "craft-amount",
                 enable = true,
-                item = itemStackFactory.create(items.anvil),
+                item = fcItemStackFactory.create(fcItemFactory.anvil),
                 row = 1,
                 column = 8,
             )
@@ -130,7 +130,7 @@ class FastCraftConfig @Inject constructor(
             val refresh = Button(
                 key = "refresh",
                 enable = true,
-                item = itemStackFactory.create(items.netherStar),
+                item = fcItemStackFactory.create(fcItemFactory.netherStar),
                 row = 2,
                 column = 8,
             )
@@ -138,7 +138,7 @@ class FastCraftConfig @Inject constructor(
             val page = Button(
                 key = "page",
                 enable = true,
-                item = itemStackFactory.create(items.ironSword),
+                item = fcItemStackFactory.create(fcItemFactory.ironSword),
                 row = 5,
                 column = 8,
             )
@@ -181,7 +181,7 @@ class FastCraftConfig @Inject constructor(
 
         inner class Background : EnableItem(
             enable = false,
-            item = itemStackFactory.create(items.lightGrayStainedGlassPane),
+            item = fcItemStackFactory.create(fcItemFactory.lightGrayStainedGlassPane),
         ) {
             override val node: FcConfigNode
                 get() = this@Layout.node["background"]
@@ -216,23 +216,23 @@ class FastCraftConfig @Inject constructor(
     }
 
     fun load() {
-        val file = pluginData.configFile
+        val file = fcPluginData.configFile
         Files.createDirectories(file.parent)
 
         config = if (Files.exists(file)) {
             modified = false
             newFile = false
             try {
-                configFactory.load(file)
+                fcConfigFactory.load(file)
             } catch (e: Exception) {
-                logger.error("Error loading ${file.fileName}: ${e.message}")
-                logger.info("Using default configuration")
+                fcLogger.error("Error loading ${file.fileName}: ${e.message}")
+                fcLogger.info("Using default configuration")
                 return
             }
         } else {
             modified = true
             newFile = true
-            configFactory.create()
+            fcConfigFactory.create()
         }
 
         if (config.headerComment != header) {
@@ -249,7 +249,7 @@ class FastCraftConfig @Inject constructor(
         }
 
         if (newFile) {
-            logger.info("Created ${file.fileName}")
+            fcLogger.info("Created ${file.fileName}")
         }
 
         modified = false
@@ -265,7 +265,7 @@ class FastCraftConfig @Inject constructor(
         message: (newValue: T) -> String = { "Set value to $it" },
     ): T {
         if (!newFile) {
-            logger.info("${pluginData.configFile.fileName} [$path]: ${message(newValue)}")
+            fcLogger.info("${fcPluginData.configFile.fileName} [$path]: ${message(newValue)}")
         }
 
         set(newValue)
@@ -274,7 +274,7 @@ class FastCraftConfig @Inject constructor(
     }
 
     private fun FcConfigNode.logErr(message: String) {
-        logger.error("${pluginData.configFile.fileName} [$path]: $message")
+        fcLogger.error("${fcPluginData.configFile.fileName} [$path]: $message")
     }
 
     private fun FcConfigNode.loadInt(
@@ -326,7 +326,7 @@ class FastCraftConfig @Inject constructor(
     ) {
         when (val newItemId = getString()) {
             null -> modify(default)
-            else -> when (val newItem = itemStackFactory.parseOrNull(newItemId)) {
+            else -> when (val newItem = fcItemStackFactory.parseOrNull(newItemId)) {
                 null -> logErr("Invalid item id: $newItemId. Defaulting to $default.")
                 else -> {
                     itemIdProperty.set(newItemId)

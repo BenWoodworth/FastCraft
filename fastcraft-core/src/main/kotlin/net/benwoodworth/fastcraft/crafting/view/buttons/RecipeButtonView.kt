@@ -16,9 +16,9 @@ import javax.inject.Provider
 class RecipeButtonView(
     private val button: FcGuiButton,
     private val locale: Locale,
-    private val textFactory: FcText.Factory,
+    private val fcTextFactory: FcText.Factory,
     private val itemAmountsProvider: Provider<ItemAmounts>,
-    private val textConverter: FcTextConverter,
+    private val fcTextConverter: FcTextConverter,
     private val fcItemStackTypeClass: FcItemStack.TypeClass,
 ) {
     var fastCraftRecipe: FastCraftRecipe? = null
@@ -45,7 +45,7 @@ class RecipeButtonView(
 
             // Results
             if (preparedRecipe.resultsPreview.count() > 1) {
-                newDescription += textFactory.createLegacy(
+                newDescription += fcTextFactory.createLegacy(
                     Strings.guiRecipeResults(locale)
                 )
 
@@ -62,12 +62,12 @@ class RecipeButtonView(
                     .sortedByDescending { (_, amount) -> amount }
                     .let { listOf(AbstractMap.SimpleEntry(primaryResult, primaryResultAmount)) + it }
                     .forEach { (itemStack, amount) ->
-                        var itemName = textConverter.toPlaintext(fcItemStackTypeClass.run { itemStack.name }, locale)
+                        var itemName = fcTextConverter.toPlaintext(fcItemStackTypeClass.run { itemStack.name }, locale)
                         if (fcItemStackTypeClass.run { itemStack.hasMetadata }) {
                             itemName += "*"
                         }
 
-                        newDescription += textFactory.createLegacy(
+                        newDescription += fcTextFactory.createLegacy(
                             Strings.guiRecipeResultsItem(
                                 locale,
                                 amount = amount * fastCraftRecipe.multiplier,
@@ -76,12 +76,12 @@ class RecipeButtonView(
                         )
                     }
 
-                newDescription += textFactory.create()
+                newDescription += fcTextFactory.create()
             }
 
             // Ingredients
             run {
-                newDescription += textFactory.createLegacy(
+                newDescription += fcTextFactory.createLegacy(
                     Strings.guiRecipeIngredients(locale)
                 )
 
@@ -93,12 +93,12 @@ class RecipeButtonView(
                 ingredients.asMap().entries
                     .sortedByDescending { (_, amount) -> amount }
                     .forEach { (itemStack, amount) ->
-                        var itemName = textConverter.toPlaintext(fcItemStackTypeClass.run { itemStack.name }, locale)
+                        var itemName = fcTextConverter.toPlaintext(fcItemStackTypeClass.run { itemStack.name }, locale)
                         if (fcItemStackTypeClass.run { itemStack.hasMetadata }) {
                             itemName += "*"
                         }
 
-                        newDescription += textFactory.createLegacy(
+                        newDescription += fcTextFactory.createLegacy(
                             Strings.guiRecipeIngredientsItem(
                                 locale,
                                 amount = amount * fastCraftRecipe.multiplier,
@@ -109,11 +109,11 @@ class RecipeButtonView(
             }
 
             val recipeId = fastCraftRecipe.preparedRecipe.recipe.id
-            newDescription += textFactory.createLegacy(Strings.guiRecipeId(locale, recipeId))
+            newDescription += fcTextFactory.createLegacy(Strings.guiRecipeId(locale, recipeId))
 
             fcItemStackTypeClass.run {
                 if (previewItem.lore.any()) {
-                    newDescription += textFactory.create()
+                    newDescription += fcTextFactory.create()
                     newDescription += previewItem.lore
                 }
             }
@@ -155,7 +155,7 @@ class RecipeButtonView(
     }
 
     class Factory @Inject constructor(
-        private val textFactory: FcText.Factory,
+        private val fcTextFactory: FcText.Factory,
         private val itemAmountsProvider: Provider<ItemAmounts>,
         private val textConverter: FcTextConverter,
         private val fcItemStackTypeClass: FcItemStack.TypeClass,
@@ -164,9 +164,9 @@ class RecipeButtonView(
             return RecipeButtonView(
                 button = button,
                 locale = locale,
-                textFactory = textFactory,
+                fcTextFactory = fcTextFactory,
                 itemAmountsProvider = itemAmountsProvider,
-                textConverter = textConverter,
+                fcTextConverter = textConverter,
                 fcItemStackTypeClass = fcItemStackTypeClass,
             )
         }

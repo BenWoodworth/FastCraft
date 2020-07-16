@@ -7,10 +7,10 @@ import org.bukkit.configuration.file.YamlConfiguration
 class BukkitFcConfigNode_1_7(
     override val config: YamlConfiguration,
     override val path: String,
-    private val configFactory: FcConfig.Factory,
+    private val fcConfigFactory: FcConfig.Factory,
 ) : BukkitFcConfigNode {
     override fun get(key: String): FcConfigNode {
-        return configFactory.createNode(config, "$path.$key")
+        return fcConfigFactory.createNode(config, "$path.$key")
     }
 
     override fun set(key: String, value: Any?) {

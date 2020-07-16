@@ -19,12 +19,12 @@ import kotlin.collections.HashMap
 
 @Singleton
 class CraftableRecipeFinder @Inject constructor(
-    private val recipeProvider: FcRecipeProvider,
+    private val fcRecipeProvider: FcRecipeProvider,
     private val itemAmountsProvider: Provider<ItemAmounts>,
     private val fcPlayerTypeClass: FcPlayer.TypeClass,
-    materialComparator: FcItemOrderComparator,
-    private val taskFactory: FcTask.Factory,
-    private val config: FastCraftConfig,
+    fcItemOrderComparator: FcItemOrderComparator,
+    private val fcTaskFactory: FcTask.Factory,
+    private val fastCraftConfig: FastCraftConfig,
     private val fcItemStackTypeClass: FcItemStack.TypeClass,
 ) {
     private val NANOS_PER_TICK = 1000000000L / 20L
@@ -34,7 +34,7 @@ class CraftableRecipeFinder @Inject constructor(
     private var recipeLoadTasks: HashMap<UUID, FcTask> = HashMap()
 
     private val recipeComparator: Comparator<FcCraftingRecipe> =
-        compareBy<FcCraftingRecipe, FcItem>(materialComparator) {
+        compareBy<FcCraftingRecipe, FcItem>(fcItemOrderComparator) {
             fcItemStackTypeClass.run { it.exemplaryResult.type }
         }.thenBy {
             fcItemStackTypeClass.run { it.exemplaryResult.amount }
@@ -47,21 +47,21 @@ class CraftableRecipeFinder @Inject constructor(
 
     fun loadRecipes(player: FcPlayer, listener: Listener) {
         val uuid = fcPlayerTypeClass.run { player.uuid }
-        recipeLoadTasks[uuid] = taskFactory.startTask(delayTicks = 1) {
+        recipeLoadTasks[uuid] = fcTaskFactory.startTask(delayTicks = 1) {
             val availableItems = itemAmountsProvider.get()
             fcPlayerTypeClass.run { player.inventory }.storage.forEach { slot ->
                 slot.itemStack?.let { itemStack -> availableItems += itemStack }
             }
 
-            val recipeIterator = recipeProvider.getCraftingRecipes()
+            val recipeIterator = fcRecipeProvider.getCraftingRecipes()
                 .filter { !disabledPluginRecipes.contains(it.id.split(":").firstOrNull()) }
-                .filter { !config.disableRecipes.recipeIdsRegex.matches(it.id) }
+                .filter { !fastCraftConfig.disableRecipes.recipeIdsRegex.matches(it.id) }
                 .sortedWith(recipeComparator)
                 .flatMap { prepareCraftableRecipes(player, availableItems, it) }
                 .iterator()
 
             recipeLoadTasks[uuid] =
-                taskFactory.startTask(delayTicks = 1, intervalTicks = 1) { task ->
+                fcTaskFactory.startTask(delayTicks = 1, intervalTicks = 1) { task ->
                     val startTime = System.nanoTime()
                     val newRecipes = mutableListOf<FcCraftingRecipePrepared>()
 
@@ -71,7 +71,7 @@ class CraftableRecipeFinder @Inject constructor(
                         }
 
                         val maxCalcTime =
-                            NANOS_PER_TICK * config.recipeCalculations.maxTickUsage / recipeLoadTasks.count()
+                            NANOS_PER_TICK * fastCraftConfig.recipeCalculations.maxTickUsage / recipeLoadTasks.count()
                         val timeElapsed = System.nanoTime() - startTime
                         if (timeElapsed >= maxCalcTime) {
                             break

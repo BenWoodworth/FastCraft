@@ -22,9 +22,9 @@ import javax.inject.Singleton
 object BukkitFcPlayer_1_7 {
     @Singleton
     class TypeClass @Inject constructor(
-        private val textConverter: FcTextConverter,
+        private val fcTextConverter: FcTextConverter,
         private val server: Server,
-        private val playerInventoryFactory: BukkitFcPlayerInventory_1_7.Factory,
+        private val fcPlayerInventoryFactory: BukkitFcPlayerInventory_1_7.Factory,
         private val fcSoundTypeClass: FcSound.TypeClass,
         private val fcItemStackTypeClass: FcItemStack.TypeClass,
     ) : BukkitFcPlayer.TypeClass {
@@ -50,7 +50,7 @@ object BukkitFcPlayer_1_7 {
             get() = player.isOnline
 
         override val FcPlayer.inventory: FcPlayerInventory
-            get() = playerInventoryFactory.create(player.inventory)
+            get() = fcPlayerInventoryFactory.create(player.inventory)
 
         override fun FcPlayer.sendMessage(message: FcText) {
             message as BukkitFcText
@@ -61,7 +61,7 @@ object BukkitFcPlayer_1_7 {
                 is BukkitFcText.Component -> {
                     server.dispatchCommand(
                         server.consoleSender,
-                        "tellraw $username ${textConverter.toRaw(message)}"
+                        "tellraw $username ${fcTextConverter.toRaw(message)}"
                     )
                 }
             }

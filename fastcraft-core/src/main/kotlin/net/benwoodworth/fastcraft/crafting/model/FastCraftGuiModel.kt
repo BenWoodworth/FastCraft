@@ -12,7 +12,7 @@ class FastCraftGuiModel(
     val player: FcPlayer,
     private val itemAmountsProvider: Provider<ItemAmounts>,
     private val craftableRecipeFinder: CraftableRecipeFinder,
-    private val itemStackFactory: FcItemStack.Factory,
+    private val fcItemStackFactory: FcItemStack.Factory,
     private val fcPlayerTypeClass: FcPlayer.TypeClass,
     private val fcItemStackTypeClass: FcItemStack.TypeClass,
 ) {
@@ -137,7 +137,7 @@ class FastCraftGuiModel(
     class Factory @Inject constructor(
         private val itemAmountsProvider: Provider<ItemAmounts>,
         private val craftableRecipeFinder: CraftableRecipeFinder,
-        private val itemStackFactory: FcItemStack.Factory,
+        private val fcItemStackFactory: FcItemStack.Factory,
         private val fcPlayerTypeClass: FcPlayer.TypeClass,
         private val fcItemStackTypeClass: FcItemStack.TypeClass,
     ) {
@@ -146,7 +146,7 @@ class FastCraftGuiModel(
                 player = player,
                 itemAmountsProvider = itemAmountsProvider,
                 craftableRecipeFinder = craftableRecipeFinder,
-                itemStackFactory = itemStackFactory,
+                fcItemStackFactory = fcItemStackFactory,
                 fcPlayerTypeClass = fcPlayerTypeClass,
                 fcItemStackTypeClass = fcItemStackTypeClass,
             )

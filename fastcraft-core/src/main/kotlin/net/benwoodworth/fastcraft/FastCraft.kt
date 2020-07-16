@@ -8,7 +8,7 @@ import net.benwoodworth.fastcraft.platform.player.FcPlayerEvents
 import javax.inject.Inject
 
 class FastCraft @Inject internal constructor(
-    playerEventsListeners: FcPlayerEvents,
+    fcPlayerEvents: FcPlayerEvents,
     private val fastCraftGuiFactory: FastCraftGui.Factory,
     private val playerPrefs: PlayerSettings,
     fastCraftCommand: FastCraftCommand,
@@ -18,7 +18,7 @@ class FastCraft @Inject internal constructor(
 ) {
     init {
         Strings.load()
-        playerEventsListeners.onOpenCraftingTableNaturally += ::onPlayerOpenWorkbench
+        fcPlayerEvents.onOpenCraftingTableNaturally += ::onPlayerOpenWorkbench
         fastCraftCommand.register()
     }
 

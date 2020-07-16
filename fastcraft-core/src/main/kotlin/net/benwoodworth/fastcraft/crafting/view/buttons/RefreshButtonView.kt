@@ -9,15 +9,14 @@ import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcSound
 import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.platform.world.FcItem
 import java.util.*
 import javax.inject.Inject
 
 class RefreshButtonView(
     private val button: FcGuiButton,
     private val locale: Locale,
-    private val textFactory: FcText.Factory,
-    private val sounds: FcSound.Factory,
+    private val fcTextFactory: FcText.Factory,
+    private val fcSoundFactory: FcSound.Factory,
     private val config: FastCraftConfig,
     private val fcPlayerTypeClass: FcPlayer.TypeClass,
 ) {
@@ -41,14 +40,14 @@ class RefreshButtonView(
                 copyItem(c.item)
 
                 setText(
-                    textFactory.createLegacy(
+                    fcTextFactory.createLegacy(
                         Strings.guiButtonRefreshTitle(locale)
                     )
                 )
 
                 setDescription(
                     listOf(
-                        textFactory.createLegacy(
+                        fcTextFactory.createLegacy(
                             Strings.guiButtonRefreshDescription0(locale)
                         )
                     )
@@ -78,7 +77,7 @@ class RefreshButtonView(
                 }
 
                 action?.let {
-                    fcPlayerTypeClass.run { gui.player.playSound(sounds.uiButtonClick, Config.buttonVolume) }
+                    fcPlayerTypeClass.run { gui.player.playSound(fcSoundFactory.uiButtonClick, Config.buttonVolume) }
                     action()
                 }
             }
@@ -86,19 +85,18 @@ class RefreshButtonView(
     }
 
     class Factory @Inject constructor(
-        private val items: FcItem.Factory,
-        private val textFactory: FcText.Factory,
-        private val sounds: FcSound.Factory,
-        private val config: FastCraftConfig,
+        private val fcTextFactory: FcText.Factory,
+        private val fcSoundsFactory: FcSound.Factory,
+        private val fastCraftConfig: FastCraftConfig,
         private val fcPlayerTypeClass: FcPlayer.TypeClass,
     ) {
         fun create(button: FcGuiButton, locale: Locale): RefreshButtonView {
             return RefreshButtonView(
                 button = button,
                 locale = locale,
-                textFactory = textFactory,
-                sounds = sounds,
-                config = config,
+                fcTextFactory = fcTextFactory,
+                fcSoundFactory = fcSoundsFactory,
+                config = fastCraftConfig,
                 fcPlayerTypeClass = fcPlayerTypeClass,
             )
         }

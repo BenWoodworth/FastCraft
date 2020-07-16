@@ -16,8 +16,8 @@ import javax.inject.Inject
 class CraftAmountButtonView(
     private val button: FcGuiButton,
     private val locale: Locale,
-    private val textFactory: FcText.Factory,
-    private val sounds: FcSound.Factory,
+    private val fcTextFactory: FcText.Factory,
+    private val fcSounds: FcSound.Factory,
     config: FastCraftConfig,
     private val fcPlayerTypeClass: FcPlayer.TypeClass,
 ) {
@@ -34,20 +34,20 @@ class CraftAmountButtonView(
             copyItem(c.item)
 
             setText(
-                textFactory.createLegacy(
+                fcTextFactory.createLegacy(
                     Strings.guiButtonCraftAmountTitle(locale)
                 )
             )
 
             setDescription(
                 listOf(
-                    textFactory.createLegacy(
+                    fcTextFactory.createLegacy(
                         Strings.guiButtonCraftAmountDescription0(locale)
                     ),
-                    textFactory.createLegacy(
+                    fcTextFactory.createLegacy(
                         Strings.guiButtonCraftAmountDescription1(locale)
                     ),
-                    textFactory.createLegacy(
+                    fcTextFactory.createLegacy(
                         Strings.guiButtonCraftAmountDescription2(locale)
                     )
                 )
@@ -91,25 +91,25 @@ class CraftAmountButtonView(
             }
 
             action?.let {
-                fcPlayerTypeClass.run { gui.player.playSound(sounds.uiButtonClick, Config.buttonVolume) }
+                fcPlayerTypeClass.run { gui.player.playSound(fcSounds.uiButtonClick, Config.buttonVolume) }
                 action()
             }
         }
     }
 
     class Factory @Inject constructor(
-        private val textFactory: FcText.Factory,
-        private val sounds: FcSound.Factory,
-        private val config: FastCraftConfig,
+        private val fcTextFactory: FcText.Factory,
+        private val fcSoundFactory: FcSound.Factory,
+        private val fastCraftConfig: FastCraftConfig,
         private val fcPlayerTypeClass: FcPlayer.TypeClass,
     ) {
         fun create(button: FcGuiButton, locale: Locale): CraftAmountButtonView {
             return CraftAmountButtonView(
                 button = button,
                 locale = locale,
-                textFactory = textFactory,
-                sounds = sounds,
-                config = config,
+                fcTextFactory = fcTextFactory,
+                fcSounds = fcSoundFactory,
+                config = fastCraftConfig,
                 fcPlayerTypeClass = fcPlayerTypeClass,
             )
         }

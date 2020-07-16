@@ -11,8 +11,8 @@ import javax.inject.Singleton
 object BukkitFcItemStack_1_7 {
     @Singleton
     open class TypeClass @Inject constructor(
-        private val items: FcItem.Factory,
-        private val textFactory: FcText.Factory,
+        private val fcItemFactory: FcItem.Factory,
+        private val fcTextFactory: FcText.Factory,
         private val fcItemTypeClass: FcItem.TypeClass,
         private val fcItemStackFactory: FcItemStack.Factory,
     ) : BukkitFcItemStack.TypeClass {
@@ -20,7 +20,7 @@ object BukkitFcItemStack_1_7 {
             get() = value as ItemStack
 
         override var FcItemStack.type: FcItem
-            get() = items.fromMaterialData(itemStack.data)
+            get() = fcItemFactory.fromMaterialData(itemStack.data)
             set(value) {
                 itemStack.data = fcItemTypeClass.bukkit.run { value.materialData }
             }
@@ -37,7 +37,7 @@ object BukkitFcItemStack_1_7 {
                 ?.itemMeta
                 ?.takeIf { it.hasDisplayName() }
                 ?.displayName
-                ?.let { textFactory.create(it) }
+                ?.let { fcTextFactory.create(it) }
                 ?: fcItemTypeClass.run { type.name }
 
         override val FcItemStack.lore: List<FcText>
@@ -46,7 +46,7 @@ object BukkitFcItemStack_1_7 {
                 ?.itemMeta
                 ?.takeIf { it.hasLore() }
                 ?.lore
-                ?.map { textFactory.create(it ?: "") }
+                ?.map { fcTextFactory.create(it ?: "") }
                 ?: emptyList()
 
         override val FcItemStack.hasMetadata: Boolean
@@ -59,7 +59,7 @@ object BukkitFcItemStack_1_7 {
 
     @Singleton
     open class Factory @Inject constructor(
-        private val items: FcItem.Factory,
+        private val fcItemFactory: FcItem.Factory,
         protected val server: Server,
         private val fcItemTypeClass: FcItem.TypeClass,
     ) : BukkitFcItemStack.Factory {
@@ -82,7 +82,7 @@ object BukkitFcItemStack_1_7 {
                 }
             }
 
-            val item = items.parseOrNull(materialId) ?: return null
+            val item = fcItemFactory.parseOrNull(materialId) ?: return null
             val itemStack = fcItemTypeClass.bukkit.run { item.toItemStack(amount) }
 
             if (data != null) {

@@ -15,9 +15,9 @@ import javax.inject.Singleton
 object BukkitFcItem_1_13 {
     @Singleton
     open class TypeClass @Inject constructor(
-        private val textFactory: FcText.Factory,
+        private val fcTextFactory: FcText.Factory,
         private val localizer: BukkitLocalizer,
-        private val items: FcItem.Factory,
+        private val fcItemFactory: FcItem.Factory,
     ) : BukkitFcItem.TypeClass {
         override val FcItem.id: String
             get() = material.key.toString()
@@ -44,7 +44,7 @@ object BukkitFcItem_1_13 {
                     }
                 }
 
-                return textFactory.createTranslate(localeKey)
+                return fcTextFactory.createTranslate(localeKey)
             }
 
         override val FcItem.maxAmount: Int
@@ -55,10 +55,10 @@ object BukkitFcItem_1_13 {
                 Material.LAVA_BUCKET,
                 Material.MILK_BUCKET,
                 Material.WATER_BUCKET,
-                -> items.fromMaterial(Material.BUCKET)
+                -> fcItemFactory.fromMaterial(Material.BUCKET)
 
                 Material.DRAGON_BREATH,
-                -> items.fromMaterial(Material.GLASS_BOTTLE)
+                -> fcItemFactory.fromMaterial(Material.GLASS_BOTTLE)
 
                 else -> null
             }

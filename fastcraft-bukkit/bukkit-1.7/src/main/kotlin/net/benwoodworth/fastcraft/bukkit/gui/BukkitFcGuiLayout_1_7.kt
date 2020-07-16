@@ -39,7 +39,7 @@ abstract class BukkitFcGuiLayout_1_7(
 
     @Singleton
     class Factory @Inject constructor(
-        private val guiButtonFactory: BukkitFcGuiButton_1_7.Factory,
+        private val fcGuiButtonFactory: BukkitFcGuiButton_1_7.Factory,
     ) : BukkitFcGuiLayout.Factory {
         override fun createGridLayout(
             width: Int,
@@ -52,7 +52,7 @@ abstract class BukkitFcGuiLayout_1_7(
                 height = height,
                 inventory = inventory,
                 locale = locale,
-                guiButtonFactory = guiButtonFactory
+                guiButtonFactory = fcGuiButtonFactory
             )
         }
     }

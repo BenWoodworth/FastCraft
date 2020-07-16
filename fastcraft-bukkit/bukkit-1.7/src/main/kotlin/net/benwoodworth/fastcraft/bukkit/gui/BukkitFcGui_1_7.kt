@@ -170,13 +170,13 @@ class BukkitFcGui_1_7<TLayout : FcGuiLayout>(
         private val plugin: Plugin,
         private val pluginManager: PluginManager,
         private val server: Server,
-        private val textConverter: FcTextConverter,
-        private val guiLayoutFactory: BukkitFcGuiLayout.Factory,
+        private val fcTextConverter: FcTextConverter,
+        private val fcGuiLayoutFactory: BukkitFcGuiLayout.Factory,
         private val fcPlayerTypeClass: FcPlayer.TypeClass,
     ) : BukkitFcGui.Factory {
         override fun createChestGui(player: FcPlayer, title: FcText?, height: Int): FcGui<FcGuiLayout.Grid> {
             val legacyTitle = title?.let {
-                textConverter.toLegacy(it, fcPlayerTypeClass.run { player.locale })
+                fcTextConverter.toLegacy(it, fcPlayerTypeClass.run { player.locale })
             }
 
             return BukkitFcGui_1_7(
@@ -188,7 +188,7 @@ class BukkitFcGui_1_7<TLayout : FcGuiLayout>(
                     }
                 },
                 { inventory ->
-                    guiLayoutFactory.createGridLayout(
+                    fcGuiLayoutFactory.createGridLayout(
                         9,
                         height,
                         inventory,

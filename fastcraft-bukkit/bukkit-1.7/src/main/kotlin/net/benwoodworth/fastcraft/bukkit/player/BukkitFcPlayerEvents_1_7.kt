@@ -24,7 +24,7 @@ import javax.inject.Singleton
 @Singleton
 open class BukkitFcPlayerEvents_1_7 @Inject constructor(
     plugin: Plugin,
-    private val playerProvider: FcPlayer.Provider,
+    private val fcPlayerProvider: FcPlayer.Provider,
     pluginManager: PluginManager,
     private val causeTracker: CauseTracker,
 ) : BukkitFcPlayerEvents {
@@ -46,7 +46,7 @@ open class BukkitFcPlayerEvents_1_7 @Inject constructor(
         @EventHandler
         fun onPlayerJoin(event: PlayerJoinEvent) {
             onPlayerJoin.notifyHandlers(
-                BukkitFcPlayerJoinEvent_1_7(event, playerProvider)
+                BukkitFcPlayerJoinEvent_1_7(event, fcPlayerProvider)
             )
         }
 
@@ -64,7 +64,7 @@ open class BukkitFcPlayerEvents_1_7 @Inject constructor(
                 causeTracker.checkCause(CraftingTableInteractCause(player))
             ) {
                 onOpenCraftingTableNaturally.notifyHandlers(
-                    BukkitFcOpenCraftingTableNaturallyEvent_1_7(event, playerProvider.getPlayer(player))
+                    BukkitFcOpenCraftingTableNaturallyEvent_1_7(event, fcPlayerProvider.getPlayer(player))
                 )
             }
         }

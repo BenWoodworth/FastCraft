@@ -8,15 +8,15 @@ import javax.inject.Singleton
 object BukkitFcItem_1_9  {
     @Singleton
     class TypeClass @Inject constructor(
-        private val items: FcItem.Factory,
+        private val fcItemFactory: FcItem.Factory,
         legacyMaterialInfo: LegacyMaterialInfo,
     ) : BukkitFcItem_1_7.TypeClass(
-        items = items,
-        legacyMaterialInfo = legacyMaterialInfo
+        fcItemFactory = fcItemFactory,
+        legacyMaterialInfo = legacyMaterialInfo,
     ) {
         override fun craftingRemainingItem(item: FcItem): FcItem? {
             return when (item.material) {
-                Material.DRAGONS_BREATH -> items.fromMaterial(Material.GLASS_BOTTLE)
+                Material.DRAGONS_BREATH -> fcItemFactory.fromMaterial(Material.GLASS_BOTTLE)
                 else -> super.craftingRemainingItem(item)
             }
         }
