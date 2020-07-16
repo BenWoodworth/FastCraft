@@ -11,7 +11,7 @@ import javax.inject.Singleton
 
 object BukkitFcItem_1_7 {
     @Singleton
-    class TypeClass @Inject constructor(
+    open class TypeClass @Inject constructor(
         private val items: FcItem.Factory,
         private val legacyMaterialInfo: LegacyMaterialInfo,
     ) : BukkitFcItem.TypeClass {
@@ -41,8 +41,8 @@ object BukkitFcItem_1_7 {
         override val FcItem.maxAmount: Int
             get() = material.maxStackSize
 
-        override val FcItem.craftingRemainingItem: FcItem?
-            get() = when (material) {
+        protected open fun craftingRemainingItem(item: FcItem): FcItem? {
+            return when (item.material) {
                 Material.LAVA_BUCKET,
                 Material.MILK_BUCKET,
                 Material.WATER_BUCKET,
@@ -50,6 +50,10 @@ object BukkitFcItem_1_7 {
 
                 else -> null
             }
+        }
+
+        final override val FcItem.craftingRemainingItem: FcItem?
+            get() = craftingRemainingItem(this)
 
         override fun FcItem.toItemStack(amount: Int): ItemStack {
             return materialData.toItemStack(amount)

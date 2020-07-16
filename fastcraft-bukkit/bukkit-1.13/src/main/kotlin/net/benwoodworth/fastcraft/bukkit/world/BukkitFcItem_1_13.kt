@@ -5,6 +5,7 @@ import net.benwoodworth.fastcraft.bukkit.text.createTranslate
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.world.FcItem
 import org.bukkit.Material
+import org.bukkit.Server
 import org.bukkit.inventory.ItemStack
 import org.bukkit.material.MaterialData
 import java.util.*
@@ -13,14 +14,13 @@ import javax.inject.Singleton
 
 object BukkitFcItem_1_13 {
     @Singleton
-    class TypeClass @Inject constructor(
-        private val tc: BukkitFcItem_1_7.TypeClass,
+    open class TypeClass @Inject constructor(
         private val textFactory: FcText.Factory,
         private val localizer: BukkitLocalizer,
         private val items: FcItem.Factory,
-    ) : BukkitFcItem.TypeClass by tc {
+    ) : BukkitFcItem.TypeClass {
         override val FcItem.id: String
-            get() = (material as Material).key.toString()
+            get() = material.key.toString()
 
         override val FcItem.material: Material
             get() = value as Material
@@ -70,8 +70,10 @@ object BukkitFcItem_1_13 {
 
     @Singleton
     open class Factory @Inject constructor(
-        private val factory: BukkitFcItem_1_7.Factory,
-    ) : BukkitFcItem.Factory by factory {
+        server: Server,
+    ) : BukkitFcItem_1_7.Factory(
+        server = server,
+    ) {
         override val craftingTable: FcItem
             get() = fromMaterial(Material.CRAFTING_TABLE)
 
