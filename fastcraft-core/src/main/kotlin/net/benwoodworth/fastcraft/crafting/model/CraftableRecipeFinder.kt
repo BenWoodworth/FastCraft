@@ -25,6 +25,7 @@ class CraftableRecipeFinder @Inject constructor(
     materialComparator: FcItemOrderComparator,
     private val taskFactory: FcTask.Factory,
     private val config: FastCraftConfig,
+    private val tcItemStack: FcItemStack.TypeClass,
 ) {
     private val NANOS_PER_TICK = 1000000000L / 20L
 
@@ -34,13 +35,13 @@ class CraftableRecipeFinder @Inject constructor(
 
     private val recipeComparator: Comparator<FcCraftingRecipe> =
         compareBy<FcCraftingRecipe, FcItem>(materialComparator) {
-            it.exemplaryResult.type
+            tcItemStack.run { it.exemplaryResult.type }
         }.thenBy {
-            it.exemplaryResult.amount
+            tcItemStack.run { it.exemplaryResult.amount }
         }
 
     private val ingredientComparator = compareBy<Map.Entry<FcItemStack, Int>>(
-        { (itemStack, _) -> itemStack.hasMetadata }, // Items with meta last
+        { (itemStack, _) -> tcItemStack.run { itemStack.hasMetadata } }, // Items with meta last
         { (_, amount) -> -amount }, // Greatest amount first
     )
 

@@ -19,6 +19,7 @@ open class BukkitFcCraftingRecipe_1_15(
     inventoryViewFactory: CraftingInventoryViewFactory,
     tcPlayer: FcPlayer.TypeClass,
     tcItem: FcItem.TypeClass,
+    tcItemStack: FcItemStack.TypeClass,
 ) : BukkitFcCraftingRecipe_1_13(
     recipe = recipe,
     server = server,
@@ -27,6 +28,7 @@ open class BukkitFcCraftingRecipe_1_15(
     inventoryViewFactory = inventoryViewFactory,
     tcPlayer = tcPlayer,
     tcItem = tcItem,
+    tcItemStack = tcItemStack,
 ) {
     override fun loadIngredients(): List<FcIngredient> {
         return when (recipe) {
@@ -43,6 +45,7 @@ open class BukkitFcCraftingRecipe_1_15(
         private val inventoryViewFactory: CraftingInventoryViewFactory,
         private val tcPlayer: FcPlayer.TypeClass,
         private val tcItem: FcItem.TypeClass,
+        private val tcItemStack: FcItemStack.TypeClass,
     ) : BukkitFcCraftingRecipe.Factory {
         override fun create(recipe: Recipe): FcCraftingRecipe {
             return BukkitFcCraftingRecipe_1_15(
@@ -53,6 +56,7 @@ open class BukkitFcCraftingRecipe_1_15(
                 inventoryViewFactory = inventoryViewFactory,
                 tcPlayer = tcPlayer,
                 tcItem = tcItem,
+                tcItemStack = tcItemStack,
             )
         }
     }

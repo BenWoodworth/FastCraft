@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.bukkit.player
 import net.benwoodworth.fastcraft.bukkit.server.permission
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcText
 import net.benwoodworth.fastcraft.bukkit.text.toRaw
-import net.benwoodworth.fastcraft.bukkit.world.toBukkitItemStack
+import net.benwoodworth.fastcraft.bukkit.world.bukkit
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcPlayerInventory
 import net.benwoodworth.fastcraft.platform.player.FcSound
@@ -26,6 +26,7 @@ object BukkitFcPlayer_1_7 {
         private val server: Server,
         private val playerInventoryFactory: BukkitFcPlayerInventory_1_7.Factory,
         private val tcSound: FcSound.TypeClass,
+        private val tcItemStack: FcItemStack.TypeClass,
     ) : BukkitFcPlayer.TypeClass {
         override val FcPlayer.player: Player
             get() = value as Player
@@ -75,12 +76,14 @@ object BukkitFcPlayer_1_7 {
                 player.world.dropItemNaturally(player.location, this)
             }
 
-            items.forEach { itemStack ->
-                if (dropAll) {
-                    itemStack.toBukkitItemStack().drop()
-                } else {
-                    val notAdded = player.inventory.addItem(itemStack.toBukkitItemStack()).values
-                    notAdded.forEach { it.drop() }
+            tcItemStack.bukkit.run {
+                items.forEach { itemStack ->
+                    if (dropAll) {
+                        itemStack.toBukkitItemStack().drop()
+                    } else {
+                        val notAdded = player.inventory.addItem(itemStack.toBukkitItemStack()).values
+                        notAdded.forEach { it.drop() }
+                    }
                 }
             }
         }

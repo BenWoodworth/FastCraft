@@ -20,6 +20,7 @@ open class BukkitFcCraftingRecipe_1_13(
     inventoryViewFactory: CraftingInventoryViewFactory,
     tcPlayer: FcPlayer.TypeClass,
     private val tcItem: FcItem.TypeClass,
+    private val tcItemStack: FcItemStack.TypeClass,
 ) : BukkitFcCraftingRecipe_1_12(
     recipe = recipe,
     server = server,
@@ -28,6 +29,7 @@ open class BukkitFcCraftingRecipe_1_13(
     inventoryViewFactory = inventoryViewFactory,
     tcPlayer = tcPlayer,
     tcItem = tcItem,
+    tcItemStack = tcItemStack,
 ) {
     override val group: String?
         get() = when (recipe) {
@@ -43,7 +45,7 @@ open class BukkitFcCraftingRecipe_1_13(
                     rowString
                         .mapIndexed { column, char ->
                             recipe.choiceMap[char]?.let { choice ->
-                                BukkitFcIngredient_1_13(row * 3 + column, choice)
+                                BukkitFcIngredient_1_13(row * 3 + column, choice, tcItemStack)
                             }
                         }
                         .filterNotNull()
@@ -52,7 +54,7 @@ open class BukkitFcCraftingRecipe_1_13(
 
             is ShapelessRecipe -> recipe.choiceList
                 .mapIndexed { i, recipeChoice ->
-                    BukkitFcIngredient_1_13(i, recipeChoice)
+                    BukkitFcIngredient_1_13(i, recipeChoice, tcItemStack)
                 }
 
             else -> throw IllegalStateException()
@@ -67,6 +69,7 @@ open class BukkitFcCraftingRecipe_1_13(
         private val inventoryViewFactory: CraftingInventoryViewFactory,
         private val tcPlayer: FcPlayer.TypeClass,
         private val tcItem: FcItem.TypeClass,
+        private val tcItemStack: FcItemStack.TypeClass,
     ) : BukkitFcCraftingRecipe.Factory {
         override fun create(recipe: Recipe): FcCraftingRecipe {
             return BukkitFcCraftingRecipe_1_13(
@@ -77,6 +80,7 @@ open class BukkitFcCraftingRecipe_1_13(
                 inventoryViewFactory = inventoryViewFactory,
                 tcPlayer = tcPlayer,
                 tcItem = tcItem,
+                tcItemStack = tcItemStack,
             )
         }
     }

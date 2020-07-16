@@ -1,11 +1,13 @@
 package net.benwoodworth.fastcraft.crafting.model
 
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
+import net.benwoodworth.fastcraft.platform.world.FcItemStack
 import kotlin.math.ceil
 
 class FastCraftRecipe(
     private val fastCraftGuiModel: FastCraftGuiModel,
     val preparedRecipe: FcCraftingRecipePrepared,
+    private val tcItemStack: FcItemStack.TypeClass,
 ) {
     var multiplier: Int = 1
         private set
@@ -20,7 +22,7 @@ class FastCraftRecipe(
             return
         }
 
-        val baseAmount = preparedRecipe.resultsPreview.first().amount
+        val baseAmount = tcItemStack.run { preparedRecipe.resultsPreview.first().amount }
         var newMultiplier = ceil(amount.toDouble() / baseAmount).toInt()
 
         if (baseAmount * newMultiplier > 64) {
@@ -39,7 +41,7 @@ class FastCraftRecipe(
 
         preparedRecipe.ingredients.values.forEach { itemStack ->
             val amountLeft = remainingItems[itemStack]
-            val removeAmount = itemStack.amount * multiplier
+            val removeAmount = tcItemStack.run { itemStack.amount } * multiplier
 
             when {
                 amountLeft < removeAmount -> return false

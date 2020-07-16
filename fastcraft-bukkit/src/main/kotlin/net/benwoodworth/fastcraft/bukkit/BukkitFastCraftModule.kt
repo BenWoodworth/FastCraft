@@ -126,11 +126,9 @@ class BukkitFastCraftModule(
 
     @Provides
     fun provideFcItemStackFactory(
-        instance_1_13: Provider<BukkitFcItemStack_1_13.Factory>,
         instance_1_7: Provider<BukkitFcItemStack_1_7.Factory>,
     ): FcItemStack.Factory {
         return when {
-            bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
             bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
             else -> instance_1_7.get()
         }
@@ -345,6 +343,18 @@ class BukkitFastCraftModule(
             bukkitVersion >= VERSION_1_15 -> instance_1_15.get()
             bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
             bukkitVersion >= VERSION_1_9 -> instance_1_9.get()
+            bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
+            else -> instance_1_7.get()
+        }
+    }
+
+    @Provides
+    fun provideFcItemStackTypeClass(
+        instance_1_7: Provider<BukkitFcItemStack_1_7.TypeClass>,
+        instance_1_13: Provider<BukkitFcItemStack_1_13.TypeClass>,
+    ): FcItemStack.TypeClass {
+        return when {
+            bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
             bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
             else -> instance_1_7.get()
         }

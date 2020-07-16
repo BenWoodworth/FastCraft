@@ -14,6 +14,7 @@ class FastCraftGuiModel(
     private val craftableRecipeFinder: CraftableRecipeFinder,
     private val itemStackFactory: FcItemStack.Factory,
     private val tcPlayer: FcPlayer.TypeClass,
+    private val tcItemStack: FcItemStack.TypeClass,
 ) {
     var craftAmount: Int? = null
     val recipes: MutableList<FastCraftRecipe?> = mutableListOf()
@@ -49,7 +50,7 @@ class FastCraftGuiModel(
         override fun onNewRecipesLoaded(newRecipes: List<FcCraftingRecipePrepared>) {
             newRecipes
 //                .uniqueBy { it.ingredients.values.toSet() to it.resultsPreview.toSet() }
-                .map { FastCraftRecipe(this@FastCraftGuiModel, it) }
+                .map { FastCraftRecipe(this@FastCraftGuiModel, it, tcItemStack) }
                 .forEach { recipes += it }
 
             listener?.onRecipesChange(recipes)
@@ -82,7 +83,7 @@ class FastCraftGuiModel(
         val updatedRecipe = recipe.preparedRecipe.recipe.prepare(player, recipe.preparedRecipe.ingredients)
         recipes[recipeIndex] = when (updatedRecipe) {
             is CancellableResult.Cancelled -> null
-            is CancellableResult.Result -> FastCraftRecipe(this, updatedRecipe.result)
+            is CancellableResult.Result -> FastCraftRecipe(this, updatedRecipe.result, tcItemStack)
         }
 
         return true
@@ -91,7 +92,7 @@ class FastCraftGuiModel(
     private fun removeItems(items: Collection<FcItemStack>, multiplier: Int) {
         val removeAmounts = itemAmountsProvider.get()
         items.forEach { itemStack ->
-            removeAmounts[itemStack] += itemStack.amount * multiplier
+            removeAmounts[itemStack] += tcItemStack.run { itemStack.amount } * multiplier
         }
 
         if (removeAmounts.isEmpty()) {
@@ -99,28 +100,30 @@ class FastCraftGuiModel(
         }
 
         val removeFromSlots = tcPlayer.run { player.inventory }.storage.asSequence()
-            .filter { it.itemStack != null && it.itemStack!!.amount > 0 }
-            .sortedBy { it.itemStack!!.amount }
+            .filter { it.itemStack != null && tcItemStack.run { it.itemStack!!.amount } > 0 }
+            .sortedBy { tcItemStack.run { it.itemStack!!.amount } }
 
         for (slot in removeFromSlots) {
             val itemStack = slot.itemStack!!
             val removeAmount = removeAmounts[itemStack]
 
-            when {
-                itemStack.amount <= 0 -> Unit
-                removeAmount <= 0 -> Unit
-                removeAmount >= itemStack.amount -> {
-                    removeAmounts[itemStack] = removeAmount - itemStack.amount
-                    slot.itemStack = null
+            tcItemStack.run {
+                when {
+                    itemStack.amount <= 0 -> Unit
+                    removeAmount <= 0 -> Unit
+                    removeAmount >= itemStack.amount -> {
+                        removeAmounts[itemStack] = removeAmount - itemStack.amount
+                        slot.itemStack = null
+                    }
+                    removeAmount < itemStack.amount -> {
+                        removeAmounts[itemStack] = 0
+                        slot.itemStack = itemStackFactory.copyItem(
+                            itemStack = itemStack,
+                            amount = itemStack.amount - removeAmount
+                        )
+                    }
+                    else -> throw IllegalStateException()
                 }
-                removeAmount < itemStack.amount -> {
-                    removeAmounts[itemStack] = 0
-                    slot.itemStack = itemStackFactory.copyItem(
-                        itemStack = itemStack,
-                        amount = itemStack.amount - removeAmount
-                    )
-                }
-                else -> throw IllegalStateException()
             }
         }
     }
@@ -139,6 +142,7 @@ class FastCraftGuiModel(
         private val craftableRecipeFinder: CraftableRecipeFinder,
         private val itemStackFactory: FcItemStack.Factory,
         private val tcPlayer: FcPlayer.TypeClass,
+        private val tcItemStack: FcItemStack.TypeClass,
     ) {
         fun create(player: FcPlayer): FastCraftGuiModel {
             return FastCraftGuiModel(
@@ -147,6 +151,7 @@ class FastCraftGuiModel(
                 craftableRecipeFinder = craftableRecipeFinder,
                 itemStackFactory = itemStackFactory,
                 tcPlayer = tcPlayer,
+                tcItemStack = tcItemStack,
             )
         }
     }

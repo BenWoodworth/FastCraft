@@ -2,17 +2,15 @@ package net.benwoodworth.fastcraft.platform.world
 
 import net.benwoodworth.fastcraft.platform.text.FcText
 
-interface FcItemStack {
-    val type: FcItem
-    val amount: Int
-    val name: FcText
-    val lore: List<FcText>
+inline class FcItemStack(val value: Any) {
+    interface TypeClass {
+        val FcItemStack.type: FcItem
+        val FcItemStack.amount: Int
+        val FcItemStack.name: FcText
+        val FcItemStack.lore: List<FcText>
 
-    val hasMetadata: Boolean
-
-    override fun equals(other: Any?): Boolean
-
-    override fun hashCode(): Int
+        val FcItemStack.hasMetadata: Boolean
+    }
 
     interface Factory {
         fun create(
@@ -22,7 +20,7 @@ interface FcItemStack {
 
         fun copyItem(
             itemStack: FcItemStack,
-            amount: Int = itemStack.amount,
+            amount: Int,
         ): FcItemStack
 
         fun parseOrNull(itemStr: String, amount: Int = 1): FcItemStack?

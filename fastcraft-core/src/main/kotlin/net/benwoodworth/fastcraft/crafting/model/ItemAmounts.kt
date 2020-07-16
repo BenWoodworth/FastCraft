@@ -7,16 +7,24 @@ import javax.inject.Inject
 class ItemAmounts private constructor(
     private val amounts: MutableMap<FcItemStack, Int>,
     private val itemStackFactory: FcItemStack.Factory,
+    private val tcItemStack: FcItemStack.TypeClass,
 ) {
     private companion object {
         val keys = WeakHashMap<FcItemStack, FcItemStack>()
     }
 
     @Inject
-    constructor(itemStackFactory: FcItemStack.Factory) : this(mutableMapOf(), itemStackFactory)
+    constructor(
+        itemStackFactory: FcItemStack.Factory,
+        tcItemStack: FcItemStack.TypeClass,
+    ) : this(
+        amounts = mutableMapOf(),
+        itemStackFactory = itemStackFactory,
+        tcItemStack = tcItemStack,
+    )
 
     private fun FcItemStack.asKey(): FcItemStack {
-        return when (amount) {
+        return when (tcItemStack.run { amount }) {
             1 -> this
             else -> keys.getOrPut(this) {
                 itemStackFactory.copyItem(this, 1)
@@ -36,16 +44,20 @@ class ItemAmounts private constructor(
     }
 
     operator fun plusAssign(itemStack: FcItemStack) {
-        if (itemStack.amount != 0) {
-            val key = itemStack.asKey()
-            amounts[key] = amounts.getOrDefault(key, 0) + itemStack.amount
+        tcItemStack.run {
+            if (itemStack.amount != 0) {
+                val key = itemStack.asKey()
+                amounts[key] = amounts.getOrDefault(key, 0) + itemStack.amount
+            }
         }
     }
 
     operator fun minusAssign(itemStack: FcItemStack) {
-        if (itemStack.amount != 0) {
-            val key = itemStack.asKey()
-            amounts[key] = amounts.getOrDefault(key, 0) - itemStack.amount
+        tcItemStack.run {
+            if (itemStack.amount != 0) {
+                val key = itemStack.asKey()
+                amounts[key] = amounts.getOrDefault(key, 0) - itemStack.amount
+            }
         }
     }
 
@@ -54,7 +66,7 @@ class ItemAmounts private constructor(
     }
 
     fun copy(): ItemAmounts {
-        return ItemAmounts(amounts.toMutableMap(), itemStackFactory)
+        return ItemAmounts(amounts.toMutableMap(), itemStackFactory, tcItemStack)
     }
 
     fun asMap(): Map<FcItemStack, Int> {

@@ -2,7 +2,6 @@ package net.benwoodworth.fastcraft.bukkit.gui
 
 import net.benwoodworth.fastcraft.bukkit.util.updateMeta
 import net.benwoodworth.fastcraft.bukkit.world.bukkit
-import net.benwoodworth.fastcraft.bukkit.world.toBukkitItemStack
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextConverter
@@ -24,6 +23,7 @@ open class BukkitFcGuiButton_1_7(
     private val textFactory: FcText.Factory,
     private val textConverter: FcTextConverter,
     private val tcItem: FcItem.TypeClass,
+    private val tcItemStack: FcItemStack.TypeClass,
 ) : BukkitFcGuiButton {
 
     protected var hideItemDetails: Boolean = false
@@ -82,11 +82,13 @@ open class BukkitFcGuiButton_1_7(
     }
 
     override fun copyItem(itemStack: FcItemStack) {
-        this.itemStack = itemStack.toBukkitItemStack()
+        tcItemStack.bukkit.run {
+            this@BukkitFcGuiButton_1_7.itemStack = itemStack.toBukkitItemStack()
 
-        _text = itemStack.name
-        _description = itemStack.lore
-        hideItemDetails = false
+            _text = itemStack.name
+            _description = itemStack.lore
+            hideItemDetails = false
+        }
     }
 
     override fun clear() {
@@ -148,6 +150,7 @@ open class BukkitFcGuiButton_1_7(
         private val textFactory: FcText.Factory,
         private val textConverter: FcTextConverter,
         private val tcItem: FcItem.TypeClass,
+        private val tcItemStack: FcItemStack.TypeClass,
     ) : BukkitFcGuiButton.Factory {
         override fun create(inventory: Inventory, slotIndex: Int, locale: Locale): FcGuiButton {
             return BukkitFcGuiButton_1_7(
@@ -157,6 +160,7 @@ open class BukkitFcGuiButton_1_7(
                 textFactory = textFactory,
                 textConverter = textConverter,
                 tcItem = tcItem,
+                tcItemStack = tcItemStack,
             )
         }
     }

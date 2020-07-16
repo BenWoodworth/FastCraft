@@ -6,9 +6,9 @@ import net.benwoodworth.fastcraft.crafting.model.ItemAmounts
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
-import net.benwoodworth.fastcraft.platform.player.FcSound
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextConverter
+import net.benwoodworth.fastcraft.platform.world.FcItemStack
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Provider
@@ -19,7 +19,7 @@ class RecipeButtonView(
     private val textFactory: FcText.Factory,
     private val itemAmountsProvider: Provider<ItemAmounts>,
     private val textConverter: FcTextConverter,
-    private val sounds: FcSound.Factory,
+    private val tcItemStack: FcItemStack.TypeClass,
 ) {
     var fastCraftRecipe: FastCraftRecipe? = null
 
@@ -39,7 +39,7 @@ class RecipeButtonView(
         fastCraftRecipe.preparedRecipe.let { preparedRecipe ->
             val previewItem = preparedRecipe.resultsPreview.first()
             button.copyItem(previewItem)
-            button.setAmount(previewItem.amount * fastCraftRecipe.multiplier)
+            button.setAmount(tcItemStack.run { previewItem.amount } * fastCraftRecipe.multiplier)
 
             val newDescription = mutableListOf<FcText>()
 
@@ -62,8 +62,8 @@ class RecipeButtonView(
                     .sortedByDescending { (_, amount) -> amount }
                     .let { listOf(AbstractMap.SimpleEntry(primaryResult, primaryResultAmount)) + it }
                     .forEach { (itemStack, amount) ->
-                        var itemName = textConverter.toPlaintext(itemStack.name, locale)
-                        if (itemStack.hasMetadata) {
+                        var itemName = textConverter.toPlaintext(tcItemStack.run { itemStack.name }, locale)
+                        if (tcItemStack.run { itemStack.hasMetadata }) {
                             itemName += "*"
                         }
 
@@ -93,8 +93,8 @@ class RecipeButtonView(
                 ingredients.asMap().entries
                     .sortedByDescending { (_, amount) -> amount }
                     .forEach { (itemStack, amount) ->
-                        var itemName = textConverter.toPlaintext(itemStack.name, locale)
-                        if (itemStack.hasMetadata) {
+                        var itemName = textConverter.toPlaintext(tcItemStack.run { itemStack.name }, locale)
+                        if (tcItemStack.run { itemStack.hasMetadata }) {
                             itemName += "*"
                         }
 
@@ -111,9 +111,11 @@ class RecipeButtonView(
             val recipeId = fastCraftRecipe.preparedRecipe.recipe.id
             newDescription += textFactory.createLegacy(Strings.guiRecipeId(locale, recipeId))
 
-            if (previewItem.lore.any()) {
-                newDescription += textFactory.create()
-                newDescription += previewItem.lore
+            tcItemStack.run {
+                if (previewItem.lore.any()) {
+                    newDescription += textFactory.create()
+                    newDescription += previewItem.lore
+                }
             }
 
             button.setDescription(newDescription)
@@ -156,7 +158,7 @@ class RecipeButtonView(
         private val textFactory: FcText.Factory,
         private val itemAmountsProvider: Provider<ItemAmounts>,
         private val textConverter: FcTextConverter,
-        private val sounds: FcSound.Factory,
+        private val tcItemStack: FcItemStack.TypeClass,
     ) {
         fun create(button: FcGuiButton, locale: Locale): RecipeButtonView {
             return RecipeButtonView(
@@ -165,7 +167,7 @@ class RecipeButtonView(
                 textFactory = textFactory,
                 itemAmountsProvider = itemAmountsProvider,
                 textConverter = textConverter,
-                sounds = sounds,
+                tcItemStack = tcItemStack,
             )
         }
     }

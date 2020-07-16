@@ -3,7 +3,6 @@ package net.benwoodworth.fastcraft.bukkit.recipe
 import net.benwoodworth.fastcraft.bukkit.player.bukkit
 import net.benwoodworth.fastcraft.bukkit.world.bukkit
 import net.benwoodworth.fastcraft.bukkit.world.create
-import net.benwoodworth.fastcraft.bukkit.world.toBukkitItemStack
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipe
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
@@ -27,6 +26,7 @@ open class BukkitFcCraftingRecipe_1_7(
     private val inventoryViewFactory: CraftingInventoryViewFactory,
     private val tcPlayer: FcPlayer.TypeClass,
     private val tcItem: FcItem.TypeClass,
+    private val tcItemStack: FcItemStack.TypeClass,
 ) : BukkitFcCraftingRecipe {
     private companion object {
         private const val recipeIdAlphabet = "23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefhkmnorsuvwxz"
@@ -59,7 +59,7 @@ open class BukkitFcCraftingRecipe_1_7(
                     rowString
                         .mapIndexed { column, char ->
                             recipe.ingredientMap[char]?.let { ingredient ->
-                                BukkitFcIngredient_1_7(row * 3 + column, ingredient)
+                                BukkitFcIngredient_1_7(row * 3 + column, ingredient, tcItemStack)
                             }
                         }
                         .filterNotNull()
@@ -68,7 +68,7 @@ open class BukkitFcCraftingRecipe_1_7(
 
             is ShapelessRecipe -> recipe.ingredientList
                 .mapIndexed { i, ingredient ->
-                    BukkitFcIngredient_1_7(i, ingredient)
+                    BukkitFcIngredient_1_7(i, ingredient, tcItemStack)
                 }
 
             else -> throw IllegalStateException()
@@ -91,8 +91,10 @@ open class BukkitFcCraftingRecipe_1_7(
         val prepareView = inventoryViewFactory.create(tcPlayer.bukkit.run { player.player }, null, recipe)
         val craftingGrid = prepareView.topInventory as CraftingInventory
 
-        ingredients.forEach { (ingredient, itemStack) ->
-            craftingGrid.setItem(ingredient.slotIndex, itemStack.toBukkitItemStack())
+        tcItemStack.bukkit.run {
+            ingredients.forEach { (ingredient, itemStack) ->
+                craftingGrid.setItem(ingredient.slotIndex, itemStack.toBukkitItemStack())
+            }
         }
 
         val validIngredients = ingredients.all { (ingredient, itemStack) -> ingredient.matches(itemStack) }
@@ -111,8 +113,10 @@ open class BukkitFcCraftingRecipe_1_7(
         val ingredientRemnants = ingredients.values
             .mapNotNull { ingredient ->
                 tcItem.bukkit.run {
-                    ingredient.type.craftingRemainingItem
-                        ?.let { itemStackFactory.create(ItemStack(it.material, ingredient.amount)) }
+                    tcItemStack.run {
+                        ingredient.type.craftingRemainingItem
+                            ?.let { itemStackFactory.create(ItemStack(it.material, ingredient.amount)) }
+                    }
                 }
             }
 
@@ -181,6 +185,7 @@ open class BukkitFcCraftingRecipe_1_7(
         private val inventoryViewFactory: CraftingInventoryViewFactory,
         private val tcPlayer: FcPlayer.TypeClass,
         private val tcItem: FcItem.TypeClass,
+        private val tcItemStack: FcItemStack.TypeClass,
     ) : BukkitFcCraftingRecipe.Factory {
         override fun create(recipe: Recipe): FcCraftingRecipe {
             return BukkitFcCraftingRecipe_1_7(
@@ -191,6 +196,7 @@ open class BukkitFcCraftingRecipe_1_7(
                 inventoryViewFactory = inventoryViewFactory,
                 tcPlayer = tcPlayer,
                 tcItem = tcItem,
+                tcItemStack = tcItemStack,
             )
         }
     }

@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
-import net.benwoodworth.fastcraft.bukkit.world.bukkitItemStack
+import net.benwoodworth.fastcraft.bukkit.world.bukkit
 import net.benwoodworth.fastcraft.platform.world.FcItemStack
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
@@ -9,6 +9,7 @@ import java.util.*
 class BukkitFcIngredient_1_7(
     override val slotIndex: Int,
     private val ingredientItem: ItemStack,
+    private val tcItemStack: FcItemStack.TypeClass,
 ) : BukkitFcIngredient {
     @Suppress("DEPRECATION")
     private val hasWildcardData: Boolean = ingredientItem.data.data == WILDCARD_DATA
@@ -22,7 +23,7 @@ class BukkitFcIngredient_1_7(
     }
 
     override fun matches(itemStack: FcItemStack): Boolean {
-        val bukkitItemStack = itemStack.bukkitItemStack
+        val bukkitItemStack = tcItemStack.bukkit.run { itemStack.bukkitItemStack }
 
         return when {
             bukkitItemStack.type === Material.AIR -> {
