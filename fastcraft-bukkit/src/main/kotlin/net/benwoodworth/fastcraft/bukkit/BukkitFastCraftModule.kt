@@ -359,4 +359,14 @@ class BukkitFastCraftModule(
             else -> instance_1_7.get()
         }
     }
+
+    @Provides
+    fun provideFcTextColorTypeClass(
+        instance_1_7: Provider<BukkitFcTextColor_1_7.TypeClass>,
+    ): FcTextColor.TypeClass {
+        return when {
+            bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
+            else -> instance_1_7.get()
+        }
+    }
 }
