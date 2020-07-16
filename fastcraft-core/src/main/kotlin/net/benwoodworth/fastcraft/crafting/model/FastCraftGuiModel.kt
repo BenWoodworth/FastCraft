@@ -117,10 +117,7 @@ class FastCraftGuiModel(
                     }
                     removeAmount < itemStack.amount -> {
                         removeAmounts[itemStack] = 0
-                        slot.itemStack = itemStackFactory.copyItem(
-                            itemStack = itemStack,
-                            amount = itemStack.amount - removeAmount
-                        )
+                        itemStack.amount -= removeAmount
                     }
                     else -> throw IllegalStateException()
                 }

@@ -23,7 +23,7 @@ class BukkitFcInventorySlot(
     private fun FcItemStack?.toInventoryItem(): ItemStack {
         fcItemStackTypeClass.bukkit.run {
             return this@toInventoryItem
-                ?.toBukkitItemStack()
+                ?.itemStack?.clone()
                 ?: ItemStack(Material.AIR, 0)
         }
     }

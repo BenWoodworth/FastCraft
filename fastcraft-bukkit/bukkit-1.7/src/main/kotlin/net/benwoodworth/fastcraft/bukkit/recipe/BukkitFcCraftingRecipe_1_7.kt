@@ -93,7 +93,7 @@ open class BukkitFcCraftingRecipe_1_7(
 
         fcItemStackTypeClass.bukkit.run {
             ingredients.forEach { (ingredient, itemStack) ->
-                craftingGrid.setItem(ingredient.slotIndex, itemStack.toBukkitItemStack())
+                craftingGrid.setItem(ingredient.slotIndex, itemStack.itemStack.clone())
             }
         }
 

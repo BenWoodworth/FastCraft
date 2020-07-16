@@ -27,7 +27,9 @@ class ItemAmounts private constructor(
         return when (fcItemStackTypeClass.run { amount }) {
             1 -> this
             else -> keys.getOrPut(this) {
-                itemStackFactory.copyItem(this, 1)
+                fcItemStackTypeClass.run {
+                    this@asKey.copy().apply { amount = 1 }
+                }
             }
         }
     }

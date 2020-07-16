@@ -79,9 +79,9 @@ object BukkitFcPlayer_1_7 {
             fcItemStackTypeClass.bukkit.run {
                 items.forEach { itemStack ->
                     if (dropAll) {
-                        itemStack.toBukkitItemStack().drop()
+                        itemStack.itemStack.clone().drop()
                     } else {
-                        val notAdded = player.inventory.addItem(itemStack.toBukkitItemStack()).values
+                        val notAdded = player.inventory.addItem(itemStack.itemStack).values
                         notAdded.forEach { it.drop() }
                     }
                 }

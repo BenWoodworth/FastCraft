@@ -28,7 +28,7 @@ open class BukkitFcIngredient_1_13 protected constructor(
 
     override fun matches(itemStack: FcItemStack): Boolean {
         fcItemStackTypeClass.bukkit.run {
-            return recipeChoice.test(itemStack.bukkitItemStack)
+            return recipeChoice.test(itemStack.itemStack)
         }
     }
 

@@ -23,7 +23,7 @@ class BukkitFcIngredient_1_7(
     }
 
     override fun matches(itemStack: FcItemStack): Boolean {
-        val bukkitItemStack = fcItemStackTypeClass.bukkit.run { itemStack.bukkitItemStack }
+        val bukkitItemStack = fcItemStackTypeClass.bukkit.run { itemStack.itemStack }
 
         return when {
             bukkitItemStack.type === Material.AIR -> {

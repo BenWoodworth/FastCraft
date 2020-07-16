@@ -3,7 +3,6 @@ package net.benwoodworth.fastcraft.bukkit.world
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.world.FcItem
 import net.benwoodworth.fastcraft.platform.world.FcItemStack
-import org.bukkit.Material
 import org.bukkit.Server
 import org.bukkit.inventory.ItemStack
 import javax.inject.Inject
@@ -15,18 +14,25 @@ object BukkitFcItemStack_1_7 {
         private val items: FcItem.Factory,
         private val textFactory: FcText.Factory,
         private val fcItemTypeClass: FcItem.TypeClass,
+        private val fcItemStackFactory: FcItemStack.Factory,
     ) : BukkitFcItemStack.TypeClass {
-        override val FcItemStack.bukkitItemStack: ItemStack
+        override val FcItemStack.itemStack: ItemStack
             get() = value as ItemStack
 
-        override val FcItemStack.type: FcItem
-            get() = items.fromMaterialData(bukkitItemStack.data)
+        override var FcItemStack.type: FcItem
+            get() = items.fromMaterialData(itemStack.data)
+            set(value) {
+                itemStack.data = fcItemTypeClass.bukkit.run { value.materialData }
+            }
 
-        override val FcItemStack.amount: Int
-            get() = bukkitItemStack.amount
+        override var FcItemStack.amount: Int
+            get() = itemStack.amount
+            set(value) {
+                itemStack.amount = value
+            }
 
         override val FcItemStack.name: FcText
-            get() = bukkitItemStack
+            get() = itemStack
                 .takeIf { it.hasItemMeta() }
                 ?.itemMeta
                 ?.takeIf { it.hasDisplayName() }
@@ -35,7 +41,7 @@ object BukkitFcItemStack_1_7 {
                 ?: fcItemTypeClass.run { type.name }
 
         override val FcItemStack.lore: List<FcText>
-            get() = bukkitItemStack
+            get() = itemStack
                 .takeIf { it.hasItemMeta() }
                 ?.itemMeta
                 ?.takeIf { it.hasLore() }
@@ -44,35 +50,21 @@ object BukkitFcItemStack_1_7 {
                 ?: emptyList()
 
         override val FcItemStack.hasMetadata: Boolean
-            get() = bukkitItemStack.hasItemMeta()
+            get() = itemStack.hasItemMeta()
 
-        override fun FcItemStack.toBukkitItemStack(): ItemStack {
-            return bukkitItemStack.clone()
+        override fun FcItemStack.copy(): FcItemStack {
+            return fcItemStackFactory.create(itemStack.clone())
         }
     }
 
     @Singleton
     open class Factory @Inject constructor(
-        protected val items: FcItem.Factory,
+        private val items: FcItem.Factory,
         protected val server: Server,
         private val fcItemTypeClass: FcItem.TypeClass,
-        private val fcItemStackTypeClass: FcItemStack.TypeClass,
     ) : BukkitFcItemStack.Factory {
         override fun create(item: FcItem, amount: Int): FcItemStack {
             return fcItemTypeClass.bukkit.run { create(item.toItemStack(amount)) }
-        }
-
-        override fun copyItem(itemStack: FcItemStack, amount: Int): FcItemStack {
-            fcItemStackTypeClass.bukkit.run {
-                if (amount == itemStack.amount || itemStack.bukkitItemStack.type == Material.AIR) {
-                    return itemStack
-                }
-
-                val bukkitItemStack = itemStack.toBukkitItemStack()
-                bukkitItemStack.amount = amount
-
-                return create(bukkitItemStack)
-            }
         }
 
         override fun parseOrNull(itemStr: String, amount: Int): FcItemStack? {

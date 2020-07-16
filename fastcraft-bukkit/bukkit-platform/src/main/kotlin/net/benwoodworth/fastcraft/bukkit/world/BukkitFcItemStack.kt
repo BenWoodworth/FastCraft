@@ -5,9 +5,7 @@ import org.bukkit.inventory.ItemStack
 
 object BukkitFcItemStack {
     interface TypeClass : FcItemStack.TypeClass {
-        val FcItemStack.bukkitItemStack: ItemStack
-
-        fun FcItemStack.toBukkitItemStack(): ItemStack
+        val FcItemStack.itemStack: ItemStack
     }
 
     interface Factory : FcItemStack.Factory {

@@ -11,13 +11,18 @@ class BukkitFcItemStack_1_13 {
     class TypeClass @Inject constructor(
         private val items: FcItem.Factory,
         textFactory: FcText.Factory,
-        fcItemTypeClass: FcItem.TypeClass,
+        private val fcItemTypeClass: FcItem.TypeClass,
+        fcItemStackFactory: FcItemStack.Factory,
     ) : BukkitFcItemStack_1_7.TypeClass(
         items = items,
         textFactory = textFactory,
         fcItemTypeClass = fcItemTypeClass,
+        fcItemStackFactory = fcItemStackFactory,
     ) {
-        override val FcItemStack.type: FcItem
-            get() = items.fromMaterial(bukkitItemStack.type)
+        override var FcItemStack.type: FcItem
+            get() = items.fromMaterial(itemStack.type)
+            set(value) {
+                itemStack.type = fcItemTypeClass.bukkit.run { value.material }
+            }
     }
 }

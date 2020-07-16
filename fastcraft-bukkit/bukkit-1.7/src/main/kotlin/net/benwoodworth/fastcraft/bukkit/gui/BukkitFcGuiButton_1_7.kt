@@ -83,7 +83,7 @@ open class BukkitFcGuiButton_1_7(
 
     override fun copyItem(itemStack: FcItemStack) {
         fcItemStackTypeClass.bukkit.run {
-            this@BukkitFcGuiButton_1_7.itemStack = itemStack.toBukkitItemStack()
+            this@BukkitFcGuiButton_1_7.itemStack = itemStack.itemStack.clone()
 
             _text = itemStack.name
             _description = itemStack.lore
