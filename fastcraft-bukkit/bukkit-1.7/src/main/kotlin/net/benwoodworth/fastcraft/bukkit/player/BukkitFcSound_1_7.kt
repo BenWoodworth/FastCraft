@@ -14,7 +14,7 @@ object BukkitFcSound_1_7 {
     }
 
     @Singleton
-    class Factory @Inject constructor(
+    open class Factory @Inject constructor(
     ) : BukkitFcSound.Factory {
         override val uiButtonClick: FcSound
             get() = fromSound(Sound.CLICK)

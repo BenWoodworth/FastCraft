@@ -8,8 +8,7 @@ import javax.inject.Singleton
 object BukkitFcSound_1_9 {
     @Singleton
     class Factory @Inject constructor(
-        factory: BukkitFcSound_1_7.Factory,
-    ) : BukkitFcSound.Factory by factory {
+    ) : BukkitFcSound_1_7.Factory() {
         override val uiButtonClick: FcSound
             get() = fromSound(Sound.UI_BUTTON_CLICK)
     }
