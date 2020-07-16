@@ -38,7 +38,7 @@ open class BukkitFcGuiButton_1_8(
                     ItemFlag.HIDE_UNBREAKABLE,
                     ItemFlag.HIDE_DESTROYS,
                     ItemFlag.HIDE_PLACED_ON,
-                    ItemFlag.HIDE_POTION_EFFECTS
+                    ItemFlag.HIDE_POTION_EFFECTS,
                 )
             }
         }

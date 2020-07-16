@@ -129,7 +129,7 @@ open class BukkitFcCraftingRecipe_1_7(
                 ingredients,
                 ingredientRemnants,
                 resultsPreview,
-                prepareView
+                prepareView,
             )
         )
     }
@@ -170,7 +170,7 @@ open class BukkitFcCraftingRecipe_1_7(
             is ShapelessRecipe -> {
                 Objects.hash(
                     recipe.result,
-                    recipe.ingredientList
+                    recipe.ingredientList,
                 )
             }
             else -> error("Only ShapedRecipe and ShapelessRecipe are supported")

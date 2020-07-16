@@ -45,7 +45,7 @@ open class BukkitFcCraftingRecipePrepared_1_7(
             InventoryType.SlotType.RESULT,
             9,
             ClickType.SHIFT_LEFT,
-            InventoryAction.MOVE_TO_OTHER_INVENTORY
+            InventoryAction.MOVE_TO_OTHER_INVENTORY,
         )
 
         server.pluginManager.callEvent(craftEvent)
