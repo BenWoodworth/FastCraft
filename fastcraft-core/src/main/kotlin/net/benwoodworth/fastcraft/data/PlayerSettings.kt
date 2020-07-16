@@ -12,7 +12,7 @@ import kotlin.experimental.or
 
 class PlayerSettings @Inject constructor(
     pluginData: FcPluginData,
-    private val tcPlayer: FcPlayer.TypeClass,
+    private val fcPlayerTypeClass: FcPlayer.TypeClass,
 ) : Closeable {
     private companion object {
         val ROW_LEN = 17
@@ -64,7 +64,7 @@ class PlayerSettings @Inject constructor(
     }
 
     private fun getPlayerRow(player: FcPlayer): Long {
-        val uuid = tcPlayer.run { player.uuid }
+        val uuid = fcPlayerTypeClass.run { player.uuid }
         playerRows[uuid]?.let { row -> return row }
 
         val playerUuid = uuid.toByteArray()

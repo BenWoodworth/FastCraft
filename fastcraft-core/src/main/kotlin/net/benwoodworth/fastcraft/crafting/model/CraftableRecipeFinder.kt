@@ -21,11 +21,11 @@ import kotlin.collections.HashMap
 class CraftableRecipeFinder @Inject constructor(
     private val recipeProvider: FcRecipeProvider,
     private val itemAmountsProvider: Provider<ItemAmounts>,
-    private val tcPlayer: FcPlayer.TypeClass,
+    private val fcPlayerTypeClass: FcPlayer.TypeClass,
     materialComparator: FcItemOrderComparator,
     private val taskFactory: FcTask.Factory,
     private val config: FastCraftConfig,
-    private val tcItemStack: FcItemStack.TypeClass,
+    private val fcItemStackTypeClass: FcItemStack.TypeClass,
 ) {
     private val NANOS_PER_TICK = 1000000000L / 20L
 
@@ -35,21 +35,21 @@ class CraftableRecipeFinder @Inject constructor(
 
     private val recipeComparator: Comparator<FcCraftingRecipe> =
         compareBy<FcCraftingRecipe, FcItem>(materialComparator) {
-            tcItemStack.run { it.exemplaryResult.type }
+            fcItemStackTypeClass.run { it.exemplaryResult.type }
         }.thenBy {
-            tcItemStack.run { it.exemplaryResult.amount }
+            fcItemStackTypeClass.run { it.exemplaryResult.amount }
         }
 
     private val ingredientComparator = compareBy<Map.Entry<FcItemStack, Int>>(
-        { (itemStack, _) -> tcItemStack.run { itemStack.hasMetadata } }, // Items with meta last
+        { (itemStack, _) -> fcItemStackTypeClass.run { itemStack.hasMetadata } }, // Items with meta last
         { (_, amount) -> -amount }, // Greatest amount first
     )
 
     fun loadRecipes(player: FcPlayer, listener: Listener) {
-        val uuid = tcPlayer.run { player.uuid }
+        val uuid = fcPlayerTypeClass.run { player.uuid }
         recipeLoadTasks[uuid] = taskFactory.startTask(delayTicks = 1) {
             val availableItems = itemAmountsProvider.get()
-            tcPlayer.run { player.inventory }.storage.forEach { slot ->
+            fcPlayerTypeClass.run { player.inventory }.storage.forEach { slot ->
                 slot.itemStack?.let { itemStack -> availableItems += itemStack }
             }
 
@@ -90,7 +90,7 @@ class CraftableRecipeFinder @Inject constructor(
     }
 
     fun cancel(player: FcPlayer) {
-        recipeLoadTasks.remove(tcPlayer.run { player.uuid })?.cancel()
+        recipeLoadTasks.remove(fcPlayerTypeClass.run { player.uuid })?.cancel()
     }
 
     private fun prepareCraftableRecipes(

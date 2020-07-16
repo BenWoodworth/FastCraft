@@ -24,9 +24,9 @@ open class BukkitFcCraftingRecipe_1_7(
     private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
     private val itemStackFactory: FcItemStack.Factory,
     private val inventoryViewFactory: CraftingInventoryViewFactory,
-    private val tcPlayer: FcPlayer.TypeClass,
-    private val tcItem: FcItem.TypeClass,
-    private val tcItemStack: FcItemStack.TypeClass,
+    private val fcPlayerTypeClass: FcPlayer.TypeClass,
+    private val fcItemTypeClass: FcItem.TypeClass,
+    private val fcItemStackTypeClass: FcItemStack.TypeClass,
 ) : BukkitFcCraftingRecipe {
     private companion object {
         private const val recipeIdAlphabet = "23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefhkmnorsuvwxz"
@@ -59,7 +59,7 @@ open class BukkitFcCraftingRecipe_1_7(
                     rowString
                         .mapIndexed { column, char ->
                             recipe.ingredientMap[char]?.let { ingredient ->
-                                BukkitFcIngredient_1_7(row * 3 + column, ingredient, tcItemStack)
+                                BukkitFcIngredient_1_7(row * 3 + column, ingredient, fcItemStackTypeClass)
                             }
                         }
                         .filterNotNull()
@@ -68,7 +68,7 @@ open class BukkitFcCraftingRecipe_1_7(
 
             is ShapelessRecipe -> recipe.ingredientList
                 .mapIndexed { i, ingredient ->
-                    BukkitFcIngredient_1_7(i, ingredient, tcItemStack)
+                    BukkitFcIngredient_1_7(i, ingredient, fcItemStackTypeClass)
                 }
 
             else -> throw IllegalStateException()
@@ -88,10 +88,10 @@ open class BukkitFcCraftingRecipe_1_7(
         ingredients: Map<FcIngredient, FcItemStack>,
     ): CancellableResult<FcCraftingRecipePrepared> {
         // TODO Inventory owner
-        val prepareView = inventoryViewFactory.create(tcPlayer.bukkit.run { player.player }, null, recipe)
+        val prepareView = inventoryViewFactory.create(fcPlayerTypeClass.bukkit.run { player.player }, null, recipe)
         val craftingGrid = prepareView.topInventory as CraftingInventory
 
-        tcItemStack.bukkit.run {
+        fcItemStackTypeClass.bukkit.run {
             ingredients.forEach { (ingredient, itemStack) ->
                 craftingGrid.setItem(ingredient.slotIndex, itemStack.toBukkitItemStack())
             }
@@ -112,8 +112,8 @@ open class BukkitFcCraftingRecipe_1_7(
 
         val ingredientRemnants = ingredients.values
             .mapNotNull { ingredient ->
-                tcItem.bukkit.run {
-                    tcItemStack.run {
+                fcItemTypeClass.bukkit.run {
+                    fcItemStackTypeClass.run {
                         ingredient.type.craftingRemainingItem
                             ?.let { itemStackFactory.create(ItemStack(it.material, ingredient.amount)) }
                     }
@@ -124,7 +124,7 @@ open class BukkitFcCraftingRecipe_1_7(
 
         return CancellableResult(
             preparedRecipeFactory.create(
-                tcPlayer.bukkit.run { player.player },
+                fcPlayerTypeClass.bukkit.run { player.player },
                 this,
                 ingredients,
                 ingredientRemnants,
@@ -183,9 +183,9 @@ open class BukkitFcCraftingRecipe_1_7(
         private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
         private val itemStackFactory: FcItemStack.Factory,
         private val inventoryViewFactory: CraftingInventoryViewFactory,
-        private val tcPlayer: FcPlayer.TypeClass,
-        private val tcItem: FcItem.TypeClass,
-        private val tcItemStack: FcItemStack.TypeClass,
+        private val fcPlayerTypeClass: FcPlayer.TypeClass,
+        private val fcItemTypeClass: FcItem.TypeClass,
+        private val fcItemStackTypeClass: FcItemStack.TypeClass,
     ) : BukkitFcCraftingRecipe.Factory {
         override fun create(recipe: Recipe): FcCraftingRecipe {
             return BukkitFcCraftingRecipe_1_7(
@@ -194,9 +194,9 @@ open class BukkitFcCraftingRecipe_1_7(
                 preparedRecipeFactory = preparedRecipeFactory,
                 itemStackFactory = itemStackFactory,
                 inventoryViewFactory = inventoryViewFactory,
-                tcPlayer = tcPlayer,
-                tcItem = tcItem,
-                tcItemStack = tcItemStack,
+                fcPlayerTypeClass = fcPlayerTypeClass,
+                fcItemTypeClass = fcItemTypeClass,
+                fcItemStackTypeClass = fcItemStackTypeClass,
             )
         }
     }

@@ -17,18 +17,18 @@ open class BukkitFcCraftingRecipe_1_15(
     preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
     itemStackFactory: FcItemStack.Factory,
     inventoryViewFactory: CraftingInventoryViewFactory,
-    tcPlayer: FcPlayer.TypeClass,
-    tcItem: FcItem.TypeClass,
-    tcItemStack: FcItemStack.TypeClass,
+    fcPlayerTypeClass: FcPlayer.TypeClass,
+    fcItemTypeClass: FcItem.TypeClass,
+    fcItemStackTypeClass: FcItemStack.TypeClass,
 ) : BukkitFcCraftingRecipe_1_13(
     recipe = recipe,
     server = server,
     preparedRecipeFactory = preparedRecipeFactory,
     itemStackFactory = itemStackFactory,
     inventoryViewFactory = inventoryViewFactory,
-    tcPlayer = tcPlayer,
-    tcItem = tcItem,
-    tcItemStack = tcItemStack,
+    fcPlayerTypeClass = fcPlayerTypeClass,
+    fcItemTypeClass = fcItemTypeClass,
+    fcItemStackTypeClass = fcItemStackTypeClass,
 ) {
     override fun loadIngredients(): List<FcIngredient> {
         return when (recipe) {
@@ -43,9 +43,9 @@ open class BukkitFcCraftingRecipe_1_15(
         private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
         private val itemStackFactory: FcItemStack.Factory,
         private val inventoryViewFactory: CraftingInventoryViewFactory,
-        private val tcPlayer: FcPlayer.TypeClass,
-        private val tcItem: FcItem.TypeClass,
-        private val tcItemStack: FcItemStack.TypeClass,
+        private val fcPlayerTypeClass: FcPlayer.TypeClass,
+        private val fcItemTypeClass: FcItem.TypeClass,
+        private val fcItemStackTypeClass: FcItemStack.TypeClass,
     ) : BukkitFcCraftingRecipe.Factory {
         override fun create(recipe: Recipe): FcCraftingRecipe {
             return BukkitFcCraftingRecipe_1_15(
@@ -54,9 +54,9 @@ open class BukkitFcCraftingRecipe_1_15(
                 preparedRecipeFactory = preparedRecipeFactory,
                 itemStackFactory = itemStackFactory,
                 inventoryViewFactory = inventoryViewFactory,
-                tcPlayer = tcPlayer,
-                tcItem = tcItem,
-                tcItemStack = tcItemStack,
+                fcPlayerTypeClass = fcPlayerTypeClass,
+                fcItemTypeClass = fcItemTypeClass,
+                fcItemStackTypeClass = fcItemStackTypeClass,
             )
         }
     }

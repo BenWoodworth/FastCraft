@@ -20,7 +20,7 @@ class PageButtonView(
     private val textFactory: FcText.Factory,
     private val sounds: FcSound.Factory,
     config: FastCraftConfig,
-    private val tcPlayer: FcPlayer.TypeClass,
+    private val fcPlayerTypeClass: FcPlayer.TypeClass,
 ) {
     var page: Int = 1
     var pageCount: Int = 1
@@ -91,7 +91,7 @@ class PageButtonView(
             }
 
             action?.let {
-                tcPlayer.run { gui.player.playSound(sounds.uiButtonClick, Config.buttonVolume) }
+                fcPlayerTypeClass.run { gui.player.playSound(sounds.uiButtonClick, Config.buttonVolume) }
                 action()
             }
         }
@@ -102,7 +102,7 @@ class PageButtonView(
         private val textFactory: FcText.Factory,
         private val sounds: FcSound.Factory,
         private val config: FastCraftConfig,
-        private val tcPlayer: FcPlayer.TypeClass,
+        private val fcPlayerTypeClass: FcPlayer.TypeClass,
     ) {
         fun create(button: FcGuiButton, locale: Locale): PageButtonView {
             return PageButtonView(
@@ -111,7 +111,7 @@ class PageButtonView(
                 textFactory = textFactory,
                 sounds = sounds,
                 config = config,
-                tcPlayer = tcPlayer,
+                fcPlayerTypeClass = fcPlayerTypeClass,
             )
         }
     }

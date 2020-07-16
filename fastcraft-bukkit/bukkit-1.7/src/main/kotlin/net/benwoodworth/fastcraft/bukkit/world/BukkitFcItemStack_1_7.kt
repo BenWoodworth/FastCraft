@@ -14,7 +14,7 @@ object BukkitFcItemStack_1_7 {
     open class TypeClass @Inject constructor(
         private val items: FcItem.Factory,
         private val textFactory: FcText.Factory,
-        private val tcItem: FcItem.TypeClass,
+        private val fcItemTypeClass: FcItem.TypeClass,
     ) : BukkitFcItemStack.TypeClass {
         override val FcItemStack.bukkitItemStack: ItemStack
             get() = value as ItemStack
@@ -32,7 +32,7 @@ object BukkitFcItemStack_1_7 {
                 ?.takeIf { it.hasDisplayName() }
                 ?.displayName
                 ?.let { textFactory.create(it) }
-                ?: tcItem.run { type.name }
+                ?: fcItemTypeClass.run { type.name }
 
         override val FcItemStack.lore: List<FcText>
             get() = bukkitItemStack
@@ -55,15 +55,15 @@ object BukkitFcItemStack_1_7 {
     open class Factory @Inject constructor(
         protected val items: FcItem.Factory,
         protected val server: Server,
-        private val tcItem: FcItem.TypeClass,
-        private val tcItemStack: FcItemStack.TypeClass,
+        private val fcItemTypeClass: FcItem.TypeClass,
+        private val fcItemStackTypeClass: FcItemStack.TypeClass,
     ) : BukkitFcItemStack.Factory {
         override fun create(item: FcItem, amount: Int): FcItemStack {
-            return tcItem.bukkit.run { create(item.toItemStack(amount)) }
+            return fcItemTypeClass.bukkit.run { create(item.toItemStack(amount)) }
         }
 
         override fun copyItem(itemStack: FcItemStack, amount: Int): FcItemStack {
-            tcItemStack.bukkit.run {
+            fcItemStackTypeClass.bukkit.run {
                 if (amount == itemStack.amount || itemStack.bukkitItemStack.type == Material.AIR) {
                     return itemStack
                 }
@@ -91,7 +91,7 @@ object BukkitFcItemStack_1_7 {
             }
 
             val item = items.parseOrNull(materialId) ?: return null
-            val itemStack = tcItem.bukkit.run { item.toItemStack(amount) }
+            val itemStack = fcItemTypeClass.bukkit.run { item.toItemStack(amount) }
 
             if (data != null) {
                 @Suppress("DEPRECATION")

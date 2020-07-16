@@ -7,7 +7,7 @@ import java.util.*
 
 open class BukkitFcIngredient_1_13 protected constructor(
     final override val slotIndex: Int,
-    private val tcItemStack: FcItemStack.TypeClass,
+    private val fcItemStackTypeClass: FcItemStack.TypeClass,
 ) : BukkitFcIngredient {
     private lateinit var recipeChoice: RecipeChoice
 
@@ -18,16 +18,16 @@ open class BukkitFcIngredient_1_13 protected constructor(
     constructor(
         slotIndex: Int,
         recipeChoice: RecipeChoice,
-        tcItemStack: FcItemStack.TypeClass,
+        fcItemStackTypeClass: FcItemStack.TypeClass,
     ) : this(
         slotIndex = slotIndex,
-        tcItemStack = tcItemStack,
+        fcItemStackTypeClass = fcItemStackTypeClass,
     ) {
         this.recipeChoice = recipeChoice
     }
 
     override fun matches(itemStack: FcItemStack): Boolean {
-        tcItemStack.bukkit.run {
+        fcItemStackTypeClass.bukkit.run {
             return recipeChoice.test(itemStack.bukkitItemStack)
         }
     }

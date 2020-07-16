@@ -25,8 +25,8 @@ object BukkitFcPlayer_1_7 {
         private val textConverter: FcTextConverter,
         private val server: Server,
         private val playerInventoryFactory: BukkitFcPlayerInventory_1_7.Factory,
-        private val tcSound: FcSound.TypeClass,
-        private val tcItemStack: FcItemStack.TypeClass,
+        private val fcSoundTypeClass: FcSound.TypeClass,
+        private val fcItemStackTypeClass: FcItemStack.TypeClass,
     ) : BukkitFcPlayer.TypeClass {
         override val FcPlayer.player: Player
             get() = value as Player
@@ -76,7 +76,7 @@ object BukkitFcPlayer_1_7 {
                 player.world.dropItemNaturally(player.location, this)
             }
 
-            tcItemStack.bukkit.run {
+            fcItemStackTypeClass.bukkit.run {
                 items.forEach { itemStack ->
                     if (dropAll) {
                         itemStack.toBukkitItemStack().drop()
@@ -95,7 +95,7 @@ object BukkitFcPlayer_1_7 {
         override fun FcPlayer.playSound(sound: FcSound, volume: Double, pitch: Double) {
             player.playSound(
                 player.location,
-                tcSound.bukkit.run { sound.sound },
+                fcSoundTypeClass.bukkit.run { sound.sound },
                 volume.toFloat(),
                 pitch.toFloat(),
             )

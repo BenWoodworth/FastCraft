@@ -7,7 +7,7 @@ import javax.inject.Inject
 class ItemAmounts private constructor(
     private val amounts: MutableMap<FcItemStack, Int>,
     private val itemStackFactory: FcItemStack.Factory,
-    private val tcItemStack: FcItemStack.TypeClass,
+    private val fcItemStackTypeClass: FcItemStack.TypeClass,
 ) {
     private companion object {
         val keys = WeakHashMap<FcItemStack, FcItemStack>()
@@ -16,15 +16,15 @@ class ItemAmounts private constructor(
     @Inject
     constructor(
         itemStackFactory: FcItemStack.Factory,
-        tcItemStack: FcItemStack.TypeClass,
+        fcItemStackTypeClass: FcItemStack.TypeClass,
     ) : this(
         amounts = mutableMapOf(),
         itemStackFactory = itemStackFactory,
-        tcItemStack = tcItemStack,
+        fcItemStackTypeClass = fcItemStackTypeClass,
     )
 
     private fun FcItemStack.asKey(): FcItemStack {
-        return when (tcItemStack.run { amount }) {
+        return when (fcItemStackTypeClass.run { amount }) {
             1 -> this
             else -> keys.getOrPut(this) {
                 itemStackFactory.copyItem(this, 1)
@@ -44,7 +44,7 @@ class ItemAmounts private constructor(
     }
 
     operator fun plusAssign(itemStack: FcItemStack) {
-        tcItemStack.run {
+        fcItemStackTypeClass.run {
             if (itemStack.amount != 0) {
                 val key = itemStack.asKey()
                 amounts[key] = amounts.getOrDefault(key, 0) + itemStack.amount
@@ -53,7 +53,7 @@ class ItemAmounts private constructor(
     }
 
     operator fun minusAssign(itemStack: FcItemStack) {
-        tcItemStack.run {
+        fcItemStackTypeClass.run {
             if (itemStack.amount != 0) {
                 val key = itemStack.asKey()
                 amounts[key] = amounts.getOrDefault(key, 0) - itemStack.amount
@@ -66,7 +66,7 @@ class ItemAmounts private constructor(
     }
 
     fun copy(): ItemAmounts {
-        return ItemAmounts(amounts.toMutableMap(), itemStackFactory, tcItemStack)
+        return ItemAmounts(amounts.toMutableMap(), itemStackFactory, fcItemStackTypeClass)
     }
 
     fun asMap(): Map<FcItemStack, Int> {

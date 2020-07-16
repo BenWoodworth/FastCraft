@@ -19,8 +19,8 @@ class FastCraftConfig @Inject constructor(
     private val items: FcItem.Factory,
     private val itemStackFactory: FcItemStack.Factory,
     private val logger: FcLogger,
-    private val tcItem: FcItem.TypeClass,
-    private val tcItemStack: FcItemStack.TypeClass,
+    private val fcItemTypeClass: FcItem.TypeClass,
+    private val fcItemStackTypeClass: FcItemStack.TypeClass,
 ) {
     private var config: FcConfig = configFactory.create()
     private var modified: Boolean = false
@@ -199,7 +199,7 @@ class FastCraftConfig @Inject constructor(
             var item: FcItemStack = item
                 private set
 
-            private var itemId: String = tcItemStack.run { tcItem.run { item.type.id } }
+            private var itemId: String = fcItemStackTypeClass.run { fcItemTypeClass.run { item.type.id } }
 
             open fun load() {
                 node["enable"].loadBoolean(::enable)

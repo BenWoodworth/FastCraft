@@ -18,18 +18,18 @@ open class BukkitFcCraftingRecipe_1_13(
     preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
     itemStackFactory: FcItemStack.Factory,
     inventoryViewFactory: CraftingInventoryViewFactory,
-    tcPlayer: FcPlayer.TypeClass,
-    private val tcItem: FcItem.TypeClass,
-    private val tcItemStack: FcItemStack.TypeClass,
+    fcPlayerTypeClass: FcPlayer.TypeClass,
+    private val fcItemTypeClass: FcItem.TypeClass,
+    private val fcItemStackTypeClass: FcItemStack.TypeClass,
 ) : BukkitFcCraftingRecipe_1_12(
     recipe = recipe,
     server = server,
     preparedRecipeFactory = preparedRecipeFactory,
     itemStackFactory = itemStackFactory,
     inventoryViewFactory = inventoryViewFactory,
-    tcPlayer = tcPlayer,
-    tcItem = tcItem,
-    tcItemStack = tcItemStack,
+    fcPlayerTypeClass = fcPlayerTypeClass,
+    fcItemTypeClass = fcItemTypeClass,
+    fcItemStackTypeClass = fcItemStackTypeClass,
 ) {
     override val group: String?
         get() = when (recipe) {
@@ -45,7 +45,7 @@ open class BukkitFcCraftingRecipe_1_13(
                     rowString
                         .mapIndexed { column, char ->
                             recipe.choiceMap[char]?.let { choice ->
-                                BukkitFcIngredient_1_13(row * 3 + column, choice, tcItemStack)
+                                BukkitFcIngredient_1_13(row * 3 + column, choice, fcItemStackTypeClass)
                             }
                         }
                         .filterNotNull()
@@ -54,7 +54,7 @@ open class BukkitFcCraftingRecipe_1_13(
 
             is ShapelessRecipe -> recipe.choiceList
                 .mapIndexed { i, recipeChoice ->
-                    BukkitFcIngredient_1_13(i, recipeChoice, tcItemStack)
+                    BukkitFcIngredient_1_13(i, recipeChoice, fcItemStackTypeClass)
                 }
 
             else -> throw IllegalStateException()
@@ -67,9 +67,9 @@ open class BukkitFcCraftingRecipe_1_13(
         private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
         private val itemStackFactory: FcItemStack.Factory,
         private val inventoryViewFactory: CraftingInventoryViewFactory,
-        private val tcPlayer: FcPlayer.TypeClass,
-        private val tcItem: FcItem.TypeClass,
-        private val tcItemStack: FcItemStack.TypeClass,
+        private val fcPlayerTypeClass: FcPlayer.TypeClass,
+        private val fcItemTypeClass: FcItem.TypeClass,
+        private val fcItemStackTypeClass: FcItemStack.TypeClass,
     ) : BukkitFcCraftingRecipe.Factory {
         override fun create(recipe: Recipe): FcCraftingRecipe {
             return BukkitFcCraftingRecipe_1_13(
@@ -78,9 +78,9 @@ open class BukkitFcCraftingRecipe_1_13(
                 preparedRecipeFactory = preparedRecipeFactory,
                 itemStackFactory = itemStackFactory,
                 inventoryViewFactory = inventoryViewFactory,
-                tcPlayer = tcPlayer,
-                tcItem = tcItem,
-                tcItemStack = tcItemStack,
+                fcPlayerTypeClass = fcPlayerTypeClass,
+                fcItemTypeClass = fcItemTypeClass,
+                fcItemStackTypeClass = fcItemStackTypeClass,
             )
         }
     }

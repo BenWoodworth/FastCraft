@@ -28,7 +28,7 @@ class BukkitFcGui_1_7<TLayout : FcGuiLayout>(
     createLayout: (inventory: Inventory) -> TLayout,
     plugin: Plugin,
     pluginManager: PluginManager,
-    private val tcPlayer: FcPlayer.TypeClass,
+    private val fcPlayerTypeClass: FcPlayer.TypeClass,
 ) : BukkitFcGui<TLayout>, InventoryHolder {
     override var listener: FcGui.Listener = FcGui.Listener.Default
 
@@ -42,12 +42,12 @@ class BukkitFcGui_1_7<TLayout : FcGuiLayout>(
     }
 
     override fun open() {
-        tcPlayer.bukkit.run { player.player }.openInventory(inventory)
+        fcPlayerTypeClass.bukkit.run { player.player }.openInventory(inventory)
     }
 
     override fun close() {
-        if (tcPlayer.bukkit.run { player.player }.openInventory.topInventory.holder === this) {
-            tcPlayer.bukkit.run { player.player }.closeInventory()
+        if (fcPlayerTypeClass.bukkit.run { player.player }.openInventory.topInventory.holder === this) {
+            fcPlayerTypeClass.bukkit.run { player.player }.closeInventory()
         }
     }
 
@@ -172,11 +172,11 @@ class BukkitFcGui_1_7<TLayout : FcGuiLayout>(
         private val server: Server,
         private val textConverter: FcTextConverter,
         private val guiLayoutFactory: BukkitFcGuiLayout.Factory,
-        private val tcPlayer: FcPlayer.TypeClass,
+        private val fcPlayerTypeClass: FcPlayer.TypeClass,
     ) : BukkitFcGui.Factory {
         override fun createChestGui(player: FcPlayer, title: FcText?, height: Int): FcGui<FcGuiLayout.Grid> {
             val legacyTitle = title?.let {
-                textConverter.toLegacy(it, tcPlayer.run { player.locale })
+                textConverter.toLegacy(it, fcPlayerTypeClass.run { player.locale })
             }
 
             return BukkitFcGui_1_7(
@@ -192,12 +192,12 @@ class BukkitFcGui_1_7<TLayout : FcGuiLayout>(
                         9,
                         height,
                         inventory,
-                        tcPlayer.run { player.locale },
+                        fcPlayerTypeClass.run { player.locale },
                     )
                 },
                 plugin = plugin,
                 pluginManager = pluginManager,
-                tcPlayer = tcPlayer,
+                fcPlayerTypeClass = fcPlayerTypeClass,
             )
         }
     }

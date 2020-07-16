@@ -18,7 +18,7 @@ class BukkitFcCommandSource_1_7(
     override val commandSender: CommandSender,
     override val player: FcPlayer?,
     private val textConverter: FcTextConverter,
-    private val tcPlayer: FcPlayer.TypeClass,
+    private val fcPlayerTypeClass: FcPlayer.TypeClass,
 ) : BukkitFcCommandSource {
     override val isConsole: Boolean
         get() = commandSender is ConsoleCommandSender
@@ -28,11 +28,11 @@ class BukkitFcCommandSource_1_7(
     }
 
     override val locale: Locale
-        get() = tcPlayer.run { player?.locale } ?: Locale.ENGLISH // TODO Don't default to English
+        get() = fcPlayerTypeClass.run { player?.locale } ?: Locale.ENGLISH // TODO Don't default to English
 
     override fun sendMessage(message: FcText) {
         if (player != null) {
-            tcPlayer.run { player.sendMessage(message) }
+            fcPlayerTypeClass.run { player.sendMessage(message) }
         } else {
             commandSender.sendMessage(textConverter.toLegacy(message, Locale.ENGLISH))
         }
@@ -42,7 +42,7 @@ class BukkitFcCommandSource_1_7(
     class Factory @Inject constructor(
         private val playerProvider: FcPlayer.Provider,
         private val textConverter: FcTextConverter,
-        private val tcPlayer: FcPlayer.TypeClass,
+        private val fcPlayerTypeClass: FcPlayer.TypeClass,
     ) : BukkitFcCommandSource.Factory {
         override fun create(commandSender: CommandSender): FcCommandSource {
             return BukkitFcCommandSource_1_7(
@@ -52,7 +52,7 @@ class BukkitFcCommandSource_1_7(
                     else -> null
                 },
                 textConverter = textConverter,
-                tcPlayer = tcPlayer,
+                fcPlayerTypeClass = fcPlayerTypeClass,
             )
         }
     }

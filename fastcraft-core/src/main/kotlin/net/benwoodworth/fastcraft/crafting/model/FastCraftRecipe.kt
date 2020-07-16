@@ -7,7 +7,7 @@ import kotlin.math.ceil
 class FastCraftRecipe(
     private val fastCraftGuiModel: FastCraftGuiModel,
     val preparedRecipe: FcCraftingRecipePrepared,
-    private val tcItemStack: FcItemStack.TypeClass,
+    private val fcItemStackTypeClass: FcItemStack.TypeClass,
 ) {
     var multiplier: Int = 1
         private set
@@ -22,7 +22,7 @@ class FastCraftRecipe(
             return
         }
 
-        val baseAmount = tcItemStack.run { preparedRecipe.resultsPreview.first().amount }
+        val baseAmount = fcItemStackTypeClass.run { preparedRecipe.resultsPreview.first().amount }
         var newMultiplier = ceil(amount.toDouble() / baseAmount).toInt()
 
         if (baseAmount * newMultiplier > 64) {
@@ -41,7 +41,7 @@ class FastCraftRecipe(
 
         preparedRecipe.ingredients.values.forEach { itemStack ->
             val amountLeft = remainingItems[itemStack]
-            val removeAmount = tcItemStack.run { itemStack.amount } * multiplier
+            val removeAmount = fcItemStackTypeClass.run { itemStack.amount } * multiplier
 
             when {
                 amountLeft < removeAmount -> return false

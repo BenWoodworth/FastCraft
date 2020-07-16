@@ -22,8 +22,8 @@ open class BukkitFcGuiButton_1_7(
     locale: Locale,
     private val textFactory: FcText.Factory,
     private val textConverter: FcTextConverter,
-    private val tcItem: FcItem.TypeClass,
-    private val tcItemStack: FcItemStack.TypeClass,
+    private val fcItemTypeClass: FcItem.TypeClass,
+    private val fcItemStackTypeClass: FcItemStack.TypeClass,
 ) : BukkitFcGuiButton {
 
     protected var hideItemDetails: Boolean = false
@@ -40,7 +40,7 @@ open class BukkitFcGuiButton_1_7(
     override var listener: FcGuiButton.Listener = FcGuiButton.Listener.Default
 
     override fun setItem(item: FcItem) {
-        itemStack.type = tcItem.bukkit.run { item.material }
+        itemStack.type = fcItemTypeClass.bukkit.run { item.material }
 
         updateDisplayName()
         updateLore()
@@ -82,7 +82,7 @@ open class BukkitFcGuiButton_1_7(
     }
 
     override fun copyItem(itemStack: FcItemStack) {
-        tcItemStack.bukkit.run {
+        fcItemStackTypeClass.bukkit.run {
             this@BukkitFcGuiButton_1_7.itemStack = itemStack.toBukkitItemStack()
 
             _text = itemStack.name
@@ -149,8 +149,8 @@ open class BukkitFcGuiButton_1_7(
     class Factory @Inject constructor(
         private val textFactory: FcText.Factory,
         private val textConverter: FcTextConverter,
-        private val tcItem: FcItem.TypeClass,
-        private val tcItemStack: FcItemStack.TypeClass,
+        private val fcItemTypeClass: FcItem.TypeClass,
+        private val fcItemStackTypeClass: FcItemStack.TypeClass,
     ) : BukkitFcGuiButton.Factory {
         override fun create(inventory: Inventory, slotIndex: Int, locale: Locale): FcGuiButton {
             return BukkitFcGuiButton_1_7(
@@ -159,8 +159,8 @@ open class BukkitFcGuiButton_1_7(
                 locale = locale,
                 textFactory = textFactory,
                 textConverter = textConverter,
-                tcItem = tcItem,
-                tcItemStack = tcItemStack,
+                fcItemTypeClass = fcItemTypeClass,
+                fcItemStackTypeClass = fcItemStackTypeClass,
             )
         }
     }
