@@ -11,6 +11,8 @@ import javax.inject.Singleton
 @Singleton
 class BukkitFcItemOrderComparator_1_13 @Inject constructor(
     plugin: Plugin,
+    bukkitVersion: BukkitVersion,
+    fcItemTypeClass: FcItem.TypeClass,
 ) : BukkitFcItemOrderComparator {
     private val materialIndices: Map<Material, Int> = plugin
         .getResource(bukkitVersion.run { "bukkit/item-order/$major.$minor.txt" })!!

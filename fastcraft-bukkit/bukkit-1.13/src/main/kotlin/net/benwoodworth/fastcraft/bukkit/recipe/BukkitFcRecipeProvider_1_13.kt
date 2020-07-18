@@ -11,12 +11,12 @@ open class BukkitFcRecipeProvider_1_13 @Inject constructor(
     plugin: Plugin,
     bukkitVersion: BukkitVersion,
     private val server: Server,
-    recipeFactory: BukkitFcCraftingRecipe.Factory,
+    fcCraftingRecipeFactory: BukkitFcCraftingRecipe.Factory,
 ) : BukkitFcRecipeProvider_1_7(
     plugin = plugin,
     bukkitVersion = bukkitVersion,
     server = server,
-    recipeFactory = recipeFactory
+    fcCraftingRecipeFactory = fcCraftingRecipeFactory
 ) {
     init {
         warmUpRecipeIterator()
