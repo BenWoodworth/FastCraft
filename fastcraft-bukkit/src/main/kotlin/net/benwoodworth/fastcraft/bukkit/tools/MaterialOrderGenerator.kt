@@ -14,7 +14,7 @@ internal object MaterialOrderGenerator {
      *
      * Lists materials in the order they appear in the Minecraft item registry. (Same as in the creative menu)
      *
-     * For new Minecraft releases, use this to generate a new file, then merge into bukkit/material-order.txt.
+     * For new Minecraft releases, use this to generate a new file into bukkit/item-order/<version>.txt.
      */
     fun generate(out: File) {
         val IRegistry = Class.forName("$nms.IRegistry")

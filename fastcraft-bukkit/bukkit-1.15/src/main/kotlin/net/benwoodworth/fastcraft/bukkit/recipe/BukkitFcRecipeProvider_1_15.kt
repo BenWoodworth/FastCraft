@@ -17,7 +17,7 @@ open class BukkitFcRecipeProvider_1_15 @Inject constructor(
     bukkitVersion: BukkitVersion,
     server: Server,
     fcCraftingRecipeFactory: BukkitFcCraftingRecipe.Factory,
-) : BukkitFcRecipeProvider_1_7(
+) : BukkitFcRecipeProvider_1_13(
     plugin = plugin,
     bukkitVersion = bukkitVersion,
     server = server,
