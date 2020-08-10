@@ -17,6 +17,7 @@ import org.bukkit.event.inventory.*
 import org.bukkit.event.server.PluginDisableEvent
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.InventoryHolder
+import org.bukkit.inventory.InventoryView
 import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.PluginManager
 import javax.inject.Inject
@@ -55,7 +56,7 @@ class BukkitFcGui_1_7<TLayout : FcGuiLayout>(
     }
 
     private fun InventoryEvent.isGuiSlot(rawSlot: Int): Boolean {
-        return rawSlot == view.convertSlot(rawSlot)
+        return rawSlot != InventoryView.OUTSIDE && rawSlot == view.convertSlot(rawSlot)
     }
 
     private fun InventoryClickEvent.getGui(): FcGui<*> {
