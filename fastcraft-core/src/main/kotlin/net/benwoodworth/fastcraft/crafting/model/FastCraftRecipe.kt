@@ -35,6 +35,7 @@ class FastCraftRecipe(
     }
 
     fun canCraft(): Boolean {
+        fastCraftGuiModel.updateInventoryItemAmounts()
         val remainingItems = fastCraftGuiModel.inventoryItemAmounts.copy()
 
         preparedRecipe.ingredients.values.forEach { itemStack ->
