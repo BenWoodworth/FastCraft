@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft.bukkit.player
 
 import net.benwoodworth.fastcraft.bukkit.util.CauseTracker
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.server.FcTask
 import org.bukkit.Material
 import org.bukkit.block.Block
 import org.bukkit.plugin.Plugin
@@ -15,11 +16,13 @@ open class BukkitFcPlayerEvents_1_13 @Inject constructor(
     playerProvider: FcPlayer.Provider,
     pluginManager: PluginManager,
     causeTracker: CauseTracker,
+    taskFactory: FcTask.Factory,
 ) : BukkitFcPlayerEvents_1_7(
     plugin = plugin,
     playerProvider = playerProvider,
     pluginManager = pluginManager,
     causeTracker = causeTracker,
+    taskFactory = taskFactory,
 ) {
     override fun Block.isCraftingTable(): Boolean {
         return type == Material.CRAFTING_TABLE

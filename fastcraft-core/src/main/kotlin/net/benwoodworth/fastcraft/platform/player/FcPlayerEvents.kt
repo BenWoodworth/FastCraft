@@ -9,4 +9,6 @@ interface FcPlayerEvents {
      * Monitors when players interact with a crafting table block.
      */
     val onOpenCraftingTableNaturally: HandlerSet<FcOpenCraftingTableNaturallyEvent>
+
+    val onPlayerInventoryChange: HandlerSet<FcPlayerInventoryChangeEvent>
 }

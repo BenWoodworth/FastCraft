@@ -4,6 +4,7 @@ import net.benwoodworth.fastcraft.crafting.model.FastCraftGuiModel
 import net.benwoodworth.fastcraft.crafting.model.FastCraftRecipe
 import net.benwoodworth.fastcraft.crafting.view.FastCraftGuiView
 import net.benwoodworth.fastcraft.crafting.view.buttons.*
+import net.benwoodworth.fastcraft.platform.gui.FcGui
 import kotlin.math.ceil
 
 class FastCraftGuiPresenter(
@@ -72,6 +73,12 @@ class FastCraftGuiPresenter(
     private inner class ModelListener : FastCraftGuiModel.Listener {
         override fun onRecipesChange(recipes: List<FastCraftRecipe?>) {
             updatePage()
+        }
+    }
+
+    private inner class GuiEventListener : FcGui.Listener {
+        override fun onClose() {
+            model.close()
         }
     }
 

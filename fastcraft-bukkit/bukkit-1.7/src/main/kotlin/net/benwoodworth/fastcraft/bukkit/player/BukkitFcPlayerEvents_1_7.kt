@@ -4,45 +4,83 @@ import net.benwoodworth.fastcraft.bukkit.util.CauseTracker
 import net.benwoodworth.fastcraft.events.HandlerSet
 import net.benwoodworth.fastcraft.platform.player.FcOpenCraftingTableNaturallyEvent
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.player.FcPlayerInventoryChangeEvent
 import net.benwoodworth.fastcraft.platform.player.FcPlayerJoinEvent
+import net.benwoodworth.fastcraft.platform.server.FcTask
 import org.bukkit.Material
 import org.bukkit.block.Block
 import org.bukkit.entity.Player
+import org.bukkit.event.Event
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
-import org.bukkit.event.inventory.InventoryOpenEvent
-import org.bukkit.event.inventory.InventoryType
-import org.bukkit.event.player.PlayerInteractEvent
-import org.bukkit.event.player.PlayerJoinEvent
+import org.bukkit.event.inventory.*
+import org.bukkit.event.player.*
 import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.PluginManager
-import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
+@Suppress("UNCHECKED_CAST")
 @Singleton
 open class BukkitFcPlayerEvents_1_7 @Inject constructor(
     plugin: Plugin,
     private val playerProvider: FcPlayer.Provider,
     pluginManager: PluginManager,
     private val causeTracker: CauseTracker,
+    private val taskFactory: FcTask.Factory,
 ) : BukkitFcPlayerEvents {
     override val onPlayerJoin: HandlerSet<FcPlayerJoinEvent> = HandlerSet()
-
     override val onOpenCraftingTableNaturally: HandlerSet<FcOpenCraftingTableNaturallyEvent> = HandlerSet()
+    override val onPlayerInventoryChange: HandlerSet<FcPlayerInventoryChangeEvent> = HandlerSet()
+
+    private class PlayerInventoryChangeEvent<T : Event>(
+        val eventType: Class<T>,
+        private val getPlayer: (T) -> Player?,
+    ) {
+        fun getPlayer(event: Event): Player? = getPlayer.invoke(event as T)
+    }
+
+    private val inventoryChangeEvents = listOf(
+        PlayerInventoryChangeEvent(InventoryInteractEvent::class.java) { it.inventory.holder as? Player },
+        PlayerInventoryChangeEvent(InventoryDragEvent::class.java) { it.inventory.holder as? Player },
+        PlayerInventoryChangeEvent(InventoryClickEvent::class.java) { it.inventory.holder as? Player },
+        PlayerInventoryChangeEvent(InventoryPickupItemEvent::class.java) { it.inventory.holder as? Player },
+        PlayerInventoryChangeEvent(PlayerItemConsumeEvent::class.java) { it.player },
+        PlayerInventoryChangeEvent(PlayerItemBreakEvent::class.java) { it.player },
+        PlayerInventoryChangeEvent(PlayerPickupItemEvent::class.java) { it.player },
+        PlayerInventoryChangeEvent(PlayerDropItemEvent::class.java) { it.player },
+    )
 
     init {
+        val listener = EventListener()
         pluginManager.registerEvents(EventListener(), plugin)
+
+        inventoryChangeEvents.forEach { invEvent ->
+            pluginManager.registerEvent(
+                invEvent.eventType,
+                listener,
+                EventPriority.MONITOR,
+                { _, event -> invEvent.getPlayer(event)?.let { onPlayerInventoryChange(it) } },
+                plugin,
+                true
+            )
+        }
     }
 
     protected open fun Block.isCraftingTable(): Boolean {
         return type == Material.WORKBENCH
     }
 
-    private inner class EventListener : Listener {
-        private val awaitingInventoryEvents: Map<Player, Long> = WeakHashMap()
+    protected fun onPlayerInventoryChange(player: Player) {
+        taskFactory.startTask {
+            onPlayerInventoryChange.notifyHandlers(
+                BukkitFcPlayerInventoryChangeEvent(playerProvider.getPlayer(player))
+            )
+        }
+    }
 
+    private inner class EventListener : Listener {
         @EventHandler
         fun onPlayerJoin(event: PlayerJoinEvent) {
             onPlayerJoin.notifyHandlers(
@@ -67,6 +105,46 @@ open class BukkitFcPlayerEvents_1_7 @Inject constructor(
                     BukkitFcOpenCraftingTableNaturallyEvent_1_7(event, playerProvider.getPlayer(player))
                 )
             }
+        }
+
+        @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+        fun onInventoryInteract(event: InventoryInteractEvent) {
+            (event.inventory.holder as? Player)?.let { onPlayerInventoryChange(it) }
+        }
+
+        @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+        fun onInventoryDrag(event: InventoryDragEvent) {
+            (event.whoClicked as? Player)?.let { onPlayerInventoryChange(it) }
+        }
+
+        @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+        fun onInventoryClick(event: InventoryClickEvent) {
+            (event.whoClicked as? Player)?.let { onPlayerInventoryChange(it) }
+        }
+
+        @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+        fun onInventoryPickupItem(event: InventoryPickupItemEvent) {
+            (event.inventory.holder as? Player)?.let { onPlayerInventoryChange(it) }
+        }
+
+        @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+        fun onPlayerItemConsume(event: PlayerItemConsumeEvent) {
+            (event.player)?.let { onPlayerInventoryChange(it) }
+        }
+
+        @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+        fun onPlayerItemBreak(event: PlayerItemBreakEvent) {
+            (event.player)?.let { onPlayerInventoryChange(it) }
+        }
+
+        @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+        fun onPlayerPickupItem(event: PlayerPickupItemEvent) {
+            (event.player)?.let { onPlayerInventoryChange(it) }
+        }
+
+        @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+        fun onPlayerDropItem(event: PlayerDropItemEvent) {
+            (event.player)?.let { onPlayerInventoryChange(it) }
         }
     }
 

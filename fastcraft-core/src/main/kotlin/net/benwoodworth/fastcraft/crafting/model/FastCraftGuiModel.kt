@@ -1,6 +1,8 @@
 package net.benwoodworth.fastcraft.crafting.model
 
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.player.FcPlayerEvents
+import net.benwoodworth.fastcraft.platform.player.FcPlayerInventoryChangeEvent
 import net.benwoodworth.fastcraft.platform.recipe.FcCraftingRecipePrepared
 import net.benwoodworth.fastcraft.platform.world.FcItemStack
 import net.benwoodworth.fastcraft.util.CancellableResult
@@ -13,6 +15,7 @@ class FastCraftGuiModel(
     private val itemAmountsProvider: Provider<ItemAmounts>,
     private val craftableRecipeFinder: CraftableRecipeFinder,
     private val itemStackFactory: FcItemStack.Factory,
+    private val playerEvents: FcPlayerEvents,
 ) {
     var craftAmount: Int? = null
     val recipes: MutableList<FastCraftRecipe?> = mutableListOf()
@@ -21,6 +24,21 @@ class FastCraftGuiModel(
     var listener: Listener? = null
 
     private val craftableRecipeFinderListener = CraftableRecipeFinderListener()
+
+    private fun onPlayerInventoryChange(event: FcPlayerInventoryChangeEvent) {
+        if (event.player == player) {
+            updateInventoryItemAmounts()
+            listener?.onRecipesChange(recipes)
+        }
+    }
+
+    init {
+        playerEvents.onPlayerInventoryChange += ::onPlayerInventoryChange
+    }
+
+    fun close() {
+        playerEvents.onPlayerInventoryChange -= ::onPlayerInventoryChange
+    }
 
     fun updateInventoryItemAmounts() {
         inventoryItemAmounts.clear()
@@ -137,6 +155,7 @@ class FastCraftGuiModel(
         private val itemAmountsProvider: Provider<ItemAmounts>,
         private val craftableRecipeFinder: CraftableRecipeFinder,
         private val itemStackFactory: FcItemStack.Factory,
+        private val playerEvents: FcPlayerEvents,
     ) {
         fun create(player: FcPlayer): FastCraftGuiModel {
             return FastCraftGuiModel(
@@ -144,6 +163,7 @@ class FastCraftGuiModel(
                 itemAmountsProvider = itemAmountsProvider,
                 craftableRecipeFinder = craftableRecipeFinder,
                 itemStackFactory = itemStackFactory,
+                playerEvents = playerEvents,
             )
         }
     }
