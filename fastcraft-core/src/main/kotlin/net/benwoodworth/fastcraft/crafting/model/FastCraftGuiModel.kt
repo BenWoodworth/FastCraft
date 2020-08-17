@@ -25,13 +25,6 @@ class FastCraftGuiModel(
 
     private val craftableRecipeFinderListener = CraftableRecipeFinderListener()
 
-    private fun onPlayerInventoryChange(event: FcPlayerInventoryChangeEvent) {
-        if (event.player == player) {
-            updateInventoryItemAmounts()
-            listener?.onRecipesChange(recipes)
-        }
-    }
-
     init {
         playerEvents.onPlayerInventoryChange += ::onPlayerInventoryChange
     }
@@ -60,6 +53,13 @@ class FastCraftGuiModel(
         craftableRecipeFinder.cancel(player)
         recipes.clear()
         craftableRecipeFinder.loadRecipes(player, craftableRecipeFinderListener)
+    }
+
+    private fun onPlayerInventoryChange(event: FcPlayerInventoryChangeEvent) {
+        if (event.player == player) {
+            updateInventoryItemAmounts()
+            listener?.onRecipesChange(recipes)
+        }
     }
 
     private inner class CraftableRecipeFinderListener : CraftableRecipeFinder.Listener {
