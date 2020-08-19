@@ -10,8 +10,8 @@ import javax.inject.Singleton
 
 class BukkitFcConfig_1_7(
     override val config: YamlConfiguration,
-    private val configFactory: FcConfig.Factory,
-) : BukkitFcConfig, FcConfigNode by configFactory.createNode(config, "") {
+    private val fcConfigFactory: FcConfig.Factory,
+) : BukkitFcConfig, FcConfigNode by fcConfigFactory.createNode(config, "") {
     override val path: String
         get() = ""
 
@@ -22,7 +22,7 @@ class BukkitFcConfig_1_7(
         }
 
     override fun get(key: String): FcConfigNode {
-        return configFactory.createNode(config, key)
+        return fcConfigFactory.createNode(config, key)
     }
 
     override fun save(file: Path) {

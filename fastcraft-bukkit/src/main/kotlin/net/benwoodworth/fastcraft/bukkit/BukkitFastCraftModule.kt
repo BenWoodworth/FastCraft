@@ -126,11 +126,9 @@ class BukkitFastCraftModule(
 
     @Provides
     fun provideFcItemStackFactory(
-        instance_1_13: Provider<BukkitFcItemStack_1_13.Factory>,
         instance_1_7: Provider<BukkitFcItemStack_1_7.Factory>,
     ): FcItemStack.Factory {
         return when {
-            bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
             bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
             else -> instance_1_7.get()
         }
@@ -138,15 +136,11 @@ class BukkitFastCraftModule(
 
     @Provides
     fun provideFcItemFactory(
-        instance_1_15: Provider<BukkitFcItem_1_15.Factory>,
         instance_1_13: Provider<BukkitFcItem_1_13.Factory>,
-        instance_1_9: Provider<BukkitFcItem_1_9.Factory>,
         instance_1_7: Provider<BukkitFcItem_1_7.Factory>,
     ): FcItem.Factory {
         return when {
-            bukkitVersion >= VERSION_1_15 -> instance_1_15.get()
             bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
-            bukkitVersion >= VERSION_1_9 -> instance_1_9.get()
             bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
             else -> instance_1_7.get()
         }
@@ -204,7 +198,6 @@ class BukkitFastCraftModule(
             else -> instance_1_7.get()
         }
     }
-
 
     @Provides
     fun provideFcCraftingRecipeFactory(
@@ -320,6 +313,58 @@ class BukkitFastCraftModule(
     ): LegacyMaterialInfo {
         return when {
             bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
+            bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
+            else -> instance_1_7.get()
+        }
+    }
+
+    @Provides
+    fun provideFcSoundTypeClass(
+        instance_1_7: Provider<BukkitFcSound_1_7.TypeClass>,
+    ): FcSound.TypeClass {
+        return instance_1_7.get()
+    }
+
+    @Provides
+    fun provideFcPlayerTypeClass(
+        instance_1_7: Provider<BukkitFcPlayer_1_7.TypeClass>,
+    ): FcPlayer.TypeClass {
+        return instance_1_7.get()
+    }
+
+    @Provides
+    fun provideFcItemTypeClass(
+        instance_1_7: Provider<BukkitFcItem_1_7.TypeClass>,
+        instance_1_9: Provider<BukkitFcItem_1_9.TypeClass>,
+        instance_1_13: Provider<BukkitFcItem_1_13.TypeClass>,
+        instance_1_15: Provider<BukkitFcItem_1_15.TypeClass>,
+    ): FcItem.TypeClass {
+        return when {
+            bukkitVersion >= VERSION_1_15 -> instance_1_15.get()
+            bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
+            bukkitVersion >= VERSION_1_9 -> instance_1_9.get()
+            bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
+            else -> instance_1_7.get()
+        }
+    }
+
+    @Provides
+    fun provideFcItemStackTypeClass(
+        instance_1_7: Provider<BukkitFcItemStack_1_7.TypeClass>,
+        instance_1_13: Provider<BukkitFcItemStack_1_13.TypeClass>,
+    ): FcItemStack.TypeClass {
+        return when {
+            bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
+            bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
+            else -> instance_1_7.get()
+        }
+    }
+
+    @Provides
+    fun provideFcTextColorTypeClass(
+        instance_1_7: Provider<BukkitFcTextColor_1_7.TypeClass>,
+    ): FcTextColor.TypeClass {
+        return when {
             bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
             else -> instance_1_7.get()
         }

@@ -5,8 +5,8 @@ import org.bukkit.event.player.PlayerJoinEvent
 
 class BukkitFcPlayerJoinEvent_1_7(
     override val event: PlayerJoinEvent,
-    private val playerProvider: FcPlayer.Provider,
+    private val fcPlayerProvider: FcPlayer.Provider,
 ) : BukkitFcPlayerJoinEvent {
     override val player: FcPlayer
-        get() = playerProvider.getPlayer(event.player)
+        get() = fcPlayerProvider.getPlayer(event.player)
 }

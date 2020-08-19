@@ -6,6 +6,7 @@ import net.benwoodworth.fastcraft.Strings
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcSound
 import net.benwoodworth.fastcraft.platform.text.FcText
 import java.util.*
@@ -14,9 +15,10 @@ import javax.inject.Inject
 class WorkbenchButtonView(
     button: FcGuiButton,
     private val locale: Locale,
-    private val textFactory: FcText.Factory,
-    private val sounds: FcSound.Factory,
+    private val fcTextFactory: FcText.Factory,
+    private val fcSounds: FcSound.Factory,
     config: FastCraftConfig,
+    private val fcPlayerTypeClass: FcPlayer.TypeClass,
 ) {
     var listener: Listener = Listener.Default
 
@@ -29,17 +31,17 @@ class WorkbenchButtonView(
             copyItem(c.item)
 
             setText(
-                textFactory.createLegacy(
+                fcTextFactory.createLegacy(
                     Strings.guiButtonCraftingGridTitle(locale)
                 )
             )
 
             setDescription(
                 listOf(
-                    textFactory.createLegacy(
+                    fcTextFactory.createLegacy(
                         Strings.guiButtonCraftingGridDescription0(locale)
                     ),
-                    textFactory.createLegacy(
+                    fcTextFactory.createLegacy(
                         Strings.guiButtonCraftingGridDescription1(locale)
                     )
                 )
@@ -67,24 +69,26 @@ class WorkbenchButtonView(
             }
 
             action?.let {
-                gui.player.playSound(sounds.uiButtonClick, Config.buttonVolume)
+                fcPlayerTypeClass.run { gui.player.playSound(fcSounds.uiButtonClick, Config.buttonVolume) }
                 action()
             }
         }
     }
 
     class Factory @Inject constructor(
-        private val textFactory: FcText.Factory,
-        private val sounds: FcSound.Factory,
-        private val config: FastCraftConfig,
+        private val fcTextFactory: FcText.Factory,
+        private val fcSoundFactory: FcSound.Factory,
+        private val fastCraftConfig: FastCraftConfig,
+        private val fcPlayerTypeClass: FcPlayer.TypeClass,
     ) {
         fun create(button: FcGuiButton, locale: Locale): WorkbenchButtonView {
             return WorkbenchButtonView(
                 button = button,
                 locale = locale,
-                textFactory = textFactory,
-                sounds = sounds,
-                config = config,
+                fcTextFactory = fcTextFactory,
+                fcSounds = fcSoundFactory,
+                config = fastCraftConfig,
+                fcPlayerTypeClass = fcPlayerTypeClass,
             )
         }
     }

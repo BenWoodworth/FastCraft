@@ -19,7 +19,6 @@ class BukkitFastCraft : JavaPlugin() {
         val factory = DaggerBukkitFastCraft_Factory.builder()
             .bukkitFastCraftModule(BukkitFastCraftModule(this))
             .build()
-
         fastCraft = factory.createFastCraft()
 
         MetricsLite(this)

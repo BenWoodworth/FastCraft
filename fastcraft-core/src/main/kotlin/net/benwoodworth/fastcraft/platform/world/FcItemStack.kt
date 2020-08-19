@@ -2,27 +2,22 @@ package net.benwoodworth.fastcraft.platform.world
 
 import net.benwoodworth.fastcraft.platform.text.FcText
 
-interface FcItemStack {
-    val type: FcItem
-    val amount: Int
-    val name: FcText
-    val lore: List<FcText>
+inline class FcItemStack(val value: Any) {
+    interface TypeClass {
+        var FcItemStack.type: FcItem
+        var FcItemStack.amount: Int
+        val FcItemStack.name: FcText
+        val FcItemStack.lore: List<FcText>
 
-    val hasMetadata: Boolean
+        val FcItemStack.hasMetadata: Boolean
 
-    override fun equals(other: Any?): Boolean
-
-    override fun hashCode(): Int
+        fun FcItemStack.copy(): FcItemStack
+    }
 
     interface Factory {
         fun create(
             item: FcItem,
             amount: Int = 1,
-        ): FcItemStack
-
-        fun copyItem(
-            itemStack: FcItemStack,
-            amount: Int = itemStack.amount,
         ): FcItemStack
 
         fun parseOrNull(itemStr: String, amount: Int = 1): FcItemStack?

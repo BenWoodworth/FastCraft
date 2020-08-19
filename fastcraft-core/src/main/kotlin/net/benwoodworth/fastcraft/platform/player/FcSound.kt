@@ -1,6 +1,8 @@
 package net.benwoodworth.fastcraft.platform.player
 
-interface FcSound {
+inline class FcSound(val value: Any) {
+    interface TypeClass
+
     interface Factory {
         val uiButtonClick: FcSound
     }

@@ -1,9 +1,7 @@
 package net.benwoodworth.fastcraft.platform.text
 
-interface FcTextColor {
-    override fun equals(other: Any?): Boolean
-
-    override fun hashCode(): Int
+inline class FcTextColor(val value: Any) {
+    interface TypeClass
 
     interface Factory {
         val black: FcTextColor

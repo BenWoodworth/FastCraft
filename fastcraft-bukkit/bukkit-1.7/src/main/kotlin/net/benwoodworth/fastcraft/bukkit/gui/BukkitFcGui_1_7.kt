@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
-import net.benwoodworth.fastcraft.bukkit.player.player
+import net.benwoodworth.fastcraft.bukkit.player.bukkit
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClickModifier
@@ -29,6 +29,7 @@ class BukkitFcGui_1_7<TLayout : FcGuiLayout>(
     createLayout: (inventory: Inventory) -> TLayout,
     plugin: Plugin,
     pluginManager: PluginManager,
+    private val fcPlayerTypeClass: FcPlayer.TypeClass,
 ) : BukkitFcGui<TLayout>, InventoryHolder {
     override var listener: FcGui.Listener = FcGui.Listener.Default
 
@@ -42,12 +43,12 @@ class BukkitFcGui_1_7<TLayout : FcGuiLayout>(
     }
 
     override fun open() {
-        player.player.openInventory(inventory)
+        fcPlayerTypeClass.bukkit.run { player.player }.openInventory(inventory)
     }
 
     override fun close() {
-        if (player.player.openInventory.topInventory.holder === this) {
-            player.player.closeInventory()
+        if (fcPlayerTypeClass.bukkit.run { player.player }.openInventory.topInventory.holder === this) {
+            fcPlayerTypeClass.bukkit.run { player.player }.closeInventory()
         }
     }
 
@@ -170,12 +171,13 @@ class BukkitFcGui_1_7<TLayout : FcGuiLayout>(
         private val plugin: Plugin,
         private val pluginManager: PluginManager,
         private val server: Server,
-        private val textConverter: FcTextConverter,
-        private val guiLayoutFactory: BukkitFcGuiLayout.Factory,
+        private val fcTextConverter: FcTextConverter,
+        private val fcGuiLayoutFactory: BukkitFcGuiLayout.Factory,
+        private val fcPlayerTypeClass: FcPlayer.TypeClass,
     ) : BukkitFcGui.Factory {
         override fun createChestGui(player: FcPlayer, title: FcText?, height: Int): FcGui<FcGuiLayout.Grid> {
             val legacyTitle = title?.let {
-                textConverter.toLegacy(it, player.locale)
+                fcTextConverter.toLegacy(it, fcPlayerTypeClass.run { player.locale })
             }
 
             return BukkitFcGui_1_7(
@@ -186,9 +188,17 @@ class BukkitFcGui_1_7<TLayout : FcGuiLayout>(
                         else -> server.createInventory(owner, 9 * height, legacyTitle)
                     }
                 },
-                { inventory -> guiLayoutFactory.createGridLayout(9, height, inventory, player.locale) },
+                { inventory ->
+                    fcGuiLayoutFactory.createGridLayout(
+                        9,
+                        height,
+                        inventory,
+                        fcPlayerTypeClass.run { player.locale },
+                    )
+                },
                 plugin = plugin,
-                pluginManager = pluginManager
+                pluginManager = pluginManager,
+                fcPlayerTypeClass = fcPlayerTypeClass,
             )
         }
     }

@@ -5,27 +5,25 @@ import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.world.FcItemStack
 import java.util.*
 
-interface FcPlayer {
-    val username: String
-    var customName: String?
-    val uuid: UUID
-    val locale: Locale
-    val isOnline: Boolean
-    val inventory: FcPlayerInventory
+inline class FcPlayer(val value: Any) {
+    interface TypeClass {
+        val FcPlayer.username: String
+        var FcPlayer.customName: String?
+        val FcPlayer.uuid: UUID
+        val FcPlayer.locale: Locale
+        val FcPlayer.isOnline: Boolean
+        val FcPlayer.inventory: FcPlayerInventory
 
-    fun sendMessage(message: FcText)
+        fun FcPlayer.sendMessage(message: FcText)
 
-    fun hasPermission(permission: FcPermission): Boolean
+        fun FcPlayer.hasPermission(permission: FcPermission): Boolean
 
-    fun giveItems(items: List<FcItemStack>, dropAll: Boolean)
+        fun FcPlayer.giveItems(items: List<FcItemStack>, dropAll: Boolean)
 
-    fun openCraftingTable() // TODO Location
+        fun FcPlayer.openCraftingTable() // TODO Location
 
-    fun playSound(sound: FcSound, volume: Double = 1.0, pitch: Double = 1.0)
-
-    override fun equals(other: Any?): Boolean
-
-    override fun hashCode(): Int
+        fun FcPlayer.playSound(sound: FcSound, volume: Double = 1.0, pitch: Double = 1.0)
+    }
 
     interface Provider {
         fun getOnlinePlayers(): List<FcPlayer>

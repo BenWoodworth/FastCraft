@@ -1,8 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
 import net.benwoodworth.fastcraft.bukkit.util.updateMeta
-import net.benwoodworth.fastcraft.bukkit.world.material
-import net.benwoodworth.fastcraft.bukkit.world.toBukkitItemStack
+import net.benwoodworth.fastcraft.bukkit.world.bukkit
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextConverter
@@ -21,8 +20,10 @@ open class BukkitFcGuiButton_1_7(
     private val inventory: Inventory,
     private val slotIndex: Int,
     locale: Locale,
-    private val textFactory: FcText.Factory,
-    private val textConverter: FcTextConverter,
+    private val fcTextFactory: FcText.Factory,
+    private val fcTextConverter: FcTextConverter,
+    private val fcItemTypeClass: FcItem.TypeClass,
+    private val fcItemStackTypeClass: FcItemStack.TypeClass,
 ) : BukkitFcGuiButton {
 
     protected var hideItemDetails: Boolean = false
@@ -39,7 +40,7 @@ open class BukkitFcGuiButton_1_7(
     override var listener: FcGuiButton.Listener = FcGuiButton.Listener.Default
 
     override fun setItem(item: FcItem) {
-        itemStack.type = item.material
+        itemStack.type = fcItemTypeClass.bukkit.run { item.material }
 
         updateDisplayName()
         updateLore()
@@ -81,16 +82,18 @@ open class BukkitFcGuiButton_1_7(
     }
 
     override fun copyItem(itemStack: FcItemStack) {
-        this.itemStack = itemStack.toBukkitItemStack()
+        fcItemStackTypeClass.bukkit.run {
+            this@BukkitFcGuiButton_1_7.itemStack = itemStack.itemStack.clone()
 
-        _text = itemStack.name
-        _description = itemStack.lore
-        hideItemDetails = false
+            _text = itemStack.name
+            _description = itemStack.lore
+            hideItemDetails = false
+        }
     }
 
     override fun clear() {
         itemStack = ItemStack(Material.AIR)
-        _text = textFactory.create()
+        _text = fcTextFactory.create()
         _description = emptyList()
         _progress = null
         hideItemDetails = false
@@ -127,7 +130,7 @@ open class BukkitFcGuiButton_1_7(
     protected open fun updateDisplayName() {
         _text?.let { text ->
             itemStack.updateMeta {
-                setDisplayName(textConverter.toLegacy(text, locale))
+                setDisplayName(fcTextConverter.toLegacy(text, locale))
             }
         }
     }
@@ -136,7 +139,7 @@ open class BukkitFcGuiButton_1_7(
         _description?.let { description ->
             itemStack.updateMeta {
                 lore = description.map {
-                    textConverter.toLegacy(it, locale)
+                    fcTextConverter.toLegacy(it, locale)
                 }
             }
         }
@@ -144,16 +147,20 @@ open class BukkitFcGuiButton_1_7(
 
     @Singleton
     class Factory @Inject constructor(
-        private val textFactory: FcText.Factory,
-        private val textConverter: FcTextConverter,
+        private val fcTextFactory: FcText.Factory,
+        private val fcTextConverter: FcTextConverter,
+        private val fcItemTypeClass: FcItem.TypeClass,
+        private val fcItemStackTypeClass: FcItemStack.TypeClass,
     ) : BukkitFcGuiButton.Factory {
         override fun create(inventory: Inventory, slotIndex: Int, locale: Locale): FcGuiButton {
             return BukkitFcGuiButton_1_7(
                 inventory = inventory,
                 slotIndex = slotIndex,
                 locale = locale,
-                textFactory = textFactory,
-                textConverter = textConverter
+                fcTextFactory = fcTextFactory,
+                fcTextConverter = fcTextConverter,
+                fcItemTypeClass = fcItemTypeClass,
+                fcItemStackTypeClass = fcItemStackTypeClass,
             )
         }
     }

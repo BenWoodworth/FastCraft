@@ -13,9 +13,9 @@ import javax.inject.Singleton
 
 @Singleton
 class BukkitLocalizer_1_7 @Inject constructor(
-    pluginInfo: FcPluginData,
-    logger: FcLogger,
-    server: FcServer,
+    fcPluginData: FcPluginData,
+    fcLogger: FcLogger,
+    fcServer: FcServer,
 ) : BukkitLocalizer {
     private val defaultLocale: Map<String, String>
 
@@ -24,10 +24,10 @@ class BukkitLocalizer_1_7 @Inject constructor(
             ?: Bukkit::class.java.getResource("/assets/minecraft/lang/en_US.lang")
 
         val overrideFile: Path =
-            pluginInfo.dataFolder.resolve("minecraft-lang-override-${server.minecraftVersion}.lang")
+            fcPluginData.dataFolder.resolve("minecraft-lang-override-${fcServer.minecraftVersion}.lang")
 
         val langStream = if (Files.exists(overrideFile)) {
-            logger.info("Using ${overrideFile.fileName} for Minecraft localizations")
+            fcLogger.info("Using ${overrideFile.fileName} for Minecraft localizations")
             overrideFile.toFile().inputStream()
         } else {
             langFile?.openStream()

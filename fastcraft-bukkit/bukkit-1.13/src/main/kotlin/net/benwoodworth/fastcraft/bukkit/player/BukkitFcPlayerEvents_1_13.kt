@@ -13,16 +13,16 @@ import javax.inject.Singleton
 @Singleton
 open class BukkitFcPlayerEvents_1_13 @Inject constructor(
     plugin: Plugin,
-    playerProvider: FcPlayer.Provider,
+    fcPlayerProvider: FcPlayer.Provider,
     pluginManager: PluginManager,
     causeTracker: CauseTracker,
-    taskFactory: FcTask.Factory,
+    fcTaskFactory: FcTask.Factory,
 ) : BukkitFcPlayerEvents_1_7(
     plugin = plugin,
-    playerProvider = playerProvider,
+    fcPlayerProvider = fcPlayerProvider,
     pluginManager = pluginManager,
     causeTracker = causeTracker,
-    taskFactory = taskFactory,
+    fcTaskFactory = fcTaskFactory,
 ) {
     override fun Block.isCraftingTable(): Boolean {
         return type == Material.CRAFTING_TABLE

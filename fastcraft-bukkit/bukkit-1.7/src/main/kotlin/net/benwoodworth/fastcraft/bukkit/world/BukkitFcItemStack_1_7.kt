@@ -3,75 +3,68 @@ package net.benwoodworth.fastcraft.bukkit.world
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.world.FcItem
 import net.benwoodworth.fastcraft.platform.world.FcItemStack
-import org.bukkit.Material
 import org.bukkit.Server
 import org.bukkit.inventory.ItemStack
 import javax.inject.Inject
 import javax.inject.Singleton
 
-open class BukkitFcItemStack_1_7(
-    override val bukkitItemStack: ItemStack,
-    protected val items: FcItem.Factory,
-    protected val textFactory: FcText.Factory,
-) : BukkitFcItemStack {
-    override val type: FcItem
-        get() = items.fromMaterialData(bukkitItemStack.data)
+object BukkitFcItemStack_1_7 {
+    @Singleton
+    open class TypeClass @Inject constructor(
+        private val fcItemFactory: FcItem.Factory,
+        private val fcTextFactory: FcText.Factory,
+        private val fcItemTypeClass: FcItem.TypeClass,
+        private val fcItemStackFactory: FcItemStack.Factory,
+    ) : BukkitFcItemStack.TypeClass {
+        override val FcItemStack.itemStack: ItemStack
+            get() = value as ItemStack
 
-    override val amount: Int
-        get() = bukkitItemStack.amount
+        override var FcItemStack.type: FcItem
+            get() = fcItemFactory.fromMaterialData(itemStack.data)
+            set(value) {
+                itemStack.data = fcItemTypeClass.bukkit.run { value.materialData }
+            }
 
-    override val name: FcText
-        get() = bukkitItemStack
-            .takeIf { it.hasItemMeta() }
-            ?.itemMeta
-            ?.takeIf { it.hasDisplayName() }
-            ?.displayName
-            ?.let { textFactory.create(it) }
-            ?: type.name
+        override var FcItemStack.amount: Int
+            get() = itemStack.amount
+            set(value) {
+                itemStack.amount = value
+            }
 
-    override val lore: List<FcText>
-        get() = bukkitItemStack
-            .takeIf { it.hasItemMeta() }
-            ?.itemMeta
-            ?.takeIf { it.hasLore() }
-            ?.lore
-            ?.map { textFactory.create(it ?: "") }
-            ?: emptyList()
+        override val FcItemStack.name: FcText
+            get() = itemStack
+                .takeIf { it.hasItemMeta() }
+                ?.itemMeta
+                ?.takeIf { it.hasDisplayName() }
+                ?.displayName
+                ?.let { fcTextFactory.create(it) }
+                ?: fcItemTypeClass.run { type.name }
 
-    override val hasMetadata: Boolean
-        get() = bukkitItemStack.hasItemMeta()
+        override val FcItemStack.lore: List<FcText>
+            get() = itemStack
+                .takeIf { it.hasItemMeta() }
+                ?.itemMeta
+                ?.takeIf { it.hasLore() }
+                ?.lore
+                ?.map { fcTextFactory.create(it ?: "") }
+                ?: emptyList()
 
-    override fun toBukkitItemStack(): ItemStack {
-        return bukkitItemStack.clone()
-    }
+        override val FcItemStack.hasMetadata: Boolean
+            get() = itemStack.hasItemMeta()
 
-    override fun equals(other: Any?): Boolean {
-        return other is FcItemStack && bukkitItemStack == other.bukkitItemStack
-    }
-
-    override fun hashCode(): Int {
-        return bukkitItemStack.hashCode()
+        override fun FcItemStack.copy(): FcItemStack {
+            return fcItemStackFactory.create(itemStack.clone())
+        }
     }
 
     @Singleton
     open class Factory @Inject constructor(
-        protected val items: FcItem.Factory,
-        protected val textFactory: FcText.Factory,
+        private val fcItemFactory: FcItem.Factory,
         protected val server: Server,
+        private val fcItemTypeClass: FcItem.TypeClass,
     ) : BukkitFcItemStack.Factory {
         override fun create(item: FcItem, amount: Int): FcItemStack {
-            return create(item.toItemStack(amount))
-        }
-
-        override fun copyItem(itemStack: FcItemStack, amount: Int): FcItemStack {
-            if (amount == itemStack.amount || itemStack.bukkitItemStack.type == Material.AIR) {
-                return itemStack
-            }
-
-            val bukkitItemStack = itemStack.toBukkitItemStack()
-            bukkitItemStack.amount = amount
-
-            return create(bukkitItemStack)
+            return fcItemTypeClass.bukkit.run { create(item.toItemStack(amount)) }
         }
 
         override fun parseOrNull(itemStr: String, amount: Int): FcItemStack? {
@@ -89,8 +82,8 @@ open class BukkitFcItemStack_1_7(
                 }
             }
 
-            val item = items.parseOrNull(materialId) ?: return null
-            val itemStack = item.toItemStack(amount)
+            val item = fcItemFactory.parseOrNull(materialId) ?: return null
+            val itemStack = fcItemTypeClass.bukkit.run { item.toItemStack(amount) }
 
             if (data != null) {
                 @Suppress("DEPRECATION")
@@ -101,11 +94,7 @@ open class BukkitFcItemStack_1_7(
         }
 
         override fun create(itemStack: ItemStack): FcItemStack {
-            return BukkitFcItemStack_1_7(
-                bukkitItemStack = itemStack,
-                items = items,
-                textFactory = textFactory
-            )
+            return FcItemStack(itemStack)
         }
     }
 }

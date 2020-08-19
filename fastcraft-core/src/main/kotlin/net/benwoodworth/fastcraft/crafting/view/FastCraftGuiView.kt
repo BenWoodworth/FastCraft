@@ -11,18 +11,19 @@ import javax.inject.Inject
 
 class FastCraftGuiView(
     player: FcPlayer,
-    guiFactory: FcGui.Factory,
-    craftingGridButtonFactory: WorkbenchButtonView.Factory,
+    fcGuiFactory: FcGui.Factory,
+    workbenchButtonFactory: WorkbenchButtonView.Factory,
     pageButtonFactory: PageButtonView.Factory,
     recipeButtonFactory: RecipeButtonView.Factory,
     craftAmountButtonFactory: CraftAmountButtonView.Factory,
     refreshButtonFactory: RefreshButtonView.Factory,
-    textFactory: FcText.Factory,
+    fcTextFactory: FcText.Factory,
     config: FastCraftConfig,
+    fcPlayerTypeClass: FcPlayer.TypeClass,
 ) {
-    val gui = guiFactory.createChestGui(
+    val gui = fcGuiFactory.createChestGui(
         player = player,
-        title = textFactory.createLegacy(Strings.guiTitle(player.locale)),
+        title = fcTextFactory.createLegacy(Strings.guiTitle(fcPlayerTypeClass.run { player.locale })),
         height = config.layout.height
     )
 
@@ -41,7 +42,7 @@ class FastCraftGuiView(
     val craftingGridButton = config.layout.buttons.craftingGrid.let { c ->
         if (c.enable) {
             getNewButton(c.column, c.row)
-                ?.let { craftingGridButtonFactory.create(it, player.locale) }
+                ?.let { workbenchButtonFactory.create(it, fcPlayerTypeClass.run { player.locale }) }
         } else {
             null
         }
@@ -50,7 +51,7 @@ class FastCraftGuiView(
     val craftAmountButton = config.layout.buttons.craftAmount.let { c ->
         if (c.enable) {
             getNewButton(c.column, c.row)
-                ?.let { craftAmountButtonFactory.create(it, player.locale) }
+                ?.let { craftAmountButtonFactory.create(it, fcPlayerTypeClass.run { player.locale }) }
         } else {
             null
         }
@@ -59,7 +60,7 @@ class FastCraftGuiView(
     val refreshButton = config.layout.buttons.refresh.let { c ->
         if (c.enable) {
             getNewButton(c.column, c.row)
-                ?.let { refreshButtonFactory.create(it, player.locale) }
+                ?.let { refreshButtonFactory.create(it, fcPlayerTypeClass.run { player.locale }) }
         } else {
             null
         }
@@ -68,7 +69,7 @@ class FastCraftGuiView(
     val pageButton = config.layout.buttons.page.let { c ->
         if (c.enable) {
             getNewButton(c.column, c.row)
-                ?.let { pageButtonFactory.create(it, player.locale) }
+                ?.let { pageButtonFactory.create(it, fcPlayerTypeClass.run { player.locale }) }
         } else {
             null
         }
@@ -86,7 +87,7 @@ class FastCraftGuiView(
             error("FastCraft UI does not have space for recipes. Please re-configure the layout.")
         }
 
-        buttons.map { recipeButtonFactory.create(it, player.locale) }
+        buttons.map { recipeButtonFactory.create(it, fcPlayerTypeClass.run { player.locale }) }
     }
 
     init {
@@ -103,26 +104,28 @@ class FastCraftGuiView(
     }
 
     class Factory @Inject constructor(
-        private val guiFactory: FcGui.Factory,
-        private val craftingGridButtonFactory: WorkbenchButtonView.Factory,
+        private val fcGuiFactory: FcGui.Factory,
+        private val workbenchButtonViewFactory: WorkbenchButtonView.Factory,
         private val pageButtonFactory: PageButtonView.Factory,
         private val recipeButtonFactory: RecipeButtonView.Factory,
         private val craftAmountButtonFactory: CraftAmountButtonView.Factory,
         private val refreshButtonFactory: RefreshButtonView.Factory,
-        private val textFactory: FcText.Factory,
-        private val config: FastCraftConfig,
+        private val fcTextFactory: FcText.Factory,
+        private val fastCraftConfig: FastCraftConfig,
+        private val fcPlayerTypeClass: FcPlayer.TypeClass,
     ) {
         fun create(player: FcPlayer): FastCraftGuiView {
             return FastCraftGuiView(
                 player = player,
-                guiFactory = guiFactory,
-                craftingGridButtonFactory = craftingGridButtonFactory,
+                fcGuiFactory = fcGuiFactory,
+                workbenchButtonFactory = workbenchButtonViewFactory,
                 pageButtonFactory = pageButtonFactory,
                 recipeButtonFactory = recipeButtonFactory,
                 craftAmountButtonFactory = craftAmountButtonFactory,
                 refreshButtonFactory = refreshButtonFactory,
-                textFactory = textFactory,
-                config = config,
+                fcTextFactory = fcTextFactory,
+                config = fastCraftConfig,
+                fcPlayerTypeClass = fcPlayerTypeClass,
             )
         }
     }

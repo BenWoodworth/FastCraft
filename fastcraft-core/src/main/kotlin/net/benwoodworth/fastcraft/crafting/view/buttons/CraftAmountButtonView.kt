@@ -7,6 +7,7 @@ import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClickModifier
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcSound
 import net.benwoodworth.fastcraft.platform.text.FcText
 import java.util.*
@@ -15,9 +16,10 @@ import javax.inject.Inject
 class CraftAmountButtonView(
     private val button: FcGuiButton,
     private val locale: Locale,
-    private val textFactory: FcText.Factory,
-    private val sounds: FcSound.Factory,
+    private val fcTextFactory: FcText.Factory,
+    private val fcSounds: FcSound.Factory,
     config: FastCraftConfig,
+    private val fcPlayerTypeClass: FcPlayer.TypeClass,
 ) {
     var craftAmount: Int? = null
 
@@ -32,20 +34,20 @@ class CraftAmountButtonView(
             copyItem(c.item)
 
             setText(
-                textFactory.createLegacy(
+                fcTextFactory.createLegacy(
                     Strings.guiButtonCraftAmountTitle(locale)
                 )
             )
 
             setDescription(
                 listOf(
-                    textFactory.createLegacy(
+                    fcTextFactory.createLegacy(
                         Strings.guiButtonCraftAmountDescription0(locale)
                     ),
-                    textFactory.createLegacy(
+                    fcTextFactory.createLegacy(
                         Strings.guiButtonCraftAmountDescription1(locale)
                     ),
-                    textFactory.createLegacy(
+                    fcTextFactory.createLegacy(
                         Strings.guiButtonCraftAmountDescription2(locale)
                     )
                 )
@@ -89,24 +91,26 @@ class CraftAmountButtonView(
             }
 
             action?.let {
-                gui.player.playSound(sounds.uiButtonClick, Config.buttonVolume)
+                fcPlayerTypeClass.run { gui.player.playSound(fcSounds.uiButtonClick, Config.buttonVolume) }
                 action()
             }
         }
     }
 
     class Factory @Inject constructor(
-        private val textFactory: FcText.Factory,
-        private val sounds: FcSound.Factory,
-        private val config: FastCraftConfig,
+        private val fcTextFactory: FcText.Factory,
+        private val fcSoundFactory: FcSound.Factory,
+        private val fastCraftConfig: FastCraftConfig,
+        private val fcPlayerTypeClass: FcPlayer.TypeClass,
     ) {
         fun create(button: FcGuiButton, locale: Locale): CraftAmountButtonView {
             return CraftAmountButtonView(
                 button = button,
                 locale = locale,
-                textFactory = textFactory,
-                sounds = sounds,
-                config = config,
+                fcTextFactory = fcTextFactory,
+                fcSounds = fcSoundFactory,
+                config = fastCraftConfig,
+                fcPlayerTypeClass = fcPlayerTypeClass,
             )
         }
     }

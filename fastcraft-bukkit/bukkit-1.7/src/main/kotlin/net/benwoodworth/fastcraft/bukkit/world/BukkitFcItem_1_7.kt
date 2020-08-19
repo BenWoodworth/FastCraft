@@ -7,76 +7,88 @@ import org.bukkit.Server
 import org.bukkit.inventory.ItemStack
 import org.bukkit.material.MaterialData
 import javax.inject.Inject
-import javax.inject.Provider
 import javax.inject.Singleton
 
+object BukkitFcItem_1_7 {
+    @Singleton
+    open class TypeClass @Inject constructor(
+        private val fcItemFactory: FcItem.Factory,
+        private val legacyMaterialInfo: LegacyMaterialInfo,
+    ) : BukkitFcItem.TypeClass {
+        @Suppress("DEPRECATION")
+        override val FcItem.id: String
+            get() = legacyMaterialInfo.getItemId(materialData)
 
-open class BukkitFcItem_1_7(
-    override val materialData: MaterialData,
-    protected val textFactory: FcText.Factory,
-    protected val items: FcItem.Factory,
-    protected val legacyMaterialInfo: LegacyMaterialInfo_1_7,
-) : BukkitFcItem {
-    @Suppress("DEPRECATION")
-    override val id: String
-        get() = legacyMaterialInfo.getItemId(materialData)
+        @Suppress("DEPRECATION")
+        override val FcItem.materialData: MaterialData
+            get() = when (val value = value) {
+                is MaterialData -> value
+                is Material -> value.getNewData(0)
+                else -> error("$this is not MaterialData or Material")
+            }
 
-    override val material: Material
-        get() = materialData.itemType
+        @Suppress("DEPRECATION")
+        override val FcItem.material: Material
+            get() = when (val value = value) {
+                is MaterialData -> value.itemType
+                is Material -> value
+                else -> error("$this is not MaterialData or Material")
+            }
 
-    override val name: FcText
-        get() = legacyMaterialInfo.getItemName(materialData)
+        override val FcItem.name: FcText
+            get() = legacyMaterialInfo.getItemName(materialData)
 
-    override val maxAmount: Int
-        get() = material.maxStackSize
+        override val FcItem.maxAmount: Int
+            get() = material.maxStackSize
 
-    override val craftingRemainingItem: FcItem?
-        get() = when (material) {
-            Material.LAVA_BUCKET,
-            Material.MILK_BUCKET,
-            Material.WATER_BUCKET,
-            -> items.fromMaterial(Material.BUCKET)
+        protected open fun craftingRemainingItem(item: FcItem): FcItem? {
+            return when (item.material) {
+                Material.LAVA_BUCKET,
+                Material.MILK_BUCKET,
+                Material.WATER_BUCKET,
+                -> fcItemFactory.fromMaterial(Material.BUCKET)
 
-            else -> null
+                else -> null
+            }
         }
 
-    override fun toItemStack(amount: Int): ItemStack {
-        return materialData.toItemStack(amount)
-    }
+        final override val FcItem.craftingRemainingItem: FcItem?
+            get() = craftingRemainingItem(this)
 
-    override fun equals(other: Any?): Boolean {
-        return other is FcItem && materialData == other.materialData
-    }
-
-    override fun hashCode(): Int {
-        return materialData.hashCode()
+        override fun FcItem.toItemStack(amount: Int): ItemStack {
+            return materialData.toItemStack(amount)
+        }
     }
 
     @Singleton
     open class Factory @Inject constructor(
-        protected val textFactory: FcText.Factory,
-        protected val items: Provider<FcItem.Factory>,
         protected val server: Server,
-        protected val legacyMaterialInfo: LegacyMaterialInfo_1_7,
     ) : BukkitFcItem.Factory {
-        override val air: FcItem by lazy { fromMaterial(Material.AIR) }
-        override val ironSword: FcItem by lazy { fromMaterial(Material.IRON_SWORD) }
-        override val craftingTable: FcItem by lazy { fromMaterial(Material.WORKBENCH) }
-        override val anvil: FcItem by lazy { fromMaterial(Material.ANVIL) }
-        override val netherStar: FcItem by lazy { fromMaterial(Material.NETHER_STAR) }
+        override val air: FcItem
+            get() = fromMaterial(Material.AIR)
 
-        override val lightGrayStainedGlassPane: FcItem by lazy {
-            @Suppress("DEPRECATION")
-            fromMaterialData(MaterialData(Material.STAINED_GLASS_PANE, 8))
-        }
+        override val ironSword: FcItem
+            get() = fromMaterial(Material.IRON_SWORD)
+
+        override val craftingTable: FcItem
+            get() = fromMaterial(Material.WORKBENCH)
+
+        override val anvil: FcItem
+            get() = fromMaterial(Material.ANVIL)
+
+        override val netherStar: FcItem
+            get() = fromMaterial(Material.NETHER_STAR)
+
+        @Suppress("DEPRECATION")
+        override val lightGrayStainedGlassPane: FcItem
+            get() = fromMaterialData(MaterialData(Material.STAINED_GLASS_PANE, 8))
 
         override fun fromMaterial(material: Material): FcItem {
-            return fromMaterialData(MaterialData(material))
+            return FcItem(material)
         }
 
-        override fun fromMaterialData(materialData: Any): FcItem {
-            require(materialData is MaterialData)
-            return BukkitFcItem_1_7(materialData, textFactory, items.get(), legacyMaterialInfo)
+        override fun fromMaterialData(materialData: MaterialData): FcItem {
+            return FcItem(materialData)
         }
 
         override fun parseOrNull(id: String): FcItem? {

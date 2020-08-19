@@ -6,20 +6,30 @@ import javax.inject.Inject
 
 class ItemAmounts private constructor(
     private val amounts: MutableMap<FcItemStack, Int>,
-    private val itemStackFactory: FcItemStack.Factory,
+    private val fcItemStackFactory: FcItemStack.Factory,
+    private val fcItemStackTypeClass: FcItemStack.TypeClass,
 ) {
     private companion object {
         val keys = WeakHashMap<FcItemStack, FcItemStack>()
     }
 
     @Inject
-    constructor(itemStackFactory: FcItemStack.Factory) : this(mutableMapOf(), itemStackFactory)
+    constructor(
+        itemStackFactory: FcItemStack.Factory,
+        fcItemStackTypeClass: FcItemStack.TypeClass,
+    ) : this(
+        amounts = mutableMapOf(),
+        fcItemStackFactory = itemStackFactory,
+        fcItemStackTypeClass = fcItemStackTypeClass,
+    )
 
     private fun FcItemStack.asKey(): FcItemStack {
-        return when (amount) {
+        return when (fcItemStackTypeClass.run { amount }) {
             1 -> this
             else -> keys.getOrPut(this) {
-                itemStackFactory.copyItem(this, 1)
+                fcItemStackTypeClass.run {
+                    this@asKey.copy().apply { amount = 1 }
+                }
             }
         }
     }
@@ -36,16 +46,20 @@ class ItemAmounts private constructor(
     }
 
     operator fun plusAssign(itemStack: FcItemStack) {
-        if (itemStack.amount != 0) {
-            val key = itemStack.asKey()
-            amounts[key] = amounts.getOrDefault(key, 0) + itemStack.amount
+        fcItemStackTypeClass.run {
+            if (itemStack.amount != 0) {
+                val key = itemStack.asKey()
+                amounts[key] = amounts.getOrDefault(key, 0) + itemStack.amount
+            }
         }
     }
 
     operator fun minusAssign(itemStack: FcItemStack) {
-        if (itemStack.amount != 0) {
-            val key = itemStack.asKey()
-            amounts[key] = amounts.getOrDefault(key, 0) - itemStack.amount
+        fcItemStackTypeClass.run {
+            if (itemStack.amount != 0) {
+                val key = itemStack.asKey()
+                amounts[key] = amounts.getOrDefault(key, 0) - itemStack.amount
+            }
         }
     }
 
@@ -54,7 +68,7 @@ class ItemAmounts private constructor(
     }
 
     fun copy(): ItemAmounts {
-        return ItemAmounts(amounts.toMutableMap(), itemStackFactory)
+        return ItemAmounts(amounts.toMutableMap(), fcItemStackFactory, fcItemStackTypeClass)
     }
 
     fun asMap(): Map<FcItemStack, Int> {

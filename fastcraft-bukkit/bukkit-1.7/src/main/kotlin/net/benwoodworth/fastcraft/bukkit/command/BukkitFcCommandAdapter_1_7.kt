@@ -38,12 +38,12 @@ class BukkitFcCommandAdapter_1_7(
 
     @Singleton
     class Factory @Inject constructor(
-        private val commandSourceFactory: BukkitFcCommandSource.Factory,
+        private val fcCommandSourceFactory: BukkitFcCommandSource.Factory,
     ) : BukkitFcCommandAdapter.Factory {
         override fun create(command: FcCommand): BukkitFcCommandAdapter {
             return BukkitFcCommandAdapter_1_7(
                 command = command,
-                commandSourceFactory = commandSourceFactory,
+                commandSourceFactory = fcCommandSourceFactory,
             )
         }
     }

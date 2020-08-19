@@ -18,7 +18,7 @@ open class BukkitFcCraftingRecipePrepared_1_12(
     ingredientRemnants: List<FcItemStack>,
     resultsPreview: List<FcItemStack>,
     preparedCraftingView: InventoryView,
-    itemStackFactory: FcItemStack.Factory,
+    fcItemStackFactory: FcItemStack.Factory,
     server: Server,
 ) : BukkitFcCraftingRecipePrepared_1_7(
     player = player,
@@ -27,7 +27,7 @@ open class BukkitFcCraftingRecipePrepared_1_12(
     ingredientRemnants = ingredientRemnants,
     resultsPreview = resultsPreview,
     preparedCraftingView = preparedCraftingView,
-    itemStackFactory = itemStackFactory,
+    fcItemStackFactory = fcItemStackFactory,
     server = server,
 ) {
     override fun onCraft(result: ItemStack) {
@@ -36,7 +36,7 @@ open class BukkitFcCraftingRecipePrepared_1_12(
 
     @Singleton
     class Factory @Inject constructor(
-        private val itemStackFactory: FcItemStack.Factory,
+        private val fcItemStackFactory: FcItemStack.Factory,
         private val server: Server,
     ) : BukkitFcCraftingRecipePrepared.Factory {
         override fun create(
@@ -54,7 +54,7 @@ open class BukkitFcCraftingRecipePrepared_1_12(
                 ingredientRemnants = ingredientRemnants,
                 resultsPreview = resultsPreview,
                 preparedCraftingView = preparedCraftingView,
-                itemStackFactory = itemStackFactory,
+                fcItemStackFactory = fcItemStackFactory,
                 server = server,
             )
         }

@@ -4,41 +4,21 @@ import net.benwoodworth.fastcraft.bukkit.text.BukkitLocalizer
 import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.world.FcItem
 import org.bukkit.Material
-import org.bukkit.Server
 import javax.inject.Inject
-import javax.inject.Provider
 import javax.inject.Singleton
 
-open class BukkitFcItem_1_15(
-    material: Material,
-    textFactory: FcText.Factory,
-    localizer: BukkitLocalizer,
-    items: FcItem.Factory,
-) : BukkitFcItem_1_13(
-    material = material,
-    textFactory = textFactory,
-    localizer = localizer,
-    items = items,
-) {
-    override val craftingRemainingItem: FcItem?
-        get() = material.craftingRemainingItem?.let { items.fromMaterial(it) }
-
+object BukkitFcItem_1_15 {
     @Singleton
-    class Factory @Inject constructor(
-        textFactory: FcText.Factory,
+    class TypeClass @Inject constructor(
+        fcTextFactory: FcText.Factory,
         localizer: BukkitLocalizer,
-        items: Provider<FcItem.Factory>,
-        server: Server,
-        legacyMaterialInfo: LegacyMaterialInfo_1_7,
-    ) : BukkitFcItem_1_13.Factory(
-        textFactory = textFactory,
+        private val fcItemFactory: FcItem.Factory,
+    ) : BukkitFcItem_1_13.TypeClass(
+        fcTextFactory = fcTextFactory,
         localizer = localizer,
-        items = items,
-        server = server,
-        legacyMaterialInfo = legacyMaterialInfo,
+        fcItemFactory = fcItemFactory,
     ) {
-        override fun fromMaterial(material: Material): FcItem {
-            return BukkitFcItem_1_15(material, textFactory, localizer, items.get())
-        }
+        override val FcItem.craftingRemainingItem: FcItem?
+            get() = (material as Material).craftingRemainingItem?.let { fcItemFactory.fromMaterial(it) }
     }
 }

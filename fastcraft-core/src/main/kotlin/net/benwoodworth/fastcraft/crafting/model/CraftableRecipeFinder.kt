@@ -19,11 +19,13 @@ import kotlin.collections.HashMap
 
 @Singleton
 class CraftableRecipeFinder @Inject constructor(
-    private val recipeProvider: FcRecipeProvider,
+    private val fcRecipeProvider: FcRecipeProvider,
     private val itemAmountsProvider: Provider<ItemAmounts>,
-    materialComparator: FcItemOrderComparator,
-    private val taskFactory: FcTask.Factory,
-    private val config: FastCraftConfig,
+    private val fcPlayerTypeClass: FcPlayer.TypeClass,
+    fcItemOrderComparator: FcItemOrderComparator,
+    private val fcTaskFactory: FcTask.Factory,
+    private val fastCraftConfig: FastCraftConfig,
+    private val fcItemStackTypeClass: FcItemStack.TypeClass,
 ) {
     private val NANOS_PER_TICK = 1000000000L / 20L
 
@@ -32,60 +34,63 @@ class CraftableRecipeFinder @Inject constructor(
     private var recipeLoadTasks: HashMap<UUID, FcTask> = HashMap()
 
     private val recipeComparator: Comparator<FcCraftingRecipe> =
-        compareBy<FcCraftingRecipe, FcItem>(materialComparator) {
-            it.exemplaryResult.type
+        compareBy<FcCraftingRecipe, FcItem>(fcItemOrderComparator) {
+            fcItemStackTypeClass.run { it.exemplaryResult.type }
         }.thenBy {
-            it.exemplaryResult.amount
+            fcItemStackTypeClass.run { it.exemplaryResult.amount }
         }
 
     private val ingredientComparator = compareBy<Map.Entry<FcItemStack, Int>>(
-        { (itemStack, _) -> itemStack.hasMetadata }, // Items with meta last
+        { (itemStack, _) -> fcItemStackTypeClass.run { itemStack.hasMetadata } }, // Items with meta last
         { (_, amount) -> -amount }, // Greatest amount first
     )
 
     fun loadRecipes(player: FcPlayer, listener: Listener) {
-        recipeLoadTasks[player.uuid] = taskFactory.startTask(delayTicks = 1) {
+        val uuid = fcPlayerTypeClass.run { player.uuid }
+        recipeLoadTasks[uuid] = fcTaskFactory.startTask(delayTicks = 1) {
             val availableItems = itemAmountsProvider.get()
-            player.inventory.storage.forEach { slot ->
+            fcPlayerTypeClass.run { player.inventory }.storage.forEach { slot ->
                 slot.itemStack?.let { itemStack -> availableItems += itemStack }
             }
 
-            val recipeIterator = recipeProvider.getCraftingRecipes()
+            val recipeIterator = fcRecipeProvider.getCraftingRecipes()
                 .filter { !disabledPluginRecipes.contains(it.id.split(":").firstOrNull()) }
-                .filter { !config.disableRecipes.recipeIdsRegex.matches(it.id) }
+                .filter { !fastCraftConfig.disableRecipes.recipeIdsRegex.matches(it.id) }
                 .sortedWith(recipeComparator)
                 .flatMap { prepareCraftableRecipes(player, availableItems, it) }
                 .iterator()
 
-            recipeLoadTasks[player.uuid] = taskFactory.startTask(delayTicks = 1, intervalTicks = 1) { task ->
-                val startTime = System.nanoTime()
-                val newRecipes = mutableListOf<FcCraftingRecipePrepared>()
+            recipeLoadTasks[uuid] =
+                fcTaskFactory.startTask(delayTicks = 1, intervalTicks = 1) { task ->
+                    val startTime = System.nanoTime()
+                    val newRecipes = mutableListOf<FcCraftingRecipePrepared>()
 
-                for (recipe in recipeIterator) {
-                    if (recipe != null) {
-                        newRecipes += recipe
+                    for (recipe in recipeIterator) {
+                        if (recipe != null) {
+                            newRecipes += recipe
+                        }
+
+                        val maxCalcTime =
+                            NANOS_PER_TICK * fastCraftConfig.recipeCalculations.maxTickUsage / recipeLoadTasks.count()
+                        val timeElapsed = System.nanoTime() - startTime
+                        if (timeElapsed >= maxCalcTime) {
+                            break
+                        }
                     }
 
-                    val maxCalcTime = NANOS_PER_TICK * config.recipeCalculations.maxTickUsage / recipeLoadTasks.count()
-                    val timeElapsed = System.nanoTime() - startTime
-                    if (timeElapsed >= maxCalcTime) {
-                        break
+                    if (newRecipes.isNotEmpty()) {
+                        listener.onNewRecipesLoaded(newRecipes)
+                    }
+
+                    if (!recipeIterator.hasNext()) {
+                        task.cancel()
                     }
                 }
-
-                if (newRecipes.isNotEmpty()) {
-                    listener.onNewRecipesLoaded(newRecipes)
-                }
-
-                if (!recipeIterator.hasNext()) {
-                    task.cancel()
-                }
-            }
         }
     }
 
     fun cancel(player: FcPlayer) {
-        recipeLoadTasks.remove(player.uuid)?.cancel()
+        recipeLoadTasks.remove(fcPlayerTypeClass.run { player.uuid })?.cancel()
     }
 
     private fun prepareCraftableRecipes(

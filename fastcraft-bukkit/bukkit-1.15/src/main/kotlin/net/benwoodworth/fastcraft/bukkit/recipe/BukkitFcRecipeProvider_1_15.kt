@@ -16,12 +16,12 @@ open class BukkitFcRecipeProvider_1_15 @Inject constructor(
     plugin: Plugin,
     bukkitVersion: BukkitVersion,
     server: Server,
-    recipeFactory: BukkitFcCraftingRecipe.Factory,
+    fcCraftingRecipeFactory: BukkitFcCraftingRecipe.Factory,
 ) : BukkitFcRecipeProvider_1_13(
     plugin = plugin,
     bukkitVersion = bukkitVersion,
     server = server,
-    recipeFactory = recipeFactory
+    fcCraftingRecipeFactory = fcCraftingRecipeFactory
 ) {
     override fun Recipe.isCraftingRecipe(): Boolean {
         return when (this) {

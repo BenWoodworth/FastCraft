@@ -11,7 +11,8 @@ import javax.inject.Inject
 class BukkitFcInventorySlot(
     val inventory: Inventory,
     val slotIndex: Int,
-    val itemStackFactory: FcItemStack.Factory,
+    private val fcItemStackFactory: FcItemStack.Factory,
+    private val fcItemStackTypeClass: FcItemStack.TypeClass,
 ) : FcInventorySlot {
     override var itemStack: FcItemStack?
         get() = inventory.getItem(slotIndex).fromInventoryItem()
@@ -20,15 +21,17 @@ class BukkitFcInventorySlot(
         }
 
     private fun FcItemStack?.toInventoryItem(): ItemStack {
-        return this
-            ?.toBukkitItemStack()
-            ?: ItemStack(Material.AIR, 0)
+        fcItemStackTypeClass.bukkit.run {
+            return this@toInventoryItem
+                ?.itemStack?.clone()
+                ?: ItemStack(Material.AIR, 0)
+        }
     }
 
     private fun ItemStack?.fromInventoryItem(): FcItemStack? {
         return this
             ?.takeUnless { it.type == Material.AIR }
-            ?.let { itemStackFactory.create(it) }
+            ?.let { fcItemStackFactory.create(it) }
     }
 
     override fun equals(other: Any?): Boolean {
@@ -42,13 +45,15 @@ class BukkitFcInventorySlot(
     }
 
     class Factory @Inject constructor(
-        val itemStackFactory: FcItemStack.Factory,
+        private val fcItemStackFactory: FcItemStack.Factory,
+        private val fcItemStackTypeClass: FcItemStack.TypeClass,
     ) {
         fun create(inventory: Inventory, slotIndex: Int): BukkitFcInventorySlot {
             return BukkitFcInventorySlot(
                 inventory = inventory,
                 slotIndex = slotIndex,
-                itemStackFactory = itemStackFactory,
+                fcItemStackFactory = fcItemStackFactory,
+                fcItemStackTypeClass = fcItemStackTypeClass,
             )
         }
     }

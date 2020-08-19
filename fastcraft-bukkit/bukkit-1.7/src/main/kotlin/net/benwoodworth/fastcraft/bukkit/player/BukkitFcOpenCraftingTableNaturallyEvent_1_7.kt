@@ -11,5 +11,3 @@ class BukkitFcOpenCraftingTableNaturallyEvent_1_7(
         event.isCancelled = true
     }
 }
-
-

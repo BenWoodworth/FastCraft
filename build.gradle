@@ -47,8 +47,19 @@ allprojects {
         }
     }
 
-    compileKotlin.kotlinOptions.jvmTarget = java_version
-    compileTestKotlin.kotlinOptions.jvmTarget = java_version
+    compileKotlin {
+        kotlinOptions {
+            jvmTarget = java_version
+            freeCompilerArgs = ["-XXLanguage:+InlineClasses", "-Xuse-ir"]
+        }
+    }
+
+    compileTestKotlin {
+        kotlinOptions {
+            jvmTarget = java_version
+            freeCompilerArgs = ["-XXLanguage:+InlineClasses", "-Xuse-ir"]
+        }
+    }
 
     kapt {
         correctErrorTypes = true

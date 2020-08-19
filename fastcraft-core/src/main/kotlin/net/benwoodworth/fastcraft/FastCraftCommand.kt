@@ -11,13 +11,14 @@ import net.benwoodworth.fastcraft.platform.text.FcText
 import javax.inject.Inject
 
 class FastCraftCommand @Inject constructor(
-    private val commandRegistry: FcCommandRegistry,
-    private val textFactory: FcText.Factory,
-    private val playerProvider: FcPlayer.Provider,
+    private val fcCommandRegistry: FcCommandRegistry,
+    private val fcTextFactory: FcText.Factory,
+    private val fcPlayerProvider: FcPlayer.Provider,
     private val playerSettings: PlayerSettings,
     private val fastCraftGuiFactory: FastCraftGui.Factory,
     private val permissions: Permissions,
-    private val config: FastCraftConfig,
+    private val fastCraftConfig: FastCraftConfig,
+    private val fcPlayerTypeClass: FcPlayer.TypeClass,
 ) : FcCommand {
     override val description = "FastCraft command"
 
@@ -28,25 +29,25 @@ class FastCraftCommand @Inject constructor(
     private val usageReload = "/fastcraft reload"
 
     private fun FcCommandSource.sendMissingPermissionMessage(permission: FcPermission) {
-        sendMessage(textFactory.create(
+        sendMessage(fcTextFactory.create(
             text = Strings.commandErrorPermission(locale, permission),
         ))
     }
 
     private fun FcCommandSource.sendMustBePlayerMessage() {
-        sendMessage(textFactory.create(
+        sendMessage(fcTextFactory.create(
             text = Strings.commandErrorPlayerOnly(locale),
         ))
     }
 
     private fun FcCommandSource.sendPlayerNotFoundMessage(player: String) {
-        sendMessage(textFactory.create(
+        sendMessage(fcTextFactory.create(
             text = Strings.commandErrorPlayerUnknown(locale, player),
         ))
     }
 
     private fun FcCommandSource.sendUsageMessage(usage: String) {
-        sendMessage(textFactory.create(
+        sendMessage(fcTextFactory.create(
             text = Strings.commandErrorUsage(locale, usage),
         ))
     }
@@ -54,7 +55,7 @@ class FastCraftCommand @Inject constructor(
     private val argSplitExpr = Regex("""\s+""")
 
     fun register() {
-        commandRegistry.register(this, "fastcraft", "fc")
+        fcCommandRegistry.register(this, "fastcraft", "fc")
     }
 
     override fun process(source: FcCommandSource, arguments: String) {
@@ -129,9 +130,9 @@ class FastCraftCommand @Inject constructor(
         }
 
         fun suggestPlayers(): List<String> {
-            val players = playerProvider
+            val players = fcPlayerProvider
                 .getOnlinePlayers()
-                .map { it.username }
+                .map { fcPlayerTypeClass.run { it.username } }
                 .toTypedArray()
 
             return suggestions(*players)
@@ -175,7 +176,7 @@ class FastCraftCommand @Inject constructor(
         }
 
         playerSettings.setFastCraftEnabled(targetPlayer, enabled)
-        source.sendMessage(textFactory.createLegacy(
+        source.sendMessage(fcTextFactory.createLegacy(
             if (enabled) {
                 Strings.commandSetEnabledTrue(source.locale)
             } else {
@@ -185,9 +186,9 @@ class FastCraftCommand @Inject constructor(
     }
 
     fun fcSetEnabledAdmin(source: FcCommandSource, enabled: Boolean, player: String) {
-        val targetPlayer = playerProvider
+        val targetPlayer = fcPlayerProvider
             .getOnlinePlayers()
-            .firstOrNull { it.username.equals(player, true) }
+            .firstOrNull { fcPlayerTypeClass.run { it.username }.equals(player, true) }
 
         if (targetPlayer != null && targetPlayer == source.player) {
             fcSetEnabled(source, enabled)
@@ -205,11 +206,11 @@ class FastCraftCommand @Inject constructor(
         }
 
         playerSettings.setFastCraftEnabled(targetPlayer, enabled)
-        source.sendMessage(textFactory.createLegacy(
+        source.sendMessage(fcTextFactory.createLegacy(
             if (enabled) {
-                Strings.commandSetEnabledTruePlayer(source.locale, targetPlayer.username)
+                Strings.commandSetEnabledTruePlayer(source.locale, fcPlayerTypeClass.run { targetPlayer.username })
             } else {
-                Strings.commandSetEnabledFalsePlayer(source.locale, targetPlayer.username)
+                Strings.commandSetEnabledFalsePlayer(source.locale, fcPlayerTypeClass.run { targetPlayer.username })
             }
         ))
     }
@@ -259,7 +260,7 @@ class FastCraftCommand @Inject constructor(
                     return
                 }
 
-                targetPlayer.openCraftingTable()
+                fcPlayerTypeClass.run { targetPlayer.openCraftingTable() }
             }
             else -> {
                 throw IllegalStateException()
@@ -268,9 +269,9 @@ class FastCraftCommand @Inject constructor(
     }
 
     fun fcCraftAdmin(source: FcCommandSource, type: String, player: String) {
-        val targetPlayer = playerProvider
+        val targetPlayer = fcPlayerProvider
             .getOnlinePlayers()
-            .firstOrNull { it.username.equals(player, true) }
+            .firstOrNull { fcPlayerTypeClass.run { it.username }.equals(player, true) }
 
         if (targetPlayer != null && targetPlayer == source.player) {
             fcCraft(source, type)
@@ -302,7 +303,7 @@ class FastCraftCommand @Inject constructor(
                     .open()
             }
             "grid" -> {
-                targetPlayer.openCraftingTable()
+                fcPlayerTypeClass.run { targetPlayer.openCraftingTable() }
             }
             else -> {
                 throw IllegalStateException()
@@ -310,14 +311,13 @@ class FastCraftCommand @Inject constructor(
         }
     }
 
-
     fun fcReload(source: FcCommandSource) {
         if (!source.hasPermission(permissions.FASTCRAFT_ADMIN_COMMAND_RELOAD)) {
             source.sendMissingPermissionMessage(permissions.FASTCRAFT_ADMIN_COMMAND_RELOAD)
             return
         }
 
-        config.load()
-        source.sendMessage(textFactory.create(Strings.commandReloadReloaded(source.locale)))
+        fastCraftConfig.load()
+        source.sendMessage(fcTextFactory.create(Strings.commandReloadReloaded(source.locale)))
     }
 }

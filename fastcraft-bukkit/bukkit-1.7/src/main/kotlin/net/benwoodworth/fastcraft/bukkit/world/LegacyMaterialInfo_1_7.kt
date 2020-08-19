@@ -16,7 +16,7 @@ import javax.inject.Singleton
 class LegacyMaterialInfo_1_7 @Inject constructor(
     plugin: Plugin,
     bukkitVersion: BukkitVersion,
-    private val textFactory: FcText.Factory,
+    private val fcTextFactory: FcText.Factory,
 ) : LegacyMaterialInfo {
     private val itemIds: Map<Material, String>
     private val itemNames: Map<Material, String>
@@ -49,7 +49,7 @@ class LegacyMaterialInfo_1_7 @Inject constructor(
         return itemVariantNames[materialData.itemType]
             ?.getOrNull(materialData.data.toInt())
             .let { it ?: itemNames[materialData.itemType] }
-            ?.let { textFactory.createTranslate("$it.name") }
+            ?.let { fcTextFactory.createTranslate("$it.name") }
             ?: run {
                 var name = materialData.toString()
 
@@ -61,7 +61,7 @@ class LegacyMaterialInfo_1_7 @Inject constructor(
 
                 name = name.replace('_', ' ')
 
-                return textFactory.create(WordUtils.capitalizeFully(name))
+                return fcTextFactory.create(WordUtils.capitalizeFully(name))
             }
     }
 

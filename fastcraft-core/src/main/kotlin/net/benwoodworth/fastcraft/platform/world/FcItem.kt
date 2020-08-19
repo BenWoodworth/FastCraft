@@ -2,15 +2,13 @@ package net.benwoodworth.fastcraft.platform.world
 
 import net.benwoodworth.fastcraft.platform.text.FcText
 
-interface FcItem {
-    val id: String
-    val name: FcText
-    val maxAmount: Int
-    val craftingRemainingItem: FcItem?
-
-    override fun equals(other: Any?): Boolean
-
-    override fun hashCode(): Int
+inline class FcItem(val value: Any) {
+    interface TypeClass {
+        val FcItem.id: String
+        val FcItem.name: FcText
+        val FcItem.maxAmount: Int
+        val FcItem.craftingRemainingItem: FcItem?
+    }
 
     interface Factory {
         val air: FcItem

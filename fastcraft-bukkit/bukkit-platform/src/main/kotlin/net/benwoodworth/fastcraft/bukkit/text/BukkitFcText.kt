@@ -56,7 +56,7 @@ sealed class BukkitFcText : FcText {
                     italic,
                     underline,
                     strikethrough,
-                    obfuscate
+                    obfuscate,
                 )
             }
         }
@@ -91,7 +91,7 @@ sealed class BukkitFcText : FcText {
                     italic,
                     underline,
                     strikethrough,
-                    obfuscate
+                    obfuscate,
                 )
             }
         }
