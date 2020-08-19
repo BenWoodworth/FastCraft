@@ -60,32 +60,31 @@ class CraftableRecipeFinder @Inject constructor(
                 .flatMap { prepareCraftableRecipes(player, availableItems, it) }
                 .iterator()
 
-            recipeLoadTasks[uuid] =
-                fcTaskFactory.startTask(delayTicks = 1, intervalTicks = 1) { task ->
-                    val startTime = System.nanoTime()
-                    val newRecipes = mutableListOf<FcCraftingRecipePrepared>()
+            recipeLoadTasks[uuid] = fcTaskFactory.startTask(delayTicks = 1, intervalTicks = 1) { task ->
+                val startTime = System.nanoTime()
+                val newRecipes = mutableListOf<FcCraftingRecipePrepared>()
 
-                    for (recipe in recipeIterator) {
-                        if (recipe != null) {
-                            newRecipes += recipe
-                        }
-
-                        val maxCalcTime =
-                            NANOS_PER_TICK * fastCraftConfig.recipeCalculations.maxTickUsage / recipeLoadTasks.count()
-                        val timeElapsed = System.nanoTime() - startTime
-                        if (timeElapsed >= maxCalcTime) {
-                            break
-                        }
+                for (recipe in recipeIterator) {
+                    if (recipe != null) {
+                        newRecipes += recipe
                     }
 
-                    if (newRecipes.isNotEmpty()) {
-                        listener.onNewRecipesLoaded(newRecipes)
-                    }
-
-                    if (!recipeIterator.hasNext()) {
-                        task.cancel()
+                    val maxCalcTime =
+                        NANOS_PER_TICK * fastCraftConfig.recipeCalculations.maxTickUsage / recipeLoadTasks.count()
+                    val timeElapsed = System.nanoTime() - startTime
+                    if (timeElapsed >= maxCalcTime) {
+                        break
                     }
                 }
+
+                if (newRecipes.isNotEmpty()) {
+                    listener.onNewRecipesLoaded(newRecipes)
+                }
+
+                if (!recipeIterator.hasNext()) {
+                    task.cancel()
+                }
+            }
         }
     }
 
@@ -118,9 +117,8 @@ class CraftableRecipeFinder @Inject constructor(
             itemsUsed.clear()
             permutation.forEach { itemsUsed += it }
 
-            val enoughItems = itemsUsed.asMap().all { (itemStack, amount) ->
-                availableItems[itemStack] >= amount
-            }
+            val enoughItems = itemsUsed.asMap()
+                .all { (itemStack, amount) -> availableItems[itemStack] >= amount }
 
             if (enoughItems) {
                 val ingredientItems = ingredients
