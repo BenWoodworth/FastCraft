@@ -8,7 +8,7 @@ class HandlerSet<TEvent> {
     }
 
     private fun removeHandler(handler: Handler<TEvent>) {
-        listeners += handler
+        listeners -= handler
     }
 
     fun removeHandlers() {
