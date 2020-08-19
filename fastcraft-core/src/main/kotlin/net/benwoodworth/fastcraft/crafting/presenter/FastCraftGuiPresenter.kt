@@ -25,6 +25,7 @@ class FastCraftGuiPresenter(
     init {
         model.listener = ModelListener()
 
+        view.gui.listener = GuiEventListener()
         view.craftingGridButton?.listener = WorkbenchButtonListener()
         view.craftAmountButton?.listener = CraftAmountButtonListener()
         view.pageButton?.listener = PageButtonListener()
