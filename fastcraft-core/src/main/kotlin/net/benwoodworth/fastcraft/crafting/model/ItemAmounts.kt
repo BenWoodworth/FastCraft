@@ -1,35 +1,31 @@
 package net.benwoodworth.fastcraft.crafting.model
 
+import net.benwoodworth.fastcraft.platform.world.FcItem
 import net.benwoodworth.fastcraft.platform.world.FcItemStack
-import java.util.*
 import javax.inject.Inject
 
 class ItemAmounts private constructor(
     private val amounts: MutableMap<FcItemStack, Int>,
     private val fcItemStackFactory: FcItemStack.Factory,
     private val fcItemStackTypeClass: FcItemStack.TypeClass,
+    private val fcItemTypeClass: FcItem.TypeClass,
 ) {
-    private companion object {
-        val keys = WeakHashMap<FcItemStack, FcItemStack>()
-    }
-
     @Inject
     constructor(
         itemStackFactory: FcItemStack.Factory,
         fcItemStackTypeClass: FcItemStack.TypeClass,
+        fcItemTypeClass: FcItem.TypeClass,
     ) : this(
         amounts = mutableMapOf(),
         fcItemStackFactory = itemStackFactory,
         fcItemStackTypeClass = fcItemStackTypeClass,
+        fcItemTypeClass = fcItemTypeClass,
     )
 
     private fun FcItemStack.asKey(): FcItemStack {
-        return when (fcItemStackTypeClass.run { amount }) {
-            1 -> this
-            else -> keys.getOrPut(this) {
-                fcItemStackTypeClass.run {
-                    this@asKey.copy().apply { amount = 1 }
-                }
+        fcItemStackTypeClass.run {
+            fcItemTypeClass.run {
+                return copy().apply { amount = type.maxAmount }
             }
         }
     }
@@ -68,7 +64,12 @@ class ItemAmounts private constructor(
     }
 
     fun copy(): ItemAmounts {
-        return ItemAmounts(amounts.toMutableMap(), fcItemStackFactory, fcItemStackTypeClass)
+        return ItemAmounts(
+            amounts = amounts.toMutableMap(),
+            fcItemStackFactory = fcItemStackFactory,
+            fcItemStackTypeClass = fcItemStackTypeClass,
+            fcItemTypeClass = fcItemTypeClass,
+        )
     }
 
     fun asMap(): Map<FcItemStack, Int> {

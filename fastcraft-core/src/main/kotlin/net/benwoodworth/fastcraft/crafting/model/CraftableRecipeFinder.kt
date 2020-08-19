@@ -103,11 +103,14 @@ class CraftableRecipeFinder @Inject constructor(
         val ingredients = recipe.ingredients
 
         val possibleIngredientItems = ingredients.map { ingredient ->
-            availableItems
-                .asMap().entries
+            availableItems.asMap().entries
                 .filter { (itemStack, _) -> ingredient.matches(itemStack) }
                 .sortedWith(ingredientComparator)
-                .map { (itemStack, _) -> itemStack }
+                .map { (itemStack, _) ->
+                    fcItemStackTypeClass.run {
+                        itemStack.copy().apply { amount = 1 }
+                    }
+                }
         }
 
         val itemsUsed = itemAmountsProvider.get()
