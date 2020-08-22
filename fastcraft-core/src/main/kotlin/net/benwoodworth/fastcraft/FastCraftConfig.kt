@@ -70,6 +70,20 @@ class FastCraftConfig @Inject constructor(
         }
     }
 
+    val playerDefaults = PlayerDefaults()
+
+    inner class PlayerDefaults {
+        private val node: FcConfigNode
+            get() = config["player-defaults"]
+
+        var enabled: Boolean = true
+            private set
+
+        fun load() {
+            node["enabled"].loadBoolean(::enabled)
+        }
+    }
+
     val layout = Layout()
 
     inner class Layout {
@@ -242,6 +256,7 @@ class FastCraftConfig @Inject constructor(
 
         disableRecipes.load()
         recipeCalculations.load()
+        playerDefaults.load()
         layout.load()
 
         if (modified) {

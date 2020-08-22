@@ -1,5 +1,6 @@
 package net.benwoodworth.fastcraft.data
 
+import net.benwoodworth.fastcraft.FastCraftConfig
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.server.FcPluginData
 import java.io.Closeable
@@ -13,6 +14,7 @@ import kotlin.experimental.or
 class PlayerSettings @Inject constructor(
     fcPluginData: FcPluginData,
     private val fcPlayerTypeClass: FcPlayer.TypeClass,
+    private val config: FastCraftConfig,
 ) : Closeable {
     private companion object {
         val ROW_LEN = 17
@@ -45,8 +47,6 @@ class PlayerSettings @Inject constructor(
     private val file: RowStorageFile
 
     private val playerRows: MutableMap<UUID, Long> = hashMapOf()
-
-    private val defaultFcEnabled = true
 
     init {
         val prefsFilePath = fcPluginData.dataFolder.resolve("player-settings.dat")
@@ -108,7 +108,7 @@ class PlayerSettings @Inject constructor(
         return when (bytes[0] and ROW_FCENABLED_MASK) {
             ROW_FCENABLED_ENABLED -> true
             ROW_FCENABLED_DISABLED -> false
-            else -> defaultFcEnabled
+            else -> config.playerDefaults.enabled
         }
     }
 
