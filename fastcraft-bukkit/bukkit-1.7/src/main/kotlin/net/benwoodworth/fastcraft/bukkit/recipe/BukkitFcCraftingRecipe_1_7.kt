@@ -1,6 +1,9 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
+import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayer
 import net.benwoodworth.fastcraft.bukkit.player.bukkit
+import net.benwoodworth.fastcraft.bukkit.world.BukkitFcItem
+import net.benwoodworth.fastcraft.bukkit.world.BukkitFcItemStack
 import net.benwoodworth.fastcraft.bukkit.world.bukkit
 import net.benwoodworth.fastcraft.bukkit.world.create
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
@@ -24,10 +27,14 @@ open class BukkitFcCraftingRecipe_1_7(
     private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
     private val fcItemStackFactory: FcItemStack.Factory,
     private val inventoryViewFactory: CraftingInventoryViewFactory,
-    private val fcPlayerOperations: FcPlayer.Operations,
-    private val fcItemOperations: FcItem.Operations,
+    fcPlayerOperations: FcPlayer.Operations,
+    fcItemOperations: FcItem.Operations,
     private val fcItemStackOperations: FcItemStack.Operations,
-) : BukkitFcCraftingRecipe {
+) : BukkitFcCraftingRecipe,
+    BukkitFcPlayer.Operations by fcPlayerOperations.bukkit,
+    BukkitFcItem.Operations by fcItemOperations.bukkit,
+    BukkitFcItemStack.Operations by fcItemStackOperations.bukkit {
+
     private companion object {
         private const val recipeIdAlphabet = "23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefhkmnorsuvwxz"
         private const val recipeIdLength = 6 // ceil(log_50(2^32))
@@ -88,13 +95,11 @@ open class BukkitFcCraftingRecipe_1_7(
         ingredients: Map<FcIngredient, FcItemStack>,
     ): CancellableResult<FcCraftingRecipePrepared> {
         // TODO Inventory owner
-        val prepareView = inventoryViewFactory.create(fcPlayerOperations.bukkit.run { player.player }, null, recipe)
+        val prepareView = inventoryViewFactory.create(player.player, null, recipe)
         val craftingGrid = prepareView.topInventory as CraftingInventory
 
-        fcItemStackOperations.bukkit.run {
-            ingredients.forEach { (ingredient, itemStack) ->
-                craftingGrid.setItem(ingredient.slotIndex, itemStack.itemStack.clone())
-            }
+        ingredients.forEach { (ingredient, itemStack) ->
+            craftingGrid.setItem(ingredient.slotIndex, itemStack.itemStack.clone())
         }
 
         val validIngredients = ingredients.all { (ingredient, itemStack) -> ingredient.matches(itemStack) }
@@ -112,19 +117,15 @@ open class BukkitFcCraftingRecipe_1_7(
 
         val ingredientRemnants = ingredients.values
             .mapNotNull { ingredient ->
-                fcItemOperations.bukkit.run {
-                    fcItemStackOperations.run {
-                        ingredient.type.craftingRemainingItem
-                            ?.let { fcItemStackFactory.create(ItemStack(it.material, ingredient.amount)) }
-                    }
-                }
+                ingredient.type.craftingRemainingItem
+                    ?.let { fcItemStackFactory.create(ItemStack(it.material, ingredient.amount)) }
             }
 
         val resultsPreview = listOf(fcItemStackFactory.create(resultItem)) + ingredientRemnants
 
         return CancellableResult(
             preparedRecipeFactory.create(
-                fcPlayerOperations.bukkit.run { player.player },
+                player.player,
                 this,
                 ingredients,
                 ingredientRemnants,

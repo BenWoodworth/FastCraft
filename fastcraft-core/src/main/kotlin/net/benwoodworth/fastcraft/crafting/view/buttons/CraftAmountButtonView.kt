@@ -19,8 +19,8 @@ class CraftAmountButtonView(
     private val fcTextFactory: FcText.Factory,
     private val fcSounds: FcSound.Factory,
     config: FastCraftConfig,
-    private val fcPlayerOperations: FcPlayer.Operations,
-) {
+    fcPlayerOperations: FcPlayer.Operations,
+) : FcPlayer.Operations by fcPlayerOperations {
     var craftAmount: Int? = null
 
     var listener: Listener = Listener.Default
@@ -91,7 +91,7 @@ class CraftAmountButtonView(
             }
 
             action?.let {
-                fcPlayerOperations.run { gui.player.playSound(fcSounds.uiButtonClick, Config.buttonVolume) }
+                gui.player.playSound(fcSounds.uiButtonClick, Config.buttonVolume)
                 action()
             }
         }

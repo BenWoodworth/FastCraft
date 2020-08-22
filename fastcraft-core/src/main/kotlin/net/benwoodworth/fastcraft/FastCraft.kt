@@ -14,8 +14,8 @@ class FastCraft @Inject internal constructor(
     fastCraftCommand: FastCraftCommand,
     private val permissions: Permissions,
     private val config: FastCraftConfig,
-    private val fcPlayerOperations: FcPlayer.Operations,
-) {
+    fcPlayerOperations: FcPlayer.Operations,
+) : FcPlayer.Operations by fcPlayerOperations {
     init {
         Strings.load()
         fcPlayerEvents.onOpenCraftingTableNaturally += ::onPlayerOpenWorkbench
@@ -31,7 +31,7 @@ class FastCraft @Inject internal constructor(
     }
 
     private fun onPlayerOpenWorkbench(event: FcOpenCraftingTableNaturallyEvent) {
-        if (fcPlayerOperations.run { event.player.hasPermission(permissions.FASTCRAFT_USE) } &&
+        if (event.player.hasPermission(permissions.FASTCRAFT_USE) &&
             playerPrefs.getFastCraftEnabled(event.player)
         ) {
             event.cancel()

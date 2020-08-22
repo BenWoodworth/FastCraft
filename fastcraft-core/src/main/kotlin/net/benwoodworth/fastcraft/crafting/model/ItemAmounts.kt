@@ -9,7 +9,9 @@ class ItemAmounts private constructor(
     private val fcItemStackFactory: FcItemStack.Factory,
     private val fcItemStackOperations: FcItemStack.Operations,
     private val fcItemOperations: FcItem.Operations,
-) {
+) : FcItemStack.Operations by fcItemStackOperations,
+    FcItem.Operations by fcItemOperations {
+
     @Inject
     constructor(
         itemStackFactory: FcItemStack.Factory,
@@ -23,11 +25,7 @@ class ItemAmounts private constructor(
     )
 
     private fun FcItemStack.asKey(): FcItemStack {
-        fcItemStackOperations.run {
-            fcItemOperations.run {
-                return copy().apply { amount = type.maxAmount }
-            }
-        }
+        return copy().apply { amount = type.maxAmount }
     }
 
     operator fun get(itemStack: FcItemStack): Int {
@@ -42,20 +40,16 @@ class ItemAmounts private constructor(
     }
 
     operator fun plusAssign(itemStack: FcItemStack) {
-        fcItemStackOperations.run {
-            if (itemStack.amount != 0) {
-                val key = itemStack.asKey()
-                amounts[key] = amounts.getOrDefault(key, 0) + itemStack.amount
-            }
+        if (itemStack.amount != 0) {
+            val key = itemStack.asKey()
+            amounts[key] = amounts.getOrDefault(key, 0) + itemStack.amount
         }
     }
 
     operator fun minusAssign(itemStack: FcItemStack) {
-        fcItemStackOperations.run {
-            if (itemStack.amount != 0) {
-                val key = itemStack.asKey()
-                amounts[key] = amounts.getOrDefault(key, 0) - itemStack.amount
-            }
+        if (itemStack.amount != 0) {
+            val key = itemStack.asKey()
+            amounts[key] = amounts.getOrDefault(key, 0) - itemStack.amount
         }
     }
 

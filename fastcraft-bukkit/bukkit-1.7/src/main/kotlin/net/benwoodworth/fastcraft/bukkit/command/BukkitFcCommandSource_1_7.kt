@@ -1,5 +1,7 @@
 package net.benwoodworth.fastcraft.bukkit.command
 
+import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayer
+import net.benwoodworth.fastcraft.bukkit.player.bukkit
 import net.benwoodworth.fastcraft.bukkit.player.getPlayer
 import net.benwoodworth.fastcraft.bukkit.server.permission
 import net.benwoodworth.fastcraft.platform.command.FcCommandSource
@@ -18,8 +20,10 @@ class BukkitFcCommandSource_1_7(
     override val commandSender: CommandSender,
     override val player: FcPlayer?,
     private val fcTextConverter: FcTextConverter,
-    private val fcPlayerOperations: FcPlayer.Operations,
-) : BukkitFcCommandSource {
+    fcPlayerOperations: FcPlayer.Operations,
+) : BukkitFcCommandSource,
+    BukkitFcPlayer.Operations by fcPlayerOperations.bukkit {
+
     override val isConsole: Boolean
         get() = commandSender is ConsoleCommandSender
 
@@ -28,11 +32,11 @@ class BukkitFcCommandSource_1_7(
     }
 
     override val locale: Locale
-        get() = fcPlayerOperations.run { player?.locale } ?: Locale.ENGLISH // TODO Don't default to English
+        get() = player?.locale ?: Locale.ENGLISH // TODO Don't default to English
 
     override fun sendMessage(message: FcText) {
         if (player != null) {
-            fcPlayerOperations.run { player.sendMessage(message) }
+            player.sendMessage(message)
         } else {
             commandSender.sendMessage(fcTextConverter.toLegacy(message, Locale.ENGLISH))
         }

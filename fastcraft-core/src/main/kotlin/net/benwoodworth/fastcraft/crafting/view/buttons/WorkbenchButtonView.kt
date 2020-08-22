@@ -18,8 +18,8 @@ class WorkbenchButtonView(
     private val fcTextFactory: FcText.Factory,
     private val fcSounds: FcSound.Factory,
     config: FastCraftConfig,
-    private val fcPlayerOperations: FcPlayer.Operations,
-) {
+    fcPlayerOperations: FcPlayer.Operations,
+) : FcPlayer.Operations by fcPlayerOperations {
     var listener: Listener = Listener.Default
 
     init {
@@ -69,7 +69,7 @@ class WorkbenchButtonView(
             }
 
             action?.let {
-                fcPlayerOperations.run { gui.player.playSound(fcSounds.uiButtonClick, Config.buttonVolume) }
+                gui.player.playSound(fcSounds.uiButtonClick, Config.buttonVolume)
                 action()
             }
         }

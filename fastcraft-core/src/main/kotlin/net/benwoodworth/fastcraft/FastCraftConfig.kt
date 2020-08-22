@@ -19,9 +19,11 @@ class FastCraftConfig @Inject constructor(
     private val fcItemFactory: FcItem.Factory,
     private val fcItemStackFactory: FcItemStack.Factory,
     private val fcLogger: FcLogger,
-    private val fcItemOperations: FcItem.Operations,
-    private val fcItemStackOperations: FcItemStack.Operations,
-) {
+    fcItemOperations: FcItem.Operations,
+    fcItemStackOperations: FcItemStack.Operations,
+) : FcItem.Operations by fcItemOperations,
+    FcItemStack.Operations by fcItemStackOperations {
+
     private var config: FcConfig = fcConfigFactory.create()
     private var modified: Boolean = false
     private var newFile: Boolean = false
@@ -213,7 +215,7 @@ class FastCraftConfig @Inject constructor(
             var item: FcItemStack = item
                 private set
 
-            private var itemId: String = fcItemStackOperations.run { fcItemOperations.run { item.type.id } }
+            private var itemId: String = item.type.id
 
             open fun load() {
                 node["enable"].loadBoolean(::enable)

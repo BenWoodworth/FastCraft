@@ -19,7 +19,7 @@ open class BukkitFcCraftingRecipe_1_13(
     fcItemStackFactory: FcItemStack.Factory,
     craftingInventoryViewFactory: CraftingInventoryViewFactory,
     fcPlayerOperations: FcPlayer.Operations,
-    private val fcItemOperations: FcItem.Operations,
+    fcItemOperations: FcItem.Operations,
     private val fcItemStackOperations: FcItemStack.Operations,
 ) : BukkitFcCraftingRecipe_1_12(
     recipe = recipe,

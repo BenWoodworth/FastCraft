@@ -15,9 +15,11 @@ class FastCraftGuiModel(
     private val itemAmountsProvider: Provider<ItemAmounts>,
     private val craftableRecipeFinder: CraftableRecipeFinder,
     private val playerEvents: FcPlayerEvents,
-    private val fcPlayerOperations: FcPlayer.Operations,
+    fcPlayerOperations: FcPlayer.Operations,
     private val fcItemStackOperations: FcItemStack.Operations,
-) {
+) : FcPlayer.Operations by fcPlayerOperations,
+    FcItemStack.Operations by fcItemStackOperations {
+
     var craftAmount: Int? = null
     val recipes: MutableList<FastCraftRecipe?> = mutableListOf()
 
@@ -37,7 +39,7 @@ class FastCraftGuiModel(
     fun updateInventoryItemAmounts() {
         inventoryItemAmounts.clear()
 
-        fcPlayerOperations.run { player.inventory }.storage.forEach { slot ->
+        player.inventory.storage.forEach { slot ->
             slot.itemStack?.let { itemStack -> inventoryItemAmounts += itemStack }
         }
     }
@@ -94,7 +96,7 @@ class FastCraftGuiModel(
         removeItems(recipe.preparedRecipe.ingredients.values, recipe.multiplier)
 
         repeat(recipe.multiplier) {
-            fcPlayerOperations.run { player.giveItems(craftedItems, dropItems) }
+            player.giveItems(craftedItems, dropItems)
         }
 
         val updatedRecipe = recipe.preparedRecipe.recipe.prepare(player, recipe.preparedRecipe.ingredients)
@@ -109,41 +111,39 @@ class FastCraftGuiModel(
     private fun removeItems(items: Collection<FcItemStack>, multiplier: Int) {
         val removeAmounts = itemAmountsProvider.get()
         items.forEach { itemStack ->
-            removeAmounts[itemStack] += fcItemStackOperations.run { itemStack.amount } * multiplier
+            removeAmounts[itemStack] += itemStack.amount * multiplier
         }
 
         if (removeAmounts.isEmpty()) {
             return
         }
 
-        val removeFromSlots = fcPlayerOperations.run { player.inventory }.storage.asSequence()
-            .filter { it.itemStack != null && fcItemStackOperations.run { it.itemStack!!.amount } > 0 }
-            .sortedBy { fcItemStackOperations.run { it.itemStack!!.amount } }
+        val removeFromSlots = player.inventory.storage.asSequence()
+            .filter { it.itemStack != null && it.itemStack!!.amount > 0 }
+            .sortedBy { it.itemStack!!.amount }
 
         for (slot in removeFromSlots) {
             val itemStack = slot.itemStack!!
             val removeAmount = removeAmounts[itemStack]
 
-            fcItemStackOperations.run {
-                when {
-                    itemStack.amount <= 0 -> Unit
-                    removeAmount <= 0 -> Unit
-                    removeAmount >= itemStack.amount -> {
-                        removeAmounts[itemStack] = removeAmount - itemStack.amount
-                        slot.itemStack = null
-                    }
-                    removeAmount < itemStack.amount -> {
-                        removeAmounts[itemStack] = 0
-                        itemStack.amount -= removeAmount
-                    }
-                    else -> throw IllegalStateException()
+            when {
+                itemStack.amount <= 0 -> Unit
+                removeAmount <= 0 -> Unit
+                removeAmount >= itemStack.amount -> {
+                    removeAmounts[itemStack] = removeAmount - itemStack.amount
+                    slot.itemStack = null
                 }
+                removeAmount < itemStack.amount -> {
+                    removeAmounts[itemStack] = 0
+                    itemStack.amount -= removeAmount
+                }
+                else -> throw IllegalStateException()
             }
         }
     }
 
     fun openCraftingTable() {
-        fcPlayerOperations.run { player.openCraftingTable() }
+        player.openCraftingTable()
     }
 
     interface Listener {

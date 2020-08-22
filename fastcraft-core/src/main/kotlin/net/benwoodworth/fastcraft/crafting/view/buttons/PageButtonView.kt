@@ -19,8 +19,8 @@ class PageButtonView(
     private val fcTextFactory: FcText.Factory,
     private val fcSoundFactory: FcSound.Factory,
     config: FastCraftConfig,
-    private val fcPlayerOperations: FcPlayer.Operations,
-) {
+    fcPlayerOperations: FcPlayer.Operations,
+) : FcPlayer.Operations by fcPlayerOperations {
     var page: Int = 1
     var pageCount: Int = 1
 
@@ -90,7 +90,7 @@ class PageButtonView(
             }
 
             action?.let {
-                fcPlayerOperations.run { gui.player.playSound(fcSoundFactory.uiButtonClick, Config.buttonVolume) }
+                gui.player.playSound(fcSoundFactory.uiButtonClick, Config.buttonVolume)
                 action()
             }
         }

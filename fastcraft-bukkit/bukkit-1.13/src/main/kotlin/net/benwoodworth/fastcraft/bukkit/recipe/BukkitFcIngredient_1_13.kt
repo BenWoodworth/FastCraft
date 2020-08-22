@@ -1,5 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
+import net.benwoodworth.fastcraft.bukkit.world.BukkitFcItemStack
 import net.benwoodworth.fastcraft.bukkit.world.bukkit
 import net.benwoodworth.fastcraft.platform.world.FcItemStack
 import org.bukkit.inventory.RecipeChoice
@@ -7,8 +8,10 @@ import java.util.*
 
 open class BukkitFcIngredient_1_13 protected constructor(
     final override val slotIndex: Int,
-    private val fcItemStackOperations: FcItemStack.Operations,
-) : BukkitFcIngredient {
+    fcItemStackOperations: FcItemStack.Operations,
+) : BukkitFcIngredient,
+    BukkitFcItemStack.Operations by fcItemStackOperations.bukkit {
+
     private lateinit var recipeChoice: RecipeChoice
 
     init {
@@ -27,9 +30,7 @@ open class BukkitFcIngredient_1_13 protected constructor(
     }
 
     override fun matches(itemStack: FcItemStack): Boolean {
-        fcItemStackOperations.bukkit.run {
-            return recipeChoice.test(itemStack.itemStack)
-        }
+        return recipeChoice.test(itemStack.itemStack)
     }
 
     override fun equals(other: Any?): Boolean {

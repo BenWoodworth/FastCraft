@@ -18,8 +18,8 @@ class RefreshButtonView(
     private val fcTextFactory: FcText.Factory,
     private val fcSoundFactory: FcSound.Factory,
     private val config: FastCraftConfig,
-    private val fcPlayerOperations: FcPlayer.Operations,
-) {
+    fcPlayerOperations: FcPlayer.Operations,
+) : FcPlayer.Operations by fcPlayerOperations {
     var enabled: Boolean = true
 
     var listener: Listener = Listener.Default
@@ -77,7 +77,7 @@ class RefreshButtonView(
                 }
 
                 action?.let {
-                    fcPlayerOperations.run { gui.player.playSound(fcSoundFactory.uiButtonClick, Config.buttonVolume) }
+                    gui.player.playSound(fcSoundFactory.uiButtonClick, Config.buttonVolume)
                     action()
                 }
             }

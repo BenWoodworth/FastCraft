@@ -12,7 +12,7 @@ interface FcCraftingRecipe {
 
     fun prepare(
         player: FcPlayer,
-        ingredients: Map<FcIngredient, FcItemStack>
+        ingredients: Map<FcIngredient, FcItemStack>,
     ): CancellableResult<FcCraftingRecipePrepared>
 
     override fun equals(other: Any?): Boolean

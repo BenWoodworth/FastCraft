@@ -1,6 +1,8 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
 import net.benwoodworth.fastcraft.bukkit.util.updateMeta
+import net.benwoodworth.fastcraft.bukkit.world.BukkitFcItem
+import net.benwoodworth.fastcraft.bukkit.world.BukkitFcItemStack
 import net.benwoodworth.fastcraft.bukkit.world.bukkit
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.text.FcText
@@ -22,9 +24,11 @@ open class BukkitFcGuiButton_1_7(
     locale: Locale,
     private val fcTextFactory: FcText.Factory,
     private val fcTextConverter: FcTextConverter,
-    private val fcItemOperations: FcItem.Operations,
-    private val fcItemStackOperations: FcItemStack.Operations,
-) : BukkitFcGuiButton {
+    fcItemOperations: FcItem.Operations,
+    fcItemStackOperations: FcItemStack.Operations,
+) : BukkitFcGuiButton,
+    BukkitFcItem.Operations by fcItemOperations.bukkit,
+    BukkitFcItemStack.Operations by fcItemStackOperations.bukkit {
 
     protected var hideItemDetails: Boolean = false
     protected var _text: FcText? = null
@@ -40,7 +44,7 @@ open class BukkitFcGuiButton_1_7(
     override var listener: FcGuiButton.Listener = FcGuiButton.Listener.Default
 
     override fun setItem(item: FcItem) {
-        itemStack.type = fcItemOperations.bukkit.run { item.material }
+        itemStack.type = item.material
 
         updateDisplayName()
         updateLore()
@@ -82,13 +86,11 @@ open class BukkitFcGuiButton_1_7(
     }
 
     override fun copyItem(itemStack: FcItemStack) {
-        fcItemStackOperations.bukkit.run {
-            this@BukkitFcGuiButton_1_7.itemStack = itemStack.itemStack.clone()
+        this@BukkitFcGuiButton_1_7.itemStack = itemStack.itemStack.clone()
 
-            _text = itemStack.name
-            _description = itemStack.lore
-            hideItemDetails = false
-        }
+        _text = itemStack.name
+        _description = itemStack.lore
+        hideItemDetails = false
     }
 
     override fun clear() {

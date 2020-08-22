@@ -20,10 +20,10 @@ class FastCraftGuiView(
     fcTextFactory: FcText.Factory,
     config: FastCraftConfig,
     fcPlayerOperations: FcPlayer.Operations,
-) {
+) : FcPlayer.Operations by fcPlayerOperations {
     val gui = fcGuiFactory.createChestGui(
         player = player,
-        title = fcTextFactory.createLegacy(Strings.guiTitle(fcPlayerOperations.run { player.locale })),
+        title = fcTextFactory.createLegacy(Strings.guiTitle(player.locale)),
         height = config.layout.height
     )
 
@@ -42,7 +42,7 @@ class FastCraftGuiView(
     val craftingGridButton = config.layout.buttons.craftingGrid.let { c ->
         if (c.enable) {
             getNewButton(c.column, c.row)
-                ?.let { workbenchButtonFactory.create(it, fcPlayerOperations.run { player.locale }) }
+                ?.let { workbenchButtonFactory.create(it, player.locale) }
         } else {
             null
         }
@@ -51,7 +51,7 @@ class FastCraftGuiView(
     val craftAmountButton = config.layout.buttons.craftAmount.let { c ->
         if (c.enable) {
             getNewButton(c.column, c.row)
-                ?.let { craftAmountButtonFactory.create(it, fcPlayerOperations.run { player.locale }) }
+                ?.let { craftAmountButtonFactory.create(it, player.locale) }
         } else {
             null
         }
@@ -60,7 +60,7 @@ class FastCraftGuiView(
     val refreshButton = config.layout.buttons.refresh.let { c ->
         if (c.enable) {
             getNewButton(c.column, c.row)
-                ?.let { refreshButtonFactory.create(it, fcPlayerOperations.run { player.locale }) }
+                ?.let { refreshButtonFactory.create(it, player.locale) }
         } else {
             null
         }
@@ -69,7 +69,7 @@ class FastCraftGuiView(
     val pageButton = config.layout.buttons.page.let { c ->
         if (c.enable) {
             getNewButton(c.column, c.row)
-                ?.let { pageButtonFactory.create(it, fcPlayerOperations.run { player.locale }) }
+                ?.let { pageButtonFactory.create(it, player.locale) }
         } else {
             null
         }
@@ -87,7 +87,7 @@ class FastCraftGuiView(
             error("FastCraft UI does not have space for recipes. Please re-configure the layout.")
         }
 
-        buttons.map { recipeButtonFactory.create(it, fcPlayerOperations.run { player.locale }) }
+        buttons.map { recipeButtonFactory.create(it, player.locale) }
     }
 
     init {

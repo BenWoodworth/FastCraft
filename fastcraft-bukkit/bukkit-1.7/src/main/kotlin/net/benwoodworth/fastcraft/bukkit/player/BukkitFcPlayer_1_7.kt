@@ -3,6 +3,7 @@ package net.benwoodworth.fastcraft.bukkit.player
 import net.benwoodworth.fastcraft.bukkit.server.permission
 import net.benwoodworth.fastcraft.bukkit.text.BukkitFcText
 import net.benwoodworth.fastcraft.bukkit.text.toRaw
+import net.benwoodworth.fastcraft.bukkit.world.BukkitFcItemStack
 import net.benwoodworth.fastcraft.bukkit.world.bukkit
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcPlayerInventory
@@ -25,9 +26,12 @@ object BukkitFcPlayer_1_7 {
         private val fcTextConverter: FcTextConverter,
         private val server: Server,
         private val fcPlayerInventoryFactory: BukkitFcPlayerInventory_1_7.Factory,
-        private val fcSoundOperations: FcSound.Operations,
-        private val fcItemStackOperations: FcItemStack.Operations,
-    ) : BukkitFcPlayer.Operations {
+        fcSoundOperations: FcSound.Operations,
+        fcItemStackOperations: FcItemStack.Operations,
+    ) : BukkitFcPlayer.Operations,
+        BukkitFcSound.Operations by fcSoundOperations.bukkit,
+        BukkitFcItemStack.Operations by fcItemStackOperations.bukkit {
+
         override val FcPlayer.player: Player
             get() = value as Player
 
@@ -76,14 +80,12 @@ object BukkitFcPlayer_1_7 {
                 player.world.dropItemNaturally(player.location, this)
             }
 
-            fcItemStackOperations.bukkit.run {
-                items.forEach { itemStack ->
-                    if (dropAll) {
-                        itemStack.itemStack.clone().drop()
-                    } else {
-                        val notAdded = player.inventory.addItem(itemStack.itemStack).values
-                        notAdded.forEach { it.drop() }
-                    }
+            items.forEach { itemStack ->
+                if (dropAll) {
+                    itemStack.itemStack.clone().drop()
+                } else {
+                    val notAdded = player.inventory.addItem(itemStack.itemStack).values
+                    notAdded.forEach { it.drop() }
                 }
             }
         }
@@ -95,7 +97,7 @@ object BukkitFcPlayer_1_7 {
         override fun FcPlayer.playSound(sound: FcSound, volume: Double, pitch: Double) {
             player.playSound(
                 player.location,
-                fcSoundOperations.bukkit.run { sound.sound },
+                sound.sound,
                 volume.toFloat(),
                 pitch.toFloat(),
             )

@@ -12,8 +12,10 @@ class BukkitFcInventorySlot(
     val inventory: Inventory,
     val slotIndex: Int,
     private val fcItemStackFactory: FcItemStack.Factory,
-    private val fcItemStackOperations: FcItemStack.Operations,
-) : FcInventorySlot {
+    fcItemStackOperations: FcItemStack.Operations,
+) : FcInventorySlot,
+    BukkitFcItemStack.Operations by fcItemStackOperations.bukkit {
+
     override var itemStack: FcItemStack?
         get() = inventory.getItem(slotIndex).fromInventoryItem()
         set(value) {
@@ -21,11 +23,9 @@ class BukkitFcInventorySlot(
         }
 
     private fun FcItemStack?.toInventoryItem(): ItemStack {
-        fcItemStackOperations.bukkit.run {
-            return this@toInventoryItem
-                ?.itemStack?.clone()
-                ?: ItemStack(Material.AIR, 0)
-        }
+        return this@toInventoryItem
+            ?.itemStack?.clone()
+            ?: ItemStack(Material.AIR, 0)
     }
 
     private fun ItemStack?.fromInventoryItem(): FcItemStack? {

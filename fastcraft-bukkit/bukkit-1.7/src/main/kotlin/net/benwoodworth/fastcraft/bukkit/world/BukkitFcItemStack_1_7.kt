@@ -13,16 +13,18 @@ object BukkitFcItemStack_1_7 {
     open class Operations @Inject constructor(
         private val fcItemFactory: FcItem.Factory,
         private val fcTextFactory: FcText.Factory,
-        private val fcItemOperations: FcItem.Operations,
+        fcItemOperations: FcItem.Operations,
         private val fcItemStackFactory: FcItemStack.Factory,
-    ) : BukkitFcItemStack.Operations {
+    ) : BukkitFcItemStack.Operations,
+        BukkitFcItem.Operations by fcItemOperations.bukkit {
+
         override val FcItemStack.itemStack: ItemStack
             get() = value as ItemStack
 
         override var FcItemStack.type: FcItem
             get() = fcItemFactory.fromMaterialData(itemStack.data)
             set(value) {
-                itemStack.data = fcItemOperations.bukkit.run { value.materialData }
+                itemStack.data = value.materialData
             }
 
         override var FcItemStack.amount: Int
@@ -38,7 +40,7 @@ object BukkitFcItemStack_1_7 {
                 ?.takeIf { it.hasDisplayName() }
                 ?.displayName
                 ?.let { fcTextFactory.create(it) }
-                ?: fcItemOperations.run { type.name }
+                ?: type.name
 
         override val FcItemStack.lore: List<FcText>
             get() = itemStack
@@ -61,10 +63,12 @@ object BukkitFcItemStack_1_7 {
     open class Factory @Inject constructor(
         private val fcItemFactory: FcItem.Factory,
         protected val server: Server,
-        private val fcItemOperations: FcItem.Operations,
-    ) : BukkitFcItemStack.Factory {
+        fcItemOperations: FcItem.Operations,
+    ) : BukkitFcItemStack.Factory,
+        BukkitFcItem.Operations by fcItemOperations.bukkit {
+
         override fun create(item: FcItem, amount: Int): FcItemStack {
-            return fcItemOperations.bukkit.run { create(item.toItemStack(amount)) }
+            return create(item.toItemStack(amount))
         }
 
         override fun parseOrNull(itemStr: String, amount: Int): FcItemStack? {
@@ -83,7 +87,7 @@ object BukkitFcItemStack_1_7 {
             }
 
             val item = fcItemFactory.parseOrNull(materialId) ?: return null
-            val itemStack = fcItemOperations.bukkit.run { item.toItemStack(amount) }
+            val itemStack = item.toItemStack(amount)
 
             if (data != null) {
                 @Suppress("DEPRECATION")

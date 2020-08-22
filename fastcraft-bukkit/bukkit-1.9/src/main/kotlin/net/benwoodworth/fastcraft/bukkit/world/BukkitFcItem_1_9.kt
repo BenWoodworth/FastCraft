@@ -5,7 +5,7 @@ import org.bukkit.Material
 import javax.inject.Inject
 import javax.inject.Singleton
 
-object BukkitFcItem_1_9  {
+object BukkitFcItem_1_9 {
     @Singleton
     class Operations @Inject constructor(
         private val fcItemFactory: FcItem.Factory,

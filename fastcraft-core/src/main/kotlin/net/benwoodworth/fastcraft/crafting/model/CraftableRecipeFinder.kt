@@ -21,12 +21,13 @@ import kotlin.collections.HashMap
 class CraftableRecipeFinder @Inject constructor(
     private val fcRecipeProvider: FcRecipeProvider,
     private val itemAmountsProvider: Provider<ItemAmounts>,
-    private val fcPlayerOperations: FcPlayer.Operations,
+    fcPlayerOperations: FcPlayer.Operations,
     fcItemOrderComparator: FcItemOrderComparator,
     private val fcTaskFactory: FcTask.Factory,
     private val fastCraftConfig: FastCraftConfig,
-    private val fcItemStackOperations: FcItemStack.Operations,
-) {
+    fcItemStackOperations: FcItemStack.Operations,
+) : FcPlayer.Operations by fcPlayerOperations,
+    FcItemStack.Operations by fcItemStackOperations {
     private val NANOS_PER_TICK = 1000000000L / 20L
 
     private val disabledPluginRecipes = setOf("recipemanager") //TODO Fix compatibility
@@ -35,21 +36,21 @@ class CraftableRecipeFinder @Inject constructor(
 
     private val recipeComparator: Comparator<FcCraftingRecipe> =
         compareBy<FcCraftingRecipe, FcItem>(fcItemOrderComparator) {
-            fcItemStackOperations.run { it.exemplaryResult.type }
+            it.exemplaryResult.type
         }.thenBy {
-            fcItemStackOperations.run { it.exemplaryResult.amount }
+            it.exemplaryResult.amount
         }
 
     private val ingredientComparator = compareBy<Map.Entry<FcItemStack, Int>>(
-        { (itemStack, _) -> fcItemStackOperations.run { itemStack.hasMetadata } }, // Items with meta last
+        { (itemStack, _) -> itemStack.hasMetadata }, // Items with meta last
         { (_, amount) -> -amount }, // Greatest amount first
     )
 
     fun loadRecipes(player: FcPlayer, listener: Listener) {
-        val uuid = fcPlayerOperations.run { player.uuid }
+        val uuid = player.uuid
         recipeLoadTasks[uuid] = fcTaskFactory.startTask(delayTicks = 1) {
             val availableItems = itemAmountsProvider.get()
-            fcPlayerOperations.run { player.inventory }.storage.forEach { slot ->
+            player.inventory.storage.forEach { slot ->
                 slot.itemStack?.let { itemStack -> availableItems += itemStack }
             }
 
@@ -89,7 +90,7 @@ class CraftableRecipeFinder @Inject constructor(
     }
 
     fun cancel(player: FcPlayer) {
-        recipeLoadTasks.remove(fcPlayerOperations.run { player.uuid })?.cancel()
+        recipeLoadTasks.remove(player.uuid)?.cancel()
     }
 
     private fun prepareCraftableRecipes(
@@ -106,9 +107,7 @@ class CraftableRecipeFinder @Inject constructor(
                 .filter { (itemStack, _) -> ingredient.matches(itemStack) }
                 .sortedWith(ingredientComparator)
                 .map { (itemStack, _) ->
-                    fcItemStackOperations.run {
-                        itemStack.copy().apply { amount = 1 }
-                    }
+                    itemStack.copy().apply { amount = 1 }
                 }
         }
 

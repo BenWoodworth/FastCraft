@@ -11,8 +11,10 @@ import javax.inject.Singleton
 @Singleton
 class BukkitFcTextConverter_1_7 @Inject constructor(
     private val localizer: BukkitLocalizer,
-    private val fcTextColorOperations: FcTextColor.Operations,
-) : BukkitFcTextConverter {
+    fcTextColorOperations: FcTextColor.Operations,
+) : BukkitFcTextConverter,
+    BukkitFcTextColor.Operations by fcTextColorOperations.bukkit {
+
     override fun toRaw(text: FcText): String {
         return JsonStringBuilder()
             .appendFcText(text)
@@ -43,9 +45,7 @@ class BukkitFcTextConverter_1_7 @Inject constructor(
 
             with(text) {
                 color?.let {
-                    fcTextColorOperations.bukkit.run {
-                        appendElement("color") { appendString(it.id) }
-                    }
+                    appendElement("color") { appendString(it.id) }
                 }
 
                 bold?.let {
@@ -131,16 +131,14 @@ class BukkitFcTextConverter_1_7 @Inject constructor(
 
         private fun appendTextComponent(text: BukkitFcText.Component, parentFormat: LegacyFormat) {
             // The text format, inheriting from parentFormat in place of nulls.
-            val format = fcTextColorOperations.bukkit.run {
-                LegacyFormat(
-                    color = text.color?.chatColor ?: parentFormat.color,
-                    bold = text.bold ?: parentFormat.bold,
-                    italic = text.italic ?: parentFormat.italic,
-                    underline = text.underline ?: parentFormat.underline,
-                    strikethrough = text.strikethrough ?: parentFormat.strikethrough,
-                    obfuscate = text.obfuscate ?: parentFormat.obfuscate
-                )
-            }
+            val format = LegacyFormat(
+                color = text.color?.chatColor ?: parentFormat.color,
+                bold = text.bold ?: parentFormat.bold,
+                italic = text.italic ?: parentFormat.italic,
+                underline = text.underline ?: parentFormat.underline,
+                strikethrough = text.strikethrough ?: parentFormat.strikethrough,
+                obfuscate = text.obfuscate ?: parentFormat.obfuscate
+            )
 
             // Get the legacy to append
             val legacyText = when (text) {

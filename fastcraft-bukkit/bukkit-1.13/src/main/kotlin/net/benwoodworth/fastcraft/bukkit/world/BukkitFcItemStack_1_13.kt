@@ -11,7 +11,7 @@ class BukkitFcItemStack_1_13 {
     class Operations @Inject constructor(
         private val fcItemFactory: FcItem.Factory,
         fcTextFactory: FcText.Factory,
-        private val fcItemOperations: FcItem.Operations,
+        fcItemOperations: FcItem.Operations,
         fcItemStackFactory: FcItemStack.Factory,
     ) : BukkitFcItemStack_1_7.Operations(
         fcItemFactory = fcItemFactory,
@@ -22,7 +22,8 @@ class BukkitFcItemStack_1_13 {
         override var FcItemStack.type: FcItem
             get() = fcItemFactory.fromMaterial(itemStack.type)
             set(value) {
-                itemStack.type = fcItemOperations.bukkit.run { value.material }
+                itemStack.type = value.material
             }
+
     }
 }
