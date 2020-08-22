@@ -29,7 +29,7 @@ class BukkitFcGui_1_7<TLayout : FcGuiLayout>(
     createLayout: (inventory: Inventory) -> TLayout,
     plugin: Plugin,
     pluginManager: PluginManager,
-    private val fcPlayerTypeClass: FcPlayer.TypeClass,
+    private val fcPlayerOperations: FcPlayer.Operations,
 ) : BukkitFcGui<TLayout>, InventoryHolder {
     override var listener: FcGui.Listener = FcGui.Listener.Default
 
@@ -43,12 +43,12 @@ class BukkitFcGui_1_7<TLayout : FcGuiLayout>(
     }
 
     override fun open() {
-        fcPlayerTypeClass.bukkit.run { player.player }.openInventory(inventory)
+        fcPlayerOperations.bukkit.run { player.player }.openInventory(inventory)
     }
 
     override fun close() {
-        if (fcPlayerTypeClass.bukkit.run { player.player }.openInventory.topInventory.holder === this) {
-            fcPlayerTypeClass.bukkit.run { player.player }.closeInventory()
+        if (fcPlayerOperations.bukkit.run { player.player }.openInventory.topInventory.holder === this) {
+            fcPlayerOperations.bukkit.run { player.player }.closeInventory()
         }
     }
 
@@ -173,11 +173,11 @@ class BukkitFcGui_1_7<TLayout : FcGuiLayout>(
         private val server: Server,
         private val fcTextConverter: FcTextConverter,
         private val fcGuiLayoutFactory: BukkitFcGuiLayout.Factory,
-        private val fcPlayerTypeClass: FcPlayer.TypeClass,
+        private val fcPlayerOperations: FcPlayer.Operations,
     ) : BukkitFcGui.Factory {
         override fun createChestGui(player: FcPlayer, title: FcText?, height: Int): FcGui<FcGuiLayout.Grid> {
             val legacyTitle = title?.let {
-                fcTextConverter.toLegacy(it, fcPlayerTypeClass.run { player.locale })
+                fcTextConverter.toLegacy(it, fcPlayerOperations.run { player.locale })
             }
 
             return BukkitFcGui_1_7(
@@ -193,12 +193,12 @@ class BukkitFcGui_1_7<TLayout : FcGuiLayout>(
                         9,
                         height,
                         inventory,
-                        fcPlayerTypeClass.run { player.locale },
+                        fcPlayerOperations.run { player.locale },
                     )
                 },
                 plugin = plugin,
                 pluginManager = pluginManager,
-                fcPlayerTypeClass = fcPlayerTypeClass,
+                fcPlayerOperations = fcPlayerOperations,
             )
         }
     }

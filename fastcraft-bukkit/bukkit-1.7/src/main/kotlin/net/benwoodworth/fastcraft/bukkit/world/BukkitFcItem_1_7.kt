@@ -11,10 +11,10 @@ import javax.inject.Singleton
 
 object BukkitFcItem_1_7 {
     @Singleton
-    open class TypeClass @Inject constructor(
+    open class Operations @Inject constructor(
         private val fcItemFactory: FcItem.Factory,
         private val legacyMaterialInfo: LegacyMaterialInfo,
-    ) : BukkitFcItem.TypeClass {
+    ) : BukkitFcItem.Operations {
         @Suppress("DEPRECATION")
         override val FcItem.id: String
             get() = legacyMaterialInfo.getItemId(materialData)

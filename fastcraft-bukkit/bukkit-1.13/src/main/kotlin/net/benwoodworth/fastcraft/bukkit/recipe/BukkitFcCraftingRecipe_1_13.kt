@@ -18,18 +18,18 @@ open class BukkitFcCraftingRecipe_1_13(
     preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
     fcItemStackFactory: FcItemStack.Factory,
     craftingInventoryViewFactory: CraftingInventoryViewFactory,
-    fcPlayerTypeClass: FcPlayer.TypeClass,
-    private val fcItemTypeClass: FcItem.TypeClass,
-    private val fcItemStackTypeClass: FcItemStack.TypeClass,
+    fcPlayerOperations: FcPlayer.Operations,
+    private val fcItemOperations: FcItem.Operations,
+    private val fcItemStackOperations: FcItemStack.Operations,
 ) : BukkitFcCraftingRecipe_1_12(
     recipe = recipe,
     server = server,
     fcCraftingRecipePreparedFactory = preparedRecipeFactory,
     fcItemStackFactory = fcItemStackFactory,
     craftingInventoryViewFactory = craftingInventoryViewFactory,
-    fcPlayerTypeClass = fcPlayerTypeClass,
-    fcItemTypeClass = fcItemTypeClass,
-    fcItemStackTypeClass = fcItemStackTypeClass,
+    fcPlayerOperations = fcPlayerOperations,
+    fcItemOperations = fcItemOperations,
+    fcItemStackOperations = fcItemStackOperations,
 ) {
     override val group: String?
         get() = when (recipe) {
@@ -45,7 +45,7 @@ open class BukkitFcCraftingRecipe_1_13(
                     rowString
                         .mapIndexed { column, char ->
                             recipe.choiceMap[char]?.let { choice ->
-                                BukkitFcIngredient_1_13(row * 3 + column, choice, fcItemStackTypeClass)
+                                BukkitFcIngredient_1_13(row * 3 + column, choice, fcItemStackOperations)
                             }
                         }
                         .filterNotNull()
@@ -54,7 +54,7 @@ open class BukkitFcCraftingRecipe_1_13(
 
             is ShapelessRecipe -> recipe.choiceList
                 .mapIndexed { i, recipeChoice ->
-                    BukkitFcIngredient_1_13(i, recipeChoice, fcItemStackTypeClass)
+                    BukkitFcIngredient_1_13(i, recipeChoice, fcItemStackOperations)
                 }
 
             else -> throw IllegalStateException()
@@ -67,9 +67,9 @@ open class BukkitFcCraftingRecipe_1_13(
         private val fcCraftingRecipePreparedFactory: BukkitFcCraftingRecipePrepared.Factory,
         private val fcItemStackFactory: FcItemStack.Factory,
         private val craftingInventoryViewFactory: CraftingInventoryViewFactory,
-        private val fcPlayerTypeClass: FcPlayer.TypeClass,
-        private val fcItemTypeClass: FcItem.TypeClass,
-        private val fcItemStackTypeClass: FcItemStack.TypeClass,
+        private val fcPlayerOperations: FcPlayer.Operations,
+        private val fcItemOperations: FcItem.Operations,
+        private val fcItemStackOperations: FcItemStack.Operations,
     ) : BukkitFcCraftingRecipe.Factory {
         override fun create(recipe: Recipe): FcCraftingRecipe {
             return BukkitFcCraftingRecipe_1_13(
@@ -78,9 +78,9 @@ open class BukkitFcCraftingRecipe_1_13(
                 preparedRecipeFactory = fcCraftingRecipePreparedFactory,
                 fcItemStackFactory = fcItemStackFactory,
                 craftingInventoryViewFactory = craftingInventoryViewFactory,
-                fcPlayerTypeClass = fcPlayerTypeClass,
-                fcItemTypeClass = fcItemTypeClass,
-                fcItemStackTypeClass = fcItemStackTypeClass,
+                fcPlayerOperations = fcPlayerOperations,
+                fcItemOperations = fcItemOperations,
+                fcItemStackOperations = fcItemStackOperations,
             )
         }
     }

@@ -6,7 +6,7 @@ import net.benwoodworth.fastcraft.platform.world.FcItemStack
 import java.util.*
 
 inline class FcPlayer(val value: Any) {
-    interface TypeClass {
+    interface Operations {
         val FcPlayer.username: String
         var FcPlayer.customName: String?
         val FcPlayer.uuid: UUID

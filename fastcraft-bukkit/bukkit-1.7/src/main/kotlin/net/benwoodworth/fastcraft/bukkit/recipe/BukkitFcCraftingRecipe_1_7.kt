@@ -24,9 +24,9 @@ open class BukkitFcCraftingRecipe_1_7(
     private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
     private val fcItemStackFactory: FcItemStack.Factory,
     private val inventoryViewFactory: CraftingInventoryViewFactory,
-    private val fcPlayerTypeClass: FcPlayer.TypeClass,
-    private val fcItemTypeClass: FcItem.TypeClass,
-    private val fcItemStackTypeClass: FcItemStack.TypeClass,
+    private val fcPlayerOperations: FcPlayer.Operations,
+    private val fcItemOperations: FcItem.Operations,
+    private val fcItemStackOperations: FcItemStack.Operations,
 ) : BukkitFcCraftingRecipe {
     private companion object {
         private const val recipeIdAlphabet = "23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefhkmnorsuvwxz"
@@ -59,7 +59,7 @@ open class BukkitFcCraftingRecipe_1_7(
                     rowString
                         .mapIndexed { column, char ->
                             recipe.ingredientMap[char]?.let { ingredient ->
-                                BukkitFcIngredient_1_7(row * 3 + column, ingredient, fcItemStackTypeClass)
+                                BukkitFcIngredient_1_7(row * 3 + column, ingredient, fcItemStackOperations)
                             }
                         }
                         .filterNotNull()
@@ -68,7 +68,7 @@ open class BukkitFcCraftingRecipe_1_7(
 
             is ShapelessRecipe -> recipe.ingredientList
                 .mapIndexed { i, ingredient ->
-                    BukkitFcIngredient_1_7(i, ingredient, fcItemStackTypeClass)
+                    BukkitFcIngredient_1_7(i, ingredient, fcItemStackOperations)
                 }
 
             else -> throw IllegalStateException()
@@ -88,10 +88,10 @@ open class BukkitFcCraftingRecipe_1_7(
         ingredients: Map<FcIngredient, FcItemStack>,
     ): CancellableResult<FcCraftingRecipePrepared> {
         // TODO Inventory owner
-        val prepareView = inventoryViewFactory.create(fcPlayerTypeClass.bukkit.run { player.player }, null, recipe)
+        val prepareView = inventoryViewFactory.create(fcPlayerOperations.bukkit.run { player.player }, null, recipe)
         val craftingGrid = prepareView.topInventory as CraftingInventory
 
-        fcItemStackTypeClass.bukkit.run {
+        fcItemStackOperations.bukkit.run {
             ingredients.forEach { (ingredient, itemStack) ->
                 craftingGrid.setItem(ingredient.slotIndex, itemStack.itemStack.clone())
             }
@@ -112,8 +112,8 @@ open class BukkitFcCraftingRecipe_1_7(
 
         val ingredientRemnants = ingredients.values
             .mapNotNull { ingredient ->
-                fcItemTypeClass.bukkit.run {
-                    fcItemStackTypeClass.run {
+                fcItemOperations.bukkit.run {
+                    fcItemStackOperations.run {
                         ingredient.type.craftingRemainingItem
                             ?.let { fcItemStackFactory.create(ItemStack(it.material, ingredient.amount)) }
                     }
@@ -124,7 +124,7 @@ open class BukkitFcCraftingRecipe_1_7(
 
         return CancellableResult(
             preparedRecipeFactory.create(
-                fcPlayerTypeClass.bukkit.run { player.player },
+                fcPlayerOperations.bukkit.run { player.player },
                 this,
                 ingredients,
                 ingredientRemnants,
@@ -183,9 +183,9 @@ open class BukkitFcCraftingRecipe_1_7(
         private val fcCraftingRecipePreparedFactory: BukkitFcCraftingRecipePrepared.Factory,
         private val fcItemStackFactory: FcItemStack.Factory,
         private val craftingInventoryViewFactory: CraftingInventoryViewFactory,
-        private val fcPlayerTypeClass: FcPlayer.TypeClass,
-        private val fcItemTypeClass: FcItem.TypeClass,
-        private val fcItemStackTypeClass: FcItemStack.TypeClass,
+        private val fcPlayerOperations: FcPlayer.Operations,
+        private val fcItemOperations: FcItem.Operations,
+        private val fcItemStackOperations: FcItemStack.Operations,
     ) : BukkitFcCraftingRecipe.Factory {
         override fun create(recipe: Recipe): FcCraftingRecipe {
             return BukkitFcCraftingRecipe_1_7(
@@ -194,9 +194,9 @@ open class BukkitFcCraftingRecipe_1_7(
                 preparedRecipeFactory = fcCraftingRecipePreparedFactory,
                 fcItemStackFactory = fcItemStackFactory,
                 inventoryViewFactory = craftingInventoryViewFactory,
-                fcPlayerTypeClass = fcPlayerTypeClass,
-                fcItemTypeClass = fcItemTypeClass,
-                fcItemStackTypeClass = fcItemStackTypeClass,
+                fcPlayerOperations = fcPlayerOperations,
+                fcItemOperations = fcItemOperations,
+                fcItemStackOperations = fcItemStackOperations,
             )
         }
     }

@@ -18,7 +18,7 @@ class FastCraftCommand @Inject constructor(
     private val fastCraftGuiFactory: FastCraftGui.Factory,
     private val permissions: Permissions,
     private val fastCraftConfig: FastCraftConfig,
-    private val fcPlayerTypeClass: FcPlayer.TypeClass,
+    private val fcPlayerOperations: FcPlayer.Operations,
 ) : FcCommand {
     override val description = "FastCraft command"
 
@@ -132,7 +132,7 @@ class FastCraftCommand @Inject constructor(
         fun suggestPlayers(): List<String> {
             val players = fcPlayerProvider
                 .getOnlinePlayers()
-                .map { fcPlayerTypeClass.run { it.username } }
+                .map { fcPlayerOperations.run { it.username } }
                 .toTypedArray()
 
             return suggestions(*players)
@@ -188,7 +188,7 @@ class FastCraftCommand @Inject constructor(
     fun fcSetEnabledAdmin(source: FcCommandSource, enabled: Boolean, player: String) {
         val targetPlayer = fcPlayerProvider
             .getOnlinePlayers()
-            .firstOrNull { fcPlayerTypeClass.run { it.username }.equals(player, true) }
+            .firstOrNull { fcPlayerOperations.run { it.username }.equals(player, true) }
 
         if (targetPlayer != null && targetPlayer == source.player) {
             fcSetEnabled(source, enabled)
@@ -208,9 +208,9 @@ class FastCraftCommand @Inject constructor(
         playerSettings.setFastCraftEnabled(targetPlayer, enabled)
         source.sendMessage(fcTextFactory.createLegacy(
             if (enabled) {
-                Strings.commandSetEnabledTruePlayer(source.locale, fcPlayerTypeClass.run { targetPlayer.username })
+                Strings.commandSetEnabledTruePlayer(source.locale, fcPlayerOperations.run { targetPlayer.username })
             } else {
-                Strings.commandSetEnabledFalsePlayer(source.locale, fcPlayerTypeClass.run { targetPlayer.username })
+                Strings.commandSetEnabledFalsePlayer(source.locale, fcPlayerOperations.run { targetPlayer.username })
             }
         ))
     }
@@ -260,7 +260,7 @@ class FastCraftCommand @Inject constructor(
                     return
                 }
 
-                fcPlayerTypeClass.run { targetPlayer.openCraftingTable() }
+                fcPlayerOperations.run { targetPlayer.openCraftingTable() }
             }
             else -> {
                 throw IllegalStateException()
@@ -271,7 +271,7 @@ class FastCraftCommand @Inject constructor(
     fun fcCraftAdmin(source: FcCommandSource, type: String, player: String) {
         val targetPlayer = fcPlayerProvider
             .getOnlinePlayers()
-            .firstOrNull { fcPlayerTypeClass.run { it.username }.equals(player, true) }
+            .firstOrNull { fcPlayerOperations.run { it.username }.equals(player, true) }
 
         if (targetPlayer != null && targetPlayer == source.player) {
             fcCraft(source, type)
@@ -303,7 +303,7 @@ class FastCraftCommand @Inject constructor(
                     .open()
             }
             "grid" -> {
-                fcPlayerTypeClass.run { targetPlayer.openCraftingTable() }
+                fcPlayerOperations.run { targetPlayer.openCraftingTable() }
             }
             else -> {
                 throw IllegalStateException()

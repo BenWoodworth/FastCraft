@@ -9,11 +9,11 @@ import javax.inject.Singleton
 
 object BukkitFcItem_1_15 {
     @Singleton
-    class TypeClass @Inject constructor(
+    class Operations @Inject constructor(
         fcTextFactory: FcText.Factory,
         localizer: BukkitLocalizer,
         private val fcItemFactory: FcItem.Factory,
-    ) : BukkitFcItem_1_13.TypeClass(
+    ) : BukkitFcItem_1_13.Operations(
         fcTextFactory = fcTextFactory,
         localizer = localizer,
         fcItemFactory = fcItemFactory,

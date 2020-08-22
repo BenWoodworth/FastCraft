@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft.platform.text
 
 inline class FcTextColor(val value: Any) {
-    interface TypeClass
+    interface Operations
 
     interface Factory {
         val black: FcTextColor

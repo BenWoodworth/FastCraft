@@ -11,7 +11,7 @@ import javax.inject.Singleton
 @Singleton
 class BukkitFcTextConverter_1_7 @Inject constructor(
     private val localizer: BukkitLocalizer,
-    private val fcTextColorTypeClass: FcTextColor.TypeClass,
+    private val fcTextColorOperations: FcTextColor.Operations,
 ) : BukkitFcTextConverter {
     override fun toRaw(text: FcText): String {
         return JsonStringBuilder()
@@ -43,7 +43,7 @@ class BukkitFcTextConverter_1_7 @Inject constructor(
 
             with(text) {
                 color?.let {
-                    fcTextColorTypeClass.bukkit.run {
+                    fcTextColorOperations.bukkit.run {
                         appendElement("color") { appendString(it.id) }
                     }
                 }
@@ -131,7 +131,7 @@ class BukkitFcTextConverter_1_7 @Inject constructor(
 
         private fun appendTextComponent(text: BukkitFcText.Component, parentFormat: LegacyFormat) {
             // The text format, inheriting from parentFormat in place of nulls.
-            val format = fcTextColorTypeClass.bukkit.run {
+            val format = fcTextColorOperations.bukkit.run {
                 LegacyFormat(
                     color = text.color?.chatColor ?: parentFormat.color,
                     bold = text.bold ?: parentFormat.bold,

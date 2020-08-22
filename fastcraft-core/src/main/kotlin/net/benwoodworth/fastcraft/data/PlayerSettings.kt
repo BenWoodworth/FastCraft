@@ -13,7 +13,7 @@ import kotlin.experimental.or
 
 class PlayerSettings @Inject constructor(
     fcPluginData: FcPluginData,
-    private val fcPlayerTypeClass: FcPlayer.TypeClass,
+    private val fcPlayerOperations: FcPlayer.Operations,
     private val config: FastCraftConfig,
 ) : Closeable {
     private companion object {
@@ -64,7 +64,7 @@ class PlayerSettings @Inject constructor(
     }
 
     private fun getPlayerRow(player: FcPlayer): Long {
-        val uuid = fcPlayerTypeClass.run { player.uuid }
+        val uuid = fcPlayerOperations.run { player.uuid }
         playerRows[uuid]?.let { row -> return row }
 
         val playerUuid = uuid.toByteArray()

@@ -8,21 +8,21 @@ import javax.inject.Singleton
 
 class BukkitFcItemStack_1_13 {
     @Singleton
-    class TypeClass @Inject constructor(
+    class Operations @Inject constructor(
         private val fcItemFactory: FcItem.Factory,
         fcTextFactory: FcText.Factory,
-        private val fcItemTypeClass: FcItem.TypeClass,
+        private val fcItemOperations: FcItem.Operations,
         fcItemStackFactory: FcItemStack.Factory,
-    ) : BukkitFcItemStack_1_7.TypeClass(
+    ) : BukkitFcItemStack_1_7.Operations(
         fcItemFactory = fcItemFactory,
         fcTextFactory = fcTextFactory,
-        fcItemTypeClass = fcItemTypeClass,
+        fcItemOperations = fcItemOperations,
         fcItemStackFactory = fcItemStackFactory,
     ) {
         override var FcItemStack.type: FcItem
             get() = fcItemFactory.fromMaterial(itemStack.type)
             set(value) {
-                itemStack.type = fcItemTypeClass.bukkit.run { value.material }
+                itemStack.type = fcItemOperations.bukkit.run { value.material }
             }
     }
 }

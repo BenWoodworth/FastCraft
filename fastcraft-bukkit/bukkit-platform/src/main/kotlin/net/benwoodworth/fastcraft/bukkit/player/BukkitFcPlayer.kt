@@ -4,7 +4,7 @@ import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import org.bukkit.entity.Player
 
 object BukkitFcPlayer {
-    interface TypeClass : FcPlayer.TypeClass {
+    interface Operations : FcPlayer.Operations {
         val FcPlayer.player: Player
     }
 
@@ -13,8 +13,8 @@ object BukkitFcPlayer {
     }
 }
 
-val FcPlayer.TypeClass.bukkit: BukkitFcPlayer.TypeClass
-    get() = this as BukkitFcPlayer.TypeClass
+val FcPlayer.Operations.bukkit: BukkitFcPlayer.Operations
+    get() = this as BukkitFcPlayer.Operations
 
 fun FcPlayer.Provider.getPlayer(player: Player): FcPlayer {
     return (this as BukkitFcPlayer.Provider).getPlayer(player)

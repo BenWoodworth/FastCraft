@@ -18,7 +18,7 @@ class WorkbenchButtonView(
     private val fcTextFactory: FcText.Factory,
     private val fcSounds: FcSound.Factory,
     config: FastCraftConfig,
-    private val fcPlayerTypeClass: FcPlayer.TypeClass,
+    private val fcPlayerOperations: FcPlayer.Operations,
 ) {
     var listener: Listener = Listener.Default
 
@@ -69,7 +69,7 @@ class WorkbenchButtonView(
             }
 
             action?.let {
-                fcPlayerTypeClass.run { gui.player.playSound(fcSounds.uiButtonClick, Config.buttonVolume) }
+                fcPlayerOperations.run { gui.player.playSound(fcSounds.uiButtonClick, Config.buttonVolume) }
                 action()
             }
         }
@@ -79,7 +79,7 @@ class WorkbenchButtonView(
         private val fcTextFactory: FcText.Factory,
         private val fcSoundFactory: FcSound.Factory,
         private val fastCraftConfig: FastCraftConfig,
-        private val fcPlayerTypeClass: FcPlayer.TypeClass,
+        private val fcPlayerOperations: FcPlayer.Operations,
     ) {
         fun create(button: FcGuiButton, locale: Locale): WorkbenchButtonView {
             return WorkbenchButtonView(
@@ -88,7 +88,7 @@ class WorkbenchButtonView(
                 fcTextFactory = fcTextFactory,
                 fcSounds = fcSoundFactory,
                 config = fastCraftConfig,
-                fcPlayerTypeClass = fcPlayerTypeClass,
+                fcPlayerOperations = fcPlayerOperations,
             )
         }
     }

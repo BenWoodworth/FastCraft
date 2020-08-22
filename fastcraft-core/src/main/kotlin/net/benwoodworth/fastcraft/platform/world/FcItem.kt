@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.platform.world
 import net.benwoodworth.fastcraft.platform.text.FcText
 
 inline class FcItem(val value: Any) {
-    interface TypeClass {
+    interface Operations {
         val FcItem.id: String
         val FcItem.name: FcText
         val FcItem.maxAmount: Int

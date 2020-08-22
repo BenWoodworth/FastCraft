@@ -21,13 +21,13 @@ import javax.inject.Singleton
 
 object BukkitFcPlayer_1_7 {
     @Singleton
-    class TypeClass @Inject constructor(
+    class Operations @Inject constructor(
         private val fcTextConverter: FcTextConverter,
         private val server: Server,
         private val fcPlayerInventoryFactory: BukkitFcPlayerInventory_1_7.Factory,
-        private val fcSoundTypeClass: FcSound.TypeClass,
-        private val fcItemStackTypeClass: FcItemStack.TypeClass,
-    ) : BukkitFcPlayer.TypeClass {
+        private val fcSoundOperations: FcSound.Operations,
+        private val fcItemStackOperations: FcItemStack.Operations,
+    ) : BukkitFcPlayer.Operations {
         override val FcPlayer.player: Player
             get() = value as Player
 
@@ -76,7 +76,7 @@ object BukkitFcPlayer_1_7 {
                 player.world.dropItemNaturally(player.location, this)
             }
 
-            fcItemStackTypeClass.bukkit.run {
+            fcItemStackOperations.bukkit.run {
                 items.forEach { itemStack ->
                     if (dropAll) {
                         itemStack.itemStack.clone().drop()
@@ -95,7 +95,7 @@ object BukkitFcPlayer_1_7 {
         override fun FcPlayer.playSound(sound: FcSound, volume: Double, pitch: Double) {
             player.playSound(
                 player.location,
-                fcSoundTypeClass.bukkit.run { sound.sound },
+                fcSoundOperations.bukkit.run { sound.sound },
                 volume.toFloat(),
                 pitch.toFloat(),
             )

@@ -7,8 +7,8 @@ import javax.inject.Singleton
 
 object BukkitFcTextColor_1_7 {
     @Singleton
-    class TypeClass @Inject constructor(
-    ) : BukkitFcTextColor.TypeClass {
+    class Operations @Inject constructor(
+    ) : BukkitFcTextColor.Operations {
         override val FcTextColor.chatColor: ChatColor
             get() = value as ChatColor
 

@@ -4,7 +4,7 @@ import net.benwoodworth.fastcraft.platform.player.FcSound
 import org.bukkit.Sound
 
 object BukkitFcSound {
-    interface TypeClass : FcSound.TypeClass {
+    interface Operations : FcSound.Operations {
         val FcSound.sound: Sound
     }
 
@@ -13,8 +13,8 @@ object BukkitFcSound {
     }
 }
 
-val FcSound.TypeClass.bukkit: BukkitFcSound.TypeClass
-    get() = this as BukkitFcSound.TypeClass
+val FcSound.Operations.bukkit: BukkitFcSound.Operations
+    get() = this as BukkitFcSound.Operations
 
 fun FcSound.Factory.fromSound(sound: Sound): FcSound {
     return (this as BukkitFcSound.Factory).fromSound(sound)

@@ -16,18 +16,18 @@ open class BukkitFcCraftingRecipe_1_12(
     fcCraftingRecipePreparedFactory: BukkitFcCraftingRecipePrepared.Factory,
     fcItemStackFactory: FcItemStack.Factory,
     craftingInventoryViewFactory: CraftingInventoryViewFactory,
-    fcPlayerTypeClass: FcPlayer.TypeClass,
-    fcItemTypeClass: FcItem.TypeClass,
-    fcItemStackTypeClass: FcItemStack.TypeClass,
+    fcPlayerOperations: FcPlayer.Operations,
+    fcItemOperations: FcItem.Operations,
+    fcItemStackOperations: FcItemStack.Operations,
 ) : BukkitFcCraftingRecipe_1_7(
     recipe = recipe,
     server = server,
     preparedRecipeFactory = fcCraftingRecipePreparedFactory,
     fcItemStackFactory = fcItemStackFactory,
     inventoryViewFactory = craftingInventoryViewFactory,
-    fcPlayerTypeClass = fcPlayerTypeClass,
-    fcItemTypeClass = fcItemTypeClass,
-    fcItemStackTypeClass = fcItemStackTypeClass,
+    fcPlayerOperations = fcPlayerOperations,
+    fcItemOperations = fcItemOperations,
+    fcItemStackOperations = fcItemStackOperations,
 ) {
     override val id: String
         get() = (recipe as Keyed).key.toString()
@@ -38,9 +38,9 @@ open class BukkitFcCraftingRecipe_1_12(
         private val fcCraftingRecipePreparedFactory: BukkitFcCraftingRecipePrepared.Factory,
         private val fcItemStackFactory: FcItemStack.Factory,
         private val craftingInventoryViewFactory: CraftingInventoryViewFactory,
-        private val fcPlayerTypeClass: FcPlayer.TypeClass,
-        private val fcItemTypeClass: FcItem.TypeClass,
-        private val fcItemStackTypeClass: FcItemStack.TypeClass,
+        private val fcPlayerOperations: FcPlayer.Operations,
+        private val fcItemOperations: FcItem.Operations,
+        private val fcItemStackOperations: FcItemStack.Operations,
     ) : BukkitFcCraftingRecipe.Factory {
         override fun create(recipe: Recipe): FcCraftingRecipe {
             return BukkitFcCraftingRecipe_1_12(
@@ -49,9 +49,9 @@ open class BukkitFcCraftingRecipe_1_12(
                 fcCraftingRecipePreparedFactory = fcCraftingRecipePreparedFactory,
                 fcItemStackFactory = fcItemStackFactory,
                 craftingInventoryViewFactory = craftingInventoryViewFactory,
-                fcPlayerTypeClass = fcPlayerTypeClass,
-                fcItemTypeClass = fcItemTypeClass,
-                fcItemStackTypeClass = fcItemStackTypeClass,
+                fcPlayerOperations = fcPlayerOperations,
+                fcItemOperations = fcItemOperations,
+                fcItemStackOperations = fcItemStackOperations,
             )
         }
     }

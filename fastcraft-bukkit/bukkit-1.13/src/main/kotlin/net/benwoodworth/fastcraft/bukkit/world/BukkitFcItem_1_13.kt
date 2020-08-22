@@ -14,11 +14,11 @@ import javax.inject.Singleton
 
 object BukkitFcItem_1_13 {
     @Singleton
-    open class TypeClass @Inject constructor(
+    open class Operations @Inject constructor(
         private val fcTextFactory: FcText.Factory,
         private val localizer: BukkitLocalizer,
         private val fcItemFactory: FcItem.Factory,
-    ) : BukkitFcItem.TypeClass {
+    ) : BukkitFcItem.Operations {
         override val FcItem.id: String
             get() = material.key.toString()
 

@@ -7,10 +7,10 @@ import javax.inject.Singleton
 
 object BukkitFcItem_1_9  {
     @Singleton
-    class TypeClass @Inject constructor(
+    class Operations @Inject constructor(
         private val fcItemFactory: FcItem.Factory,
         legacyMaterialInfo: LegacyMaterialInfo,
-    ) : BukkitFcItem_1_7.TypeClass(
+    ) : BukkitFcItem_1_7.Operations(
         fcItemFactory = fcItemFactory,
         legacyMaterialInfo = legacyMaterialInfo,
     ) {

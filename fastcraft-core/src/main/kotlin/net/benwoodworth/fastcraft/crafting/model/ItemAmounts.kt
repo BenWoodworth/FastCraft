@@ -7,24 +7,24 @@ import javax.inject.Inject
 class ItemAmounts private constructor(
     private val amounts: MutableMap<FcItemStack, Int>,
     private val fcItemStackFactory: FcItemStack.Factory,
-    private val fcItemStackTypeClass: FcItemStack.TypeClass,
-    private val fcItemTypeClass: FcItem.TypeClass,
+    private val fcItemStackOperations: FcItemStack.Operations,
+    private val fcItemOperations: FcItem.Operations,
 ) {
     @Inject
     constructor(
         itemStackFactory: FcItemStack.Factory,
-        fcItemStackTypeClass: FcItemStack.TypeClass,
-        fcItemTypeClass: FcItem.TypeClass,
+        fcItemStackOperations: FcItemStack.Operations,
+        fcItemOperations: FcItem.Operations,
     ) : this(
         amounts = mutableMapOf(),
         fcItemStackFactory = itemStackFactory,
-        fcItemStackTypeClass = fcItemStackTypeClass,
-        fcItemTypeClass = fcItemTypeClass,
+        fcItemStackOperations = fcItemStackOperations,
+        fcItemOperations = fcItemOperations,
     )
 
     private fun FcItemStack.asKey(): FcItemStack {
-        fcItemStackTypeClass.run {
-            fcItemTypeClass.run {
+        fcItemStackOperations.run {
+            fcItemOperations.run {
                 return copy().apply { amount = type.maxAmount }
             }
         }
@@ -42,7 +42,7 @@ class ItemAmounts private constructor(
     }
 
     operator fun plusAssign(itemStack: FcItemStack) {
-        fcItemStackTypeClass.run {
+        fcItemStackOperations.run {
             if (itemStack.amount != 0) {
                 val key = itemStack.asKey()
                 amounts[key] = amounts.getOrDefault(key, 0) + itemStack.amount
@@ -51,7 +51,7 @@ class ItemAmounts private constructor(
     }
 
     operator fun minusAssign(itemStack: FcItemStack) {
-        fcItemStackTypeClass.run {
+        fcItemStackOperations.run {
             if (itemStack.amount != 0) {
                 val key = itemStack.asKey()
                 amounts[key] = amounts.getOrDefault(key, 0) - itemStack.amount
@@ -67,8 +67,8 @@ class ItemAmounts private constructor(
         return ItemAmounts(
             amounts = amounts.toMutableMap(),
             fcItemStackFactory = fcItemStackFactory,
-            fcItemStackTypeClass = fcItemStackTypeClass,
-            fcItemTypeClass = fcItemTypeClass,
+            fcItemStackOperations = fcItemStackOperations,
+            fcItemOperations = fcItemOperations,
         )
     }
 

@@ -9,7 +9,7 @@ import java.util.*
 class BukkitFcIngredient_1_7(
     override val slotIndex: Int,
     private val ingredientItem: ItemStack,
-    private val fcItemStackTypeClass: FcItemStack.TypeClass,
+    private val fcItemStackOperations: FcItemStack.Operations,
 ) : BukkitFcIngredient {
     @Suppress("DEPRECATION")
     private val hasWildcardData: Boolean = ingredientItem.data.data == WILDCARD_DATA
@@ -23,7 +23,7 @@ class BukkitFcIngredient_1_7(
     }
 
     override fun matches(itemStack: FcItemStack): Boolean {
-        val bukkitItemStack = fcItemStackTypeClass.bukkit.run { itemStack.itemStack }
+        val bukkitItemStack = fcItemStackOperations.bukkit.run { itemStack.itemStack }
 
         return when {
             bukkitItemStack.type === Material.AIR -> {

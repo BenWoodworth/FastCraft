@@ -18,7 +18,7 @@ class RefreshButtonView(
     private val fcTextFactory: FcText.Factory,
     private val fcSoundFactory: FcSound.Factory,
     private val config: FastCraftConfig,
-    private val fcPlayerTypeClass: FcPlayer.TypeClass,
+    private val fcPlayerOperations: FcPlayer.Operations,
 ) {
     var enabled: Boolean = true
 
@@ -77,7 +77,7 @@ class RefreshButtonView(
                 }
 
                 action?.let {
-                    fcPlayerTypeClass.run { gui.player.playSound(fcSoundFactory.uiButtonClick, Config.buttonVolume) }
+                    fcPlayerOperations.run { gui.player.playSound(fcSoundFactory.uiButtonClick, Config.buttonVolume) }
                     action()
                 }
             }
@@ -88,7 +88,7 @@ class RefreshButtonView(
         private val fcTextFactory: FcText.Factory,
         private val fcSoundsFactory: FcSound.Factory,
         private val fastCraftConfig: FastCraftConfig,
-        private val fcPlayerTypeClass: FcPlayer.TypeClass,
+        private val fcPlayerOperations: FcPlayer.Operations,
     ) {
         fun create(button: FcGuiButton, locale: Locale): RefreshButtonView {
             return RefreshButtonView(
@@ -97,7 +97,7 @@ class RefreshButtonView(
                 fcTextFactory = fcTextFactory,
                 fcSoundFactory = fcSoundsFactory,
                 config = fastCraftConfig,
-                fcPlayerTypeClass = fcPlayerTypeClass,
+                fcPlayerOperations = fcPlayerOperations,
             )
         }
     }

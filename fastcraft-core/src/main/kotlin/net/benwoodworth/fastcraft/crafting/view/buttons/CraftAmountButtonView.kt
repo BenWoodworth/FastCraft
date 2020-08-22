@@ -19,7 +19,7 @@ class CraftAmountButtonView(
     private val fcTextFactory: FcText.Factory,
     private val fcSounds: FcSound.Factory,
     config: FastCraftConfig,
-    private val fcPlayerTypeClass: FcPlayer.TypeClass,
+    private val fcPlayerOperations: FcPlayer.Operations,
 ) {
     var craftAmount: Int? = null
 
@@ -91,7 +91,7 @@ class CraftAmountButtonView(
             }
 
             action?.let {
-                fcPlayerTypeClass.run { gui.player.playSound(fcSounds.uiButtonClick, Config.buttonVolume) }
+                fcPlayerOperations.run { gui.player.playSound(fcSounds.uiButtonClick, Config.buttonVolume) }
                 action()
             }
         }
@@ -101,7 +101,7 @@ class CraftAmountButtonView(
         private val fcTextFactory: FcText.Factory,
         private val fcSoundFactory: FcSound.Factory,
         private val fastCraftConfig: FastCraftConfig,
-        private val fcPlayerTypeClass: FcPlayer.TypeClass,
+        private val fcPlayerOperations: FcPlayer.Operations,
     ) {
         fun create(button: FcGuiButton, locale: Locale): CraftAmountButtonView {
             return CraftAmountButtonView(
@@ -110,7 +110,7 @@ class CraftAmountButtonView(
                 fcTextFactory = fcTextFactory,
                 fcSounds = fcSoundFactory,
                 config = fastCraftConfig,
-                fcPlayerTypeClass = fcPlayerTypeClass,
+                fcPlayerOperations = fcPlayerOperations,
             )
         }
     }

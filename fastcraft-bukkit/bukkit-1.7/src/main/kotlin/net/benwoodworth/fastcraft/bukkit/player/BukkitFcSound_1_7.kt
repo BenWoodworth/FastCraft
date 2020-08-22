@@ -7,8 +7,8 @@ import javax.inject.Singleton
 
 object BukkitFcSound_1_7 {
     @Singleton
-    class TypeClass @Inject constructor(
-    ) : BukkitFcSound.TypeClass {
+    class Operations @Inject constructor(
+    ) : BukkitFcSound.Operations {
         override val FcSound.sound: Sound
             get() = value as Sound
     }

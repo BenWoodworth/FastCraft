@@ -4,7 +4,7 @@ import net.benwoodworth.fastcraft.platform.text.FcTextColor
 import org.bukkit.ChatColor
 
 object BukkitFcTextColor {
-    interface TypeClass : FcTextColor.TypeClass {
+    interface Operations : FcTextColor.Operations {
         val FcTextColor.chatColor: ChatColor
         val FcTextColor.id: String
     }
@@ -14,8 +14,8 @@ object BukkitFcTextColor {
     }
 }
 
-val FcTextColor.TypeClass.bukkit: BukkitFcTextColor.TypeClass
-    get() = this as BukkitFcTextColor.TypeClass
+val FcTextColor.Operations.bukkit: BukkitFcTextColor.Operations
+    get() = this as BukkitFcTextColor.Operations
 
 fun FcTextColor.Factory.fromId(id: String): FcTextColor {
     return (this as BukkitFcTextColor.Factory).fromId(id)

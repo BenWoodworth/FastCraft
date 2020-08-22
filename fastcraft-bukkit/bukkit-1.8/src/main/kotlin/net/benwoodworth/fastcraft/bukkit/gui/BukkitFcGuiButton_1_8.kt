@@ -18,16 +18,16 @@ open class BukkitFcGuiButton_1_8(
     locale: Locale,
     fcTextFactory: FcText.Factory,
     fcTextConverter: FcTextConverter,
-    fcItemTypeClass: FcItem.TypeClass,
-    fcItemStackTypeClass: FcItemStack.TypeClass,
+    fcItemOperations: FcItem.Operations,
+    fcItemStackOperations: FcItemStack.Operations,
 ) : BukkitFcGuiButton_1_7(
     inventory = inventory,
     slotIndex = slotIndex,
     locale = locale,
     fcTextFactory = fcTextFactory,
     fcTextConverter = fcTextConverter,
-    fcItemTypeClass = fcItemTypeClass,
-    fcItemStackTypeClass = fcItemStackTypeClass,
+    fcItemOperations = fcItemOperations,
+    fcItemStackOperations = fcItemStackOperations,
 ) {
     override fun updateItemDetails() {
         if (hideItemDetails) {
@@ -48,8 +48,8 @@ open class BukkitFcGuiButton_1_8(
     class Factory @Inject constructor(
         private val fcTextFactory: FcText.Factory,
         private val fcTextConverter: FcTextConverter,
-        private val fcItemTypeClass: FcItem.TypeClass,
-        private val fcItemStackTypeClass: FcItemStack.TypeClass,
+        private val fcItemOperations: FcItem.Operations,
+        private val fcItemStackOperations: FcItemStack.Operations,
     ) : BukkitFcGuiButton.Factory {
         override fun create(inventory: Inventory, slotIndex: Int, locale: Locale): FcGuiButton {
             return BukkitFcGuiButton_1_8(
@@ -58,8 +58,8 @@ open class BukkitFcGuiButton_1_8(
                 locale = locale,
                 fcTextFactory = fcTextFactory,
                 fcTextConverter = fcTextConverter,
-                fcItemTypeClass = fcItemTypeClass,
-                fcItemStackTypeClass = fcItemStackTypeClass,
+                fcItemOperations = fcItemOperations,
+                fcItemStackOperations = fcItemStackOperations,
             )
         }
     }
