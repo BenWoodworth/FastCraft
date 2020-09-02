@@ -23,7 +23,7 @@ class CraftingInventoryViewFactory_1_7 @Inject constructor(
         )
     }
 
-    private inner class CustomInventoryView(
+    private class CustomInventoryView(
         private val player: Player,
         private val topInventory: Inventory,
     ) : InventoryView() {
