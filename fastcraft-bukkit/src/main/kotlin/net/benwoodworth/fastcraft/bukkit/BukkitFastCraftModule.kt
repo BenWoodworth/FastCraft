@@ -190,10 +190,12 @@ class BukkitFastCraftModule(
     @Provides
     fun provideCraftingInventoryViewFactory(
         instance_1_14: Provider<CraftingInventoryViewFactory_1_14>,
+        instance_1_9: Provider<CraftingInventoryViewFactory_1_9>,
         instance_1_7: Provider<CraftingInventoryViewFactory_1_7>,
     ): CraftingInventoryViewFactory {
         return when {
             bukkitVersion >= VERSION_1_14 -> instance_1_14.get()
+            bukkitVersion >= VERSION_1_9 -> instance_1_9.get()
             bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
             else -> instance_1_7.get()
         }
