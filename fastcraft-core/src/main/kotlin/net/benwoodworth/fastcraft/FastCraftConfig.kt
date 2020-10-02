@@ -263,6 +263,8 @@ class FastCraftConfig @Inject constructor(
             item: FcItemStack,
             row: Int,
             column: Int,
+            width: Int = 1,
+            height: Int = 1,
             playerCommand: String? = null,
             serverCommand: String? = null,
         ) : Button(
@@ -272,6 +274,12 @@ class FastCraftConfig @Inject constructor(
             row = row,
             column = column,
         ) {
+            var width: Int = width
+                private set
+
+            var height: Int = height
+                private set
+
             var playerCommand: String? = playerCommand
                 private set
 
@@ -280,6 +288,8 @@ class FastCraftConfig @Inject constructor(
 
             override fun load() {
                 super.load()
+                width = node["width"].getInt() ?: width
+                height = node["height"].getInt() ?: height
                 node["player-command"].loadString(::playerCommand, playerCommand)
                 node["server-command"].loadString(::serverCommand, serverCommand)
             }

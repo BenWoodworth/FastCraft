@@ -82,18 +82,22 @@ class FastCraftGuiView(
 
     val customButtons = config.layout.customButtons.buttons
         .filter { it.enable }
-        .mapNotNull { customButton ->
-            val newButton = getNewButton(customButton.column, customButton.row)?.apply {
-                copyItem(customButton.item)
-                listener = CustomButtonListener(customButton)
-            }
-
-            newButton?.let {
-                customButtonViewFactory.create(
-                    button = newButton,
-                    playerCommand = customButton.playerCommand,
-                    serverCommand = customButton.serverCommand,
-                )
+        .flatMap { customButton ->
+            customButton.run { row until row + height }.asSequence().flatMap { row ->
+                customButton.run { column until column + width }.asSequence().mapNotNull { column ->
+                    getNewButton(column, row)
+                        ?.apply {
+                            copyItem(customButton.item)
+                            listener = CustomButtonListener(customButton)
+                        }
+                        ?.let { newButton ->
+                            customButtonViewFactory.create(
+                                button = newButton,
+                                playerCommand = customButton.playerCommand,
+                                serverCommand = customButton.serverCommand,
+                            )
+                        }
+                }
             }
         }
 
