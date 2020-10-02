@@ -17,10 +17,6 @@ class BukkitFcConfigNode_1_7(
         return fcConfigFactory.createNode(config, "$path.$key")
     }
 
-    override fun set(key: String, value: Any?) {
-        config.set(key, value)
-    }
-
     override fun set(value: Any?) {
         config.set(path, value)
     }
