@@ -201,10 +201,6 @@ class FastCraftConfig @Inject constructor(
                     }
                     .onEach { it.load() }
                     .toSet()
-
-                if (buttons.isEmpty()) {
-
-                }
             }
         }
 
