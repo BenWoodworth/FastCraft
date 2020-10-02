@@ -9,6 +9,10 @@ class BukkitFcConfigNode_1_7(
     override val path: String,
     private val fcConfigFactory: FcConfig.Factory,
 ) : BukkitFcConfigNode {
+    override fun getChildKeys(): Set<String> {
+        return config.getConfigurationSection(path)?.getKeys(false) ?: emptySet()
+    }
+
     override fun get(key: String): FcConfigNode {
         return fcConfigFactory.createNode(config, "$path.$key")
     }

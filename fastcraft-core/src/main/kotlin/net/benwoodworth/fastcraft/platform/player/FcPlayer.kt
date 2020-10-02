@@ -23,6 +23,8 @@ inline class FcPlayer(val value: Any) {
         fun FcPlayer.openCraftingTable() // TODO Location
 
         fun FcPlayer.playSound(sound: FcSound, volume: Double = 1.0, pitch: Double = 1.0)
+
+        fun FcPlayer.executeCommand(command: String)
     }
 
     interface Provider {

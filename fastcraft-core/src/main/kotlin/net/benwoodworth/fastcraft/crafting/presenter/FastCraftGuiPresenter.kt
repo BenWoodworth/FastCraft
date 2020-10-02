@@ -5,12 +5,18 @@ import net.benwoodworth.fastcraft.crafting.model.FastCraftRecipe
 import net.benwoodworth.fastcraft.crafting.view.FastCraftGuiView
 import net.benwoodworth.fastcraft.crafting.view.buttons.*
 import net.benwoodworth.fastcraft.platform.gui.FcGui
+import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.server.FcServer
+import javax.inject.Inject
+import javax.inject.Singleton
 import kotlin.math.ceil
 
 class FastCraftGuiPresenter(
     private val model: FastCraftGuiModel,
     private val view: FastCraftGuiView,
-) {
+    private val fcServer: FcServer,
+    fcPlayerOperations: FcPlayer.Operations,
+) : FcPlayer.Operations by fcPlayerOperations {
     private var recipesPage = 1
 
     private val recipesPerPage: Int
@@ -33,6 +39,11 @@ class FastCraftGuiPresenter(
 
         view.recipeButtons.forEachIndexed { i, button ->
             button.listener = RecipeButtonListener(i)
+        }
+
+        val customButtonListener = CustomButtonListener()
+        view.customButtons.forEach { button ->
+            button.listener = customButtonListener
         }
 
         model.refreshRecipes()
@@ -183,6 +194,28 @@ class FastCraftGuiPresenter(
 
             model.updateInventoryItemAmounts()
             updateRecipes()
+        }
+    }
+
+    private inner class CustomButtonListener : CustomButtonView.Listener {
+        override fun onClick(playerCommand: String?, serverCommand: String?) {
+            playerCommand?.let { model.player.executeCommand(it) }
+            serverCommand?.let { fcServer.executeCommand(it) }
+        }
+    }
+
+    @Singleton
+    class Factory @Inject constructor(
+        private val fcServer: FcServer,
+        private val fcPlayerOperations: FcPlayer.Operations,
+    ) {
+        fun create(model: FastCraftGuiModel, view: FastCraftGuiView): FastCraftGuiPresenter {
+            return FastCraftGuiPresenter(
+                model = model,
+                view = view,
+                fcServer = fcServer,
+                fcPlayerOperations = fcPlayerOperations,
+            )
         }
     }
 }

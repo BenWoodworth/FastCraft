@@ -5,8 +5,11 @@ import net.benwoodworth.fastcraft.Strings
 import net.benwoodworth.fastcraft.crafting.view.buttons.*
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
+import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
+import net.benwoodworth.fastcraft.platform.server.FcServer
 import net.benwoodworth.fastcraft.platform.text.FcText
+import net.benwoodworth.fastcraft.util.substitute
 import javax.inject.Inject
 
 class FastCraftGuiView(
@@ -17,9 +20,11 @@ class FastCraftGuiView(
     recipeButtonFactory: RecipeButtonView.Factory,
     craftAmountButtonFactory: CraftAmountButtonView.Factory,
     refreshButtonFactory: RefreshButtonView.Factory,
+    customButtonViewFactory: CustomButtonView.Factory,
     fcTextFactory: FcText.Factory,
     config: FastCraftConfig,
     fcPlayerOperations: FcPlayer.Operations,
+    private val fcServer: FcServer,
 ) : FcPlayer.Operations by fcPlayerOperations {
     val gui = fcGuiFactory.createChestGui(
         player = player,
@@ -75,6 +80,24 @@ class FastCraftGuiView(
         }
     }
 
+    val customButtons = config.layout.customButtons.buttons
+        .filter { it.enable }
+        .mapNotNull { customButton ->
+            val newButton = getNewButton(customButton.column, customButton.row)?.apply {
+                copyItem(customButton.item)
+                listener = CustomButtonListener(customButton)
+            }
+
+            newButton?.let {
+                customButtonViewFactory.create(
+                    button = newButton,
+                    locale = player.locale,
+                    playerCommand = customButton.playerCommand,
+                    serverCommand = customButton.serverCommand,
+                )
+            }
+        }
+
     val recipeButtons = config.layout.recipes.let { c ->
         val buttons = List(c.width * c.height) { i ->
             getNewButton(
@@ -110,9 +133,11 @@ class FastCraftGuiView(
         private val recipeButtonFactory: RecipeButtonView.Factory,
         private val craftAmountButtonFactory: CraftAmountButtonView.Factory,
         private val refreshButtonFactory: RefreshButtonView.Factory,
+        private val customButtonViewFactory: CustomButtonView.Factory,
         private val fcTextFactory: FcText.Factory,
         private val fastCraftConfig: FastCraftConfig,
         private val fcPlayerOperations: FcPlayer.Operations,
+        private val fcServer: FcServer,
     ) {
         fun create(player: FcPlayer): FastCraftGuiView {
             return FastCraftGuiView(
@@ -123,10 +148,28 @@ class FastCraftGuiView(
                 recipeButtonFactory = recipeButtonFactory,
                 craftAmountButtonFactory = craftAmountButtonFactory,
                 refreshButtonFactory = refreshButtonFactory,
+                customButtonViewFactory = customButtonViewFactory,
                 fcTextFactory = fcTextFactory,
                 config = fastCraftConfig,
                 fcPlayerOperations = fcPlayerOperations,
+                fcServer = fcServer,
             )
+        }
+    }
+
+    private inner class CustomButtonListener(
+        val customButton: FastCraftConfig.Layout.CustomButton,
+    ) : FcGuiButton.Listener {
+        override fun onClick(gui: FcGui<*>, button: FcGuiButton, click: FcGuiClick) {
+            if (click is FcGuiClick.Primary && click.modifiers.isEmpty()) {
+                customButton.playerCommand
+                    ?.substitute(mapOf("player" to gui.player.username))
+                    ?.let { gui.player.executeCommand(it) }
+
+                customButton.serverCommand
+                    ?.substitute(mapOf("player" to gui.player.username))
+                    ?.let { fcServer.executeCommand(it) }
+            }
         }
     }
 }

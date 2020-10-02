@@ -15,4 +15,8 @@ class BukkitFcServer_1_7 @Inject constructor(
             .find(server.version)
             ?.run { groupValues[1] }
             ?: "unknown".also { fcLogger.error("Unable to determine Minecraft version from '${server.version}'. Defaulting to 'unknown'") }
+
+    override fun executeCommand(command: String) {
+        server.dispatchCommand(server.consoleSender, command)
+    }
 }

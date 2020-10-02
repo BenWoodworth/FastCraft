@@ -102,6 +102,10 @@ object BukkitFcPlayer_1_7 {
                 pitch.toFloat(),
             )
         }
+
+        override fun FcPlayer.executeCommand(command: String) {
+            player.performCommand(command)
+        }
     }
 
     @Singleton

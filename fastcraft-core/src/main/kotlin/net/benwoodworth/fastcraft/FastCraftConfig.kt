@@ -128,7 +128,7 @@ class FastCraftConfig @Inject constructor(
                 get() = this@Layout.node["buttons"]
 
             val craftingGrid = Button(
-                key = "crafting-grid",
+                node = node["crafting-grid"],
                 enable = true,
                 item = fcItemStackFactory.create(fcItemFactory.craftingTable),
                 row = 0,
@@ -136,7 +136,7 @@ class FastCraftConfig @Inject constructor(
             )
 
             val craftAmount = Button(
-                key = "craft-amount",
+                node = node["craft-amount"],
                 enable = true,
                 item = fcItemStackFactory.create(fcItemFactory.anvil),
                 row = 1,
@@ -144,7 +144,7 @@ class FastCraftConfig @Inject constructor(
             )
 
             val refresh = Button(
-                key = "refresh",
+                node = node["refresh"],
                 enable = true,
                 item = fcItemStackFactory.create(fcItemFactory.netherStar),
                 row = 2,
@@ -152,38 +152,12 @@ class FastCraftConfig @Inject constructor(
             )
 
             val page = Button(
-                key = "page",
+                node = node["page"],
                 enable = true,
                 item = fcItemStackFactory.create(fcItemFactory.ironSword),
                 row = 5,
                 column = 8,
             )
-
-            inner class Button(
-                private val key: String,
-                enable: Boolean,
-                item: FcItemStack,
-                row: Int,
-                column: Int,
-            ) : EnableItem(
-                enable = enable,
-                item = item,
-            ) {
-                override val node: FcConfigNode
-                    get() = this@Buttons.node[key]
-
-                var row: Int = row
-                    private set
-
-                var column: Int = column
-                    private set
-
-                override fun load() {
-                    super.load()
-                    node["row"].loadInt(::row, 0, this@Layout.height - 1)
-                    node["column"].loadInt(::column, 0, 8)
-                }
-            }
 
             fun load() {
                 craftingGrid.load()
@@ -193,22 +167,58 @@ class FastCraftConfig @Inject constructor(
             }
         }
 
-        val background = Background()
+        val customButtons = CustomButtons()
 
-        inner class Background : EnableItem(
-            enable = false,
-            item = fcItemStackFactory.create(fcItemFactory.lightGrayStainedGlassPane),
-        ) {
-            override val node: FcConfigNode
-                get() = this@Layout.node["background"]
+        inner class CustomButtons {
+            private val node: FcConfigNode
+                get() = this@Layout.node["custom-buttons"]
+
+            var buttons: Set<CustomButton> = emptySet()
+                private set
+
+            fun load() {
+                buttons = node.getChildKeys()
+                    .map {
+                        CustomButton(
+                            node = node[it],
+                            enable = false,
+                            item = fcItemStackFactory.create(fcItemFactory.air),
+                            row = 0,
+                            column = 0,
+                        )
+                    }
+                    .let {
+                        it.takeUnless { it.isEmpty() } ?: listOf(
+                            CustomButton(
+                                node = node["example"],
+                                enable = false,
+                                item = fcItemStackFactory.create(fcItemFactory.air),
+                                row = 0,
+                                column = 0,
+                                serverCommand = "say \$player pressed a button"
+                            )
+                        )
+                    }
+                    .onEach { it.load() }
+                    .toSet()
+
+                if (buttons.isEmpty()) {
+
+                }
+            }
         }
 
-        abstract inner class EnableItem(
+        val background = EnableItem(
+            node = this@Layout.node["background"],
+            enable = false,
+            item = fcItemStackFactory.create(fcItemFactory.lightGrayStainedGlassPane),
+        )
+
+        open inner class EnableItem(
+            protected val node: FcConfigNode,
             enable: Boolean,
             item: FcItemStack,
         ) {
-            protected abstract val node: FcConfigNode
-
             var enable: Boolean = enable
                 private set
 
@@ -223,10 +233,63 @@ class FastCraftConfig @Inject constructor(
             }
         }
 
+        open inner class Button(
+            node: FcConfigNode,
+            enable: Boolean,
+            item: FcItemStack,
+            row: Int,
+            column: Int,
+        ) : EnableItem(
+            node = node,
+            enable = enable,
+            item = item,
+        ) {
+            var row: Int = row
+                private set
+
+            var column: Int = column
+                private set
+
+            override fun load() {
+                super.load()
+                node["row"].loadInt(::row, 0, this@Layout.height - 1)
+                node["column"].loadInt(::column, 0, 8)
+            }
+        }
+
+        inner class CustomButton(
+            node: FcConfigNode,
+            enable: Boolean,
+            item: FcItemStack,
+            row: Int,
+            column: Int,
+            playerCommand: String? = null,
+            serverCommand: String? = null,
+        ) : Button(
+            node = node,
+            enable = enable,
+            item = item,
+            row = row,
+            column = column,
+        ) {
+            var playerCommand: String? = playerCommand
+                private set
+
+            var serverCommand: String? = serverCommand
+                private set
+
+            override fun load() {
+                super.load()
+                node["player-command"].loadString(::playerCommand, playerCommand)
+                node["server-command"].loadString(::serverCommand, serverCommand)
+            }
+        }
+
         fun load() {
             node["height"].loadInt(::height, 1, 6)
             recipes.load()
             buttons.load()
+            customButtons.load()
             background.load()
         }
     }
@@ -332,6 +395,16 @@ class FastCraftConfig @Inject constructor(
     ) {
         when (val newValue = getBoolean()) {
             null -> property.set(modify(default))
+            else -> property.set(newValue)
+        }
+    }
+
+    private fun FcConfigNode.loadString(
+        property: KMutableProperty0<String?>,
+        default: String? = property.get(),
+    ) {
+        when (val newValue = getString()) {
+            null -> if (default != null) property.set(modify(default))
             else -> property.set(newValue)
         }
     }
