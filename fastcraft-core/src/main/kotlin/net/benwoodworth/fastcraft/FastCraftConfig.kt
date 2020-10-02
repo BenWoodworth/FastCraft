@@ -280,9 +280,11 @@ class FastCraftConfig @Inject constructor(
                 private set
 
             var playerCommand: String? = playerCommand
+                get() = field?.takeUnless { it.isBlank() }
                 private set
 
             var serverCommand: String? = serverCommand
+                get() = field?.takeUnless { it.isBlank() }
                 private set
 
             override fun load() {
