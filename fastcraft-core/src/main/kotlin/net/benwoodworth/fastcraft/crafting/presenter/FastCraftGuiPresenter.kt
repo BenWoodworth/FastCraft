@@ -7,6 +7,7 @@ import net.benwoodworth.fastcraft.crafting.view.buttons.*
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.server.FcServer
+import net.benwoodworth.fastcraft.util.substitute
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlin.math.ceil
@@ -199,8 +200,10 @@ class FastCraftGuiPresenter(
 
     private inner class CustomButtonListener : CustomButtonView.Listener {
         override fun onClick(playerCommand: String?, serverCommand: String?) {
-            playerCommand?.let { model.player.executeCommand(it) }
-            serverCommand?.let { fcServer.executeCommand(it) }
+            val sub = mapOf("player" to model.player.username)
+
+            playerCommand?.let { model.player.executeCommand(it.substitute(sub)) }
+            serverCommand?.let { fcServer.executeCommand(it.substitute(sub)) }
         }
     }
 
