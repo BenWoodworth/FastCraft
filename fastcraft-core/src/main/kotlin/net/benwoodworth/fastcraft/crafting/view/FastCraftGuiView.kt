@@ -5,11 +5,9 @@ import net.benwoodworth.fastcraft.Strings
 import net.benwoodworth.fastcraft.crafting.view.buttons.*
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
-import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.server.FcServer
 import net.benwoodworth.fastcraft.platform.text.FcText
-import net.benwoodworth.fastcraft.util.substitute
 import javax.inject.Inject
 
 class FastCraftGuiView(
@@ -88,7 +86,6 @@ class FastCraftGuiView(
                     getNewButton(column, row)
                         ?.apply {
                             copyItem(customButton.item)
-                            listener = CustomButtonListener(customButton)
                         }
                         ?.let { newButton ->
                             customButtonViewFactory.create(
@@ -156,18 +153,6 @@ class FastCraftGuiView(
                 fcPlayerOperations = fcPlayerOperations,
                 fcServer = fcServer,
             )
-        }
-    }
-
-    private inner class CustomButtonListener(
-        val customButton: FastCraftConfig.Layout.CustomButton,
-    ) : FcGuiButton.Listener {
-        override fun onClick(gui: FcGui<*>, button: FcGuiButton, click: FcGuiClick) {
-            if (click is FcGuiClick.Primary && click.modifiers.isEmpty()) {
-                customButton.command
-                    ?.substitute(mapOf("player" to gui.player.username))
-                    ?.let { fcServer.executeCommand(it) }
-            }
         }
     }
 }
