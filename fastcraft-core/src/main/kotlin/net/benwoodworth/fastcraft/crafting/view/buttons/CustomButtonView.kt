@@ -32,10 +32,12 @@ class CustomButtonView(
 
     private inner class ButtonListener : FcGuiButton.Listener {
         override fun onClick(gui: FcGui<*>, button: FcGuiButton, click: FcGuiClick) {
-            listener.onClick(command)
+            if (click is FcGuiClick.Primary && click.modifiers.isEmpty()) {
+                listener.onClick(command)
 
-            if (command != null) {
-                gui.player.playSound(fcSoundFactory.uiButtonClick, Config.buttonVolume)
+                if (command != null) {
+                    gui.player.playSound(fcSoundFactory.uiButtonClick, Config.buttonVolume)
+                }
             }
         }
     }
