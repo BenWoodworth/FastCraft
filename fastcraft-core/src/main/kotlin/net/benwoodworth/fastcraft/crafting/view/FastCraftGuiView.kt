@@ -93,8 +93,7 @@ class FastCraftGuiView(
                         ?.let { newButton ->
                             customButtonViewFactory.create(
                                 button = newButton,
-                                playerCommand = customButton.playerCommand,
-                                serverCommand = customButton.serverCommand,
+                                command = customButton.command,
                             )
                         }
                 }
@@ -165,11 +164,7 @@ class FastCraftGuiView(
     ) : FcGuiButton.Listener {
         override fun onClick(gui: FcGui<*>, button: FcGuiButton, click: FcGuiClick) {
             if (click is FcGuiClick.Primary && click.modifiers.isEmpty()) {
-                customButton.playerCommand
-                    ?.substitute(mapOf("player" to gui.player.username))
-                    ?.let { gui.player.executeCommand(it) }
-
-                customButton.serverCommand
+                customButton.command
                     ?.substitute(mapOf("player" to gui.player.username))
                     ?.let { fcServer.executeCommand(it) }
             }

@@ -199,11 +199,9 @@ class FastCraftGuiPresenter(
     }
 
     private inner class CustomButtonListener : CustomButtonView.Listener {
-        override fun onClick(playerCommand: String?, serverCommand: String?) {
+        override fun onClick(command: String?) {
             val sub = mapOf("player" to model.player.username)
-
-            playerCommand?.let { model.player.executeCommand(it.substitute(sub)) }
-            serverCommand?.let { fcServer.executeCommand(it.substitute(sub)) }
+            command?.let { fcServer.executeCommand(it.substitute(sub)) }
         }
     }
 

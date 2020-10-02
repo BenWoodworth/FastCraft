@@ -10,8 +10,7 @@ import javax.inject.Inject
 
 class CustomButtonView(
     private val button: FcGuiButton,
-    private val playerCommand: String?,
-    private val serverCommand: String?,
+    private val command: String?,
     private val fcSoundFactory: FcSound.Factory,
     fcPlayerOperations: FcPlayer.Operations,
 ) : FcPlayer.Operations by fcPlayerOperations {
@@ -28,14 +27,14 @@ class CustomButtonView(
     interface Listener {
         object Default : Listener
 
-        fun onClick(playerCommand: String?, serverCommand: String?) {}
+        fun onClick(command: String?) {}
     }
 
     private inner class ButtonListener : FcGuiButton.Listener {
         override fun onClick(gui: FcGui<*>, button: FcGuiButton, click: FcGuiClick) {
-            listener.onClick(playerCommand, serverCommand)
+            listener.onClick(command)
 
-            if (playerCommand != null || serverCommand != null) {
+            if (command != null) {
                 gui.player.playSound(fcSoundFactory.uiButtonClick, Config.buttonVolume)
             }
         }
@@ -47,13 +46,11 @@ class CustomButtonView(
     ) {
         fun create(
             button: FcGuiButton,
-            playerCommand: String?,
-            serverCommand: String?,
+            command: String?,
         ): CustomButtonView {
             return CustomButtonView(
                 button = button,
-                playerCommand = playerCommand,
-                serverCommand = serverCommand,
+                command = command,
                 fcSoundFactory = fcSoundFactory,
                 fcPlayerOperations = fcPlayerOperations,
             )

@@ -195,7 +195,7 @@ class FastCraftConfig @Inject constructor(
                                 item = fcItemStackFactory.create(fcItemFactory.stoneButton),
                                 row = 0,
                                 column = 0,
-                                serverCommand = "say \$player pressed a custom button"
+                                command = "say \$player pressed a custom button"
                             )
                         )
                     }
@@ -264,8 +264,7 @@ class FastCraftConfig @Inject constructor(
             column: Int,
             width: Int = 1,
             height: Int = 1,
-            playerCommand: String? = null,
-            serverCommand: String? = null,
+            command: String? = null,
         ) : Button(
             getNode = getNode,
             enable = enable,
@@ -279,11 +278,7 @@ class FastCraftConfig @Inject constructor(
             var height: Int = height
                 private set
 
-            var playerCommand: String? = playerCommand
-                get() = field?.takeUnless { it.isBlank() }
-                private set
-
-            var serverCommand: String? = serverCommand
+            var command: String? = command
                 get() = field?.takeUnless { it.isBlank() }
                 private set
 
@@ -291,8 +286,7 @@ class FastCraftConfig @Inject constructor(
                 super.load()
                 width = node["width"].getInt() ?: width
                 height = node["height"].getInt() ?: height
-                node["player-command"].loadString(::playerCommand, playerCommand)
-                node["server-command"].loadString(::serverCommand, serverCommand)
+                node["command"].loadString(::command, command)
             }
         }
 
