@@ -171,7 +171,7 @@ class FastCraftConfig @Inject constructor(
 
         inner class CustomButtons {
             private val node: FcConfigNode
-                get() = this@Layout.node["custom-buttons"]
+                get() = this@Layout.node["items"]
 
             var buttons: Set<CustomButton> = emptySet()
                 private set
@@ -190,11 +190,11 @@ class FastCraftConfig @Inject constructor(
                     .let {
                         it.takeUnless { it.isEmpty() } ?: listOf(
                             CustomButton(
-                                getNode = { node["custom-button-name"] },
+                                getNode = { node["custom-button-example"] },
                                 enable = false,
                                 item = fcItemStackFactory.create(fcItemFactory.stoneButton),
-                                row = 0,
-                                column = 0,
+                                row = 3,
+                                column = 8,
                                 command = "say \$player pressed a custom button"
                             )
                         )
