@@ -91,7 +91,6 @@ class FastCraftGuiView(
             newButton?.let {
                 customButtonViewFactory.create(
                     button = newButton,
-                    locale = player.locale,
                     playerCommand = customButton.playerCommand,
                     serverCommand = customButton.serverCommand,
                 )
