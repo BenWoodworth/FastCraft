@@ -128,7 +128,7 @@ class FastCraftConfig @Inject constructor(
                 get() = this@Layout.node["buttons"]
 
             val craftingGrid = Button(
-                node = node["crafting-grid"],
+                getNode = { node["crafting-grid"] },
                 enable = true,
                 item = fcItemStackFactory.create(fcItemFactory.craftingTable),
                 row = 0,
@@ -136,7 +136,7 @@ class FastCraftConfig @Inject constructor(
             )
 
             val craftAmount = Button(
-                node = node["craft-amount"],
+                getNode = { node["craft-amount"] },
                 enable = true,
                 item = fcItemStackFactory.create(fcItemFactory.anvil),
                 row = 1,
@@ -144,7 +144,7 @@ class FastCraftConfig @Inject constructor(
             )
 
             val refresh = Button(
-                node = node["refresh"],
+                getNode = { node["refresh"] },
                 enable = true,
                 item = fcItemStackFactory.create(fcItemFactory.netherStar),
                 row = 2,
@@ -152,7 +152,7 @@ class FastCraftConfig @Inject constructor(
             )
 
             val page = Button(
-                node = node["page"],
+                getNode = { node["page"] },
                 enable = true,
                 item = fcItemStackFactory.create(fcItemFactory.ironSword),
                 row = 5,
@@ -180,7 +180,7 @@ class FastCraftConfig @Inject constructor(
                 buttons = node.getChildKeys()
                     .map {
                         CustomButton(
-                            node = node[it],
+                            getNode = { node[it] },
                             enable = false,
                             item = fcItemStackFactory.create(fcItemFactory.air),
                             row = 0,
@@ -190,7 +190,7 @@ class FastCraftConfig @Inject constructor(
                     .let {
                         it.takeUnless { it.isEmpty() } ?: listOf(
                             CustomButton(
-                                node = node["example"],
+                                getNode = { node["custom-button-name"] },
                                 enable = false,
                                 item = fcItemStackFactory.create(fcItemFactory.air),
                                 row = 0,
@@ -205,16 +205,19 @@ class FastCraftConfig @Inject constructor(
         }
 
         val background = EnableItem(
-            node = this@Layout.node["background"],
+            getNode = { this@Layout.node["background"] },
             enable = false,
             item = fcItemStackFactory.create(fcItemFactory.lightGrayStainedGlassPane),
         )
 
         open inner class EnableItem(
-            protected val node: FcConfigNode,
+            private val getNode: () -> FcConfigNode,
             enable: Boolean,
             item: FcItemStack,
         ) {
+            val node: FcConfigNode
+                get() = getNode()
+
             var enable: Boolean = enable
                 private set
 
@@ -230,13 +233,13 @@ class FastCraftConfig @Inject constructor(
         }
 
         open inner class Button(
-            node: FcConfigNode,
+            getNode: () -> FcConfigNode,
             enable: Boolean,
             item: FcItemStack,
             row: Int,
             column: Int,
         ) : EnableItem(
-            node = node,
+            getNode = getNode,
             enable = enable,
             item = item,
         ) {
@@ -254,7 +257,7 @@ class FastCraftConfig @Inject constructor(
         }
 
         inner class CustomButton(
-            node: FcConfigNode,
+            getNode: () -> FcConfigNode,
             enable: Boolean,
             item: FcItemStack,
             row: Int,
@@ -264,7 +267,7 @@ class FastCraftConfig @Inject constructor(
             playerCommand: String? = null,
             serverCommand: String? = null,
         ) : Button(
-            node = node,
+            getNode = getNode,
             enable = enable,
             item = item,
             row = row,
