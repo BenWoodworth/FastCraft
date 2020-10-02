@@ -79,6 +79,9 @@ object BukkitFcItem_1_7 {
         override val netherStar: FcItem
             get() = fromMaterial(Material.NETHER_STAR)
 
+        override val stoneButton: FcItem
+            get() = fromMaterial(Material.STONE_BUTTON)
+
         @Suppress("DEPRECATION")
         override val lightGrayStainedGlassPane: FcItem
             get() = fromMaterialData(MaterialData(Material.STAINED_GLASS_PANE, 8))

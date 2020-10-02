@@ -192,10 +192,10 @@ class FastCraftConfig @Inject constructor(
                             CustomButton(
                                 getNode = { node["custom-button-name"] },
                                 enable = false,
-                                item = fcItemStackFactory.create(fcItemFactory.air),
+                                item = fcItemStackFactory.create(fcItemFactory.stoneButton),
                                 row = 0,
                                 column = 0,
-                                serverCommand = "say \$player pressed a button"
+                                serverCommand = "say \$player pressed a custom button"
                             )
                         )
                     }

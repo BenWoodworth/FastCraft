@@ -17,6 +17,7 @@ inline class FcItem(val value: Any) {
         val anvil: FcItem
         val netherStar: FcItem
         val lightGrayStainedGlassPane: FcItem
+        val stoneButton: FcItem
 
         fun parseOrNull(id: String): FcItem?
     }
