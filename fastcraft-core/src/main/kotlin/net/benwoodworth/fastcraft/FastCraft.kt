@@ -21,7 +21,7 @@ class FastCraft @Inject internal constructor(
 ) : FcPlayer.Operations by fcPlayerOperations {
     init {
         @Suppress("DEPRECATION")
-        FastCraftApi.instance = api
+        FastCraftApi.api = api
 
         Strings.load()
         fcPlayerEvents.onOpenCraftingTableNaturally += ::onPlayerOpenWorkbench
