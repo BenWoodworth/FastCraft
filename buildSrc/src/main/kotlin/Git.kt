@@ -3,6 +3,14 @@ import java.util.concurrent.TimeUnit
 object Git {
 
     fun describe(): DescribeResult {
+        try {
+            ProcessBuilder()
+                .command("git", "fetch")
+                .start()
+        } catch (exception: Exception) {
+            throw DescribeException("Unable to run command 'git toggle'", exception)
+        }
+
         val process = try {
             ProcessBuilder()
                 .command("git", "describe", "--tags", "--long", "--abbrev=100", "--dirty")
