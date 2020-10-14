@@ -26,7 +26,7 @@ class FastCraftCommand @Inject constructor(
 
     override val usage = "/fastcraft (set|craft|reload) ..."
     private val usageSet = "/fastcraft set (enabled) <option> [<player>]"
-    private val usageSetEnabled = "/fastcraft set enabled (true|false) [<player>]"
+    private val usageSetEnabled = "/fastcraft set enabled (true|false|toggle) [<player>]"
     private val usageCraft = "/fastcraft craft [fastcraft|grid|default] [<player>]"
     private val usageReload = "/fastcraft reload"
 
@@ -68,12 +68,17 @@ class FastCraftCommand @Inject constructor(
                 "enabled" -> when (val enabled = args.getOrNull(2)?.toLowerCase()) {
                     "true",
                     "false",
+                    "toggle",
                     -> when (val player = args.getOrNull(3)) {
-                        null -> {
-                            fcSetEnabled(source, enabled.toBoolean())
+                        null -> when (enabled) {
+                            "toggle" -> fcSetEnabled(source, toggle = true)
+                            else -> fcSetEnabled(source, enabled = enabled.toBoolean())
                         }
                         else -> when (args.getOrNull(4)) {
-                            null -> fcSetEnabledAdmin(source, enabled.toBoolean(), player)
+                            null -> when (enabled) {
+                                "toggle" -> fcSetEnabledAdmin(source, player, toggle = true)
+                                else -> fcSetEnabledAdmin(source, player, enabled = enabled.toBoolean())
+                            }
                             else -> source.sendUsageMessage(usageSetEnabled)
                         }
                     }
@@ -164,7 +169,7 @@ class FastCraftCommand @Inject constructor(
         }
     }
 
-    fun fcSetEnabled(source: FcCommandSource, enabled: Boolean) {
+    fun fcSetEnabled(source: FcCommandSource, enabled: Boolean = false, toggle: Boolean = false) {
         val targetPlayer = source.player
 
         if (targetPlayer == null) {
@@ -177,9 +182,15 @@ class FastCraftCommand @Inject constructor(
             return
         }
 
-        fastCraftPreferences.setEnabled(targetPlayer.uuid, enabled)
+        val newEnabled = if (toggle) {
+            !fastCraftPreferences.getEnabledOrDefault(targetPlayer.uuid)
+        } else {
+            enabled
+        }
+
+        fastCraftPreferences.setEnabled(targetPlayer.uuid, newEnabled)
         source.sendMessage(fcTextFactory.createLegacy(
-            if (enabled) {
+            if (newEnabled) {
                 Strings.commandSetEnabledTrue(source.locale)
             } else {
                 Strings.commandSetEnabledFalse(source.locale)
@@ -187,13 +198,13 @@ class FastCraftCommand @Inject constructor(
         ))
     }
 
-    fun fcSetEnabledAdmin(source: FcCommandSource, enabled: Boolean, player: String) {
+    fun fcSetEnabledAdmin(source: FcCommandSource, player: String, enabled: Boolean = false, toggle: Boolean = false) {
         val targetPlayer = fcPlayerProvider
             .getOnlinePlayers()
             .firstOrNull { it.username.equals(player, true) }
 
         if (targetPlayer != null && targetPlayer == source.player) {
-            fcSetEnabled(source, enabled)
+            fcSetEnabled(source, enabled, toggle)
             return
         }
 
@@ -207,9 +218,15 @@ class FastCraftCommand @Inject constructor(
             return
         }
 
-        fastCraftPreferences.setEnabled(targetPlayer.uuid, enabled)
+        val newEnabled = if (toggle) {
+            !fastCraftPreferences.getEnabledOrDefault(targetPlayer.uuid)
+        } else {
+            enabled
+        }
+
+        fastCraftPreferences.setEnabled(targetPlayer.uuid, newEnabled)
         source.sendMessage(fcTextFactory.createLegacy(
-            if (enabled) {
+            if (newEnabled) {
                 Strings.commandSetEnabledTruePlayer(source.locale, targetPlayer.username)
             } else {
                 Strings.commandSetEnabledFalsePlayer(source.locale, targetPlayer.username)
