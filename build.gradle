@@ -78,7 +78,7 @@ jar {
 }
 
 shadowJar {
-    archiveFileName = "FastCraft.jar"
+    archiveClassifier.set(null)
 
     dependencies {
         subprojects.each {
