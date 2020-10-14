@@ -11,7 +11,7 @@ interface FastCraftApi {
          * Should only be accessed after FastCraft is enabled.
          * @since 3.2.9
          */
-        var instance: FastCraftApi? = null
+        lateinit var instance: FastCraftApi
             @JvmStatic get
             @Deprecated("Should only be set by FastCraft") set
     }
