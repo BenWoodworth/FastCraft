@@ -1,7 +1,7 @@
 package net.benwoodworth.fastcraft
 
+import net.benwoodworth.fastcraft.api.FastCraftPreferences
 import net.benwoodworth.fastcraft.crafting.FastCraftGui
-import net.benwoodworth.fastcraft.data.PlayerSettings
 import net.benwoodworth.fastcraft.platform.command.FcCommand
 import net.benwoodworth.fastcraft.platform.command.FcCommandRegistry
 import net.benwoodworth.fastcraft.platform.command.FcCommandSource
@@ -14,7 +14,7 @@ class FastCraftCommand @Inject constructor(
     private val fcCommandRegistry: FcCommandRegistry,
     private val fcTextFactory: FcText.Factory,
     private val fcPlayerProvider: FcPlayer.Provider,
-    private val playerSettings: PlayerSettings,
+    private val fastCraftPreferences: FastCraftPreferences,
     private val fastCraftGuiFactory: FastCraftGui.Factory,
     private val permissions: Permissions,
     private val fastCraftConfig: FastCraftConfig,
@@ -177,7 +177,7 @@ class FastCraftCommand @Inject constructor(
             return
         }
 
-        playerSettings.setFastCraftEnabled(targetPlayer, enabled)
+        fastCraftPreferences.setEnabled(targetPlayer.uuid, enabled)
         source.sendMessage(fcTextFactory.createLegacy(
             if (enabled) {
                 Strings.commandSetEnabledTrue(source.locale)
@@ -207,7 +207,7 @@ class FastCraftCommand @Inject constructor(
             return
         }
 
-        playerSettings.setFastCraftEnabled(targetPlayer, enabled)
+        fastCraftPreferences.setEnabled(targetPlayer.uuid, enabled)
         source.sendMessage(fcTextFactory.createLegacy(
             if (enabled) {
                 Strings.commandSetEnabledTruePlayer(source.locale, targetPlayer.username)
@@ -227,7 +227,7 @@ class FastCraftCommand @Inject constructor(
 
         val hasFcPerm = source.hasPermission(permissions.FASTCRAFT_COMMAND_CRAFT_FASTCRAFT)
         val hasGridPerm = source.hasPermission(permissions.FASTCRAFT_COMMAND_CRAFT_GRID)
-        val prefersFc = playerSettings.getFastCraftEnabled(targetPlayer)
+        val prefersFc = fastCraftPreferences.getEnabledOrDefault(targetPlayer.uuid)
 
         val craftType = when (type) {
             "default" -> when (prefersFc) {
@@ -291,7 +291,7 @@ class FastCraftCommand @Inject constructor(
         }
 
         val craftType = when (type) {
-            "default" -> when (playerSettings.getFastCraftEnabled(targetPlayer)) {
+            "default" -> when (fastCraftPreferences.getEnabledOrDefault(targetPlayer.uuid)) {
                 true -> "fastcraft"
                 false -> "grid"
             }
