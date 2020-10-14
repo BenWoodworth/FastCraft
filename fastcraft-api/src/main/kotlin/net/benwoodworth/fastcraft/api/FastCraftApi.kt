@@ -1,7 +1,5 @@
 package net.benwoodworth.fastcraft.api
 
-import java.util.*
-
 /**
  * @since 3.2.9
  */
@@ -17,8 +15,8 @@ interface FastCraftApi {
     }
 
     /**
-     * Get a player's [FastCraftPreferences], which can be used to get/set preferences.
+     * Access to get/set Players' FastCraft preferences.
      * @since 3.2.9
      */
-    fun getPreferences(playerId: UUID): FastCraftPreferences
+    val preferences: FastCraftPreferences
 }

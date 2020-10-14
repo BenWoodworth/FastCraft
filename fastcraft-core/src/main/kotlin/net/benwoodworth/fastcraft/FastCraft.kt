@@ -1,7 +1,6 @@
 package net.benwoodworth.fastcraft
 
 import net.benwoodworth.fastcraft.api.FastCraftApi
-import net.benwoodworth.fastcraft.api.FastCraftApiImpl
 import net.benwoodworth.fastcraft.crafting.FastCraftGui
 import net.benwoodworth.fastcraft.data.PlayerSettings
 import net.benwoodworth.fastcraft.platform.player.FcOpenCraftingTableNaturallyEvent
@@ -17,7 +16,7 @@ class FastCraft @Inject internal constructor(
     private val permissions: Permissions,
     private val config: FastCraftConfig,
     fcPlayerOperations: FcPlayer.Operations,
-    api: FastCraftApiImpl,
+    api: FastCraftApi,
 ) : FcPlayer.Operations by fcPlayerOperations {
     init {
         @Suppress("DEPRECATION")

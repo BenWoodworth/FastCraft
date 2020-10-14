@@ -28,6 +28,7 @@ class PlayerSettings @Inject constructor(
 
         val ROW_FCENABLED_LOC = 16
         val ROW_FCENABLED_MASK = 0b11000000.toByte()
+        val ROW_FCENABLED_DEFAULT = 0b00000000.toByte()
         val ROW_FCENABLED_ENABLED = 0b01000000.toByte()
         val ROW_FCENABLED_DISABLED = 0b10000000.toByte()
     }
@@ -104,10 +105,10 @@ class PlayerSettings @Inject constructor(
     }
 
     fun getFastCraftEnabled(player: FcPlayer): Boolean {
-        return getFastCraftEnabled(player.uuid)
+        return getFastCraftEnabledOrNull(player.uuid) ?: config.playerDefaults.enabled
     }
 
-    fun getFastCraftEnabled(playerId: UUID): Boolean {
+    fun getFastCraftEnabledOrNull(playerId: UUID): Boolean? {
         val row = getPlayerRow(playerId)
         val bytes = ByteArray(1)
         file.readRow(row, bytes, ROW_FCENABLED_LOC)
@@ -115,16 +116,17 @@ class PlayerSettings @Inject constructor(
         return when (bytes[0] and ROW_FCENABLED_MASK) {
             ROW_FCENABLED_ENABLED -> true
             ROW_FCENABLED_DISABLED -> false
-            else -> config.playerDefaults.enabled
+            else -> null
         }
     }
 
-    fun setFastCraftEnabled(player: FcPlayer, enabled: Boolean) {
+    fun setFastCraftEnabled(player: FcPlayer, enabled: Boolean?) {
         setFastCraftEnabled(player.uuid, enabled)
     }
 
-    fun setFastCraftEnabled(playerId: UUID, enabled: Boolean) {
+    fun setFastCraftEnabled(playerId: UUID, enabled: Boolean?) {
         val pref = when (enabled) {
+            null -> ROW_FCENABLED_DEFAULT
             true -> ROW_FCENABLED_ENABLED
             false -> ROW_FCENABLED_DISABLED
         }

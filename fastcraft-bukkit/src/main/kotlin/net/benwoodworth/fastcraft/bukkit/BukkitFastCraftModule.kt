@@ -2,6 +2,11 @@ package net.benwoodworth.fastcraft.bukkit
 
 import dagger.Module
 import dagger.Provides
+import net.benwoodworth.fastcraft.api.FastCraftApi
+import net.benwoodworth.fastcraft.api.FastCraftPreferences
+import net.benwoodworth.fastcraft.bukkit.api.BukkitFastCraftApiImpl
+import net.benwoodworth.fastcraft.bukkit.api.BukkitFastCraftPreferences
+import net.benwoodworth.fastcraft.bukkit.api.BukkitFastCraftPreferencesImpl
 import net.benwoodworth.fastcraft.bukkit.command.*
 import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfig_1_7
 import net.benwoodworth.fastcraft.bukkit.gui.*
@@ -63,6 +68,21 @@ class BukkitFastCraftModule(
     @Provides
     fun provideServer(plugin: Plugin): Server {
         return plugin.server
+    }
+
+    @Provides
+    fun provideFastCraftApi(instance: BukkitFastCraftApiImpl): FastCraftApi {
+        return instance
+    }
+
+    @Provides
+    fun provideBukkitFastCraftPreferences(instance: BukkitFastCraftPreferencesImpl): BukkitFastCraftPreferences {
+        return instance
+    }
+
+    @Provides
+    fun provideFastCraftPreferences(instance: BukkitFastCraftPreferences): FastCraftPreferences {
+        return instance
     }
 
     @Provides
