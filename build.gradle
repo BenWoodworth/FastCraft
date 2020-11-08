@@ -79,6 +79,7 @@ jar {
 
 shadowJar {
     archiveClassifier.set(null)
+    archiveVersion.set(archiveVersion.get().replace('+', '-'))
 
     dependencies {
         subprojects.each {
