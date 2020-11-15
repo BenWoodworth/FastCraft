@@ -7,6 +7,7 @@ allprojects {
 dependencies {
     compileOnly 'org.bukkit:bukkit:1.8-R0.1-SNAPSHOT'
 
+    implementation project(":fastcraft-api:bukkit")
     subprojects.each {
         implementation it
     }
