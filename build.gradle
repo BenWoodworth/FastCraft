@@ -68,7 +68,7 @@ allprojects {
 }
 
 dependencies {
-    implementation project(':fastcraft-core')
+    implementation project(':fastcraft')
     implementation project(':fastcraft-bukkit')
 }
 
