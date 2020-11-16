@@ -68,8 +68,7 @@ allprojects {
 }
 
 dependencies {
-    implementation project(':fastcraft')
-    implementation project(':fastcraft:bukkit')
+    implementation project(":fastcraft-api")
 }
 
 jar {
@@ -78,6 +77,7 @@ jar {
 }
 
 shadowJar {
+    archiveBaseName.set("FastCraft")
     archiveClassifier.set(null)
     archiveVersion.set(archiveVersion.get().replace('+', '-'))
 
