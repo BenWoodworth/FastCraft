@@ -1,0 +1,2 @@
+PluginVersion.updateVersion()
+version = PluginVersion.version

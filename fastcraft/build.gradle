@@ -1,6 +1,3 @@
-PluginVersion.updateVersion()
-version = PluginVersion.version
-
 buildscript {
     repositories {
         jcenter()
@@ -71,16 +68,7 @@ dependencies {
     implementation project(":fastcraft-api")
 }
 
-jar {
-    enabled = false
-    dependsOn shadowJar
-}
-
 shadowJar {
-    archiveBaseName.set("FastCraft")
-    archiveClassifier.set(null)
-    archiveVersion.set(archiveVersion.get().replace('+', '-'))
-
     dependencies {
         subprojects.each {
             include dependency(it)
