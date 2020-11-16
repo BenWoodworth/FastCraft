@@ -1,2 +1,21 @@
 PluginVersion.updateVersion()
 version = PluginVersion.version
+
+task copyFastCraft(type: Copy) {
+    dependsOn ":fastcraft:shadowJar"
+    def jarVersionName = version.replace("+", "-")
+
+    from "fastcraft/build/libs/fastcraft-all.jar"
+    into "build"
+    rename("fastcraft-all.jar", "FastCraft-${jarVersionName}.jar")
+}
+
+task build {
+    group("build")
+    dependsOn copyFastCraft
+}
+
+task clean {
+    group("build")
+    delete "build"
+}
