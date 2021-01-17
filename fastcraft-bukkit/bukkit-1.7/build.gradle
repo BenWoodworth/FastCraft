@@ -1,8 +1,5 @@
 repositories {
-    maven {
-        url 'https://maven.sk89q.com/repo'
-        metadataSources { artifact() }
-    }
+    flatDir { dirs "libs" }
 }
 
 dependencies {
