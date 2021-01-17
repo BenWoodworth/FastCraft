@@ -96,7 +96,8 @@ class FastCraftGuiModel(
         removeItems(recipe.preparedRecipe.ingredients.values, recipe.multiplier)
 
         repeat(recipe.multiplier) {
-            player.giveItems(craftedItems, dropItems)
+            val itemsToGive = craftedItems.map { it.copy() }
+            player.giveItems(itemsToGive, dropItems)
         }
 
         val updatedRecipe = recipe.preparedRecipe.recipe.prepare(player, recipe.preparedRecipe.ingredients)
