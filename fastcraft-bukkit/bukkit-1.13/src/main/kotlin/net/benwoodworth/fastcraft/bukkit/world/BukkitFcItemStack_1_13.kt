@@ -6,14 +6,14 @@ import net.benwoodworth.fastcraft.platform.world.FcItemStack
 import javax.inject.Inject
 import javax.inject.Singleton
 
-class BukkitFcItemStack_1_13 {
+class FcItemStack_Bukkit_1_13 {
     @Singleton
     class Operations @Inject constructor(
         private val fcItemFactory: FcItem.Factory,
         fcTextFactory: FcText.Factory,
         fcItemOperations: FcItem.Operations,
         fcItemStackFactory: FcItemStack.Factory,
-    ) : BukkitFcItemStack_1_7.Operations(
+    ) : FcItemStack_Bukkit_1_7.Operations(
         fcItemFactory = fcItemFactory,
         fcTextFactory = fcTextFactory,
         fcItemOperations = fcItemOperations,

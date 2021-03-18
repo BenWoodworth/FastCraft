@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.bukkit.server
 import net.benwoodworth.fastcraft.platform.server.FcPermission
 import org.bukkit.permissions.Permission
 
-interface BukkitFcPermission : FcPermission {
+interface FcPermission_Bukkit : FcPermission {
     val permission: Permission
 
     interface Factory : FcPermission.Factory {
@@ -12,8 +12,8 @@ interface BukkitFcPermission : FcPermission {
 }
 
 val FcPermission.permission: Permission
-    get() = (this as BukkitFcPermission).permission
+    get() = (this as FcPermission_Bukkit).permission
 
 fun FcPermission.Factory.create(permission: Permission): FcPermission {
-    return (this as BukkitFcPermission.Factory).create(permission)
+    return (this as FcPermission_Bukkit.Factory).create(permission)
 }

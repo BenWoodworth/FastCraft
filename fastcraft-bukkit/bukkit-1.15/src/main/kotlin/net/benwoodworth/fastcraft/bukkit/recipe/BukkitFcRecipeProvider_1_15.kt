@@ -12,12 +12,12 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-open class BukkitFcRecipeProvider_1_15 @Inject constructor(
+open class FcRecipeProvider_Bukkit_1_15 @Inject constructor(
     plugin: Plugin,
     bukkitVersion: BukkitVersion,
     server: Server,
-    fcCraftingRecipeFactory: BukkitFcCraftingRecipe.Factory,
-) : BukkitFcRecipeProvider_1_13(
+    fcCraftingRecipeFactory: FcCraftingRecipe_Bukkit.Factory,
+) : FcRecipeProvider_Bukkit_1_13(
     plugin = plugin,
     bukkitVersion = bukkitVersion,
     server = server,

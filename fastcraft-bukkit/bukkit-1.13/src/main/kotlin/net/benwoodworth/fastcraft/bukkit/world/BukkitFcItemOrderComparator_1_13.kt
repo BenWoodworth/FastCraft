@@ -9,11 +9,11 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class BukkitFcItemOrderComparator_1_13 @Inject constructor(
+class FcItemOrderComparator_Bukkit_1_13 @Inject constructor(
     plugin: Plugin,
     bukkitVersion: BukkitVersion,
     fcItemOperations: FcItem.Operations,
-) : BukkitFcItemOrderComparator {
+) : FcItemOrderComparator_Bukkit {
     private val materialIndices: Map<Material, Int> = plugin
         .getResource(bukkitVersion.run { "bukkit/item-order/$major.$minor.txt" })!!
         .reader()

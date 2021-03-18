@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.command
 
-import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayer
+import net.benwoodworth.fastcraft.bukkit.player.FcPlayer_Bukkit
 import net.benwoodworth.fastcraft.bukkit.player.bukkit
 import net.benwoodworth.fastcraft.bukkit.player.getPlayer
 import net.benwoodworth.fastcraft.bukkit.server.permission
@@ -16,13 +16,13 @@ import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
-class BukkitFcCommandSource_1_7(
+class FcCommandSource_Bukkit_1_7(
     override val commandSender: CommandSender,
     override val player: FcPlayer?,
     private val fcTextConverter: FcTextConverter,
     fcPlayerOperations: FcPlayer.Operations,
-) : BukkitFcCommandSource,
-    BukkitFcPlayer.Operations by fcPlayerOperations.bukkit {
+) : FcCommandSource_Bukkit,
+    FcPlayer_Bukkit.Operations by fcPlayerOperations.bukkit {
 
     override val isConsole: Boolean
         get() = commandSender is ConsoleCommandSender
@@ -47,9 +47,9 @@ class BukkitFcCommandSource_1_7(
         private val fcPlayerProvider: FcPlayer.Provider,
         private val fcTextConverter: FcTextConverter,
         private val fcPlayerOperations: FcPlayer.Operations,
-    ) : BukkitFcCommandSource.Factory {
+    ) : FcCommandSource_Bukkit.Factory {
         override fun create(commandSender: CommandSender): FcCommandSource {
-            return BukkitFcCommandSource_1_7(
+            return FcCommandSource_Bukkit_1_7(
                 commandSender = commandSender,
                 player = when (commandSender) {
                     is Player -> fcPlayerProvider.getPlayer(commandSender)

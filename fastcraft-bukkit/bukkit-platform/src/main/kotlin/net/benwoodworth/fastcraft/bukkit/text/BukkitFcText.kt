@@ -4,10 +4,10 @@ import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
 import java.util.*
 
-sealed class BukkitFcText : FcText {
+sealed class FcText_Bukkit : FcText {
     class Legacy(
         val legacyText: String,
-    ) : BukkitFcText() {
+    ) : FcText_Bukkit() {
         override fun equals(other: Any?): Boolean {
             return other is Legacy && legacyText == other.legacyText
         }
@@ -17,7 +17,7 @@ sealed class BukkitFcText : FcText {
         }
     }
 
-    sealed class Component : BukkitFcText() {
+    sealed class Component : FcText_Bukkit() {
         abstract val color: FcTextColor?
         abstract val bold: Boolean?
         abstract val italic: Boolean?
@@ -121,7 +121,7 @@ fun FcText.Factory.createTranslate(
     obfuscate: Boolean? = null,
     extra: List<FcText> = emptyList(),
 ): FcText {
-    return (this as BukkitFcText.Factory).createTranslate(
+    return (this as FcText_Bukkit.Factory).createTranslate(
         translate, color, bold, italic, underline, strikethrough, obfuscate, extra
     )
 }

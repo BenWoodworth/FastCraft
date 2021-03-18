@@ -12,7 +12,7 @@ import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
-open class BukkitFcGuiButton_1_8(
+open class FcGuiButton_Bukkit_1_8(
     inventory: Inventory,
     slotIndex: Int,
     locale: Locale,
@@ -20,7 +20,7 @@ open class BukkitFcGuiButton_1_8(
     fcTextConverter: FcTextConverter,
     fcItemOperations: FcItem.Operations,
     fcItemStackOperations: FcItemStack.Operations,
-) : BukkitFcGuiButton_1_7(
+) : FcGuiButton_Bukkit_1_7(
     inventory = inventory,
     slotIndex = slotIndex,
     locale = locale,
@@ -50,9 +50,9 @@ open class BukkitFcGuiButton_1_8(
         private val fcTextConverter: FcTextConverter,
         private val fcItemOperations: FcItem.Operations,
         private val fcItemStackOperations: FcItemStack.Operations,
-    ) : BukkitFcGuiButton.Factory {
+    ) : FcGuiButton_Bukkit.Factory {
         override fun create(inventory: Inventory, slotIndex: Int, locale: Locale): FcGuiButton {
-            return BukkitFcGuiButton_1_8(
+            return FcGuiButton_Bukkit_1_8(
                 inventory = inventory,
                 slotIndex = slotIndex,
                 locale = locale,

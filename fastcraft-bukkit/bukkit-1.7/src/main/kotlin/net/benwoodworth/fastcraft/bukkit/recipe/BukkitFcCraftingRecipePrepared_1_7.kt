@@ -21,7 +21,7 @@ import org.bukkit.inventory.ItemStack
 import javax.inject.Inject
 import javax.inject.Singleton
 
-open class BukkitFcCraftingRecipePrepared_1_7(
+open class FcCraftingRecipePrepared_Bukkit_1_7(
     protected val player: Player,
     override val recipe: FcCraftingRecipe,
     override val ingredients: Map<FcIngredient, FcItemStack>,
@@ -30,7 +30,7 @@ open class BukkitFcCraftingRecipePrepared_1_7(
     private val preparedCraftingView: InventoryView,
     private val fcItemStackFactory: FcItemStack.Factory,
     private val server: Server,
-) : BukkitFcCraftingRecipePrepared {
+) : FcCraftingRecipePrepared_Bukkit {
     private var craftCalled = false
 
     override fun craft(): CancellableResult<List<FcItemStack>> {
@@ -111,7 +111,7 @@ open class BukkitFcCraftingRecipePrepared_1_7(
     class Factory @Inject constructor(
         private val fcItemStackFactory: FcItemStack.Factory,
         private val server: Server,
-    ) : BukkitFcCraftingRecipePrepared.Factory {
+    ) : FcCraftingRecipePrepared_Bukkit.Factory {
         override fun create(
             player: Player,
             recipe: FcCraftingRecipe,
@@ -120,7 +120,7 @@ open class BukkitFcCraftingRecipePrepared_1_7(
             resultsPreview: List<FcItemStack>,
             preparedCraftingView: InventoryView,
         ): FcCraftingRecipePrepared {
-            return BukkitFcCraftingRecipePrepared_1_7(
+            return FcCraftingRecipePrepared_Bukkit_1_7(
                 player = player,
                 recipe = recipe,
                 ingredients = ingredients,

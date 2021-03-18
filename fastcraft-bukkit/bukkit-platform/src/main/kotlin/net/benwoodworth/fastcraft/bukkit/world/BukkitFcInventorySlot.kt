@@ -8,13 +8,13 @@ import org.bukkit.inventory.ItemStack
 import java.util.*
 import javax.inject.Inject
 
-class BukkitFcInventorySlot(
+class FcInventorySlot_Bukkit(
     val inventory: Inventory,
     val slotIndex: Int,
     private val fcItemStackFactory: FcItemStack.Factory,
     fcItemStackOperations: FcItemStack.Operations,
 ) : FcInventorySlot,
-    BukkitFcItemStack.Operations by fcItemStackOperations.bukkit {
+    FcItemStack_Bukkit.Operations by fcItemStackOperations.bukkit {
 
     override var itemStack: FcItemStack?
         get() = inventory.getItem(slotIndex).fromInventoryItem()
@@ -48,8 +48,8 @@ class BukkitFcInventorySlot(
         private val fcItemStackFactory: FcItemStack.Factory,
         private val fcItemStackOperations: FcItemStack.Operations,
     ) {
-        fun create(inventory: Inventory, slotIndex: Int): BukkitFcInventorySlot {
-            return BukkitFcInventorySlot(
+        fun create(inventory: Inventory, slotIndex: Int): FcInventorySlot_Bukkit {
+            return FcInventorySlot_Bukkit(
                 inventory = inventory,
                 slotIndex = slotIndex,
                 fcItemStackFactory = fcItemStackFactory,
@@ -60,7 +60,7 @@ class BukkitFcInventorySlot(
 }
 
 val FcInventorySlot.inventory: Inventory
-    get() = (this as BukkitFcInventorySlot).inventory
+    get() = (this as FcInventorySlot_Bukkit).inventory
 
 val FcInventorySlot.slotIndex: Int
-    get() = (this as BukkitFcInventorySlot).slotIndex
+    get() = (this as FcInventorySlot_Bukkit).slotIndex

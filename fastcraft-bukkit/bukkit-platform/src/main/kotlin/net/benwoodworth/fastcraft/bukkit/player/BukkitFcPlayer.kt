@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.bukkit.player
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import org.bukkit.entity.Player
 
-object BukkitFcPlayer {
+object FcPlayer_Bukkit {
     interface Operations : FcPlayer.Operations {
         val FcPlayer.player: Player
     }
@@ -13,9 +13,9 @@ object BukkitFcPlayer {
     }
 }
 
-val FcPlayer.Operations.bukkit: BukkitFcPlayer.Operations
-    get() = this as BukkitFcPlayer.Operations
+val FcPlayer.Operations.bukkit: FcPlayer_Bukkit.Operations
+    get() = this as FcPlayer_Bukkit.Operations
 
 fun FcPlayer.Provider.getPlayer(player: Player): FcPlayer {
-    return (this as BukkitFcPlayer.Provider).getPlayer(player)
+    return (this as FcPlayer_Bukkit.Provider).getPlayer(player)
 }

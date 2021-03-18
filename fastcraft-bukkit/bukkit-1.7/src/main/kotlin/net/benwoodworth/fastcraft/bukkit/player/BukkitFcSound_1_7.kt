@@ -5,17 +5,17 @@ import org.bukkit.Sound
 import javax.inject.Inject
 import javax.inject.Singleton
 
-object BukkitFcSound_1_7 {
+object FcSound_Bukkit_1_7 {
     @Singleton
     class Operations @Inject constructor(
-    ) : BukkitFcSound.Operations {
+    ) : FcSound_Bukkit.Operations {
         override val FcSound.sound: Sound
             get() = value as Sound
     }
 
     @Singleton
     open class Factory @Inject constructor(
-    ) : BukkitFcSound.Factory {
+    ) : FcSound_Bukkit.Factory {
         override val uiButtonClick: FcSound
             get() = fromSound(Sound.CLICK)
 

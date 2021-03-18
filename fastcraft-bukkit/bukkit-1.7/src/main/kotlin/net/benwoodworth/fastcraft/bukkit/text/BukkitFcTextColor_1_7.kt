@@ -5,10 +5,10 @@ import org.bukkit.ChatColor
 import javax.inject.Inject
 import javax.inject.Singleton
 
-object BukkitFcTextColor_1_7 {
+object FcTextColor_Bukkit_1_7 {
     @Singleton
     class Operations @Inject constructor(
-    ) : BukkitFcTextColor.Operations {
+    ) : FcTextColor_Bukkit.Operations {
         override val FcTextColor.chatColor: ChatColor
             get() = value as ChatColor
 
@@ -37,7 +37,7 @@ object BukkitFcTextColor_1_7 {
 
     @Singleton
     class Factory @Inject constructor(
-    ) : BukkitFcTextColor.Factory {
+    ) : FcTextColor_Bukkit.Factory {
         override val black: FcTextColor
             get() = FcTextColor(ChatColor.BLACK)
 

@@ -5,12 +5,12 @@ import org.bukkit.Material
 import javax.inject.Inject
 import javax.inject.Singleton
 
-object BukkitFcItem_1_9 {
+object FcItem_Bukkit_1_9 {
     @Singleton
     class Operations @Inject constructor(
         private val fcItemFactory: FcItem.Factory,
         legacyMaterialInfo: LegacyMaterialInfo,
-    ) : BukkitFcItem_1_7.Operations(
+    ) : FcItem_Bukkit_1_7.Operations(
         fcItemFactory = fcItemFactory,
         legacyMaterialInfo = legacyMaterialInfo,
     ) {

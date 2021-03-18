@@ -6,14 +6,14 @@ import org.bukkit.scheduler.BukkitScheduler
 import javax.inject.Inject
 import javax.inject.Singleton
 
-class BukkitFcTask_1_7(
+class FcTask_Bukkit_1_7(
     plugin: Plugin,
     async: Boolean,
     delay: Long,
     interval: Long,
     action: (task: FcTask) -> Unit,
     private val scheduler: BukkitScheduler,
-) : BukkitFcTask {
+) : FcTask_Bukkit {
     override val taskId: Int
 
     init {
@@ -44,7 +44,7 @@ class BukkitFcTask_1_7(
     }
 
     override fun equals(other: Any?): Boolean {
-        return other is BukkitFcTask &&
+        return other is FcTask_Bukkit &&
                 taskId == other.taskId
     }
 
@@ -56,14 +56,14 @@ class BukkitFcTask_1_7(
     class Factory @Inject constructor(
         private val plugin: Plugin,
         private val scheduler: BukkitScheduler,
-    ) : BukkitFcTask.Factory {
+    ) : FcTask_Bukkit.Factory {
         override fun startTask(
             async: Boolean,
             delayTicks: Long,
             intervalTicks: Long,
             action: (task: FcTask) -> Unit,
         ): FcTask {
-            return BukkitFcTask_1_7(
+            return FcTask_Bukkit_1_7(
                 plugin = plugin,
                 async = async,
                 delay = delayTicks,

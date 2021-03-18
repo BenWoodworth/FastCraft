@@ -11,13 +11,13 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-open class BukkitFcPlayerEvents_1_13 @Inject constructor(
+open class FcPlayerEvents_Bukkit_1_13 @Inject constructor(
     plugin: Plugin,
     fcPlayerProvider: FcPlayer.Provider,
     pluginManager: PluginManager,
     causeTracker: CauseTracker,
     fcTaskFactory: FcTask.Factory,
-) : BukkitFcPlayerEvents_1_7(
+) : FcPlayerEvents_Bukkit_1_7(
     plugin = plugin,
     fcPlayerProvider = fcPlayerProvider,
     pluginManager = pluginManager,

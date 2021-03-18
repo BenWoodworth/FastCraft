@@ -6,10 +6,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class BukkitFcServer_1_7 @Inject constructor(
+class FcServer_Bukkit_1_7 @Inject constructor(
     val server: Server,
     fcLogger: FcLogger,
-) : BukkitFcServer {
+) : FcServer_Bukkit {
     override val minecraftVersion: String =
         Regex("""MC:\s*([.\d]*)""")
             .find(server.version)

@@ -12,13 +12,13 @@ import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
-object BukkitFcItem_1_13 {
+object FcItem_Bukkit_1_13 {
     @Singleton
     open class Operations @Inject constructor(
         private val fcTextFactory: FcText.Factory,
         private val localizer: BukkitLocalizer,
         private val fcItemFactory: FcItem.Factory,
-    ) : BukkitFcItem.Operations {
+    ) : FcItem_Bukkit.Operations {
         override val FcItem.id: String
             get() = material.key.toString()
 
@@ -71,7 +71,7 @@ object BukkitFcItem_1_13 {
     @Singleton
     open class Factory @Inject constructor(
         server: Server,
-    ) : BukkitFcItem_1_7.Factory(
+    ) : FcItem_Bukkit_1_7.Factory(
         server = server,
     ) {
         override val craftingTable: FcItem

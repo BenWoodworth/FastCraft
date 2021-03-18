@@ -8,15 +8,15 @@ import org.bukkit.inventory.ItemStack
 import javax.inject.Inject
 import javax.inject.Singleton
 
-object BukkitFcItemStack_1_7 {
+object FcItemStack_Bukkit_1_7 {
     @Singleton
     open class Operations @Inject constructor(
         private val fcItemFactory: FcItem.Factory,
         private val fcTextFactory: FcText.Factory,
         fcItemOperations: FcItem.Operations,
         private val fcItemStackFactory: FcItemStack.Factory,
-    ) : BukkitFcItemStack.Operations,
-        BukkitFcItem.Operations by fcItemOperations.bukkit {
+    ) : FcItemStack_Bukkit.Operations,
+        FcItem_Bukkit.Operations by fcItemOperations.bukkit {
 
         override val FcItemStack.itemStack: ItemStack
             get() = value as ItemStack
@@ -64,8 +64,8 @@ object BukkitFcItemStack_1_7 {
         private val fcItemFactory: FcItem.Factory,
         protected val server: Server,
         fcItemOperations: FcItem.Operations,
-    ) : BukkitFcItemStack.Factory,
-        BukkitFcItem.Operations by fcItemOperations.bukkit {
+    ) : FcItemStack_Bukkit.Factory,
+        FcItem_Bukkit.Operations by fcItemOperations.bukkit {
 
         override fun create(item: FcItem, amount: Int): FcItemStack {
             return create(item.toItemStack(amount))

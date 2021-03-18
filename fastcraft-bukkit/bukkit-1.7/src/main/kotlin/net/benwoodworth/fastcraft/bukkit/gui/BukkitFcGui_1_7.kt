@@ -1,6 +1,6 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
-import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayer
+import net.benwoodworth.fastcraft.bukkit.player.FcPlayer_Bukkit
 import net.benwoodworth.fastcraft.bukkit.player.bukkit
 import net.benwoodworth.fastcraft.platform.gui.FcGui
 import net.benwoodworth.fastcraft.platform.gui.FcGuiClick
@@ -24,15 +24,15 @@ import org.bukkit.plugin.PluginManager
 import javax.inject.Inject
 import javax.inject.Singleton
 
-class BukkitFcGui_1_7<TLayout : FcGuiLayout>(
+class FcGui_Bukkit_1_7<TLayout : FcGuiLayout>(
     override val player: FcPlayer,
     createInventory: (owner: InventoryHolder) -> Inventory,
     createLayout: (inventory: Inventory) -> TLayout,
     plugin: Plugin,
     pluginManager: PluginManager,
     fcPlayerOperations: FcPlayer.Operations,
-) : BukkitFcGui<TLayout>, InventoryHolder,
-    BukkitFcPlayer.Operations by fcPlayerOperations.bukkit {
+) : FcGui_Bukkit<TLayout>, InventoryHolder,
+    FcPlayer_Bukkit.Operations by fcPlayerOperations.bukkit {
 
     override var listener: FcGui.Listener = FcGui.Listener.Default
 
@@ -98,7 +98,7 @@ class BukkitFcGui_1_7<TLayout : FcGuiLayout>(
         @Suppress("unused")
         @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
         private fun onInventoryClick(event: InventoryClickEvent) {
-            if (event.inventory.holder !== this@BukkitFcGui_1_7) {
+            if (event.inventory.holder !== this@FcGui_Bukkit_1_7) {
                 return
             }
 
@@ -143,7 +143,7 @@ class BukkitFcGui_1_7<TLayout : FcGuiLayout>(
         @Suppress("unused")
         @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
         private fun onInventoryDrag(event: InventoryDragEvent) {
-            if (event.inventory.holder !== this@BukkitFcGui_1_7) {
+            if (event.inventory.holder !== this@FcGui_Bukkit_1_7) {
                 return
             }
 
@@ -154,7 +154,7 @@ class BukkitFcGui_1_7<TLayout : FcGuiLayout>(
         @Suppress("unused")
         @EventHandler(ignoreCancelled = true)
         private fun onInventoryClose(event: InventoryCloseEvent) {
-            if (event.inventory.holder !== this@BukkitFcGui_1_7) {
+            if (event.inventory.holder !== this@FcGui_Bukkit_1_7) {
                 return
             }
 
@@ -175,17 +175,17 @@ class BukkitFcGui_1_7<TLayout : FcGuiLayout>(
         private val pluginManager: PluginManager,
         private val server: Server,
         private val fcTextConverter: FcTextConverter,
-        private val fcGuiLayoutFactory: BukkitFcGuiLayout.Factory,
+        private val fcGuiLayoutFactory: FcGuiLayout_Bukkit.Factory,
         private val fcPlayerOperations: FcPlayer.Operations,
-    ) : BukkitFcGui.Factory,
-        BukkitFcPlayer.Operations by fcPlayerOperations.bukkit {
+    ) : FcGui_Bukkit.Factory,
+        FcPlayer_Bukkit.Operations by fcPlayerOperations.bukkit {
 
         override fun createChestGui(player: FcPlayer, title: FcText?, height: Int): FcGui<FcGuiLayout.Grid> {
             val legacyTitle = title?.let {
                 fcTextConverter.toLegacy(it, player.locale)
             }
 
-            return BukkitFcGui_1_7(
+            return FcGui_Bukkit_1_7(
                 player,
                 { owner ->
                     when (legacyTitle) {

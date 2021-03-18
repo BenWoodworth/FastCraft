@@ -4,7 +4,7 @@ import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import org.bukkit.inventory.Inventory
 import java.util.*
 
-interface BukkitFcGuiButton : FcGuiButton {
+interface FcGuiButton_Bukkit : FcGuiButton {
     var locale: Locale
 
     interface Factory {
@@ -13,4 +13,4 @@ interface BukkitFcGuiButton : FcGuiButton {
 }
 
 val FcGuiButton.locale: Locale
-    get() = (this as BukkitFcGuiButton).locale
+    get() = (this as FcGuiButton_Bukkit).locale

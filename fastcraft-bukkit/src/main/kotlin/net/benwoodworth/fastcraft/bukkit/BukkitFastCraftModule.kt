@@ -8,7 +8,7 @@ import net.benwoodworth.fastcraft.bukkit.api.BukkitFastCraftApiImpl
 import net.benwoodworth.fastcraft.bukkit.api.BukkitFastCraftPreferences
 import net.benwoodworth.fastcraft.bukkit.api.BukkitFastCraftPreferencesImpl
 import net.benwoodworth.fastcraft.bukkit.command.*
-import net.benwoodworth.fastcraft.bukkit.config.BukkitFcConfig_1_7
+import net.benwoodworth.fastcraft.bukkit.config.FcConfig_Bukkit_1_7
 import net.benwoodworth.fastcraft.bukkit.gui.*
 import net.benwoodworth.fastcraft.bukkit.player.*
 import net.benwoodworth.fastcraft.bukkit.recipe.*
@@ -106,31 +106,31 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    fun provideFcLogger(instance: BukkitFcLogger_1_7): FcLogger {
+    fun provideFcLogger(instance: FcLogger_Bukkit_1_7): FcLogger {
         return instance
     }
 
     @Provides
-    fun provideFcPluginData(instance: BukkitFcPluginData_1_7): FcPluginData {
+    fun provideFcPluginData(instance: FcPluginData_Bukkit_1_7): FcPluginData {
         return instance
     }
 
     @Provides
-    fun provideFcConfigFactory(instance: BukkitFcConfig_1_7.Factory): FcConfig.Factory {
+    fun provideFcConfigFactory(instance: FcConfig_Bukkit_1_7.Factory): FcConfig.Factory {
         return instance
     }
 
     @Provides
-    fun provideFcGuiFactory(instance: BukkitFcGui_1_7.Factory): FcGui.Factory {
+    fun provideFcGuiFactory(instance: FcGui_Bukkit_1_7.Factory): FcGui.Factory {
         return instance
     }
 
     @Provides
     fun provideFcGuiButtonFactory(
-        instance_1_13: Provider<BukkitFcGuiButton_1_13.Factory>,
-        instance_1_8: Provider<BukkitFcGuiButton_1_8.Factory>,
-        instance_1_7: Provider<BukkitFcGuiButton_1_7.Factory>,
-    ): BukkitFcGuiButton.Factory {
+        instance_1_13: Provider<FcGuiButton_Bukkit_1_13.Factory>,
+        instance_1_8: Provider<FcGuiButton_Bukkit_1_8.Factory>,
+        instance_1_7: Provider<FcGuiButton_Bukkit_1_7.Factory>,
+    ): FcGuiButton_Bukkit.Factory {
         return when {
             bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
             bukkitVersion >= VERSION_1_8 -> instance_1_8.get()
@@ -140,13 +140,13 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    fun provideFcGuiLayoutFactory(instance: BukkitFcGuiLayout_1_7.Factory): BukkitFcGuiLayout.Factory {
+    fun provideFcGuiLayoutFactory(instance: FcGuiLayout_Bukkit_1_7.Factory): FcGuiLayout_Bukkit.Factory {
         return instance
     }
 
     @Provides
     fun provideFcItemStackFactory(
-        instance_1_7: Provider<BukkitFcItemStack_1_7.Factory>,
+        instance_1_7: Provider<FcItemStack_Bukkit_1_7.Factory>,
     ): FcItemStack.Factory {
         return when {
             bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
@@ -156,8 +156,8 @@ class BukkitFastCraftModule(
 
     @Provides
     fun provideFcItemFactory(
-        instance_1_13: Provider<BukkitFcItem_1_13.Factory>,
-        instance_1_7: Provider<BukkitFcItem_1_7.Factory>,
+        instance_1_13: Provider<FcItem_Bukkit_1_13.Factory>,
+        instance_1_7: Provider<FcItem_Bukkit_1_7.Factory>,
     ): FcItem.Factory {
         return when {
             bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
@@ -168,8 +168,8 @@ class BukkitFastCraftModule(
 
     @Provides
     fun provideFcMaterialComparator(
-        instance_1_13: Provider<BukkitFcItemOrderComparator_1_13>,
-        instance_1_7: Provider<BukkitFcItemOrderComparator_1_7>,
+        instance_1_13: Provider<FcItemOrderComparator_Bukkit_1_13>,
+        instance_1_7: Provider<FcItemOrderComparator_Bukkit_1_7>,
     ): FcItemOrderComparator {
         return when {
             bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
@@ -179,15 +179,15 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    fun provideFcPlayerProvider(instance: BukkitFcPlayer_1_7.Provider): FcPlayer.Provider {
+    fun provideFcPlayerProvider(instance: FcPlayer_Bukkit_1_7.Provider): FcPlayer.Provider {
         return instance
     }
 
     @Provides
     fun provideFcCraftingRecipePreparedFactory(
-        instance_1_12: Provider<BukkitFcCraftingRecipePrepared_1_12.Factory>,
-        instance_1_7: Provider<BukkitFcCraftingRecipePrepared_1_7.Factory>,
-    ): BukkitFcCraftingRecipePrepared.Factory {
+        instance_1_12: Provider<FcCraftingRecipePrepared_Bukkit_1_12.Factory>,
+        instance_1_7: Provider<FcCraftingRecipePrepared_Bukkit_1_7.Factory>,
+    ): FcCraftingRecipePrepared_Bukkit.Factory {
         return when {
             bukkitVersion >= VERSION_1_12 -> instance_1_12.get()
             bukkitVersion >= VERSION_1_7 -> instance_1_7.get()
@@ -197,8 +197,8 @@ class BukkitFastCraftModule(
 
     @Provides
     fun provideFcRecipeProvider(
-        instance_1_15: Provider<BukkitFcRecipeProvider_1_15>,
-        instance_1_7: Provider<BukkitFcRecipeProvider_1_7>,
+        instance_1_15: Provider<FcRecipeProvider_Bukkit_1_15>,
+        instance_1_7: Provider<FcRecipeProvider_Bukkit_1_7>,
     ): FcRecipeProvider {
         return when {
             bukkitVersion >= VERSION_1_15 -> instance_1_15.get()
@@ -223,11 +223,11 @@ class BukkitFastCraftModule(
 
     @Provides
     fun provideFcCraftingRecipeFactory(
-        instance_1_15: Provider<BukkitFcCraftingRecipe_1_15.Factory>,
-        instance_1_13: Provider<BukkitFcCraftingRecipe_1_13.Factory>,
-        instance_1_12: Provider<BukkitFcCraftingRecipe_1_12.Factory>,
-        instance_1_7: Provider<BukkitFcCraftingRecipe_1_7.Factory>,
-    ): BukkitFcCraftingRecipe.Factory {
+        instance_1_15: Provider<FcCraftingRecipe_Bukkit_1_15.Factory>,
+        instance_1_13: Provider<FcCraftingRecipe_Bukkit_1_13.Factory>,
+        instance_1_12: Provider<FcCraftingRecipe_Bukkit_1_12.Factory>,
+        instance_1_7: Provider<FcCraftingRecipe_Bukkit_1_7.Factory>,
+    ): FcCraftingRecipe_Bukkit.Factory {
         return when {
             bukkitVersion >= VERSION_1_15 -> instance_1_15.get()
             bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
@@ -239,8 +239,8 @@ class BukkitFastCraftModule(
 
     @Provides
     fun provideFcPlayerEvents(
-        instance_1_13: Provider<BukkitFcPlayerEvents_1_13>,
-        instance_1_7: Provider<BukkitFcPlayerEvents_1_7>,
+        instance_1_13: Provider<FcPlayerEvents_Bukkit_1_13>,
+        instance_1_7: Provider<FcPlayerEvents_Bukkit_1_7>,
     ): FcPlayerEvents {
         return when {
             bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
@@ -250,22 +250,22 @@ class BukkitFastCraftModule(
     }
 
     @Provides
-    fun provideFcTaskFactory(instance: BukkitFcTask_1_7.Factory): FcTask.Factory {
+    fun provideFcTaskFactory(instance: FcTask_Bukkit_1_7.Factory): FcTask.Factory {
         return instance
     }
 
     @Provides
-    fun provideFcTextFactory(instance: BukkitFcText_1_7.Factory): FcText.Factory {
+    fun provideFcTextFactory(instance: FcText_Bukkit_1_7.Factory): FcText.Factory {
         return instance
     }
 
     @Provides
-    fun provideFcTextColorFactory(instance: BukkitFcTextColor_1_7.Factory): FcTextColor.Factory {
+    fun provideFcTextColorFactory(instance: FcTextColor_Bukkit_1_7.Factory): FcTextColor.Factory {
         return instance
     }
 
     @Provides
-    fun provideFcTextConverter(instance: BukkitFcTextConverter_1_7): FcTextConverter {
+    fun provideFcTextConverter(instance: FcTextConverter_Bukkit_1_7): FcTextConverter {
         return instance
     }
 
@@ -283,29 +283,29 @@ class BukkitFastCraftModule(
 
     @Provides
     fun provideCommandAdapterFactory(
-        instance: BukkitFcCommandAdapter_1_7.Factory,
-    ): BukkitFcCommandAdapter.Factory {
+        instance: FcCommandAdapter_Bukkit_1_7.Factory,
+    ): FcCommandAdapter_Bukkit.Factory {
         return instance
     }
 
     @Provides
     fun provideCommandRegistry(
-        instance: BukkitFcCommandRegistry_1_7,
+        instance: FcCommandRegistry_Bukkit_1_7,
     ): FcCommandRegistry {
         return instance
     }
 
     @Provides
     fun provideCommandSourceFactory(
-        instance: BukkitFcCommandSource_1_7.Factory,
-    ): BukkitFcCommandSource.Factory {
+        instance: FcCommandSource_Bukkit_1_7.Factory,
+    ): FcCommandSource_Bukkit.Factory {
         return instance
     }
 
     @Provides
     fun provideSoundFactory(
-        instance_1_9: Provider<BukkitFcSound_1_9.Factory>,
-        instance_1_7: Provider<BukkitFcSound_1_7.Factory>,
+        instance_1_9: Provider<FcSound_Bukkit_1_9.Factory>,
+        instance_1_7: Provider<FcSound_Bukkit_1_7.Factory>,
     ): FcSound.Factory {
         return when {
             bukkitVersion >= VERSION_1_9 -> instance_1_9.get()
@@ -316,14 +316,14 @@ class BukkitFastCraftModule(
 
     @Provides
     fun provideFcServer(
-        instance: BukkitFcServer_1_7,
+        instance: FcServer_Bukkit_1_7,
     ): FcServer {
         return instance
     }
 
     @Provides
     fun provideFcPermissionFactory(
-        instance: BukkitFcPermission_1_7.Factory,
+        instance: FcPermission_Bukkit_1_7.Factory,
     ): FcPermission.Factory {
         return instance
     }
@@ -342,24 +342,24 @@ class BukkitFastCraftModule(
 
     @Provides
     fun provideFcSoundOperations(
-        instance_1_7: Provider<BukkitFcSound_1_7.Operations>,
+        instance_1_7: Provider<FcSound_Bukkit_1_7.Operations>,
     ): FcSound.Operations {
         return instance_1_7.get()
     }
 
     @Provides
     fun provideFcPlayerOperations(
-        instance_1_7: Provider<BukkitFcPlayer_1_7.Operations>,
+        instance_1_7: Provider<FcPlayer_Bukkit_1_7.Operations>,
     ): FcPlayer.Operations {
         return instance_1_7.get()
     }
 
     @Provides
     fun provideFcItemOperations(
-        instance_1_7: Provider<BukkitFcItem_1_7.Operations>,
-        instance_1_9: Provider<BukkitFcItem_1_9.Operations>,
-        instance_1_13: Provider<BukkitFcItem_1_13.Operations>,
-        instance_1_15: Provider<BukkitFcItem_1_15.Operations>,
+        instance_1_7: Provider<FcItem_Bukkit_1_7.Operations>,
+        instance_1_9: Provider<FcItem_Bukkit_1_9.Operations>,
+        instance_1_13: Provider<FcItem_Bukkit_1_13.Operations>,
+        instance_1_15: Provider<FcItem_Bukkit_1_15.Operations>,
     ): FcItem.Operations {
         return when {
             bukkitVersion >= VERSION_1_15 -> instance_1_15.get()
@@ -372,8 +372,8 @@ class BukkitFastCraftModule(
 
     @Provides
     fun provideFcItemStackOperations(
-        instance_1_7: Provider<BukkitFcItemStack_1_7.Operations>,
-        instance_1_13: Provider<BukkitFcItemStack_1_13.Operations>,
+        instance_1_7: Provider<FcItemStack_Bukkit_1_7.Operations>,
+        instance_1_13: Provider<FcItemStack_Bukkit_1_13.Operations>,
     ): FcItemStack.Operations {
         return when {
             bukkitVersion >= VERSION_1_13 -> instance_1_13.get()
@@ -384,7 +384,7 @@ class BukkitFastCraftModule(
 
     @Provides
     fun provideFcTextColorOperations(
-        instance_1_7: Provider<BukkitFcTextColor_1_7.Operations>,
+        instance_1_7: Provider<FcTextColor_Bukkit_1_7.Operations>,
     ): FcTextColor.Operations {
         return when {
             bukkitVersion >= VERSION_1_7 -> instance_1_7.get()

@@ -9,12 +9,12 @@ import org.bukkit.material.MaterialData
 import javax.inject.Inject
 import javax.inject.Singleton
 
-object BukkitFcItem_1_7 {
+object FcItem_Bukkit_1_7 {
     @Singleton
     open class Operations @Inject constructor(
         private val fcItemFactory: FcItem.Factory,
         private val legacyMaterialInfo: LegacyMaterialInfo,
-    ) : BukkitFcItem.Operations {
+    ) : FcItem_Bukkit.Operations {
         @Suppress("DEPRECATION")
         override val FcItem.id: String
             get() = legacyMaterialInfo.getItemId(materialData)
@@ -63,7 +63,7 @@ object BukkitFcItem_1_7 {
     @Singleton
     open class Factory @Inject constructor(
         protected val server: Server,
-    ) : BukkitFcItem.Factory {
+    ) : FcItem_Bukkit.Factory {
         override val air: FcItem
             get() = fromMaterial(Material.AIR)
 

@@ -6,16 +6,16 @@ import org.bukkit.plugin.PluginManager
 import javax.inject.Inject
 import javax.inject.Singleton
 
-class BukkitFcPermission_1_7(
+class FcPermission_Bukkit_1_7(
     override val permission: Permission,
-) : BukkitFcPermission {
+) : FcPermission_Bukkit {
     override val name: String
         get() = permission.name
 
     @Singleton
     class Factory @Inject constructor(
         private val pluginManager: PluginManager,
-    ) : BukkitFcPermission.Factory {
+    ) : FcPermission_Bukkit.Factory {
         override fun create(name: String, description: String?, children: List<FcPermission>): FcPermission {
             val childrenMap = children
                 .map { it.name to true }
@@ -32,7 +32,7 @@ class BukkitFcPermission_1_7(
         }
 
         override fun create(permission: Permission): FcPermission {
-            return BukkitFcPermission_1_7(permission)
+            return FcPermission_Bukkit_1_7(permission)
         }
     }
 }

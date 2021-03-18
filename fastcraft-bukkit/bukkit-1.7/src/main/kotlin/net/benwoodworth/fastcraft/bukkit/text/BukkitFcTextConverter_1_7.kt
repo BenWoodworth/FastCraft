@@ -9,11 +9,11 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class BukkitFcTextConverter_1_7 @Inject constructor(
+class FcTextConverter_Bukkit_1_7 @Inject constructor(
     private val localizer: BukkitLocalizer,
     fcTextColorOperations: FcTextColor.Operations,
-) : BukkitFcTextConverter,
-    BukkitFcTextColor.Operations by fcTextColorOperations.bukkit {
+) : FcTextConverter_Bukkit,
+    FcTextColor_Bukkit.Operations by fcTextColorOperations.bukkit {
 
     override fun toRaw(text: FcText): String {
         return JsonStringBuilder()
@@ -22,24 +22,24 @@ class BukkitFcTextConverter_1_7 @Inject constructor(
     }
 
     private fun JsonStringBuilder.appendFcText(text: FcText): JsonStringBuilder {
-        text as BukkitFcText
+        text as FcText_Bukkit
         return when (text) {
-            is BukkitFcText.Legacy -> appendFcText(text)
-            is BukkitFcText.Component -> appendFcText(text)
+            is FcText_Bukkit.Legacy -> appendFcText(text)
+            is FcText_Bukkit.Component -> appendFcText(text)
         }
     }
 
-    private fun JsonStringBuilder.appendFcText(text: BukkitFcText.Legacy): JsonStringBuilder {
+    private fun JsonStringBuilder.appendFcText(text: FcText_Bukkit.Legacy): JsonStringBuilder {
         return appendString(text.legacyText)
     }
 
-    private fun JsonStringBuilder.appendFcText(text: BukkitFcText.Component): JsonStringBuilder {
+    private fun JsonStringBuilder.appendFcText(text: FcText_Bukkit.Component): JsonStringBuilder {
         appendObject {
             when (text) {
-                is BukkitFcText.Component.Text ->
+                is FcText_Bukkit.Component.Text ->
                     appendElement("text") { appendString(text.text) }
 
-                is BukkitFcText.Component.Translate ->
+                is FcText_Bukkit.Component.Translate ->
                     appendElement("translate") { appendString(text.translate) }
             }
 
@@ -78,11 +78,11 @@ class BukkitFcTextConverter_1_7 @Inject constructor(
     }
 
     override fun toLegacy(text: FcText, locale: Locale): String {
-        text as BukkitFcText
+        text as FcText_Bukkit
         return when (text) {
-            is BukkitFcText.Legacy ->
+            is FcText_Bukkit.Legacy ->
                 text.legacyText
-            is BukkitFcText.Component ->
+            is FcText_Bukkit.Component ->
                 LegacyTextBuilder(locale)
                     .appendText(text)
                     .toString()
@@ -113,23 +113,23 @@ class BukkitFcTextConverter_1_7 @Inject constructor(
             return stringBuilder.toString()
         }
 
-        fun appendText(text: BukkitFcText): LegacyTextBuilder {
+        fun appendText(text: FcText_Bukkit): LegacyTextBuilder {
             appendText(text, LegacyFormat())
             return this
         }
 
         private fun appendText(text: FcText, parentFormat: LegacyFormat) {
-            text as BukkitFcText
+            text as FcText_Bukkit
             when (text) {
-                is BukkitFcText.Component ->
+                is FcText_Bukkit.Component ->
                     appendTextComponent(text, parentFormat)
 
-                is BukkitFcText.Legacy ->
+                is FcText_Bukkit.Legacy ->
                     appendLegacyText(text.legacyText)
             }
         }
 
-        private fun appendTextComponent(text: BukkitFcText.Component, parentFormat: LegacyFormat) {
+        private fun appendTextComponent(text: FcText_Bukkit.Component, parentFormat: LegacyFormat) {
             // The text format, inheriting from parentFormat in place of nulls.
             val format = LegacyFormat(
                 color = text.color?.chatColor ?: parentFormat.color,
@@ -142,10 +142,10 @@ class BukkitFcTextConverter_1_7 @Inject constructor(
 
             // Get the legacy to append
             val legacyText = when (text) {
-                is BukkitFcText.Component.Text ->
+                is FcText_Bukkit.Component.Text ->
                     text.text
 
-                is BukkitFcText.Component.Translate ->
+                is FcText_Bukkit.Component.Translate ->
                     localizer.localize(text.translate, locale) ?: text.translate
             }
 
@@ -277,13 +277,13 @@ class BukkitFcTextConverter_1_7 @Inject constructor(
             }
 
             fun appendText(text: FcText) {
-                text as BukkitFcText
+                text as FcText_Bukkit
                 when (text) {
-                    is BukkitFcText.Legacy -> appendLegacy(text.legacyText)
-                    is BukkitFcText.Component -> {
+                    is FcText_Bukkit.Legacy -> appendLegacy(text.legacyText)
+                    is FcText_Bukkit.Component -> {
                         when (text) {
-                            is BukkitFcText.Component.Text -> appendLegacy(text.text)
-                            is BukkitFcText.Component.Translate -> appendLegacy(
+                            is FcText_Bukkit.Component.Text -> appendLegacy(text.text)
+                            is FcText_Bukkit.Component.Translate -> appendLegacy(
                                 localizer.localize(text.translate, locale) ?: text.translate
                             )
                         }

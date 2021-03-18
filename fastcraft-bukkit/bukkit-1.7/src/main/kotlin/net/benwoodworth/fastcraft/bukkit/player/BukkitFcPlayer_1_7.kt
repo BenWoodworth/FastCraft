@@ -1,9 +1,9 @@
 package net.benwoodworth.fastcraft.bukkit.player
 
 import net.benwoodworth.fastcraft.bukkit.server.permission
-import net.benwoodworth.fastcraft.bukkit.text.BukkitFcText
+import net.benwoodworth.fastcraft.bukkit.text.FcText_Bukkit
 import net.benwoodworth.fastcraft.bukkit.text.toRaw
-import net.benwoodworth.fastcraft.bukkit.world.BukkitFcItemStack
+import net.benwoodworth.fastcraft.bukkit.world.FcItemStack_Bukkit
 import net.benwoodworth.fastcraft.bukkit.world.bukkit
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.player.FcPlayerInventory
@@ -20,17 +20,17 @@ import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
-object BukkitFcPlayer_1_7 {
+object FcPlayer_Bukkit_1_7 {
     @Singleton
     class Operations @Inject constructor(
         private val fcTextConverter: FcTextConverter,
         private val server: Server,
-        private val fcPlayerInventoryFactory: BukkitFcPlayerInventory_1_7.Factory,
+        private val fcPlayerInventoryFactory: FcPlayerInventory_Bukkit_1_7.Factory,
         fcSoundOperations: FcSound.Operations,
         fcItemStackOperations: FcItemStack.Operations,
-    ) : BukkitFcPlayer.Operations,
-        BukkitFcSound.Operations by fcSoundOperations.bukkit,
-        BukkitFcItemStack.Operations by fcItemStackOperations.bukkit {
+    ) : FcPlayer_Bukkit.Operations,
+        FcSound_Bukkit.Operations by fcSoundOperations.bukkit,
+        FcItemStack_Bukkit.Operations by fcItemStackOperations.bukkit {
 
         override val FcPlayer.player: Player
             get() = value as Player
@@ -57,12 +57,12 @@ object BukkitFcPlayer_1_7 {
             get() = fcPlayerInventoryFactory.create(player.inventory)
 
         override fun FcPlayer.sendMessage(message: FcText) {
-            message as BukkitFcText
+            message as FcText_Bukkit
             when (message) {
-                is BukkitFcText.Legacy -> {
+                is FcText_Bukkit.Legacy -> {
                     player.sendMessage(message.legacyText)
                 }
-                is BukkitFcText.Component -> {
+                is FcText_Bukkit.Component -> {
                     server.dispatchCommand(
                         server.consoleSender,
                         "tellraw $username ${fcTextConverter.toRaw(message)}"
@@ -111,7 +111,7 @@ object BukkitFcPlayer_1_7 {
     @Singleton
     class Provider @Inject constructor(
         private val server: Server,
-    ) : BukkitFcPlayer.Provider {
+    ) : FcPlayer_Bukkit.Provider {
         override fun getOnlinePlayers(): List<FcPlayer> {
             return server.onlinePlayers.map { player ->
                 getPlayer(player)

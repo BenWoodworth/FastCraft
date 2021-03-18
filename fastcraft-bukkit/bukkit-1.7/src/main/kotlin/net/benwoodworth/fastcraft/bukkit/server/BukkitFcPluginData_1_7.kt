@@ -6,9 +6,9 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class BukkitFcPluginData_1_7 @Inject constructor(
+class FcPluginData_Bukkit_1_7 @Inject constructor(
     plugin: Plugin,
-) : BukkitFcPluginData {
+) : FcPluginData_Bukkit {
     override val dataFolder: Path = plugin.dataFolder.toPath()
 
     override val configFile: Path = dataFolder.resolve("config.yml")

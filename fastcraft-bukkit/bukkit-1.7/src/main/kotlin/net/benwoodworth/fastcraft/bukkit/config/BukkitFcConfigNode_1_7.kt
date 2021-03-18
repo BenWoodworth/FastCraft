@@ -4,11 +4,11 @@ import net.benwoodworth.fastcraft.platform.config.FcConfig
 import net.benwoodworth.fastcraft.platform.config.FcConfigNode
 import org.bukkit.configuration.file.YamlConfiguration
 
-class BukkitFcConfigNode_1_7(
+class FcConfigNode_Bukkit_1_7(
     override val config: YamlConfiguration,
     override val path: String,
     private val fcConfigFactory: FcConfig.Factory,
-) : BukkitFcConfigNode {
+) : FcConfigNode_Bukkit {
     override fun getChildKeys(): Set<String> {
         return config.getConfigurationSection(path)?.getKeys(false) ?: emptySet()
     }

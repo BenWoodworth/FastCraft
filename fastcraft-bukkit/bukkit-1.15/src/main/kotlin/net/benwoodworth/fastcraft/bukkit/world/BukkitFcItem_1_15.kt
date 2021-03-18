@@ -7,13 +7,13 @@ import org.bukkit.Material
 import javax.inject.Inject
 import javax.inject.Singleton
 
-object BukkitFcItem_1_15 {
+object FcItem_Bukkit_1_15 {
     @Singleton
     class Operations @Inject constructor(
         fcTextFactory: FcText.Factory,
         localizer: BukkitLocalizer,
         private val fcItemFactory: FcItem.Factory,
-    ) : BukkitFcItem_1_13.Operations(
+    ) : FcItem_Bukkit_1_13.Operations(
         fcTextFactory = fcTextFactory,
         localizer = localizer,
         fcItemFactory = fcItemFactory,

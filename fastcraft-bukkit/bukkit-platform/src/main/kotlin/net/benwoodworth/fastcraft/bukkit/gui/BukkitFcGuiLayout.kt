@@ -5,7 +5,7 @@ import net.benwoodworth.fastcraft.platform.gui.FcGuiLayout
 import org.bukkit.inventory.Inventory
 import java.util.*
 
-interface BukkitFcGuiLayout : FcGuiLayout {
+interface FcGuiLayout_Bukkit : FcGuiLayout {
     val inventory: Inventory
 
     fun getSlotButton(slot: Int): FcGuiButton?
@@ -23,8 +23,8 @@ interface BukkitFcGuiLayout : FcGuiLayout {
 }
 
 val FcGuiLayout.inventory: Inventory
-    get() = (this as BukkitFcGuiLayout).inventory
+    get() = (this as FcGuiLayout_Bukkit).inventory
 
 fun FcGuiLayout.getSlotButton(slot: Int): FcGuiButton? {
-    return (this as BukkitFcGuiLayout).getSlotButton(slot)
+    return (this as FcGuiLayout_Bukkit).getSlotButton(slot)
 }

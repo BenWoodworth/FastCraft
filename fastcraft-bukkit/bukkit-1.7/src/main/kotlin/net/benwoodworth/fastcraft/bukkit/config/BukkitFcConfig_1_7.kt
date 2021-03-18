@@ -8,10 +8,10 @@ import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton
 
-class BukkitFcConfig_1_7(
+class FcConfig_Bukkit_1_7(
     override val config: YamlConfiguration,
     private val fcConfigFactory: FcConfig.Factory,
-) : BukkitFcConfig, FcConfigNode by fcConfigFactory.createNode(config, "") {
+) : FcConfig_Bukkit, FcConfigNode by fcConfigFactory.createNode(config, "") {
     override val path: String
         get() = ""
 
@@ -32,7 +32,7 @@ class BukkitFcConfig_1_7(
     @Singleton
     class Factory @Inject constructor(
         private val configFactory: Provider<FcConfig.Factory>,
-    ) : BukkitFcConfig.Factory {
+    ) : FcConfig_Bukkit.Factory {
         override fun create(): FcConfig {
             return create(YamlConfiguration())
         }
@@ -44,11 +44,11 @@ class BukkitFcConfig_1_7(
         }
 
         override fun create(config: YamlConfiguration): FcConfig {
-            return BukkitFcConfig_1_7(config, configFactory.get())
+            return FcConfig_Bukkit_1_7(config, configFactory.get())
         }
 
         override fun createNode(config: YamlConfiguration, path: String): FcConfigNode {
-            return BukkitFcConfigNode_1_7(config, path, configFactory.get())
+            return FcConfigNode_Bukkit_1_7(config, path, configFactory.get())
         }
     }
 }

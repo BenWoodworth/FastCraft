@@ -12,16 +12,16 @@ import org.bukkit.inventory.ShapelessRecipe
 import javax.inject.Inject
 import javax.inject.Singleton
 
-open class BukkitFcCraftingRecipe_1_13(
+open class FcCraftingRecipe_Bukkit_1_13(
     recipe: Recipe,
     server: Server,
-    preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
+    preparedRecipeFactory: FcCraftingRecipePrepared_Bukkit.Factory,
     fcItemStackFactory: FcItemStack.Factory,
     craftingInventoryViewFactory: CraftingInventoryViewFactory,
     fcPlayerOperations: FcPlayer.Operations,
     fcItemOperations: FcItem.Operations,
     private val fcItemStackOperations: FcItemStack.Operations,
-) : BukkitFcCraftingRecipe_1_12(
+) : FcCraftingRecipe_Bukkit_1_12(
     recipe = recipe,
     server = server,
     fcCraftingRecipePreparedFactory = preparedRecipeFactory,
@@ -45,7 +45,7 @@ open class BukkitFcCraftingRecipe_1_13(
                     rowString
                         .mapIndexed { column, char ->
                             recipe.choiceMap[char]?.let { choice ->
-                                BukkitFcIngredient_1_13(row * 3 + column, choice, fcItemStackOperations)
+                                FcIngredient_Bukkit_1_13(row * 3 + column, choice, fcItemStackOperations)
                             }
                         }
                         .filterNotNull()
@@ -54,7 +54,7 @@ open class BukkitFcCraftingRecipe_1_13(
 
             is ShapelessRecipe -> recipe.choiceList
                 .mapIndexed { i, recipeChoice ->
-                    BukkitFcIngredient_1_13(i, recipeChoice, fcItemStackOperations)
+                    FcIngredient_Bukkit_1_13(i, recipeChoice, fcItemStackOperations)
                 }
 
             else -> throw IllegalStateException()
@@ -64,15 +64,15 @@ open class BukkitFcCraftingRecipe_1_13(
     @Singleton
     class Factory @Inject constructor(
         private val server: Server,
-        private val fcCraftingRecipePreparedFactory: BukkitFcCraftingRecipePrepared.Factory,
+        private val fcCraftingRecipePreparedFactory: FcCraftingRecipePrepared_Bukkit.Factory,
         private val fcItemStackFactory: FcItemStack.Factory,
         private val craftingInventoryViewFactory: CraftingInventoryViewFactory,
         private val fcPlayerOperations: FcPlayer.Operations,
         private val fcItemOperations: FcItem.Operations,
         private val fcItemStackOperations: FcItemStack.Operations,
-    ) : BukkitFcCraftingRecipe.Factory {
+    ) : FcCraftingRecipe_Bukkit.Factory {
         override fun create(recipe: Recipe): FcCraftingRecipe {
-            return BukkitFcCraftingRecipe_1_13(
+            return FcCraftingRecipe_Bukkit_1_13(
                 recipe = recipe,
                 server = server,
                 preparedRecipeFactory = fcCraftingRecipePreparedFactory,

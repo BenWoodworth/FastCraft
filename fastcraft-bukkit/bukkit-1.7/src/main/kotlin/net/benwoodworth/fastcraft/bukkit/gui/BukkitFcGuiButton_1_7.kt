@@ -1,8 +1,8 @@
 package net.benwoodworth.fastcraft.bukkit.gui
 
 import net.benwoodworth.fastcraft.bukkit.util.updateMeta
-import net.benwoodworth.fastcraft.bukkit.world.BukkitFcItem
-import net.benwoodworth.fastcraft.bukkit.world.BukkitFcItemStack
+import net.benwoodworth.fastcraft.bukkit.world.FcItem_Bukkit
+import net.benwoodworth.fastcraft.bukkit.world.FcItemStack_Bukkit
 import net.benwoodworth.fastcraft.bukkit.world.bukkit
 import net.benwoodworth.fastcraft.platform.gui.FcGuiButton
 import net.benwoodworth.fastcraft.platform.text.FcText
@@ -18,7 +18,7 @@ import javax.inject.Singleton
 import kotlin.math.roundToInt
 import kotlin.properties.Delegates.observable
 
-open class BukkitFcGuiButton_1_7(
+open class FcGuiButton_Bukkit_1_7(
     private val inventory: Inventory,
     private val slotIndex: Int,
     locale: Locale,
@@ -26,9 +26,9 @@ open class BukkitFcGuiButton_1_7(
     private val fcTextConverter: FcTextConverter,
     fcItemOperations: FcItem.Operations,
     fcItemStackOperations: FcItemStack.Operations,
-) : BukkitFcGuiButton,
-    BukkitFcItem.Operations by fcItemOperations.bukkit,
-    BukkitFcItemStack.Operations by fcItemStackOperations.bukkit {
+) : FcGuiButton_Bukkit,
+    FcItem_Bukkit.Operations by fcItemOperations.bukkit,
+    FcItemStack_Bukkit.Operations by fcItemStackOperations.bukkit {
 
     protected var hideItemDetails: Boolean = false
     protected var _text: FcText? = null
@@ -86,7 +86,7 @@ open class BukkitFcGuiButton_1_7(
     }
 
     override fun copyItem(itemStack: FcItemStack) {
-        this@BukkitFcGuiButton_1_7.itemStack = itemStack.itemStack.clone()
+        this@FcGuiButton_Bukkit_1_7.itemStack = itemStack.itemStack.clone()
 
         _text = itemStack.name
         _description = itemStack.lore
@@ -153,9 +153,9 @@ open class BukkitFcGuiButton_1_7(
         private val fcTextConverter: FcTextConverter,
         private val fcItemOperations: FcItem.Operations,
         private val fcItemStackOperations: FcItemStack.Operations,
-    ) : BukkitFcGuiButton.Factory {
+    ) : FcGuiButton_Bukkit.Factory {
         override fun create(inventory: Inventory, slotIndex: Int, locale: Locale): FcGuiButton {
-            return BukkitFcGuiButton_1_7(
+            return FcGuiButton_Bukkit_1_7(
                 inventory = inventory,
                 slotIndex = slotIndex,
                 locale = locale,

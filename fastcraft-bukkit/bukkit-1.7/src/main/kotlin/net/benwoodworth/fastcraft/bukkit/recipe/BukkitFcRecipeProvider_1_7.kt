@@ -17,12 +17,12 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-open class BukkitFcRecipeProvider_1_7 @Inject constructor(
+open class FcRecipeProvider_Bukkit_1_7 @Inject constructor(
     plugin: Plugin,
     bukkitVersion: BukkitVersion,
     private val server: Server,
-    private val fcCraftingRecipeFactory: BukkitFcCraftingRecipe.Factory,
-) : BukkitFcRecipeProvider {
+    private val fcCraftingRecipeFactory: FcCraftingRecipe_Bukkit.Factory,
+) : FcRecipeProvider_Bukkit {
     protected val complexRecipeIds: Set<String> by lazy {
         val version = bukkitVersion.run { "$major.$minor" }
         plugin.getResource("bukkit/recipes/$version.yml")
@@ -39,7 +39,7 @@ open class BukkitFcRecipeProvider_1_7 @Inject constructor(
             .mapNotNull { fcCraftingRecipeFactory.create(it) }
             .map {
                 if (it.isComplexRecipe()) {
-                    ComplexFcCraftingRecipe(it as BukkitFcCraftingRecipe)
+                    ComplexFcCraftingRecipe(it as FcCraftingRecipe_Bukkit)
                 } else {
                     it
                 }
@@ -61,8 +61,8 @@ open class BukkitFcRecipeProvider_1_7 @Inject constructor(
     }
 
     private class ComplexFcCraftingRecipe(
-        private val recipe: BukkitFcCraftingRecipe,
-    ) : BukkitFcCraftingRecipe by recipe {
+        private val recipe: FcCraftingRecipe_Bukkit,
+    ) : FcCraftingRecipe_Bukkit by recipe {
         override val ingredients: List<FcIngredient>
             get() = emptyList()
 

@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.bukkit.text
 import net.benwoodworth.fastcraft.platform.text.FcTextColor
 import org.bukkit.ChatColor
 
-object BukkitFcTextColor {
+object FcTextColor_Bukkit {
     interface Operations : FcTextColor.Operations {
         val FcTextColor.chatColor: ChatColor
         val FcTextColor.id: String
@@ -14,13 +14,13 @@ object BukkitFcTextColor {
     }
 }
 
-val FcTextColor.Operations.bukkit: BukkitFcTextColor.Operations
-    get() = this as BukkitFcTextColor.Operations
+val FcTextColor.Operations.bukkit: FcTextColor_Bukkit.Operations
+    get() = this as FcTextColor_Bukkit.Operations
 
 fun FcTextColor.Factory.fromId(id: String): FcTextColor {
-    return (this as BukkitFcTextColor.Factory).fromId(id)
+    return (this as FcTextColor_Bukkit.Factory).fromId(id)
 }
 
 fun FcTextColor.Factory.create(id: String, chatColor: ChatColor): FcTextColor {
-    return (this as BukkitFcTextColor.Factory).create(id, chatColor)
+    return (this as FcTextColor_Bukkit.Factory).create(id, chatColor)
 }

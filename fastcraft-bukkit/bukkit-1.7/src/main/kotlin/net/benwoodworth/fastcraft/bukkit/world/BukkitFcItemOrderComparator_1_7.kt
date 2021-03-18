@@ -5,10 +5,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class BukkitFcItemOrderComparator_1_7 @Inject constructor(
+class FcItemOrderComparator_Bukkit_1_7 @Inject constructor(
     fcItemOperations: FcItem.Operations,
-) : BukkitFcItemOrderComparator,
-    BukkitFcItem.Operations by fcItemOperations.bukkit {
+) : FcItemOrderComparator_Bukkit,
+    FcItem_Bukkit.Operations by fcItemOperations.bukkit {
 
     override fun compare(item0: FcItem, item1: FcItem): Int {
         @Suppress("DEPRECATION")

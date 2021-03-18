@@ -10,16 +10,16 @@ import org.bukkit.inventory.Recipe
 import javax.inject.Inject
 import javax.inject.Singleton
 
-open class BukkitFcCraftingRecipe_1_12(
+open class FcCraftingRecipe_Bukkit_1_12(
     recipe: Recipe,
     server: Server,
-    fcCraftingRecipePreparedFactory: BukkitFcCraftingRecipePrepared.Factory,
+    fcCraftingRecipePreparedFactory: FcCraftingRecipePrepared_Bukkit.Factory,
     fcItemStackFactory: FcItemStack.Factory,
     craftingInventoryViewFactory: CraftingInventoryViewFactory,
     fcPlayerOperations: FcPlayer.Operations,
     fcItemOperations: FcItem.Operations,
     fcItemStackOperations: FcItemStack.Operations,
-) : BukkitFcCraftingRecipe_1_7(
+) : FcCraftingRecipe_Bukkit_1_7(
     recipe = recipe,
     server = server,
     preparedRecipeFactory = fcCraftingRecipePreparedFactory,
@@ -35,15 +35,15 @@ open class BukkitFcCraftingRecipe_1_12(
     @Singleton
     class Factory @Inject constructor(
         private val server: Server,
-        private val fcCraftingRecipePreparedFactory: BukkitFcCraftingRecipePrepared.Factory,
+        private val fcCraftingRecipePreparedFactory: FcCraftingRecipePrepared_Bukkit.Factory,
         private val fcItemStackFactory: FcItemStack.Factory,
         private val craftingInventoryViewFactory: CraftingInventoryViewFactory,
         private val fcPlayerOperations: FcPlayer.Operations,
         private val fcItemOperations: FcItem.Operations,
         private val fcItemStackOperations: FcItemStack.Operations,
-    ) : BukkitFcCraftingRecipe.Factory {
+    ) : FcCraftingRecipe_Bukkit.Factory {
         override fun create(recipe: Recipe): FcCraftingRecipe {
-            return BukkitFcCraftingRecipe_1_12(
+            return FcCraftingRecipe_Bukkit_1_12(
                 recipe = recipe,
                 server = server,
                 fcCraftingRecipePreparedFactory = fcCraftingRecipePreparedFactory,

@@ -1,16 +1,16 @@
 package net.benwoodworth.fastcraft.bukkit.player
 
-import net.benwoodworth.fastcraft.bukkit.world.BukkitFcInventorySlot
+import net.benwoodworth.fastcraft.bukkit.world.FcInventorySlot_Bukkit
 import net.benwoodworth.fastcraft.bukkit.world.inventory
 import net.benwoodworth.fastcraft.platform.player.FcPlayerInventory
 import net.benwoodworth.fastcraft.platform.world.FcInventorySlot
 import org.bukkit.inventory.PlayerInventory
 import javax.inject.Inject
 
-class BukkitFcPlayerInventory_1_7(
+class FcPlayerInventory_Bukkit_1_7(
     override val inventory: PlayerInventory,
-    private val fcInventorySlotFactory: BukkitFcInventorySlot.Factory,
-) : BukkitFcPlayerInventory {
+    private val fcInventorySlotFactory: FcInventorySlot_Bukkit.Factory,
+) : FcPlayerInventory_Bukkit {
     override val storage: Collection<FcInventorySlot> = List(36) { slotIndex ->
         fcInventorySlotFactory.create(inventory, slotIndex)
     }
@@ -36,10 +36,10 @@ class BukkitFcPlayerInventory_1_7(
     }
 
     class Factory @Inject constructor(
-        private val fcInventorySlotFactory: BukkitFcInventorySlot.Factory,
+        private val fcInventorySlotFactory: FcInventorySlot_Bukkit.Factory,
     ) {
-        fun create(inventory: PlayerInventory): BukkitFcPlayerInventory_1_7 {
-            return BukkitFcPlayerInventory_1_7(
+        fun create(inventory: PlayerInventory): FcPlayerInventory_Bukkit_1_7 {
+            return FcPlayerInventory_Bukkit_1_7(
                 inventory = inventory,
                 fcInventorySlotFactory = fcInventorySlotFactory,
             )

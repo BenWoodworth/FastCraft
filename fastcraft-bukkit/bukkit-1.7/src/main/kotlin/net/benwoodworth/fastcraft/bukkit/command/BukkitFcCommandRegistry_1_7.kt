@@ -8,12 +8,12 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class BukkitFcCommandRegistry_1_7 @Inject constructor(
+class FcCommandRegistry_Bukkit_1_7 @Inject constructor(
     private val plugin: Plugin,
     private val server: Server,
     private val fcLogger: FcLogger,
-    private val fcCommandAdapterFactory: BukkitFcCommandAdapter.Factory,
-) : BukkitFcCommandRegistry {
+    private val fcCommandAdapterFactory: FcCommandAdapter_Bukkit.Factory,
+) : FcCommandRegistry_Bukkit {
     override fun register(command: FcCommand, name: String, vararg aliases: String) {
         val pluginCommand = server.getPluginCommand("${plugin.name}:$name")
 

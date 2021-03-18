@@ -1,9 +1,9 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
-import net.benwoodworth.fastcraft.bukkit.player.BukkitFcPlayer
+import net.benwoodworth.fastcraft.bukkit.player.FcPlayer_Bukkit
 import net.benwoodworth.fastcraft.bukkit.player.bukkit
-import net.benwoodworth.fastcraft.bukkit.world.BukkitFcItem
-import net.benwoodworth.fastcraft.bukkit.world.BukkitFcItemStack
+import net.benwoodworth.fastcraft.bukkit.world.FcItem_Bukkit
+import net.benwoodworth.fastcraft.bukkit.world.FcItemStack_Bukkit
 import net.benwoodworth.fastcraft.bukkit.world.bukkit
 import net.benwoodworth.fastcraft.bukkit.world.create
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
@@ -21,19 +21,19 @@ import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
-open class BukkitFcCraftingRecipe_1_7(
+open class FcCraftingRecipe_Bukkit_1_7(
     val recipe: Recipe,
     private val server: Server,
-    private val preparedRecipeFactory: BukkitFcCraftingRecipePrepared.Factory,
+    private val preparedRecipeFactory: FcCraftingRecipePrepared_Bukkit.Factory,
     private val fcItemStackFactory: FcItemStack.Factory,
     private val inventoryViewFactory: CraftingInventoryViewFactory,
     fcPlayerOperations: FcPlayer.Operations,
     fcItemOperations: FcItem.Operations,
     private val fcItemStackOperations: FcItemStack.Operations,
-) : BukkitFcCraftingRecipe,
-    BukkitFcPlayer.Operations by fcPlayerOperations.bukkit,
-    BukkitFcItem.Operations by fcItemOperations.bukkit,
-    BukkitFcItemStack.Operations by fcItemStackOperations.bukkit {
+) : FcCraftingRecipe_Bukkit,
+    FcPlayer_Bukkit.Operations by fcPlayerOperations.bukkit,
+    FcItem_Bukkit.Operations by fcItemOperations.bukkit,
+    FcItemStack_Bukkit.Operations by fcItemStackOperations.bukkit {
 
     private companion object {
         private const val recipeIdAlphabet = "23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefhkmnorsuvwxz"
@@ -66,7 +66,7 @@ open class BukkitFcCraftingRecipe_1_7(
                     rowString
                         .mapIndexed { column, char ->
                             recipe.ingredientMap[char]?.let { ingredient ->
-                                BukkitFcIngredient_1_7(row * 3 + column, ingredient, fcItemStackOperations)
+                                FcIngredient_Bukkit_1_7(row * 3 + column, ingredient, fcItemStackOperations)
                             }
                         }
                         .filterNotNull()
@@ -75,7 +75,7 @@ open class BukkitFcCraftingRecipe_1_7(
 
             is ShapelessRecipe -> recipe.ingredientList
                 .mapIndexed { i, ingredient ->
-                    BukkitFcIngredient_1_7(i, ingredient, fcItemStackOperations)
+                    FcIngredient_Bukkit_1_7(i, ingredient, fcItemStackOperations)
                 }
 
             else -> throw IllegalStateException()
@@ -136,7 +136,7 @@ open class BukkitFcCraftingRecipe_1_7(
     }
 
     override fun equals(other: Any?): Boolean {
-        if (other !is BukkitFcCraftingRecipe_1_7) {
+        if (other !is FcCraftingRecipe_Bukkit_1_7) {
             return false
         }
 
@@ -181,15 +181,15 @@ open class BukkitFcCraftingRecipe_1_7(
     @Singleton
     class Factory @Inject constructor(
         private val server: Server,
-        private val fcCraftingRecipePreparedFactory: BukkitFcCraftingRecipePrepared.Factory,
+        private val fcCraftingRecipePreparedFactory: FcCraftingRecipePrepared_Bukkit.Factory,
         private val fcItemStackFactory: FcItemStack.Factory,
         private val craftingInventoryViewFactory: CraftingInventoryViewFactory,
         private val fcPlayerOperations: FcPlayer.Operations,
         private val fcItemOperations: FcItem.Operations,
         private val fcItemStackOperations: FcItemStack.Operations,
-    ) : BukkitFcCraftingRecipe.Factory {
+    ) : FcCraftingRecipe_Bukkit.Factory {
         override fun create(recipe: Recipe): FcCraftingRecipe {
-            return BukkitFcCraftingRecipe_1_7(
+            return FcCraftingRecipe_Bukkit_1_7(
                 recipe = recipe,
                 server = server,
                 preparedRecipeFactory = fcCraftingRecipePreparedFactory,

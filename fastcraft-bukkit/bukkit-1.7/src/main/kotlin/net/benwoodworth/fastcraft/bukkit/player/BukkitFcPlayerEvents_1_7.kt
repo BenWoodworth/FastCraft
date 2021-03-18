@@ -23,13 +23,13 @@ import javax.inject.Singleton
 
 @Suppress("UNCHECKED_CAST")
 @Singleton
-open class BukkitFcPlayerEvents_1_7 @Inject constructor(
+open class FcPlayerEvents_Bukkit_1_7 @Inject constructor(
     plugin: Plugin,
     private val fcPlayerProvider: FcPlayer.Provider,
     pluginManager: PluginManager,
     private val causeTracker: CauseTracker,
     private val fcTaskFactory: FcTask.Factory,
-) : BukkitFcPlayerEvents {
+) : FcPlayerEvents_Bukkit {
     override val onPlayerJoin: HandlerSet<FcPlayerJoinEvent> = HandlerSet()
     override val onOpenCraftingTableNaturally: HandlerSet<FcOpenCraftingTableNaturallyEvent> = HandlerSet()
     override val onPlayerInventoryChange: HandlerSet<FcPlayerInventoryChangeEvent> = HandlerSet()
@@ -75,7 +75,7 @@ open class BukkitFcPlayerEvents_1_7 @Inject constructor(
     protected fun onPlayerInventoryChange(player: Player) {
         fcTaskFactory.startTask {
             onPlayerInventoryChange.notifyHandlers(
-                BukkitFcPlayerInventoryChangeEvent(fcPlayerProvider.getPlayer(player))
+                FcPlayerInventoryChangeEvent_Bukkit(fcPlayerProvider.getPlayer(player))
             )
         }
     }
@@ -84,7 +84,7 @@ open class BukkitFcPlayerEvents_1_7 @Inject constructor(
         @EventHandler
         fun onPlayerJoin(event: PlayerJoinEvent) {
             onPlayerJoin.notifyHandlers(
-                BukkitFcPlayerJoinEvent_1_7(event, fcPlayerProvider)
+                FcPlayerJoinEvent_Bukkit_1_7(event, fcPlayerProvider)
             )
         }
 
@@ -102,7 +102,7 @@ open class BukkitFcPlayerEvents_1_7 @Inject constructor(
                 causeTracker.checkCause(CraftingTableInteractCause(player))
             ) {
                 onOpenCraftingTableNaturally.notifyHandlers(
-                    BukkitFcOpenCraftingTableNaturallyEvent_1_7(event, fcPlayerProvider.getPlayer(player))
+                    FcOpenCraftingTableNaturallyEvent_Bukkit_1_7(event, fcPlayerProvider.getPlayer(player))
                 )
             }
         }

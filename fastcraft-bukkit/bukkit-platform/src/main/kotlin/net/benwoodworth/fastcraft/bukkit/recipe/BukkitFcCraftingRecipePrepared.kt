@@ -7,7 +7,7 @@ import net.benwoodworth.fastcraft.platform.world.FcItemStack
 import org.bukkit.entity.Player
 import org.bukkit.inventory.InventoryView
 
-interface BukkitFcCraftingRecipePrepared : FcCraftingRecipePrepared {
+interface FcCraftingRecipePrepared_Bukkit : FcCraftingRecipePrepared {
     interface Factory {
         fun create(
             player: Player,

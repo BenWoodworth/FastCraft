@@ -3,7 +3,7 @@ package net.benwoodworth.fastcraft.bukkit.command
 import net.benwoodworth.fastcraft.platform.command.FcCommandSource
 import org.bukkit.command.CommandSender
 
-interface BukkitFcCommandSource : FcCommandSource {
+interface FcCommandSource_Bukkit : FcCommandSource {
     val commandSender: CommandSender
 
     interface Factory {
@@ -12,4 +12,4 @@ interface BukkitFcCommandSource : FcCommandSource {
 }
 
 val FcCommandSource.commandSender: CommandSender
-    get() = (this as BukkitFcCommandSource).commandSender
+    get() = (this as FcCommandSource_Bukkit).commandSender

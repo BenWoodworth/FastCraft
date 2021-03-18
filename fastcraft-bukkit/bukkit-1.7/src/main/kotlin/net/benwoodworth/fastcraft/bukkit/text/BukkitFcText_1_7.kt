@@ -5,10 +5,10 @@ import net.benwoodworth.fastcraft.platform.text.FcTextColor
 import javax.inject.Inject
 import javax.inject.Singleton
 
-object BukkitFcText_1_7 {
+object FcText_Bukkit_1_7 {
     @Singleton
     class Factory @Inject constructor(
-    ) : BukkitFcText.Factory {
+    ) : FcText_Bukkit.Factory {
         override fun create(
             text: String,
             color: FcTextColor?,
@@ -19,7 +19,7 @@ object BukkitFcText_1_7 {
             obfuscate: Boolean?,
             extra: List<FcText>,
         ): FcText {
-            return BukkitFcText.Component.Text(
+            return FcText_Bukkit.Component.Text(
                 text = text,
                 color = color,
                 bold = bold,
@@ -41,7 +41,7 @@ object BukkitFcText_1_7 {
             obfuscate: Boolean?,
             extra: List<FcText>,
         ): FcText {
-            return BukkitFcText.Component.Translate(
+            return FcText_Bukkit.Component.Translate(
                 translate = translate,
                 color = color,
                 bold = bold,
@@ -54,7 +54,7 @@ object BukkitFcText_1_7 {
         }
 
         override fun createLegacy(legacyText: String): FcText {
-            return BukkitFcText.Legacy(legacyText)
+            return FcText_Bukkit.Legacy(legacyText)
         }
     }
 }

@@ -5,7 +5,7 @@ import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import org.bukkit.material.MaterialData
 
-object BukkitFcItem {
+object FcItem_Bukkit {
     interface Operations : FcItem.Operations {
         val FcItem.material: Material
         val FcItem.materialData: MaterialData
@@ -20,13 +20,13 @@ object BukkitFcItem {
     }
 }
 
-val FcItem.Operations.bukkit: BukkitFcItem.Operations
-    get() = this as BukkitFcItem.Operations
+val FcItem.Operations.bukkit: FcItem_Bukkit.Operations
+    get() = this as FcItem_Bukkit.Operations
 
 fun FcItem.Factory.fromMaterial(material: Material): FcItem {
-    return (this as BukkitFcItem.Factory).fromMaterial(material)
+    return (this as FcItem_Bukkit.Factory).fromMaterial(material)
 }
 
 fun FcItem.Factory.fromMaterialData(materialData: MaterialData): FcItem {
-    return (this as BukkitFcItem.Factory).fromMaterialData(materialData)
+    return (this as FcItem_Bukkit.Factory).fromMaterialData(materialData)
 }

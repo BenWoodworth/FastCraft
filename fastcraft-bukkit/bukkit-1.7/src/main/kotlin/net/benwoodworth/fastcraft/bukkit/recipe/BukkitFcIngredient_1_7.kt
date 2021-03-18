@@ -1,18 +1,18 @@
 package net.benwoodworth.fastcraft.bukkit.recipe
 
-import net.benwoodworth.fastcraft.bukkit.world.BukkitFcItemStack
+import net.benwoodworth.fastcraft.bukkit.world.FcItemStack_Bukkit
 import net.benwoodworth.fastcraft.bukkit.world.bukkit
 import net.benwoodworth.fastcraft.platform.world.FcItemStack
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import java.util.*
 
-class BukkitFcIngredient_1_7(
+class FcIngredient_Bukkit_1_7(
     override val slotIndex: Int,
     private val ingredientItem: ItemStack,
     fcItemStackOperations: FcItemStack.Operations,
-) : BukkitFcIngredient,
-    BukkitFcItemStack.Operations by fcItemStackOperations.bukkit {
+) : FcIngredient_Bukkit,
+    FcItemStack_Bukkit.Operations by fcItemStackOperations.bukkit {
 
     @Suppress("DEPRECATION")
     private val hasWildcardData: Boolean = ingredientItem.data.data == WILDCARD_DATA
@@ -43,7 +43,7 @@ class BukkitFcIngredient_1_7(
     }
 
     override fun equals(other: Any?): Boolean {
-        return other is BukkitFcIngredient_1_7 &&
+        return other is FcIngredient_Bukkit_1_7 &&
                 slotIndex == other.slotIndex &&
                 ingredientItem == other.ingredientItem
     }

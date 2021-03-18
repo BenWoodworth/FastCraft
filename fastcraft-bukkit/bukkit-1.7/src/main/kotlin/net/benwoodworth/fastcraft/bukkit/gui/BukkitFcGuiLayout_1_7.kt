@@ -7,10 +7,10 @@ import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
-abstract class BukkitFcGuiLayout_1_7(
+abstract class FcGuiLayout_Bukkit_1_7(
     override val inventory: Inventory,
-    private val guiButtonFactory: BukkitFcGuiButton.Factory,
-) : BukkitFcGuiLayout {
+    private val guiButtonFactory: FcGuiButton_Bukkit.Factory,
+) : FcGuiLayout_Bukkit {
     protected abstract val locale: Locale
 
     private val buttons: MutableMap<Int, FcGuiButton> = mutableMapOf()
@@ -30,8 +30,8 @@ abstract class BukkitFcGuiLayout_1_7(
         override val height: Int,
         inventory: Inventory,
         override val locale: Locale,
-        guiButtonFactory: BukkitFcGuiButton_1_7.Factory,
-    ) : BukkitFcGuiLayout_1_7(inventory, guiButtonFactory), BukkitFcGuiLayout.Grid {
+        guiButtonFactory: FcGuiButton_Bukkit_1_7.Factory,
+    ) : FcGuiLayout_Bukkit_1_7(inventory, guiButtonFactory), FcGuiLayout_Bukkit.Grid {
         override fun getButton(column: Int, row: Int): FcGuiButton {
             return getSlotButtonOrCreate(row * width + column)
         }
@@ -39,8 +39,8 @@ abstract class BukkitFcGuiLayout_1_7(
 
     @Singleton
     class Factory @Inject constructor(
-        private val fcGuiButtonFactory: BukkitFcGuiButton_1_7.Factory,
-    ) : BukkitFcGuiLayout.Factory {
+        private val fcGuiButtonFactory: FcGuiButton_Bukkit_1_7.Factory,
+    ) : FcGuiLayout_Bukkit.Factory {
         override fun createGridLayout(
             width: Int,
             height: Int,
