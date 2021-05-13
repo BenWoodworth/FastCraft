@@ -67,7 +67,7 @@ class FcGui_Bukkit_1_7<TLayout : FcGuiLayout>(
         return view.topInventory.holder as FcGui<*>
     }
 
-    private fun InventoryClickEvent.getGuiClick(): FcGuiClick {
+    private fun InventoryClickEvent.getGuiClick(): FcGuiClick? {
         val modifiers = mutableSetOf<FcGuiClickModifier>()
             .apply {
                 if (isShiftClick) {
@@ -90,7 +90,7 @@ class FcGui_Bukkit_1_7<TLayout : FcGuiLayout>(
             click == ClickType.MIDDLE -> FcGuiClick.Middle(modifiers)
             click == ClickType.DROP || click == ClickType.CONTROL_DROP -> FcGuiClick.Drop(modifiers)
             hotbarButton != -1 -> FcGuiClick.Number(hotbarButton, modifiers)
-            else -> throw IllegalStateException("Unable to read click: $click")
+            else -> return null
         }
     }
 
@@ -108,7 +108,10 @@ class FcGui_Bukkit_1_7<TLayout : FcGuiLayout>(
 
                 layout.getSlotButton(slot)?.let { button ->
                     try {
-                        button.listener.onClick(event.getGui(), button, event.getGuiClick())
+                        val click = event.getGuiClick()
+                        if (click != null) {
+                            button.listener.onClick(event.getGui(), button, click)
+                        }
                     } catch (throwable: Throwable) {
                         throwable.printStackTrace()
                     }
