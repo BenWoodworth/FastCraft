@@ -72,7 +72,7 @@ class MinecraftAssets @Inject constructor(
         return getAssetIndex().objects.keys
     }
 
-    fun cacheAsset(name: String) {
+    private fun cacheAsset(name: String) {
         val assetCacheFile = assetsCacheDir.resolve(name)
 
         if (!assetCacheFile.exists()) {
