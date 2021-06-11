@@ -18,6 +18,7 @@ object FcItem_Bukkit_1_15 {
         localizer = localizer,
         fcItemFactory = fcItemFactory,
     ) {
+        @Suppress("USELESS_CAST") // IDE thinks it's an error without the cast
         override val FcItem.craftingRemainingItem: FcItem?
             get() = (material as Material).craftingRemainingItem?.let { fcItemFactory.fromMaterial(it) }
     }

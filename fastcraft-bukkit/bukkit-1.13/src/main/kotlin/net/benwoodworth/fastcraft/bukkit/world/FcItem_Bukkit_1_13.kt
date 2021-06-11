@@ -7,7 +7,6 @@ import net.benwoodworth.fastcraft.platform.world.FcItem
 import org.bukkit.Material
 import org.bukkit.Server
 import org.bukkit.inventory.ItemStack
-import org.bukkit.material.MaterialData
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -26,7 +25,7 @@ object FcItem_Bukkit_1_13 {
             get() = value as Material
 
         @Suppress("DEPRECATION")
-        override val FcItem.materialData: MaterialData
+        override val FcItem.materialData: org.bukkit.material.MaterialData
             get() = error("MaterialData not supported")
 
         private fun Material.getNameLocaleKey(prefix: String): String {
@@ -81,7 +80,7 @@ object FcItem_Bukkit_1_13 {
             get() = fromMaterial(Material.LIGHT_GRAY_STAINED_GLASS_PANE)
 
         @Suppress("DEPRECATION")
-        override fun fromMaterialData(materialData: MaterialData): FcItem {
+        override fun fromMaterialData(materialData: org.bukkit.material.MaterialData): FcItem {
             error("MaterialData is not supported")
         }
 
