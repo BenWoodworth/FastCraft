@@ -15,20 +15,21 @@ class FcItemOrderComparator_Bukkit_1_13 @Inject constructor(
     fcItemOperations: FcItem.Operations,
 ) : FcItemOrderComparator_Bukkit {
     private val materialIndices: Map<Material, Int> = plugin
-        .getResource(bukkitVersion.run { "bukkit/item-order/$major.$minor.txt" })!!
-        .reader()
-        .useLines { lines ->
+        .getResource(bukkitVersion.run { "bukkit/item-order/$major.$minor.txt" })
+        ?.reader()
+        ?.useLines { lines ->
             lines
                 .filter { it.isNotBlank() }
                 .mapNotNull { line -> Enums.getIfPresent(Material::class.java, line.trim()).orNull() }
                 .mapIndexed { i, material -> material to i }
                 .toMap()
         }
+        ?: emptyMap()
 
     private val comparator = fcItemOperations.bukkit.run {
         compareBy<FcItem>(
             { materialIndices[it.material] ?: Int.MAX_VALUE },
-            { it.id }
+            { it.id },
         )
     }
 
