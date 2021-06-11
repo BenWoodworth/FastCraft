@@ -8,6 +8,7 @@ import net.benwoodworth.fastcraft.platform.command.FcCommandSource
 import net.benwoodworth.fastcraft.platform.player.FcPlayer
 import net.benwoodworth.fastcraft.platform.server.FcPermission
 import net.benwoodworth.fastcraft.platform.text.FcText
+import java.util.*
 import javax.inject.Inject
 
 class FastCraftCommand @Inject constructor(
@@ -63,9 +64,9 @@ class FastCraftCommand @Inject constructor(
     override fun process(source: FcCommandSource, arguments: String) {
         val args = arguments.split(argSplitExpr)
 
-        when (args.getOrNull(0)?.toLowerCase()) {
-            "set" -> when (args.getOrNull(1)?.toLowerCase()) {
-                "enabled" -> when (val enabled = args.getOrNull(2)?.toLowerCase()) {
+        when (args.getOrNull(0)?.lowercase(Locale.getDefault())) {
+            "set" -> when (args.getOrNull(1)?.lowercase(Locale.getDefault())) {
+                "enabled" -> when (val enabled = args.getOrNull(2)?.lowercase(Locale.getDefault())) {
                     "true",
                     "false",
                     "toggle",
@@ -90,7 +91,7 @@ class FastCraftCommand @Inject constructor(
                     source.sendUsageMessage(usageSet)
                 }
             }
-            "craft" -> when (val type = args.getOrNull(1)?.toLowerCase() ?: "default") {
+            "craft" -> when (val type = args.getOrNull(1)?.lowercase(Locale.getDefault()) ?: "default") {
                 "fastcraft",
                 "grid",
                 "default",
@@ -111,7 +112,7 @@ class FastCraftCommand @Inject constructor(
                     source.sendUsageMessage(usageCraft)
                 }
             }
-            "reload" -> when (args.getOrNull(1)?.toLowerCase()) {
+            "reload" -> when (args.getOrNull(1)?.lowercase(Locale.getDefault())) {
                 null -> {
                     fcReload(source)
                 }
@@ -132,7 +133,7 @@ class FastCraftCommand @Inject constructor(
 
         fun suggestions(vararg suggestion: String): List<String> {
             return suggestion
-                .filter { it.toLowerCase().startsWith(argInProgress.toLowerCase()) }
+                .filter { it.lowercase(Locale.getDefault()).startsWith(argInProgress.lowercase(Locale.getDefault())) }
                 .toList()
         }
 
@@ -145,11 +146,11 @@ class FastCraftCommand @Inject constructor(
             return suggestions(*players)
         }
 
-        return when (args.getOrNull(0)?.toLowerCase()) {
+        return when (args.getOrNull(0)?.lowercase(Locale.getDefault())) {
             null -> suggestions("set", "craft", "reload")
-            "set" -> when (args.getOrNull(1)?.toLowerCase()) {
+            "set" -> when (args.getOrNull(1)?.lowercase(Locale.getDefault())) {
                 null -> suggestions("enabled")
-                "enabled" -> when (args.getOrNull(2)?.toLowerCase()) {
+                "enabled" -> when (args.getOrNull(2)?.lowercase(Locale.getDefault())) {
                     null -> suggestions("true", "false", "toggle")
                     else -> when (args.getOrNull(3)) {
                         null -> suggestPlayers()
@@ -158,7 +159,7 @@ class FastCraftCommand @Inject constructor(
                 }
                 else -> emptyList()
             }
-            "craft" -> when (args.getOrNull(1)?.toLowerCase()) {
+            "craft" -> when (args.getOrNull(1)?.lowercase(Locale.getDefault())) {
                 null -> suggestions("fastcraft", "grid", "default")
                 else -> when (args.getOrNull(2)) {
                     null -> suggestPlayers()

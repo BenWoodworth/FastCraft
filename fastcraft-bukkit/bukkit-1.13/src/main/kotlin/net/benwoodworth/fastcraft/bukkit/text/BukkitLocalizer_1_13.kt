@@ -88,8 +88,8 @@ class BukkitLocalizer_1_13 @Inject constructor(
     private fun String.toLocale(): Locale {
         val parts = split('_', '-', limit = 2)
         return Locale(
-            parts.first().toLowerCase(),
-            parts.getOrNull(1)?.toUpperCase() ?: "",
+            parts.first().lowercase(Locale.getDefault()),
+            parts.getOrNull(1)?.uppercase(Locale.getDefault()) ?: "",
         )
     }
 

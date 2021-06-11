@@ -38,7 +38,7 @@ class JsonStringBuilder(
                 else -> when (c) {
                     in '\u0000'..'\u001F' -> {
                         stringBuilder.append("\\u")
-                        appendHex(c.toInt(), 4)
+                        appendHex(c.code, 4)
                     }
                     else -> stringBuilder.append(c)
 

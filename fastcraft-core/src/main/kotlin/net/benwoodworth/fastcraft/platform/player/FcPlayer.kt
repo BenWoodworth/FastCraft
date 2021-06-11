@@ -5,7 +5,8 @@ import net.benwoodworth.fastcraft.platform.text.FcText
 import net.benwoodworth.fastcraft.platform.world.FcItemStack
 import java.util.*
 
-inline class FcPlayer(val value: Any) {
+@JvmInline
+value class FcPlayer(val value: Any) {
     interface Operations {
         val FcPlayer.username: String
         var FcPlayer.customName: String?

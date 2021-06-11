@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.platform.text
 
-inline class FcTextColor(val value: Any) {
+@JvmInline
+value class FcTextColor(val value: Any) {
     interface Operations
 
     interface Factory {

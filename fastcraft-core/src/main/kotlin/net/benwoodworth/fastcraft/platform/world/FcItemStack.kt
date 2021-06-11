@@ -2,7 +2,8 @@ package net.benwoodworth.fastcraft.platform.world
 
 import net.benwoodworth.fastcraft.platform.text.FcText
 
-inline class FcItemStack(val value: Any) {
+@JvmInline
+value class FcItemStack(val value: Any) {
     interface Operations {
         var FcItemStack.type: FcItem
         var FcItemStack.amount: Int

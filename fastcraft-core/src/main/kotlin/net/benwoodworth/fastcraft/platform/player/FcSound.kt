@@ -1,6 +1,7 @@
 package net.benwoodworth.fastcraft.platform.player
 
-inline class FcSound(val value: Any) {
+@JvmInline
+value class FcSound(val value: Any) {
     interface Operations
 
     interface Factory {
