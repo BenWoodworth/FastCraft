@@ -2,6 +2,7 @@ package net.benwoodworth.fastcraft.bukkit.recipe
 
 import org.bukkit.Material
 import org.bukkit.Server
+import org.bukkit.entity.HumanEntity
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryType
 import org.bukkit.inventory.*
@@ -19,7 +20,7 @@ class CraftingInventoryViewFactory_1_9 @Inject constructor(
     ): InventoryView {
         return CustomInventoryView(
             player = player,
-            topInventory = CustomCraftingInventory(inventoryHolder, recipe)
+            topInventory = CustomCraftingInventory(player, inventoryHolder, recipe),
         )
     }
 
@@ -45,10 +46,12 @@ class CraftingInventoryViewFactory_1_9 @Inject constructor(
     }
 
     private inner class CustomCraftingInventory private constructor(
+        private val player: Player,
         private val recipe: Recipe?,
         private val baseInventory: Inventory,
     ) : CraftingInventory, Inventory by baseInventory {
-        constructor(inventoryHolder: InventoryHolder?, recipe: Recipe?) : this(
+        constructor(player: Player, inventoryHolder: InventoryHolder?, recipe: Recipe?) : this(
+            player = player,
             recipe = recipe,
             baseInventory = server.createInventory(inventoryHolder, InventoryType.WORKBENCH)
         )
@@ -116,6 +119,10 @@ class CraftingInventoryViewFactory_1_9 @Inject constructor(
 
         override fun iterator(): MutableListIterator<ItemStack> {
             return iterator(0)
+        }
+
+        override fun getViewers(): List<HumanEntity> {
+            return listOf(player)
         }
     }
 }
