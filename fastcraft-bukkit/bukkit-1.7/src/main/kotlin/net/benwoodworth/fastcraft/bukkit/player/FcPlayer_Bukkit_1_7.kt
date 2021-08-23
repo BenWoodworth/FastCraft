@@ -15,6 +15,7 @@ import net.benwoodworth.fastcraft.platform.world.FcItemStack
 import net.benwoodworth.localeconfig.api.LocaleApi
 import org.bukkit.Server
 import org.bukkit.entity.Player
+import org.bukkit.event.player.PlayerDropItemEvent
 import org.bukkit.inventory.ItemStack
 import java.util.*
 import javax.inject.Inject
@@ -77,7 +78,16 @@ object FcPlayer_Bukkit_1_7 {
 
         override fun FcPlayer.giveItems(items: List<FcItemStack>, dropAll: Boolean) {
             fun ItemStack.drop() {
-                player.world.dropItemNaturally(player.location, this)
+                val item = player.world.dropItemNaturally(player.location, this)
+
+                val dropEvent = PlayerDropItemEvent(player, item)
+                server.pluginManager.callEvent(dropEvent)
+
+                if (dropEvent.isCancelled) {
+                    // With vanilla crafting, drop-clicking the result and having that drop event cancelled means the
+                    // ingredients/result are just lost. So I'm not worrying about gracefully handing cancellation.
+                    item.remove()
+                }
             }
 
             items.forEach { itemStack ->
