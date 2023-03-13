@@ -1,0 +1,32 @@
+name: Build/Test/Upload
+
+on:
+  - push
+  - pull_request
+  - release
+
+jobs:
+  build-test-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          # For versioning, fetch everything so `git describe` works
+          fetch-depth: 0
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
+      - name: Build
+        run: ./gradlew assemble
+
+      - name: Test
+        run: ./gradlew test
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: FastCraft.jar
+          path: build/libs/FastCraft*.jar
+          if-no-files-found: error

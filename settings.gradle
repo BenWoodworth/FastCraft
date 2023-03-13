@@ -1,3 +1,7 @@
+plugins {
+    id("com.gradle.enterprise") version("3.9")
+}
+
 rootProject.name = "FastCraft"
 
 include ":fastcraft-core"
@@ -12,3 +16,14 @@ include ":fastcraft-bukkit:bukkit-1.13"
 include ":fastcraft-bukkit:bukkit-1.14"
 include ":fastcraft-bukkit:bukkit-1.15"
 include ":fastcraft-bukkit:bukkit-platform"
+
+
+gradleEnterprise {
+    if (System.getenv("CI") != null) {
+        buildScan {
+            publishAlways()
+            termsOfServiceUrl = "https://gradle.com/terms-of-service"
+            termsOfServiceAgree = "yes"
+        }
+    }
+}
