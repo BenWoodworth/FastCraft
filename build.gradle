@@ -3,8 +3,9 @@ version = PluginVersion.version
 
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
         maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+        gradlePluginPortal()
     }
 
     dependencies {
