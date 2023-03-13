@@ -152,5 +152,5 @@ class MinecraftAssets @Inject constructor(
     }
 
     private val AssetIndex.Object.url: URL
-        get() = URL("http://resources.download.minecraft.net/${hash.take(2)}/$hash")
+        get() = URL("https://resources.download.minecraft.net/${hash.take(2)}/$hash")
 }
