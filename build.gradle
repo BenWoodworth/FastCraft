@@ -23,7 +23,7 @@ allprojects {
     apply plugin: "kotlinx-serialization"
 
     repositories {
-        jcenter()
+        mavenCentral()
         maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
         maven { url "https://repo.codemc.org/repository/maven-public" }
     }
