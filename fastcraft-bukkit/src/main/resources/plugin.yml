@@ -3,7 +3,7 @@ author: "${plugin_author}"
 version: "${plugin_version}"
 website: "${plugin_website}"
 api-version: "1.13"
-
+folia-supported: true
 description: "${plugin_description}"
 
 main: "net.benwoodworth.fastcraft.bukkit.BukkitFastCraft"
