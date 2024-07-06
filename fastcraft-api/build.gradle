@@ -1,57 +1,57 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
-    }
-}
-
-apply plugin: 'com.bmuschko.nexus'
-
-archivesBaseName = 'fastcraft'
-group = "com.yourCompany.package"
-version = "0.1"
-
-modifyPom {
-    project {
-        name 'teachUpload'
-        description 'Teaching how to use gradle.'
-        url 'https://bitbucket.org/objdict/objjson'
-        inceptionYear '2018'
-
-        scm {
-            url 'https://bitbucket.org/objdict/objjson'
-            connection 'scm:https://bitbucket.org/objdict/objjson.git'
-            developerConnection 'scm:git://bitbucket.org/objdict/objjson.git'
-        }
-
-        licenses {
-            license {
-                name 'The Apache Software License, Version 2.0'
-                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                distribution 'repo'
-            }
-        }
-
-        developers {
-            developer {
-                id 'albertgao'
-                name 'Albert Gao'
-                email 'albert.gao@salect.co.nz'
-            }
-        }
-    }
-}
-
-extraArchive {
-    sources = true
-    tests = true
-    javadoc = true
-}
-
-nexus {
-    sign = true
-    repositoryUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
-    snapshotRepositoryUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
-}
+//buildscript {
+//    repositories {
+//        mavenCentral()
+//    }
+//    dependencies {
+//        classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
+//    }
+//}
+//
+//apply plugin: 'com.bmuschko.nexus'
+//
+//archivesBaseName = 'fastcraft'
+//group = "com.yourCompany.package"
+//version = "0.1"
+//
+//modifyPom {
+//    project {
+//        name 'teachUpload'
+//        description 'Teaching how to use gradle.'
+//        url 'https://bitbucket.org/objdict/objjson'
+//        inceptionYear '2018'
+//
+//        scm {
+//            url 'https://bitbucket.org/objdict/objjson'
+//            connection 'scm:https://bitbucket.org/objdict/objjson.git'
+//            developerConnection 'scm:git://bitbucket.org/objdict/objjson.git'
+//        }
+//
+//        licenses {
+//            license {
+//                name 'The Apache Software License, Version 2.0'
+//                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//                distribution 'repo'
+//            }
+//        }
+//
+//        developers {
+//            developer {
+//                id 'albertgao'
+//                name 'Albert Gao'
+//                email 'albert.gao@salect.co.nz'
+//            }
+//        }
+//    }
+//}
+//
+//extraArchive {
+//    sources = true
+//    tests = true
+//    javadoc = true
+//}
+//
+//nexus {
+//    sign = true
+//    repositoryUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+//    snapshotRepositoryUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
+//}

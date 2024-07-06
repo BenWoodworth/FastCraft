@@ -32,14 +32,14 @@ open class FcCraftingRecipe_Bukkit_1_13(
     fcItemStackOperations = fcItemStackOperations,
 ) {
     override val group: String?
-        get() = when (recipe) {
+        get() = when (val recipe = this.recipe) {
             is ShapedRecipe -> recipe.group.takeUnless { it == "" }
             is ShapelessRecipe -> recipe.group.takeUnless { it == "" }
             else -> throw IllegalStateException()
         }
 
     override fun loadIngredients(): List<FcIngredient> {
-        return when (recipe) {
+        return when (val recipe = this.recipe) {
             is ShapedRecipe -> recipe.shape
                 .mapIndexed { row, rowString ->
                     rowString
