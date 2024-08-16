@@ -19,7 +19,7 @@
   "gui.button.craft-amount.description.2": "${aqua}撳滑鼠中鍵返去 1x",
   "gui.button.crafting-grid.title": "${green}合成台",
   "gui.button.crafting-grid.description.0": "${yellow}打開 3x3 合成台",
-  "gui.button.crafting-grid.description.1": "${yellow}用 ${green}/fc set enabled ${yellow} 嚟開關 FastCraft",
+  "gui.button.crafting-grid.description.1": "${yellow}用 ${green}/fc set enabled ${yellow}嚟開關 FastCraft",
   "command.error.usage": "${red}正確使用方式：${usage}",
   "command.error.permission": "${red}你需要呢個權限先可以使用：${permission}",
   "command.error.console.only": "${red}呢個指令只可以喺伺服器控制台執行",
