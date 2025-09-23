@@ -12,6 +12,18 @@ import javax.inject.Singleton
 class CraftingInventoryViewFactory_1_15 @Inject constructor(
     private val server: Server,
 ) : CraftingInventoryViewFactory {
+    private companion object {
+        fun air() = ItemStack(Material.AIR)
+
+        /**
+         * The `getHolder` method available in Paper starting with 1.15.2:
+         * https://jd.papermc.io/paper/1.15.2/org/bukkit/inventory/Inventory.html#getHolder-boolean-
+         */
+        private val paperInventoryGetHolderMethodWithUseSnapshot by lazy {
+            CraftingInventory::class.java.getMethod("getHolder", Boolean::class.java)
+        }
+    }
+
     override fun create(
         player: Player,
         inventoryHolder: InventoryHolder?,
@@ -56,8 +68,6 @@ class CraftingInventoryViewFactory_1_15 @Inject constructor(
             recipe = recipe,
             baseInventory = server.createInventory(inventoryHolder, InventoryType.WORKBENCH)
         )
-
-        private fun air() = ItemStack(Material.AIR)
 
         override fun getItem(index: Int): ItemStack {
             return baseInventory.getItem(index) ?: air()
@@ -120,6 +130,14 @@ class CraftingInventoryViewFactory_1_15 @Inject constructor(
 
         override fun iterator(): MutableListIterator<ItemStack> {
             return iterator(0)
+        }
+
+        /**
+         * Delegates interface method added by PaperMC in 1.15.2:
+         * https://jd.papermc.io/paper/1.15.2/org/bukkit/inventory/Inventory.html#getHolder-boolean-
+         */
+        fun getHolder(useSnapshot: Boolean): InventoryHolder? {
+            return paperInventoryGetHolderMethodWithUseSnapshot.invoke(baseInventory, useSnapshot) as InventoryHolder?
         }
     }
 }

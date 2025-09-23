@@ -1,0 +1,4 @@
+dependencies {
+    testImplementation project(':fastcraft-bukkit:bukkit-1.15')
+    testImplementation 'com.destroystokyo.paper:paper-api:1.15.2-R0.1-SNAPSHOT'
+}
