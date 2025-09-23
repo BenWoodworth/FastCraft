@@ -16,6 +16,7 @@ include ":fastcraft-bukkit:bukkit-1.13"
 include ":fastcraft-bukkit:bukkit-1.14"
 include ":fastcraft-bukkit:bukkit-1.15"
 include ":fastcraft-bukkit:bukkit-platform"
+include ":fastcraft-bukkit:paper-1.15"
 
 
 gradleEnterprise {
