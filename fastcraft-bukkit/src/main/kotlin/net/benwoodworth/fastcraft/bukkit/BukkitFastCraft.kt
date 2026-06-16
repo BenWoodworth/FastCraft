@@ -25,7 +25,7 @@ class BukkitFastCraft : JavaPlugin() {
     }
 
     override fun onDisable() {
-        fastCraft!!.disable()
+        fastCraft?.disable()
         fastCraft = null
     }
 
